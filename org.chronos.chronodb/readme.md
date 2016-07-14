@@ -80,7 +80,7 @@ Let's get even more involved with the temporal queries. What about finding out w
 
 Okay, but what about finding all modifications in a certain time range, regardless to which key? No problem:
 ```java
-ChronoDBTransaction tx = chronoDB.tx();
+ChronoDBTransaction tx = db.tx();
 Iterator<TemporalKey> modifiedKeys = tx.getModificationsInKeyspaceBetween("myKeyspace", 0L, tx.getTimestamp());
 while(modifiedKeys.hasNext()){
 	TemporalKey tKey = modifiedKeys.next();
