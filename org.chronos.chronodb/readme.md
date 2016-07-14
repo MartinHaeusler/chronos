@@ -15,8 +15,9 @@ ChronoDB employs an API design which we like to call a *Forward API*. It is desi
 
 Let's create a new instance of ChronoDB. Following the Forward API principle, you start simple - with the `ChronoDB` interface. Code completion will reveal the static `FACTORY` field. From there, it's a fluent builder pattern:
    
-    ChronoDB db = ChronoDB.FACTORY.create().inMemoryDatabase().build();
-
+   ```java
+   ChronoDB db = ChronoDB.FACTORY.create().inMemoryDatabase().build();
+   ```
     
 With this new instance, we can create a transaction (ChronoDB is fully ACID compliant) and add some data:
 
