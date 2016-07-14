@@ -36,14 +36,28 @@ Let's add some temporal querying to the mix. Let's say that our store has been e
 
 ```java
    Date date = ...; // the date we want to query
-   ChronoDBTransaction tx = chronoDB.tx(date.getTime());
+   ChronoDBTransaction tx = db.tx(date.getTime());  // tx() without argument would refer to the 'head' revision
    // all queries we run on the transaction now work on the specified date
    tx.get("MyKey"); // will return the value associated with "MyKey" at the specified date
 ```
 
 It is also easy to find out on what timestamp a query is operating, by calling `transaction.getTimestamp()`. Please note that, while a transaction is open, its associated timestamp can't change. To query different timestamps, simply use one transaction per timestamp.
 
+Let's get even more involved with the temporal queries. What about finding out when a key changed?
 
+```java
+	ChronoDBTransaction tx = db.tx();
+	// fetch the change timestamps
+	Iterator<Long> timestamps = tx.history("MyKey");
+	// iterate over the timestamps
+	while(timestamps.hasNext()){
+		long timestamp = timestamps.next();
+		// open a transaction on this timestamp and fetch the value of MyKey
+		Object value = db.tx(timestamp).get("MyKey");
+		// do something with the value, e.g. display it on the UI, compare it to something...
+	}
+  
+```
 
 Frequently Asked Questions
 ==========================
