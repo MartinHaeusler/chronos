@@ -119,3 +119,6 @@ ChronoDB is not suitable in environments that demand very high commit throughput
 
 ### What are the scalability limits?
 This question is difficult to answer as it depends on a number of factors, including (but not limited to) frequency of commits, size of individual values, overall size of the keyset, and ultimately also the amount of RAM and disk space available to the JVM. The largest ChronoDB instance we use for testing purposes contains about 500.000 unique keys in several versions (on the file backend), which works without problems. 
+
+### What about licensing?
+ChronoDB is provided as-is under the aGPLv3 license, just like all other [Chronos](https://github.com/MartinHaeusler/chronos) components (unless noted explicitly)
