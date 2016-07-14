@@ -29,7 +29,7 @@ Feature Highlights
 Getting Started
 ===============
 
-ChronoDB will very soon be available via maven. Until then, clone the repository and run `gradlew.build` in the project root directory.
+ChronoDB will very soon be available via maven. Until then, clone the repository and run `gradlew build` in the project root directory.
 *(The maven coordinates will be shown here as soon as it is available on the repository)*
 
 ChronoDB employs an API design which we like to call a *Forward API*. It is designed to make the best possible use of code completion in an IDE, such as Eclipse, IntelliJ IDEA, Netbeans, or others. The key concept is to start with a simple object, and the rest of the API unfolds via code completion.
