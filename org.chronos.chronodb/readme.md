@@ -25,7 +25,7 @@ With this new instance, we can create a transaction (ChronoDB is fully ACID comp
    ChronoDBTransaction tx = db.tx();
    tx.put("Hello", "World");         // writes to the default keyspace
    tx.put("Math", "Pi", 3.1415);     // writes to the "Math" keyspace
-   tx.commit();
+   tx.commit("My commit message");   // GIT-Style commit messages are supported (but are optional)
 ```
 
 
