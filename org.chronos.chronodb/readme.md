@@ -11,6 +11,7 @@ Feature Highlights
 
  - Key-Value Store with transparent system time versioning support
  - Full ACID (isolation level "serializable")
+ - Easy-to-use API
  - Works on three backends: file (default), in-memory, and SQL (experimental)
  - Temporal secondary indexing
  - Fluent indexer query language
