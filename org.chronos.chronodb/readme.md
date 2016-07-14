@@ -24,7 +24,7 @@ With this new instance, we can create a transaction (ChronoDB is fully ACID comp
 ```java
    ChronoDBTransaction tx = db.tx();
    // writes to the default keyspace
-   tx.put("Hello", "World);      
+   tx.put("Hello", "World");      
    // writes to the "Math" keyspace
    tx.put("Math", "Pi", 3.1415);  
    tx.commit();
