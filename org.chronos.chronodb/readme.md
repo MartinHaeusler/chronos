@@ -57,7 +57,19 @@ Let's get even more involved with the temporal queries. What about finding out w
 		// do something with the value, e.g. display it on the UI, compare it to something...
 		// Attention: 'value' may be NULL if the key was removed at this timestamp!
 	}
-  
+```
+
+Okay, but what about finding all modifications in a certain time range, regardless to which key? No problem:
+```java
+ChronoDBTransaction tx = chronoDB.tx();
+Iterator<TemporalKey> modifiedKeys = tx.getModificationsInKeyspaceBetween("myKeyspace", 0L, tx.getTimestamp());	while(modifiedKeys.hasNext()){
+	TemporalKey tKey = modifiedKeys.next();
+	String key = tKey.getKey(); // the key that was modified
+	long timestamp = tKey.getTimestamp(); // the commit timestamp at which the key was modified
+	// remember that ChronoDB can store commit messages?
+	String commitMessage = (String)tx.getCommitMetadata(timestamp);
+	System.out.println(commitMessage);
+}
 ```
 
 Frequently Asked Questions
