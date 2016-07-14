@@ -15,9 +15,9 @@ Currently, the following Chronos Components are available in the public reposito
 Frequently Asked Questions
 --------------------------
 
-**Who is working on it?**
+### Who is working on it?
 The project is currently a one-man show, as it is a major part of my on-going PhD thesis.
 
-**What about licencing?**
+### What about licencing?
 All Chronos components are licensed under the aGPLv3 license, unless noted otherwise. All source code is provided in this GitHub repository.
 
