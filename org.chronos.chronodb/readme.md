@@ -21,12 +21,12 @@ Let's create a new instance of ChronoDB. Following the Forward API principle, yo
     
 With this new instance, we can create a transaction (ChronoDB is fully ACID compliant) and add some data:
 
-   ``` java
+```java
    ChronoDBTransaction tx = db.tx();
    tx.put("Hello", "World);       // writes to the default keyspace
    tx.put("Math", "Pi", 3.1415);  // writes to the "Math" keyspace
    tx.commit();
-   ```
+```
 
 
 
