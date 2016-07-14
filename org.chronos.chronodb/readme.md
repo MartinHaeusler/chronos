@@ -1,1 +1,1 @@
-![alt tag](https://raw.githubusercontent.com/MartinHaeusler/chronos/blob/master/readmeResources/chronoDBLogo.png)
+![ChronoDB](https://github.com/MartinHaeusler/chronos/blob/master/readmeResources/chronoDBLogo.png)
