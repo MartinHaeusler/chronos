@@ -15,6 +15,8 @@ Feature Highlights
  - Works on three backends: file (default), in-memory, and SQL (experimental)
  - Temporal secondary indexing
  - Fluent indexer query language
+ - Temporal entry caching
+ - Temporal query caching
  - Lightweight branching support
  - Incremental commits for loading large batches of data
  - Equal performance on all timestamps (no performance penalty for queries on historical data)
@@ -108,3 +110,9 @@ Note that the `value` in `tx.put(key, value)` can be *any* Java object. The only
 Any object that follows the Java Beans pattern is fair game here, as well as any primitive Java type (e.g. `int`, `float`, `double`...), primitive wrapper class (e.g. `Integer`, `Float`, ...), most collections (e.g. `java.util.HashSet`, `java.util.ArrayList`...) and many other classes in the JDK (including `String`, `java.util.Date`, and many more). However, we **strongly recommend** to keep it simple and stick to primitives and collections of primitives whenever possible to avoid trouble.
 
 In general, `null` is **never a valid value**. When `tx.get("mykey")` returns `null`, it indicates that there is no value for the key.
+
+### Any tips for performance?
+ChronoDB is quite fast when retrieving single elements via `tx.get(...)`. Operations that require scanning ranges, e.g. `tx.keySet()` are usually a *lot* slower. To avoid having to use `keySet` in particular, create a secondary index (see: `db.getIndexManager()`) and use index queries instead (see: `db.tx().find()...`). Keeping the individual `value` objects small in data volume is in general a good advice.
+
+### When is ChronoDB not suitable?
+ChronoDB is not suitable in environments that demand very high commit throughput, as it is optimized for read-mostly scenarios. Also, very frequent updates will inevitably flood the versioning engine (as every change has to be tracked). For example, if some of your keys receive a different value every second and your database instance captures this process for an extended period of time (days, weeks...), the versioning engine will eventually reach its limit and performance will drop. If you only want to record temporal data in a short period of time, that would be okay.
