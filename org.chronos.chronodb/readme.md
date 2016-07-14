@@ -22,11 +22,11 @@ Let's create a new instance of ChronoDB. Following the Forward API principle, yo
 With this new instance, we can create a transaction (ChronoDB is fully ACID compliant) and add some data:
 
    ```java
-    ChronoDBTransaction tx = db.tx();
-    tx.put("Hello", "World);       // writes to the default keyspace
-    tx.put("Math", "Pi", 3.1415);  // writes to the "Math" keyspace
-    tx.commit();
-    ```
+   ChronoDBTransaction tx = db.tx();
+   tx.put("Hello", "World);       // writes to the default keyspace
+   tx.put("Math", "Pi", 3.1415);  // writes to the "Math" keyspace
+   tx.commit();
+   ```
 
 Note that the `value` in `tx.put(key, value)` can be *any* Java object. The only constraint is that it must be (de-)serializable by the [Kryo Serializer](https://github.com/EsotericSoftware/kryo) which is employed internally. Usually, this means that:
  - An object is serializable if it has a default constructor, and no final fields, and...
