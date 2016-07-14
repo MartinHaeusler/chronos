@@ -19,7 +19,7 @@ Feature Highlights
  - Equal performance on all timestamps (no performance penalty for queries on historical data)
  - Writing DB dumps into a configurable plain-text format (XML), and reading them again
  - Easy configuration via `*.properties` files or code
- - No background threads, no `static` magic, instantiate the database as often as needed
+ - No background threads, no `static` magic, instantiate the database as often as needed within the same JVM
  - Thoroughly unit-tested
  - Full JavaDoc on the public API
 
@@ -90,6 +90,8 @@ while(modifiedKeys.hasNext()){
 	System.out.println(commitMessage);
 }
 ```
+
+The examples above are all fairly basic. ChronoDB can actually do a lot more. Starting from the `ChronoDB` and `ChronoDBTransaction` interfaces, ask your favorite IDE for code completion and explore the many options ChronoDB has to offer!
 
 Frequently Asked Questions
 ==========================
