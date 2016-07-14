@@ -5,6 +5,24 @@ About ChronoDB
 
 ChronoDB is one of the major components of [Chronos](https://github.com/MartinHaeusler/chronos). It is a key-value store with versioning and associated temporal features. As with all Chronos Components, ChronoDB is written in 100% pure Java and should run in any environment supported by JRE 1.8 or later.
 
+
+Feature Highlights
+==================
+
+ - Key-Value Store with transparent system time versioning support
+ - Full ACID (isolation level "serializable")
+ - Works on three backends: file (default), in-memory, and SQL (experimental)
+ - Temporal secondary indexing
+ - Fluent indexer query language
+ - Lightweight branching support
+ - Incremental commits for loading large batches of data
+ - Equal performance on all timestamps (no performance penalty for queries on historical data)
+ - Writing DB dumps into a configurable plain-text format (XML), and reading them again
+ - Easy configuration via `*.properties` files or code
+ - No background threads, no `static` magic, instantiate the database as often as needed
+ - Thoroughly unit-tested
+ - Full JavaDoc on the public API
+
 Getting Started
 ===============
 
