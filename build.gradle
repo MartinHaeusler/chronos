@@ -1,0 +1,154 @@
+// ORG.CHRONOS/build.gradle     --- TOP LEVEL GRADLE FILE ---
+
+buildscript {
+	repositories {
+	  jcenter()
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+allprojects {
+	apply plugin: 'java'
+	apply plugin: 'eclipse'
+	apply plugin: 'maven-publish'
+	apply plugin: 'findbugs'
+	apply plugin: 'jacoco'
+	
+	// configure the group and version for this project
+	group = 'org.chronos'
+	version = '0.4.0-RELEASE'
+
+	
+	// java version
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+	
+	jar {
+		manifest {
+			attributes 'Implementation-Version': version
+		}
+	}
+	
+	test {
+		testLogging {
+			exceptionFormat = 'full'
+    	}
+    }
+	
+	javadoc{
+		failOnError = false
+	}
+	
+	// dependency versions
+	ext {
+	
+		// standard libraries
+		guavaVersion = '19.0' // was 18.0
+		commonsLang3Version = '3.4'
+		commonsIoVersion = '2.4'
+		commonsConfigurationVersion = '1.10'
+		
+		// Logging
+		slf4jVersion = '1.7.12'
+		logbackVersion = '1.1.3'
+		
+		// Storage Backends
+		mapDBVersion = '2.0-beta13' // was 2.0-beta11, was 2.0-beta6, was 1.0.8
+		luceneVersion = '5.5.0' // was 5.3.1
+		h2Version = '1.4.187'
+		
+		// Additional JDBC resources
+		c3p0Version = '0.9.5.1'
+		
+		// Object Serialization
+		kryoVersion = '3.0.3'  // was 2.24.0
+		xstreamVersion = '1.4.9'
+		
+		// Testing
+		jUnitVersion = '4.12'
+		
+		// code coverage & quality assurance tools
+		jacocoVersion = '0.7.1.201405082137'
+		findbugsVersion = '3.0.0'
+	}
+
+
+	repositories {
+		// default repositories for all subprojects
+		mavenCentral()
+	}
+
+	dependencies {
+	    // Standard Library Dependencies
+		compile("com.google.guava:guava:${project.guavaVersion}")
+		compile("org.apache.commons:commons-lang3:${project.commonsLang3Version}")
+		compile("commons-io:commons-io:${project.commonsIoVersion}")
+		compile("commons-configuration:commons-configuration:${project.commonsConfigurationVersion}")
+
+		// Logging Dependencies
+		compile("org.slf4j:slf4j-api:${project.slf4jVersion}")
+		compile("org.slf4j:jcl-over-slf4j:${project.slf4jVersion}")
+		compile("org.slf4j:jul-to-slf4j:${project.slf4jVersion}")
+		compile("ch.qos.logback:logback-classic:${project.logbackVersion}")
+
+        // Testing Dependencies
+		testCompile("junit:junit:${project.jUnitVersion}")
+	}
+	
+	jacoco {
+    	toolVersion = "${project.jacocoVersion}"
+	}
+	
+	jacocoTestReport {
+		reports {
+	        xml {
+	            enabled true // coveralls plugin depends on xml format report
+	        }
+	        html {
+	            enabled true
+	        }
+    	}
+    	afterEvaluate {
+	        classDirectories = files(classDirectories.files.collect {
+	            fileTree(dir: it,
+	                    exclude: [
+	                    	// exclude exception packages from code coverage
+	                    	'**/exceptions/**', 
+	                    	// exclude benchmark packages from code coverage
+	                    	'**/benchmarks/**'
+	                    
+	                    ]) 
+	        })
+   		}
+	}
+
+	jar { manifest.attributes provider: 'chronos.org' }
+	
+	findbugs {
+	    toolVersion = project.findbugsVersion
+		ignoreFailures = true
+		reportsDir = file("$project.buildDir/findbugsReports")
+		effort = 'max'
+		omitVisitors = ['SerializableIdiom']
+	}
+	
+}
+
+
+test.dependsOn = subprojects.test
+clean.dependsOn = subprojects.clean
+
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.4'
+}

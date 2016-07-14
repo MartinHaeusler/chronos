@@ -1,0 +1,14 @@
+// ORG.CHRONOS.COMMON.TESTING/build.gradle
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Chronos Common Testing Utils'
+    }
+}
+
+
+dependencies {
+	compile project(':org.chronos.common')
+	compile ("junit:junit:${project.jUnitVersion}")
+}
+

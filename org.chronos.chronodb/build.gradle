@@ -1,0 +1,64 @@
+// ORG.CHRONOS.CHRONODB/build.gradle
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'ChronoDB'
+    }
+}
+
+task sourceJar(type: Jar) {
+  from sourceSets.main.allJava
+  classifier "sources"
+}
+
+afterEvaluate { project ->
+
+	// Defines the to-be published artifacts with the maven-publish task
+	// Is not responsible for any publishing. Just defines the artifacts.
+	publishing {
+		publications {
+			mavenJava(MavenPublication) {
+				from components.java
+				artifact sourceJar
+				//the maven descriptor info
+				groupId project.group
+				artifactId jar.baseName
+				version project.version
+			}
+		}
+	}
+	
+}
+
+
+
+
+dependencies {
+	// chronos project dependencies
+    compile project(':org.chronos.common');
+    
+	// Backend A) MapDB and Lucene
+    compile("org.mapdb:mapdb:${project.mapDBVersion}");
+    compile("org.apache.lucene:lucene-core:${project.luceneVersion}");
+    compile("org.apache.lucene:lucene-analyzers-common:${project.luceneVersion}");
+    compile("org.apache.lucene:lucene-queryparser:${project.luceneVersion}");
+    compile("org.apache.lucene:lucene-queries:${project.luceneVersion}");
+    
+    
+    // Backend B) JDBC
+	compile("com.mchange:c3p0:${project.c3p0Version}");
+    compile("com.h2database:h2:${project.h2Version}");
+    
+    // Utilities
+    compile("com.esotericsoftware:kryo:${project.kryoVersion}");
+    compile("com.thoughtworks.xstream:xstream:${project.xstreamVersion}");
+    
+    testCompile project(':org.chronos.common.testing')
+}
+
+test {
+	// do not include any test suites in the build tests; the build executes all tests anyways,
+	// including the suites would only mean to execute each test twice which doesn't make much sense.
+	exclude '**/_suite/**'
+}
+

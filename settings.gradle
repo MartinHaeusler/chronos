@@ -1,0 +1,6 @@
+// ORG.CHRONOS/settings.gradle
+
+include "org.chronos.common", 
+        "org.chronos.chronodb",
+        // non-source projects
+        "org.chronos.common.testing"
