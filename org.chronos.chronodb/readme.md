@@ -32,12 +32,13 @@ With this new instance, we can create a transaction (ChronoDB is fully ACID comp
 
 The mindful reader may have witnessed that the code above looks like a regular key-value store. There is nothing "temporal" about it. Indeed, the versioning in ChronoDB is fully transparent to the client programmer. Unless you explicitly **want** to deal with the temporal aspects yourself (e.g. for temporal queries), the ChronoDB API will take care of it for you.
 
-Let's add some temporal querying to the mix. Let's say that our store has been existing for quite some time, and we want to query the state of the store at a specific date, e.g. 01.01.2016. As you can see, (aside from the usual Java date/time API mess) this is extremely simple with ChronoDB:
+Let's add some temporal querying to the mix. Let's say that our store has been existing for quite some time, and we want to query the state of the store at a specific date. As you can see, this is extremely simple with ChronoDB:
 
 ```java
-   Calendar calendar = GregorianCalendar.getInstance();
-	calendar.set(2016, 1, 1);
-	ChronoDBTransaction tx = chronoDB.tx(calendar.getTimeInMillis());
+   Date date = ...; // the date we want to query
+   ChronoDBTransaction tx = chronoDB.tx(date.getTime());
+   // all queries we run on the transaction now work on the specified date
+   tx.get("MyKey"); // will return the value associated with "MyKey" at the specified date
 ```
 
 
