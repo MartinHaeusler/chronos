@@ -38,10 +38,10 @@ The mindful reader may have witnessed that the code above looks like a regular k
 Frequently Asked Questions
 ==========================
 
-**Is it stable?**
+### Is it stable?
 The public API of ChronoDB is quite stable and not very likely to change drastically any time soon. However, the **persistence format is subject to change without prior notice**. ChronoDB is a research project after all.
 
-**Which value types are supported?**
+### Which value types are supported?
 Note that the `value` in `tx.put(key, value)` can be *any* Java object. The only constraint is that it must be (de-)serializable by the [Kryo Serializer](https://github.com/EsotericSoftware/kryo) which is employed internally. Usually, this means that:
  - An object is serializable if it has a default constructor, and no final fields, and...
  - ... only refers to other objects if they are serializable as well.
