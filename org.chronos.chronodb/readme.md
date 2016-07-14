@@ -41,6 +41,9 @@ Let's add some temporal querying to the mix. Let's say that our store has been e
    tx.get("MyKey"); // will return the value associated with "MyKey" at the specified date
 ```
 
+It is also easy to find out on what timestamp a query is operating, by calling `transaction.getTimestamp()`. Please note that, while a transaction is open, its associated timestamp can't change. To query different timestamps, simply use one transaction per timestamp.
+
+
 
 Frequently Asked Questions
 ==========================
