@@ -55,6 +55,7 @@ Let's get even more involved with the temporal queries. What about finding out w
 		// open a transaction on this timestamp and fetch the value of MyKey
 		Object value = db.tx(timestamp).get("MyKey");
 		// do something with the value, e.g. display it on the UI, compare it to something...
+		// Attention: 'value' may be NULL if the key was removed at this timestamp!
 	}
   
 ```
@@ -71,3 +72,5 @@ Note that the `value` in `tx.put(key, value)` can be *any* Java object. The only
  - ... only refers to other objects if they are serializable as well.
 
 Any object that follows the Java Beans pattern is fair game here, as well as any primitive Java type (e.g. `int`, `float`, `double`...), primitive wrapper class (e.g. `Integer`, `Float`, ...), most collections (e.g. `java.util.HashSet`, `java.util.ArrayList`...) and many other classes in the JDK (including `String`, `java.util.Date`, and many more). However, we **strongly recommend** to keep it simple and stick to primitives and collections of primitives whenever possible to avoid trouble.
+
+In general, `null` is **never a valid value**. When `tx.get("mykey")` returns `null`, it indicates that there is no value for the key.
