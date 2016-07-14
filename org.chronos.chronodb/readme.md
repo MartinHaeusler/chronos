@@ -91,7 +91,7 @@ while(modifiedKeys.hasNext()){
 }
 ```
 
-The examples above are all fairly basic. ChronoDB can actually do a lot more. Starting from the `ChronoDB` and `ChronoDBTransaction` interfaces, ask your favorite IDE for code completion and explore the many options ChronoDB has to offer!
+The examples above are all fairly basic. ChronoDB can actually do a lot more. Starting from the `ChronoDB` and `ChronoDBTransaction` interfaces, ask your favorite IDE for code completion and explore the many features ChronoDB has to offer!
 
 Frequently Asked Questions
 ==========================
