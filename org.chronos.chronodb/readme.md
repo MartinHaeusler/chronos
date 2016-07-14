@@ -116,3 +116,6 @@ ChronoDB is quite fast when retrieving single elements via `tx.get(...)`. Operat
 
 ### When is ChronoDB not suitable?
 ChronoDB is not suitable in environments that demand very high commit throughput, as it is optimized for read-mostly scenarios. Also, very frequent updates will inevitably flood the versioning engine (as every change has to be tracked). For example, if some of your keys receive a different value every second and your database instance captures this process for an extended period of time (days, weeks...), the versioning engine will eventually reach its limit and performance will drop. If you only want to record temporal data in a short period of time, that would be okay.
+
+### What are the scalability limits?
+This question is difficult to answer as it depends on a number of factors, including (but not limited to) frequency of commits, size of individual values, overall size of the keyset, and ultimately also the amount of RAM and disk space available to the JVM. The largest ChronoDB instance we use for testing purposes contains about 500.000 unique keys in several versions (on the file backend), which works without problems. 
