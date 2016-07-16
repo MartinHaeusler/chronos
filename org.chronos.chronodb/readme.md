@@ -59,6 +59,24 @@ In case your `pom.xml` does not reference the Sonatype Snapshots repository alre
   </repositories>
 ```
 
+## Installing with Gradle
+Add the following line to the `dependencies` section in your `build.gradle` file:
+
+```groovy
+compile group: 'com.github.martinhaeusler', name: 'org.chronos.chronodb', version: '0.4.0-SNAPSHOT'
+```
+
+In case your `build.gradle` file does not already reference the Sonatype Snapshots repository, you also have to add the following to your `build.gradle`:
+
+```groovy
+repositories {
+    maven {
+    	url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+}
+```
+
+## Running some basic examples
 
 ChronoDB will very soon be available via maven. Until then, clone the repository and run `gradlew build` in the project root directory.
 *(The maven coordinates will be shown here as soon as it is available on the repository)*
