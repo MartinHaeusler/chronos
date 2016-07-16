@@ -29,6 +29,37 @@ Feature Highlights
 Getting Started
 ===============
 
+ChronoDB is currently available from the Sonatype Snapshots repository.
+
+## Installing with Maven
+Add the following to the `<dependencies>` section in your `pom.xml`:
+
+```xml
+<dependency>
+  	<groupId>com.github.martinhaeusler</groupId>
+  	<artifactId>org.chronos.chronodb</artifactId>
+  	<version>0.4.0-SNAPSHOT</version>
+ </dependency>
+```
+
+In case your `pom.xml` does not reference the Sonatype Snapshots repository already, you also have to add the following to the `<repositories>` section:
+
+```xml
+  <repositories>
+  	<repository>
+        <id>Sonatype</id>
+        <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        <releases>
+           <enabled>true</enabled>
+        </releases>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+     </repository>
+  </repositories>
+```
+
+
 ChronoDB will very soon be available via maven. Until then, clone the repository and run `gradlew build` in the project root directory.
 *(The maven coordinates will be shown here as soon as it is available on the repository)*
 
