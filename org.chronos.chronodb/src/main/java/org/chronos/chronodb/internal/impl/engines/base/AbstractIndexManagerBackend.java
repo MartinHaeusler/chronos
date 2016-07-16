@@ -113,6 +113,8 @@ public abstract class AbstractIndexManagerBackend implements IndexManagerBackend
 	 *
 	 * @param timestamp
 	 *            The timestamp to roll back to. Must not be negative.
+	 * @param branches 
+	 * 			  The set of branches to roll back. Must not be <code>null</code>.
 	 * @param keys
 	 *            The set of keys to roll back. If the set is <code>null</code>, <b>all</b> keys will be rolled back. If
 	 *            the set is empty, no keys will be rolled back. If the set is non-empty, only the given keys will be

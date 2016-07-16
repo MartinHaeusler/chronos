@@ -430,7 +430,7 @@ public interface TemporalKeyValueStore extends TransactionSource {
 	 *
 	 * <p>
 	 * This variant of this method does not return a value; if you need a return value, please see
-	 * {@link #performBranchExclusive(ChronoReturningJob)}.
+	 * {@link #performBranchExclusive(ChronoNonReturningJob)}.
 	 *
 	 * <p>
 	 * It is strongly encouraged to use Java Lambda Expressions as arguments for this method.

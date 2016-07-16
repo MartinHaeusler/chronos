@@ -19,13 +19,15 @@ repositories {
 allprojects {
 	apply plugin: 'java'
 	apply plugin: 'eclipse'
+	apply plugin: 'maven'
 	apply plugin: 'maven-publish'
+	apply plugin: 'signing'
 	apply plugin: 'findbugs'
 	apply plugin: 'jacoco'
 	
 	// configure the group and version for this project
-	group = 'org.chronos'
-	version = '0.4.0-RELEASE'
+	group = 'com.github.martinhaeusler'
+	version = '0.4.0-SNAPSHOT'
 
 	
 	// java version
@@ -141,6 +143,68 @@ allprojects {
 		omitVisitors = ['SerializableIdiom']
 	}
 	
+	task javadocJar(type: Jar) {
+	    classifier = 'javadoc'
+	    from javadoc
+	}
+	
+	task sourcesJar(type: Jar) {
+	    classifier = 'sources'
+	    from sourceSets.main.allSource
+	}
+	
+	artifacts {
+    	archives javadocJar, sourcesJar
+	}
+	
+	signing {
+   		sign configurations.archives
+	}
+	
+	uploadArchives {
+	  repositories {
+	    mavenDeployer {
+	      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+	
+	      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+	        authentication(userName: ossrhUsername, password: ossrhPassword)
+	      }
+	
+	      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+	        authentication(userName: ossrhUsername, password: ossrhPassword)
+	      }
+	
+	      pom.project {
+	        name 'Chronos'
+	        packaging 'jar'
+	        // optionally artifactId can be defined here 
+	        description 'Versioned data storage, embeddable and easy to use.'
+	        url 'https://github.com/MartinHaeusler/chronos'
+	
+	        scm {
+	          connection 'scm:git:https://github.com/MartinHaeusler/chronos'
+	          developerConnection 'scm:git:https://github.com/MartinHaeusler/chronos'
+	          url 'https://github.com/MartinHaeusler/chronos'
+	        }
+	
+	        licenses {
+	          license {
+	            name 'GNU Affero General Public License v3'
+	            url 'https://www.gnu.org/licenses/agpl-3.0.txt'
+	          }
+	        }
+	
+	        developers {
+	          developer {
+	            id 'martin.haeusler'
+	            name 'Martin Häusler'
+	            email 'martin.haeusler89@gmail.com'
+	          }
+	        }
+	      }
+	    }
+	  }
+	}
 }
 
 

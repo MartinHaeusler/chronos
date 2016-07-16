@@ -25,8 +25,8 @@ import org.chronos.chronodb.internal.impl.engines.base.IndexManagerBackend;
  * indexer for the object in question. In order to allow for temporal indexing, a "valid from" and "valid to" timestamp
  * are used. An index document can only be considered for a transaction if:
  * <ul>
- * <li>{@link #getValidFromTimestamp()} <= {@link ChronoDBTransaction#getTimestamp()}
- * <li>{@link ChronoDBTransaction#getTimestamp()} < {@link #getValidToTimestamp()}
+ * <li>{@link #getValidFromTimestamp()} &lt;= {@link ChronoDBTransaction#getTimestamp()}
+ * <li>{@link ChronoDBTransaction#getTimestamp()} &lt; {@link #getValidToTimestamp()}
  * </ul>
  *
  * <p>
@@ -112,7 +112,7 @@ public interface ChronoIndexDocument {
 	 * (immutable property).
 	 *
 	 * <p>
-	 * Any transaction which has "valid from <= timestamp < valid to" may read and must consider this document for index
+	 * Any transaction which has "valid from &lt;= timestamp &lt; valid to" may read and must consider this document for index
 	 * queries.
 	 *
 	 * @return The "valid from" timestamp. Never negative.
@@ -127,7 +127,7 @@ public interface ChronoIndexDocument {
 	 * this value is decremented to indicate the termination of the validity interval.
 	 *
 	 * <p>
-	 * Any transaction which has "valid from <= timestamp < valid to" may read and must consider this document for index
+	 * Any transaction which has "valid from &lt;= timestamp &lt; valid to" may read and must consider this document for index
 	 * queries.
 	 *
 	 * @return The "valid to" timestamp.
@@ -143,7 +143,7 @@ public interface ChronoIndexDocument {
 	 * "valid from" timestamp.
 	 *
 	 * <p>
-	 * Any transaction which has "valid from <= timestamp < valid to" may read and must consider this document for index
+	 * Any transaction which has "valid from &lt;= timestamp &lt; valid to" may read and must consider this document for index
 	 * queries.
 	 *
 	 * @param validTo
