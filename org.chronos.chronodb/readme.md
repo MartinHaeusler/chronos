@@ -29,8 +29,54 @@ Feature Highlights
 Getting Started
 ===============
 
-ChronoDB will very soon be available via maven. Until then, clone the repository and run `gradlew build` in the project root directory.
-*(The maven coordinates will be shown here as soon as it is available on the repository)*
+ChronoDB is currently available from the Sonatype Snapshots repository.
+
+## Installing with Maven
+Add the following to the `<dependencies>` section in your `pom.xml`:
+
+```xml
+<dependency>
+  	<groupId>com.github.martinhaeusler</groupId>
+  	<artifactId>org.chronos.chronodb</artifactId>
+  	<version>0.4.0-SNAPSHOT</version>
+ </dependency>
+```
+
+In case your `pom.xml` does not reference the Sonatype Snapshots repository already, you also have to add the following to the `<repositories>` section:
+
+```xml
+  <repositories>
+  	<repository>
+        <id>Sonatype</id>
+        <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        <releases>
+           <enabled>true</enabled>
+        </releases>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+     </repository>
+  </repositories>
+```
+
+## Installing with Gradle
+Add the following line to the `dependencies` section in your `build.gradle` file:
+
+```groovy
+compile group: 'com.github.martinhaeusler', name: 'org.chronos.chronodb', version: '0.4.0-SNAPSHOT'
+```
+
+In case your `build.gradle` file does not already reference the Sonatype Snapshots repository, you also have to add the following to your `build.gradle`:
+
+```groovy
+repositories {
+    maven {
+    	url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+}
+```
+
+## Running some basic examples
 
 ChronoDB employs an API design which we like to call a *Forward API*. It is designed to make the best possible use of code completion in an IDE, such as Eclipse, IntelliJ IDEA, Netbeans, or others. The key concept is to start with a simple object, and the rest of the API unfolds via code completion.
 
