@@ -113,17 +113,19 @@ Now, what ChronoGraph can do (among many other things) is to ask the basic quest
 
 
 ```java
+  graph.tx().open();
   Iterator<Long> changeTimestamps = graph.getVertexHistory(vMe);
+  graph.tx().close();
   List<String> locations = new ArrayList<>();
   changeTimestamps.forEachRemaining(t -> {
      // open a transaction on the given timestamp
-     g.tx().open(t);
+     graph.tx().open(t);
      try{
        // check where I have been at timestamp 't' (note: we are querying the old graph version here!)
        vMe.vertices(Direction.OUT, "location").forEachRemaining(v -> locations.add(v.value("name")));
      }finally{
        // close the transaction again
-       g.tx().close();
+       graph.tx().close();
      }
   })
   // print it
