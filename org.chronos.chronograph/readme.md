@@ -29,7 +29,7 @@ Feature Highlights
 Getting Started
 ===============
 
-ChronoDB is currently available from the Sonatype Snapshots repository.
+ChronoGraph is currently available from the Sonatype Snapshots repository.
 
 ## Installing with Maven
 Add the following to the `<dependencies>` section in your `pom.xml`:
@@ -131,20 +131,6 @@ Now, what ChronoGraph can do (among many other things) is to ask the basic quest
 ```
 
 This example is just a very basic one to get you started. All temporal features of ChronoGraph are available directly via methods on the `ChronoGraph` interface. All other features work as usual with the Gremlin API.
-
-
-The mindful reader may have witnessed that the code above looks like a regular key-value store. There is nothing "temporal" about it. Indeed, the versioning in ChronoDB is fully transparent to the client programmer. Unless you explicitly **want** to deal with the temporal aspects yourself (e.g. for temporal queries), the ChronoDB API will take care of it for you.
-
-Let's add some temporal querying to the mix. Let's say that our store has been existing for quite some time, and we want to query the state of the store at a specific date. As you can see, this is extremely simple with ChronoDB:
-
-```java
-   Date date = ...; // the date we want to query
-   ChronoDBTransaction tx = db.tx(date.getTime());  // tx() without argument would refer to the 'head' revision
-   // all queries we run on the transaction now work on the specified date
-   tx.get("MyKey"); // will return the value associated with "MyKey" at the specified date
-```
-
-It is also easy to find out on what timestamp a query is operating, by calling `transaction.getTimestamp()`. Please note that, while a transaction is open, its associated timestamp can't change. To query different timestamps, simply use one transaction per timestamp.
 
 Frequently Asked Questions
 ==========================
