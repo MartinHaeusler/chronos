@@ -1,4 +1,4 @@
-<img src="https://github.com/MartinHaeusler/chronos/blob/master/readmeResources/chronoGraphLogo.png" width="400">
+<img src="https://github.com/MartinHaeusler/chronos/blob/master/readmeResources/logo_chronograph.png" width="400">
 
 About ChronoGraph
 =================
