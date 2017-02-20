@@ -10,6 +10,7 @@ Components
 
 Currently, the following Chronos Components are available in the public repository:
  - [ChronoDB](https://github.com/MartinHaeusler/chronos/tree/master/org.chronos.chronodb), a Versioned Key-Value Store
+ - [ChronoGraph](https://github.com/MartinHaeusler/chronos/tree/master/org.chronos.chronograph), a versioned TinkerPop-compliant OLTP Graph Database
 
 
 Frequently Asked Questions
