@@ -1,6 +1,6 @@
 package org.chronos.chronodb.internal.impl.temporal;
 
-public class UnqualifiedTemporalEntry {
+public class UnqualifiedTemporalEntry implements Comparable<UnqualifiedTemporalEntry> {
 
 	private final UnqualifiedTemporalKey key;
 	private final byte[] value;
@@ -16,6 +16,14 @@ public class UnqualifiedTemporalEntry {
 
 	public byte[] getValue() {
 		return this.value;
+	}
+
+	@Override
+	public int compareTo(UnqualifiedTemporalEntry o) {
+		if (o == null) {
+			return 1;
+		}
+		return this.getKey().compareTo(o.getKey());
 	}
 
 }

@@ -9,13 +9,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.internal.api.BranchInternal;
-import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
 import org.chronos.chronodb.internal.api.TemporalKeyValueStore;
-import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
 import org.chronos.chronodb.internal.impl.BranchImpl;
 import org.chronos.chronodb.internal.impl.BranchMetadata;
-import org.chronos.chronodb.internal.impl.cache.mosaic.MosaicCache;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractBranchManager;
 
 import com.google.common.collect.Sets;
@@ -74,12 +71,6 @@ public class InMemoryBranchManager extends AbstractBranchManager {
 	protected TemporalKeyValueStore createTKVS(final BranchInternal branch) {
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
 		TemporalKeyValueStore tkvs = new InMemoryTKVS(this.owningDb, branch);
-		ChronoDBConfiguration config = this.owningDb.getConfiguration();
-		if (config.isCachingEnabled()) {
-			// caching is enabled, so we create the cache for the branch here
-			ChronoDBCache cache = new MosaicCache(config.getCacheMaxSize());
-			tkvs.setCache(cache);
-		}
 		return tkvs;
 	}
 

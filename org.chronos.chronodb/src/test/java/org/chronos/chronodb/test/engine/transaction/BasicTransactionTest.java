@@ -124,4 +124,25 @@ public class BasicTransactionTest extends AllChronoDBBackendsTest {
 		assertEquals(47, (int) txD.get("Value1"));
 		assertEquals(2000, (int) txD.get("Value2"));
 	}
+
+	@Test
+	public void canRemoveAndPutInSameTransaction() {
+		ChronoDB chronoDB = this.getChronoDB();
+
+		ChronoDBTransaction tx1 = chronoDB.tx();
+		tx1.put("Hello", "World");
+		tx1.put("programming", "Foo", "Bar");
+		tx1.commit();
+
+		ChronoDBTransaction tx2 = chronoDB.tx();
+		tx2.remove("Hello");
+		tx2.remove("programming", "Foo");
+		tx2.put("Hello", "ChronoDB");
+		tx2.put("programming", "Foo", "Baz");
+		tx2.commit();
+
+		ChronoDBTransaction tx3 = chronoDB.tx();
+		assertEquals("ChronoDB", tx3.get("Hello"));
+		assertEquals("Baz", tx3.get("programming", "Foo"));
+	}
 }

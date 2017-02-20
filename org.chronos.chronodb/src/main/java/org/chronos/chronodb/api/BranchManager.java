@@ -101,7 +101,7 @@ public interface BranchManager {
 	 * @param branchName
 	 *            The name of the branch to retrieve. Must not be <code>null</code>. Must refer to an existing branch.
 	 *
-	 * @return The branch with the given name. Never <code>null</code>.
+	 * @return The branch with the given name, or <code>null</code> if there is no branch with that name.
 	 */
 	public Branch getBranch(String branchName);
 

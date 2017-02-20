@@ -3,6 +3,7 @@ package org.chronos.chronodb.internal.impl.cache.util.lru;
 import static com.google.common.base.Preconditions.*;
 
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
@@ -27,9 +28,12 @@ public class DefaultUsageRegistry<T> implements UsageRegistry<T> {
 	private final Set<RemoveListener<T>> globalRemoveListeners;
 	private final SetMultimap<Object, RemoveListener<T>> topicToRemoveListeners;
 
+	private boolean isNotifyingListeners;
+	private Set<RemoveListener<T>> globalListenersToRemoveAfterNotification = Sets.newHashSet();
+	private SetMultimap<Object, RemoveListener<T>> topicListenerstoRemoveAfterNotification = HashMultimap.create();
+
 	public DefaultUsageRegistry(final Function<T, Object> topicResolutionFunction) {
-		checkNotNull(topicResolutionFunction,
-				"Precondition violation - argument 'topicResolutionFunction' must not be NULL!");
+		checkNotNull(topicResolutionFunction, "Precondition violation - argument 'topicResolutionFunction' must not be NULL!");
 		this.topicResolutionFunction = topicResolutionFunction;
 		this.valueToNode = new ConcurrentHashMap<>();
 		this.leastRecentlyUsedNode = null;
@@ -64,7 +68,7 @@ public class DefaultUsageRegistry<T> implements UsageRegistry<T> {
 	}
 
 	@Override
-	public int size() {
+	public int sizeInElements() {
 		return this.valueToNode.size();
 	}
 
@@ -92,7 +96,7 @@ public class DefaultUsageRegistry<T> implements UsageRegistry<T> {
 			T value = node.getValue();
 			Object topic = this.topicResolutionFunction.apply(value);
 			// remove the element from our value-to-node cache
-			this.valueToNode.remove(value);
+			Node<T> removedNode = this.valueToNode.remove(value);
 			// remove the element from the linked list
 			if (this.mostRecentlyUsedNode == this.leastRecentlyUsedNode) {
 				// list contains only one item; drop it
@@ -109,19 +113,35 @@ public class DefaultUsageRegistry<T> implements UsageRegistry<T> {
 					this.leastRecentlyUsedNode.setNext(null);
 				}
 			}
-			// notify the "global" listeners (i.e. listeners who don't care about the topic)
-			for (RemoveListener<T> listener : this.globalRemoveListeners) {
-				listener.objectRemoved(topic, value);
+			// check if an actual remove happened
+			if (removedNode == null) {
+				// cache content did not change, don't notify listeners
+				return;
 			}
-			// notify the topic-based listeners
-			for (RemoveListener<T> listener : this.topicToRemoveListeners.get(topic)) {
-				listener.objectRemoved(topic, value);
+			this.isNotifyingListeners = true;
+			try {
+				// notify the "global" listeners (i.e. listeners who don't care about the topic)
+				for (RemoveListener<T> listener : this.globalRemoveListeners) {
+					listener.objectRemoved(topic, value);
+				}
+				// notify the topic-based listeners
+				for (RemoveListener<T> listener : this.topicToRemoveListeners.get(topic)) {
+					listener.objectRemoved(topic, value);
+				}
+			} finally {
+				this.isNotifyingListeners = false;
+				// check if there are listeners to remove
+				for (RemoveListener<T> listener : this.globalListenersToRemoveAfterNotification) {
+					this.globalRemoveListeners.remove(listener);
+				}
+				this.globalListenersToRemoveAfterNotification.clear();
+				for (Entry<Object, RemoveListener<T>> topicListenerEntry : this.topicListenerstoRemoveAfterNotification.entries()) {
+					this.topicToRemoveListeners.remove(topicListenerEntry.getKey(), topicListenerEntry.getValue());
+				}
+				this.topicListenerstoRemoveAfterNotification.clear();
 			}
 		} finally {
 			this.lock.unlock();
-		}
-		if (this.leastRecentlyUsedNode == null) {
-			return;
 		}
 	}
 
@@ -135,6 +155,41 @@ public class DefaultUsageRegistry<T> implements UsageRegistry<T> {
 			} else {
 				this.topicToRemoveListeners.put(topic, listener);
 			}
+		} finally {
+			this.lock.unlock();
+		}
+	}
+
+	@Override
+	public void removeLeastRecentlyUsedListener(final Object topic, final org.chronos.chronodb.internal.impl.cache.util.lru.UsageRegistry.RemoveListener<T> listener) {
+		checkNotNull(listener, "Precondition violation - argument 'listener' must not be NULL!");
+		this.lock.lock();
+		try {
+			if (this.isNotifyingListeners) {
+				if (topic == null) {
+					this.globalListenersToRemoveAfterNotification.add(listener);
+				} else {
+					this.topicListenerstoRemoveAfterNotification.put(topic, listener);
+				}
+			} else {
+				if (topic == null) {
+					this.globalRemoveListeners.remove(listener);
+				} else {
+					this.topicToRemoveListeners.remove(topic, listener);
+				}
+			}
+		} finally {
+			this.lock.unlock();
+		}
+	}
+
+	@Override
+	public int getListenerCount() {
+		this.lock.lock();
+		try {
+			int listeners = this.globalRemoveListeners.size();
+			listeners += this.topicToRemoveListeners.size();
+			return listeners;
 		} finally {
 			this.lock.unlock();
 		}
@@ -176,8 +231,8 @@ public class DefaultUsageRegistry<T> implements UsageRegistry<T> {
 		}
 	}
 
-	@SuppressWarnings("unused") // I leave this method here intact for debugging purposes.
-	private String toDebugString() {
+	// @SuppressWarnings("unused") // I leave this method here intact for debugging purposes.
+	public String toDebugString() {
 		if (this.mostRecentlyUsedNode == null && this.leastRecentlyUsedNode == null) {
 			return "[]";
 		}

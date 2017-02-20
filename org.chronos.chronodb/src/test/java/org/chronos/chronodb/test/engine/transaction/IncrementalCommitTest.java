@@ -15,8 +15,8 @@ import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
 import org.chronos.chronodb.test.base.InstantiateChronosWith;
-import org.chronos.chronodb.test.util.NamedPayload;
-import org.chronos.chronodb.test.util.NamedPayloadNameIndexer;
+import org.chronos.chronodb.test.util.model.payload.NamedPayload;
+import org.chronos.chronodb.test.util.model.payload.NamedPayloadNameIndexer;
 import org.chronos.common.logging.ChronoLogger;
 import org.chronos.common.test.junit.categories.IntegrationTest;
 import org.junit.Test;
@@ -520,6 +520,72 @@ public class IncrementalCommitTest extends AllChronoDBBackendsTest {
 		assertEquals(0, tx.find().inDefaultKeyspace().where("firstName").isEqualTo("Jack").count());
 		assertEquals(1, tx.find().inDefaultKeyspace().where("firstName").isEqualTo("Johnny").count());
 		assertEquals(1, tx.find().inDefaultKeyspace().where("firstName").isEqualTo("Jane").count());
+	}
+
+	@Test
+	public void canInsertAndRemoveDuringIncrementalCommit() {
+		ChronoDB db = this.getChronoDB();
+		db.getIndexManager().addIndexer("name", new NamedPayloadNameIndexer());
+		{
+			ChronoDBTransaction tx = db.tx();
+			tx.put("one", NamedPayload.create1KB("Hello World"));
+			tx.commit();
+		}
+		// make sure that the commit worked
+		assertEquals(Sets.newHashSet("one"), db.tx().keySet());
+		assertEquals(1, db.tx().find().inDefaultKeyspace().where("name").containsIgnoreCase("hello").count());
+
+		// perform incremental commits
+		{
+			ChronoDBTransaction tx = db.tx();
+			tx.commitIncremental();
+			tx.put("two", NamedPayload.create1KB("Foo"));
+			tx.put("three", NamedPayload.create1KB("Bar"));
+			tx.commitIncremental();
+			tx.remove("two");
+			tx.put("four", NamedPayload.create1KB("Baz"));
+			tx.commitIncremental();
+			tx.put("five", NamedPayload.create1KB("John Doe"));
+			tx.commit();
+		}
+		// make sure that the state of the database is consistent
+		assertEquals(Sets.newHashSet("one", "three", "four", "five"), db.tx().keySet());
+		assertEquals(0, db.tx().find().inDefaultKeyspace().where("name").containsIgnoreCase("foo").count());
+		assertEquals(2, db.tx().find().inDefaultKeyspace().where("name").containsIgnoreCase("ba").count());
+	}
+
+	@Test
+	public void canUpdateAndRemoveDuringIncrementalCommit() {
+		ChronoDB db = this.getChronoDB();
+		db.getIndexManager().addIndexer("name", new NamedPayloadNameIndexer());
+		{
+			ChronoDBTransaction tx = db.tx();
+			tx.put("one", NamedPayload.create1KB("Hello World"));
+			tx.put("two", NamedPayload.create1KB("Initial State"));
+			tx.commit();
+		}
+		// make sure that the commit worked
+		assertEquals(Sets.newHashSet("one", "two"), db.tx().keySet());
+		assertEquals(1, db.tx().find().inDefaultKeyspace().where("name").containsIgnoreCase("hello").count());
+		assertEquals(1, db.tx().find().inDefaultKeyspace().where("name").containsIgnoreCase("initial").count());
+
+		// perform incremental commits
+		{
+			ChronoDBTransaction tx = db.tx();
+			tx.commitIncremental();
+			tx.put("two", NamedPayload.create1KB("Foo"));
+			tx.put("three", NamedPayload.create1KB("Bar"));
+			tx.commitIncremental();
+			tx.remove("two");
+			tx.put("four", NamedPayload.create1KB("Baz"));
+			tx.commitIncremental();
+			tx.put("five", NamedPayload.create1KB("John Doe"));
+			tx.commit();
+		}
+		// make sure that the state of the database is consistent
+		assertEquals(Sets.newHashSet("one", "three", "four", "five"), db.tx().keySet());
+		assertEquals(0, db.tx().find().inDefaultKeyspace().where("name").containsIgnoreCase("foo").count());
+		assertEquals(2, db.tx().find().inDefaultKeyspace().where("name").containsIgnoreCase("ba").count());
 	}
 
 	private static class Person {

@@ -9,21 +9,22 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.lang3.tuple.Pair;
 import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
 import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.api.key.TemporalKey;
-import org.chronos.chronodb.internal.api.RangedGetResult;
+import org.chronos.chronodb.internal.api.GetResult;
 import org.chronos.chronodb.internal.api.stream.CloseableIterator;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractTemporalDataMatrix;
 import org.chronos.chronodb.internal.impl.jdbc.util.JdbcUtils;
 import org.chronos.chronodb.internal.impl.stream.AbstractCloseableIterator;
 import org.chronos.chronodb.internal.impl.temporal.UnqualifiedTemporalEntry;
 import org.chronos.chronodb.internal.impl.temporal.UnqualifiedTemporalKey;
+import org.chronos.chronodb.internal.util.KeySetModifications;
 
 import com.google.common.collect.Iterators;
+
+import javax.sql.DataSource;
 
 public class TemporalJdbcMatrix extends AbstractTemporalDataMatrix {
 
@@ -60,18 +61,7 @@ public class TemporalJdbcMatrix extends AbstractTemporalDataMatrix {
 	// =================================================================================================================
 
 	@Override
-	public byte[] get(final long timestamp, final String key) {
-		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
-		checkNotNull(key, "Precondition violation - argument 'key' must not be NULL!");
-		try (Connection connection = this.dataSource.getConnection()) {
-			return JdbcMatrixTable.get(connection, this.tableName).getValueForKey(key, timestamp);
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException("Failed to execute [GET(" + key + ")] operation on backend", e);
-		}
-	}
-
-	@Override
-	public RangedGetResult<byte[]> getRanged(final long timestamp, final String key) {
+	public GetResult<byte[]> get(final long timestamp, final String key) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timsetamp' must not be negative!");
 		checkNotNull(key, "Precondition violation - argument 'key' must not be NULL!");
 		QualifiedKey qKey = QualifiedKey.create(this.getKeyspace(), key);
@@ -111,25 +101,6 @@ public class TemporalJdbcMatrix extends AbstractTemporalDataMatrix {
 		} catch (SQLException e) {
 			throw new ChronoDBStorageBackendException("Failed to execute [HISTORY(" + key + ")] operation on backend",
 					e);
-		}
-	}
-
-	@Override
-	public Iterator<String> keys(final long timestamp) {
-		checkArgument(timestamp >= 0, "Preconditition violation - argument 'timestamp' must not be negative!");
-		try (Connection connection = this.dataSource.getConnection()) {
-			return JdbcMatrixTable.get(connection, this.tableName).getKeySet(timestamp);
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException("Failed to execute [KEYS] operation on backend", e);
-		}
-	}
-
-	@Override
-	public Iterator<String> allKeys() {
-		try (Connection connection = this.dataSource.getConnection()) {
-			return JdbcMatrixTable.get(connection, this.tableName).getAllKeys();
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException("Failed to execute [AKY] operation on backend", e);
 		}
 	}
 
@@ -174,7 +145,8 @@ public class TemporalJdbcMatrix extends AbstractTemporalDataMatrix {
 	public void rollback(final long timestamp) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		try (Connection connection = this.dataSource.getConnection()) {
-			JdbcMatrixTable.get(connection, this.tableName).deleteWhereTimestampGreaterThan(timestamp);
+			JdbcMatrixTable table = JdbcMatrixTable.get(connection, this.tableName);
+			table.deleteWhereTimestampGreaterThan(timestamp);
 		} catch (SQLException e) {
 			throw new ChronoDBStorageBackendException("Failed to execute [ROLLBACK] operation on backend", e);
 		}
@@ -198,6 +170,16 @@ public class TemporalJdbcMatrix extends AbstractTemporalDataMatrix {
 		} catch (SQLException e) {
 			throw new ChronoDBStorageBackendException("Failed to execute [MODIFICATIONS BETWEEN] operation on backend",
 					e);
+		}
+	}
+
+	@Override
+	public KeySetModifications keySetModifications(final long timestamp) {
+		try (Connection connection = this.dataSource.getConnection()) {
+			JdbcMatrixTable matrixTable = JdbcMatrixTable.get(connection, this.getTableName());
+			return matrixTable.keySetModifications(timestamp);
+		} catch (SQLException e) {
+			throw new ChronoDBStorageBackendException("Failed to execute [KEY SET MODS] operation on backend", e);
 		}
 	}
 
@@ -259,5 +241,4 @@ public class TemporalJdbcMatrix extends AbstractTemporalDataMatrix {
 		}
 
 	}
-
 }

@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.util.Set;
 import java.util.UUID;
 
-import javax.sql.DataSource;
-
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
 import org.chronos.chronodb.internal.api.BranchInternal;
@@ -16,6 +14,8 @@ import org.chronos.chronodb.internal.impl.engines.base.AbstractTemporalKeyValueS
 import org.chronos.chronodb.internal.impl.engines.base.KeyspaceMetadata;
 import org.chronos.chronodb.internal.impl.engines.base.WriteAheadLogToken;
 import org.chronos.common.logging.ChronoLogger;
+
+import javax.sql.DataSource;
 
 public class JdbcTkvs extends AbstractTemporalKeyValueStore implements TemporalKeyValueStore {
 

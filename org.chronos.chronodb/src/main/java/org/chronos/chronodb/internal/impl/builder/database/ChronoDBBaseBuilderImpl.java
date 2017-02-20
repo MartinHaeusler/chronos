@@ -11,10 +11,12 @@ import java.util.Properties;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.MapConfiguration;
 import org.chronos.chronodb.api.builder.database.ChronoDBBaseBuilder;
-import org.chronos.chronodb.api.builder.database.ChronoDBEmbeddedBuilder;
+import org.chronos.chronodb.api.builder.database.ChronoDBChunkedBuilder;
 import org.chronos.chronodb.api.builder.database.ChronoDBInMemoryBuilder;
 import org.chronos.chronodb.api.builder.database.ChronoDBJdbcBuilder;
+import org.chronos.chronodb.api.builder.database.ChronoDBMapDBBuilder;
 import org.chronos.chronodb.api.builder.database.ChronoDBPropertyFileBuilder;
+import org.chronos.chronodb.api.builder.database.ChronoDBTuplBuilder;
 import org.chronos.chronodb.api.exceptions.ChronoDBConfigurationException;
 
 public class ChronoDBBaseBuilderImpl extends AbstractChronoDBBuilder<ChronoDBBaseBuilderImpl>
@@ -51,13 +53,38 @@ public class ChronoDBBaseBuilderImpl extends AbstractChronoDBBuilder<ChronoDBBas
 	}
 
 	@Override
-	public ChronoDBEmbeddedBuilder embeddedDatabase(final File file) {
+	public ChronoDBMapDBBuilder mapDbDatabase(final File file) {
 		checkNotNull(file, "Precondition violation - argument 'file' must not be NULL!");
 		checkArgument(file.isFile(), "Precondition violation - argument 'file' must be a file (not a directory)!");
 		checkArgument(file.exists(),
 				"Precondition violation - argument 'file' must exist, but does not! Searched here: '"
 						+ file.getAbsolutePath() + "'");
-		return new ChronoDBEmbeddedBuilderImpl(file);
+		return new ChronoDBMapDBBuilderImpl(file);
+	}
+
+	@Override
+	public ChronoDBTuplBuilder tuplDatabase(final File file) {
+		checkNotNull(file, "Precondition violation - argument 'file' must not be NULL!");
+		checkArgument(file.isFile(), "Precondition violation - argument 'file' must be a file (not a directory)!");
+		checkArgument(file.exists(),
+				"Precondition violation - argument 'file' must exist, but does not! Searched here: '"
+						+ file.getAbsolutePath() + "'");
+		return new ChronoDBTuplBuilderImpl(file);
+	}
+
+	@Override
+	public ChronoDBChunkedBuilder chunkedDatabase(final File file) {
+		checkNotNull(file, "Precondition violation - argument 'file' must not be NULL!");
+		checkArgument(file.isFile(), "Precondition violation - argument 'file' must be a file (not a directory)!");
+		checkArgument(file.exists(),
+				"Precondition violation - argument 'file' must exist, but does not! Searched here: '"
+						+ file.getAbsolutePath() + "'");
+		return new ChronoDBChunkedBuilderImpl(file);
+	}
+
+	@Override
+	public ChronoDBMapDBBuilder embeddedDatabase(final File file) {
+		return this.mapDbDatabase(file);
 	}
 
 	@Override

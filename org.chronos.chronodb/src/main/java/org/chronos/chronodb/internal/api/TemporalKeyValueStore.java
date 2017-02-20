@@ -1,19 +1,19 @@
 package org.chronos.chronodb.internal.api;
 
 import java.util.Iterator;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
+import org.chronos.chronodb.api.Order;
 import org.chronos.chronodb.api.SerializationManager;
 import org.chronos.chronodb.api.TransactionSource;
 import org.chronos.chronodb.api.exceptions.ChronoDBCommitException;
 import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.api.key.TemporalKey;
-import org.chronos.chronodb.internal.api.ChronoDBInternal.ChronoNonReturningJob;
-import org.chronos.chronodb.internal.api.ChronoDBInternal.ChronoReturningJob;
-import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
 import org.chronos.chronodb.internal.api.stream.ChronoDBEntry;
 import org.chronos.chronodb.internal.api.stream.CloseableIterator;
 
@@ -33,7 +33,7 @@ import org.chronos.chronodb.internal.api.stream.CloseableIterator;
  * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
  *
  */
-public interface TemporalKeyValueStore extends TransactionSource {
+public interface TemporalKeyValueStore extends TransactionSource, Lockable {
 
 	// =================================================================================================================
 	// RECOVERY
@@ -58,26 +58,6 @@ public interface TemporalKeyValueStore extends TransactionSource {
 	 * @return The owning database. Never <code>null</code>.
 	 */
 	public ChronoDBInternal getOwningDB();
-
-	/**
-	 * Returns the cache which is currently used by this TKVS instance.
-	 *
-	 * @return The currently used cache. May be <code>null</code> if no cache is in use.
-	 */
-	public ChronoDBCache getCache();
-
-	/**
-	 * Sets the cache to use in this instance.
-	 *
-	 * <p>
-	 * This method will call {@link ChronoDBCache#clear()} on the given cache before using it. The given cache instance
-	 * must not be used by any other TKVS.
-	 *
-	 * @param cache
-	 *            The cache to use. May be <code>null</code> to turn off caching for this instance. Caches must not be
-	 *            shared among multiple TKVS instances!
-	 */
-	public void setCache(ChronoDBCache cache);
 
 	/**
 	 * Returns the <i>now</i> timestamp.
@@ -123,18 +103,6 @@ public interface TemporalKeyValueStore extends TransactionSource {
 	 * @return An immutable set, containing the names of all keyspaces contained in this store.
 	 */
 	public Set<String> getKeyspaces(long timestamp);
-
-	/**
-	 * Returns the set of all keys that ever existed in the given keyspace, regardless of their timestamp.
-	 *
-	 * <p>
-	 * For non-existent keyspaces, this method returns the empty set.
-	 *
-	 * @param keyspace
-	 *            The keyspace to get the keys for. Must not be <code>null</code>.
-	 * @return The set of keys that ever existed in the given keyspace. May be empty, but never <code>null</code>.
-	 */
-	public Set<String> getAllKeys(String keyspace);
 
 	/**
 	 * Returns the {@link Branch} to which this key-value store belongs.
@@ -276,10 +244,10 @@ public interface TemporalKeyValueStore extends TransactionSource {
 	 * @param key
 	 *            The qualified key to search for. Must not be <code>null</code>.
 	 *
-	 * @return A {@link RangedGetResult} object, containing the actual result value and a temporal validity range as
-	 *         described above. Never <code>null</code>.
+	 * @return A {@link GetResult} object, containing the actual result value and a temporal validity range as described
+	 *         above. Never <code>null</code>.
 	 */
-	public RangedGetResult<Object> performRangedGet(ChronoDBTransaction tx, QualifiedKey key);
+	public GetResult<Object> performRangedGet(ChronoDBTransaction tx, QualifiedKey key);
 
 	/**
 	 * Retrieves the set of keys contained in this store in the given keyspace at the given point in time.
@@ -366,12 +334,165 @@ public interface TemporalKeyValueStore extends TransactionSource {
 	 */
 	public Object performGetCommitMetadata(ChronoDBTransaction tx, long commitTimestamp);
 
+	/**
+	 * Returns an iterator over all timestamps where commits have occurred, bounded between <code>from</code> and
+	 * <code>to</code>.
+	 *
+	 * <p>
+	 * If the <code>from</code> value is greater than the <code>to</code> value, this method always returns an empty
+	 * iterator.
+	 *
+	 * @param tx
+	 *            The transaction to work on. Must not be <code>null</code>.
+	 * @param from
+	 *            The lower bound of the time range to look for commits in (inclusive). Must not be negative. Must be
+	 *            less than or equal to the timestamp of this transaction.
+	 * @param to
+	 *            The upper bound of the time range to look for commits in (inclusive). Must not be negative. Must be
+	 *            less than or equal to the timestamp of this transaction.
+	 * @param order
+	 *            The order of the returned timestamps. Must not be <code>null</code>.
+	 * @return The iterator over the commit timestamps in the given time range. May be empty, but never
+	 *         <code>null</code>.
+	 */
+	public Iterator<Long> performGetCommitTimestampsBetween(ChronoDBTransaction tx, long from, long to, Order order);
+
+	/**
+	 * Returns an iterator over the entries of commit timestamp and associated metadata, bounded between
+	 * <code>from</code> and <code>to</code>.
+	 *
+	 * <p>
+	 * If the <code>from</code> value is greater than the <code>to</code> value, this method always returns an empty
+	 * iterator.
+	 *
+	 * <p>
+	 * Please keep in mind that some commits may not have any metadata attached. In this case, the
+	 * {@linkplain Entry#getValue() value} component of the {@link Entry} will be set to <code>null</code>.
+	 *
+	 *
+	 * @param tx
+	 *            The transaction to work on. Must not be <code>null</code>.
+	 * @param from
+	 *            The lower bound of the time range to look for commits in (inclusive). Must not be negative. Must be
+	 *            less than or equal to the timestamp of this transaction.
+	 * @param to
+	 *            The upper bound of the time range to look for commits in (inclusive). Must not be negative. Must be
+	 *            less than or equal to the timestamp of this transaction.
+	 * @param order
+	 *            The order of the returned commits. Must not be <code>null</code>.
+	 *
+	 * @return An iterator over the commits in the given time range. The contained entries have the timestamp as the
+	 *         {@linkplain Entry#getKey() key} component and the associated metadata as their
+	 *         {@linkplain Entry#getValue() value} component (which may be <code>null</code>). May be empty, but never
+	 *         <code>null</code>.
+	 */
+	public Iterator<Entry<Long, Object>> performGetCommitMetadataBetween(ChronoDBTransaction tx, long from, long to,
+			Order order);
+
+	/**
+	 * Returns an iterator over commit timestamps in a paged fashion.
+	 *
+	 * <p>
+	 * For example, calling {@code getCommitTimestampsPaged(10000, 100, 0, Order.DESCENDING)} will give the latest 100
+	 * commit timestamps that have occurred before timestamp 10000. Calling
+	 * {@code getCommitTimestampsPaged(123456, 200, 2, Order.DESCENDING} will return 200 commit timestamps, skipping the
+	 * 400 latest commit timestamps, which are smaller than 123456.
+	 *
+	 * @param tx
+	 *            The transaction to use. Must not be <code>null</code>.
+	 * @param minTimestamp
+	 *            The minimum timestamp to consider (inclusive). All lower timestamps will be excluded from the
+	 *            pagination. Must be less than or equal to the timestamp of this transaction.
+	 * @param maxTimestamp
+	 *            The highest timestamp to consider (inclusive). All higher timestamps will be excluded from the
+	 *            pagination. Must be less than or equal to the timestamp of this transaction.
+	 * @param pageSize
+	 *            The size of the page, i.e. the maximum number of elements allowed to be contained in the resulting
+	 *            iterator. Must be greater than zero.
+	 * @param pageIndex
+	 *            The index of the page to retrieve. Must not be negative.
+	 * @param order
+	 *            The desired ordering for the commit timestamps
+	 *
+	 * @return An iterator that contains the commit timestamps for the requested page. Never <code>null</code>, may be
+	 *         empty. If the requested page does not exist, this iterator will always be empty.
+	 */
+	public Iterator<Long> performGetCommitTimestampsPaged(ChronoDBTransaction tx, final long minTimestamp,
+			final long maxTimestamp, final int pageSize, final int pageIndex, final Order order);
+
+	/**
+	 * Returns an iterator over commit timestamps and associated metadata in a paged fashion.
+	 *
+	 * <p>
+	 * For example, calling {@code getCommitTimestampsPaged(10000, 100, 0, Order.DESCENDING)} will give the latest 100
+	 * commit timestamps that have occurred before timestamp 10000. Calling
+	 * {@code getCommitTimestampsPaged(123456, 200, 2, Order.DESCENDING} will return 200 commit timestamps, skipping the
+	 * 400 latest commit timestamps, which are smaller than 123456.
+	 *
+	 * <p>
+	 * The {@link Entry Entries} returned by the iterator always have the commit timestamp as their first component and
+	 * the metadata associated with this commit as their second component. The second component can be <code>null</code>
+	 * if the commit was executed without providing metadata.
+	 *
+	 * @param tx
+	 *            The transaction to work on. Must not be <code>null</code>.
+	 * @param minTimestamp
+	 *            The minimum timestamp to consider (inclusive). All lower timestamps will be excluded from the
+	 *            pagination. Must be less than or equal to the timestamp of this transaction.
+	 * @param maxTimestamp
+	 *            The highest timestamp to consider. All higher timestamps will be excluded from the pagination. Must be
+	 *            less than or equal to the timestamp of this transaction.
+	 * @param pageSize
+	 *            The size of the page, i.e. the maximum number of elements allowed to be contained in the resulting
+	 *            iterator. Must be greater than zero.
+	 * @param pageIndex
+	 *            The index of the page to retrieve. Must not be negative.
+	 * @param order
+	 *            The desired ordering for the commit timestamps
+	 *
+	 * @return An iterator that contains the commits for the requested page. Never <code>null</code>, may be empty. If
+	 *         the requested page does not exist, this iterator will always be empty.
+	 */
+	public Iterator<Entry<Long, Object>> performGetCommitMetadataPaged(final ChronoDBTransaction tx,
+			final long minTimestamp, final long maxTimestamp, final int pageSize, final int pageIndex,
+			final Order order);
+
+	/**
+	 * Counts the number of commit timestamps between <code>from</code> (inclusive) and <code>to</code> (inclusive).
+	 *
+	 * <p>
+	 * If <code>from</code> is greater than <code>to</code>, this method will always return zero.
+	 *
+	 * @param tx
+	 *            The transaction to work on. Must not be <code>null</code>.
+	 * @param from
+	 *            The minimum timestamp to include in the search (inclusive). Must not be negative. Must be less than or
+	 *            equal to the timestamp of this transaction.
+	 * @param to
+	 *            The maximum timestamp to include in the search (inclusive). Must not be negative. Must be less than or
+	 *            equal to the timestamp of this transaction.
+	 *
+	 * @return The number of commits that have occurred in the specified time range. May be zero, but never negative.
+	 */
+	public int performCountCommitTimestampsBetween(ChronoDBTransaction tx, long from, long to);
+
+	/**
+	 * Counts the total number of commit timestamps in the store.
+	 *
+	 * @param tx
+	 *            The transaction to work on. Must not be <code>null</code>.
+	 *
+	 * @return The total number of commits in the store.
+	 */
+	public int performCountCommitTimestamps(ChronoDBTransaction tx);
+
 	// =================================================================================================================
 	// BRANCH LOCKING
 	// =================================================================================================================
 
 	/**
-	 * Performs a non-exclusive operation on the branch which can run in parallel with other non-exclusive jobs.
+	 * Declares that a thread is about to perform a non-exclusive task that can run in parallel with other non-exclusive
+	 * locking tasks.
 	 *
 	 * <p>
 	 * This method ensures that non-exclusive operations are properly blocked when an exclusive operation is taking
@@ -381,90 +502,46 @@ public interface TemporalKeyValueStore extends TransactionSource {
 	 * This method <b>also acquires the non-exclusive lock</b> on the whole database!
 	 *
 	 * <p>
-	 * This variant of this method returns a value; if you don't need a return value, please see
-	 * {@link #performNonExclusive(ChronoNonReturningJob)}.
+	 * This method must be used together with the <code>try-with-resources</code> pattern. See
+	 * {@link Lockable#lockNonExclusive()} for an example.
 	 *
-	 * <p>
-	 * It is strongly encouraged to use Java Lambda Expressions as arguments for this method.
-	 *
-	 * @param <T>
-	 *            The type of object the job returns.
-	 * @param job
-	 *            The job to execute. Must not be <code>null</code>.
-	 *
-	 * @return The result of the job. May be <code>null</code>.
+	 * @return The object representing the lock ownership. Never <code>null</code>. Will be closed automatically by the
+	 *         <code>try-with-resources</code> statement.
 	 */
-	public <T> T performNonExclusive(final ChronoReturningJob<T> job);
+	@Override
+	public LockHolder lockNonExclusive();
 
 	/**
-	 * Performs a non-exclusive operation on the branch which can run in parallel with other non-exclusive jobs.
+	 * Declares that a thread is about to perform an exclusive task that can't run in parallel with other locking tasks.
 	 *
 	 * <p>
-	 * This method ensures that non-exclusive operations are properly blocked when an exclusive operation is taking
-	 * place.
+	 * This method acquires the exclusive lock on the entire database!
+	 *
+	 * <p>
+	 * This method must be used together with the <code>try-with-resources</code> pattern. See
+	 * {@link Lockable#lockExclusive()} for an example.
+	 *
+	 * @return The object representing the lock ownership. Never <code>null</code>. Will be closed automatically by the
+	 *         <code>try-with-resources</code> statement.
+	 */
+	@Override
+	public LockHolder lockExclusive();
+
+	/**
+	 * Declares that a thread is about to perform a non-exclusive task that can run in parallel with other non-exclusive
+	 * locking tasks on this branch.
 	 *
 	 * <p>
 	 * This method <b>also acquires the non-exclusive lock</b> on the whole database!
 	 *
 	 * <p>
-	 * This variant of this method does not return a value; if you need a return value, please see
-	 * {@link #performNonExclusive(ChronoReturningJob)}.
+	 * This method must be used together with the <code>try-with-resources</code> pattern. See
+	 * {@link Lockable#lockNonExclusive()} for an example.
 	 *
-	 * <p>
-	 * It is strongly encouraged to use Java Lambda Expressions as arguments for this method.
-	 *
-	 * @param job
-	 *            The job to execute. Must not be <code>null</code>.
+	 * @return The object representing the lock ownership. Never <code>null</code>. Will be closed automatically by the
+	 *         <code>try-with-resources</code> statement.
 	 */
-	public void performNonExclusive(final ChronoNonReturningJob job);
-
-	/**
-	 * Performs an exclusive operation on the branch which prevents all other jobs on the branch from executing while it
-	 * is active.
-	 *
-	 * <p>
-	 * While this method is being executed, no other jobs (exlusive or non-exclusive) are started.
-	 *
-	 * <p>
-	 * This method <b>also acquires the non-exclusive lock</b> on the whole database!
-	 *
-	 * <p>
-	 * This variant of this method does not return a value; if you need a return value, please see
-	 * {@link #performBranchExclusive(ChronoNonReturningJob)}.
-	 *
-	 * <p>
-	 * It is strongly encouraged to use Java Lambda Expressions as arguments for this method.
-	 *
-	 * @param job
-	 *            The job to execute. Must not be <code>null</code>.
-	 */
-	public void performBranchExclusive(final ChronoNonReturningJob job);
-
-	/**
-	 * Performs an exclusive operation on the branch which prevents all other jobs on the branch from executing while it
-	 * is active.
-	 *
-	 * <p>
-	 * While this method is being executed, no other jobs (exlusive or non-exclusive) are started.
-	 *
-	 * <p>
-	 * This method <b>also acquires the non-exclusive lock</b> on the whole database!
-	 *
-	 * <p>
-	 * This variant of this method returns a value; if you don't need a return value, please see
-	 * {@link #performBranchExclusive(ChronoNonReturningJob)}.
-	 *
-	 * <p>
-	 * It is strongly encouraged to use Java Lambda Expressions as arguments for this method.
-	 *
-	 * @param <T>
-	 *            The type of object the job returns.
-	 * @param job
-	 *            The job to execute. Must not be <code>null</code>.
-	 *
-	 * @return The result of the job. May be <code>null</code>.
-	 */
-	public <T> T performBranchExclusive(final ChronoReturningJob<T> job);
+	public LockHolder lockBranchExclusive();
 
 	// =================================================================================================================
 	// DUMP UTILITY
@@ -509,5 +586,21 @@ public interface TemporalKeyValueStore extends TransactionSource {
 	 *            effectively a no-op.
 	 */
 	public void insertEntries(Set<ChronoDBEntry> entries);
+
+	// =================================================================================================================
+	// DEBUG METHODS
+	// =================================================================================================================
+
+	public void setDebugCallbackBeforePrimaryIndexUpdate(final Consumer<ChronoDBTransaction> action);
+
+	public void setDebugCallbackBeforeSecondaryIndexUpdate(final Consumer<ChronoDBTransaction> action);
+
+	public void setDebugCallbackBeforeMetadataUpdate(final Consumer<ChronoDBTransaction> action);
+
+	public void setDebugCallbackBeforeCacheUpdate(final Consumer<ChronoDBTransaction> action);
+
+	public void setDebugCallbackBeforeNowTimestampUpdate(final Consumer<ChronoDBTransaction> action);
+
+	public void setDebugCallbackBeforeTransactionCommitted(final Consumer<ChronoDBTransaction> action);
 
 }

@@ -15,7 +15,6 @@ import org.chronos.chronodb.api.key.ChronoIdentifier;
 import org.chronos.chronodb.internal.api.index.ChronoIndexDocument;
 import org.chronos.chronodb.internal.impl.engines.jdbc.JdbcIndexManagerBackend.TimeSearchMode;
 import org.chronos.chronodb.internal.impl.index.ChronoIndexDocumentImpl;
-import org.chronos.chronodb.internal.impl.index.IndexerKeyspaceState;
 import org.chronos.chronodb.internal.impl.jdbc.table.DefaultJdbcTable;
 import org.chronos.chronodb.internal.impl.jdbc.table.IndexDeclaration;
 import org.chronos.chronodb.internal.impl.jdbc.table.TableColumn;
@@ -118,41 +117,80 @@ class JdbcIndexDocumentTable extends DefaultJdbcTable {
 
 	public static final String SQL_INSERT = "INSERT INTO " + NAME + " VALUES(?,?,?,?,?,?,?,?,?)";
 
-	public static final String SQL_UPDATE_VALID_TO = "UPDATE " + NAME + " SET " + PROPERTY_VALID_TO + " = ? " + " WHERE " + PROPERTY_ID + " = ?";
+	public static final String SQL_UPDATE_VALID_TO = "UPDATE " + NAME + " SET " + PROPERTY_VALID_TO + " = ? "
+			+ " WHERE " + PROPERTY_ID + " = ?";
 
-	public static final String SQL_GET_LATEST_DOCUMENT = "SELECT " + PROPERTY_ID + ", " + PROPERTY_INDEXED_VALUE + ", " + PROPERTY_INDEXED_VALUE_CI + ", " + PROPERTY_VALID_FROM + ", " + PROPERTY_VALID_TO + " FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ? AND " + PROPERTY_KEYSPACE + " = ? AND " + PROPERTY_KEY + " = ? AND " + PROPERTY_INDEX_NAME + "= ? AND " + PROPERTY_VALID_FROM + " <= ? AND " + PROPERTY_VALID_TO + " > ?";
+	public static final String SQL_GET_LATEST_DOCUMENT = "SELECT " + PROPERTY_ID + ", " + PROPERTY_INDEXED_VALUE + ", "
+			+ PROPERTY_INDEXED_VALUE_CI + ", " + PROPERTY_VALID_FROM + ", " + PROPERTY_VALID_TO + " FROM " + NAME
+			+ " WHERE " + PROPERTY_BRANCH + " = ? AND " + PROPERTY_KEYSPACE + " = ? AND " + PROPERTY_KEY + " = ? AND "
+			+ PROPERTY_INDEX_NAME + "= ? AND " + PROPERTY_VALID_FROM + " <= ? AND " + PROPERTY_VALID_TO + " > ?";
 
-	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_LIKE_STRICT_VALID_AT = "SELECT * FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_FROM + " <= ${timestamp} AND " + PROPERTY_VALID_TO + " > ${timestamp} AND " + PROPERTY_INDEXED_VALUE + " LIKE ${search} ESCAPE ${escape}";
+	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_LIKE_STRICT_VALID_AT = "SELECT * FROM " + NAME + " WHERE "
+			+ PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_FROM
+			+ " <= ${timestamp} AND " + PROPERTY_VALID_TO + " > ${timestamp} AND " + PROPERTY_INDEXED_VALUE
+			+ " LIKE ${search} ESCAPE ${escape}";
 
-	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_LIKE_STRICT_TERMINATED_UNTIL = "SELECT * FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_TO + " <= ${timestamp} AND " + PROPERTY_INDEXED_VALUE + " LIKE ${search} ESCAPE ${escape}";
+	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_LIKE_STRICT_TERMINATED_UNTIL = "SELECT * FROM " + NAME
+			+ " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND "
+			+ PROPERTY_VALID_TO + " <= ${timestamp} AND " + PROPERTY_INDEXED_VALUE + " LIKE ${search} ESCAPE ${escape}";
 
-	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_LIKE_CI_VALID_AT = "SELECT * FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_FROM + " <= ${timestamp} AND " + PROPERTY_VALID_TO + " > ${timestamp} AND " + PROPERTY_INDEXED_VALUE_CI + " LIKE ${search} ESCAPE ${escape}";
+	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_LIKE_CI_VALID_AT = "SELECT * FROM " + NAME + " WHERE "
+			+ PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_FROM
+			+ " <= ${timestamp} AND " + PROPERTY_VALID_TO + " > ${timestamp} AND " + PROPERTY_INDEXED_VALUE_CI
+			+ " LIKE ${search} ESCAPE ${escape}";
 
-	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_LIKE_CI_TERMINATED_UNTIL = "SELECT * FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_TO + " <= ${timestamp} AND " + PROPERTY_INDEXED_VALUE_CI + " LIKE ${search} ESCAPE ${escape}";
+	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_LIKE_CI_TERMINATED_UNTIL = "SELECT * FROM " + NAME
+			+ " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND "
+			+ PROPERTY_VALID_TO + " <= ${timestamp} AND " + PROPERTY_INDEXED_VALUE_CI
+			+ " LIKE ${search} ESCAPE ${escape}";
 
-	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_NOT_LIKE_STRICT_VALID_AT = "SELECT * FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_FROM + " <= ${timestamp} AND " + PROPERTY_VALID_TO + " > ${timestamp} AND " + PROPERTY_INDEXED_VALUE + " NOT LIKE ${search} ESCAPE ${escape}";
+	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_NOT_LIKE_STRICT_VALID_AT = "SELECT * FROM " + NAME
+			+ " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND "
+			+ PROPERTY_VALID_FROM + " <= ${timestamp} AND " + PROPERTY_VALID_TO + " > ${timestamp} AND "
+			+ PROPERTY_INDEXED_VALUE + " NOT LIKE ${search} ESCAPE ${escape}";
 
-	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_NOT_LIKE_STRICT_TERMINATED_UNTIL = "SELECT * FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_TO + " <= ${timestamp} AND " + PROPERTY_INDEXED_VALUE + " NOT LIKE ${search} ESCAPE ${escape}";
+	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_NOT_LIKE_STRICT_TERMINATED_UNTIL = "SELECT * FROM " + NAME
+			+ " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND "
+			+ PROPERTY_VALID_TO + " <= ${timestamp} AND " + PROPERTY_INDEXED_VALUE
+			+ " NOT LIKE ${search} ESCAPE ${escape}";
 
-	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_NOT_LIKE_CI_VALID_AT = "SELECT * FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_FROM + " <= ${timestamp} AND " + PROPERTY_VALID_TO + " > ${timestamp} AND " + PROPERTY_INDEXED_VALUE_CI + " NOT LIKE ${search} ESCAPE ${escape}";
+	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_NOT_LIKE_CI_VALID_AT = "SELECT * FROM " + NAME + " WHERE "
+			+ PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_FROM
+			+ " <= ${timestamp} AND " + PROPERTY_VALID_TO + " > ${timestamp} AND " + PROPERTY_INDEXED_VALUE_CI
+			+ " NOT LIKE ${search} ESCAPE ${escape}";
 
-	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_NOT_LIKE_CI_TERMINATED_UNTIL = "SELECT * FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_TO + " <= ${timestamp} AND " + PROPERTY_INDEXED_VALUE_CI + " NOT LIKE ${search} ESCAPE ${escape}";
+	public static final String NAMED_SQL_GET_DOCUMENTS_WHERE_NOT_LIKE_CI_TERMINATED_UNTIL = "SELECT * FROM " + NAME
+			+ " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND "
+			+ PROPERTY_VALID_TO + " <= ${timestamp} AND " + PROPERTY_INDEXED_VALUE_CI
+			+ " NOT LIKE ${search} ESCAPE ${escape}";
 
-	public static final String NAMED_SQL_GET_INDEXED_VALUES_VALID_AT_TIMESTAMP = "SELECT DISTINCT " + PROPERTY_INDEXED_VALUE + " FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_FROM + " <= ${timestamp} AND " + PROPERTY_VALID_TO + " > ${timestamp}";
+	public static final String NAMED_SQL_GET_INDEXED_VALUES_VALID_AT_TIMESTAMP = "SELECT DISTINCT "
+			+ PROPERTY_INDEXED_VALUE + " FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND "
+			+ PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_FROM + " <= ${timestamp} AND "
+			+ PROPERTY_VALID_TO + " > ${timestamp}";
 
-	public static final String NAMED_SQL_GET_INDEXED_VALUES_TERMINATED_UP_UNTIL = "SELECT DISTINCT " + PROPERTY_INDEXED_VALUE + " FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_TO + " <= ${timestamp}";
+	public static final String NAMED_SQL_GET_INDEXED_VALUES_TERMINATED_UP_UNTIL = "SELECT DISTINCT "
+			+ PROPERTY_INDEXED_VALUE + " FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND "
+			+ PROPERTY_INDEX_NAME + " = ${index} AND " + PROPERTY_VALID_TO + " <= ${timestamp}";
 
-	public static final String SQL_DELETE_DOCUMENTS_WHERE_VALID_FROM_GREATER_THAN = "DELETE FROM " + NAME + " WHERE " + PROPERTY_VALID_FROM + " > ?";
+	public static final String SQL_DELETE_DOCUMENTS_WHERE_VALID_FROM_GREATER_THAN = "DELETE FROM " + NAME + " WHERE "
+			+ PROPERTY_VALID_FROM + " > ?";
 
-	public static final String SQL_RESET_VALIDITY_TO_INFINITY_WHEN_CHANGED_AFTER = "UPDATE " + NAME + " SET " + PROPERTY_VALID_TO + " = ? WHERE " + PROPERTY_VALID_TO + " < " + Long.MAX_VALUE + " AND " + PROPERTY_VALID_TO + " > ?";
+	public static final String SQL_RESET_VALIDITY_TO_INFINITY_WHEN_CHANGED_AFTER = "UPDATE " + NAME + " SET "
+			+ PROPERTY_VALID_TO + " = ? WHERE " + PROPERTY_VALID_TO + " < " + Long.MAX_VALUE + " AND "
+			+ PROPERTY_VALID_TO + " > ?";
 
-	public static final String NAMED_SQL_GET_DOCUMENTS_TOUCHED_AT_OR_AFTER_TIMESTAMP = "SELECT * FROM " + NAME + " WHERE " + PROPERTY_VALID_FROM + " >= ${timestamp} OR (" + PROPERTY_VALID_TO + " >= ${timestamp} AND " + PROPERTY_VALID_TO + " < " + Long.MAX_VALUE + ")";
+	public static final String NAMED_SQL_DELETE_WHERE_DOCUMENT_ID_EQUALS = "DELETE FROM " + NAME + " WHERE "
+			+ PROPERTY_ID + " = ${documentId}";
 
-	public static final String NAMED_SQL_DELETE_WHERE_DOCUMENT_ID_EQUALS = "DELETE FROM " + NAME + " WHERE " + PROPERTY_ID + " = ${documentId}";
+	public static final String NAMED_SQL_GET_LATEST_DOCUMENTS_IN_BRANCH_AND_KEYSPACE = "SELECT * FROM " + NAME
+			+ " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_KEYSPACE + " = ${keyspace} AND "
+			+ PROPERTY_VALID_TO + " = " + Long.MAX_VALUE;
 
-	public static final String NAMED_SQL_GET_LATEST_DOCUMENTS_IN_BRANCH_AND_KEYSPACE = "SELECT * FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_KEYSPACE + " = ${keyspace} AND " + PROPERTY_VALID_TO + " = " + Long.MAX_VALUE;
-
-	public static final String NAMED_SQL_GET_MATCHING_BRANCH_LOCAL_DOCUMENTS_FOR_IDENTIFIER = "SELECT * FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_KEYSPACE + " = ${keyspace} AND " + PROPERTY_KEY + " = ${key} AND " + PROPERTY_VALID_FROM + " <= ${timestamp} AND " + PROPERTY_VALID_TO + " > ${timestamp}";
+	public static final String NAMED_SQL_GET_MATCHING_BRANCH_LOCAL_DOCUMENTS_FOR_IDENTIFIER = "SELECT * FROM " + NAME
+			+ " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_KEYSPACE + " = ${keyspace} AND "
+			+ PROPERTY_KEY + " = ${key} AND " + PROPERTY_VALID_FROM + " <= ${timestamp} AND " + PROPERTY_VALID_TO
+			+ " > ${timestamp}";
 
 	// =================================================================================================================
 	// CONSTRUCTOR
@@ -185,13 +223,16 @@ class JdbcIndexDocumentTable extends DefaultJdbcTable {
 	// PUBLIC API
 	// =================================================================================================================
 
-	public ChronoIndexDocument insert(final String branch, final String keyspace, final String key, final String indexName, final String indexedValue, final String indexedValueCaseInsensitive, final long validFrom, final long validTo) {
+	public ChronoIndexDocument insert(final String branch, final String keyspace, final String key,
+			final String indexName, final String indexedValue, final String indexedValueCaseInsensitive,
+			final long validFrom, final long validTo) {
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
 		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
 		checkNotNull(key, "Precondition violation - argument 'key' must not be NULL!");
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		checkNotNull(indexedValue, "Precondition violation - argument 'indexedValue' must not be NULL!");
-		checkNotNull(indexedValueCaseInsensitive, "Precondition violation - argument 'indexedValueCaseInsensitive' must not be NULL!");
+		checkNotNull(indexedValueCaseInsensitive,
+				"Precondition violation - argument 'indexedValueCaseInsensitive' must not be NULL!");
 		checkArgument(validFrom >= 0, "Precondition violation - argument 'validFrom' must not be negative!");
 		checkArgument(validTo > 0, "Precondition violation - argument 'validTo' must not be negative!");
 		checkArgument(validFrom < validTo, "Precondition violation - argument 'validFrom' must be < 'validTo'!");
@@ -206,9 +247,11 @@ class JdbcIndexDocumentTable extends DefaultJdbcTable {
 			pstmt.setString(7, indexedValueCaseInsensitive);
 			pstmt.setLong(8, validFrom);
 			pstmt.setLong(9, validTo);
-			ChronoLogger.logDebug("INSERTING INDEX DOCUMENT: " + JdbcUtils.resolvePreparedStatement(SQL_INSERT, id, branch, keyspace, key, indexName, indexedValue, indexedValueCaseInsensitive, validFrom, validTo));
+			ChronoLogger.logDebug("INSERTING INDEX DOCUMENT: " + JdbcUtils.resolvePreparedStatement(SQL_INSERT, id,
+					branch, keyspace, key, indexName, indexedValue, indexedValueCaseInsensitive, validFrom, validTo));
 			pstmt.executeUpdate();
-			ChronoIndexDocument document = new ChronoIndexDocumentImpl(id, indexName, branch, keyspace, key, indexedValue, indexedValueCaseInsensitive, validFrom, validTo);
+			ChronoIndexDocument document = new ChronoIndexDocumentImpl(id, indexName, branch, keyspace, key,
+					indexedValue, indexedValueCaseInsensitive, validFrom, validTo);
 			return document;
 		} catch (SQLException e) {
 			throw new ChronoDBStorageBackendException("Could not insert into Index Documents Table!", e);
@@ -223,33 +266,17 @@ class JdbcIndexDocumentTable extends DefaultJdbcTable {
 			pstmt.setString(2, id);
 			int changedRows = pstmt.executeUpdate();
 			if (changedRows <= 0) {
-				throw new ChronoDBStorageBackendException("Failed to set 'validTo' property of document with ID '" + id + "'!");
+				throw new ChronoDBStorageBackendException(
+						"Failed to set 'validTo' property of document with ID '" + id + "'!");
 			}
 		} catch (SQLException e) {
 			throw new ChronoDBStorageBackendException("Could not update entry in Index Documents Table!", e);
 		}
 	}
 
-	public IndexerKeyspaceState getLatestIndexDocumentsFor(final String branch, final String keyspace) {
-		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
-		String sql = NAMED_SQL_GET_LATEST_DOCUMENTS_IN_BRANCH_AND_KEYSPACE;
-		try (NamedParameterStatement nStmt = new NamedParameterStatement(this.connection, sql)) {
-			nStmt.setParameter("branch", branch);
-			nStmt.setParameter("keyspace", keyspace);
-			IndexerKeyspaceState.Builder builder = IndexerKeyspaceState.build(keyspace);
-			try (ResultSet resultSet = nStmt.executeQuery()) {
-				while (resultSet.next()) {
-					ChronoIndexDocument document = this.convertResultSetToDocument(resultSet);
-					builder.addDocument(document);
-				}
-			}
-			return builder.build();
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException("Failed to query Index Documents Table!", e);
-		}
-	}
-
-	public Set<ChronoIndexDocument> getDocumentsWhereLike(final String indexName, final String branch, final long timestamp, final TimeSearchMode timeSearchMode, final String likeExpression, final char escapeCharacter, final TextMatchMode matchMode) {
+	public Set<ChronoIndexDocument> getDocumentsWhereLike(final String indexName, final String branch,
+			final long timestamp, final TimeSearchMode timeSearchMode, final String likeExpression,
+			final char escapeCharacter, final TextMatchMode matchMode) {
 		String sql;
 		switch (matchMode) {
 		case STRICT:
@@ -279,10 +306,13 @@ class JdbcIndexDocumentTable extends DefaultJdbcTable {
 		default:
 			throw new UnknownEnumLiteralException(matchMode);
 		}
-		return this.getDocumentsWhereLikeInternal(indexName, branch, timestamp, timeSearchMode, likeExpression, escapeCharacter, sql);
+		return this.getDocumentsWhereLikeInternal(indexName, branch, timestamp, timeSearchMode, likeExpression,
+				escapeCharacter, sql);
 	}
 
-	public Set<ChronoIndexDocument> getDocumentsWhereNotLike(final String indexName, final String branch, final long timestamp, final TimeSearchMode timeSearchMode, final String likeExpression, final char escapeCharacter, final TextMatchMode matchMode) {
+	public Set<ChronoIndexDocument> getDocumentsWhereNotLike(final String indexName, final String branch,
+			final long timestamp, final TimeSearchMode timeSearchMode, final String likeExpression,
+			final char escapeCharacter, final TextMatchMode matchMode) {
 		String sql;
 		switch (matchMode) {
 		case STRICT:
@@ -312,10 +342,13 @@ class JdbcIndexDocumentTable extends DefaultJdbcTable {
 		default:
 			throw new UnknownEnumLiteralException(matchMode);
 		}
-		return this.getDocumentsWhereLikeInternal(indexName, branch, timestamp, timeSearchMode, likeExpression, escapeCharacter, sql);
+		return this.getDocumentsWhereLikeInternal(indexName, branch, timestamp, timeSearchMode, likeExpression,
+				escapeCharacter, sql);
 	}
 
-	private Set<ChronoIndexDocument> getDocumentsWhereLikeInternal(final String indexName, final String branch, final long timestamp, final TimeSearchMode timeSearchMode, final String likeExpression, final char escapeCharacter, final String sql) {
+	private Set<ChronoIndexDocument> getDocumentsWhereLikeInternal(final String indexName, final String branch,
+			final long timestamp, final TimeSearchMode timeSearchMode, final String likeExpression,
+			final char escapeCharacter, final String sql) {
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
@@ -337,7 +370,8 @@ class JdbcIndexDocumentTable extends DefaultJdbcTable {
 		}
 	}
 
-	public Set<String> getIndexedValues(final String indexName, final String branch, final long timestamp, final TimeSearchMode timeSearchMode) {
+	public Set<String> getIndexedValues(final String indexName, final String branch, final long timestamp,
+			final TimeSearchMode timeSearchMode) {
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
@@ -370,30 +404,40 @@ class JdbcIndexDocumentTable extends DefaultJdbcTable {
 		return indexedValues;
 	}
 
-	public void deleteWhereValidFromGreaterThan(final long timestamp) {
-		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
-		try (PreparedStatement pstmt = this.connection.prepareStatement(SQL_DELETE_DOCUMENTS_WHERE_VALID_FROM_GREATER_THAN)) {
-			pstmt.setLong(1, timestamp);
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException("Could not update Index Documents Table!", e);
+	private String generateNamedSQLGetDocumentsTouchedAtOrAfterTimestamp(final Set<String> branches) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT * FROM ");
+		sql.append(NAME);
+		sql.append(" WHERE ");
+		sql.append(PROPERTY_VALID_FROM);
+		sql.append(" >= ${timestamp} OR (");
+		sql.append(PROPERTY_VALID_TO);
+		sql.append(" >= ${timestamp} AND ");
+		sql.append(PROPERTY_VALID_TO);
+		sql.append(" < ");
+		sql.append(Long.MAX_VALUE);
+		sql.append(")");
+		if (branches != null) {
+			sql.append(" AND ");
+			sql.append(PROPERTY_BRANCH);
+			sql.append(" IN (");
+			String separator = "";
+			for (String branch : branches) {
+				sql.append(separator);
+				separator = ", ";
+				sql.append("'");
+				sql.append(branch);
+				sql.append("'");
+			}
+			sql.append(")");
 		}
+		return sql.toString();
 	}
 
-	public void resetValidToToInfinityWhenChangedAfter(final long timestamp) {
+	public Set<ChronoIndexDocument> getDocumentsTouchedAtOrAfterTimestamp(final long timestamp,
+			final Set<String> branches) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
-		try (PreparedStatement pstmt = this.connection.prepareStatement(SQL_RESET_VALIDITY_TO_INFINITY_WHEN_CHANGED_AFTER)) {
-			pstmt.setLong(1, timestamp);
-			pstmt.setLong(2, timestamp);
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException("Could not update Index Documents Table!", e);
-		}
-	}
-
-	public Set<ChronoIndexDocument> getDocumentsTouchedAtOrAfterTimestamp(final long timestamp) {
-		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
-		String sql = NAMED_SQL_GET_DOCUMENTS_TOUCHED_AT_OR_AFTER_TIMESTAMP;
+		String sql = this.generateNamedSQLGetDocumentsTouchedAtOrAfterTimestamp(branches);
 		try (NamedParameterStatement namedStatement = new NamedParameterStatement(this.connection, sql)) {
 			namedStatement.setParameter("timestamp", timestamp);
 			try (ResultSet resultSet = namedStatement.executeQuery()) {
@@ -459,7 +503,8 @@ class JdbcIndexDocumentTable extends DefaultJdbcTable {
 		String indexedValueCaseInsensitive = resultSet.getString(PROPERTY_INDEXED_VALUE_CI);
 		long validFrom = resultSet.getLong(PROPERTY_VALID_FROM);
 		long validTo = resultSet.getLong(PROPERTY_VALID_TO);
-		return new ChronoIndexDocumentImpl(id, indexName, branchName, keyspace, key, indexedValue, indexedValueCaseInsensitive, validFrom, validTo);
+		return new ChronoIndexDocumentImpl(id, indexName, branchName, keyspace, key, indexedValue,
+				indexedValueCaseInsensitive, validFrom, validTo);
 	}
 
 }

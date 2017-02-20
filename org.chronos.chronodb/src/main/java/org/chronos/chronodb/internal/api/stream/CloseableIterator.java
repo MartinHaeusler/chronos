@@ -129,4 +129,34 @@ public interface CloseableIterator<T> extends AutoCloseable {
 		}
 	}
 
+	/**
+	 * Returns a plain {@link Iterator} representation of this closeable iterator.
+	 *
+	 * <p>
+	 * The returned iterator directly forwards calls to {@link #hasNext()} and {@link #next()} to their equivalents in
+	 * this object. Therefore, advancing the returned iterator will also advance this closeable iterator.
+	 *
+	 * <p>
+	 * <b>WARNING:</b> Do not invoke this method unless for interoperability with {@link Iterator}-based APIs, because
+	 * the information that this iterator needs to be {@link #close() closed} will no longer be present in the returned
+	 * iterator.
+	 *
+	 * @return A plain iterator representation of this closable iterator.
+	 */
+	public default Iterator<T> asIterator() {
+		return new Iterator<T>() {
+
+			@Override
+			public boolean hasNext() {
+				return CloseableIterator.this.hasNext();
+			}
+
+			@Override
+			public T next() {
+				return CloseableIterator.this.next();
+			}
+
+		};
+	}
+
 }

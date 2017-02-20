@@ -1,0 +1,62 @@
+// ORG.CHRONOS.CHRONOGRAPH/build.gradl
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'ChronoGraph'
+    }
+}
+
+dependencies {
+	compile project (":org.chronos.common")
+	compile project (":org.chronos.chronodb")
+
+	compile("org.apache.tinkerpop:gremlin-core:${project.tinkerpopVersion}")
+		
+	testCompile project(":org.chronos.common.testing")
+	testCompile project(':org.chronos.common').sourceSets.test.output;
+    testCompile project(':org.chronos.chronodb').sourceSets.test.output;
+	
+	// the official tinkerpop test suite
+	testCompile("org.apache.tinkerpop:gremlin-test:${project.tinkerpopVersion}")
+}
+
+task sourceJar(type: Jar) {
+  from sourceSets.main.allJava
+  classifier "sources"
+}
+
+afterEvaluate { project ->
+
+	// Defines the to-be published artifacts with the maven-publish task
+	// Is not responsible for any publishing. Just defines the artifacts.
+	publishing {
+		publications {
+			mavenJava(MavenPublication) {
+				from components.java
+				artifact sourceJar
+				//the maven descriptor info
+				groupId project.group
+				artifactId jar.baseName
+				version project.version
+			}
+		}
+	}
+
+}
+
+test {
+	// do not include any test suites in the build tests; the build executes all tests anyways,
+	// including the suites would only mean to execute each test twice which doesn't make much sense.
+	// NOTE: We still want to INCLUDE the GraphStructureStandardTestSuite provided by TinkerPop 3,
+	// for that reason we exclude the graph test suite specifically here and not the entire suite package.
+	exclude '**/ChronoGraphTestSuite.java'
+	// do not include tests from common (those are run separately)
+	exclude '**/org/chronos/common/**'
+	// do not include tests from chronodb (those are run separately)
+	exclude '**/org/chronos/chronodb/**'
+	// exclude performance tests and benchmarks
+	useJUnit {
+		excludeCategories 'org.chronos.common.test.junit.categories.PerformanceTest'
+	}
+}
+

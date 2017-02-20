@@ -39,7 +39,12 @@ public abstract class AllChronoDBBackendsTest extends AllBackendsTest {
 	@After
 	public void cleanUp() {
 		ChronoLogger.logDebug("Closing ChronoDB on backend '" + this.backend + "'.");
-		this.getChronoDB().close();
+		if (this.db != null) {
+			if (this.db.isClosed() == false) {
+				this.db.close();
+			}
+			this.db = null;
+		}
 	}
 
 	// =================================================================================================================

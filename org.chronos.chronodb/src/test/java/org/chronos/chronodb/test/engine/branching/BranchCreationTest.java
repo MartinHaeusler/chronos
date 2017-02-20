@@ -10,7 +10,7 @@ import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
 import org.chronos.chronodb.test.base.InstantiateChronosWith;
-import org.chronos.chronodb.test.util.NamedPayload;
+import org.chronos.chronodb.test.util.model.payload.NamedPayload;
 import org.chronos.common.test.junit.categories.IntegrationTest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;

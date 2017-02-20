@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Set;
 
 import org.chronos.chronodb.api.ChronoDB;
@@ -91,8 +90,7 @@ class JdbcNavigationTable extends DefaultJdbcTable {
 			//
 			new TableColumn(COLUMN_MATRIXTABLENAME, TYPEBOUND_MATRIXTABLENAME),
 			//
-			new TableColumn(COLUMN_TIMESTAMP, TYPEBOUND_TIMESTAMP)
-	};
+			new TableColumn(COLUMN_TIMESTAMP, TYPEBOUND_TIMESTAMP) };
 
 	public static final IndexDeclaration[] INDICES = {
 			//
@@ -106,11 +104,13 @@ class JdbcNavigationTable extends DefaultJdbcTable {
 
 	public static final String SQL_GET_BRANCH_NAMES = "SELECT DISTINCT " + COLUMN_BRANCH + " FROM " + NAME;
 
-	public static final String SQL_GET_MATRIX_TABLES_FOR_BRANCH = "SELECT " + COLUMN_MATRIXTABLENAME + " FROM " + NAME + " WHERE " + COLUMN_BRANCH + " = ?";
+	public static final String SQL_GET_MATRIX_TABLES_FOR_BRANCH = "SELECT " + COLUMN_MATRIXTABLENAME + " FROM " + NAME
+			+ " WHERE " + COLUMN_BRANCH + " = ?";
 
 	public static final String SQL_DELETE_BRANCH = "DELETE FROM " + NAME + " WHERE " + COLUMN_BRANCH + " = ?";
 
-	public static final String SQL_GET_KEYSPACES_AND_MATRIX_TABLES_FOR_BRANCH = "SELECT * FROM " + NAME + " WHERE " + COLUMN_BRANCH + " = ?";
+	public static final String SQL_GET_KEYSPACES_AND_MATRIX_TABLES_FOR_BRANCH = "SELECT * FROM " + NAME + " WHERE "
+			+ COLUMN_BRANCH + " = ?";
 
 	// =================================================================================================================
 	// CONSTRUCTOR
@@ -160,7 +160,8 @@ class JdbcNavigationTable extends DefaultJdbcTable {
 	 * @throws ChronoDBStorageBackendException
 	 *             Thrown if a backend error occurs during the operation.
 	 */
-	public void insert(final String primaryKey, final String branchName, final String keyspaceName, final String matrixTableName, final long timestamp) throws ChronoDBStorageBackendException {
+	public void insert(final String primaryKey, final String branchName, final String keyspaceName,
+			final String matrixTableName, final long timestamp) throws ChronoDBStorageBackendException {
 		checkNotNull(this.connection, "Precondition violation - argument 'connection' must not be NULL!");
 		checkNotNull(primaryKey, "Precondition violation - argument 'primaryKey' must not be NULL!");
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
@@ -184,106 +185,6 @@ class JdbcNavigationTable extends DefaultJdbcTable {
 	}
 
 	/**
-	 * Returns a set of all branch names stored in the navigation table.
-	 *
-	 * @return The set of branch names. May be empty, but never <code>null</code>.
-	 *
-	 * @throws ChronoDBStorageBackendException
-	 *             Thrown if a backend error occurs during the operation.
-	 */
-	public Set<String> getBranchNames() throws ChronoDBStorageBackendException {
-		try (Statement stmt = this.connection.createStatement()) {
-			try (ResultSet resultSet = stmt.executeQuery(SQL_GET_BRANCH_NAMES)) {
-				Set<String> branchNames = Sets.newHashSet();
-				while (resultSet.next()) {
-					branchNames.add(resultSet.getString(1));
-				}
-				return branchNames;
-			}
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException("Could not access Navigation Table!", e);
-		}
-	}
-
-	/**
-	 * Returns the names of all matrix tables associated with the given branch.
-	 *
-	 * @param branchName
-	 *            The name of the branch to get the contained matrix table names for. Must not be <code>null</code>.
-	 *
-	 * @return The set of matrix table names in the given branch. May be empty, but never <code>null</code>.
-	 *
-	 * @throws ChronoDBStorageBackendException
-	 *             Thrown if a backend error occurs during the operation.
-	 */
-	public Set<String> getMatrixTableNamesForBranch(final String branchName) throws ChronoDBStorageBackendException {
-		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
-		try (PreparedStatement pstmt = this.connection.prepareStatement(SQL_GET_MATRIX_TABLES_FOR_BRANCH)) {
-			pstmt.setString(1, branchName);
-			try (ResultSet resultSet = pstmt.executeQuery()) {
-				Set<String> matrixTableNames = Sets.newHashSet();
-				while (resultSet.next()) {
-					matrixTableNames.add(resultSet.getString(1));
-				}
-				return matrixTableNames;
-			}
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException("Could not access Navigation Table!", e);
-		}
-	}
-
-	/**
-	 * Deletes all entries in the navigation table which point to the given branch.
-	 *
-	 * @param branchName
-	 *            The name of the branch to delete. Must not be <code>null</code>.
-	 *
-	 * @throws ChronoDBStorageBackendException
-	 *             Thrown if a backend error occurs during the operation.
-	 */
-	public void deleteBranch(final String branchName) throws ChronoDBStorageBackendException {
-		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
-		try (PreparedStatement pstmt = this.connection.prepareStatement(SQL_DELETE_BRANCH)) {
-			pstmt.setString(1, branchName);
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException("Could not access Navigation Table!", e);
-		}
-	}
-
-	/**
-	 * Checks if there is at least one matrix table for the given branch.
-	 *
-	 * @param branchName
-	 *            The name of the branch to check. Must not be <code>null</code>.
-	 *
-	 * @return <code>true</code> if there is at least one matrix table for the given branch, otherwise
-	 *         <code>false</code>.
-	 *
-	 * @throws ChronoDBStorageBackendException
-	 *             Thrown if a backend error occurs during the operation.
-	 */
-	public boolean existsBranch(final String branchName) throws ChronoDBStorageBackendException {
-		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
-		try (PreparedStatement pstmt = this.connection.prepareStatement(SQL_GET_MATRIX_TABLES_FOR_BRANCH)) {
-			pstmt.setString(1, branchName);
-			try (ResultSet resultSet = pstmt.executeQuery()) {
-				if (resultSet.next()) {
-					// there is at least one entry in the navigation table
-					// that mentions the name of this branch, so it does exist
-					return true;
-				} else {
-					// no entry in the navigation table mentions this branch,
-					// so it does not exist
-					return false;
-				}
-			}
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException("Could not access Navigation Table!", e);
-		}
-	}
-
-	/**
 	 * Returns a mapping from keyspace name to the name of the corresponding matrix table name.
 	 *
 	 * @param branchName
@@ -297,7 +198,8 @@ class JdbcNavigationTable extends DefaultJdbcTable {
 	public Set<KeyspaceMetadata> getKeyspaceMetadata(final String branchName) throws ChronoDBStorageBackendException {
 		checkNotNull(this.connection, "Precondition violation - argument 'connection' must not be NULL!");
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
-		try (PreparedStatement pstmt = this.connection.prepareStatement(SQL_GET_KEYSPACES_AND_MATRIX_TABLES_FOR_BRANCH)) {
+		try (PreparedStatement pstmt = this.connection
+				.prepareStatement(SQL_GET_KEYSPACES_AND_MATRIX_TABLES_FOR_BRANCH)) {
 			pstmt.setString(1, branchName);
 			try (ResultSet resultSet = pstmt.executeQuery()) {
 				Set<KeyspaceMetadata> metadataSet = Sets.newHashSet();

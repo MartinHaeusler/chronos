@@ -19,6 +19,12 @@ import org.chronos.common.configuration.annotation.ValueConverter;
 public class ChronoDBConfigurationImpl extends AbstractConfiguration implements ChronoDBConfiguration {
 
 	// =====================================================================================================================
+	// DEFAULT SETTINGS
+	// =====================================================================================================================
+
+	private static final long DEFAULT__STORAGE_BACKEND_CACHE = 1024L * 1024L * 200L; // 200 MB (in bytes)
+
+	// =====================================================================================================================
 	// FIELDS
 	// =====================================================================================================================
 
@@ -30,6 +36,12 @@ public class ChronoDBConfigurationImpl extends AbstractConfiguration implements 
 	@EnumFactoryMethod("fromString")
 	@Parameter(key = STORAGE_BACKEND)
 	private ChronosBackend backendType;
+
+	@Parameter(key = STORAGE_BACKEND_CACHE)
+	@IgnoredIf(field = "backendType", comparison = Comparison.IS_SET_TO, compareValue = "JDBC")
+	@IgnoredIf(field = "backendType", comparison = Comparison.IS_SET_TO, compareValue = "FILE")
+	@IgnoredIf(field = "backendType", comparison = Comparison.IS_SET_TO, compareValue = "INMEMORY")
+	private long storageBackendCacheMaxSize = DEFAULT__STORAGE_BACKEND_CACHE;
 
 	@Parameter(key = CACHING_ENABLED)
 	private boolean cachingEnabled = false;
@@ -58,28 +70,29 @@ public class ChronoDBConfigurationImpl extends AbstractConfiguration implements 
 
 	// file backend settings
 	@Parameter(key = WORK_FILE)
-	@RequiredIf(field = "backendType", comparison = Comparison.IS_SET_TO, compareValue = "FILE")
-	@IgnoredIf(field = "backendType", comparison = Comparison.IS_NOT_SET_TO, compareValue = "FILE")
+	@RequiredIf(field = "backendType", comparison = Comparison.IS_SET_TO, compareValue = "file")
+	@RequiredIf(field = "backendType", comparison = Comparison.IS_SET_TO, compareValue = "metadb")
 	@ValueConverter(ParameterValueConverters.StringToFileConverter.class)
 	private File workingFile;
 
 	@Parameter(key = DROP_ON_SHUTDOWN)
-	@RequiredIf(field = "backendType", comparison = Comparison.IS_SET_TO, compareValue = "FILE")
-	@IgnoredIf(field = "backendType", comparison = Comparison.IS_NOT_SET_TO, compareValue = "FILE")
+	@RequiredIf(field = "backendType", comparison = Comparison.IS_SET_TO, compareValue = "file")
+	@IgnoredIf(field = "backendType", comparison = Comparison.IS_NOT_SET_TO, compareValue = "file")
 	private boolean dropOnShutdown = false;
 
 	// jdbc backend settings
 	@Parameter(key = JDBC_CONNECTION_URL)
-	@RequiredIf(field = "backendType", comparison = Comparison.IS_SET_TO, compareValue = "JDBC")
-	@IgnoredIf(field = "backendType", comparison = Comparison.IS_NOT_SET_TO, compareValue = "JDBC")
+	@RequiredIf(field = "backendType", comparison = Comparison.IS_SET_TO, compareValue = "jdbc")
+	@IgnoredIf(field = "backendType", comparison = Comparison.IS_NOT_SET_TO, compareValue = "jdbc")
 	private String jdbcConnectionUrl;
 
 	@Parameter(key = JDBC_CREDENTIALS_USERNAME, optional = true)
-	@IgnoredIf(field = "backendType", comparison = Comparison.IS_NOT_SET_TO, compareValue = "JDBC")
+	@IgnoredIf(field = "backendType", comparison = Comparison.IS_NOT_SET_TO, compareValue = "jdbc")
+	@IgnoredIf(field = "backendType", comparison = Comparison.IS_NOT_SET_TO, compareValue = "jdbc")
 	private String jdbcCredentialsUsername;
 
 	@Parameter(key = JDBC_CREDENTIALS_PASSWORD, optional = true)
-	@IgnoredIf(field = "backendType", comparison = Comparison.IS_NOT_SET_TO, compareValue = "JDBC")
+	@IgnoredIf(field = "backendType", comparison = Comparison.IS_NOT_SET_TO, compareValue = "jdbc")
 	private String jdbcCredentialsPassword;
 
 	// =================================================================================================================
@@ -94,6 +107,11 @@ public class ChronoDBConfigurationImpl extends AbstractConfiguration implements 
 	@Override
 	public ChronosBackend getBackendType() {
 		return this.backendType;
+	}
+
+	@Override
+	public long getStorageBackendCacheMaxSize() {
+		return this.storageBackendCacheMaxSize;
 	}
 
 	@Override
@@ -135,6 +153,7 @@ public class ChronoDBConfigurationImpl extends AbstractConfiguration implements 
 	// FILE BACKEND SETTINGS
 	// =================================================================================================================
 
+	@Override
 	public boolean isDropOnShutdown() {
 		return this.dropOnShutdown;
 	}

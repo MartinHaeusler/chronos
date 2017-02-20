@@ -27,7 +27,7 @@ afterEvaluate { project ->
 			}
 		}
 	}
-	
+
 }
 
 
@@ -49,6 +49,9 @@ dependencies {
 	compile("com.mchange:c3p0:${project.c3p0Version}");
     compile("com.h2database:h2:${project.h2Version}");
     
+    // Backend C) Tupl
+    compile("com.truward.tupl:tupl:${project.tuplVersion}");
+    
     // Utilities
     compile("com.esotericsoftware:kryo:${project.kryoVersion}");
     compile("com.thoughtworks.xstream:xstream:${project.xstreamVersion}");
@@ -60,5 +63,11 @@ test {
 	// do not include any test suites in the build tests; the build executes all tests anyways,
 	// including the suites would only mean to execute each test twice which doesn't make much sense.
 	exclude '**/_suite/**'
+	// do not include tests from common (those are run separately)
+	exclude '**/org/chronos/common/**'
+	// exclude performance tests and benchmarks
+	useJUnit {
+		excludeCategories 'org.chronos.common.test.junit.categories.PerformanceTest'
+	}
 }
 

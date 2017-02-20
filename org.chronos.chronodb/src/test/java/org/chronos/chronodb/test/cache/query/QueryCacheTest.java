@@ -9,12 +9,12 @@ import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
-import org.chronos.chronodb.internal.impl.index.StandardIndexManager;
+import org.chronos.chronodb.internal.impl.index.DocumentBasedIndexManager;
 import org.chronos.chronodb.internal.impl.index.querycache.ChronoIndexQueryCache;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
 import org.chronos.chronodb.test.base.InstantiateChronosWith;
-import org.chronos.chronodb.test.util.NamedPayload;
-import org.chronos.chronodb.test.util.NamedPayloadNameIndexer;
+import org.chronos.chronodb.test.util.model.payload.NamedPayload;
+import org.chronos.chronodb.test.util.model.payload.NamedPayloadNameIndexer;
 import org.chronos.common.test.junit.categories.IntegrationTest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -37,7 +37,7 @@ public class QueryCacheTest extends AllChronoDBBackendsTest {
 		tx.commit();
 
 		// get the query cache instance
-		StandardIndexManager indexManager = (StandardIndexManager) db.getIndexManager();
+		DocumentBasedIndexManager indexManager = (DocumentBasedIndexManager) db.getIndexManager();
 		ChronoIndexQueryCache queryCache = indexManager.getIndexQueryCache();
 		// make sure that the query cache is in place
 		assertNotNull(queryCache);

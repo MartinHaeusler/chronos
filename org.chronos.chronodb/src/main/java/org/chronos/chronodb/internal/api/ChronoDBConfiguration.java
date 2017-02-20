@@ -52,6 +52,19 @@ public interface ChronoDBConfiguration extends ChronosConfiguration {
 	public static final String STORAGE_BACKEND = NS_DOT + "storage.backend";
 
 	/**
+	 * Sets the maximum size of the cache managed by the storage backend (in bytes).
+	 *
+	 * <p>
+	 * Not all storage backends support this property.
+	 *
+	 * <p>
+	 * Type: long<br>
+	 * Default: 209715200 bytes (200MB)<br>
+	 * Maps to: {@link #getStorageBackendCacheMaxSize()}
+	 */
+	public static final String STORAGE_BACKEND_CACHE = NS_DOT + "storage.backend.cache.maxSize";
+
+	/**
 	 * Determines if regular entry caching is enabled or not.
 	 * <p>
 	 * This allows to enable/disable caching without touching the actual {@link #CACHE_MAX_SIZE}.
@@ -67,12 +80,8 @@ public interface ChronoDBConfiguration extends ChronosConfiguration {
 	 * The maximum number of elements in the entry cache.
 	 *
 	 * <p>
-	 * Please note that the amount of RAM consumed by the cache also strongly depends on the size of your entries. This
-	 * setting is concerned only with the number of elements, not with their RAM size.
-	 *
-	 * <p>
-	 * Type: integer<br>
-	 * Default: 0<br>
+	 * Type: int<br>
+	 * Default: none; needs to be assiged if {@link #CACHING_ENABLED} is set to <code>true</code>.<br>
 	 * Maps to: {@link #getCacheMaxSize()}
 	 */
 	public static final String CACHE_MAX_SIZE = NS_DOT + "cache.maxSize";
@@ -168,10 +177,10 @@ public interface ChronoDBConfiguration extends ChronosConfiguration {
 	public static final String DUPLICATE_VERSION_ELIMINATION_MODE = NS_DOT + "temporal.duplicateVersionEliminationMode";
 
 	/**
-	 * The working file, i.e. the file to which {@link ChronoDB} is writing in {@link ChronosBackend#FILE} mode.
+	 * The working file, i.e. the file to which {@link ChronoDB} is writing in {@link ChronosBackend#MAPDB} mode.
 	 *
 	 * <p>
-	 * Required when {@link #STORAGE_BACKEND} is set to {@link ChronosBackend#FILE}, otherwise this setting is ignored.
+	 * Required when {@link #STORAGE_BACKEND} is set to {@link ChronosBackend#MAPDB}, otherwise this setting is ignored.
 	 *
 	 * <p>
 	 * Sibling files and folders may also be created for secondary indexing.
@@ -262,6 +271,16 @@ public interface ChronoDBConfiguration extends ChronosConfiguration {
 	public ChronosBackend getBackendType();
 
 	/**
+	 * Returns the maximum size of the cache maintained by the storage backend in bytes.
+	 *
+	 * <p>
+	 * Not all backends support this property and may choose to ignore this option.
+	 *
+	 * @return The maximum size of the storage backend cache in bytes. Must not be negative.
+	 */
+	public long getStorageBackendCacheMaxSize();
+
+	/**
 	 * Returns <code>true</code> if caching is enabled in this {@link ChronoDB} instance.
 	 *
 	 * <p>
@@ -272,13 +291,13 @@ public interface ChronoDBConfiguration extends ChronosConfiguration {
 	public boolean isCachingEnabled();
 
 	/**
-	 * Returns the maximum number of entries that may reside in the cache.
+	 * Returns the maximum number of elements that may reside in the cache.
 	 *
 	 * <p>
 	 * Mapped by setting: {@value #CACHE_MAX_SIZE}
 	 *
-	 * @return The maximum number of entries (a number greater than zero) if caching is enabled, otherwise
-	 *         <code>null</code> if caching is disabled.
+	 * @return The maximum number of elements allowed to reside in the cache (a number greater than zero) if caching is
+	 *         enabled, otherwise <code>null</code> if caching is disabled.
 	 */
 	public Integer getCacheMaxSize();
 

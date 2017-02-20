@@ -1,7 +1,8 @@
 package org.chronos.chronodb.test.engine.dbdump;
 
-import static com.google.common.base.Preconditions.*;
 import static org.junit.Assert.*;
+
+import static com.google.common.base.Preconditions.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -83,7 +84,6 @@ public class DBDumpTest extends AllChronoDBBackendsTest {
 			fileContents = FileUtils.readFileToString(testDumpFile);
 			System.out.println(fileContents);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -689,7 +689,7 @@ public class DBDumpTest extends AllChronoDBBackendsTest {
 	}
 
 	// needs to be public; otherwise we can't instantiate it!
-	public static class PersonDefaultConverter implements ChronoConverter<Person, PersonDump> {
+	private static class PersonDefaultConverter implements ChronoConverter<Person, PersonDump> {
 
 		public PersonDefaultConverter() {
 		}

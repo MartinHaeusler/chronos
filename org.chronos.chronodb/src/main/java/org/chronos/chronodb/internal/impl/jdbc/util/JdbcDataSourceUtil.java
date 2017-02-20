@@ -4,9 +4,9 @@ import static com.google.common.base.Preconditions.*;
 
 import java.io.File;
 
-import javax.sql.DataSource;
-
 import org.h2.jdbcx.JdbcConnectionPool;
+
+import javax.sql.DataSource;
 
 /**
  * This is a utility class that allows for the creation of a wide range of {@link DataSource} instances.

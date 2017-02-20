@@ -1,5 +1,6 @@
 package org.chronos.common.test.utils;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.slf4j.Logger;
@@ -84,6 +85,10 @@ public class TimeStatistics {
 		return Math.round(this.statistics.getQ3());
 	}
 
+	public List<Double> getRuntimes() {
+		return this.statistics.getSamples();
+	}
+
 	public String toFullString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("TimeStatistics[");
@@ -117,6 +122,44 @@ public class TimeStatistics {
 		builder.append("Q3: ");
 		builder.append(this.getQ3());
 		builder.append("ms ");
+		builder.append("]");
+		return builder.toString();
+	}
+
+	public String toCSV() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("TimeStatistics[");
+		builder.append("Runs;");
+		builder.append("Total Time (ms);");
+		builder.append("Shortest Time (ms); ");
+		builder.append("Longest Time (ms); ");
+		builder.append("Average Time (ms); ");
+		builder.append("Variance (ms); ");
+		builder.append("Standard Deviation (ms); ");
+		builder.append("Q1 (ms); ");
+		builder.append("Q2 (median) (ms); ");
+		builder.append("Q3 (ms); ");
+		builder.append(" ;; ");
+		builder.append(this.getNumberOfRuns());
+		builder.append("; ");
+		builder.append(this.getTotalTime());
+		builder.append("; ");
+		builder.append(this.getShortestRuntime());
+		builder.append("; ");
+		builder.append(this.getLongestRuntime());
+		builder.append("; ");
+		builder.append(String.format("%1.3f", this.getAverageRuntime()));
+		builder.append("; ");
+		builder.append(String.format("%1.3f", this.getVariance()));
+		builder.append("; ");
+		builder.append(String.format("%1.3f", this.getStandardDeviation()));
+		builder.append("; ");
+		builder.append(this.getQ1());
+		builder.append("; ");
+		builder.append(this.getQ2());
+		builder.append("; ");
+		builder.append(this.getQ3());
+		builder.append("; ");
 		builder.append("]");
 		return builder.toString();
 	}

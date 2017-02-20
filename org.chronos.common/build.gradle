@@ -7,6 +7,7 @@ jar {
 }
 
 dependencies {
+	testCompile project (":org.chronos.common.testing")
 	// Utilities
     compile("com.esotericsoftware:kryo:${project.kryoVersion}");
 }
@@ -32,9 +33,11 @@ publishing {
 }
 
 
+
+
 task generateBuildInfoFile << {
 	File configFile = file('src/main/resources/buildInfo.properties')
-	System.out.println("Creating build info file in: " + configFile.getAbsolutePath());
+	System.out.println("Creating build info file (${project.version}) in: " + configFile.getAbsolutePath());
 	if(configFile.exists()){
 		configFile.delete();
 	}

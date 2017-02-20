@@ -58,7 +58,8 @@ class JdbcWALTokenTable extends DefaultJdbcTable {
 
 	public static final String SQL_INSERT = "INSERT INTO " + NAME + "  VALUES(?, ?)";
 
-	public static final String SQL_GET_TOKEN = "SELECT " + PROPERTY_TOKEN_CONTENT + " FROM " + NAME + " WHERE " + PROPERTY_BRANCH_NAME + " = ?";
+	public static final String SQL_GET_TOKEN = "SELECT " + PROPERTY_TOKEN_CONTENT + " FROM " + NAME + " WHERE "
+			+ PROPERTY_BRANCH_NAME + " = ?";
 
 	public static final String SQL_DELETE_TOKEN = "DELETE FROM " + NAME + " WHERE " + PROPERTY_BRANCH_NAME + " = ?";
 
@@ -127,23 +128,6 @@ class JdbcWALTokenTable extends DefaultJdbcTable {
 					blob.free();
 				}
 				return bytes;
-			}
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException("Could not perform read on WALToken Table!", e);
-		}
-	}
-
-	public boolean existsToken(final String branchName) {
-		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
-		try (PreparedStatement pstmt = this.connection.prepareStatement(SQL_GET_TOKEN)) {
-			// fill the parameters of the prepared statement
-			pstmt.setString(1, branchName);
-			try (ResultSet resultSet = pstmt.executeQuery()) {
-				if (resultSet.next()) {
-					return true;
-				} else {
-					return false;
-				}
 			}
 		} catch (SQLException e) {
 			throw new ChronoDBStorageBackendException("Could not perform read on WALToken Table!", e);

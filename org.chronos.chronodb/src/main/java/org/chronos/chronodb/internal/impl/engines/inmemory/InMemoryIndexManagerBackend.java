@@ -21,7 +21,7 @@ import org.chronos.chronodb.internal.api.index.DocumentAddition;
 import org.chronos.chronodb.internal.api.index.DocumentDeletion;
 import org.chronos.chronodb.internal.api.index.DocumentValidityTermination;
 import org.chronos.chronodb.internal.api.query.SearchSpecification;
-import org.chronos.chronodb.internal.impl.engines.base.AbstractIndexManagerBackend;
+import org.chronos.chronodb.internal.impl.engines.base.AbstractDocumentBasedIndexManagerBackend;
 import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.common.base.CCC;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
@@ -33,18 +33,18 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Sets;
 
-public class InMemoryIndexManagerBackend extends AbstractIndexManagerBackend {
+public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManagerBackend {
 
 	/** Index name -> Index Documents */
-	private final SetMultimap<String, ChronoIndexDocument> indexNameToDocuments;
+	protected final SetMultimap<String, ChronoIndexDocument> indexNameToDocuments;
 
 	/** Index name -> Branch Name -> Keyspace Name -> Key -> Index Documents */
-	private final Map<String, Map<String, Map<String, SetMultimap<String, ChronoIndexDocument>>>> documents;
+	protected final Map<String, Map<String, Map<String, SetMultimap<String, ChronoIndexDocument>>>> documents;
 
 	/** Index name -> indexers */
-	private final SetMultimap<String, ChronoIndexer> indexNameToIndexers;
+	protected final SetMultimap<String, ChronoIndexer> indexNameToIndexers;
 
-	private final Map<String, Boolean> indexNameToDirtyFlag;
+	protected final Map<String, Boolean> indexNameToDirtyFlag;
 
 	// =================================================================================================================
 	// CONSTRUCTOR
@@ -160,7 +160,7 @@ public class InMemoryIndexManagerBackend extends AbstractIndexManagerBackend {
 			this.terminateDocumentValidity(document, timestamp);
 		}
 		for (DocumentAddition creation : indexModifications.getDocumentCreations()) {
-			this.persistDocument(creation.getDocumentToAdd());
+			this.addDocument(creation.getDocumentToAdd());
 		}
 		for (DocumentDeletion deletion : indexModifications.getDocumentDeletions()) {
 			ChronoIndexDocument document = deletion.getDocumentToDelete();
@@ -191,10 +191,19 @@ public class InMemoryIndexManagerBackend extends AbstractIndexManagerBackend {
 	}
 
 	@Override
-	protected Set<ChronoIndexDocument> getDocumentsTouchedAtOrAfterTimestamp(final long timestamp) {
+	protected Set<ChronoIndexDocument> getDocumentsTouchedAtOrAfterTimestamp(final long timestamp,
+			final Set<String> branches) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		Set<ChronoIndexDocument> resultSet = Sets.newHashSet();
+		if (branches.isEmpty()) {
+			// no branches are requested, so the result set is empty by definition.
+			return resultSet;
+		}
 		for (ChronoIndexDocument document : this.indexNameToDocuments.values()) {
+			if (branches != null && branches.contains(document.getBranch()) == false) {
+				// the branch of the document is not in the set of requested branches -> ignore the document
+				continue;
+			}
 			if (document.getValidFromTimestamp() >= timestamp) {
 				// the document was added at or after the timestamp in question
 				resultSet.add(document);
@@ -317,7 +326,7 @@ public class InMemoryIndexManagerBackend extends AbstractIndexManagerBackend {
 		return Collections.unmodifiableSet(resultSet);
 	}
 
-	private Predicate<? super ChronoIndexDocument> createMatchFilter(final long timestamp, final Condition condition,
+	protected Predicate<? super ChronoIndexDocument> createMatchFilter(final long timestamp, final Condition condition,
 			final TextMatchMode matchMode, final String comparisonValue) {
 		return (doc) -> {
 			String indexedValue = doc.getIndexedValue();
@@ -369,8 +378,8 @@ public class InMemoryIndexManagerBackend extends AbstractIndexManagerBackend {
 		};
 	}
 
-	private Predicate<? super ChronoIndexDocument> createDeletionFilter(final long timestamp, final Condition condition,
-			final TextMatchMode matchMode, final String comparisonValue) {
+	protected Predicate<? super ChronoIndexDocument> createDeletionFilter(final long timestamp,
+			final Condition condition, final TextMatchMode matchMode, final String comparisonValue) {
 		return (doc) -> {
 			String indexedValue = doc.getIndexedValue();
 			String searchString = comparisonValue;
@@ -411,14 +420,14 @@ public class InMemoryIndexManagerBackend extends AbstractIndexManagerBackend {
 		};
 	}
 
-	private void terminateDocumentValidity(final ChronoIndexDocument indexDocument, final long timestamp) {
+	protected void terminateDocumentValidity(final ChronoIndexDocument indexDocument, final long timestamp) {
 		checkNotNull(indexDocument, "Precondition violation - argument 'indexDocument' must not be NULL!");
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		// for in-memory, we only need to set the termination timestamp
 		indexDocument.setValidToTimestamp(timestamp);
 	}
 
-	private void persistDocument(final ChronoIndexDocument document) {
+	protected void addDocument(final ChronoIndexDocument document) {
 		String indexName = document.getIndexName();
 		this.indexNameToDocuments.put(indexName, document);
 		String branch = document.getBranch();

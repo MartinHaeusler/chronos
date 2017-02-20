@@ -2,7 +2,6 @@ package org.chronos.chronodb.internal.impl.engines.inmemory;
 
 import static com.google.common.base.Preconditions.*;
 
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -12,17 +11,19 @@ import java.util.concurrent.ConcurrentSkipListMap;
 
 import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.api.key.TemporalKey;
+import org.chronos.chronodb.internal.api.GetResult;
 import org.chronos.chronodb.internal.api.Period;
-import org.chronos.chronodb.internal.api.RangedGetResult;
 import org.chronos.chronodb.internal.api.stream.CloseableIterator;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractTemporalDataMatrix;
 import org.chronos.chronodb.internal.impl.stream.AbstractCloseableIterator;
 import org.chronos.chronodb.internal.impl.temporal.InverseUnqualifiedTemporalKey;
 import org.chronos.chronodb.internal.impl.temporal.UnqualifiedTemporalEntry;
 import org.chronos.chronodb.internal.impl.temporal.UnqualifiedTemporalKey;
+import org.chronos.chronodb.internal.util.KeySetModifications;
 import org.chronos.common.logging.ChronoLogger;
 
 import com.google.common.collect.Iterators;
+import com.google.common.collect.Sets;
 
 public class TemporalInMemoryMatrix extends AbstractTemporalDataMatrix {
 
@@ -48,27 +49,7 @@ public class TemporalInMemoryMatrix extends AbstractTemporalDataMatrix {
 	// =================================================================================================================
 
 	@Override
-	public byte[] get(final long time, final String key) {
-		UnqualifiedTemporalKey tkHigh = UnqualifiedTemporalKey.create(key, time);
-		Entry<UnqualifiedTemporalKey, byte[]> entry = this.contents.floorEntry(tkHigh);
-		if (entry == null) {
-			// there is no value for this key
-			return null;
-		}
-		if (entry.getKey().getKey().equals(key) == false) {
-			// no value for this key at the given timestamp
-			return null;
-		}
-		byte[] value = entry.getValue();
-		if (value == null || value.length <= 0) {
-			return null;
-		} else {
-			return value;
-		}
-	}
-
-	@Override
-	public RangedGetResult<byte[]> getRanged(final long timestamp, final String key) {
+	public GetResult<byte[]> get(final long timestamp, final String key) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(key, "Precondition violation - argument 'key' must not be NULL!");
 		QualifiedKey qKey = QualifiedKey.create(this.getKeyspace(), key);
@@ -80,11 +61,11 @@ public class TemporalInMemoryMatrix extends AbstractTemporalDataMatrix {
 			// now we need to check if we have an upper bound for the validity of our empty result...
 			if (ceilEntry == null || ceilEntry.getKey().getKey().equals(key) == false) {
 				// there is no value for this key (at all, not at any timestamp)
-				return RangedGetResult.createNoValueResult(qKey, Period.eternal());
+				return GetResult.createNoValueResult(qKey, Period.eternal());
 			} else if (ceilEntry != null && ceilEntry.getKey().getKey().equals(key)) {
 				// there is no value for this key, until a certain timestamp is reached
 				Period period = Period.createRange(0, ceilEntry.getKey().getTimestamp());
-				return RangedGetResult.createNoValueResult(qKey, period);
+				return GetResult.createNoValueResult(qKey, period);
 			}
 		} else {
 			// we have a "next lower" bound -> we already know that the result will be non-empty.
@@ -97,7 +78,7 @@ public class TemporalInMemoryMatrix extends AbstractTemporalDataMatrix {
 					// value is non-null, but empty -> it's effectively null
 					value = null;
 				}
-				return RangedGetResult.create(qKey, value, range);
+				return GetResult.create(qKey, value, range);
 			} else if (ceilEntry != null && ceilEntry.getKey().getKey().equals(key)) {
 				// the value of the result is valid between the floor and ceiling entries
 				Period period = Period.createRange(floorEntry.getKey().getTimestamp(),
@@ -107,7 +88,7 @@ public class TemporalInMemoryMatrix extends AbstractTemporalDataMatrix {
 					// value is non-null, but empty -> it's effectively null
 					value = null;
 				}
-				return RangedGetResult.create(qKey, value, period);
+				return GetResult.create(qKey, value, period);
 			}
 		}
 		// this code is effectively unreachable
@@ -137,13 +118,32 @@ public class TemporalInMemoryMatrix extends AbstractTemporalDataMatrix {
 	}
 
 	@Override
-	public Iterator<String> keys(final long timestamp) {
-		return new KeysIterator(timestamp);
-	}
-
-	@Override
-	public Iterator<String> allKeys() {
-		return Iterators.transform(this.contents.descendingKeySet().iterator(), uqKey -> uqKey.getKey());
+	public KeySetModifications keySetModifications(final long timestamp) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		// entry set is sorted in ascending order!
+		Set<Entry<UnqualifiedTemporalKey, byte[]>> entrySet = this.contents.entrySet();
+		Set<String> additions = Sets.newHashSet();
+		Set<String> removals = Sets.newHashSet();
+		// iterate over the full B-Tree key set (ascending order)
+		Iterator<Entry<UnqualifiedTemporalKey, byte[]>> allEntriesIterator = entrySet.iterator();
+		while (allEntriesIterator.hasNext()) {
+			Entry<UnqualifiedTemporalKey, byte[]> currentEntry = allEntriesIterator.next();
+			UnqualifiedTemporalKey currentKey = currentEntry.getKey();
+			if (currentKey.getTimestamp() > timestamp) {
+				continue;
+			}
+			String plainKey = currentKey.getKey();
+			if (currentEntry.getValue() == null || currentEntry.getValue().length <= 0) {
+				// removal
+				additions.remove(plainKey);
+				removals.add(plainKey);
+			} else {
+				// put
+				additions.add(plainKey);
+				removals.remove(plainKey);
+			}
+		}
+		return new KeySetModifications(additions, removals);
 	}
 
 	@Override
@@ -191,6 +191,13 @@ public class TemporalInMemoryMatrix extends AbstractTemporalDataMatrix {
 				iterator.remove();
 			}
 		}
+		Iterator<Entry<InverseUnqualifiedTemporalKey, Boolean>> iterator2 = this.inverseContents.entrySet().iterator();
+		while (iterator2.hasNext()) {
+			Entry<InverseUnqualifiedTemporalKey, Boolean> entry = iterator2.next();
+			if (entry.getKey().getTimestamp() > timestamp) {
+				iterator2.remove();
+			}
+		}
 	}
 
 	@Override
@@ -214,59 +221,6 @@ public class TemporalInMemoryMatrix extends AbstractTemporalDataMatrix {
 	// =================================================================================================================
 	// INNER CLASSES
 	// =================================================================================================================
-
-	private class KeysIterator implements Iterator<String> {
-
-		private final long timestamp;
-		private final Set<String> returnedYs;
-		private final Iterator<UnqualifiedTemporalKey> iterator;
-
-		private String next;
-
-		public KeysIterator(final long timestamp) {
-			this.timestamp = timestamp;
-			this.returnedYs = new HashSet<>();
-			this.iterator = TemporalInMemoryMatrix.this.contents.descendingKeySet().iterator();
-		}
-
-		@Override
-		public boolean hasNext() {
-			if (this.next != null) {
-				return true;
-			}
-			if (this.iterator.hasNext() == false) {
-				return false;
-			}
-			while (this.iterator.hasNext()) {
-				UnqualifiedTemporalKey tk = this.iterator.next();
-				// ignore the key if the timestamp is after our transaction timestamp
-				if (tk.getTimestamp() > this.timestamp) {
-					continue;
-				}
-				// ignore the key if we already returned it
-				if (this.returnedYs.contains(tk.getKey())) {
-					continue;
-				}
-				// ignore the key if the latest entry was a remove operation
-				if (TemporalInMemoryMatrix.this.get(this.timestamp, tk.getKey()) == null) {
-					continue;
-				}
-				this.next = tk.getKey();
-				this.returnedYs.add(tk.getKey());
-				return true;
-			}
-			this.next = null;
-			return false;
-		}
-
-		@Override
-		public String next() {
-			String result = this.next;
-			this.next = null;
-			return result;
-		}
-
-	}
 
 	private static class ChangeTimesIterator implements Iterator<Long> {
 

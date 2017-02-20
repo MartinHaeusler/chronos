@@ -36,10 +36,11 @@ public class CacheStatisticsImpl implements CacheStatistics {
 		return this.missCount.get();
 	}
 
-	@Override
-	public void reset() {
-		this.hitCount.set(0L);
-		this.missCount.set(0L);
+	public CacheStatisticsImpl duplicate() {
+		CacheStatisticsImpl clone = new CacheStatisticsImpl();
+		clone.hitCount.set(this.getCacheHitCount());
+		clone.missCount.set(this.getCacheMissCount());
+		return clone;
 	}
 
 	// =====================================================================================================================
@@ -52,6 +53,11 @@ public class CacheStatisticsImpl implements CacheStatistics {
 
 	public void registerMiss() {
 		this.missCount.incrementAndGet();
+	}
+
+	public void reset() {
+		this.hitCount.set(0);
+		this.missCount.set(0);
 	}
 
 	// =====================================================================================================================

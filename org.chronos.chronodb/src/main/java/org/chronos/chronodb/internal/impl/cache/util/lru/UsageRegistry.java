@@ -3,12 +3,13 @@ package org.chronos.chronodb.internal.impl.cache.util.lru;
 import static com.google.common.base.Preconditions.*;
 
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 public interface UsageRegistry<T> {
 
 	public void registerUsage(final T element);
 
-	public int size();
+	public int sizeInElements();
 
 	public void clear();
 
@@ -17,6 +18,8 @@ public interface UsageRegistry<T> {
 	public Function<T, Object> getTopicResolutionFunction();
 
 	public void addLeastRecentlyUsedRemoveListener(Object topic, RemoveListener<T> listener);
+
+	public void removeLeastRecentlyUsedListener(Object topic, RemoveListener<T> listener);
 
 	// =====================================================================================================================
 	// DEFAULT METHODS
@@ -33,15 +36,17 @@ public interface UsageRegistry<T> {
 		}
 	}
 
-	public default void removeLeastRecentlyUsedUntilSizeIs(final int desiredSize) {
-		while (this.size() > desiredSize) {
+	public default void removeLeastRecentlyUsedUntil(final Supplier<Boolean> decision) {
+		while (decision.get() == false) {
 			this.removeLeastRecentlyUsedElement();
 		}
 	}
 
 	public default boolean isEmpty() {
-		return this.size() <= 0;
+		return this.sizeInElements() <= 0;
 	}
+
+	public int getListenerCount();
 
 	// =====================================================================================================================
 	// INNER CLASSES

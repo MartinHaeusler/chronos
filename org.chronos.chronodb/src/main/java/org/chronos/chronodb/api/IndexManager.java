@@ -4,14 +4,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.lang3.tuple.Pair;
 import org.chronos.chronodb.api.exceptions.IndexerConflictException;
 import org.chronos.chronodb.api.key.ChronoIdentifier;
 import org.chronos.chronodb.api.key.QualifiedKey;
+import org.chronos.chronodb.internal.api.index.DocumentBasedIndexManagerBackend;
 import org.chronos.chronodb.internal.api.query.ChronoDBQuery;
 import org.chronos.chronodb.internal.api.query.SearchSpecification;
-import org.chronos.chronodb.internal.impl.engines.base.IndexManagerBackend;
-import org.chronos.chronodb.internal.impl.index.StandardIndexManager;
+import org.chronos.chronodb.internal.impl.index.DocumentBasedIndexManager;
 
 /**
  * An {@link IndexManager} is a backend-agnostic facade for indexing in a {@link ChronoDB}.
@@ -33,8 +32,8 @@ import org.chronos.chronodb.internal.impl.index.StandardIndexManager;
  *
  * <p>
  * While an index manager implementation may be implemented specifically for a given backend, implementations are
- * usually generic and the actual indexing backend is provided via an instance of {@link IndexManagerBackend}. One
- * example of such an approach is the {@link StandardIndexManager}.
+ * usually generic and the actual indexing backend is provided via an instance of
+ * {@link DocumentBasedIndexManagerBackend}. One example of such an approach is the {@link DocumentBasedIndexManager}.
  *
  * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
  *
@@ -162,18 +161,6 @@ public interface IndexManager {
 	 * any concurrent reads and/or writes on the database.
 	 */
 	public void reindexAll();
-
-	/**
-	 * Indexes the given key-value pairs.
-	 *
-	 * <p>
-	 * This method is <b>not</b> considered part of the public API. Clients must not call this method directly!
-	 *
-	 * @param identifierToOldAndNewValue
-	 *            The map of changed {@link ChronoIdentifier}s to their respective old and new values to index. Must not
-	 *            be <code>null</code>, may be empty.
-	 */
-	public void index(Map<ChronoIdentifier, Pair<Object, Object>> identifierToOldAndNewValue);
 
 	/**
 	 * Checks if any index is dirty and requires re-indexing.

@@ -7,6 +7,8 @@ import java.util.UUID;
 import org.chronos.chronodb.api.key.ChronoIdentifier;
 import org.chronos.chronodb.internal.api.index.ChronoIndexDocument;
 
+import com.google.common.base.Objects;
+
 public class ChronoIndexDocumentImpl implements ChronoIndexDocument {
 
 	// =================================================================================================================
@@ -157,6 +159,42 @@ public class ChronoIndexDocumentImpl implements ChronoIndexDocument {
 	}
 
 	// =================================================================================================================
+	// CONTENT EQUALS
+	// =================================================================================================================
+
+	@Override
+	public boolean contentEquals(final ChronoIndexDocument other) {
+		if (other == null) {
+			return false;
+		}
+		if (Objects.equal(this.getIndexName(), other.getIndexName()) == false) {
+			return false;
+		}
+		if (Objects.equal(this.getBranch(), other.getBranch()) == false) {
+			return false;
+		}
+		if (Objects.equal(this.getKeyspace(), other.getKeyspace()) == false) {
+			return false;
+		}
+		if (Objects.equal(this.getKey(), other.getKey()) == false) {
+			return false;
+		}
+		if (Objects.equal(this.getIndexedValue(), other.getIndexedValue()) == false) {
+			return false;
+		}
+		if (Objects.equal(this.getIndexedValueCaseInsensitive(), other.getIndexedValueCaseInsensitive()) == false) {
+			return false;
+		}
+		if (Objects.equal(this.getValidFromTimestamp(), other.getValidFromTimestamp()) == false) {
+			return false;
+		}
+		if (Objects.equal(this.getValidToTimestamp(), other.getValidToTimestamp()) == false) {
+			return false;
+		}
+		return true;
+	}
+
+	// =================================================================================================================
 	// TO STRING
 	// =================================================================================================================
 
@@ -174,7 +212,11 @@ public class ChronoIndexDocumentImpl implements ChronoIndexDocument {
 		builder.append("', [");
 		builder.append(this.getValidFromTimestamp());
 		builder.append(";");
-		builder.append(this.getValidToTimestamp());
+		if (this.validTo >= Long.MAX_VALUE) {
+			builder.append("MAX");
+		} else {
+			builder.append(this.getValidToTimestamp());
+		}
 		builder.append("]");
 		return builder.toString();
 	}

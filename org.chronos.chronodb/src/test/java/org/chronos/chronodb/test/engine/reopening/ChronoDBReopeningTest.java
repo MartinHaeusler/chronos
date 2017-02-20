@@ -11,7 +11,7 @@ import org.chronos.chronodb.internal.util.ChronosBackend;
 import org.chronos.chronodb.test.base.AllBackendsTest.DontRunWithBackend;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
 import org.chronos.chronodb.test.base.InstantiateChronosWith;
-import org.chronos.chronodb.test.util.NamedPayloadNameIndexer;
+import org.chronos.chronodb.test.util.model.payload.NamedPayloadNameIndexer;
 import org.chronos.common.logging.ChronoLogger;
 import org.chronos.common.test.junit.categories.IntegrationTest;
 import org.junit.Test;
@@ -33,19 +33,19 @@ public class ChronoDBReopeningTest extends AllChronoDBBackendsTest {
 
 	@Test
 	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHING_ENABLED, value = "true")
-	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHE_MAX_SIZE, value = "1000")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHE_MAX_SIZE, value = "10000")
 	public void reopeningChronoDbPreservesConfiguration() {
 		ChronoDB db = this.getChronoDB();
 		assertNotNull(db);
 		// assert that the settings from the test annotations were applied correctly
 		assertTrue(db.getConfiguration().isCachingEnabled());
-		assertEquals(1000, (int) db.getConfiguration().getCacheMaxSize());
+		assertEquals(10000L, (long) db.getConfiguration().getCacheMaxSize());
 		// reinstantiate the DB
 		ChronoDB db2 = this.closeAndReopenDB();
 		assertNotNull(db2);
 		// assert that the settings have carried over
 		assertTrue(db2.getConfiguration().isCachingEnabled());
-		assertEquals(1000, (int) db.getConfiguration().getCacheMaxSize());
+		assertEquals(10000L, (long) db.getConfiguration().getCacheMaxSize());
 	}
 
 	@Test

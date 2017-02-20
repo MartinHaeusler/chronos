@@ -7,9 +7,11 @@ import org.chronos.chronodb.api.builder.database.ChronoDBBaseBuilder;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.internal.api.ChronoDBFactoryInternal;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
+import org.chronos.chronodb.internal.impl.engines.chunkdb.ChunkedChronoDB;
 import org.chronos.chronodb.internal.impl.engines.inmemory.InMemoryChronoDB;
 import org.chronos.chronodb.internal.impl.engines.jdbc.JdbcChronoDB;
 import org.chronos.chronodb.internal.impl.engines.mapdb.MapDBChronoDB;
+import org.chronos.chronodb.internal.impl.engines.tupl.TuplChronoDB;
 import org.chronos.chronodb.internal.util.ChronosBackend;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 
@@ -25,7 +27,7 @@ public class ChronoDBFactoryImpl implements ChronoDBFactoryInternal {
 		ChronosBackend backendType = configuration.getBackendType();
 		ChronoDBInternal db = null;
 		switch (backendType) {
-		case FILE:
+		case MAPDB:
 			db = new MapDBChronoDB(configuration);
 			break;
 		case INMEMORY:
@@ -33,6 +35,12 @@ public class ChronoDBFactoryImpl implements ChronoDBFactoryInternal {
 			break;
 		case JDBC:
 			db = new JdbcChronoDB(configuration);
+			break;
+		case CHUNKDB:
+			db = new ChunkedChronoDB(configuration);
+			break;
+		case TUPL:
+			db = new TuplChronoDB(configuration);
 			break;
 		default:
 			throw new UnknownEnumLiteralException(backendType);

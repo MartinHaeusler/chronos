@@ -44,10 +44,8 @@ public class ClasspathUtils {
 	 * Checks if there is a resource with the given name on the Java classpath.
 	 *
 	 * @param resourceName
-	 *            The name of the resource to check. Must not be <code>null</code>. Must contain a non-whitespace
-	 *            character.
-	 * @return <code>true</code> if the given name refers to an existing classpath resource, otherwise
-	 *         <code>false</code>.
+	 *            The name of the resource to check. Must not be <code>null</code>. Must contain a non-whitespace character.
+	 * @return <code>true</code> if the given name refers to an existing classpath resource, otherwise <code>false</code>.
 	 */
 	public static boolean isClasspathResource(final String resourceName) {
 		Preconditions.checkNotNull(resourceName, "Cannot check classpath existence of resource with name NULL!");
@@ -57,7 +55,7 @@ public class ClasspathUtils {
 		return url != null;
 	}
 
-	public static File getResourceAsFile(final String resourceName) {
+	public static File getResourceAsFile(final String resourceName) throws IOException {
 		URL url = getURIFromResourceByName(resourceName);
 		if (url == null) {
 			return null;
@@ -71,21 +69,26 @@ public class ClasspathUtils {
 		try {
 			return new File(url.toURI());
 		} catch (URISyntaxException e) {
-			return null;
+			throw new IOException("Unable to read file resource '" + resourceName + "'! See root cause for details.", e);
 		} catch (IllegalArgumentException e) {
 			// most like the file is zipped/war'ed/jar'ed, build temporary file from stream
 			int extensionIndex = resourceName.lastIndexOf(".");
 			String tmpExtension = resourceName.substring(extensionIndex);
+			File tmpResource = null;
 			try {
 				// input stream to tmp file
 				InputStream resourceInputStream = ClasspathUtils.class.getClassLoader()
 						.getResourceAsStream(resourceName);
-				File tmpResource = File.createTempFile("tmp", tmpExtension);
+				tmpResource = File.createTempFile("tmp", tmpExtension);
 				Files.copy(resourceInputStream, tmpResource.toPath(), StandardCopyOption.REPLACE_EXISTING);
 				tmpResource.deleteOnExit();
 				return tmpResource;
 			} catch (IOException ioex) {
-				return null;
+				String tmpFilePath = "<unknown>";
+				if (tmpResource != null) {
+					tmpFilePath = tmpResource.getAbsolutePath();
+				}
+				throw new IOException("Failed to read file resource '" + resourceName + "' from JAR, copied it to temp directory (" + tmpFilePath + "), but still failed to load it! See root cause for details.", ioex);
 			}
 		}
 	}

@@ -35,9 +35,15 @@ public final class PeriodImpl implements Period {
 	 * @return A new period with the given range of timestamps.
 	 */
 	public static Period createRange(final long lowerBoundInclusive, final long upperBoundExclusive) {
-		checkArgument(lowerBoundInclusive >= 0, "Precondition violation - argument 'lowerBoundInclusive' must not be negative!");
-		checkArgument(upperBoundExclusive >= 0, "Precondition violation - argument 'upperBoundExclusive' must not be negative!");
-		checkArgument(lowerBoundInclusive < upperBoundExclusive, "Precondition violation - argument 'lowerBoundInclusive' must be strictly smaller than argument 'upperBoundExclusive'!");
+		checkArgument(lowerBoundInclusive >= 0,
+				"Precondition violation - argument 'lowerBoundInclusive' must not be negative!");
+		checkArgument(upperBoundExclusive >= 0,
+				"Precondition violation - argument 'upperBoundExclusive' must not be negative!");
+		if (lowerBoundInclusive >= upperBoundExclusive) {
+			throw new IllegalArgumentException("Precondition violation - argument 'lowerBoundInclusive' ("
+					+ lowerBoundInclusive + ") must be strictly smaller than argument 'upperBoundExclusive' ("
+					+ upperBoundExclusive + ")!");
+		}
 		return new PeriodImpl(lowerBoundInclusive, upperBoundExclusive);
 	}
 

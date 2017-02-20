@@ -1,12 +1,14 @@
 package org.chronos.chronodb.internal.impl.engines.inmemory;
 
 import org.chronos.chronodb.api.IndexManager;
+import org.chronos.chronodb.api.MaintenanceManager;
 import org.chronos.chronodb.api.SerializationManager;
 import org.chronos.chronodb.internal.api.BranchManagerInternal;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
+import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
 import org.chronos.chronodb.internal.api.query.QueryManager;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractChronoDB;
-import org.chronos.chronodb.internal.impl.index.StandardIndexManager;
+import org.chronos.chronodb.internal.impl.index.DocumentBasedIndexManager;
 import org.chronos.chronodb.internal.impl.query.StandardQueryManager;
 
 public class InMemoryChronoDB extends AbstractChronoDB {
@@ -19,6 +21,9 @@ public class InMemoryChronoDB extends AbstractChronoDB {
 	private InMemorySerializationManager serializationManager;
 	private IndexManager indexManager;
 	private StandardQueryManager queryManager;
+	private InMemoryMaintenanceManager maintenanceManager;
+
+	private ChronoDBCache cache;
 
 	// =================================================================================================================
 	// CONSTRUCTOR
@@ -27,6 +32,7 @@ public class InMemoryChronoDB extends AbstractChronoDB {
 	public InMemoryChronoDB(final ChronoDBConfiguration configuration) {
 		super(configuration);
 		this.setupManagers();
+		this.cache = ChronoDBCache.createCacheForConfiguration(configuration);
 	}
 
 	// =================================================================================================================
@@ -53,6 +59,16 @@ public class InMemoryChronoDB extends AbstractChronoDB {
 		return this.indexManager;
 	}
 
+	@Override
+	public MaintenanceManager getMaintenanceManager() {
+		return this.maintenanceManager;
+	}
+
+	@Override
+	public ChronoDBCache getCache() {
+		return this.cache;
+	}
+
 	// =====================================================================================================================
 	// INTERNAL METHODS
 	// =====================================================================================================================
@@ -67,7 +83,8 @@ public class InMemoryChronoDB extends AbstractChronoDB {
 		this.branchManager = new InMemoryBranchManager(this);
 		this.serializationManager = new InMemorySerializationManager();
 		this.queryManager = new StandardQueryManager(this);
-		this.indexManager = new StandardIndexManager(this, new InMemoryIndexManagerBackend(this));
+		this.indexManager = new DocumentBasedIndexManager(this, new InMemoryIndexManagerBackend(this));
+		this.maintenanceManager = new InMemoryMaintenanceManager(this);
 	}
 
 }

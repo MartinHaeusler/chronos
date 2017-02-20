@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
-import org.chronos.chronodb.internal.api.TemporalKeyValueStore;
 import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
 import org.chronos.chronodb.test.base.InstantiateChronosWith;
@@ -18,7 +17,7 @@ public class MutableValuesCacheTest extends AllChronoDBBackendsTest {
 
 	@Test
 	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHING_ENABLED, value = "true")
-	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHE_MAX_SIZE, value = "1000")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHE_MAX_SIZE, value = "100000")
 	@InstantiateChronosWith(property = ChronoDBConfiguration.ASSUME_CACHE_VALUES_ARE_IMMUTABLE, value = "true")
 	public void passingMutableObjectsToTheCacheAsValuesCanModifyItsState() {
 		// note that we ENABLE the immutability assumption, even though the values we pass into
@@ -28,8 +27,7 @@ public class MutableValuesCacheTest extends AllChronoDBBackendsTest {
 		assertNotNull(db);
 		try {
 			// assert that we do have a cache
-			TemporalKeyValueStore tkvs = this.getMasterTkvs(db);
-			ChronoDBCache cache = tkvs.getCache();
+			ChronoDBCache cache = db.getCache();
 			assertNotNull(cache);
 			MyMutableObject obj1 = new MyMutableObject(1);
 			MyMutableObject obj2 = new MyMutableObject(2);
@@ -56,7 +54,7 @@ public class MutableValuesCacheTest extends AllChronoDBBackendsTest {
 
 	@Test
 	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHING_ENABLED, value = "true")
-	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHE_MAX_SIZE, value = "1000")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHE_MAX_SIZE, value = "10000")
 	@InstantiateChronosWith(property = ChronoDBConfiguration.ASSUME_CACHE_VALUES_ARE_IMMUTABLE, value = "false")
 	public void disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption() {
 		// we disable the assumption that cache values are immutable here. It's actually the default,
@@ -65,8 +63,7 @@ public class MutableValuesCacheTest extends AllChronoDBBackendsTest {
 		assertNotNull(db);
 		try {
 			// assert that we do have a cache
-			TemporalKeyValueStore tkvs = this.getMasterTkvs(db);
-			ChronoDBCache cache = tkvs.getCache();
+			ChronoDBCache cache = db.getCache();
 			assertNotNull(cache);
 			MyMutableObject obj1 = new MyMutableObject(1);
 			MyMutableObject obj2 = new MyMutableObject(2);

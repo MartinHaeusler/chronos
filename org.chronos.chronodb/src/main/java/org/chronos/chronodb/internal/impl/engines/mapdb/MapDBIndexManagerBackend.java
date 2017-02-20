@@ -25,7 +25,8 @@ import org.chronos.chronodb.internal.api.index.DocumentAddition;
 import org.chronos.chronodb.internal.api.index.DocumentDeletion;
 import org.chronos.chronodb.internal.api.index.DocumentValidityTermination;
 import org.chronos.chronodb.internal.api.query.SearchSpecification;
-import org.chronos.chronodb.internal.impl.engines.base.AbstractIndexManagerBackend;
+import org.chronos.chronodb.internal.impl.engines.base.AbstractDocumentBasedIndexManagerBackend;
+import org.chronos.chronodb.internal.impl.mapdb.MapDBTransaction;
 import org.mapdb.Atomic.Var;
 
 import com.google.common.collect.HashMultimap;
@@ -34,7 +35,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Sets;
 
-public class MapDBIndexManagerBackend extends AbstractIndexManagerBackend {
+public class MapDBIndexManagerBackend extends AbstractDocumentBasedIndexManagerBackend {
 
 	private static final String VARIABLE_NAME_INDEXERS = "chronodb_indexers";
 	private static final String VARIABLE_NAME_DIRTY_FLAGS = "chronodb_indexdirty";
@@ -64,7 +65,9 @@ public class MapDBIndexManagerBackend extends AbstractIndexManagerBackend {
 	@Override
 	public SetMultimap<String, ChronoIndexer> loadIndexersFromPersistence() {
 		try (MapDBTransaction tx = this.getOwningDB().openTransaction()) {
-			return this.loadIndexersMap(tx);
+			SetMultimap<String, ChronoIndexer> multimap = this.loadIndexersMap(tx);
+			tx.commit();
+			return multimap;
 		}
 	}
 
@@ -136,6 +139,7 @@ public class MapDBIndexManagerBackend extends AbstractIndexManagerBackend {
 	public Map<String, Boolean> loadIndexStates() {
 		try (MapDBTransaction tx = this.getOwningDB().openTransaction()) {
 			byte[] dirtyFlagsSerialized = this.getIndexDirtyMapVariable(tx).get();
+			tx.commit();
 			Map<String, Boolean> map = this.deserializeObject(dirtyFlagsSerialized);
 			if (map == null) {
 				return Maps.newHashMap();
@@ -205,9 +209,14 @@ public class MapDBIndexManagerBackend extends AbstractIndexManagerBackend {
 	// }
 
 	@Override
-	protected Set<ChronoIndexDocument> getDocumentsTouchedAtOrAfterTimestamp(final long timestamp) {
+	protected Set<ChronoIndexDocument> getDocumentsTouchedAtOrAfterTimestamp(final long timestamp, final Set<String> branches) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
-		List<Document> luceneDocs = this.lucene.getDocumentsTouchedAtOrAfterTimestamp(timestamp);
+		checkNotNull(branches, "Precondition violation - argument 'branches' must not be NULL!");
+		if (branches.isEmpty()) {
+			// no branches are requested, so the result set is empty by definition.
+			return Sets.newHashSet();
+		}
+		List<Document> luceneDocs = this.lucene.getDocumentsTouchedAtOrAfterTimestamp(timestamp, branches);
 		return ChronoDBLuceneUtil.convertLuceneDocumentsToChronoDocuments(luceneDocs);
 	}
 

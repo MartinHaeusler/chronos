@@ -1,9 +1,6 @@
 package org.chronos.chronodb.test.settings;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,8 +27,7 @@ public class ChronoDBPropertiesFileTest extends ChronoDBUnitTest {
 			fail(e.toString());
 		}
 		File propertiesFile = this.getSrcTestResourcesFile("chronotest.properties");
-		ChronoDB chronoDB = ChronoDB.FACTORY.create().embeddedDatabase(dbFile).withPropertiesFile(propertiesFile)
-				.build();
+		ChronoDB chronoDB = ChronoDB.FACTORY.create().mapDbDatabase(dbFile).withPropertiesFile(propertiesFile).build();
 		assertNotNull(chronoDB);
 		try {
 			// assert that the property in the file was applied

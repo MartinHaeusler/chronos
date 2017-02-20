@@ -18,4 +18,18 @@ public class ChronosFileUtils {
 		}
 		return magic == GZIPInputStream.GZIP_MAGIC;
 	}
+
+	public static boolean isExistingFile(final File file) {
+		if (file == null) {
+			return false;
+		}
+		if (file.exists() == false) {
+			return false;
+		}
+		if (file.isFile() == false) {
+			return false;
+		}
+		return true;
+	}
+
 }

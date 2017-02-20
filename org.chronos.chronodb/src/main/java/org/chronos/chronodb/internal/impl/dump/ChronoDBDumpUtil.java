@@ -38,6 +38,7 @@ import org.chronos.chronodb.internal.impl.dump.entry.ChronoDBDumpPlainEntry;
 import org.chronos.chronodb.internal.impl.dump.meta.BranchDumpMetadata;
 import org.chronos.chronodb.internal.impl.dump.meta.ChronoDBDumpMetadata;
 import org.chronos.chronodb.internal.impl.dump.meta.IndexerDumpMetadata;
+import org.chronos.chronodb.internal.impl.engines.chunkdb.ChunkedChronoDB;
 import org.chronos.common.logging.ChronoLogger;
 import org.chronos.common.util.ReflectionUtils;
 import org.chronos.common.version.ChronosVersion;
@@ -105,7 +106,15 @@ public class ChronoDBDumpUtil {
 			// load the elements
 			loadEntries(db, input, converters, options);
 			// set up the indexers
-			setupIndexersAndReindex(db, metadata);
+			if (db instanceof ChunkedChronoDB) {
+				// for the chunked version, don't reindex - the index loader takes care of that
+				// when the index is first accessed. This access happens when commiting the first
+				// batch of data from the dump into the database. We therefore only set up the
+				// indices here, but refrain from recreating the index at this point.
+				setupIndexers(db, metadata);
+			} else {
+				setupIndexersAndReindex(db, metadata);
+			}
 		} catch (Exception e) {
 			ChronoLogger.logError("Failed to load DB dump!", e);
 		}
@@ -399,7 +408,7 @@ public class ChronoDBDumpUtil {
 			readBatch.add(entry);
 			// check if we need to flush our read batch into the DB
 			if (readBatch.size() >= batchSize) {
-				ChronoLogger.log("Reading a batch of size " + batchSize);
+				ChronoLogger.logDebug("Reading a batch of size " + batchSize);
 				db.loadEntries(readBatch);
 				readBatch.clear();
 			}
@@ -470,7 +479,7 @@ public class ChronoDBDumpUtil {
 		return ChronoDBEntry.create(plainEntry.getChronoIdentifier(), serializedValue);
 	}
 
-	private static void setupIndexersAndReindex(final ChronoDBInternal db, final ChronoDBDumpMetadata metadata) {
+	private static void setupIndexers(final ChronoDBInternal db, final ChronoDBDumpMetadata metadata) {
 		checkNotNull(db, "Precondition violation - argument 'db' must not be NULL!");
 		checkNotNull(metadata, "Precondition violation - argument 'metadata' must not be NULL!");
 		IndexManager indexManager = db.getIndexManager();
@@ -486,7 +495,13 @@ public class ChronoDBDumpUtil {
 			}
 			indexManager.addIndexer(name, indexer);
 		}
+	}
+
+	private static void setupIndexersAndReindex(final ChronoDBInternal db, final ChronoDBDumpMetadata metadata) {
+		checkNotNull(db, "Precondition violation - argument 'db' must not be NULL!");
+		checkNotNull(metadata, "Precondition violation - argument 'metadata' must not be NULL!");
+		setupIndexers(db, metadata);
 		// reconstruct the index
-		indexManager.reindexAll();
+		db.getIndexManager().reindexAll();
 	}
 }

@@ -163,33 +163,6 @@ class JdbcIndexDirtyFlagsTable extends DefaultJdbcTable {
 	}
 
 	/**
-	 * Inserts or updates the row in the database with the given properties.
-	 *
-	 * <p>
-	 * This method will first attempt an <code>UPATE</code>, followed by an <code>INSERT</code> if the update failed.
-	 *
-	 * @param indexName
-	 *            The name of the index to set the dirty flag for. Must not be <code>null</code>.
-	 * @param dirty
-	 *            The dirty flag for the index.
-	 */
-	public void insertOrUpdate(final String indexName, final boolean dirty) {
-		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
-		try (PreparedStatement pstmt = this.connection.prepareStatement(SQL_UPDATE)) {
-			pstmt.setBoolean(1, dirty);
-			pstmt.setString(2, indexName);
-			int changedRows = pstmt.executeUpdate();
-			if (changedRows <= 0) {
-				// no rows were updated, therefore the entry did not exist; create it
-				this.insert(indexName, dirty);
-			}
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException("Could not perform insert or update in IndexDirtyFlags Table!",
-					e);
-		}
-	}
-
-	/**
 	 * Returns states of all indices.
 	 *
 	 * @return A mapping from index name to dirty state. <code>false</code> indicates that the index is clean,

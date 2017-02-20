@@ -1,6 +1,8 @@
 package org.chronos.chronodb.api.builder.database;
 
 import org.chronos.chronodb.api.ChronoDB;
+import org.chronos.chronodb.api.ChronoDBTransaction;
+import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.common.builder.ChronoBuilder;
 
 /**
@@ -46,21 +48,67 @@ public interface ChronoDBFinalizableBuilder<SELF extends ChronoDBFinalizableBuil
 	 * @param value
 	 *            Set this to <code>true</code> to enable the assumption that cached value objects are immutable
 	 *            (optimistic, faster, see above), otherwise use <code>false</code> (pessimistic, default).
-	 * 
+	 *
 	 * @return <code>this</code>, for method chaining.
 	 */
 	public SELF assumeCachedValuesAreImmutable(boolean value);
 
 	/**
 	 * Enables Least-Recently-Used caching on the new {@link ChronoDB} instance for query results.
-	 * 
+	 *
 	 * @param maxSize
 	 *            The maximum number of elements to be contained in the LRU Query Result Cache. If this number is less
 	 *            than or equal to zero, the caching is disabled instead.
-	 * 
+	 *
 	 * @return <code>this</code>, for method chaining.
 	 */
 	public SELF withLruQueryCacheOfSize(int maxSize);
+
+	/**
+	 * Enables or disables duplicate version elimination on commit.
+	 *
+	 * <p>
+	 * If this is enabled, every changed key-value pair will be checked for identity with the previous version.
+	 * Key-value pairs that are identical to their predecessors will be filtered out and will not be committed. This
+	 * does not alter the semantics of the store in any way, but it eliminates the duplicates, reducing overall store
+	 * size on disk and enhancing read performance.
+	 *
+	 * <p>
+	 * This setting is enabled by default and it is recommended to keep this setting enabled, unless the caller can
+	 * guarantee that each version is different from the predecessor. In general, this feature will cause some overhead
+	 * on the {@linkplain ChronoDBTransaction#commit() commit} operation.
+	 *
+	 * <p>
+	 * Corresponds to {@link ChronoDBConfiguration#DUPLICATE_VERSION_ELIMINATION_MODE}.
+	 *
+	 * @param useDuplicateVersionElimination
+	 *            <code>true</code> to enable this feature, or <code>false</code> to disable it. Default is
+	 *            <code>true</code>.
+	 * @return <code>this</code>, for method chaining.
+	 */
+	public SELF withDuplicateVersionElimination(final boolean useDuplicateVersionElimination);
+
+	/**
+	 * Enables or disables blind overwrite protection.
+	 *
+	 * <p>
+	 * If enabled, any commit that would overwrite a key-value pair written by a transaction with a higher timestamp
+	 * will be rejected. In other words, if a commit has occurred on an entry, and this entry has never been visible to
+	 * the current transaction, then this transaction is not allowed to "blindly overwrite" that entry.
+	 *
+	 * <p>
+	 * This setting is enabled by default and it is recommended to keep it enabled. In general, this feature will cause
+	 * some overhead on the {@linkplain ChronoDBTransaction#commit() commit} operation.
+	 *
+	 * <p>
+	 * Corresponds to {@link ChronoDBConfiguration#ENABLE_BLIND_OVERWRITE_PROTECTION}.
+	 *
+	 * @param enableBlindOverwriteProtection
+	 *            <code>true</code> to enable this feature, or <code>false</code> to disable it. Default is
+	 *            <code>true</code>.
+	 * @return <code>this</code>, for method chaining.
+	 */
+	public SELF withBlindOverwriteProtection(final boolean enableBlindOverwriteProtection);
 
 	/**
 	 * Builds the {@link ChronoDB} instance, using the properties specified by the fluent API.

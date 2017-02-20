@@ -7,6 +7,7 @@ import java.util.Set;
 import org.chronos.chronodb.api.key.TemporalKey;
 import org.chronos.chronodb.internal.api.stream.CloseableIterator;
 import org.chronos.chronodb.internal.impl.temporal.UnqualifiedTemporalEntry;
+import org.chronos.chronodb.internal.util.KeySetModifications;
 
 /**
  * A {@link TemporalDataMatrix} is a structured container for temporal key-value pairs.
@@ -71,51 +72,19 @@ public interface TemporalDataMatrix {
 	// =================================================================================================================
 
 	/**
-	 * Returns the value associated with the given key, at the given timestamp.
+	 * Returns the value for the given key at the given timestamp together with the time range in which it is valid.
 	 *
 	 * @param timestamp
 	 *            The timestamp at which to get the value for the given key. Must not be negative.
 	 * @param key
 	 *            The key to get the value for. Must not be <code>null</code>.
-	 * @return The value for the given key at the given timestamp, or <code>null</code> if the key does not exist in
-	 *         this matrix at the given timestamp.
+	 * @return A ranged result. The result object itself is guaranteed to be non-<code>null</code>. Contains the
+	 *         {@linkplain GetResult#getValue() value} for the given key at the given timestamp, or contains a
+	 *         <code>null</code>-{@linkplain GetResult#getValue() value} if the key does not exist in this matrix
+	 *         at the given timestamp. The {@linkplain GetResult#getPeriod() range} of the returned object
+	 *         represents the period in which the given key is bound to the returned value.
 	 */
-	public byte[] get(final long timestamp, final String key);
-
-	/**
-	 * An extended variation of {@link #get(long, String)}, which also returns the period in which the requested key is
-	 * valid.
-	 *
-	 * @param timestamp
-	 *            The timestamp at which to get the value for the given key. Must not be negative.
-	 * @param key
-	 *            The key to get the value for. Must not be <code>null</code>.
-	 * @return A ranged result. Contains the vlaue for the given key at the given timestamp, or <code>null</codE> if the
-	 *         key does not exist in this matrix at the given timestamp. The range of the returned object represents the
-	 *         period in which the given key is bound to the returned value.
-	 */
-	public RangedGetResult<byte[]> getRanged(final long timestamp, final String key);
-
-	/**
-	 * Returns an iterator over all keys which are present in the matrix at the given timestamp.
-	 *
-	 * @param timestamp
-	 *            The timestamp to get the key set at. Must not be negative.
-	 * @return An iterator over all keys that exist in the matrix at the given timestamp. May be empty, but never
-	 *         <code>null</code>.
-	 */
-	public Iterator<String> keys(final long timestamp);
-
-	/**
-	 * Returns an iterator over all keys which are present in the matrix, regardless of the timestamp.
-	 *
-	 * <p>
-	 * This in particular also includes keys which were deleted later on. This method returns all keys that were ever
-	 * part of the matrix (not including rolled-back entries).
-	 *
-	 * @return The iterator over all keys. May be empty, but never <code>null</code>.
-	 */
-	public Iterator<String> allKeys();
+	public GetResult<byte[]> get(final long timestamp, final String key);
 
 	/**
 	 * Returns the history of the given key, i.e. all timestamps at which the given key changed its value due to a
@@ -135,10 +104,9 @@ public interface TemporalDataMatrix {
 	 * Returns an iterator over all entries in this matrix.
 	 *
 	 * @param timestamp
-	 *            The timestamp at which the iteration takes place. Only entries which were valid at this timestamp will
-	 *            be considered. Must not be negative.
-	 * @return An iterator over all entries that were valid at the given timestamp. May be empty, but never
-	 *         <code>null</code>.
+	 *            The timestamp at which the iteration takes place. Only entries with timestamps up to this timestamp
+	 *            will be considered. Must not be negative.
+	 * @return An iterator over all entries up to the given timestamp. May be empty, but never <code>null</code>.
 	 */
 	public CloseableIterator<UnqualifiedTemporalEntry> allEntriesIterator(long timestamp);
 
@@ -218,5 +186,15 @@ public interface TemporalDataMatrix {
 	 *            The timestamp to roll back to. Must not be negative.
 	 */
 	public void rollback(long timestamp);
+
+	/**
+	 * Returns the modifications to the keyset performed in this matrix, up to the given timestamp.
+	 *
+	 * @param timestamp
+	 *            The timestamp for which to retrieve the modifications. Must not be negative. Must be smaller than the
+	 *            timestamp of the latest change.
+	 * @return the keyset modifications. May be empty, but never <code>null</code>.
+	 */
+	public KeySetModifications keySetModifications(long timestamp);
 
 }

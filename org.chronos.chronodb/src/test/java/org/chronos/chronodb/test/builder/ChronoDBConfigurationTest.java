@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 import org.chronos.chronodb.api.ChronoDB;
-import org.chronos.chronodb.internal.api.BranchInternal;
-import org.chronos.chronodb.internal.api.TemporalKeyValueStore;
-import org.chronos.chronodb.internal.impl.index.querycache.NoIndexQueryCache;
+import org.chronos.chronodb.internal.impl.cache.bogus.ChronoDBBogusCache;
 import org.chronos.chronodb.test.base.ChronoDBUnitTest;
 import org.chronos.common.exceptions.ChronosConfigurationException;
 import org.chronos.common.test.junit.categories.IntegrationTest;
@@ -44,7 +42,7 @@ public class ChronoDBConfigurationTest extends ChronoDBUnitTest {
 		} catch (IOException e) {
 			fail(e.toString());
 		}
-		ChronoDB db = ChronoDB.FACTORY.create().embeddedDatabase(dbFile).withLruCacheOfSize(1000).build();
+		ChronoDB db = ChronoDB.FACTORY.create().mapDbDatabase(dbFile).withLruCacheOfSize(1000).build();
 		assertNotNull(db);
 		try {
 			this.assertHasCache(db);
@@ -89,11 +87,9 @@ public class ChronoDBConfigurationTest extends ChronoDBUnitTest {
 	}
 
 	private void assertHasCache(final ChronoDB db) {
-		TemporalKeyValueStore store = ((BranchInternal) db.getBranchManager().getMasterBranch())
-				.getTemporalKeyValueStore();
 		// make sure that we have a cache
-		assertNotNull(store.getCache());
-		// make sure it's not an instance of our "fake" cache (which is essentially a no-cache)
-		assertFalse(store.getCache() instanceof NoIndexQueryCache);
+		assertNotNull(db.getCache());
+		// make sure it's not a bogus cache
+		assertFalse(db.getCache() instanceof ChronoDBBogusCache);
 	}
 }

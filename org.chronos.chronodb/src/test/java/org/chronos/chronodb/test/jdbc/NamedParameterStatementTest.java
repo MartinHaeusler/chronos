@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.UUID;
 
-import javax.sql.DataSource;
-
 import org.chronos.chronodb.internal.impl.jdbc.util.NamedParameterStatement;
 import org.chronos.common.test.ChronosUnitTest;
 import org.chronos.common.test.junit.categories.UnitTest;
@@ -19,6 +17,8 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import com.mchange.v2.c3p0.DataSources;
+
+import javax.sql.DataSource;
 
 @Category(UnitTest.class)
 public class NamedParameterStatementTest extends ChronosUnitTest {

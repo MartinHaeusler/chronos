@@ -2,6 +2,7 @@ package org.chronos.chronodb.internal.impl.engines.base;
 
 import static com.google.common.base.Preconditions.*;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
@@ -9,9 +10,8 @@ import java.util.Map.Entry;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -20,6 +20,7 @@ import org.chronos.chronodb.api.ChangeSetEntry;
 import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.api.DuplicateVersionEliminationMode;
 import org.chronos.chronodb.api.IndexManager;
+import org.chronos.chronodb.api.Order;
 import org.chronos.chronodb.api.PutOption;
 import org.chronos.chronodb.api.exceptions.BlindOverwriteException;
 import org.chronos.chronodb.api.exceptions.ChronoDBCommitException;
@@ -30,20 +31,21 @@ import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.api.key.TemporalKey;
 import org.chronos.chronodb.internal.api.BranchInternal;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
-import org.chronos.chronodb.internal.api.ChronoDBInternal.ChronoNonReturningJob;
-import org.chronos.chronodb.internal.api.ChronoDBInternal.ChronoReturningJob;
 import org.chronos.chronodb.internal.api.CommitMetadataStore;
+import org.chronos.chronodb.internal.api.GetResult;
 import org.chronos.chronodb.internal.api.Period;
-import org.chronos.chronodb.internal.api.RangedGetResult;
 import org.chronos.chronodb.internal.api.TemporalDataMatrix;
 import org.chronos.chronodb.internal.api.TemporalKeyValueStore;
 import org.chronos.chronodb.internal.api.cache.CacheGetResult;
 import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
+import org.chronos.chronodb.internal.api.index.AppendingIndexManager;
+import org.chronos.chronodb.internal.api.index.ReplacingIndexManager;
 import org.chronos.chronodb.internal.api.stream.ChronoDBEntry;
 import org.chronos.chronodb.internal.api.stream.CloseableIterator;
 import org.chronos.chronodb.internal.impl.stream.AbstractCloseableIterator;
 import org.chronos.chronodb.internal.impl.temporal.UnqualifiedTemporalEntry;
 import org.chronos.chronodb.internal.impl.temporal.UnqualifiedTemporalKey;
+import org.chronos.chronodb.internal.util.KeySetModifications;
 import org.chronos.common.logging.ChronoLogger;
 import org.chronos.common.serialization.KryoManager;
 
@@ -55,29 +57,11 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Sets;
 
-public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStoreBase implements TemporalKeyValueStore {
+public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStoreBase implements TemporalKeyValueStore {
 
 	// =================================================================================================================
 	// FIELDS
 	// =================================================================================================================
-
-	/**
-	 * The branch lock protects a single branch from illegal concurrent access.
-	 * <p>
-	 * The vast majority of requests will only require a read lock, including (but not limited to):
-	 * <ul>
-	 * <li>Read operations
-	 * <li>Commits
-	 * </ul>
-	 *
-	 * An example for a process which does indeed require the write lock (i.e. exclusive lock) is a re-indexing process,
-	 * as index values will be invalid during this process, which makes reads pointless.
-	 *
-	 * <p>
-	 * Please note that acquiring any lock (read or write) on a branch is legal if and only if the currrent thread holds
-	 * a read lock on the owning database as well.
-	 */
-	private final ReadWriteLock branchLock = new ReentrantReadWriteLock(true);
 
 	/**
 	 * The commit lock is a plain reentrant lock that protects a single branch from concurrent commits.
@@ -99,14 +83,19 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 	private final ChronoDBInternal owningDB;
 	protected final Map<String, TemporalDataMatrix> keyspaceToMatrix = Maps.newHashMap();
 
-	private ChronoDBCache cache = null;
-
 	/** This lock is used to protect incremental commit data from illegal concurrent access. */
 	protected final Lock incrementalCommitLock = new ReentrantLock(true);
 	/** This field is used to keep track of the transaction that is currently executing an incremental commit. */
 	protected ChronoDBTransaction incrementalCommitTransaction = null;
 	/** This timestamp will be written to during incremental commits, all of them will write to this timestamp. */
 	protected long incrementalCommitTimestamp = -1L;
+
+	protected Consumer<ChronoDBTransaction> debugCallbackBeforePrimaryIndexUpdate;
+	protected Consumer<ChronoDBTransaction> debugCallbackBeforeSecondaryIndexUpdate;
+	protected Consumer<ChronoDBTransaction> debugCallbackBeforeMetadataUpdate;
+	protected Consumer<ChronoDBTransaction> debugCallbackBeforeCacheUpdate;
+	protected Consumer<ChronoDBTransaction> debugCallbackBeforeNowTimestampUpdate;
+	protected Consumer<ChronoDBTransaction> debugCallbackBeforeTransactionCommitted;
 
 	// =====================================================================================================================
 	// CONSTRUCTOR
@@ -157,7 +146,7 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 	}
 
 	public Set<String> getAllKeyspaces() {
-		return this.performNonExclusive(() -> {
+		try (LockHolder lock = this.lockNonExclusive()) {
 			// produce a duplicate of the set, because the actual key set changes over time and may lead to
 			// unexpected "ConcurrentModificationExceptions" in the calling code when used for iteration purposes.
 			Set<String> keyspaces = Sets.newHashSet(this.keyspaceToMatrix.keySet());
@@ -168,7 +157,7 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				keyspaces.addAll(this.getOriginBranchTKVS().getKeyspaces(parentTx));
 			}
 			return Collections.unmodifiableSet(keyspaces);
-		});
+		}
 	}
 
 	@Override
@@ -180,7 +169,7 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 	@Override
 	public Set<String> getKeyspaces(final long timestamp) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
-		return this.performNonExclusive(() -> {
+		try (LockHolder lock = this.lockNonExclusive()) {
 			// produce a duplicate of the set, because the actual key set changes over time and may lead to
 			// unexpected "ConcurrentModificationExceptions" in the calling code when used for iteration purposes.
 			Set<String> keyspaces = Sets.newHashSet();
@@ -197,40 +186,22 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				keyspaces.addAll(this.getOriginBranchTKVS().getKeyspaces(branchingTimestamp));
 			}
 			return Collections.unmodifiableSet(keyspaces);
-		});
+		}
 	}
 
 	@Override
-	public Set<String> getAllKeys(final String keyspace) {
-		return this.performNonExclusive(() -> {
-			Set<String> allKeys = Sets.newHashSet();
-			TemporalDataMatrix matrix = this.getMatrix(keyspace);
-			if (matrix != null) {
-				Iterator<String> iterator = matrix.allKeys();
-				Iterators.addAll(allKeys, iterator);
+	public long getNow() {
+		try (LockHolder lock = this.lockNonExclusive()) {
+			long nowInternal = this.getNowInternal();
+			long now = Math.max(this.getOwningBranch().getBranchingTimestamp(), nowInternal);
+			// see if we have an open transaction
+			WriteAheadLogToken walToken = this.getWriteAheadLogTokenIfExists();
+			if (walToken != null) {
+				// transaction is open, we must not read after the transaction start
+				now = Math.min(now, walToken.getNowTimestampBeforeCommit());
 			}
-			if (this.isMasterBranchTKVS() == false) {
-				allKeys.addAll(this.getOriginBranchTKVS().getAllKeys(keyspace));
-			}
-			return allKeys;
-		});
-	}
-
-	@Override
-	public ChronoDBCache getCache() {
-		return this.performNonExclusive(() -> {
-			return this.cache;
-		});
-	}
-
-	@Override
-	public void setCache(final ChronoDBCache cache) {
-		this.performBranchExclusive(() -> {
-			if (cache != null) {
-				cache.clear();
-			}
-			this.cache = cache;
-		});
+			return now;
+		}
 	}
 
 	@Override
@@ -260,7 +231,7 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 		// here:
 		// - Lock the entire DB (all branches) when committing. Simple, but not very nice.
 		// - Have a MapDB instance per branch. Nicer, but a bit more complicated.
-		this.performBranchExclusive(() -> {
+		try (LockHolder lock = this.lockBranchExclusive()) {
 			this.commitLock.lock();
 			try {
 				if (this.isIncrementalCommitProcessOngoing() && tx.getChangeSet().isEmpty() == false) {
@@ -268,8 +239,7 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 					// then continue with a true commit that has an EMPTY change set
 					tx.commitIncremental();
 				}
-
-				Set<ChangeSetEntry> changeSet = tx.getChangeSet();
+				Collection<ChangeSetEntry> changeSet = tx.getChangeSet();
 				if (this.isIncrementalCommitProcessOngoing() == false) {
 					if (changeSet.isEmpty()) {
 						// change set is empty -> there is nothing to commit
@@ -298,14 +268,17 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				for (ChangeSetEntry entry : changeSet) {
 					String keyspace = entry.getKeyspace();
 					String key = entry.getKey();
-					Object oldValue = tx.get(keyspace, key);
+					Object oldValue = null;
 					Object newValue = entry.getValue();
 					if (tx.getConfiguration().getDuplicateVersionEliminationMode()
 							.equals(DuplicateVersionEliminationMode.ON_COMMIT)) {
+						oldValue = tx.get(keyspace, key);
 						if (Objects.equal(oldValue, newValue)) {
 							// the new value is identical to the old one -> ignore it
 							continue;
 						}
+					} else if (this.getOwningDB().getIndexManager() instanceof ReplacingIndexManager) {
+						oldValue = tx.get(keyspace, key);
 					}
 					Set<PutOption> options = entry.getOptions();
 					Map<String, byte[]> keyspaceMap = keyspaceToKeyToValue.get(keyspace);
@@ -325,6 +298,8 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 					}
 				}
 				if (this.isIncrementalCommitProcessOngoing() == false) {
+					// check that no WAL token exists on disk
+					this.performRollbackToWALTokenIfExists();
 					// these features are not supported in incremental commit mode
 					if (tx.getConfiguration().isBlindOverwriteProtectionEnabled()) {
 						this.preventBlindOverwrite(tx, keyspaceToKeyToValue);
@@ -344,12 +319,14 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				}
 				try {
 					// here, we perform the actual *write* work.
+					this.debugCallbackBeforePrimaryIndexUpdate(tx);
 					for (Entry<String, Map<String, byte[]>> entry : keyspaceToKeyToValue.entrySet()) {
 						String keyspace = entry.getKey();
 						Map<String, byte[]> contents = entry.getValue();
 						TemporalDataMatrix matrix = this.getOrCreateMatrix(keyspace, time);
 						matrix.put(time, contents);
 					}
+					this.debugCallbackBeforeSecondaryIndexUpdate(tx);
 					IndexManager indexManager = this.getOwningDB().getIndexManager();
 					if (indexManager != null) {
 						touchedIndex = true;
@@ -363,32 +340,50 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 									.map(id -> QualifiedKey.create(id.getKeyspace(), id.getKey()))
 									.collect(Collectors.toSet());
 							indexManager.rollback(this.getOwningBranch(), this.getNow(), modifiedKeys);
-							// re-index the modified keys
-							indexManager.index(entriesToIndex);
-						} else {
-							// only index the new entries
-							indexManager.index(entriesToIndex);
+						}
+						// re-index the modified keys
+						if (indexManager instanceof AppendingIndexManager) {
+							AppendingIndexManager appendingIndexManager = (AppendingIndexManager) indexManager;
+							// transforms the pair of old value and new value to just the new value
+							Map<ChronoIdentifier, Object> transformedEntriesToIndex = entriesToIndex.entrySet().stream()
+									.map(entry -> Pair.of(entry.getKey(), entry.getValue().getRight()))
+									.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue()));
+							appendingIndexManager.index(transformedEntriesToIndex);
+						} else if (indexManager instanceof ReplacingIndexManager) {
+							ReplacingIndexManager replacingIndexManager = (ReplacingIndexManager) indexManager;
+							replacingIndexManager.index(entriesToIndex);
 						}
 					}
-					// write the commit metadata object (if any)
-					if (commitMetadata != null) {
-						this.getCommitMetadataStore().put(time, commitMetadata);
-					}
+					this.debugCallbackBeforeMetadataUpdate(tx);
+					// write the commit metadata object (this will also register the commit, even if no metadata is
+					// given)
+					this.getCommitMetadataStore().put(time, commitMetadata);
 
+					this.debugCallbackBeforeCacheUpdate(tx);
 					// update the cache (if any)
-					if (this.cache != null && this.isIncrementalCommitProcessOngoing()) {
-						this.cache.rollbackToTimestamp(this.getNow());
+					if (this.getCache() != null && this.isIncrementalCommitProcessOngoing()) {
+						this.getCache().rollbackToTimestamp(this.getNow());
 					}
 					this.writeCommitThroughCache(tx, time);
+					this.debugCallbackBeforeNowTimestampUpdate(tx);
 					this.setNow(time);
+					this.debugCallbackBeforeTransactionCommitted(tx);
 				} catch (Throwable t) {
 					// an error occurred, we need to perform the rollback
-					this.performRollbackToTimestamp(this.getNow(), keyspaceToKeyToValue.keySet(), touchedIndex);
+					WriteAheadLogToken walToken = this.getWriteAheadLogTokenIfExists();
+					Set<String> keyspaces = null;
+					if (this.isIncrementalCommitProcessOngoing()) {
+						// we are committing incrementally, no one knows which keyspaces were touched,
+						// so we roll them all back just to be safe
+						keyspaces = this.getAllKeyspaces();
+					} else {
+						// in a regular commit, only the keyspaces in our current transaction were touched
+						keyspaces = keyspaceToKeyToValue.keySet();
+					}
+					this.performRollbackToTimestamp(walToken.getNowTimestampBeforeCommit(), keyspaces, touchedIndex);
 					if (this.isIncrementalCommitProcessOngoing()) {
 						// as a safety measure, we also have to clear the cache
-						if (this.cache != null) {
-							this.cache.clear();
-						}
+						this.getCache().clear();
 						// terminate the incremental commit process
 						this.terminateIncrementalCommitProcess();
 					}
@@ -408,27 +403,28 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				KryoManager.destroyKryo();
 				this.commitLock.unlock();
 			}
-		});
+		}
 	}
 
 	@Override
 	public long performCommitIncremental(final ChronoDBTransaction tx) throws ChronoDBCommitException {
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
-		// make sure that this transaction may start (or continue with) an incremental commit process
-		this.assertThatTransactionMayPerformIncrementalCommit(tx);
-		// set up the incremental commit process, if this is the first incremental commit
-		if (this.isFirstIncrementalCommit(tx)) {
-			this.setUpIncrementalCommit(tx);
-			// store the WAL token. We will need it to recover if the JVM crashes or shuts down during the process
-			WriteAheadLogToken token = new WriteAheadLogToken(this.getNow(), this.incrementalCommitTimestamp);
-			this.performWriteAheadLog(token);
-		}
-		return this.performBranchExclusive(() -> {
+		try (LockHolder lock = this.lockBranchExclusive()) {
+			// make sure that this transaction may start (or continue with) an incremental commit process
+			this.assertThatTransactionMayPerformIncrementalCommit(tx);
+			// set up the incremental commit process, if this is the first incremental commit
+			if (this.isFirstIncrementalCommit(tx)) {
+				this.setUpIncrementalCommit(tx);
+				this.performRollbackToWALTokenIfExists();
+				// store the WAL token. We will need it to recover if the JVM crashes or shuts down during the process
+				WriteAheadLogToken token = new WriteAheadLogToken(this.getNow(), this.incrementalCommitTimestamp);
+				this.performWriteAheadLog(token);
+			}
 			this.commitLock.lock();
 			try {
 
 				long time = this.incrementalCommitTimestamp;
-				Set<ChangeSetEntry> changeSet = tx.getChangeSet();
+				Collection<ChangeSetEntry> changeSet = tx.getChangeSet();
 				if (changeSet.isEmpty()) {
 					// change set is empty -> there is nothing to commit
 					return this.incrementalCommitTimestamp;
@@ -441,8 +437,11 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				for (ChangeSetEntry entry : changeSet) {
 					String keyspace = entry.getKeyspace();
 					String key = entry.getKey();
-					Object oldValue = oldValueTx.get(keyspace, key);
+					Object oldValue = null;
 					Object newValue = entry.getValue();
+					if (this.getOwningDB().getIndexManager() instanceof ReplacingIndexManager) {
+						oldValue = oldValueTx.get(keyspace, key);
+					}
 					Set<PutOption> options = entry.getOptions();
 					Map<String, byte[]> keyspaceMap = keyspaceToKeyToValue.get(keyspace);
 					if (keyspaceMap == null) {
@@ -462,12 +461,14 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				}
 				try {
 					// here, we perform the actual *write* work.
+					this.debugCallbackBeforePrimaryIndexUpdate(tx);
 					for (Entry<String, Map<String, byte[]>> entry : keyspaceToKeyToValue.entrySet()) {
 						String keyspace = entry.getKey();
 						Map<String, byte[]> contents = entry.getValue();
 						TemporalDataMatrix matrix = this.getOrCreateMatrix(keyspace, time);
 						matrix.put(time, contents);
 					}
+					this.debugCallbackBeforeSecondaryIndexUpdate(tx);
 					IndexManager indexManager = this.getOwningDB().getIndexManager();
 					if (indexManager != null) {
 						// clear the query cache (if any). The reason for this is that during incremental upates,
@@ -482,20 +483,28 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 								.collect(Collectors.toSet());
 						indexManager.rollback(this.getOwningBranch(), this.getNow(), modifiedKeys);
 						// re-index the modified keys
-						indexManager.index(entriesToIndex);
+						if (indexManager instanceof AppendingIndexManager) {
+							AppendingIndexManager appendingIndexManager = (AppendingIndexManager) indexManager;
+							// transforms the pair of old value and new value to just the new value
+							Map<ChronoIdentifier, Object> transformedEntriesToIndex = entriesToIndex.entrySet().stream()
+									.map(entry -> Pair.of(entry.getKey(), entry.getValue().getRight()))
+									.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue()));
+							appendingIndexManager.index(transformedEntriesToIndex);
+						} else if (indexManager instanceof ReplacingIndexManager) {
+							ReplacingIndexManager replacingIndexManager = (ReplacingIndexManager) indexManager;
+							replacingIndexManager.index(entriesToIndex);
+						}
 					}
+					this.debugCallbackBeforeCacheUpdate(tx);
 					// update the cache (if any)
-					if (this.cache != null) {
-						this.cache.rollbackToTimestamp(this.getNow());
-						this.writeCommitThroughCache(tx, time);
-					}
+					this.getCache().rollbackToTimestamp(this.getNow());
+					this.writeCommitThroughCache(tx, time);
+					this.debugCallbackBeforeTransactionCommitted(tx);
 				} catch (Throwable t) {
 					// an error occurred, we need to perform the rollback
 					this.performRollbackToTimestamp(this.getNow(), keyspaceToKeyToValue.keySet(), true);
 					// as a safety measure, we also have to clear the cache
-					if (this.cache != null) {
-						this.cache.clear();
-					}
+					this.getCache().clear();
 					// terminate the incremental commit process
 					this.terminateIncrementalCommitProcess();
 					// after rolling back, we can clear the write ahead log
@@ -512,7 +521,20 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				this.commitLock.unlock();
 			}
 			return this.incrementalCommitTimestamp;
-		});
+		}
+	}
+
+	private void performRollbackToWALTokenIfExists() {
+		// check if a WAL token exists
+		WriteAheadLogToken walToken = this.getWriteAheadLogTokenIfExists();
+		if (walToken != null) {
+			// a write-ahead log token already exists in our store. This means that another transaction
+			// failed mid-way.
+			ChronoLogger.logWarning("The transaction log indicates that a transaction after timestamp '"
+					+ walToken.getNowTimestampBeforeCommit() + "' has failed. Will perform a rollback to timestamp '"
+					+ walToken.getNowTimestampBeforeCommit() + "'. This may take a while.");
+			this.performRollbackToTimestamp(walToken.getNowTimestampBeforeCommit(), this.getAllKeyspaces(), true);
+		}
 	}
 
 	@Override
@@ -527,9 +549,7 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 		}
 		this.performRollbackToTimestamp(this.getNow(), this.getAllKeyspaces(), true);
 		// as a safety measure, we also have to clear the cache
-		if (this.cache != null) {
-			this.cache.clear();
-		}
+		this.getCache().clear();
 		this.terminateIncrementalCommitProcess();
 		// after rolling back, we can clear the write ahead log
 		this.clearWriteAheadLogToken();
@@ -537,23 +557,31 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 
 	@Override
 	public Object performGet(final ChronoDBTransaction tx, final QualifiedKey key) {
-		return this.performNonExclusive(() -> {
-			if (this.cache != null) {
-				// first, try to find the result in our cache
-				CacheGetResult<Object> cacheGetResult = this.cache.get(tx.getTimestamp(), key);
-				if (cacheGetResult.isHit()) {
-					// cache hit, return the result immediately
+		try (LockHolder lock = this.lockNonExclusive()) {
+			// first, try to find the result in our cache
+			CacheGetResult<Object> cacheGetResult = this.getCache().get(tx.getBranchName(), tx.getTimestamp(), key);
+			if (cacheGetResult.isHit()) {
+				Object result = cacheGetResult.getValue();
+				if (result == null) {
+					return null;
+				}
+				// cache hit, return the result immediately
+				if (this.getOwningDB().getConfiguration().isAssumeCachedValuesAreImmutable()) {
+					// return directly
 					return cacheGetResult.getValue();
+				} else {
+					// return a copy
+					return KryoManager.deepCopy(result);
 				}
 			}
 			// need to contact the backing store. 'performRangedGet' automatically caches the result.
 			return this.performRangedGet(tx, key).getValue();
-		});
+		}
 	}
 
 	@Override
-	public RangedGetResult<Object> performRangedGet(final ChronoDBTransaction tx, final QualifiedKey key) {
-		return this.performNonExclusive(() -> {
+	public GetResult<Object> performRangedGet(final ChronoDBTransaction tx, final QualifiedKey key) {
+		try (LockHolder lock = this.lockNonExclusive()) {
 			String keyspace = key.getKeyspace();
 			TemporalDataMatrix matrix = this.getMatrix(keyspace);
 			if (matrix == null) {
@@ -561,7 +589,7 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 					// matrix doesn't exist, so the get returns null by definition.
 					// In case of the ranged get, we return a result with a null value, and an
 					// unlimited range.
-					return RangedGetResult.createNoValueResult(key, Period.eternal());
+					return GetResult.createNoValueResult(key, Period.eternal());
 				} else {
 					// matrix doesn't exist in the child branch, re-route the request to the parent
 					ChronoDBTransaction tempTx = this.createOriginBranchTx(tx.getTimestamp());
@@ -569,7 +597,7 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				}
 			}
 			// execute the query on the backend
-			RangedGetResult<byte[]> rangedResult = matrix.getRanged(tx.getTimestamp(), key.getKey());
+			GetResult<byte[]> rangedResult = matrix.get(tx.getTimestamp(), key.getKey());
 			if (rangedResult.isHit() == false && this.isMasterBranchTKVS() == false) {
 				// we did not find anything in our branch; re-route the request and try to find it in the origin branch
 				ChronoDBTransaction tempTx = this.createOriginBranchTx(tx.getTimestamp());
@@ -578,53 +606,68 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 			// we do have a hit in our branch, so let's process it
 			byte[] serialForm = rangedResult.getValue();
 			Object deserializedValue = null;
-			Period range = rangedResult.getRange();
+			Period range = rangedResult.getPeriod();
 			if (serialForm == null || serialForm.length <= 0) {
 				deserializedValue = null;
 			} else {
 				deserializedValue = this.getOwningDB().getSerializationManager().deserialize(serialForm);
 			}
-			RangedGetResult<Object> result = RangedGetResult.create(key, deserializedValue, range);
-			if (this.cache != null) {
-				// cache the result
-				this.cache.cache(key, result);
-				// depending on the configuration, we may need to duplicate the result before returning it
-				if (this.getOwningDB().getConfiguration().isAssumeCachedValuesAreImmutable()) {
-					// we may directly return the cached instance, as we can assume it to be immutable
-					return result;
-				} else {
-					// we have to return a duplicate of the cached element, as we cannot assume it to be immutable,
-					// and the client may change the returned element. If we did not duplicate it, changes by the
-					// client to the returned element would modify our cache state.
-					Object duplicatedValue = KryoManager.deepCopy(deserializedValue);
-					return RangedGetResult.create(key, duplicatedValue, range);
-				}
+			GetResult<Object> result = GetResult.create(key, deserializedValue, range);
+			// cache the result
+			this.getCache().cache(tx.getBranchName(), result);
+			// depending on the configuration, we may need to duplicate the result before returning it
+			if (this.getOwningDB().getConfiguration().isAssumeCachedValuesAreImmutable()) {
+				// we may directly return the cached instance, as we can assume it to be immutable
+				return result;
+			} else {
+				// we have to return a duplicate of the cached element, as we cannot assume it to be immutable,
+				// and the client may change the returned element. If we did not duplicate it, changes by the
+				// client to the returned element would modify our cache state.
+				Object duplicatedValue = KryoManager.deepCopy(deserializedValue);
+				return GetResult.create(key, duplicatedValue, range);
 			}
-			return result;
-		});
+		}
 	}
 
 	@Override
 	public Set<String> performKeySet(final ChronoDBTransaction tx, final String keyspaceName) {
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		checkNotNull(keyspaceName, "Precondition violation - argument 'keyspaceName' must not be NULL!");
-		return this.performNonExclusive(() -> {
-			Set<String> allKeys = this.getAllKeys(keyspaceName);
-			Set<String> existingKeys = allKeys.stream().filter(key -> {
-				QualifiedKey qKey = QualifiedKey.create(keyspaceName, key);
-				// check if the key exists at the timestamp
-				boolean exists = this.performGet(tx, qKey) != null;
-				return exists;
-			}).collect(Collectors.toSet());
-			return existingKeys;
-		});
+		try (LockHolder lock = this.lockNonExclusive()) {
+			TemporalDataMatrix matrix = this.getMatrix(keyspaceName);
+			if (this.getOwningBranch().getOrigin() == null) {
+				// we are master, directly apply changes
+				if (matrix == null) {
+					// keyspace is not present, return the empty set
+					return Sets.newHashSet();
+				}
+				KeySetModifications modifications = matrix.keySetModifications(tx.getTimestamp());
+				return Sets.newHashSet(modifications.getAdditions());
+			} else {
+				// we are a sub-branch, accumulate changes along the way
+				Branch origin = this.getOwningBranch().getOrigin();
+				long branchingTS = this.getOwningBranch().getBranchingTimestamp();
+				ChronoDBTransaction tmpTX = this.getOwningDB().tx(origin.getName(), branchingTS);
+				Set<String> keySet = tmpTX.keySet(keyspaceName);
+				if (matrix == null) {
+					// the matrix does not exist in this branch, i.e. nothing was added to it yet,
+					// therefore the accumulated changes from our origins are complete
+					return keySet;
+				} else {
+					// add our branch-local modifications
+					KeySetModifications modifications = matrix.keySetModifications(tx.getTimestamp());
+					modifications.apply(keySet);
+				}
+				return keySet;
+			}
+		}
 	}
 
 	@Override
 	public Iterator<Long> performHistory(final ChronoDBTransaction tx, final QualifiedKey key) {
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		checkNotNull(key, "Precondition violation - argument 'key' must not be NULL!");
-		return this.performNonExclusive(() -> {
+		try (LockHolder lock = this.lockNonExclusive()) {
 			TemporalDataMatrix matrix = this.getMatrix(key.getKeyspace());
 			if (matrix == null) {
 				if (this.isMasterBranchTKVS()) {
@@ -648,7 +691,7 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				// is therefore the final result.
 				return iterator;
 			}
-		});
+		}
 	}
 
 	@Override
@@ -666,13 +709,104 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				"Precondition violation - argument 'timestampUpperBound' must not exceed the transaction timestamp!");
 		checkArgument(timestampLowerBound <= timestampUpperBound,
 				"Precondition violation - argument 'timestampLowerBound' must be less than or equal to 'timestampUpperBound'!");
-		return this.performNonExclusive(() -> {
+		try (LockHolder lock = this.lockNonExclusive()) {
 			TemporalDataMatrix matrix = this.getMatrix(keyspace);
 			if (matrix == null) {
 				return Collections.emptyIterator();
 			}
 			return matrix.getModificationsBetween(timestampLowerBound, timestampUpperBound);
-		});
+		}
+	}
+
+	@Override
+	public Iterator<Long> performGetCommitTimestampsBetween(final ChronoDBTransaction tx, final long from,
+			final long to, final Order order) {
+		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
+		checkArgument(from >= 0, "Precondition violation - argument 'from' must not be negative!");
+		checkArgument(from <= tx.getTimestamp(),
+				"Precondition violation - argument 'from' must not be larger than the transaction timestamp!");
+		checkArgument(to >= 0, "Precondition violation - argument 'to' must not be negative!");
+		checkArgument(to <= tx.getTimestamp(),
+				"Precondition violation - argument 'to' must not be larger than the transaction timestamp!");
+		checkNotNull(order, "Precondition violation - argument 'order' must not be NULL!");
+		return this.getCommitMetadataStore().getCommitTimestampsBetween(from, to, order);
+	}
+
+	@Override
+	public Iterator<Entry<Long, Object>> performGetCommitMetadataBetween(final ChronoDBTransaction tx, final long from,
+			final long to, final Order order) {
+		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
+		checkArgument(from >= 0, "Precondition violation - argument 'from' must not be negative!");
+		checkArgument(from <= tx.getTimestamp(),
+				"Precondition violation - argument 'from' must not be larger than the transaction timestamp!");
+		checkArgument(to >= 0, "Precondition violation - argument 'to' must not be negative!");
+		checkArgument(to <= tx.getTimestamp(),
+				"Precondition violation - argument 'to' must not be larger than the transaction timestamp!");
+		checkNotNull(order, "Precondition violation - argument 'order' must not be NULL!");
+		try (LockHolder lock = this.lockNonExclusive()) {
+			return this.getCommitMetadataStore().getCommitMetadataBetween(from, to, order);
+		}
+	}
+
+	@Override
+	public Iterator<Long> performGetCommitTimestampsPaged(final ChronoDBTransaction tx, final long minTimestamp,
+			final long maxTimestamp, final int pageSize, final int pageIndex, final Order order) {
+		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
+		checkArgument(minTimestamp >= 0, "Precondition violation - argument 'minTimestamp' must not be negative!");
+		checkArgument(minTimestamp <= tx.getTimestamp(),
+				"Precondition violation - argument 'minTimestamp' must not be larger than the transaction timestamp!");
+		checkArgument(maxTimestamp >= 0, "Precondition violation - argument 'maxTimestamp' must not be negative!");
+		checkArgument(maxTimestamp <= tx.getTimestamp(),
+				"Precondition violation - argument 'maxTimestamp' must not be larger than the transaction timestamp!");
+		checkArgument(pageSize > 0, "Precondition violation - argument 'pageSize' must be greater than zero!");
+		checkArgument(pageIndex >= 0, "Precondition violation - argument 'pageIndex' must not be negative!");
+		checkNotNull(order, "Precondition violation - argument 'order' must not be NULL!");
+		try (LockHolder lock = this.lockNonExclusive()) {
+			return this.getCommitMetadataStore().getCommitTimestampsPaged(minTimestamp, maxTimestamp, pageSize,
+					pageIndex, order);
+		}
+	}
+
+	@Override
+	public Iterator<Entry<Long, Object>> performGetCommitMetadataPaged(final ChronoDBTransaction tx,
+			final long minTimestamp, final long maxTimestamp, final int pageSize, final int pageIndex,
+			final Order order) {
+		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
+		checkArgument(minTimestamp >= 0, "Precondition violation - argument 'minTimestamp' must not be negative!");
+		checkArgument(minTimestamp <= tx.getTimestamp(),
+				"Precondition violation - argument 'minTimestamp' must not be larger than the transaction timestamp!");
+		checkArgument(maxTimestamp >= 0, "Precondition violation - argument 'maxTimestamp' must not be negative!");
+		checkArgument(maxTimestamp <= tx.getTimestamp(),
+				"Precondition violation - argument 'maxTimestamp' must not be larger than the transaction timestamp!");
+		checkArgument(pageSize > 0, "Precondition violation - argument 'pageSize' must be greater than zero!");
+		checkArgument(pageIndex >= 0, "Precondition violation - argument 'pageIndex' must not be negative!");
+		checkNotNull(order, "Precondition violation - argument 'order' must not be NULL!");
+		try (LockHolder lock = this.lockNonExclusive()) {
+			return this.getCommitMetadataStore().getCommitMetadataPaged(minTimestamp, maxTimestamp, pageSize, pageIndex,
+					order);
+		}
+	}
+
+	@Override
+	public int performCountCommitTimestampsBetween(final ChronoDBTransaction tx, final long from, final long to) {
+		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
+		checkArgument(from >= 0, "Precondition violation - argument 'from' must not be negative!");
+		checkArgument(from <= tx.getTimestamp(),
+				"Precondition violation - argument 'from' must not be larger than the transaction timestamp!");
+		checkArgument(to >= 0, "Precondition violation - argument 'to' must not be negative!");
+		checkArgument(to <= tx.getTimestamp(),
+				"Precondition violation - argument 'to' must not be larger than the transaction timestamp!");
+		try (LockHolder lock = this.lockNonExclusive()) {
+			return this.getCommitMetadataStore().countCommitTimestampsBetween(from, to);
+		}
+	}
+
+	@Override
+	public int performCountCommitTimestamps(final ChronoDBTransaction tx) {
+		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
+		try (LockHolder lock = this.lockNonExclusive()) {
+			return this.getCommitMetadataStore().countCommitTimestamps();
+		}
 	}
 
 	@Override
@@ -682,7 +816,7 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				"Precondition violation - argument 'commitTimestamp' must not be negative!");
 		checkArgument(commitTimestamp <= tx.getTimestamp(),
 				"Precondition violation  - argument 'commitTimestamp' must be less than or equal to the transaction timestamp!");
-		return this.performNonExclusive(() -> {
+		try (LockHolder lock = this.lockNonExclusive()) {
 			if (this.getOwningBranch().getOrigin() != null
 					&& this.getOwningBranch().getBranchingTimestamp() >= commitTimestamp) {
 				// ask the parent branch to resolve it
@@ -691,7 +825,7 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				return this.getOriginBranchTKVS().performGetCommitMetadata(originTx, commitTimestamp);
 			}
 			return this.getCommitMetadataStore().get(commitTimestamp);
-		});
+		}
 	}
 
 	// =================================================================================================================
@@ -700,19 +834,17 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 
 	@Override
 	public CloseableIterator<ChronoDBEntry> allEntriesIterator(final long timestamp) {
-		return this.performNonExclusive(() -> {
+		try (LockHolder lock = this.lockNonExclusive()) {
 			return new AllEntriesIterator(timestamp);
-		});
+		}
 	}
 
 	@Override
 	public void insertEntries(final Set<ChronoDBEntry> entries) {
-		this.performBranchExclusive(() -> {
-			if (this.cache != null) {
-				// insertion of entries can (potentially) completely wreck the consistency of our cache.
-				// in order to be safe, we clear it completely.
-				this.cache.clear();
-			}
+		try (LockHolder lock = this.lockBranchExclusive()) {
+			// insertion of entries can (potentially) completely wreck the consistency of our cache.
+			// in order to be safe, we clear it completely.
+			this.getCache().clear();
 			long maxTimestamp = this.getNow();
 			SetMultimap<String, UnqualifiedTemporalEntry> keyspaceToEntries = HashMultimap.create();
 			for (ChronoDBEntry entry : entries) {
@@ -739,78 +871,50 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 			if (maxTimestamp > this.getNow()) {
 				this.setNow(maxTimestamp);
 			}
-		});
+		}
 	}
 
 	// =================================================================================================================
-	// BRANCH LOCKING
+	// DEBUG METHODS
 	// =================================================================================================================
 
 	@Override
-	public void performNonExclusive(final ChronoNonReturningJob job) {
-		// Note that we FIRST acquire the read lock on the database, and THEN the lock on the branch.
-		// All locking works "outside in", this way we avoid deadlocks.
-		this.getOwningDB().performNonExclusive(() -> {
-			this.branchLock.readLock().lock();
-			try {
-				job.execute();
-			} finally {
-				this.branchLock.readLock().unlock();
-			}
-		});
+	public void setDebugCallbackBeforePrimaryIndexUpdate(final Consumer<ChronoDBTransaction> action) {
+		this.debugCallbackBeforePrimaryIndexUpdate = action;
 	}
 
 	@Override
-	public <T> T performNonExclusive(final ChronoReturningJob<T> job) {
-		// Note that we FIRST acquire the read lock on the database, and THEN the lock on the branch.
-		// All locking works "outside in", this way we avoid deadlocks.
-		return this.getOwningDB().performNonExclusive(() -> {
-			this.branchLock.readLock().lock();
-			try {
-				return job.execute();
-			} finally {
-				this.branchLock.readLock().unlock();
-			}
-		});
+	public void setDebugCallbackBeforeSecondaryIndexUpdate(final Consumer<ChronoDBTransaction> action) {
+		this.debugCallbackBeforeSecondaryIndexUpdate = action;
 	}
 
 	@Override
-	public void performBranchExclusive(final ChronoNonReturningJob job) {
-		// Note that we FIRST acquire the read lock on the database, and THEN the lock on the branch.
-		// All locking works "outside in", this way we avoid deadlocks.
-		this.getOwningDB().performExclusive(() -> {
-			this.branchLock.writeLock().lock();
-			try {
-				job.execute();
-			} finally {
-				this.branchLock.writeLock().unlock();
-			}
-		});
+	public void setDebugCallbackBeforeMetadataUpdate(final Consumer<ChronoDBTransaction> action) {
+		this.debugCallbackBeforeMetadataUpdate = action;
 	}
 
 	@Override
-	public <T> T performBranchExclusive(final ChronoReturningJob<T> job) {
-		// Note that we FIRST acquire the read lock on the database, and THEN the lock on the branch.
-		// All locking works "outside in", this way we avoid deadlocks.
-		return this.getOwningDB().performExclusive(() -> {
-			this.branchLock.writeLock().lock();
-			try {
-				return job.execute();
-			} finally {
-				this.branchLock.writeLock().unlock();
-			}
-		});
+	public void setDebugCallbackBeforeCacheUpdate(final Consumer<ChronoDBTransaction> action) {
+		this.debugCallbackBeforeCacheUpdate = action;
 	}
 
 	@Override
-	public long getNow() {
-		long nowInternal = this.getNowInternal();
-		return Math.max(this.getOwningBranch().getBranchingTimestamp(), nowInternal);
+	public void setDebugCallbackBeforeNowTimestampUpdate(final Consumer<ChronoDBTransaction> action) {
+		this.debugCallbackBeforeNowTimestampUpdate = action;
+	}
+
+	@Override
+	public void setDebugCallbackBeforeTransactionCommitted(final Consumer<ChronoDBTransaction> action) {
+		this.debugCallbackBeforeTransactionCommitted = action;
 	}
 
 	// =================================================================================================================
 	// INTERNAL HELPER METHODS
 	// =================================================================================================================
+
+	private ChronoDBCache getCache() {
+		return this.owningDB.getCache();
+	}
 
 	@Override
 	protected void verifyTransaction(final ChronoDBTransaction tx) {
@@ -889,10 +993,6 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 	}
 
 	protected void writeCommitThroughCache(final ChronoDBTransaction tx, final long timestamp) {
-		if (this.cache == null) {
-			// no cache to write to; abort
-			return;
-		}
 		// perform the write-through in our cache
 		Map<QualifiedKey, Object> keyValues = Maps.newHashMap();
 		boolean assumeImmutableValues = this.getOwningDB().getConfiguration().isAssumeCachedValuesAreImmutable();
@@ -914,7 +1014,7 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 			QualifiedKey qKey = QualifiedKey.create(keyspace, key);
 			keyValues.put(qKey, value);
 		}
-		this.cache.writeThrough(timestamp, keyValues);
+		this.getCache().writeThrough(tx.getBranchName(), timestamp, keyValues);
 	}
 
 	@VisibleForTesting
@@ -929,9 +1029,7 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 		// roll back the commit metadata store
 		this.getCommitMetadataStore().rollbackToTimestamp(timestamp);
 		// roll back the cache
-		if (this.cache != null) {
-			this.cache.rollbackToTimestamp(timestamp);
-		}
+		this.getCache().rollbackToTimestamp(timestamp);
 		// only rollback the index manager if we touched it during the commit
 		if (touchedIndex) {
 			this.getOwningDB().getIndexManager().rollback(this.getOwningBranch(), timestamp);
@@ -1083,6 +1181,60 @@ public abstract class AbstractTemporalKeyValueStore extends TempoalKeyValueStore
 				// use the branching timestamp
 				.atTimestamp(timestamp).build();
 		return tx;
+	}
+
+	protected void debugCallbackBeforePrimaryIndexUpdate(final ChronoDBTransaction tx) {
+		if (this.getOwningDB().getConfiguration().isDebugModeEnabled() == false) {
+			return;
+		}
+		if (this.debugCallbackBeforePrimaryIndexUpdate != null) {
+			this.debugCallbackBeforePrimaryIndexUpdate.accept(tx);
+		}
+	}
+
+	protected void debugCallbackBeforeSecondaryIndexUpdate(final ChronoDBTransaction tx) {
+		if (this.getOwningDB().getConfiguration().isDebugModeEnabled() == false) {
+			return;
+		}
+		if (this.debugCallbackBeforeSecondaryIndexUpdate != null) {
+			this.debugCallbackBeforeSecondaryIndexUpdate.accept(tx);
+		}
+	}
+
+	protected void debugCallbackBeforeMetadataUpdate(final ChronoDBTransaction tx) {
+		if (this.getOwningDB().getConfiguration().isDebugModeEnabled() == false) {
+			return;
+		}
+		if (this.debugCallbackBeforeMetadataUpdate != null) {
+			this.debugCallbackBeforeMetadataUpdate.accept(tx);
+		}
+	}
+
+	protected void debugCallbackBeforeCacheUpdate(final ChronoDBTransaction tx) {
+		if (this.getOwningDB().getConfiguration().isDebugModeEnabled() == false) {
+			return;
+		}
+		if (this.debugCallbackBeforeCacheUpdate != null) {
+			this.debugCallbackBeforeCacheUpdate.accept(tx);
+		}
+	}
+
+	protected void debugCallbackBeforeNowTimestampUpdate(final ChronoDBTransaction tx) {
+		if (this.getOwningDB().getConfiguration().isDebugModeEnabled() == false) {
+			return;
+		}
+		if (this.debugCallbackBeforeNowTimestampUpdate != null) {
+			this.debugCallbackBeforeNowTimestampUpdate.accept(tx);
+		}
+	}
+
+	protected void debugCallbackBeforeTransactionCommitted(final ChronoDBTransaction tx) {
+		if (this.getOwningDB().getConfiguration().isDebugModeEnabled() == false) {
+			return;
+		}
+		if (this.debugCallbackBeforeTransactionCommitted != null) {
+			this.debugCallbackBeforeTransactionCommitted.accept(tx);
+		}
 	}
 
 	// =================================================================================================================

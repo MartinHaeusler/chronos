@@ -10,8 +10,8 @@ import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.api.PutOption;
 import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
-import org.chronos.chronodb.test.util.NamedPayload;
-import org.chronos.chronodb.test.util.NamedPayloadNameIndexer;
+import org.chronos.chronodb.test.util.model.payload.NamedPayload;
+import org.chronos.chronodb.test.util.model.payload.NamedPayloadNameIndexer;
 import org.junit.Test;
 
 public class PutOptionsTest extends AllChronoDBBackendsTest {
@@ -21,6 +21,12 @@ public class PutOptionsTest extends AllChronoDBBackendsTest {
 		ChronoDB db = this.getChronoDB();
 		// create an indexer
 		db.getIndexManager().addIndexer("name", new NamedPayloadNameIndexer());
+
+		// assert that the index is empty
+		// NOTE: This will also force lazy-initializing indexing backends to
+		// produce an index.
+		Set<QualifiedKey> keysAsSet = db.tx().find().inDefaultKeyspace().where("name").matchesRegex(".*").getKeysAsSet();
+		assertTrue(keysAsSet.isEmpty());
 
 		// add some data, with and without NO_INDEX option
 		ChronoDBTransaction tx = db.tx();

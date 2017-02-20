@@ -1,16 +1,21 @@
 package org.chronos.chronodb.internal.impl.engines.mapdb;
 
-import static com.google.common.base.Preconditions.*;
 import static org.chronos.common.logging.ChronoLogger.*;
+
+import static com.google.common.base.Preconditions.*;
 
 import java.util.Set;
 
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.internal.api.BranchInternal;
 import org.chronos.chronodb.internal.api.CommitMetadataStore;
+import org.chronos.chronodb.internal.impl.MatrixUtils;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractTemporalKeyValueStore;
 import org.chronos.chronodb.internal.impl.engines.base.KeyspaceMetadata;
 import org.chronos.chronodb.internal.impl.engines.base.WriteAheadLogToken;
+import org.chronos.chronodb.internal.impl.mapdb.MapDBTransaction;
+import org.chronos.chronodb.internal.impl.mapdb.NavigationMap;
+import org.chronos.chronodb.internal.impl.mapdb.TimeMap;
 import org.mapdb.Atomic.Var;
 
 public class MapDBTkvs extends AbstractTemporalKeyValueStore {
@@ -77,7 +82,7 @@ public class MapDBTkvs extends AbstractTemporalKeyValueStore {
 	protected TemporalMapDBMatrix createMatrix(final String keyspace, final long timestamp) {
 		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
-		String matrixTableName = MatrixMap.generateRandomName();
+		String matrixTableName = MatrixUtils.generateRandomName();
 		try (MapDBTransaction tx = this.getOwningDB().openTransaction()) {
 			NavigationMap.insert(tx, this.getBranchName(), keyspace, matrixTableName, timestamp);
 			TemporalMapDBMatrix matrix = new TemporalMapDBMatrix(keyspace, timestamp, this.getOwningDB(),
@@ -118,7 +123,8 @@ public class MapDBTkvs extends AbstractTemporalKeyValueStore {
 
 	private long loadNowTimestampFromDB() {
 		try (MapDBTransaction tx = this.getOwningDB().openTransaction()) {
-			return TimeMap.get(tx, this.getBranchName());
+			long timestamp = TimeMap.get(tx, this.getBranchName());
+			return timestamp;
 		}
 	}
 
@@ -129,7 +135,7 @@ public class MapDBTkvs extends AbstractTemporalKeyValueStore {
 				return;
 			}
 			String keyspaceName = ChronoDBConstants.DEFAULT_KEYSPACE_NAME;
-			String tableName = MatrixMap.generateRandomName();
+			String tableName = MatrixUtils.generateRandomName();
 			logTrace("Creating branch: [" + this.getBranchName() + ", " + keyspaceName + ", " + tableName + "]");
 			NavigationMap.insert(tx, this.getBranchName(), keyspaceName, tableName, 0L);
 			tx.commit();
@@ -155,9 +161,15 @@ public class MapDBTkvs extends AbstractTemporalKeyValueStore {
 
 	@Override
 	protected WriteAheadLogToken getWriteAheadLogTokenIfExists() {
+		String varName = this.getBranchName() + "." + WRITE_AHEAD_LOG_VAR_NAME;
 		try (MapDBTransaction tx = this.getOwningDB().openTransaction()) {
-			Var<byte[]> var = tx.atomicVar(this.getBranchName() + "." + WRITE_AHEAD_LOG_VAR_NAME);
-			if (var == null || var.get() == null) {
+			if (tx.exists(varName) == false) {
+				// variable that holds the WAL token doesn't exist -> no WAL token exists
+				return null;
+			}
+			Var<byte[]> var = tx.atomicVar(varName);
+			if (var.get() == null) {
+				// variable exists, but contains NULL -> no WAL token exists
 				return null;
 			}
 			byte[] contents = var.get();

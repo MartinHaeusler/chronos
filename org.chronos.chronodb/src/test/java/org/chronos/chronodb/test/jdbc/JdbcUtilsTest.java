@@ -6,13 +6,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.sql.DataSource;
-
 import org.chronos.chronodb.internal.impl.jdbc.util.JdbcDataSourceUtil;
 import org.chronos.chronodb.internal.impl.jdbc.util.JdbcUtils;
 import org.chronos.common.test.junit.categories.UnitTest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+
+import javax.sql.DataSource;
 
 @Category(UnitTest.class)
 public class JdbcUtilsTest {

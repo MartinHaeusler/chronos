@@ -1,12 +1,22 @@
 package org.chronos.common.serialization;
 
+import static com.google.common.base.Preconditions.*;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.util.List;
+
+import org.chronos.common.exceptions.ChronosIOException;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.google.common.collect.Lists;
 
 public class KryoManager {
 
@@ -41,6 +51,45 @@ public class KryoManager {
 
 	public static <T> T deepCopy(final T element) {
 		return getKryo().deepCopy(element);
+	}
+
+	public static void serializeObjectsToFile(final File file, final Object... objects) {
+		checkNotNull(objects, "Precondition violation - argument 'objects' must not be NULL!");
+		checkNotNull(file, "Precondition violation - argument 'file' must not be NULL!");
+		checkArgument(file.exists(), "Precondition violation - argument 'file' must refer to an existing file!");
+		checkArgument(file.isFile(),
+				"Precondition violation - argument 'file' must refer to a file (not a directory)!");
+		checkArgument(file.canWrite(), "Precondition violation - argument 'file' must be writable!");
+		try {
+			getKryo().serializeToFile(file, objects);
+		} catch (IOException e) {
+			throw new ChronosIOException("Failed to serialize object to file!", e);
+		}
+	}
+
+	public static <T> T deserializeObjectFromFile(final File file) {
+		checkNotNull(file, "Precondition violation - argument 'file' must not be NULL!");
+		checkArgument(file.exists(), "Precondition violation - argument 'file' must refer to an existing file!");
+		checkArgument(file.isFile(),
+				"Precondition violation - argument 'file' must refer to a file (not a directory)!");
+		checkArgument(file.canRead(), "Precondition violation - argument 'file' must be readable!");
+		try {
+			return getKryo().deserializeObjectFromFile(file);
+		} catch (IOException e) {
+			throw new ChronosIOException("Failed to deserialize object from file!", e);
+		}
+	}
+
+	public static List<Object> deserializeObjectsFromFile(final File file) {
+		checkArgument(file.exists(), "Precondition violation - argument 'file' must refer to an existing file!");
+		checkArgument(file.isFile(),
+				"Precondition violation - argument 'file' must refer to a file (not a directory)!");
+		checkArgument(file.canRead(), "Precondition violation - argument 'file' must be readable!");
+		try {
+			return getKryo().deserializeObjectsFromFile(file);
+		} catch (IOException e) {
+			throw new ChronosIOException("Failed to deserialize object(s) from file!", e);
+		}
 	}
 
 	// =====================================================================================================================
@@ -88,6 +137,18 @@ public class KryoManager {
 			return result;
 		}
 
+		public void serializeToFile(final File file, final Object... objects) throws IOException {
+			try (Output out = new Output(new FileOutputStream(file))) {
+				for (Object object : objects) {
+					this.getKryo().writeClassAndObject(out, object);
+				}
+				out.flush();
+				this.serializedBytes += file.length();
+				this.usageCount++;
+				this.destroyKryoIfNecessary();
+			}
+		}
+
 		@SuppressWarnings("unchecked")
 		public <T> T deserialize(final byte[] serialForm) {
 			ByteArrayInputStream bais = new ByteArrayInputStream(serialForm);
@@ -97,6 +158,30 @@ public class KryoManager {
 			this.usageCount++;
 			this.destroyKryoIfNecessary();
 			return (T) object;
+		}
+
+		@SuppressWarnings("unchecked")
+		public <T> T deserializeObjectFromFile(final File file) throws IOException {
+			try (Input input = new Input(new FileInputStream(file))) {
+				Object object = this.getKryo().readClassAndObject(input);
+				this.usageCount++;
+				this.destroyKryoIfNecessary();
+				return (T) object;
+			}
+		}
+
+		public List<Object> deserializeObjectsFromFile(final File file) throws IOException {
+			try (Input input = new Input(new FileInputStream(file))) {
+				List<Object> resultList = Lists.newArrayList();
+				Kryo kryo = this.getKryo();
+				while (input.canReadInt()) {
+					Object element = kryo.readClassAndObject(input);
+					resultList.add(element);
+				}
+				this.usageCount++;
+				this.destroyKryoIfNecessary();
+				return resultList;
+			}
 		}
 
 		public <T> T deepCopy(final T element) {

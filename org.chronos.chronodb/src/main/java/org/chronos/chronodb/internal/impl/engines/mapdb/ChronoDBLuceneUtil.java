@@ -32,6 +32,7 @@ public class ChronoDBLuceneUtil {
 		String indexName = luceneDocument.get(DOCUMENT_FIELD_INDEX_NAME);
 		String branch = luceneDocument.get(DOCUMENT_FIELD_BRANCH);
 		if (branch == null) {
+			// older ChronoGraph index versions didn't have a "branch" property, use master in this case
 			branch = ChronoDBConstants.MASTER_BRANCH_IDENTIFIER;
 		}
 		String keyspace = luceneDocument.get(DOCUMENT_FIELD_KEYSPACE);

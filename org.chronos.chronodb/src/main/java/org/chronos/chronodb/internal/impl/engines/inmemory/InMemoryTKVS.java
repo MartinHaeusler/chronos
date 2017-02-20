@@ -3,6 +3,8 @@ package org.chronos.chronodb.internal.impl.engines.inmemory;
 import static com.google.common.base.Preconditions.*;
 
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.internal.api.BranchInternal;
@@ -21,6 +23,9 @@ public class InMemoryTKVS extends AbstractTemporalKeyValueStore implements Tempo
 
 	private final AtomicLong now = new AtomicLong(0);
 	private final CommitMetadataStore commitMetadataStore;
+
+	private WriteAheadLogToken walToken = null;
+	private final Lock walLock = new ReentrantLock();
 
 	// =================================================================================================================
 	// CONSTRUCTOR
@@ -56,14 +61,23 @@ public class InMemoryTKVS extends AbstractTemporalKeyValueStore implements Tempo
 
 	@Override
 	protected void performWriteAheadLog(final WriteAheadLogToken token) {
-		// in-memory backend does not support Write-Ahead-Logging.
-		// This call is ignored.
+		checkNotNull(token, "Precondition violation - argument 'token' must not be NULL!");
+		this.walLock.lock();
+		try {
+			this.walToken = token;
+		} finally {
+			this.walLock.unlock();
+		}
 	}
 
 	@Override
 	protected void clearWriteAheadLogToken() {
-		// in-memory backend does not support Write-Ahead-Logging.
-		// This call is ignored.
+		this.walLock.lock();
+		try {
+			this.walToken = null;
+		} finally {
+			this.walLock.unlock();
+		}
 	}
 
 	@Override
@@ -73,8 +87,12 @@ public class InMemoryTKVS extends AbstractTemporalKeyValueStore implements Tempo
 
 	@Override
 	protected WriteAheadLogToken getWriteAheadLogTokenIfExists() {
-		// in-memory backend does not store Write-Ahead-Log Tokens.
-		return null;
+		this.walLock.lock();
+		try {
+			return this.walToken;
+		} finally {
+			this.walLock.unlock();
+		}
 	}
 
 	@Override

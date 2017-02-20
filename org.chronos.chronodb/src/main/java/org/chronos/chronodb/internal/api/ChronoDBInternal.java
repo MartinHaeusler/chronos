@@ -19,7 +19,7 @@ import org.chronos.chronodb.internal.api.stream.CloseableIterator;
  * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
  *
  */
-public interface ChronoDBInternal extends ChronoDB {
+public interface ChronoDBInternal extends ChronoDB, Lockable {
 
 	/**
 	 * Returns the internal representation of the branch manager associated with this database instance.
@@ -43,88 +43,6 @@ public interface ChronoDBInternal extends ChronoDB {
 	 * @return The query manager. Never <code>null</code>.
 	 */
 	public QueryManager getQueryManager();
-
-	/**
-	 * Performs a non-exclusive operation on the database which can run in parallel with other non-exclusive jobs.
-	 *
-	 * <p>
-	 * This method ensures that non-exclusive operations are properly blocked when an exclusive operation is taking
-	 * place.
-	 *
-	 * <p>
-	 * This variant of this method returns a value; if you don't need a return value, please see
-	 * {@link #performNonExclusive(ChronoNonReturningJob)}.
-	 *
-	 * <p>
-	 * It is strongly encouraged to use Java Lambda Expressions as arguments for this method.
-	 *
-	 * @param <T>
-	 *            The type of object the job returns.
-	 * @param job
-	 *            The job to execute. Must not be <code>null</code>.
-	 *
-	 * @return The result of the job. May be <code>null</code>.
-	 */
-	public <T> T performNonExclusive(final ChronoReturningJob<T> job);
-
-	/**
-	 * Performs a non-exclusive operation on the database which can run in parallel with other non-exclusive jobs.
-	 *
-	 * <p>
-	 * This method ensures that non-exclusive operations are properly blocked when an exclusive operation is taking
-	 * place.
-	 *
-	 * <p>
-	 * This variant of this method does not return a value; if you need a return value, please see
-	 * {@link #performNonExclusive(ChronoReturningJob)}.
-	 *
-	 * <p>
-	 * It is strongly encouraged to use Java Lambda Expressions as arguments for this method.
-	 *
-	 * @param job
-	 *            The job to execute. Must not be <code>null</code>.
-	 */
-	public void performNonExclusive(final ChronoNonReturningJob job);
-
-	/**
-	 * Performs an exclusive operation on the database which prevents all other jobs from executing while it is active.
-	 *
-	 * <p>
-	 * While this method is being executed, no other jobs (exlusive or non-exclusive) are started.
-	 *
-	 * <p>
-	 * This variant of this method does not return a value; if you need a return value, please see
-	 * {@link #performExclusive(ChronoReturningJob)}.
-	 *
-	 * <p>
-	 * It is strongly encouraged to use Java Lambda Expressions as arguments for this method.
-	 *
-	 * @param job
-	 *            The job to execute. Must not be <code>null</code>.
-	 */
-	public void performExclusive(final ChronoNonReturningJob job);
-
-	/**
-	 * Performs an exclusive operation on the database which prevents all other jobs from executing while it is active.
-	 *
-	 * <p>
-	 * While this method is being executed, no other jobs (exlusive or non-exclusive) are started.
-	 *
-	 * <p>
-	 * This variant of this method returns a value; if you don't need a return value, please see
-	 * {@link #performExclusive(ChronoNonReturningJob)}.
-	 *
-	 * <p>
-	 * It is strongly encouraged to use Java Lambda Expressions as arguments for this method.
-	 *
-	 * @param <T>
-	 *            The type of object the job returns.
-	 * @param job
-	 *            The job to execute. Must not be <code>null</code>.
-	 *
-	 * @return The result of the job. May be <code>null</code>.
-	 */
-	public <T> T performExclusive(final ChronoReturningJob<T> job);
 
 	/**
 	 * Creates a transaction on this {@link ChronoDB} based on the given configuration.

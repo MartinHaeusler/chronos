@@ -6,9 +6,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -262,8 +264,9 @@ public class LuceneWrapper implements AutoCloseable {
 		});
 	}
 
-	public List<Document> getDocumentsTouchedAtOrAfterTimestamp(final long timestamp) {
+	public List<Document> getDocumentsTouchedAtOrAfterTimestamp(final long timestamp, final Set<String> branches) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkNotNull(branches, "Precondition violation - argument 'branches' must not be NULL!");
 		// validFrom >= timestamp <= Long.MAX_VALUE (infinity)
 		Query validFromQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_FROM, timestamp, Long.MAX_VALUE, true, true);
 		// validTo >= timestamp <= Long.MAX_VALUE (infinity)
@@ -272,7 +275,12 @@ public class LuceneWrapper implements AutoCloseable {
 		Builder queryBuilder = new Builder();
 		queryBuilder.add(validFromQuery, Occur.SHOULD);
 		queryBuilder.add(validToQuery, Occur.SHOULD);
-		return this.search(queryBuilder.build());
+		List<Document> docs = this.search(queryBuilder.build());
+		if (branches != null) {
+			// we post-process the "in" clause here in-memory, this isn't ideal, perhaps there's a better way to do it directly in lucene?
+			docs = docs.stream().filter(doc -> branches.contains(doc.get(ChronoDBLuceneUtil.DOCUMENT_FIELD_BRANCH))).collect(Collectors.toList());
+		}
+		return docs;
 	}
 
 	// =================================================================================================================

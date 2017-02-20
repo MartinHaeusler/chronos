@@ -2,9 +2,11 @@ package org.chronos.chronodb.internal.impl.engines.base;
 
 import static com.google.common.base.Preconditions.*;
 
+import java.util.Map.Entry;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.SerializationManager;
@@ -28,9 +30,8 @@ public abstract class AbstractCommitMetadataStore implements CommitMetadataStore
 	public void put(final long commitTimestamp, final Object commitMetadata) {
 		checkArgument(commitTimestamp >= 0,
 				"Precondition violation - argument 'commitTimestamp' must not be negative!");
-		checkNotNull(commitMetadata, "Precondition violation - argument 'commitMetadata' must not be NULL!");
 		// serialize the metadata object
-		byte[] serializedMetadata = this.getSerializationManager().serialize(commitMetadata);
+		byte[] serializedMetadata = this.serialize(commitMetadata);
 		this.lock.writeLock().lock();
 		try {
 			this.putInternal(commitTimestamp, serializedMetadata);
@@ -89,6 +90,30 @@ public abstract class AbstractCommitMetadataStore implements CommitMetadataStore
 
 	protected String getBranchName() {
 		return this.getOwningBranch().getName();
+	}
+
+	protected <A, B> Pair<A, B> mapEntryToPair(final Entry<A, B> entry) {
+		return Pair.of(entry.getKey(), entry.getValue());
+	}
+
+	@SuppressWarnings("unchecked")
+	protected <A, B> Pair<A, B> mapSerialEntryToPair(final Entry<A, byte[]> entry) {
+		return (Pair<A, B>) Pair.of(entry.getKey(), this.deserialize(entry.getValue()));
+	}
+
+	protected byte[] serialize(final Object value) {
+		if (value == null) {
+			// serialize NULL values as byte arrays of length 0
+			return new byte[0];
+		}
+		return this.getSerializationManager().serialize(value);
+	}
+
+	protected Object deserialize(final byte[] serialForm) {
+		if (serialForm == null || serialForm.length <= 0) {
+			return null;
+		}
+		return this.getSerializationManager().deserialize(serialForm);
 	}
 
 	// =====================================================================================================================

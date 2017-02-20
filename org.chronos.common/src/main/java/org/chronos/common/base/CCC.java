@@ -13,6 +13,6 @@ import org.chronos.common.logging.LogLevel;
  */
 public class CCC {
 
-	public static final LogLevel MIN_LOG_LEVEL = LogLevel.INFO;
+	public static final LogLevel MIN_LOG_LEVEL = LogLevel.WARN;
 
 }

@@ -3,24 +3,28 @@ package org.chronos.chronodb.internal.impl.engines.jdbc;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.sql.DataSource;
-
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.IndexManager;
+import org.chronos.chronodb.api.MaintenanceManager;
 import org.chronos.chronodb.api.SerializationManager;
 import org.chronos.chronodb.api.exceptions.ChronoDBConfigurationException;
 import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
 import org.chronos.chronodb.api.exceptions.ChronosBuildVersionConflictException;
 import org.chronos.chronodb.internal.api.BranchManagerInternal;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
+import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
 import org.chronos.chronodb.internal.api.query.QueryManager;
+import org.chronos.chronodb.internal.impl.cache.bogus.ChronoDBBogusCache;
+import org.chronos.chronodb.internal.impl.cache.mosaic.MosaicCache;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractChronoDB;
 import org.chronos.chronodb.internal.impl.engines.inmemory.InMemorySerializationManager;
-import org.chronos.chronodb.internal.impl.index.StandardIndexManager;
+import org.chronos.chronodb.internal.impl.index.DocumentBasedIndexManager;
 import org.chronos.chronodb.internal.impl.query.StandardQueryManager;
 import org.chronos.common.version.ChronosVersion;
 
 import com.mchange.v2.c3p0.DataSources;
+
+import javax.sql.DataSource;
 
 /**
  * This implementation of {@link ChronoDB} utilizes a JDBC connection to a relational database for storage purposes.
@@ -74,6 +78,9 @@ public class JdbcChronoDB extends AbstractChronoDB {
 	private final SerializationManager serializationManager;
 	private final IndexManager indexManager;
 	private final QueryManager queryManager;
+	private final MaintenanceManager maintenanceManager;
+
+	private final ChronoDBCache cache;
 
 	// =================================================================================================================
 	// CONSTRUCTOR
@@ -87,8 +94,14 @@ public class JdbcChronoDB extends AbstractChronoDB {
 		// customization and configuration, we must use a solution that persists
 		// the configured version in the database.
 		this.serializationManager = new InMemorySerializationManager();
-		this.indexManager = new StandardIndexManager(this, new JdbcIndexManagerBackend(this));
+		this.indexManager = new DocumentBasedIndexManager(this, new JdbcIndexManagerBackend(this));
 		this.queryManager = new StandardQueryManager(this);
+		this.maintenanceManager = new JdbcMaintenanceManager(this);
+		if (configuration.isCachingEnabled()) {
+			this.cache = new MosaicCache(configuration.getCacheMaxSize());
+		} else {
+			this.cache = new ChronoDBBogusCache();
+		}
 		this.initializeShutdownHook();
 	}
 
@@ -114,6 +127,16 @@ public class JdbcChronoDB extends AbstractChronoDB {
 	@Override
 	public QueryManager getQueryManager() {
 		return this.queryManager;
+	}
+
+	@Override
+	public MaintenanceManager getMaintenanceManager() {
+		return this.maintenanceManager;
+	}
+
+	@Override
+	public ChronoDBCache getCache() {
+		return this.cache;
 	}
 
 	// =================================================================================================================

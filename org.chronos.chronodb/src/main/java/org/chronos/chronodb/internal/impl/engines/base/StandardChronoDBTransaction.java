@@ -2,13 +2,17 @@ package org.chronos.chronodb.internal.impl.engines.base;
 
 import static com.google.common.base.Preconditions.*;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.chronos.chronodb.api.ChangeSetEntry;
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.api.ChronoDBTransaction;
+import org.chronos.chronodb.api.Order;
 import org.chronos.chronodb.api.PutOption;
 import org.chronos.chronodb.api.builder.query.QueryBuilderFinalizer;
 import org.chronos.chronodb.api.builder.query.QueryBuilderStarter;
@@ -21,7 +25,7 @@ import org.chronos.chronodb.api.key.TemporalKey;
 import org.chronos.chronodb.internal.api.TemporalKeyValueStore;
 import org.chronos.chronodb.internal.api.query.ChronoDBQuery;
 
-import com.google.common.collect.Sets;
+import com.google.common.collect.Maps;
 
 public class StandardChronoDBTransaction implements ChronoDBTransaction {
 
@@ -29,7 +33,7 @@ public class StandardChronoDBTransaction implements ChronoDBTransaction {
 	protected final TemporalKeyValueStore tkvs;
 	protected final String branchIdentifier;
 
-	protected final Set<ChangeSetEntry> changeSet = Sets.newConcurrentHashSet();
+	protected final Map<QualifiedKey, ChangeSetEntry> changeSet = Maps.newHashMap();
 	protected final ChronoDBTransaction.Configuration configuration;
 
 	protected boolean incrementalCommitProcessActive = false;
@@ -191,6 +195,82 @@ public class StandardChronoDBTransaction implements ChronoDBTransaction {
 	}
 
 	// =====================================================================================================================
+	// COMMIT METADATA STORE OPERATIONS
+	// =====================================================================================================================
+
+	@Override
+	public Iterator<Long> getCommitTimestampsBetween(final long from, final long to, final Order order) {
+		checkArgument(from >= 0, "Precondition violation - argument 'from' must not be negative!");
+		checkArgument(from <= this.getTimestamp(),
+				"Precondition violation - argument 'from' must not be larger than the transaction timestamp!");
+		checkArgument(to >= 0, "Precondition violation - argument 'to' must not be negative!");
+		checkArgument(to <= this.getTimestamp(),
+				"Precondition violation - argument 'to' must not be larger than the transaction timestamp!");
+		checkNotNull(order, "Precondition violation - argument 'order' must not be NULL!");
+		return this.getTKVS().performGetCommitTimestampsBetween(this, from, to, order);
+	}
+
+	@Override
+	public Iterator<Entry<Long, Object>> getCommitMetadataBetween(final long from, final long to, final Order order) {
+		checkArgument(from >= 0, "Precondition violation - argument 'from' must not be negative!");
+		checkArgument(from <= this.getTimestamp(),
+				"Precondition violation - argument 'from' must not be larger than the transaction timestamp!");
+		checkArgument(to >= 0, "Precondition violation - argument 'to' must not be negative!");
+		checkArgument(to <= this.getTimestamp(),
+				"Precondition violation - argument 'to' must not be larger than the transaction timestamp!");
+		checkNotNull(order, "Precondition violation - argument 'order' must not be NULL!");
+		return this.getTKVS().performGetCommitMetadataBetween(this, from, to, order);
+	}
+
+	@Override
+	public Iterator<Long> getCommitTimestampsPaged(final long minTimestamp, final long maxTimestamp, final int pageSize,
+			final int pageIndex, final Order order) {
+		checkArgument(minTimestamp >= 0, "Precondition violation - argument 'minTimestamp' must not be negative!");
+		checkArgument(minTimestamp <= this.getTimestamp(),
+				"Precondition violation - argument 'minTimestamp' must not be larger than the transaction timestamp!");
+		checkArgument(maxTimestamp >= 0, "Precondition violation - argument 'maxTimestamp' must not be negative!");
+		checkArgument(maxTimestamp <= this.getTimestamp(),
+				"Precondition violation - argument 'maxTimestamp' must not be larger than the transaction timestamp!");
+		checkArgument(pageSize > 0, "Precondition violation - argument 'pageSize' must be greater than zero!");
+		checkArgument(pageIndex >= 0, "Precondition violation - argument 'pageIndex' must not be negative!");
+		checkNotNull(order, "Precondition violation - argument 'order' must not be NULL!");
+		return this.getTKVS().performGetCommitTimestampsPaged(this, minTimestamp, maxTimestamp, pageSize, pageIndex,
+				order);
+	}
+
+	@Override
+	public Iterator<Entry<Long, Object>> getCommitMetadataPaged(final long minTimestamp, final long maxTimestamp,
+			final int pageSize, final int pageIndex, final Order order) {
+		checkArgument(minTimestamp >= 0, "Precondition violation - argument 'minTimestamp' must not be negative!");
+		checkArgument(minTimestamp <= this.getTimestamp(),
+				"Precondition violation - argument 'minTimestamp' must not be larger than the transaction timestamp!");
+		checkArgument(maxTimestamp >= 0, "Precondition violation - argument 'maxTimestamp' must not be negative!");
+		checkArgument(maxTimestamp <= this.getTimestamp(),
+				"Precondition violation - argument 'maxTimestamp' must not be larger than the transaction timestamp!");
+		checkArgument(pageSize > 0, "Precondition violation - argument 'pageSize' must be greater than zero!");
+		checkArgument(pageIndex >= 0, "Precondition violation - argument 'pageIndex' must not be negative!");
+		checkNotNull(order, "Precondition violation - argument 'order' must not be NULL!");
+		return this.getTKVS().performGetCommitMetadataPaged(this, minTimestamp, maxTimestamp, pageSize, pageIndex,
+				order);
+	}
+
+	@Override
+	public int countCommitTimestampsBetween(final long from, final long to) {
+		checkArgument(from >= 0, "Precondition violation - argument 'from' must not be negative!");
+		checkArgument(from <= this.getTimestamp(),
+				"Precondition violation - argument 'from' must not be larger than the transaction timestamp!");
+		checkArgument(to >= 0, "Precondition violation - argument 'to' must not be negative!");
+		checkArgument(to <= this.getTimestamp(),
+				"Precondition violation - argument 'to' must not be larger than the transaction timestamp!");
+		return this.getTKVS().performCountCommitTimestampsBetween(this, from, to);
+	}
+
+	@Override
+	public int countCommitTimestamps() {
+		return this.getTKVS().performCountCommitTimestamps(this);
+	}
+
+	// =====================================================================================================================
 	// OPERATION [ GET COMMIT METADATA ]
 	// =====================================================================================================================
 
@@ -289,7 +369,8 @@ public class StandardChronoDBTransaction implements ChronoDBTransaction {
 
 	@Override
 	public void put(final String key, final Object value) {
-		checkNotNull(value, "Argument 'value' must not be NULL! Use 'remove(...)' instead to remove it from the store.");
+		checkNotNull(value,
+				"Argument 'value' must not be NULL! Use 'remove(...)' instead to remove it from the store.");
 		this.put(key, value, PutOption.NONE);
 	}
 
@@ -297,7 +378,8 @@ public class StandardChronoDBTransaction implements ChronoDBTransaction {
 	public void put(final String key, final Object value, final PutOption... options) {
 		this.assertIsReadWrite();
 		checkNotNull(key, "Precondition violation - argument 'key' must not be NULL!");
-		checkNotNull(value, "Argument 'value' must not be NULL! Use 'remove(...)' instead to remove it from the store.");
+		checkNotNull(value,
+				"Argument 'value' must not be NULL! Use 'remove(...)' instead to remove it from the store.");
 		checkNotNull(options, "Precondition violation - argument 'options' must not be NULL!");
 		QualifiedKey qKey = QualifiedKey.createInDefaultKeyspace(key);
 		this.putInternal(qKey, value, options);
@@ -321,7 +403,7 @@ public class StandardChronoDBTransaction implements ChronoDBTransaction {
 
 	protected void putInternal(final QualifiedKey key, final Object value, final PutOption[] options) {
 		ChangeSetEntry entry = ChangeSetEntry.createChange(key, value, options);
-		this.changeSet.add(entry);
+		this.changeSet.put(key, entry);
 	}
 
 	// =================================================================================================================
@@ -347,7 +429,7 @@ public class StandardChronoDBTransaction implements ChronoDBTransaction {
 
 	protected void removeInternal(final QualifiedKey key) {
 		ChangeSetEntry entry = ChangeSetEntry.createDeletion(key);
-		this.changeSet.add(entry);
+		this.changeSet.put(key, entry);
 	}
 
 	// =================================================================================================================
@@ -355,8 +437,8 @@ public class StandardChronoDBTransaction implements ChronoDBTransaction {
 	// =================================================================================================================
 
 	@Override
-	public Set<ChangeSetEntry> getChangeSet() {
-		return Collections.unmodifiableSet(this.changeSet);
+	public Collection<ChangeSetEntry> getChangeSet() {
+		return Collections.unmodifiableCollection(this.changeSet.values());
 	}
 
 	@Override

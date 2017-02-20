@@ -4,15 +4,18 @@ import java.io.File;
 
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.IndexManager;
+import org.chronos.chronodb.api.MaintenanceManager;
 import org.chronos.chronodb.api.SerializationManager;
 import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
 import org.chronos.chronodb.api.exceptions.ChronosBuildVersionConflictException;
 import org.chronos.chronodb.internal.api.BranchManagerInternal;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
+import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
 import org.chronos.chronodb.internal.api.query.QueryManager;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractChronoDB;
 import org.chronos.chronodb.internal.impl.engines.inmemory.InMemorySerializationManager;
-import org.chronos.chronodb.internal.impl.index.StandardIndexManager;
+import org.chronos.chronodb.internal.impl.index.DocumentBasedIndexManager;
+import org.chronos.chronodb.internal.impl.mapdb.MapDBTransaction;
 import org.chronos.chronodb.internal.impl.query.StandardQueryManager;
 import org.chronos.common.version.ChronosVersion;
 import org.mapdb.Atomic.Var;
@@ -37,6 +40,9 @@ public class MapDBChronoDB extends AbstractChronoDB {
 	private final SerializationManager serializationManager;
 	private final IndexManager indexManager;
 	private final QueryManager queryManager;
+	private final MaintenanceManager maintenanceManager;
+
+	private final ChronoDBCache cache;
 
 	// =================================================================================================================
 	// CONSTRUCTOR
@@ -51,8 +57,10 @@ public class MapDBChronoDB extends AbstractChronoDB {
 		// customization and configuration, we must use a solution that persists
 		// the configured version in the database.
 		this.serializationManager = new InMemorySerializationManager();
-		this.indexManager = new StandardIndexManager(this, new MapDBIndexManagerBackend(this));
+		this.indexManager = new DocumentBasedIndexManager(this, new MapDBIndexManagerBackend(this));
 		this.queryManager = new StandardQueryManager(this);
+		this.maintenanceManager = new MapDBMaintenanceManager(this);
+		this.cache = ChronoDBCache.createCacheForConfiguration(configuration);
 		this.initializeShutdownHook();
 		// perform the initial commit (primarily contains setup of empty B-Trees)
 		this.db.commit();
@@ -80,6 +88,16 @@ public class MapDBChronoDB extends AbstractChronoDB {
 	@Override
 	public QueryManager getQueryManager() {
 		return this.queryManager;
+	}
+
+	@Override
+	public MaintenanceManager getMaintenanceManager() {
+		return this.maintenanceManager;
+	}
+
+	@Override
+	public ChronoDBCache getCache() {
+		return this.cache;
 	}
 
 	// =================================================================================================================
@@ -121,7 +139,7 @@ public class MapDBChronoDB extends AbstractChronoDB {
 
 	@Override
 	protected void updateBuildVersionInDatabase() {
-		try (MapDBTransaction tx = new MapDBTransaction(this.db)) {
+		try (MapDBTransaction tx = this.openTransaction()) {
 			Var<String> variable = tx.atomicVar(VARIABLE_NAME__CHRONOS_BUILD_VERSION);
 			String versionString = variable.get();
 			if (versionString == null) {

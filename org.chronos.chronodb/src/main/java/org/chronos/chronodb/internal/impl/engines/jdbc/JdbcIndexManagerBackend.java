@@ -22,8 +22,7 @@ import org.chronos.chronodb.internal.api.index.DocumentAddition;
 import org.chronos.chronodb.internal.api.index.DocumentDeletion;
 import org.chronos.chronodb.internal.api.index.DocumentValidityTermination;
 import org.chronos.chronodb.internal.api.query.SearchSpecification;
-import org.chronos.chronodb.internal.impl.engines.base.AbstractIndexManagerBackend;
-import org.chronos.chronodb.internal.impl.engines.base.IndexManagerBackend;
+import org.chronos.chronodb.internal.impl.engines.base.AbstractDocumentBasedIndexManagerBackend;
 import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 import org.chronos.common.logging.ChronoLogger;
@@ -32,7 +31,7 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Sets;
 
-public class JdbcIndexManagerBackend extends AbstractIndexManagerBackend implements IndexManagerBackend {
+public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBackend {
 
 	// =================================================================================================================
 	// CONSTRUCTOR
@@ -185,11 +184,15 @@ public class JdbcIndexManagerBackend extends AbstractIndexManagerBackend impleme
 	}
 
 	@Override
-	protected Set<ChronoIndexDocument> getDocumentsTouchedAtOrAfterTimestamp(final long timestamp) {
+	protected Set<ChronoIndexDocument> getDocumentsTouchedAtOrAfterTimestamp(final long timestamp, final Set<String> branches) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkNotNull(branches, "Precondition violation - argument 'branches' must not be NULL!");
+		if (branches.isEmpty()) {
+			return Sets.newHashSet();
+		}
 		try (Connection connection = this.openConnection()) {
 			JdbcIndexDocumentTable documentsTable = JdbcIndexDocumentTable.get(connection);
-			return documentsTable.getDocumentsTouchedAtOrAfterTimestamp(timestamp);
+			return documentsTable.getDocumentsTouchedAtOrAfterTimestamp(timestamp, branches);
 		} catch (SQLException | JdbcTableException e) {
 			throw new ChronoDBStorageBackendException("Failed to query Index Documents Table!", e);
 		}

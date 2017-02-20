@@ -14,12 +14,10 @@ import com.google.common.collect.Lists;
  * This is a thread-safe list of statistic samples that is capable of providing standard statistic information.
  *
  * <p>
- * The "samples" are stored as <code>double</code> values. The meaning of each sample is decided by the application that
- * uses this class. Please note that this class is intended only for samples which are greater than zero.
+ * The "samples" are stored as <code>double</code> values. The meaning of each sample is decided by the application that uses this class. Please note that this class is intended only for samples which are greater than zero.
  *
  * <p>
- * This class is completely thread-safe. All operations internally make use of a {@link ReadWriteLock} for
- * synchronization.
+ * This class is completely thread-safe. All operations internally make use of a {@link ReadWriteLock} for synchronization.
  *
  * <p>
  * Instances of this class can be created using the constructor. No additional handling is required.
@@ -273,6 +271,7 @@ public class Statistic {
 			List<Double> sorted = Lists.newArrayList(this.samples);
 			Collections.sort(sorted);
 			int index = (int) Math.round(sorted.size() * percent / 100);
+			index = Math.min(index, sorted.size() - 1);
 			return sorted.get(index);
 		} finally {
 			this.lock.readLock().unlock();

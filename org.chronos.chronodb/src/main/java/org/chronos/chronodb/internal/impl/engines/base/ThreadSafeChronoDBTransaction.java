@@ -22,7 +22,7 @@ public class ThreadSafeChronoDBTransaction extends StandardChronoDBTransaction {
 		this.changeSetLock.lock();
 		try {
 			ChangeSetEntry entry = ChangeSetEntry.createChange(key, value, options);
-			this.changeSet.add(entry);
+			this.changeSet.put(key, entry);
 		} finally {
 			this.changeSetLock.unlock();
 		}
@@ -33,7 +33,7 @@ public class ThreadSafeChronoDBTransaction extends StandardChronoDBTransaction {
 		this.changeSetLock.lock();
 		try {
 			ChangeSetEntry entry = ChangeSetEntry.createDeletion(key);
-			this.changeSet.add(entry);
+			this.changeSet.put(key, entry);
 		} finally {
 			this.changeSetLock.unlock();
 		}

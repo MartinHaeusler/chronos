@@ -1,7 +1,8 @@
 package org.chronos.chronodb.internal.impl.engines.jdbc;
 
-import static com.google.common.base.Preconditions.*;
 import static org.chronos.common.logging.ChronoLogger.*;
+
+import static com.google.common.base.Preconditions.*;
 
 import java.sql.Blob;
 import java.sql.Connection;
@@ -13,14 +14,13 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
 import org.chronos.chronodb.api.key.QualifiedKey;
+import org.chronos.chronodb.internal.api.GetResult;
 import org.chronos.chronodb.internal.api.Period;
-import org.chronos.chronodb.internal.api.RangedGetResult;
 import org.chronos.chronodb.internal.api.stream.CloseableIterator;
 import org.chronos.chronodb.internal.impl.jdbc.table.DefaultJdbcTable;
 import org.chronos.chronodb.internal.impl.jdbc.table.IndexDeclaration;
@@ -30,9 +30,12 @@ import org.chronos.chronodb.internal.impl.jdbc.util.NamedParameterStatement;
 import org.chronos.chronodb.internal.impl.stream.AbstractCloseableIterator;
 import org.chronos.chronodb.internal.impl.temporal.UnqualifiedTemporalEntry;
 import org.chronos.chronodb.internal.impl.temporal.UnqualifiedTemporalKey;
+import org.chronos.chronodb.internal.util.KeySetModifications;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
+import com.google.common.collect.TreeMultimap;
 
 /**
  * Matrix Tables are used by {@link ChronoDB} to store the actual temporal key-value data.
@@ -217,59 +220,6 @@ class JdbcMatrixTable extends DefaultJdbcTable {
 		return sql.toString();
 	}
 
-	/**
-	 * Performs a temporal SQL <i>get</i> operation for the given key at the given timestamp.
-	 *
-	 * <p>
-	 * This method returns the value for the given key at the given timestamp. If there is no value at precisely the
-	 * given timestamp, it will return the value specified by the most recent <code>INSERT</code> operation that
-	 * occurred before the given timestamp.
-	 *
-	 * @param timestamp
-	 *            The timestamp at which to search for the key-value pair (inclusive). Must not be negative.
-	 * @param mapKey
-	 *            The key of the key-value pair to retrieve. Must not be <code>null</code>.
-	 *
-	 * @return The value for the given key, in its <code>byte</code> array representation.
-	 *
-	 * @throws ChronoDBStorageBackendException
-	 *             Thrown if an exception occurs in the storage backend during the execution of this operation.
-	 */
-	public byte[] getValueForKey(final String mapKey, final long timestamp) throws ChronoDBStorageBackendException {
-		checkNotNull(mapKey, "Precondition violation - argument 'mapKey' must not be NULL!");
-		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
-		String sql = this.generateSQLGetValue();
-		try (NamedParameterStatement nStmt = new NamedParameterStatement(this.connection, sql)) {
-			nStmt.setParameter("key", mapKey);
-			nStmt.setParameter("timestamp", timestamp);
-			logTrace("[GET] " + nStmt.toStringWithResolvedParameters());
-			byte[] result;
-			try (ResultSet resultSet = nStmt.executeQuery()) {
-				boolean hasNext = resultSet.next();
-				if (hasNext) {
-					Blob blob = resultSet.getBlob(PROPERTY_VALUE);
-					byte[] bytes = null;
-					try {
-						bytes = blob.getBytes(1, (int) blob.length());
-					} finally {
-						blob.free();
-					}
-					result = bytes;
-				} else {
-					result = null;
-				}
-				if (resultSet.next()) {
-					throw new ChronoDBStorageBackendException(
-							"[GET(" + mapKey + ")] has multiple results for the same timestamp!");
-				}
-			}
-			return result;
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException(
-					"Could not perform [GET(" + mapKey + ")] on Matrix Table '" + this.tableName + "'!", e);
-		}
-	}
-
 	private String generateSQLGetRangeValidUntil() {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT tCeil.");
@@ -292,7 +242,7 @@ class JdbcMatrixTable extends DefaultJdbcTable {
 		return sql.toString();
 	}
 
-	public RangedGetResult<byte[]> getRangedValueForKey(final QualifiedKey qKey, final long timestamp) {
+	public GetResult<byte[]> getRangedValueForKey(final QualifiedKey qKey, final long timestamp) {
 		checkNotNull(qKey, "Precondition violation - argument 'qKey' must not be NULL!");
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		// Note: this operation is far too complex to be executed in a single query. We have to split it up.
@@ -332,7 +282,7 @@ class JdbcMatrixTable extends DefaultJdbcTable {
 					"Could not perform [GTR(" + qKey + ", " + timestamp + ")]on Matrix Table '" + this.tableName + "'!",
 					e);
 		}
-		// then, run the query fo rthe "ceilTimestamp"
+		// then, run the query for the "ceilTimestamp"
 		sql = this.generateSQLGetRangeValidUntil();
 		try (NamedParameterStatement nStmt = new NamedParameterStatement(this.connection, sql)) {
 			nStmt.setParameter("key", qKey.getKey());
@@ -366,102 +316,9 @@ class JdbcMatrixTable extends DefaultJdbcTable {
 			foundSomething = true;
 		}
 		if (foundSomething) {
-			return RangedGetResult.create(qKey, value, range);
+			return GetResult.create(qKey, value, range);
 		} else {
-			return RangedGetResult.createNoValueResult(qKey, range);
-		}
-	}
-
-	/**
-	 * Generates and returns the SQL command for a temporal <i>exists</i> operation.
-	 *
-	 * <p>
-	 * This operation generates the SQL syntax for a <b>prepared statement</b> with <b>three parameters</b>:
-	 * <ol>
-	 * <li>The map key to search for
-	 * <li>The map key to search for (same as 1)
-	 * <li>The timestamp at which the search occurs
-	 * </ol>
-	 *
-	 * The repeated usage of the map key parameter is introduced by a SQL Sub-SELECT clause and the lack of named
-	 * parameters in plain JDBC.
-	 *
-	 * <p>
-	 * The result of the SQL will be a single element, which is an integer (0 for <code>false</code>, 1 for
-	 * <code>true</code>).
-	 *
-	 * @return The SQL prepared statement, as specified above.
-	 */
-	private String generateSQLExistsValue() {
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT CASE WHEN length(t1.");
-		sql.append(PROPERTY_VALUE);
-		sql.append(") <= 0 THEN 0 ELSE 1 END FROM ");
-		sql.append(this.tableName);
-		sql.append(" t1 WHERE t1.");
-		sql.append(PROPERTY_KEY);
-		sql.append(" = ? AND t1."); // ? ... KEY
-		sql.append(PROPERTY_TIMESTAMP);
-		sql.append(" = ( SELECT MAX(t2.");
-		sql.append(PROPERTY_TIMESTAMP);
-		sql.append(") FROM ");
-		sql.append(this.tableName);
-		sql.append(" t2 WHERE t2.");
-		sql.append(PROPERTY_KEY);
-		sql.append(" = ? AND t2."); // ? ... KEY
-		sql.append(PROPERTY_TIMESTAMP);
-		sql.append(" <= ? )"); // ? ... TIMESTAMP
-		return sql.toString();
-	}
-
-	/**
-	 * Performs a temporal SQL <i>exists</i> operation for the given key at the given timestamp.
-	 *
-	 * <p>
-	 * This method returns <code>true</code> if there is a non-<code>null</code> value for the key at the given
-	 * timestamp, otherwise <code>false</code> is returned.
-	 *
-	 * @param timestamp
-	 *            The timestamp at which to search for the key-value pair (inclusive). Must not be negative.
-	 * @param mapKey
-	 *            The key to check existence of a non-<code>null</code> value for. Must not be <code>null</code>.
-	 * @return <code>true</code> if there is a non-<code>null</code> value for the given key at the given timestamp,
-	 *         otherwise <code>false</code>.
-	 *
-	 * @throws ChronoDBStorageBackendException
-	 *             Thrown if an exception occurs in the storage backend during the execution of this operation.
-	 */
-	public boolean existsValueForKey(final String mapKey, final long timestamp) throws ChronoDBStorageBackendException {
-		checkNotNull(mapKey, "Precondition violation - argument 'mapKey' must not be NULL!");
-		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
-		String sql = this.generateSQLExistsValue();
-		try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
-			pstmt.setString(1, mapKey);
-			pstmt.setString(2, mapKey);
-			pstmt.setLong(3, timestamp);
-			logTrace("[EXS] " + JdbcUtils.resolvePreparedStatement(sql, mapKey, mapKey, timestamp));
-			boolean result;
-			try (ResultSet resultSet = pstmt.executeQuery()) {
-				boolean hasNext = resultSet.next();
-				if (hasNext) {
-					int intValue = resultSet.getInt(1);
-					if (intValue == 0) {
-						result = false;
-					} else {
-						result = true;
-					}
-				} else {
-					result = false;
-				}
-				if (resultSet.next()) {
-					throw new ChronoDBStorageBackendException(
-							"[EXS(" + mapKey + ")] has multiple results for the same timestamp!");
-				}
-			}
-			return result;
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException(
-					"Could not perform [EXS(" + mapKey + ")] on Matrix Table '" + this.tableName + "'!", e);
+			return GetResult.createNoValueResult(qKey, range);
 		}
 	}
 
@@ -655,91 +512,6 @@ class JdbcMatrixTable extends DefaultJdbcTable {
 	}
 
 	/**
-	 * Generates the SQL <code>SELECT</code> command for a <i>key set</i> query on this Matrix Table.
-	 *
-	 * <p>
-	 * This operation generates the SQL syntax for a <b>prepared statement</b> with <b>one parameter</b> which specifies
-	 * the timestamp at which the search occurs.
-	 *
-	 * @return The SQL <code>SELECT</code> command for a key set query.
-	 */
-	private String generateSQLGetKeySet() {
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT ");
-		sql.append(PROPERTY_KEY);
-		sql.append(" FROM ");
-		sql.append(this.tableName);
-		sql.append(" WHERE ");
-		sql.append(PROPERTY_TIMESTAMP);
-		sql.append(" <= ?");
-		return sql.toString();
-	}
-
-	/**
-	 * Queries this Matrix Table for the key set at the given timestamp.
-	 *
-	 * @param timestamp
-	 *            The timestamp at which the search for the key set occurs. Must not be negative.
-	 *
-	 * @return Iterator over the keys present in the table at the given timestamp. May be empty, but never
-	 *         <code>null</code>.
-	 *
-	 * @throws ChronoDBStorageBackendException
-	 *             Thrown if an exception occurs in the storage backend during the execution of this operation.
-	 */
-	public Iterator<String> getKeySet(final long timestamp) throws ChronoDBStorageBackendException {
-		checkArgument(timestamp >= 0,
-				"Precondition violation - argument 'timestamp' must be >= 0 (value: " + timestamp + ")!");
-		String sql = this.generateSQLGetKeySet();
-		try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
-			pstmt.setLong(1, timestamp);
-			logTrace("[KEY] " + JdbcUtils.resolvePreparedStatement(sql, timestamp));
-			List<String> keys = Lists.newArrayList();
-			try (ResultSet resultSet = pstmt.executeQuery()) {
-				while (resultSet.next()) {
-					String key = resultSet.getString(PROPERTY_KEY);
-					keys.add(key);
-				}
-			}
-			pstmt.close();
-			// TODO PERFORMANCE JDBC: Checking existence for every key in the key set with one query per key -> STUPID
-			return keys.stream().filter(key -> this.existsValueForKey(key, timestamp)).collect(Collectors.toList())
-					.iterator();
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException(
-					"Could not perform [KEY] on Matrix Table '" + this.tableName + "'!", e);
-		}
-	}
-
-	private String generateSQLGetAllKeys() {
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT DISTINCT ");
-		sql.append(PROPERTY_KEY);
-		sql.append(" FROM ");
-		sql.append(this.tableName);
-		return sql.toString();
-	}
-
-	public Iterator<String> getAllKeys() {
-		String sql = this.generateSQLGetAllKeys();
-		try (PreparedStatement pstmt = this.connection.prepareStatement(sql)) {
-			logTrace("[AKY] " + JdbcUtils.resolvePreparedStatement(sql));
-			List<String> keys = Lists.newArrayList();
-			try (ResultSet resultSet = pstmt.executeQuery()) {
-				while (resultSet.next()) {
-					String key = resultSet.getString(PROPERTY_KEY);
-					keys.add(key);
-				}
-			}
-			pstmt.close();
-			return keys.iterator();
-		} catch (SQLException e) {
-			throw new ChronoDBStorageBackendException(
-					"Could not perform [AKY] on Matrix Table '" + this.tableName + "'!", e);
-		}
-	}
-
-	/**
 	 * Generates the SQL <code>SELECT</code> command for a <i>all entries</i> query on this Matrix Table.
 	 *
 	 * <p>
@@ -854,6 +626,92 @@ class JdbcMatrixTable extends DefaultJdbcTable {
 		} catch (SQLException e) {
 			throw new ChronoDBStorageBackendException("Failed to read from Matrix Table '" + this.tableName + "'!", e);
 		}
+	}
+
+	private String generateSQLGetKeySetAdditions() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT ");
+		sql.append(PROPERTY_KEY);
+		sql.append(", ");
+		sql.append(PROPERTY_TIMESTAMP);
+		sql.append(" FROM ");
+		sql.append(this.tableName);
+		sql.append(" WHERE ");
+		sql.append(PROPERTY_TIMESTAMP);
+		sql.append(" <= ${upperBound} AND LENGTH(");
+		sql.append(PROPERTY_VALUE);
+		sql.append(") > 0");
+		return sql.toString();
+	}
+
+	private String generateSQLGetKeySetRemovals() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("SELECT ");
+		sql.append(PROPERTY_KEY);
+		sql.append(", ");
+		sql.append(PROPERTY_TIMESTAMP);
+		sql.append(" FROM ");
+		sql.append(this.tableName);
+		sql.append(" WHERE ");
+		sql.append(PROPERTY_TIMESTAMP);
+		sql.append(" <= ${upperBound} AND LENGTH(");
+		sql.append(PROPERTY_VALUE);
+		sql.append(") <= 0");
+		return sql.toString();
+	}
+
+	public KeySetModifications keySetModifications(final long maxTimestamp) {
+		checkArgument(maxTimestamp >= 0,
+				"Precondition violation - argument 'maxTimestamp' must be greater than or equal to zero!");
+		// multi map for storing additions/removals in ascending order
+		Multimap<Long, Pair<String, Boolean>> modificationsMap = TreeMultimap.create();
+
+		// get the additions
+		String sql = this.generateSQLGetKeySetAdditions();
+		try (NamedParameterStatement nStmt = new NamedParameterStatement(this.connection, sql)) {
+			nStmt.setParameter("upperBound", maxTimestamp);
+			try (ResultSet resultSet = nStmt.executeQuery()) {
+				while (resultSet.next()) {
+					String key = resultSet.getString(PROPERTY_KEY);
+					long timestamp = resultSet.getLong(PROPERTY_TIMESTAMP);
+					modificationsMap.put(timestamp, Pair.of(key, true));
+				}
+			}
+		} catch (SQLException e) {
+			throw new ChronoDBStorageBackendException("Failed to read from Matrix Table '" + this.tableName + "'!", e);
+		}
+
+		// get the removals
+		sql = this.generateSQLGetKeySetRemovals();
+		try (NamedParameterStatement nStmt = new NamedParameterStatement(this.connection, sql)) {
+			nStmt.setParameter("upperBound", maxTimestamp);
+			try (ResultSet resultSet = nStmt.executeQuery()) {
+				while (resultSet.next()) {
+					String key = resultSet.getString(PROPERTY_KEY);
+					long timestamp = resultSet.getLong(PROPERTY_TIMESTAMP);
+					modificationsMap.put(timestamp, Pair.of(key, false));
+				}
+			}
+		} catch (SQLException e) {
+			throw new ChronoDBStorageBackendException("Failed to read from Matrix Table '" + this.tableName + "'!", e);
+		}
+
+		// combine them
+		Set<String> additions = Sets.newHashSet();
+		Set<String> removals = Sets.newHashSet();
+		// iteration is done in ascending timestamp order
+		for (Pair<String, Boolean> entry : modificationsMap.values()) {
+			String key = entry.getLeft();
+			Boolean isAddition = entry.getRight();
+			if (isAddition) {
+				additions.add(key);
+				removals.remove(key);
+			} else {
+				additions.remove(key);
+				removals.add(key);
+			}
+		}
+		return new KeySetModifications(additions, removals);
 	}
 
 	// =================================================================================================================

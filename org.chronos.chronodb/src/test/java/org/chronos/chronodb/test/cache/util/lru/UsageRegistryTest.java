@@ -7,8 +7,8 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.chronos.chronodb.api.key.QualifiedKey;
+import org.chronos.chronodb.internal.api.GetResult;
 import org.chronos.chronodb.internal.api.Period;
-import org.chronos.chronodb.internal.api.RangedGetResult;
 import org.chronos.chronodb.internal.impl.cache.util.lru.DefaultUsageRegistry;
 import org.chronos.chronodb.internal.impl.cache.util.lru.RangedGetResultUsageRegistry;
 import org.chronos.chronodb.internal.impl.cache.util.lru.UsageRegistry;
@@ -40,7 +40,7 @@ public class UsageRegistryTest extends ChronoDBUnitTest {
 		registry.registerUsage(3);
 		registry.registerUsage(2);
 		registry.registerUsage(1);
-		assertEquals(4, registry.size());
+		assertEquals(4, registry.sizeInElements());
 	}
 
 	@Test
@@ -94,7 +94,7 @@ public class UsageRegistryTest extends ChronoDBUnitTest {
 		AssertElementsRemovedListener<Integer> listener = new AssertElementsRemovedListener<>(4, 3);
 		registry.addLeastRecentlyUsedRemoveListenerToAnyTopic(listener);
 		// clear the registry by removing the least recently used element, one at a time
-		registry.removeLeastRecentlyUsedUntilSizeIs(2);
+		registry.removeLeastRecentlyUsedUntil(() -> registry.sizeInElements() <= 2);
 		// assert that the elements have been removed in the correct order
 		listener.assertAllExpectedElementsRemoved();
 	}
@@ -104,12 +104,12 @@ public class UsageRegistryTest extends ChronoDBUnitTest {
 		UsageRegistry<Integer> registry = new DefaultUsageRegistry<Integer>((e) -> e);
 		assertNotNull(registry);
 		registry.removeLeastRecentlyUsedElement();
-		assertEquals(0, registry.size());
+		assertEquals(0, registry.sizeInElements());
 	}
 
 	@Test
 	public void topicBasedListenersOnlyReceiveNotificationsOnTheirTopic() {
-		UsageRegistry<RangedGetResult<?>> registry = new RangedGetResultUsageRegistry();
+		UsageRegistry<GetResult<?>> registry = new RangedGetResultUsageRegistry();
 		assertNotNull(registry);
 
 		// prepare some keys (= topics)
@@ -118,25 +118,24 @@ public class UsageRegistryTest extends ChronoDBUnitTest {
 		QualifiedKey qKey3 = QualifiedKey.createInDefaultKeyspace("Test3");
 
 		// prepare some values
-		RangedGetResult<?> rgr1 = RangedGetResult.create(qKey1, "Hello", Period.createRange(100, 200));
-		RangedGetResult<?> rgr2 = RangedGetResult.create(qKey2, "World", Period.createRange(100, 200));
-		RangedGetResult<?> rgr3 = RangedGetResult.create(qKey3, "Foo", Period.createRange(100, 200));
+		GetResult<?> entry1 = GetResult.create(qKey1, "Hello", Period.createRange(100, 200));
+		GetResult<?> entry2 = GetResult.create(qKey2, "World", Period.createRange(100, 200));
+		GetResult<?> entry3 = GetResult.create(qKey3, "Foo", Period.createRange(100, 200));
 
-		// add the values to the registry (most recently used = rgr1, least recently used = rgr3)
-		registry.registerUsage(rgr3);
-		registry.registerUsage(rgr2);
-		registry.registerUsage(rgr1);
+		// add the values to the registry (most recently used = entry1, least recently used = entry3)
+		registry.registerUsage(entry3);
+		registry.registerUsage(entry2);
+		registry.registerUsage(entry1);
 
 		// add the remove listeners
-		AssertElementsRemovedListener<RangedGetResult<?>> globalListener = new AssertElementsRemovedListener<>(rgr3,
-				rgr2);
-		AssertElementsRemovedListener<RangedGetResult<?>> qKey2Listener = new AssertElementsRemovedListener<>(rgr2);
-		AssertElementsRemovedListener<RangedGetResult<?>> qKey1Listener = new AssertElementsRemovedListener<>();
+		AssertElementsRemovedListener<GetResult<?>> globalListener = new AssertElementsRemovedListener<>(entry3, entry2);
+		AssertElementsRemovedListener<GetResult<?>> qKey2Listener = new AssertElementsRemovedListener<>(entry2);
+		AssertElementsRemovedListener<GetResult<?>> qKey1Listener = new AssertElementsRemovedListener<>();
 		registry.addLeastRecentlyUsedRemoveListenerToAnyTopic(globalListener);
 		registry.addLeastRecentlyUsedRemoveListener(qKey2, qKey2Listener);
 		registry.addLeastRecentlyUsedRemoveListener(qKey1, qKey1Listener);
 
-		registry.removeLeastRecentlyUsedUntilSizeIs(1);
+		registry.removeLeastRecentlyUsedUntil(() -> registry.sizeInElements() <= 1);
 
 		// now, our global listener should have received both remove calls
 		globalListener.assertAllExpectedElementsRemoved();
@@ -172,7 +171,7 @@ public class UsageRegistryTest extends ChronoDBUnitTest {
 		};
 		Runnable lruRemovalWorker = () -> {
 			while (true) {
-				registry.removeLeastRecentlyUsedUntilSizeIs(20);
+				registry.removeLeastRecentlyUsedUntil(() -> registry.sizeInElements() <= 20);
 				try {
 					Thread.sleep(5);
 				} catch (InterruptedException e) {
@@ -204,8 +203,9 @@ public class UsageRegistryTest extends ChronoDBUnitTest {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		registry.removeLeastRecentlyUsedUntil(() -> registry.sizeInElements() <= 20);
 		// assert that the registry has at most 20 elements
-		assertTrue(20 >= registry.size());
+		assertTrue(20 >= registry.sizeInElements());
 		// assert that removals indeed have happened
 		assertTrue(listener.getRemoveCallCount() > 0);
 	}
@@ -230,8 +230,7 @@ public class UsageRegistryTest extends ChronoDBUnitTest {
 			}
 			Object elementToBeRemoved = this.elementsToBeRemoved.get(0);
 			if (elementToBeRemoved.equals(element) == false) {
-				fail("Element '" + elementToBeRemoved + "' should have been removed next, but '" + element
-						+ "' was removed instead!");
+				fail("Element '" + elementToBeRemoved + "' should have been removed next, but '" + element + "' was removed instead!");
 			}
 			this.elementsToBeRemoved.remove(0);
 		}
@@ -241,8 +240,7 @@ public class UsageRegistryTest extends ChronoDBUnitTest {
 		}
 
 		public void assertAllExpectedElementsRemoved() {
-			assertTrue("All elements should have been removed, but '" + this.elementsToBeRemoved
-					+ "' have not yet been removed!", this.areAllExpectedElementsRemoved());
+			assertTrue("All elements should have been removed, but '" + this.elementsToBeRemoved + "' have not yet been removed!", this.areAllExpectedElementsRemoved());
 		}
 
 	}

@@ -1,7 +1,8 @@
 package org.chronos.chronodb.test.base;
 
-import static com.google.common.base.Preconditions.*;
 import static org.junit.Assert.*;
+
+import static com.google.common.base.Preconditions.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,10 +48,14 @@ public abstract class AllBackendsTest extends ChronosUnitTest {
 		Set<Object[]> resultSet = Sets.newHashSet();
 		Object[] inMemoryDB = new Object[] { ChronosBackend.INMEMORY };
 		Object[] jdbcDB = new Object[] { ChronosBackend.JDBC };
-		Object[] fileDB = new Object[] { ChronosBackend.FILE };
+		Object[] fileDB = new Object[] { ChronosBackend.MAPDB };
+		Object[] tuplDB = new Object[] { ChronosBackend.TUPL };
+		Object[] metaDB = new Object[] { ChronosBackend.CHUNKDB };
 		resultSet.add(inMemoryDB);
 		resultSet.add(jdbcDB);
 		resultSet.add(fileDB);
+		resultSet.add(tuplDB);
+		resultSet.add(metaDB);
 		return resultSet;
 	}
 
@@ -75,8 +80,12 @@ public abstract class AllBackendsTest extends ChronosUnitTest {
 			return this.createInMemoryDB();
 		case JDBC:
 			return this.createJdbcDB();
-		case FILE:
+		case MAPDB:
 			return this.createFileDB();
+		case TUPL:
+			return this.createTuplDB();
+		case CHUNKDB:
+			return this.createMetaDB();
 		default:
 			throw new RuntimeException("Unknown enumeration literal of ChronoDBBackend: '" + backend + "'!");
 		}
@@ -151,7 +160,7 @@ public abstract class AllBackendsTest extends ChronosUnitTest {
 
 	protected Configuration createFileDBConfiguration(final File dbFile) {
 		Configuration config = new BaseConfiguration();
-		config.addProperty(ChronoDBConfiguration.STORAGE_BACKEND, ChronosBackend.FILE.toString());
+		config.addProperty(ChronoDBConfiguration.STORAGE_BACKEND, ChronosBackend.MAPDB.toString());
 		config.addProperty(ChronoDBConfiguration.WORK_FILE, dbFile.getAbsolutePath());
 		return config;
 	}
@@ -163,6 +172,49 @@ public abstract class AllBackendsTest extends ChronosUnitTest {
 	protected ChronoDB createFileDB(final File file) {
 		checkNotNull(file, "Precondition violation - argument 'file' must not be NULL!");
 		Configuration configuration = this.createFileDBConfiguration(file);
+		return this.createDB(configuration);
+	}
+
+	protected Configuration createTuplDBConfiguration() {
+		return this.createTuplDBConfiguration(this.createFileDBFile());
+	}
+
+	protected Configuration createTuplDBConfiguration(final File dbFile) {
+		checkNotNull(dbFile, "Precondition violation - argument 'dbFile' must not be NULL!");
+		Configuration config = new BaseConfiguration();
+		config.addProperty(ChronoDBConfiguration.STORAGE_BACKEND, ChronosBackend.TUPL.toString());
+		config.addProperty(ChronoDBConfiguration.WORK_FILE, dbFile.getAbsolutePath());
+		return config;
+	}
+
+	protected ChronoDB createTuplDB() {
+		return this.createTuplDB(this.createFileDBFile());
+	}
+
+	protected ChronoDB createTuplDB(final File file) {
+		checkNotNull(file, "Precondition violation - argument 'file' must not be NULL!");
+		Configuration configuration = this.createTuplDBConfiguration(file);
+		return this.createDB(configuration);
+	}
+
+	protected Configuration createMetaDBConfiguration() {
+		return this.createMetaDBConfiguration(this.createFileDBFile());
+	}
+
+	protected Configuration createMetaDBConfiguration(final File dbFile) {
+		Configuration config = new BaseConfiguration();
+		config.addProperty(ChronoDBConfiguration.STORAGE_BACKEND, ChronosBackend.CHUNKDB.toString());
+		config.addProperty(ChronoDBConfiguration.WORK_FILE, dbFile.getAbsolutePath());
+		return config;
+	}
+
+	protected ChronoDB createMetaDB() {
+		return this.createMetaDB(this.createFileDBFile());
+	}
+
+	protected ChronoDB createMetaDB(final File file) {
+		checkNotNull(file, "Precondition violation - argument 'file' must not be NULL!");
+		Configuration configuration = this.createMetaDBConfiguration(file);
 		return this.createDB(configuration);
 	}
 

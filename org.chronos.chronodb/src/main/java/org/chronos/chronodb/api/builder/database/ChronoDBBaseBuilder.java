@@ -5,6 +5,7 @@ import java.util.Properties;
 
 import org.apache.commons.configuration.Configuration;
 import org.chronos.chronodb.api.ChronoDB;
+import org.chronos.chronodb.api.MaintenanceManager;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 
 /**
@@ -89,8 +90,50 @@ public interface ChronoDBBaseBuilder {
 	 *            The directory to write the DB data into. Must not be <code>null</code>, must point to a directory (not
 	 *            a file).
 	 * @return The builder to continue configuration with. Never <code>null</code>.
+	 *
+	 * @deprecated This is an outdated builder method that now redirects to {@link #mapDbDatabase(File)}. This method
+	 *             will eventually be deleted; prefer the explicit call to {@link #mapDbDatabase(File)} instead.
 	 */
-	public ChronoDBEmbeddedBuilder embeddedDatabase(File directory);
+	@Deprecated
+	public ChronoDBMapDBBuilder embeddedDatabase(File directory);
+
+	/**
+	 * Creates a builder that is configured to instantiate a process-embedded, <a href="http://www.mapdb.org/">MapDB</a>
+	 * -based {@link ChronoDB}.
+	 *
+	 * @param file
+	 *            The file to write the data into. Must not be <code>null</code>. Must point to an existing, accessible
+	 *            file.
+	 * @return The new builder to continue configuration with. Never <code>null</code>.
+	 */
+	public ChronoDBMapDBBuilder mapDbDatabase(File file);
+
+	/**
+	 * Creates a builder that is configured to instantiate a process-embedded,
+	 * <a href="https://github.com/cojen/Tupl">TUPL</a>-based {@link ChronoDB}.
+	 *
+	 * @param file
+	 *            The file to use as the "base path" for TUPL. All relevant data will be located in files that have the
+	 *            path of the given file as prefix. Must point to an existing, accessible file.
+	 * @return The new builder to continue configuration with. Never <code>null</code>.
+	 */
+	public ChronoDBTuplBuilder tuplDatabase(File file);
+
+	/**
+	 * Creates a builder that is configured to instantiate a process-embedded, chunked {@link ChronoDB}.
+	 *
+	 * <p>
+	 * A chunked ChronoDB organizes the data in chunks and is capable of performing
+	 * {@linkplain MaintenanceManager#performRolloverOnBranch(String) rollover} operations that allow for larger
+	 * histories to be managed effectively.
+	 *
+	 * @param file
+	 *            The base file where data is stored. Please note that this database backend will create several files
+	 *            and folders next to the given base file; it is recommended to have a folder that contains nothing else
+	 *            than this base file. Must not be <code>null</code>, must point to an existing, accessible file.
+	 * @return The new builder to continue configuration with. Never <code>null</code>.
+	 */
+	public ChronoDBChunkedBuilder chunkedDatabase(File file);
 
 	/**
 	 * Creates a builder that is configured to instantiate a {@link ChronoDB} that writes its contents to the SQL

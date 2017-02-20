@@ -1,7 +1,8 @@
 package org.chronos.chronodb.internal.impl.engines.mapdb;
 
-import static com.google.common.base.Preconditions.*;
 import static org.chronos.common.logging.ChronoLogger.*;
+
+import static com.google.common.base.Preconditions.*;
 
 import java.util.Collections;
 import java.util.Map;
@@ -11,12 +12,13 @@ import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.BranchManager;
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.internal.api.BranchInternal;
-import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
-import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
 import org.chronos.chronodb.internal.impl.BranchImpl;
 import org.chronos.chronodb.internal.impl.BranchMetadata;
-import org.chronos.chronodb.internal.impl.cache.mosaic.MosaicCache;
+import org.chronos.chronodb.internal.impl.MatrixUtils;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractBranchManager;
+import org.chronos.chronodb.internal.impl.mapdb.BranchMetadataMap;
+import org.chronos.chronodb.internal.impl.mapdb.MapDBTransaction;
+import org.chronos.chronodb.internal.impl.mapdb.NavigationMap;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
@@ -71,7 +73,7 @@ public class MapDBBranchManager extends AbstractBranchManager implements BranchM
 		}
 		try (MapDBTransaction tx = this.getOwningDB().openTransaction()) {
 			String keyspaceName = ChronoDBConstants.DEFAULT_KEYSPACE_NAME;
-			String tableName = MatrixMap.generateRandomName();
+			String tableName = MatrixUtils.generateRandomName();
 			logTrace("Creating branch: [" + branch.getName() + ", " + keyspaceName + ", " + tableName + "]");
 			NavigationMap.insert(tx, branch.getName(), keyspaceName, tableName, 0L);
 			BranchMetadataMap.insertOrUpdate(tx, branch.getMetadata());
@@ -124,6 +126,7 @@ public class MapDBBranchManager extends AbstractBranchManager implements BranchM
 			// ensure that it also exists in the branch metadata map
 			try (MapDBTransaction tx = this.getOwningDB().openTransaction()) {
 				BranchMetadataMap.insertOrUpdate(tx, masterBranchMetadata);
+				tx.commit();
 			}
 			return;
 		}
@@ -139,15 +142,9 @@ public class MapDBBranchManager extends AbstractBranchManager implements BranchM
 		}
 	}
 
-	private void attachTKVS(final BranchInternal branch) {
+	private MapDBTkvs attachTKVS(final BranchInternal branch) {
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
-		MapDBTkvs branchTKVS = new MapDBTkvs(this.getOwningDB(), branch);
-		ChronoDBConfiguration config = this.getOwningDB().getConfiguration();
-		if (config.isCachingEnabled()) {
-			// caching is enabled, so we create the cache for the branch here
-			ChronoDBCache cache = new MosaicCache(config.getCacheMaxSize());
-			branchTKVS.setCache(cache);
-		}
+		return new MapDBTkvs(this.getOwningDB(), branch);
 	}
 
 }

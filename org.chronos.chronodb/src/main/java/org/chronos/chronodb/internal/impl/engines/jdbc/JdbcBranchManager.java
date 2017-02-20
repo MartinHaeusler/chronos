@@ -15,11 +15,8 @@ import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
 import org.chronos.chronodb.api.exceptions.JdbcTableException;
 import org.chronos.chronodb.internal.api.BranchInternal;
-import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
-import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
 import org.chronos.chronodb.internal.impl.BranchImpl;
 import org.chronos.chronodb.internal.impl.BranchMetadata;
-import org.chronos.chronodb.internal.impl.cache.mosaic.MosaicCache;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractBranchManager;
 import org.chronos.common.logging.ChronoLogger;
 
@@ -168,14 +165,9 @@ public class JdbcBranchManager extends AbstractBranchManager implements BranchMa
 		}
 	}
 
-	private void attachTKVS(final BranchInternal branch) {
+	private JdbcTkvs attachTKVS(final BranchInternal branch) {
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
 		JdbcTkvs branchTKVS = new JdbcTkvs(this.getOwningDB(), branch);
-		ChronoDBConfiguration config = this.getOwningDB().getConfiguration();
-		if (config.isCachingEnabled()) {
-			// caching is enabled, so we create the cache for the branch here
-			ChronoDBCache cache = new MosaicCache(config.getCacheMaxSize());
-			branchTKVS.setCache(cache);
-		}
+		return branchTKVS;
 	}
 }

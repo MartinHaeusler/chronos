@@ -12,6 +12,8 @@ apply plugin: 'eclipse'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+
+
 repositories {
     mavenCentral()
 }
@@ -27,7 +29,7 @@ allprojects {
 	
 	// configure the group and version for this project
 	group = 'com.github.martinhaeusler'
-	version = '0.4.0-SNAPSHOT'
+	version = '0.5.2-SNAPSHOT'
 
 	
 	// java version
@@ -41,9 +43,15 @@ allprojects {
 	}
 	
 	test {
-		testLogging {
-			exceptionFormat = 'full'
-    	}
+		// do not include any test suites in the build tests; the build executes all tests anyways,
+		// including the suites would only mean to execute each test twice which doesn't make much sense.
+		exclude '**/_suite/**'
+		// do not include tests from common (those are run separately)
+		exclude '**/org/chronos/common/**'
+		// exclude performance tests and benchmarks
+		useJUnit {
+			excludeCategories 'org.chronos.common.test.junit.categories.PerformanceTest'
+		}
     }
 	
 	javadoc{
@@ -52,10 +60,10 @@ allprojects {
 	
 	// dependency versions
 	ext {
-	
 		// standard libraries
 		guavaVersion = '19.0' // was 18.0
 		commonsLang3Version = '3.4'
+		commonsCollectionsVersion = '4.1'
 		commonsIoVersion = '2.4'
 		commonsConfigurationVersion = '1.10'
 		
@@ -63,10 +71,15 @@ allprojects {
 		slf4jVersion = '1.7.12'
 		logbackVersion = '1.1.3'
 		
+		// Apache Tinkerpop
+		tinkerpopVersion = '3.1.0-incubating' // was 3.1.1-SNAPSHOT, was 3.0.2-incubating
+		tinkergraphVersion = '3.0.0.M7'
+		
 		// Storage Backends
 		mapDBVersion = '2.0-beta13' // was 2.0-beta11, was 2.0-beta6, was 1.0.8
 		luceneVersion = '5.5.0' // was 5.3.1
 		h2Version = '1.4.187'
+		tuplVersion = '1.3.4.0'
 		
 		// Additional JDBC resources
 		c3p0Version = '0.9.5.1'
@@ -79,7 +92,7 @@ allprojects {
 		jUnitVersion = '4.12'
 		
 		// code coverage & quality assurance tools
-		jacocoVersion = '0.7.1.201405082137'
+		jacocoVersion = '0.7.6.201602180812' // was '0.7.1.201405082137'
 		findbugsVersion = '3.0.0'
 	}
 
@@ -93,6 +106,7 @@ allprojects {
 	    // Standard Library Dependencies
 		compile("com.google.guava:guava:${project.guavaVersion}")
 		compile("org.apache.commons:commons-lang3:${project.commonsLang3Version}")
+		compile("org.apache.commons:commons-collections4:${project.commonsCollectionsVersion}")
 		compile("commons-io:commons-io:${project.commonsIoVersion}")
 		compile("commons-configuration:commons-configuration:${project.commonsConfigurationVersion}")
 
@@ -167,11 +181,11 @@ allprojects {
 	      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 	
 	      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-	        authentication(userName: ossrhUsername, password: ossrhPassword)
+	        authentication(userName: ossrhuser, password: ossrhpassword)
 	      }
 	
 	      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-	        authentication(userName: ossrhUsername, password: ossrhPassword)
+	        authentication(userName: ossrhuser, password: ossrhpassword)
 	      }
 	
 	      pom.project {
@@ -197,7 +211,7 @@ allprojects {
 	        developers {
 	          developer {
 	            id 'martin.haeusler'
-	            name 'Martin Häusler'
+	            name 'Martin HÃ¤usler'
 	            email 'martin.haeusler89@gmail.com'
 	          }
 	        }

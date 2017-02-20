@@ -5,7 +5,7 @@ import org.chronos.chronodb.internal.impl.cache.CacheGetResultImpl;
 
 /**
  * A {@link CacheGetResult} represents the result of calling
- * {@link ChronoDBCache#get(long, org.chronos.chronodb.api.key.QualifiedKey)}.
+ * {@link ChronoDBCache#get(String, long, org.chronos.chronodb.api.key.QualifiedKey)}.
  *
  * <p>
  * An instance of this class may either represent a cache <i>hit</i>, in which case {@link #isHit()} returns
