@@ -9,7 +9,7 @@ Components
 ----------
 
 Currently, the following Chronos Components are available in the public repository:
- - [ChronoDB](https://github.com/MartinHaeusler/chronos/tree/master/org.chronos.chronodb), a Temporal Key-Value Store
+ - [ChronoDB](https://github.com/MartinHaeusler/chronos/tree/master/org.chronos.chronodb), a Versioned Key-Value Store
 
 
 Frequently Asked Questions
