@@ -38,41 +38,22 @@ Add the following to the `<dependencies>` section in your `pom.xml`:
 <dependency>
   	<groupId>com.github.martinhaeusler</groupId>
   	<artifactId>org.chronos.chronograph</artifactId>
-  	<version>0.5.2-SNAPSHOT</version>
+  	<version>0.5.4</version>
  </dependency>
-```
-
-In case your `pom.xml` does not reference the Sonatype Snapshots repository already, you also have to add the following to the `<repositories>` section:
-
-```xml
-  <repositories>
-  	<repository>
-        <id>Sonatype</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        <releases>
-           <enabled>true</enabled>
-        </releases>
-        <snapshots>
-          <enabled>true</enabled>
-        </snapshots>
-     </repository>
-  </repositories>
 ```
 
 ## Installing with Gradle
 Add the following line to the `dependencies` section in your `build.gradle` file:
 
 ```groovy
-compile group: 'com.github.martinhaeusler', name: 'org.chronos.chronograph', version: '0.5.2-SNAPSHOT'
+compile group: 'com.github.martinhaeusler', name: 'org.chronos.chronograph', version: '0.5.4'
 ```
 
-In case your `build.gradle` file does not already reference the Sonatype Snapshots repository, you also have to add the following to your `build.gradle`:
+In case your `build.gradle` file does not already reference the Maven Central Repository, you also have to add the following to your `build.gradle`:
 
 ```groovy
 repositories {
-    maven {
-    	url "https://oss.sonatype.org/content/repositories/snapshots/"
-    }
+    mavenCentral()
 }
 ```
 
