@@ -399,4 +399,5 @@ public class IncrementalGraphCommitTest extends AllChronoGraphBackendsTest {
 		assertEquals(1, g.find().vertices().where("firstName").isEqualToIgnoreCase("john").count());
 		assertEquals(1, g.find().vertices().where("lastName").isEqualToIgnoreCase("doe").count());
 	}
+
 }

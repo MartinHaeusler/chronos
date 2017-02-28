@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.__;
 import org.apache.tinkerpop.gremlin.structure.Edge;
+import org.apache.tinkerpop.gremlin.structure.T;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.chronos.chronograph.api.index.ChronoGraphIndexManager;
 import org.chronos.chronograph.api.structure.ChronoGraph;
@@ -13,6 +14,7 @@ import org.chronos.chronograph.test.base.AllChronoGraphBackendsTest;
 import org.junit.Test;
 
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
 
 public class GremlinTest extends AllChronoGraphBackendsTest {
@@ -53,8 +55,7 @@ public class GremlinTest extends AllChronoGraphBackendsTest {
 		me.addEdge("worksOn", chronos);
 		me.addEdge("worksOn", otherProject);
 		graph.tx().commit();
-		Set<Vertex> vertices = graph.traversal().V().has("kind", "person").has("name", "Martin").out("worksOn")
-				.has("name", "Chronos").toSet();
+		Set<Vertex> vertices = graph.traversal().V().has("kind", "person").has("name", "Martin").out("worksOn").has("name", "Chronos").toSet();
 		assertEquals(1, vertices.size());
 		Vertex vertex = Iterables.getOnlyElement(vertices);
 		assertEquals("Chronos", vertex.value("name"));
@@ -209,4 +210,36 @@ public class GremlinTest extends AllChronoGraphBackendsTest {
 		assertEquals(Sets.newHashSet(vSon1, vSon2, vDaughter), vertices);
 	}
 
+	@Test
+	public void canExecuteGraphEHasLabel() {
+		ChronoGraph graph = this.getGraph();
+		Vertex v1 = graph.addVertex();
+		Vertex v2 = graph.addVertex();
+		Vertex v3 = graph.addVertex();
+		v1.addEdge("forward", v2);
+		v2.addEdge("forward", v3);
+		v3.addEdge("forward", v1);
+		v1.addEdge("backward", v3);
+		v2.addEdge("backward", v2);
+		v3.addEdge("backward", v2);
+		assertEquals(3, Iterators.size(graph.traversal().E().hasLabel("forward")));
+		assertEquals(3, Iterators.size(graph.traversal().E().hasLabel("backward")));
+		graph.tx().commit();
+		assertEquals(3, Iterators.size(graph.traversal().E().hasLabel("forward")));
+		assertEquals(3, Iterators.size(graph.traversal().E().hasLabel("backward")));
+	}
+
+	@Test
+	public void canExecuteGraphVHasLabel() {
+		ChronoGraph graph = this.getGraph();
+		graph.addVertex(T.label, "Person");
+		graph.addVertex(T.label, "Person");
+		graph.addVertex(T.label, "Location");
+		assertEquals(2, Iterators.size(graph.traversal().V().hasLabel("Person")));
+		assertEquals(1, Iterators.size(graph.traversal().V().hasLabel("Location")));
+		graph.tx().commit();
+		assertEquals(2, Iterators.size(graph.traversal().V().hasLabel("Person")));
+		assertEquals(1, Iterators.size(graph.traversal().V().hasLabel("Location")));
+
+	}
 }

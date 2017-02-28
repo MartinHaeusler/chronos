@@ -24,8 +24,10 @@ import org.chronos.chronograph.internal.impl.structure.record.EdgeTargetRecord;
 import org.chronos.chronograph.internal.impl.structure.record.PropertyRecord;
 import org.chronos.chronograph.internal.impl.structure.record.VertexPropertyRecord;
 import org.chronos.chronograph.internal.impl.structure.record.VertexRecord;
+import org.chronos.chronograph.internal.impl.util.ChronoGraphElementUtil;
 import org.chronos.chronograph.internal.impl.util.ChronoId;
 import org.chronos.chronograph.internal.impl.util.ChronoProxyUtil;
+import org.chronos.chronograph.internal.impl.util.PredefinedVertexProperty;
 import org.chronos.common.base.CCC;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 import org.chronos.common.logging.ChronoLogger;
@@ -59,8 +61,7 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 		this.loadRecordContents(record);
 	}
 
-	public ChronoVertexImpl(final ChronoGraph g, final ChronoGraphTransaction tx, final String id, final String label,
-			final boolean lazy) {
+	public ChronoVertexImpl(final ChronoGraph g, final ChronoGraphTransaction tx, final String id, final String label, final boolean lazy) {
 		super(g, tx, id, label, lazy);
 	}
 
@@ -139,8 +140,7 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 	}
 
 	@Override
-	public <V> ChronoVertexProperty<V> property(final Cardinality cardinality, final String key, final V value,
-			final Object... keyValues) {
+	public <V> ChronoVertexProperty<V> property(final Cardinality cardinality, final String key, final V value, final Object... keyValues) {
 		ElementHelper.legalPropertyKeyValueArray(keyValues);
 		ElementHelper.validateProperty(key, value);
 		this.checkAccess();
@@ -252,6 +252,10 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 		}
 		Set<VertexProperty<V>> matchingProperties = Sets.newHashSet();
 		for (String propertyKey : propertyKeys) {
+			PredefinedVertexProperty<V> predefinedProperty = ChronoGraphElementUtil.asPredefinedVertexProperty(this, propertyKey);
+			if (predefinedProperty != null) {
+				matchingProperties.add(predefinedProperty);
+			}
 			VertexProperty<?> property = this.properties.get(propertyKey);
 			if (property != null) {
 				matchingProperties.add((VertexProperty<V>) property);
@@ -479,8 +483,7 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 		ChronoLogger.logTrace(messageBuilder.toString());
 	}
 
-	private void logAddEdge(final Vertex inVertex, final String edgeId, final boolean userProvidedId,
-			final String label) {
+	private void logAddEdge(final Vertex inVertex, final String edgeId, final boolean userProvidedId, final String label) {
 		if (CCC.MIN_LOG_LEVEL.isGreaterThan(LogLevel.TRACE)) {
 			// log level is higher than trace, no need to prepare the message
 			return;
