@@ -29,7 +29,7 @@ allprojects {
 	
 	// configure the group and version for this project
 	group = 'com.github.martinhaeusler'
-	version = '0.5.2-SNAPSHOT'
+	version = '0.5.4'
 
 	
 	// java version
