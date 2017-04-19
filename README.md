@@ -21,5 +21,5 @@ Frequently Asked Questions
 The project is currently a one-man show, as it is a major part of my on-going PhD thesis.
 
 ### What about licencing?
-All Chronos components are licensed under the aGPLv3 license, unless noted otherwise. All source code is provided in this GitHub repository.
+The Chronos Project is based on a dual-license. For academic and open-source projects, the general license is the aGPLv3 license, unless noted otherwise. Commercial licenses are also available on demand.
 
