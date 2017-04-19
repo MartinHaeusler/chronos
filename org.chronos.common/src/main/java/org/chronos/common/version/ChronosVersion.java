@@ -13,7 +13,7 @@ public final class ChronosVersion implements Comparable<ChronosVersion> {
 	// OTHER CONSTANTS
 	// =====================================================================================================================
 
-	private static final String CHRONOS_VERSION_REGEX = "([0-9]+)\\.([0-9]+)\\.([0-9]+)[-\\.:]([a-zA-Z]+)";
+	private static final String CHRONOS_VERSION_REGEX = "([0-9]+)\\.([0-9]+)\\.([0-9]+)([-\\.:]([a-zA-Z]+))?";
 	private static final Pattern CHRONOS_VERSION_PATTERN = Pattern.compile(CHRONOS_VERSION_REGEX,
 			Pattern.CASE_INSENSITIVE);
 
@@ -37,8 +37,14 @@ public final class ChronosVersion implements Comparable<ChronosVersion> {
 			majorVersion = Integer.parseInt(matcher.group(1));
 			minorVersion = Integer.parseInt(matcher.group(2));
 			patchVersion = Integer.parseInt(matcher.group(3));
-			kind = VersionKind.parse(matcher.group(4));
-		} catch (NumberFormatException nfe) {
+			String kindString = matcher.group(5);
+			if (kindString == null || kindString.trim().isEmpty()) {
+				// missing "kind" information is interpreted as RELEASE
+				kind = VersionKind.RELEASE;
+			} else {
+				kind = VersionKind.parse(kindString);
+			}
+		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException(
 					"The given string is no valid Chronos Version: '" + stringVersion + "'!");
 		}
@@ -92,6 +98,21 @@ public final class ChronosVersion implements Comparable<ChronosVersion> {
 
 	public VersionKind getVersionKind() {
 		return this.versionKind;
+	}
+
+	public boolean isReadCompatibleWith(final ChronosVersion other) {
+		checkNotNull(other, "Precondition violation - argument 'other' must not be NULL!");
+		if (this.compareTo(other) >= 0) {
+			// we can read past revisions
+			return true;
+		}
+		// we define "read compatibility" for DBs written by newer versions as "having the same major AND minor version
+		// here.
+		if (this.getMajorVersion() == other.getMajorVersion() && this.getMinorVersion() == other.getMinorVersion()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// =====================================================================================================================

@@ -103,7 +103,7 @@ public class TuplUtils {
 	 * @return The decoded boolean. Will be <code>null</code> if the input array is <code>null</code>.
 	 */
 	public static Boolean decodeBoolean(final byte[] value) {
-		if (value == null || value.length <= 0) {
+		if ((value == null) || (value.length <= 0)) {
 			return null;
 		}
 		if (value.length != 1) {
@@ -256,7 +256,11 @@ public class TuplUtils {
 			cursor.autoload(false);
 			cursor.first();
 			for (Map.Entry<K, byte[]> entry : sortedEntries.entrySet()) {
-				cursor.findNearby(keyMapper.apply(entry.getKey()));
+				byte[] keyBytes = keyMapper.apply(entry.getKey());
+				cursor.findNearby(keyBytes);
+				if (entry.getValue() == null) {
+					throw new IllegalStateException("Cannot put NULL as value into store.");
+				}
 				cursor.store(entry.getValue());
 			}
 		} catch (IOException e) {

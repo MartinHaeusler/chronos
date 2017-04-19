@@ -2,6 +2,7 @@ package org.chronos.chronodb.api;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -440,6 +441,125 @@ public interface ChronoDBTransaction {
 	 */
 	public Iterator<Entry<Long, Object>> getCommitMetadataPaged(final long minTimestamp, final long maxTimestamp,
 			final int pageSize, final int pageIndex, final Order order);
+
+	/**
+	 * Returns pairs of commit timestamp and commit metadata which are "around" the given timestamp on the time axis.
+	 *
+	 * <p>
+	 * By default, this method will attempt to return the closest <code>count/2</code> commits before and after the
+	 * given timestamp. However, if there are not enough elements on either side, the other side will have more entries
+	 * in the result list (e.g. if the request count is 10 and there are only two commits before the request timestamp,
+	 * the list of commits after the request timestamp will have 8 entries instead of 5 to create a list of total length
+	 * 10). In other words, the result list will always have as many entries as the request <code>count</code>, except
+	 * when there are not as many commits on the store yet.
+	 *
+	 * @param timestamp
+	 *            The request timestamp around which the commits should be centered. Must not be negative.
+	 * @param count
+	 *            How many commits to retrieve around the request timestamp. By default, the closest
+	 *            <code>count/2</code> commits will be taken on both sides of the request timestamp. Must not be
+	 *            negative.
+	 *
+	 * @return A list of pairs. The keys are commit timsetamps, the corresponding values are the commit metadata objects
+	 *         (which may be <code>null</code>). The list itself will never be <code>null</code>, but may be empty (if
+	 *         there are no commits to report). The list is sorted in descending order by timestamps.
+	 */
+	public List<Entry<Long, Object>> getCommitMetadataAround(final long timestamp, final int count);
+
+	/**
+	 * Returns pairs of commit timestamp and commit metadata which are strictly before the given timestamp on the time
+	 * axis.
+	 *
+	 * <p>
+	 * For example, calling {@link #getCommitMetadataBefore(long, int)} with a timestamp and a count of 10, this method
+	 * will return the latest 10 commits (strictly) before the given request timestamp.
+	 *
+	 * @param timestamp
+	 *            The timestamp to investigate. Must not be negative.
+	 * @param count
+	 *            How many commits to retrieve before the given request timestamp. Must not be negative.
+	 *
+	 * @return A list of pairs. The keys are commit timsetamps, the corresponding values are the commit metadata objects
+	 *         (which may be <code>null</code>). The list itself will never be <code>null</code>, but may be empty (if
+	 *         there are no commits to report). The list is sorted in descending order by timestamps.
+	 */
+	public List<Entry<Long, Object>> getCommitMetadataBefore(final long timestamp, final int count);
+
+	/**
+	 * Returns pairs of commit timestamp and commit metadata which are strictly after the given timestamp on the time
+	 * axis.
+	 *
+	 * <p>
+	 * For example, calling {@link #getCommitMetadataAfter(long, int)} with a timestamp and a count of 10, this method
+	 * will return the oldest 10 commits (strictly) after the given request timestamp.
+	 *
+	 * @param timestamp
+	 *            The timestamp to investigate. Must not be negative.
+	 * @param count
+	 *            How many commits to retrieve after the given request timestamp. Must not be negative.
+	 *
+	 * @return A list of pairs. The keys are commit timsetamps, the corresponding values are the commit metadata objects
+	 *         (which may be <code>null</code>). The list itself will never be <code>null</code>, but may be empty (if
+	 *         there are no commits to report). The list is sorted in descending order by timestamps.
+	 */
+	public List<Entry<Long, Object>> getCommitMetadataAfter(final long timestamp, final int count);
+
+	/**
+	 * Returns a list of commit timestamp which are "around" the given timestamp on the time axis.
+	 *
+	 * <p>
+	 * By default, this method will attempt to return the closest <code>count/2</code> commits before and after the
+	 * given timestamp. However, if there are not enough elements on either side, the other side will have more entries
+	 * in the result list (e.g. if the request count is 10 and there are only two commits before the request timestamp,
+	 * the list of commits after the request timestamp will have 8 entries instead of 5 to create a list of total length
+	 * 10). In other words, the result list will always have as many entries as the request <code>count</code>, except
+	 * when there are not as many commits on the store yet.
+	 *
+	 * @param timestamp
+	 *            The request timestamp around which the commits should be centered. Must not be negative.
+	 * @param count
+	 *            How many commits to retrieve around the request timestamp. By default, the closest
+	 *            <code>count/2</code> commits will be taken on both sides of the request timestamp. Must not be
+	 *            negative.
+	 *
+	 * @return A list of timestamps. Never be <code>null</code>, but may be empty (if there are no commits to report).
+	 *         The list is sorted in descending order.
+	 */
+	public List<Long> getCommitTimestampsAround(final long timestamp, final int count);
+
+	/**
+	 * Returns a list of commit timestamps which are strictly before the given timestamp on the time axis.
+	 *
+	 * <p>
+	 * For example, calling {@link #getCommitTimestampsBefore(long, int)} with a timestamp and a count of 10, this
+	 * method will return the latest 10 commits (strictly) before the given request timestamp.
+	 *
+	 * @param timestamp
+	 *            The timestamp to investigate. Must not be negative.
+	 * @param count
+	 *            How many commits to retrieve before the given request timestamp. Must not be negative.
+	 *
+	 * @return A list of timestamps. Never be <code>null</code>, but may be empty (if there are no commits to report).
+	 *         The list is sorted in descending order.
+	 */
+	public List<Long> getCommitTimestampsBefore(final long timestamp, final int count);
+
+	/**
+	 * Returns a list of commit timestamps which are strictly after the given timestamp on the time axis.
+	 *
+	 * <p>
+	 * For example, calling {@link #getCommitTimestampsAfter(long, int)} with a timestamp and a count of 10, this method
+	 * will return the oldest 10 commits (strictly) after the given request timestamp.
+	 *
+	 * @param timestamp
+	 *            The timestamp to investigate. Must not be negative.
+	 * @param count
+	 *            How many commits to retrieve after the given request timestamp. Must not be negative.
+	 *
+	 * @return A list of timestamps. Never be <code>null</code>, but may be empty (if there are no commits to report).
+	 *         The list is sorted in descending order.
+	 */
+	public List<Long> getCommitTimestampsAfter(final long timestamp, final int count);
 
 	/**
 	 * Counts the number of commit timestamps between <code>from</code> (inclusive) and <code>to</code> (inclusive).

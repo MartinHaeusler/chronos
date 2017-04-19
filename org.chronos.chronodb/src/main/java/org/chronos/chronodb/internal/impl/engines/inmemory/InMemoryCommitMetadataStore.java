@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.*;
 
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.NavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;
@@ -12,9 +13,11 @@ import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.Order;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractCommitMetadataStore;
+import org.chronos.chronodb.internal.util.NavigableMapUtils;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 
 import com.google.common.collect.Iterators;
+import com.google.common.collect.Lists;
 
 public class InMemoryCommitMetadataStore extends AbstractCommitMetadataStore {
 
@@ -160,6 +163,48 @@ public class InMemoryCommitMetadataStore extends AbstractCommitMetadataStore {
 				entry -> this.mapSerialEntryToPair(entry));
 		// limit the rest of the iterator to the given page size
 		return Iterators.unmodifiableIterator(Iterators.limit(iterator, pageSize));
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataAround(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		List<Entry<Long, byte[]>> entriesAround = NavigableMapUtils.entriesAround(this.commitMetadataMap, timestamp, count);
+		List<Entry<Long, Object>> resultList = Lists.newArrayList();
+		entriesAround.forEach(e -> resultList.add(this.deserializeValueOf(e)));
+		resultList.sort(EntryTimestampComparator.INSTANCE.reversed());
+		return resultList;
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataBefore(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		NavigableMap<Long, byte[]> map = this.commitMetadataMap.headMap(timestamp, false).descendingMap();
+		List<Entry<Long, Object>> resultList = Lists.newArrayList();
+		for (Entry<Long, byte[]> entry : map.entrySet()) {
+			if (resultList.size() >= count) {
+				break;
+			}
+			resultList.add(this.deserializeValueOf(entry));
+		}
+		return resultList;
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataAfter(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		NavigableMap<Long, byte[]> map = this.commitMetadataMap.tailMap(timestamp, false);
+		List<Entry<Long, Object>> resultList = Lists.newArrayList();
+		for (Entry<Long, byte[]> entry : map.entrySet()) {
+			if (resultList.size() >= count) {
+				break;
+			}
+			resultList.add(this.deserializeValueOf(entry));
+		}
+		// navigablemaps are sorted in ascending order, we want descending
+		return Lists.reverse(resultList);
 	}
 
 	@Override

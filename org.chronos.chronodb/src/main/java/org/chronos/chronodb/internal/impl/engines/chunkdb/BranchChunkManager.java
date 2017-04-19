@@ -281,7 +281,7 @@ public class BranchChunkManager {
 		String sequenceNumber = metaFileName.substring(0, metaFileName.lastIndexOf("."));
 		File dataFile = new File(this.rootDirectory, sequenceNumber + "." + ChronoChunk.CHUNK_FILE_EXTENSION);
 		File indexFile = new File(this.rootDirectory, sequenceNumber + "." + ChronoChunk.INDEX_FILE_EXTENSION);
-		if (indexFile.exists() == false || indexFile.isDirectory() || indexFile.canWrite() == false) {
+		if ((indexFile.exists() == false) || indexFile.isDirectory() || (indexFile.canWrite() == false)) {
 			indexFile = null;
 		}
 		try {
@@ -293,6 +293,10 @@ public class BranchChunkManager {
 
 	private void clearAllFilesOfChunk(final long chunkNumber) {
 		File[] chunkFiles = this.rootDirectory.listFiles((file, name) -> name.startsWith("" + chunkNumber));
+		if ((chunkFiles == null) || (chunkFiles.length <= 0)) {
+			// there are no files to delete
+			return;
+		}
 		for (File chunkFile : chunkFiles) {
 			chunkFile.delete();
 		}

@@ -71,9 +71,11 @@ public class GlobalChunkManager {
 	private Map<String, BranchChunkManager> scanDirectoryForBranches() {
 		Map<String, BranchChunkManager> branchNameToChunkManager = Maps.newHashMap();
 		File[] branchDirs = this.branchesDir.listFiles(file -> file.isDirectory());
-		for (File branchDir : branchDirs) {
-			BranchChunkManager branchChunkManager = new BranchChunkManager(branchDir);
-			branchNameToChunkManager.put(branchDir.getName(), branchChunkManager);
+		if ((branchDirs != null) && (branchDirs.length > 0)) {
+			for (File branchDir : branchDirs) {
+				BranchChunkManager branchChunkManager = new BranchChunkManager(branchDir);
+				branchNameToChunkManager.put(branchDir.getName(), branchChunkManager);
+			}
 		}
 		return branchNameToChunkManager;
 	}
@@ -234,7 +236,7 @@ public class GlobalChunkManager {
 			}
 			List<Database> dbs = Lists.reverse(this.dbLRUList);
 			Iterator<Database> dbIterator = dbs.iterator();
-			while (dbIterator.hasNext() && dbs.size() > MAX_OPEN_FILES_THRESHOLD) {
+			while (dbIterator.hasNext() && (dbs.size() > MAX_OPEN_FILES_THRESHOLD)) {
 				Database db = dbIterator.next();
 				if (this.dbToOpenTransactions.containsKey(db) == false) {
 					// nobody uses this DB anymore, remove it

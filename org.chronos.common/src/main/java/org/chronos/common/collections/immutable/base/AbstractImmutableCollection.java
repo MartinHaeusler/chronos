@@ -1,5 +1,7 @@
 package org.chronos.common.collections.immutable.base;
 
+import static com.google.common.base.Preconditions.*;
+
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Iterator;
@@ -21,9 +23,10 @@ public abstract class AbstractImmutableCollection<T> implements Collection<T> {
 	@Override
 	@SuppressWarnings({ "unchecked", "hiding" })
 	public <T> T[] toArray(final T[] a) {
+		checkNotNull(a, "Precondition violation - argument 'a' must not be NULL!");
 		T[] array = a;
 		// make sure that the array is big enough, create a new one if it is too small
-		if (a == null || a.length < this.size()) {
+		if (a.length < this.size()) {
 			Class<T> clazz = (Class<T>) a.getClass().getComponentType();
 			array = (T[]) Array.newInstance(clazz, this.size());
 		}

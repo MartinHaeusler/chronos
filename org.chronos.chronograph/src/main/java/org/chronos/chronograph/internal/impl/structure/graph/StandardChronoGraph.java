@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.*;
 
 import java.io.File;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.locks.Lock;
@@ -350,6 +351,54 @@ public class StandardChronoGraph implements ChronoGraph {
 		checkNotNull(order, "Precondition violation - argument 'order' must not be NULL!");
 		return this.getBackingDB().tx(branch).getCommitMetadataPaged(minTimestamp, maxTimestamp, pageSize, pageIndex,
 				order);
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataAround(final String branch, final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		return this.getBackingDB().tx(branch).getCommitMetadataAround(timestamp, count);
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataBefore(final String branch, final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		return this.getBackingDB().tx(branch).getCommitMetadataBefore(timestamp, count);
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataAfter(final String branch, final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		return this.getBackingDB().tx(branch).getCommitMetadataAfter(timestamp, count);
+	}
+
+	@Override
+	public List<Long> getCommitTimestampsAround(final String branch, final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		return this.getBackingDB().tx(branch).getCommitTimestampsAround(timestamp, count);
+	}
+
+	@Override
+	public List<Long> getCommitTimestampsBefore(final String branch, final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		return this.getBackingDB().tx(branch).getCommitTimestampsBefore(timestamp, count);
+	}
+
+	@Override
+	public List<Long> getCommitTimestampsAfter(final String branch, final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		return this.getBackingDB().tx(branch).getCommitTimestampsBefore(timestamp, count);
 	}
 
 	@Override

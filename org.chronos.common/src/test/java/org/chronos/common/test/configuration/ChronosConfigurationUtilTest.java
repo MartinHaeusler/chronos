@@ -183,7 +183,7 @@ public class ChronosConfigurationUtilTest {
 
 		@SuppressWarnings("unused")
 		public List<ILoggingEvent> getErrors() {
-			return this.getErrors().stream().filter(e -> e.getLevel().equals(Level.ERROR)).collect(Collectors.toList());
+			return this.getEvents().stream().filter(e -> e.getLevel().equals(Level.ERROR)).collect(Collectors.toList());
 		}
 
 		@Override

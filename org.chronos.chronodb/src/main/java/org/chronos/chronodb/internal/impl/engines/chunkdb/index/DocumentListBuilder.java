@@ -50,7 +50,7 @@ public class DocumentListBuilder {
 				.get(newDocument.getKeyspace());
 		if (keyToOpenDocs == null) {
 			keyToOpenDocs = HashMultimap.create();
-			this.keyspaceToKeyToOpenDocuments.put(newDocument.getKey(), keyToOpenDocs);
+			this.keyspaceToKeyToOpenDocuments.put(newDocument.getKeyspace(), keyToOpenDocs);
 		}
 		keyToOpenDocs.put(newDocument.getKey(), newDocument);
 	}
@@ -105,8 +105,8 @@ public class DocumentListBuilder {
 	}
 
 	/**
-	 * Returns all open (i.e. non-terminated) {@link ChunkDbIndexDocumentData} elements that match the given keyspace and
-	 * key.
+	 * Returns all open (i.e. non-terminated) {@link ChunkDbIndexDocumentData} elements that match the given keyspace
+	 * and key.
 	 *
 	 * @param keyspaceName
 	 *            The keyspace to look for. Must not be <code>null</code>.
@@ -161,6 +161,7 @@ public class DocumentListBuilder {
 		if (this.isClosed) {
 			throw new IllegalStateException("This DocumentListBuilder instance is already closed!");
 		}
+		this.isClosed = true;
 		return this.allDocuments;
 	}
 }

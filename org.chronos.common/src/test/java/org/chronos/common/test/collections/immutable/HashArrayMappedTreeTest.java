@@ -367,10 +367,10 @@ public class HashArrayMappedTreeTest {
 			long hashMapTimeNanos = 0;
 			long compareTimeNanos = 0;
 			// decide if we do an insert or a remove
-			if (Math.random() < 0.25 && keyList.isEmpty() == false) {
+			if ((Math.random() < 0.25) && (keyList.isEmpty() == false)) {
 				// remove an existing key
 				// pick random entry from key list
-				int keyListIndex = (int) Math.random() * (keyList.size() - 1);
+				int keyListIndex = (int) (Math.random() * (keyList.size() - 1));
 				String key = keyList.remove(keyListIndex);
 				assertTrue(hashMap.containsKey(key));
 				assertTrue(tree.containsKey(key));

@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.*;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NoSuchElementException;
@@ -83,11 +84,17 @@ public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStor
 	private final ChronoDBInternal owningDB;
 	protected final Map<String, TemporalDataMatrix> keyspaceToMatrix = Maps.newHashMap();
 
-	/** This lock is used to protect incremental commit data from illegal concurrent access. */
+	/**
+	 * This lock is used to protect incremental commit data from illegal concurrent access.
+	 */
 	protected final Lock incrementalCommitLock = new ReentrantLock(true);
-	/** This field is used to keep track of the transaction that is currently executing an incremental commit. */
+	/**
+	 * This field is used to keep track of the transaction that is currently executing an incremental commit.
+	 */
 	protected ChronoDBTransaction incrementalCommitTransaction = null;
-	/** This timestamp will be written to during incremental commits, all of them will write to this timestamp. */
+	/**
+	 * This timestamp will be written to during incremental commits, all of them will write to this timestamp.
+	 */
 	protected long incrementalCommitTimestamp = -1L;
 
 	protected Consumer<ChronoDBTransaction> debugCallbackBeforePrimaryIndexUpdate;
@@ -396,12 +403,15 @@ public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStor
 				// everything ok in this commit, we can clear the write ahead log
 				this.clearWriteAheadLogToken();
 			} finally {
-				if (this.isIncrementalCommitProcessOngoing()) {
-					this.terminateIncrementalCommitProcess();
+				try {
+					if (this.isIncrementalCommitProcessOngoing()) {
+						this.terminateIncrementalCommitProcess();
+					}
+				} finally {
+					this.commitLock.unlock();
 				}
 				// drop the kryo instance we have been using, as it has some internal caches that just consume memory
 				KryoManager.destroyKryo();
-				this.commitLock.unlock();
 			}
 		}
 	}
@@ -516,9 +526,9 @@ public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStor
 				// note: we do NOT clear the write-ahead log here, because we are still waiting for the terminating
 				// full commit.
 			} finally {
+				this.commitLock.unlock();
 				// drop the kryo instance we have been using, as it has some internal caches that just consume memory
 				KryoManager.destroyKryo();
-				this.commitLock.unlock();
 			}
 			return this.incrementalCommitTimestamp;
 		}
@@ -784,6 +794,60 @@ public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStor
 		try (LockHolder lock = this.lockNonExclusive()) {
 			return this.getCommitMetadataStore().getCommitMetadataPaged(minTimestamp, maxTimestamp, pageSize, pageIndex,
 					order);
+		}
+	}
+
+	@Override
+	public List<Entry<Long, Object>> performGetCommitMetadataAround(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		try (LockHolder lock = this.lockNonExclusive()) {
+			return this.getCommitMetadataStore().getCommitMetadataAround(timestamp, count);
+		}
+	}
+
+	@Override
+	public List<Entry<Long, Object>> performGetCommitMetadataBefore(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		try (LockHolder lock = this.lockNonExclusive()) {
+			return this.getCommitMetadataStore().getCommitMetadataBefore(timestamp, count);
+		}
+	}
+
+	@Override
+	public List<Entry<Long, Object>> performGetCommitMetadataAfter(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		try (LockHolder lock = this.lockNonExclusive()) {
+			return this.getCommitMetadataStore().getCommitMetadataAfter(timestamp, count);
+		}
+	}
+
+	@Override
+	public List<Long> performGetCommitTimestampsAround(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		try (LockHolder lock = this.lockNonExclusive()) {
+			return this.getCommitMetadataStore().getCommitTimestampsAround(timestamp, count);
+		}
+	}
+
+	@Override
+	public List<Long> performGetCommitTimestampsBefore(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		try (LockHolder lock = this.lockNonExclusive()) {
+			return this.getCommitMetadataStore().getCommitTimestampsBefore(timestamp, count);
+		}
+	}
+
+	@Override
+	public List<Long> performGetCommitTimestampsAfter(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		try (LockHolder lock = this.lockNonExclusive()) {
+			return this.getCommitMetadataStore().getCommitTimestampsAfter(timestamp, count);
 		}
 	}
 

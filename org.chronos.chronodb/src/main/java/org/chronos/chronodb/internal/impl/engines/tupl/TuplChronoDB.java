@@ -15,6 +15,7 @@ import org.chronos.chronodb.internal.impl.engines.inmemory.InMemorySerialization
 import org.chronos.chronodb.internal.impl.index.DocumentBasedIndexManager;
 import org.chronos.chronodb.internal.impl.query.StandardQueryManager;
 import org.chronos.common.exceptions.ChronosIOException;
+import org.chronos.common.logging.ChronoLogger;
 import org.chronos.common.version.ChronosVersion;
 import org.cojen.tupl.Database;
 import org.cojen.tupl.Transaction;
@@ -110,12 +111,23 @@ public class TuplChronoDB extends AbstractChronoDB {
 			} else {
 				// check the version
 				ChronosVersion dbVersion = ChronosVersion.parse(versionString);
-				if (dbVersion.compareTo(ChronosVersion.getCurrentVersion()) > 0) {
-					// the database has been written by a NEWER version of chronos; we must not touch it!
-					throw new ChronosBuildVersionConflictException("The database was written by Chronos '"
-							+ dbVersion.toString() + "', but this is the older version '"
-							+ ChronosVersion.getCurrentVersion().toString()
-							+ "'! Older versions of Chronos cannot open databases created by newer versions!");
+				ChronosVersion currentVersion = ChronosVersion.getCurrentVersion();
+				if (dbVersion.compareTo(currentVersion) > 0) {
+					// the database has been written by a NEWER version of chronos; we might be incompatible
+					if (currentVersion.isReadCompatibleWith(dbVersion)) {
+						ChronoLogger.logWarning("The database was written by Chronos '" + dbVersion.toString()
+								+ "', but this is the older version '" + currentVersion.toString()
+								+ "'! Some features may be unsupported by this older version. We strongly recommend updating Chronos to version '"
+								+ dbVersion + "' or higher for working with this database!");
+						return;
+					} else {
+						// the current chronos version is not read-compatible with the (newer) version that created this
+						// database; we must not touch it
+						throw new ChronosBuildVersionConflictException("The database was written by Chronos '"
+								+ dbVersion.toString() + "', but this is the older version '"
+								+ ChronosVersion.getCurrentVersion().toString()
+								+ "'! Older versions of Chronos cannot open databases created by newer versions!");
+					}
 				} else {
 					// database was created by an older version of chronos; upate it
 					buildVersion = TuplUtils.encodeString(ChronosVersion.getCurrentVersion().toString());

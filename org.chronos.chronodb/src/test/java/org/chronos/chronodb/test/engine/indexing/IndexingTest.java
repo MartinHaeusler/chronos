@@ -1,8 +1,11 @@
 package org.chronos.chronodb.test.engine.indexing;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
+import java.util.Collections;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.ChronoDB;
@@ -11,9 +14,11 @@ import org.chronos.chronodb.api.ChronoIndexer;
 import org.chronos.chronodb.api.exceptions.UnknownIndexException;
 import org.chronos.chronodb.api.key.ChronoIdentifier;
 import org.chronos.chronodb.api.query.Condition;
+import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.internal.api.query.SearchSpecification;
 import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
+import org.chronos.chronodb.test.base.InstantiateChronosWith;
 import org.chronos.chronodb.test.util.model.payload.NamedPayload;
 import org.chronos.chronodb.test.util.model.payload.NamedPayloadNameIndexer;
 import org.chronos.common.test.junit.categories.IntegrationTest;
@@ -95,6 +100,40 @@ public class IndexingTest extends AllChronoDBBackendsTest {
 		assertEquals(1, tx.find().inDefaultKeyspace().where("name").isEqualTo("Hello World").count());
 		// in the past, we should not find the renamed version
 		assertEquals(0, tx.find().inDefaultKeyspace().where("name").isEqualTo("Renamed").count());
+	}
+
+	@Test
+	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHING_ENABLED, value = "true")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHE_MAX_SIZE, value = "100")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.QUERY_CACHE_ENABLED, value = "true")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.QUERY_CACHE_MAX_SIZE, value = "20")
+	public void deleteTest() {
+		ChronoDB db = this.getChronoDB();
+		// set up the "name" index
+		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		db.getIndexManager().addIndexer("name", nameIndexer);
+		db.getIndexManager().reindexAll();
+		// generate and insert test data
+		NamedPayload np1 = NamedPayload.create1KB("np1");
+		NamedPayload np2 = NamedPayload.create1KB("np2");
+		NamedPayload np3 = NamedPayload.create1KB("np3");
+		ChronoDBTransaction tx = db.tx();
+		tx.put("np1", np1);
+		tx.put("np2", np2);
+		tx.put("np3", np3);
+		tx.commit();
+
+		ChronoDBTransaction tx2 = db.tx();
+		assertEquals(3, db.tx().find().inDefaultKeyspace().where("name").startsWithIgnoreCase("np").count());
+		tx2.remove("np1");
+		tx2.remove("np3");
+		tx2.commit();
+
+		assertEquals(1, db.tx().find().inDefaultKeyspace().where("name").startsWithIgnoreCase("np").count());
+		assertEquals(Collections.singleton("np2"),
+				db.tx().find().inDefaultKeyspace().where("name").startsWithIgnoreCase("np").getKeysAsSet().stream()
+						.map(qKey -> qKey.getKey()).collect(Collectors.toSet()));
+
 	}
 
 }

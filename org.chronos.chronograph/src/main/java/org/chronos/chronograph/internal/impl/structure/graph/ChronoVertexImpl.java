@@ -24,8 +24,10 @@ import org.chronos.chronograph.internal.impl.structure.record.EdgeTargetRecord;
 import org.chronos.chronograph.internal.impl.structure.record.PropertyRecord;
 import org.chronos.chronograph.internal.impl.structure.record.VertexPropertyRecord;
 import org.chronos.chronograph.internal.impl.structure.record.VertexRecord;
+import org.chronos.chronograph.internal.impl.util.ChronoGraphElementUtil;
 import org.chronos.chronograph.internal.impl.util.ChronoId;
 import org.chronos.chronograph.internal.impl.util.ChronoProxyUtil;
+import org.chronos.chronograph.internal.impl.util.PredefinedVertexProperty;
 import org.chronos.common.base.CCC;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 import org.chronos.common.logging.ChronoLogger;
@@ -82,7 +84,7 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 		this.logPropertyChange(key, value);
 		ChronoVertexProperty<V> property = (ChronoVertexProperty<V>) this.properties.get(key);
 		if (property == null) {
-			property = new ChronoVertexProperty<V>(this, ChronoId.random(), key, value);
+			property = new ChronoVertexProperty<>(this, ChronoId.random(), key, value);
 			this.properties.put(key, property);
 		} else {
 			property.set(value);
@@ -164,7 +166,7 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 		// return (ChronoVertexProperty<V>) optionalVertexProperty.get();
 		// }
 		this.logPropertyChange(key, value);
-		ChronoVertexProperty<V> property = new ChronoVertexProperty<V>(this, propertyId, key, value);
+		ChronoVertexProperty<V> property = new ChronoVertexProperty<>(this, propertyId, key, value);
 		ElementHelper.attachProperties(property, keyValues);
 		this.properties.put(key, property);
 		this.updateLifecycleStatus(ElementLifecycleStatus.PROPERTY_CHANGED);
@@ -248,10 +250,15 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 	public <V> Iterator<VertexProperty<V>> properties(final String... propertyKeys) {
 		this.checkAccess();
 		if (propertyKeys == null || propertyKeys.length <= 0) {
-			return new PropertiesIterator<V>(Sets.newHashSet(this.properties.values()).iterator());
+			return new PropertiesIterator<>(Sets.newHashSet(this.properties.values()).iterator());
 		}
 		Set<VertexProperty<V>> matchingProperties = Sets.newHashSet();
 		for (String propertyKey : propertyKeys) {
+			PredefinedVertexProperty<V> predefinedProperty = ChronoGraphElementUtil.asPredefinedVertexProperty(this,
+					propertyKey);
+			if (predefinedProperty != null) {
+				matchingProperties.add(predefinedProperty);
+			}
 			VertexProperty<?> property = this.properties.get(propertyKey);
 			if (property != null) {
 				matchingProperties.add((VertexProperty<V>) property);
@@ -352,8 +359,7 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 	 * This is an internal method that must not be called by clients.
 	 *
 	 * @param chronoEdge
-	 *            The edge information to apply. This vertex is either the in-vertex or the out-vertex of the given
-	 *            edge. Must not be <code>null</code>.
+	 *            The edge information to apply. This vertex is either the in-vertex or the out-vertex of the given edge. Must not be <code>null</code>.
 	 */
 	public void applyEdge(final ChronoEdgeImpl chronoEdge) {
 		checkNotNull(chronoEdge, "Precondition violation - argument 'chronoEdge' must not be NULL!");
@@ -386,7 +392,7 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 			if (removed == false) {
 				throw new IllegalStateException("Graph is inconsistent - failed to remove edge from adjacent vertex!");
 			}
-			changed = removed || changed;
+			changed = true;
 		}
 		// note: this vertex can be in AND out vertex (self-edge!)
 		if (chronoEdge.outVertex().equals(this)) {

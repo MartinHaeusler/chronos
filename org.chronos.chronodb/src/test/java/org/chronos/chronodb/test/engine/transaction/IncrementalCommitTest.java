@@ -29,6 +29,27 @@ import com.google.common.collect.Sets;
 public class IncrementalCommitTest extends AllChronoDBBackendsTest {
 
 	@Test
+	public void canCommitIncrementallyMoreThanTwice() {
+		ChronoDB db = this.getChronoDB();
+		ChronoDBTransaction tx = db.tx();
+		try {
+			tx.put("a", 1);
+			tx.commitIncremental();
+			assertEquals(1, (int) tx.get("a"));
+			tx.put("a", 2);
+			tx.commitIncremental();
+			assertEquals(2, (int) tx.get("a"));
+			tx.put("a", 3);
+			tx.commitIncremental();
+			assertEquals(3, (int) tx.get("a"));
+			tx.commit();
+		} finally {
+			tx.rollback();
+		}
+		assertEquals(3, (int) db.tx().get("a"));
+	}
+
+	@Test
 	public void canCommitIncrementally() {
 		ChronoDB db = this.getChronoDB();
 		ChronoDBTransaction tx = db.tx();
@@ -154,7 +175,8 @@ public class IncrementalCommitTest extends AllChronoDBBackendsTest {
 		assertEquals(9, keySet.size());
 		assertEquals(1, tx.find().inDefaultKeyspace().where("name").isEqualTo("one").getKeysAsSet().size());
 
-		Iterator<Entry<QualifiedKey, Object>> qualifiedResult = tx.find().inDefaultKeyspace().where("name").contains("e").getQualifiedResult();
+		Iterator<Entry<QualifiedKey, Object>> qualifiedResult = tx.find().inDefaultKeyspace().where("name")
+				.contains("e").getQualifiedResult();
 		qualifiedResult.forEachRemaining(entry -> {
 			ChronoLogger.logDebug(entry.getKey().toString() + " -> " + entry.getValue());
 
@@ -443,7 +465,8 @@ public class IncrementalCommitTest extends AllChronoDBBackendsTest {
 		ChronoLogger.logDebug("TX timestamp is: " + tx.getTimestamp());
 
 		// in the end, there should be john smith and jayne doe
-		Set<Object> johns = tx.find().inDefaultKeyspace().where("firstName").isEqualToIgnoreCase("john").getValuesAsSet();
+		Set<Object> johns = tx.find().inDefaultKeyspace().where("firstName").isEqualToIgnoreCase("john")
+				.getValuesAsSet();
 		assertEquals(1, johns.size());
 
 		Set<Object> does = tx.find().inDefaultKeyspace().where("lastName").isEqualToIgnoreCase("doe").getValuesAsSet();
@@ -586,6 +609,46 @@ public class IncrementalCommitTest extends AllChronoDBBackendsTest {
 		assertEquals(Sets.newHashSet("one", "three", "four", "five"), db.tx().keySet());
 		assertEquals(0, db.tx().find().inDefaultKeyspace().where("name").containsIgnoreCase("foo").count());
 		assertEquals(2, db.tx().find().inDefaultKeyspace().where("name").containsIgnoreCase("ba").count());
+	}
+
+	@Test
+	public void getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit() {
+		ChronoDB db = this.getChronoDB();
+		{ // add some base data
+			ChronoDBTransaction tx = db.tx();
+			tx.put("a", "Hello");
+			tx.put("b", "World");
+			tx.commit();
+		}
+		{ // do the incremental commit process
+			ChronoDBTransaction tx = db.tx();
+			assertEquals("Hello", tx.get("a"));
+			assertEquals("World", tx.get("b"));
+			assertTrue(tx.exists("a"));
+			assertTrue(tx.exists("b"));
+
+			tx.put("c", "Foo");
+			tx.put("d", "Bar");
+
+			tx.commitIncremental();
+
+			assertTrue(tx.exists("a"));
+			assertTrue(tx.exists("b"));
+			assertTrue(tx.exists("c"));
+			assertTrue(tx.exists("d"));
+
+			tx.remove("a");
+
+			tx.commitIncremental();
+
+			assertNull(tx.get("a"));
+			assertFalse(tx.exists("a"));
+
+			tx.commit();
+		}
+
+		assertNull(db.tx().get("a"));
+		assertFalse(db.tx().exists("a"));
 	}
 
 	private static class Person {

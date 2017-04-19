@@ -2,9 +2,12 @@ package org.chronos.chronodb.internal.impl.engines.base;
 
 import static com.google.common.base.Preconditions.*;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.chronos.chronodb.api.Branch;
@@ -58,6 +61,27 @@ public abstract class AbstractCommitMetadataStore implements CommitMetadataStore
 			// we found a commit with metadata; deserialize the value and return it
 			return this.getSerializationManager().deserialize(serializedValue);
 		}
+	}
+
+	@Override
+	public List<Long> getCommitTimestampsAround(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.getCommitMetadataAround(timestamp, count).stream().map(entry -> entry.getKey()).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Long> getCommitTimestampsBefore(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.getCommitMetadataBefore(timestamp, count).stream().map(entry -> entry.getKey()).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Long> getCommitTimestampsAfter(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.getCommitMetadataAfter(timestamp, count).stream().map(entry -> entry.getKey()).collect(Collectors.toList());
 	}
 
 	@Override
@@ -116,6 +140,14 @@ public abstract class AbstractCommitMetadataStore implements CommitMetadataStore
 		return this.getSerializationManager().deserialize(serialForm);
 	}
 
+	protected Entry<Long, Object> deserializeValueOf(final Entry<Long, byte[]> entry) {
+		if (entry.getValue() == null) {
+			return Pair.of(entry.getKey(), null);
+		} else {
+			return Pair.of(entry.getKey(), this.deserialize(entry.getValue()));
+		}
+	}
+
 	// =====================================================================================================================
 	// ABSTRAC METHOD DECLARATIONS
 	// =====================================================================================================================
@@ -126,4 +158,25 @@ public abstract class AbstractCommitMetadataStore implements CommitMetadataStore
 
 	protected abstract void rollbackToTimestampInternal(long timestamp);
 
+	// =================================================================================================================
+	// INNER CLASSES
+	// =================================================================================================================
+
+	protected static class EntryTimestampComparator implements Comparator<Entry<Long, ?>> {
+
+		public static final EntryTimestampComparator INSTANCE = new EntryTimestampComparator();
+
+		@Override
+		public int compare(final Entry<Long, ?> o1, final Entry<Long, ?> o2) {
+			if (o1 == null && o2 == null) {
+				return 0;
+			} else if (o1 != null && o2 == null) {
+				return 1;
+			} else if (o1 == null && o2 != null) {
+				return -1;
+			}
+			return o1.getKey().compareTo(o2.getKey());
+		}
+
+	}
 }

@@ -4,6 +4,7 @@ import static com.google.common.base.Preconditions.*;
 
 import java.io.File;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -342,6 +343,54 @@ public class ChronoThreadedTransactionGraph implements ChronoGraph {
 		checkNotNull(order, "Precondition violation - argument 'order' must not be NULL!");
 		return this.originalGraph.getCommitMetadataPaged(branch, minTimestamp, maxTimestamp, pageSize, pageIndex,
 				order);
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataAround(final String branch, final long timestamp, final int count) {
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.originalGraph.getCommitMetadataAround(branch, timestamp, count);
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataBefore(final String branch, final long timestamp, final int count) {
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.originalGraph.getCommitMetadataBefore(branch, timestamp, count);
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataAfter(final String branch, final long timestamp, final int count) {
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.originalGraph.getCommitMetadataAfter(branch, timestamp, count);
+	}
+
+	@Override
+	public List<Long> getCommitTimestampsAround(final String branch, final long timestamp, final int count) {
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.originalGraph.getCommitTimestampsAround(branch, timestamp, count);
+	}
+
+	@Override
+	public List<Long> getCommitTimestampsBefore(final String branch, final long timestamp, final int count) {
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.originalGraph.getCommitTimestampsBefore(branch, timestamp, count);
+	}
+
+	@Override
+	public List<Long> getCommitTimestampsAfter(final String branch, final long timestamp, final int count) {
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.originalGraph.getCommitTimestampsAfter(branch, timestamp, count);
 	}
 
 	@Override

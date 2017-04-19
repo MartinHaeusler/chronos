@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 
 import org.chronos.chronodb.api.Branch;
@@ -13,6 +14,7 @@ import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractCommitMetadataStore;
 
 import com.google.common.collect.Iterators;
+import com.google.common.collect.Lists;
 
 public class JdbcCommitMetadataStore extends AbstractCommitMetadataStore {
 
@@ -119,6 +121,54 @@ public class JdbcCommitMetadataStore extends AbstractCommitMetadataStore {
 			Iterator<Entry<Long, byte[]>> iterator = JdbcCommitMetadataTable.get(connection)
 					.getCommitMetadataPaged(branchName, minTimestamp, maxTimestamp, pageSize, pageIndex, order);
 			return Iterators.transform(iterator, pair -> this.mapSerialEntryToPair(pair));
+		} catch (SQLException e) {
+			throw new ChronoDBStorageBackendException("Failed to access Commit Metadata Table!", e);
+		}
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataAround(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		String branchName = this.getBranchName();
+		try (Connection connection = this.openConnection()) {
+			List<Entry<Long, byte[]>> list = JdbcCommitMetadataTable.get(connection).getCommitMetadataAround(branchName, timestamp, count);
+			List<Entry<Long, Object>> deserializedList = Lists.newArrayList();
+			list.forEach(e -> deserializedList.add(this.deserializeValueOf(e)));
+			deserializedList.sort(EntryTimestampComparator.INSTANCE.reversed());
+			return deserializedList;
+		} catch (SQLException e) {
+			throw new ChronoDBStorageBackendException("Failed to access Commit Metadata Table!", e);
+		}
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataBefore(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		String branchName = this.getBranchName();
+		try (Connection connection = this.openConnection()) {
+			List<Entry<Long, byte[]>> list = JdbcCommitMetadataTable.get(connection).getCommitMetadataBefore(branchName, timestamp, count);
+			List<Entry<Long, Object>> deserializedList = Lists.newArrayList();
+			list.forEach(e -> deserializedList.add(this.deserializeValueOf(e)));
+			deserializedList.sort(EntryTimestampComparator.INSTANCE.reversed());
+			return deserializedList;
+		} catch (SQLException e) {
+			throw new ChronoDBStorageBackendException("Failed to access Commit Metadata Table!", e);
+		}
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataAfter(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		String branchName = this.getBranchName();
+		try (Connection connection = this.openConnection()) {
+			List<Entry<Long, byte[]>> list = JdbcCommitMetadataTable.get(connection).getCommitMetadataAfter(branchName, timestamp, count);
+			List<Entry<Long, Object>> deserializedList = Lists.newArrayList();
+			list.forEach(e -> deserializedList.add(this.deserializeValueOf(e)));
+			deserializedList.sort(EntryTimestampComparator.INSTANCE.reversed());
+			return deserializedList;
 		} catch (SQLException e) {
 			throw new ChronoDBStorageBackendException("Failed to access Commit Metadata Table!", e);
 		}

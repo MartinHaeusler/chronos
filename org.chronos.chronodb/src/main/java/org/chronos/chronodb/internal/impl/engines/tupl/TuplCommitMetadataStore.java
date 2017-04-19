@@ -319,6 +319,202 @@ public class TuplCommitMetadataStore extends AbstractCommitMetadataStore {
 	}
 
 	@Override
+	public List<Entry<Long, Object>> getCommitMetadataAround(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		List<Entry<Long, Object>> resultList = Lists.newArrayList();
+		// shortcut if count is zero...
+		if (count == 0) {
+			return resultList;
+		}
+		// open a cursor
+		try (TuplTransaction tx = this.openTransaction()) {
+			Cursor cursor = tx.newCursorOn(this.indexName);
+			try {
+				// we perform loading manually in this algorithm
+				cursor.autoload(false);
+				// position the cursor at the requested timestamp
+				cursor.findGe(TuplUtils.encodeLong(timestamp));
+				if (cursor.key() == null) {
+					// we found no matching greater/equal key...
+					cursor.findLe(TuplUtils.encodeLong(timestamp));
+					if (cursor.key() == null) {
+						// we found no matching less/equal key. The index is empty!
+						return resultList;
+					}
+					// there are no greater timestamps, return the lower ones
+					int added = 0;
+					while (added < count) {
+						resultList.add(this.entryAt(cursor));
+						added++;
+						cursor.previous();
+						if (cursor.key() == null) {
+							// reached end of the index
+							break;
+						}
+					}
+					resultList.sort(EntryTimestampComparator.INSTANCE.reversed());
+					return resultList;
+				}
+				// we have found our "middle" key
+				resultList.add(this.entryAt(cursor));
+				SearchMetadataAroundTimestampState state = new SearchMetadataAroundTimestampState(cursor.key());
+
+				// add the uppper half
+				int limitUpper = (count - 1) / 2;
+				this.addEntriesAbove(resultList, cursor, state, limitUpper);
+				boolean aboveExhausted = state.getAddedUpper() < limitUpper;
+				// take the remaining stuff from the lower bound
+				int limitLower = count - state.getAddedUpper() - 1;
+				this.addEntriesBelow(resultList, cursor, state, limitLower);
+				boolean belowExhausted = state.getAddedLower() < limitLower;
+				if (resultList.size() < count && (aboveExhausted && belowExhausted) == false) {
+					if (aboveExhausted == false && belowExhausted) {
+						// lower end is exhausted, add the rest from the upper end
+						int toAddUpper = count - 1 - state.getAddedUpper() - state.getAddedLower();
+						this.addEntriesAbove(resultList, cursor, state, toAddUpper);
+					} else if (aboveExhausted && belowExhausted == false) {
+						// upper end is exhausted, add the rest from the lower end
+						int toAddLower = count - 1 - state.getAddedUpper() - state.getAddedLower();
+						this.addEntriesBelow(resultList, cursor, state, toAddLower);
+					} else {
+						// this can't happen. It would mean that we still have elements to add
+						// on both sides, but we did not achieve our requested list length...
+						throw new RuntimeException("Unreachable code block was reached!");
+					}
+				}
+				resultList.sort(EntryTimestampComparator.INSTANCE.reversed());
+				return resultList;
+			} catch (IOException e) {
+				throw new ChronoDBStorageBackendException(
+						"Failed to access commit metadata! See root cause for details.", e);
+			} finally {
+				if (cursor != null) {
+					cursor.reset();
+				}
+			}
+		}
+	}
+
+	private void addEntriesAbove(final List<Entry<Long, Object>> resultList, final Cursor cursor, final SearchMetadataAroundTimestampState state, final int toAdd) throws IOException {
+		int added = 0;
+		cursor.findNearby(state.getHighestKey());
+		while (added < toAdd) {
+			cursor.next();
+			if (cursor.key() == null) {
+				// no more entries in this direction
+				break;
+			}
+			resultList.add(this.entryAt(cursor));
+			state.setHighestKey(cursor.key());
+			added++;
+			state.setAddedUpper(added);
+		}
+	}
+
+	private void addEntriesBelow(final List<Entry<Long, Object>> resultList, final Cursor cursor, final SearchMetadataAroundTimestampState state, final int toAdd) throws IOException {
+		int added = 0;
+		cursor.findNearby(state.getLowestKey());
+		while (added < toAdd) {
+			cursor.previous();
+			if (cursor.key() == null) {
+				// no more entries in this direction
+				break;
+			}
+			resultList.add(this.entryAt(cursor));
+			state.setLowestKey(cursor.key());
+			added++;
+			state.setAddedLower(added);
+		}
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataBefore(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		List<Entry<Long, Object>> resultList = Lists.newArrayList();
+		// shortcut if count is zero...
+		if (count == 0) {
+			return resultList;
+		}
+		// open a cursor
+		try (TuplTransaction tx = this.openTransaction()) {
+			Cursor cursor = tx.newCursorOn(this.indexName);
+			try {
+				// we perform loading manually in this algorithm
+				cursor.autoload(false);
+				// find the next-lower key for the given timestamp
+				cursor.findLt(TuplUtils.encodeLong(timestamp));
+				if (cursor.key() == null) {
+					// there are no commits strictly before the given timestamp
+					return resultList;
+				}
+				// get the entries by linear iteration
+				while (resultList.size() < count) {
+					resultList.add(this.entryAt(cursor));
+					cursor.previous();
+					if (cursor.key() == null) {
+						// there are no more commits in this direction
+						break;
+					}
+				}
+				resultList.sort(EntryTimestampComparator.INSTANCE.reversed());
+				return resultList;
+			} catch (IOException e) {
+				throw new ChronoDBStorageBackendException(
+						"Failed to access commit metadata! See root cause for details.", e);
+			} finally {
+				if (cursor != null) {
+					cursor.reset();
+				}
+			}
+		}
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataAfter(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		List<Entry<Long, Object>> resultList = Lists.newArrayList();
+		// shortcut if count is zero...
+		if (count == 0) {
+			return resultList;
+		}
+		// open a cursor
+		try (TuplTransaction tx = this.openTransaction()) {
+			Cursor cursor = tx.newCursorOn(this.indexName);
+			try {
+				// we perform loading manually in this algorithm
+				cursor.autoload(false);
+				// find the next-larger key for the given timestamp
+				cursor.findGt(TuplUtils.encodeLong(timestamp));
+				if (cursor.key() == null) {
+					// there are no commits strictly before the given timestamp
+					return resultList;
+				}
+				// get the entries by linear iteration
+				while (resultList.size() < count) {
+					resultList.add(this.entryAt(cursor));
+					cursor.next();
+					if (cursor.key() == null) {
+						// there are no more commits in this direction
+						break;
+					}
+				}
+				resultList.sort(EntryTimestampComparator.INSTANCE.reversed());
+				return resultList;
+			} catch (IOException e) {
+				throw new ChronoDBStorageBackendException(
+						"Failed to access commit metadata! See root cause for details.", e);
+			} finally {
+				if (cursor != null) {
+					cursor.reset();
+				}
+			}
+		}
+	}
+
+	@Override
 	public int countCommitTimestampsBetween(final long from, final long to) {
 		checkArgument(from >= 0, "Precondition violation - argument 'from' must not be negative!");
 		checkArgument(to >= 0, "Precondition violation - argument 'to' must not be negative!");
@@ -368,6 +564,16 @@ public class TuplCommitMetadataStore extends AbstractCommitMetadataStore {
 		return this.getOwningDB().openTransaction();
 	}
 
+	private Entry<Long, Object> entryAt(final Cursor cursor) throws IOException {
+		if (cursor.autoload() == false) {
+			cursor.load();
+		}
+		long timestamp = TuplUtils.decodeLong(cursor.key());
+		byte[] data = cursor.value();
+		Object commitMetadata = this.deserialize(data);
+		return Pair.of(timestamp, commitMetadata);
+	}
+
 	private static void initializeCursorPosition(final Cursor cursor, final Order order) throws IOException {
 		switch (order) {
 		case ASCENDING:
@@ -392,6 +598,58 @@ public class TuplCommitMetadataStore extends AbstractCommitMetadataStore {
 		default:
 			throw new UnknownEnumLiteralException(order);
 		}
+	}
+
+	// =================================================================================================================
+	// INNER CLASSES
+	// =================================================================================================================
+
+	private static class SearchMetadataAroundTimestampState {
+
+		private byte[] lowestKey;
+		private byte[] highestKey;
+
+		private int addedLower;
+		private int addedUpper;
+
+		public SearchMetadataAroundTimestampState(final byte[] middleKey) {
+			checkNotNull(middleKey, "Precondition violation - argument 'middleKey' must not be NULL!");
+			this.lowestKey = middleKey;
+			this.highestKey = middleKey;
+		}
+
+		public byte[] getLowestKey() {
+			return this.lowestKey;
+		}
+
+		public void setLowestKey(final byte[] lowestKey) {
+			this.lowestKey = lowestKey;
+		}
+
+		public byte[] getHighestKey() {
+			return this.highestKey;
+		}
+
+		public void setHighestKey(final byte[] highestKey) {
+			this.highestKey = highestKey;
+		}
+
+		public int getAddedLower() {
+			return this.addedLower;
+		}
+
+		public void setAddedLower(final int addedLower) {
+			this.addedLower = addedLower;
+		}
+
+		public int getAddedUpper() {
+			return this.addedUpper;
+		}
+
+		public void setAddedUpper(final int addedUpper) {
+			this.addedUpper = addedUpper;
+		}
+
 	}
 
 }

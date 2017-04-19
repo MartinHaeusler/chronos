@@ -2,8 +2,12 @@ package org.chronos.chronograph.test.index;
 
 import static org.junit.Assert.*;
 
+import java.util.Set;
+
 import org.apache.tinkerpop.gremlin.structure.T;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
+import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
+import org.chronos.chronodb.test.base.InstantiateChronosWith;
 import org.chronos.chronograph.api.index.ChronoGraphIndex;
 import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.test.base.AllChronoGraphBackendsTest;
@@ -12,6 +16,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
 
 @Category(IntegrationTest.class)
@@ -204,6 +209,92 @@ public class IndexingTest extends AllChronoGraphBackendsTest {
 				Iterables.getOnlyElement(g.traversal().V().has("Name", "propertyA").has("Kind", "entity").toSet()));
 		assertEquals(entity2,
 				Iterables.getOnlyElement(g.traversal().V().has("Name", "propertyB").has("Kind", "entity").toSet()));
+	}
+
+	@Test
+	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHING_ENABLED, value = "true")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHE_MAX_SIZE, value = "100")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.QUERY_CACHE_ENABLED, value = "true")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.QUERY_CACHE_MAX_SIZE, value = "20")
+	public void deleteTest() {
+		ChronoGraph g = this.getGraph();
+		g.getIndexManager().createIndex().onVertexProperty("firstName").build();
+		g.getIndexManager().createIndex().onVertexProperty("lastName").build();
+		g.getIndexManager().createIndex().onEdgeProperty("kind").build();
+
+		Vertex v1 = g.addVertex("firstName", "John", "lastName", "Doe");
+		Vertex v2 = g.addVertex("firstName", "Jane", "lastName", "Doe");
+		Vertex v3 = g.addVertex("firstName", "Jack", "lastName", "Johnson");
+		Vertex v4 = g.addVertex("firstName", "Sarah", "lastName", "Doe");
+
+		Set<Vertex> vertices = Sets.newHashSet(v1, v2, v3, v4);
+		for (Vertex vA : vertices) {
+			for (Vertex vB : vertices) {
+				if (vA.equals(vB) == false) {
+					vA.addEdge("connect", vB, "kind", "connect");
+				}
+			}
+		}
+
+		assertEquals(3, g.find().vertices().where("firstName").startsWithIgnoreCase("j").count());
+		g.tx().commit();
+		assertEquals(3, g.find().vertices().where("firstName").startsWithIgnoreCase("j").count());
+
+		int queryResultSize = 3;
+		while (vertices.isEmpty() == false) {
+			Vertex v = vertices.iterator().next();
+			vertices.remove(v);
+			if (((String) v.value("firstName")).startsWith("J")) {
+				v.remove();
+				queryResultSize--;
+				assertEquals(queryResultSize, g.find().vertices().where("firstName").startsWithIgnoreCase("j").count());
+			} else {
+				v.remove();
+				assertEquals(queryResultSize, g.find().vertices().where("firstName").startsWithIgnoreCase("j").count());
+			}
+		}
+		assertEquals(0, queryResultSize);
+		assertEquals(0, g.find().vertices().where("firstName").startsWithIgnoreCase("j").count());
+		assertEquals(0, g.find().vertices().where("lastName").matchesRegex(".*").count());
+		assertEquals(0, g.find().edges().where("kind").matchesRegex(".*").count());
+	}
+
+	@Test
+	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHING_ENABLED, value = "true")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHE_MAX_SIZE, value = "100")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.QUERY_CACHE_ENABLED, value = "true")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.QUERY_CACHE_MAX_SIZE, value = "20")
+	public void massiveDeleteTest() {
+		ChronoGraph g = this.getGraph();
+		g.getIndexManager().createIndex().onVertexProperty("firstName").build();
+		g.getIndexManager().createIndex().onVertexProperty("lastName").build();
+
+		Set<String> vertexIds = Sets.newHashSet();
+		for (int i = 0; i < 10_000; i++) {
+			Vertex v = g.addVertex("firstName", "John#" + i, "lastName", "Doe");
+			vertexIds.add((String) v.id());
+			if ((i % 1_000) == 0) {
+				g.tx().commitIncremental();
+			}
+		}
+		assertEquals(10_000, g.find().vertices().where("firstName").startsWith("John").count());
+		g.tx().commit();
+		assertEquals(10_000, g.find().vertices().where("firstName").startsWith("John").count());
+
+		for (int i = 0; i < 10_000; i++) {
+			Vertex v = Iterators.getOnlyElement(g.vertices(vertexIds.iterator().next()), null);
+			assertNotNull(v);
+			vertexIds.remove(v.id());
+			v.remove();
+			if ((i % 1_000) == 0) {
+				assertEquals(vertexIds.size(), g.find().vertices().where("firstName").startsWith("John").count());
+				g.tx().commitIncremental();
+				assertEquals(vertexIds.size(), g.find().vertices().where("firstName").startsWith("John").count());
+			}
+		}
+		assertEquals(0, g.find().vertices().where("firstName").startsWith("John").count());
+		g.tx().commit();
+		assertEquals(0, g.find().vertices().where("firstName").startsWith("John").count());
 
 	}
 }

@@ -65,12 +65,14 @@ public class LuceneWrapper implements AutoCloseable {
 
 	public LuceneWrapper(final File directory) {
 		checkNotNull(directory, "Precondition violation - argument 'directory' must not be NULL!");
-		checkArgument(directory.isFile() == false, "Precondition violation - argument 'directory' does not refer to a directory (but a file)!");
+		checkArgument(directory.isFile() == false,
+				"Precondition violation - argument 'directory' does not refer to a directory (but a file)!");
 		this.ioDirectory = directory;
 		this.ioDirectory.mkdirs();
 		this.ioDirectory.mkdir();
-		if (this.ioDirectory.exists() == false || this.ioDirectory.isDirectory() == false) {
-			throw new IllegalStateException("Failed to initialize indexing directory '" + directory.getAbsolutePath() + "'!");
+		if ((this.ioDirectory.exists() == false) || (this.ioDirectory.isDirectory() == false)) {
+			throw new IllegalStateException(
+					"Failed to initialize indexing directory '" + directory.getAbsolutePath() + "'!");
 		}
 		try {
 			this.directory = FSDirectory.open(this.ioDirectory.toPath());
@@ -82,7 +84,8 @@ public class LuceneWrapper implements AutoCloseable {
 			this.searcher = new IndexSearcher(this.reader);
 			this.queryParser = new QueryParser(ChronoDBLuceneUtil.DOCUMENT_FIELD_ID, this.analyzer);
 		} catch (IOException e) {
-			throw new ChronoDBStorageBackendException("Failed to initialize Lucene on directory '" + this.ioDirectory.getAbsolutePath() + "'!", e);
+			throw new ChronoDBStorageBackendException(
+					"Failed to initialize Lucene on directory '" + this.ioDirectory.getAbsolutePath() + "'!", e);
 		}
 	}
 
@@ -156,16 +159,19 @@ public class LuceneWrapper implements AutoCloseable {
 		return Iterables.getOnlyElement(documents);
 	}
 
-	public List<Document> getMatchingBranchLocalDocuments(final long timestamp, final String branchName, final SearchSpecification searchSpec) {
+	public List<Document> getMatchingBranchLocalDocuments(final long timestamp, final String branchName,
+			final SearchSpecification searchSpec) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
 		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
 		Query indexNameQuery = termQuery(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEX_NAME, searchSpec.getProperty());
 		Query branchQuery = termQuery(ChronoDBLuceneUtil.DOCUMENT_FIELD_BRANCH, branchName);
 		// 0 <= validFrom <= timestamp
-		Query validFromQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_FROM, 0L, timestamp, true, true);
+		Query validFromQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_FROM, 0L,
+				timestamp, true, true);
 		// timestamp < validTo < Long.MAX_VALUE
-		Query validToQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_TO, timestamp, Long.MAX_VALUE, false, true);
+		Query validToQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_TO, timestamp,
+				Long.MAX_VALUE, false, true);
 
 		SearchSpecification searchSpec2 = searchSpec;
 		boolean isNegated = false;
@@ -173,7 +179,8 @@ public class LuceneWrapper implements AutoCloseable {
 			// remember that we need to negate the result and query for the non-negated spec
 			isNegated = true;
 			// create the non-negated spec
-			searchSpec2 = SearchSpecification.create(searchSpec.getProperty(), searchSpec.getCondition().getNegated(), searchSpec.getMatchMode(), searchSpec.getSearchText());
+			searchSpec2 = SearchSpecification.create(searchSpec.getProperty(), searchSpec.getCondition().getNegated(),
+					searchSpec.getMatchMode(), searchSpec.getSearchText());
 		}
 		Query searchSpecQuery = this.createSearchSpecQuery(searchSpec2);
 		// build the composite query
@@ -195,9 +202,11 @@ public class LuceneWrapper implements AutoCloseable {
 		Query keyspaceQuery = termQuery(ChronoDBLuceneUtil.DOCUMENT_FIELD_KEYSPACE, chronoIdentifier.getKeyspace());
 		Query keyQuery = termQuery(ChronoDBLuceneUtil.DOCUMENT_FIELD_KEY, chronoIdentifier.getKey());
 		// 0 <= validFrom <= timestamp
-		Query validFromQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_FROM, 0L, chronoIdentifier.getTimestamp(), true, true);
+		Query validFromQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_FROM, 0L,
+				chronoIdentifier.getTimestamp(), true, true);
 		// timestamp < validTo < Long.MAX_VALUE
-		Query validToQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_TO, chronoIdentifier.getTimestamp(), Long.MAX_VALUE, false, true);
+		Query validToQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_TO,
+				chronoIdentifier.getTimestamp(), Long.MAX_VALUE, false, true);
 		// build the composite query
 		Builder queryBuilder = new Builder();
 		queryBuilder.add(branchQuery, Occur.FILTER);
@@ -209,11 +218,13 @@ public class LuceneWrapper implements AutoCloseable {
 		return this.search(compositeQuery);
 	}
 
-	public Collection<Document> getTerminatedBranchLocalDocuments(final long timestamp, final String branchName, final SearchSpecification searchSpec) {
+	public Collection<Document> getTerminatedBranchLocalDocuments(final long timestamp, final String branchName,
+			final SearchSpecification searchSpec) {
 		Query indexNameQuery = termQuery(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEX_NAME, searchSpec.getProperty());
 		Query branchQuery = termQuery(ChronoDBLuceneUtil.DOCUMENT_FIELD_BRANCH, branchName);
 		// 0 <= validTo <= timestamp
-		Query validToQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_TO, 0L, timestamp, true, true);
+		Query validToQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_TO, 0L, timestamp,
+				true, true);
 		Query searchSpecQuery = this.createSearchSpecQuery(searchSpec);
 		// build the composite query
 		Builder queryBuilder = new Builder();
@@ -268,18 +279,20 @@ public class LuceneWrapper implements AutoCloseable {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(branches, "Precondition violation - argument 'branches' must not be NULL!");
 		// validFrom >= timestamp <= Long.MAX_VALUE (infinity)
-		Query validFromQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_FROM, timestamp, Long.MAX_VALUE, true, true);
+		Query validFromQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_FROM, timestamp,
+				Long.MAX_VALUE, true, true);
 		// validTo >= timestamp <= Long.MAX_VALUE (infinity)
-		Query validToQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_TO, timestamp, Long.MAX_VALUE, true, true);
+		Query validToQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_TO, timestamp,
+				Long.MAX_VALUE, true, true);
 		// build the composite query
 		Builder queryBuilder = new Builder();
 		queryBuilder.add(validFromQuery, Occur.SHOULD);
 		queryBuilder.add(validToQuery, Occur.SHOULD);
 		List<Document> docs = this.search(queryBuilder.build());
-		if (branches != null) {
-			// we post-process the "in" clause here in-memory, this isn't ideal, perhaps there's a better way to do it directly in lucene?
-			docs = docs.stream().filter(doc -> branches.contains(doc.get(ChronoDBLuceneUtil.DOCUMENT_FIELD_BRANCH))).collect(Collectors.toList());
-		}
+		// we post-process the "in" clause here in-memory, this isn't ideal, perhaps there's a better way to do it
+		// directly in lucene?
+		docs = docs.stream().filter(doc -> branches.contains(doc.get(ChronoDBLuceneUtil.DOCUMENT_FIELD_BRANCH)))
+				.collect(Collectors.toList());
 		return docs;
 	}
 

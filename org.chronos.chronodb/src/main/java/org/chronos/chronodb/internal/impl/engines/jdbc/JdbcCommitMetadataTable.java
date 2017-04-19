@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.NavigableMap;
 import java.util.UUID;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -20,9 +21,11 @@ import org.chronos.chronodb.internal.impl.jdbc.table.DefaultJdbcTable;
 import org.chronos.chronodb.internal.impl.jdbc.table.IndexDeclaration;
 import org.chronos.chronodb.internal.impl.jdbc.table.TableColumn;
 import org.chronos.chronodb.internal.impl.jdbc.util.NamedParameterStatement;
+import org.chronos.chronodb.internal.util.NavigableMapUtils;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 /**
  * The time table is intended to store the commit metadata for all branches.
@@ -39,12 +42,10 @@ import com.google.common.collect.Lists;
  * +-------------+--------------+--------------+------------+----------------+
  * </pre>
  *
- * There is exactly one instance of this table per {@link ChronoDB}. The name of this table is stored in the constant
- * {@link JdbcCommitMetadataTable#NAME}.
+ * There is exactly one instance of this table per {@link ChronoDB}. The name of this table is stored in the constant {@link JdbcCommitMetadataTable#NAME}.
  *
  * <p>
- * This class has <tt>default</tt> visibility (<tt>friendly</tt> visibility) on purpose. It is not intended to be used
- * outside of the package it resides in.
+ * This class has <tt>default</tt> visibility (<tt>friendly</tt> visibility) on purpose. It is not intended to be used outside of the package it resides in.
  *
  * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
  *
@@ -163,6 +164,34 @@ import com.google.common.collect.Lists;
 	public static final String NAMED_SQL__COUNT_COMMIT_TIMESTAMPS_BETWEEN = "SELECT COUNT(*) FROM " + NAME + " WHERE "
 			+ PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_TIMESTAMP + " >= ${from} AND " + PROPERTY_TIMESTAMP
 			+ " <= ${to}";
+
+	public static final String NAMED_SQL__GET_COMMIT_METADATA_AROUND =
+			//
+			"SELECT DISTINCT " + PROPERTY_TIMESTAMP + ", " + PROPERTY_METADATA +
+			//
+					" FROM " + NAME +
+					//
+					" WHERE " + PROPERTY_BRANCH + " = ${branch} AND " +
+					//
+					PROPERTY_TIMESTAMP + " IN ( " +
+					//
+					"( SELECT " + PROPERTY_TIMESTAMP + " FROM " + NAME +
+					//
+					" WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_TIMESTAMP + " < ${timestamp} ORDER BY " + PROPERTY_TIMESTAMP + " DESC LIMIT ${limitLower} "
+					//
+					+ ") UNION ( " +
+					//
+					"SELECT " + PROPERTY_TIMESTAMP + " FROM " + NAME +
+					//
+					" WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_TIMESTAMP + " >= ${timestamp} ORDER BY " + PROPERTY_TIMESTAMP + " ASC LIMIT ${limitUpper} " +
+					//
+					") " +
+					//
+					")";
+
+	public static final String NAMED_SQL__GET_COMMIT_METADATA_AFTER = "SELECT DISTINCT " + PROPERTY_TIMESTAMP + ", " + PROPERTY_METADATA + " FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_TIMESTAMP + " > ${timestamp} ORDER BY " + PROPERTY_TIMESTAMP + " ASC LIMIT ${limit}";
+
+	public static final String NAMED_SQL__GET_COMMIT_METADATA_BEFORE = "SELECT DISTINCT " + PROPERTY_TIMESTAMP + ", " + PROPERTY_METADATA + " FROM " + NAME + " WHERE " + PROPERTY_BRANCH + " = ${branch} AND " + PROPERTY_TIMESTAMP + " < ${timestamp} ORDER BY " + PROPERTY_TIMESTAMP + " DESC LIMIT ${limit}";
 
 	// =====================================================================================================================
 	// CONSTRUCTOR
@@ -410,6 +439,81 @@ import com.google.common.collect.Lists;
 					list.add(Pair.of(timestamp, bytes));
 				}
 				return Collections.unmodifiableList(list).iterator();
+			}
+		} catch (SQLException e) {
+			throw new ChronoDBStorageBackendException("Failed to read from Commit Metadata Table!", e);
+		}
+	}
+
+	public List<Entry<Long, byte[]>> getCommitMetadataAround(final String branchName, final long timestamp, final int count) {
+		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		String sql = NAMED_SQL__GET_COMMIT_METADATA_AROUND;
+		try (NamedParameterStatement nStmt = new NamedParameterStatement(this.connection, sql)) {
+			// note: we retrieve "count" elements before AND after the request timestamp, and do the
+			// proper restriction on the map afterwards. Expressing this in SQL would be a nightmare.
+			nStmt.setParameter("branch", branchName);
+			nStmt.setParameter("timestamp", timestamp);
+			nStmt.setParameter("limitLower", count);
+			nStmt.setParameter("limitUpper", count);
+			try (ResultSet resultSet = nStmt.executeQuery()) {
+				NavigableMap<Long, byte[]> navMap = Maps.newTreeMap();
+				while (resultSet.next()) {
+					long time = resultSet.getLong(PROPERTY_TIMESTAMP);
+					Blob blob = resultSet.getBlob(PROPERTY_METADATA);
+					byte[] bytes = null;
+					try {
+						bytes = blob.getBytes(1, (int) blob.length());
+					} finally {
+						blob.free();
+					}
+					navMap.put(time, bytes);
+				}
+				return NavigableMapUtils.entriesAround(navMap, timestamp, count);
+			}
+		} catch (SQLException e) {
+			throw new ChronoDBStorageBackendException("Failed to read from Commit Metadata Table!", e);
+		}
+	}
+
+	public List<Entry<Long, byte[]>> getCommitMetadataBefore(final String branchName, final long timestamp, final int count) {
+		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		String sql = NAMED_SQL__GET_COMMIT_METADATA_BEFORE;
+		return this.getCommitMetadataBeforeOrAfter(branchName, timestamp, count, sql);
+	}
+
+	public List<Entry<Long, byte[]>> getCommitMetadataAfter(final String branchName, final long timestamp, final int count) {
+		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		String sql = NAMED_SQL__GET_COMMIT_METADATA_AFTER;
+		return this.getCommitMetadataBeforeOrAfter(branchName, timestamp, count, sql);
+	}
+
+	private List<Entry<Long, byte[]>> getCommitMetadataBeforeOrAfter(final String branchName, final long timestamp, final int count, final String sql) {
+		try (NamedParameterStatement nStmt = new NamedParameterStatement(this.connection, sql)) {
+			// note: we retrieve "count" elements before AND after the request timestamp, and do the
+			// proper restriction on the map afterwards. Expressing this in SQL would be a nightmare.
+			nStmt.setParameter("branch", branchName);
+			nStmt.setParameter("timestamp", timestamp);
+			nStmt.setParameter("limit", count);
+			try (ResultSet resultSet = nStmt.executeQuery()) {
+				List<Entry<Long, byte[]>> list = Lists.newArrayList();
+				while (resultSet.next()) {
+					long time = resultSet.getLong(PROPERTY_TIMESTAMP);
+					Blob blob = resultSet.getBlob(PROPERTY_METADATA);
+					byte[] bytes = null;
+					try {
+						bytes = blob.getBytes(1, (int) blob.length());
+					} finally {
+						blob.free();
+					}
+					list.add(Pair.of(time, bytes));
+				}
+				return list;
 			}
 		} catch (SQLException e) {
 			throw new ChronoDBStorageBackendException("Failed to read from Commit Metadata Table!", e);

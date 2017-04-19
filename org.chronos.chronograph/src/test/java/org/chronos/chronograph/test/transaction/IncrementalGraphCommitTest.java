@@ -399,4 +399,90 @@ public class IncrementalGraphCommitTest extends AllChronoGraphBackendsTest {
 		assertEquals(1, g.find().vertices().where("firstName").isEqualToIgnoreCase("john").count());
 		assertEquals(1, g.find().vertices().where("lastName").isEqualToIgnoreCase("doe").count());
 	}
+
+	@Test
+	public void getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit() {
+		ChronoGraph g = this.getGraph();
+		{ // add some base data
+			g.tx().open();
+			g.addVertex(T.id, "a", "name", "Hello");
+			g.addVertex(T.id, "b", "name", "World");
+			g.tx().commit();
+		}
+		{ // do the incremental commit process
+			g.tx().open();
+			assertTrue(Iterators.getOnlyElement(g.vertices("a"), null) != null);
+			assertTrue(Iterators.getOnlyElement(g.vertices("b"), null) != null);
+			assertEquals("Hello", Iterators.getOnlyElement(g.vertices("a")).value("name"));
+			assertEquals("World", Iterators.getOnlyElement(g.vertices("b")).value("name"));
+
+			g.addVertex(T.id, "c", "name", "Foo");
+			g.addVertex(T.id, "d", "name", "Bar");
+
+			g.tx().commitIncremental();
+
+			assertTrue(Iterators.getOnlyElement(g.vertices("a"), null) != null);
+			assertTrue(Iterators.getOnlyElement(g.vertices("b"), null) != null);
+			assertTrue(Iterators.getOnlyElement(g.vertices("c"), null) != null);
+			assertTrue(Iterators.getOnlyElement(g.vertices("d"), null) != null);
+
+			Iterators.getOnlyElement(g.vertices("a"), null).remove();
+
+			g.tx().commitIncremental();
+
+			assertNull(Iterators.getOnlyElement(g.vertices("a"), null));
+
+			g.tx().commit();
+		}
+
+		g.tx().open();
+		assertNull(Iterators.getOnlyElement(g.vertices("a"), null));
+	}
+
+	@Test
+	public void canRecreateVertexDuringIncrementalCommitProcess() {
+		ChronoGraph g = this.getGraph();
+		{ // add some base data
+			g.tx().open();
+			g.addVertex(T.id, "a", "name", "Hello");
+			g.addVertex(T.id, "b", "name", "World");
+			g.tx().commit();
+		}
+		{ // do the incremental commit process
+			g.tx().open();
+			assertTrue(Iterators.getOnlyElement(g.vertices("a"), null) != null);
+			assertTrue(Iterators.getOnlyElement(g.vertices("b"), null) != null);
+			assertEquals("Hello", Iterators.getOnlyElement(g.vertices("a")).value("name"));
+			assertEquals("World", Iterators.getOnlyElement(g.vertices("b")).value("name"));
+
+			g.addVertex(T.id, "c", "name", "Foo");
+			g.addVertex(T.id, "d", "name", "Bar");
+
+			g.tx().commitIncremental();
+
+			assertTrue(Iterators.getOnlyElement(g.vertices("a"), null) != null);
+			assertTrue(Iterators.getOnlyElement(g.vertices("b"), null) != null);
+			assertTrue(Iterators.getOnlyElement(g.vertices("c"), null) != null);
+			assertTrue(Iterators.getOnlyElement(g.vertices("d"), null) != null);
+
+			Iterators.getOnlyElement(g.vertices("a"), null).remove();
+
+			g.tx().commitIncremental();
+
+			assertNull(Iterators.getOnlyElement(g.vertices("a"), null));
+
+			// recreate a
+			g.addVertex(T.id, "a", "name", "BornAgain");
+
+			g.tx().commitIncremental();
+			assertTrue(Iterators.getOnlyElement(g.vertices("a"), null) != null);
+			assertEquals("BornAgain", Iterators.getOnlyElement(g.vertices("a")).value("name"));
+
+			g.tx().commit();
+		}
+		g.tx().open();
+		assertTrue(Iterators.getOnlyElement(g.vertices("a"), null) != null);
+		assertEquals("BornAgain", Iterators.getOnlyElement(g.vertices("a")).value("name"));
+	}
+
 }

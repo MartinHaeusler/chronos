@@ -1,0 +1,36 @@
+// ORG.CHRONOS.CHRONOSPHERE/build.gradle
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'ChronoSphere'
+    }
+}
+
+test {
+	// do not include tests from common (those are run separately)
+	exclude '**/org/chronos/common/**'
+	// do not include tests from ChronoDB (those are run separately)
+	exclude '**/org/chronos/chronodb/**'
+	// do not include tests from ChronoGraph (those are run separately)
+	exclude '**/org/chronos/chronograph/**'
+	// exclude performance tests and benchmarks
+	useJUnit {
+		excludeCategories 'org.chronos.common.test.junit.categories.PerformanceTest'
+	}
+}
+
+dependencies {
+    compile project(':org.chronos.common');
+    compile project(':org.chronos.chronodb');
+    compile project(':org.chronos.chronograph');
+    
+    compile("org.eclipse.emf:org.eclipse.emf.ecore:2.11.1-v20150805-0538")
+    compile("org.eclipse.emf:org.eclipse.emf.common:2.11.0-v20150805-0538")   
+    compile("org.eclipse.emf:org.eclipse.emf.ecore.xmi:2.11.1-v20150805-0538")
+    
+    testCompile project(':org.chronos.common.testing')
+    testCompile project(':org.chronos.common').sourceSets.test.output;
+    testCompile project(':org.chronos.chronodb').sourceSets.test.output;
+    testCompile project(':org.chronos.chronograph').sourceSets.test.output;
+    testCompile("org.apache.tinkerpop:gremlin-test:${project.tinkerpopVersion}")
+}

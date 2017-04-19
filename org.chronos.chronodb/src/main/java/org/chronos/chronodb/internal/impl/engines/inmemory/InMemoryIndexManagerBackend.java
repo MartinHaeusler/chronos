@@ -195,19 +195,20 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 			final Set<String> branches) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		Set<ChronoIndexDocument> resultSet = Sets.newHashSet();
-		if (branches.isEmpty()) {
+		if ((branches != null) && branches.isEmpty()) {
 			// no branches are requested, so the result set is empty by definition.
 			return resultSet;
 		}
 		for (ChronoIndexDocument document : this.indexNameToDocuments.values()) {
-			if (branches != null && branches.contains(document.getBranch()) == false) {
+			if ((branches != null) && (branches.contains(document.getBranch()) == false)) {
 				// the branch of the document is not in the set of requested branches -> ignore the document
 				continue;
 			}
 			if (document.getValidFromTimestamp() >= timestamp) {
 				// the document was added at or after the timestamp in question
 				resultSet.add(document);
-			} else if (document.getValidToTimestamp() < Long.MAX_VALUE && document.getValidToTimestamp() >= timestamp) {
+			} else if ((document.getValidToTimestamp() < Long.MAX_VALUE)
+					&& (document.getValidToTimestamp() >= timestamp)) {
 				// the document was modified at or after the timestamp in question
 				resultSet.add(document);
 			}
@@ -271,11 +272,11 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 		}
 		Map<String, Map<String, SetMultimap<String, ChronoIndexDocument>>> branchToKeyspace = this.documents
 				.get(indexName);
-		if (branchToKeyspace == null || branchToKeyspace.isEmpty()) {
+		if ((branchToKeyspace == null) || branchToKeyspace.isEmpty()) {
 			return Collections.emptySet();
 		}
 		Map<String, SetMultimap<String, ChronoIndexDocument>> keyspaceToKeyToDoc = branchToKeyspace.get(branchName);
-		if (keyspaceToKeyToDoc == null || keyspaceToKeyToDoc.isEmpty()) {
+		if ((keyspaceToKeyToDoc == null) || keyspaceToKeyToDoc.isEmpty()) {
 			return Collections.emptySet();
 		}
 		Condition condition = searchSpec.getCondition();
@@ -305,11 +306,11 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 		}
 		Map<String, Map<String, SetMultimap<String, ChronoIndexDocument>>> branchToKeyspace = this.documents
 				.get(indexName);
-		if (branchToKeyspace == null || branchToKeyspace.isEmpty()) {
+		if ((branchToKeyspace == null) || branchToKeyspace.isEmpty()) {
 			return Collections.emptySet();
 		}
 		Map<String, SetMultimap<String, ChronoIndexDocument>> keyspaceToKeyToDoc = branchToKeyspace.get(branchName);
-		if (keyspaceToKeyToDoc == null || keyspaceToKeyToDoc.isEmpty()) {
+		if ((keyspaceToKeyToDoc == null) || keyspaceToKeyToDoc.isEmpty()) {
 			return Collections.emptySet();
 		}
 		Condition condition = searchSpec.getCondition();
@@ -343,35 +344,35 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 			}
 			switch (condition) {
 			case EQUALS:
-				return indexedValue.contentEquals(searchString) && doc.getValidFromTimestamp() <= timestamp
-						&& timestamp < doc.getValidToTimestamp();
+				return indexedValue.contentEquals(searchString) && (doc.getValidFromTimestamp() <= timestamp)
+						&& (timestamp < doc.getValidToTimestamp());
 			case NOT_EQUALS:
-				return indexedValue.contentEquals(searchString) == false && doc.getValidFromTimestamp() <= timestamp
-						&& timestamp < doc.getValidToTimestamp();
+				return (indexedValue.contentEquals(searchString) == false) && (doc.getValidFromTimestamp() <= timestamp)
+						&& (timestamp < doc.getValidToTimestamp());
 			case CONTAINS:
-				return indexedValue.contains(searchString) && doc.getValidFromTimestamp() <= timestamp
-						&& timestamp < doc.getValidToTimestamp();
+				return indexedValue.contains(searchString) && (doc.getValidFromTimestamp() <= timestamp)
+						&& (timestamp < doc.getValidToTimestamp());
 			case NOT_CONTAINS:
-				return indexedValue.contains(searchString) == false && doc.getValidFromTimestamp() <= timestamp
-						&& timestamp < doc.getValidToTimestamp();
+				return (indexedValue.contains(searchString) == false) && (doc.getValidFromTimestamp() <= timestamp)
+						&& (timestamp < doc.getValidToTimestamp());
 			case STARTS_WITH:
-				return indexedValue.startsWith(searchString) && doc.getValidFromTimestamp() <= timestamp
-						&& timestamp < doc.getValidToTimestamp();
+				return indexedValue.startsWith(searchString) && (doc.getValidFromTimestamp() <= timestamp)
+						&& (timestamp < doc.getValidToTimestamp());
 			case NOT_STARTS_WITH:
-				return indexedValue.startsWith(searchString) == false && doc.getValidFromTimestamp() <= timestamp
-						&& timestamp < doc.getValidToTimestamp();
+				return (indexedValue.startsWith(searchString) == false) && (doc.getValidFromTimestamp() <= timestamp)
+						&& (timestamp < doc.getValidToTimestamp());
 			case ENDS_WITH:
-				return indexedValue.endsWith(searchString) && doc.getValidFromTimestamp() <= timestamp
-						&& timestamp < doc.getValidToTimestamp();
+				return indexedValue.endsWith(searchString) && (doc.getValidFromTimestamp() <= timestamp)
+						&& (timestamp < doc.getValidToTimestamp());
 			case NOT_ENDS_WITH:
-				return indexedValue.endsWith(searchString) == false && doc.getValidFromTimestamp() <= timestamp
-						&& timestamp < doc.getValidToTimestamp();
+				return (indexedValue.endsWith(searchString) == false) && (doc.getValidFromTimestamp() <= timestamp)
+						&& (timestamp < doc.getValidToTimestamp());
 			case MATCHES_REGEX:
-				return indexedValue.matches(searchString) && doc.getValidFromTimestamp() <= timestamp
-						&& timestamp < doc.getValidToTimestamp();
+				return indexedValue.matches(searchString) && (doc.getValidFromTimestamp() <= timestamp)
+						&& (timestamp < doc.getValidToTimestamp());
 			case NOT_MATCHES_REGEX:
-				return indexedValue.matches(searchString) == false && doc.getValidFromTimestamp() <= timestamp
-						&& timestamp < doc.getValidToTimestamp();
+				return (indexedValue.matches(searchString) == false) && (doc.getValidFromTimestamp() <= timestamp)
+						&& (timestamp < doc.getValidToTimestamp());
 			default:
 				throw new UnknownEnumLiteralException(condition);
 			}
@@ -395,25 +396,25 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 			}
 			switch (condition) {
 			case EQUALS:
-				return indexedValue.contentEquals(searchString) && doc.getValidToTimestamp() <= timestamp;
+				return indexedValue.contentEquals(searchString) && (doc.getValidToTimestamp() <= timestamp);
 			case NOT_EQUALS:
-				return indexedValue.contentEquals(searchString) == false && doc.getValidToTimestamp() <= timestamp;
+				return (indexedValue.contentEquals(searchString) == false) && (doc.getValidToTimestamp() <= timestamp);
 			case CONTAINS:
-				return indexedValue.contains(searchString) && doc.getValidToTimestamp() <= timestamp;
+				return indexedValue.contains(searchString) && (doc.getValidToTimestamp() <= timestamp);
 			case NOT_CONTAINS:
-				return indexedValue.contains(searchString) == false && doc.getValidToTimestamp() <= timestamp;
+				return (indexedValue.contains(searchString) == false) && (doc.getValidToTimestamp() <= timestamp);
 			case STARTS_WITH:
-				return indexedValue.startsWith(searchString) && doc.getValidToTimestamp() <= timestamp;
+				return indexedValue.startsWith(searchString) && (doc.getValidToTimestamp() <= timestamp);
 			case NOT_STARTS_WITH:
-				return indexedValue.startsWith(searchString) == false && doc.getValidToTimestamp() <= timestamp;
+				return (indexedValue.startsWith(searchString) == false) && (doc.getValidToTimestamp() <= timestamp);
 			case ENDS_WITH:
-				return indexedValue.endsWith(searchString) && doc.getValidToTimestamp() <= timestamp;
+				return indexedValue.endsWith(searchString) && (doc.getValidToTimestamp() <= timestamp);
 			case NOT_ENDS_WITH:
-				return indexedValue.endsWith(searchString) == false && doc.getValidToTimestamp() <= timestamp;
+				return (indexedValue.endsWith(searchString) == false) && (doc.getValidToTimestamp() <= timestamp);
 			case MATCHES_REGEX:
-				return indexedValue.matches(searchString) && doc.getValidToTimestamp() <= timestamp;
+				return indexedValue.matches(searchString) && (doc.getValidToTimestamp() <= timestamp);
 			case NOT_MATCHES_REGEX:
-				return indexedValue.matches(searchString) == false && doc.getValidToTimestamp() <= timestamp;
+				return (indexedValue.matches(searchString) == false) && (doc.getValidToTimestamp() <= timestamp);
 			default:
 				throw new UnknownEnumLiteralException(condition);
 			}

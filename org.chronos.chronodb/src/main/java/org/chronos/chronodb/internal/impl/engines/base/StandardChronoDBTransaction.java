@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.*;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -252,6 +253,48 @@ public class StandardChronoDBTransaction implements ChronoDBTransaction {
 		checkNotNull(order, "Precondition violation - argument 'order' must not be NULL!");
 		return this.getTKVS().performGetCommitMetadataPaged(this, minTimestamp, maxTimestamp, pageSize, pageIndex,
 				order);
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataAround(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.getTKVS().performGetCommitMetadataAround(timestamp, count);
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataBefore(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.getTKVS().performGetCommitMetadataBefore(timestamp, count);
+	}
+
+	@Override
+	public List<Entry<Long, Object>> getCommitMetadataAfter(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.getTKVS().performGetCommitMetadataAfter(timestamp, count);
+	}
+
+	@Override
+	public List<Long> getCommitTimestampsAround(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.getTKVS().performGetCommitTimestampsAround(timestamp, count);
+	}
+
+	@Override
+	public List<Long> getCommitTimestampsBefore(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.getTKVS().performGetCommitTimestampsBefore(timestamp, count);
+	}
+
+	@Override
+	public List<Long> getCommitTimestampsAfter(final long timestamp, final int count) {
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
+		return this.getTKVS().performGetCommitTimestampsAfter(timestamp, count);
 	}
 
 	@Override

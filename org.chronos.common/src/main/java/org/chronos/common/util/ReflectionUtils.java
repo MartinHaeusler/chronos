@@ -77,7 +77,7 @@ public final class ReflectionUtils {
 	public static Set<Field> getAnnotatedFields(final Class<?> clazz,
 			final Class<? extends Annotation>... annotations) {
 		checkNotNull(clazz, "Precondition violation - argument 'clazz' must not be NULL!");
-		if (annotations == null || annotations.length <= 0) {
+		if ((annotations == null) || (annotations.length <= 0)) {
 			return getAllFields(clazz);
 		}
 		Set<Class<? extends Annotation>> annotationSet = Sets.newHashSet(annotations);
@@ -201,6 +201,22 @@ public final class ReflectionUtils {
 			for (Method method : methods) {
 				if (method.getName().equals(methodName)) {
 					return method;
+				}
+			}
+			currentClass = currentClass.getSuperclass();
+		}
+		return null;
+	}
+
+	public static Field getDeclaredField(final Class<?> clazz, final String fieldName) {
+		checkNotNull(clazz, "Precondition violation - argument 'clazz' must not be NULL!");
+		checkNotNull(fieldName, "Precondition violation - argument 'fieldName' must not be NULL!");
+		Class<?> currentClass = clazz;
+		while (currentClass.equals(Object.class) == false) {
+			Field[] fields = currentClass.getDeclaredFields();
+			for (Field field : fields) {
+				if (field.getName().equals(fieldName)) {
+					return field;
 				}
 			}
 			currentClass = currentClass.getSuperclass();

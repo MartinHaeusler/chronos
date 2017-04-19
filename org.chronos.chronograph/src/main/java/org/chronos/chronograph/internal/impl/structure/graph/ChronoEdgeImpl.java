@@ -22,7 +22,9 @@ import org.chronos.chronograph.internal.ChronoGraphConstants;
 import org.chronos.chronograph.internal.impl.structure.record.EdgeRecord;
 import org.chronos.chronograph.internal.impl.structure.record.EdgeTargetRecord;
 import org.chronos.chronograph.internal.impl.structure.record.PropertyRecord;
+import org.chronos.chronograph.internal.impl.util.ChronoGraphElementUtil;
 import org.chronos.chronograph.internal.impl.util.ChronoProxyUtil;
+import org.chronos.chronograph.internal.impl.util.PredefinedProperty;
 import org.chronos.common.base.CCC;
 import org.chronos.common.logging.ChronoLogger;
 import org.chronos.common.logging.LogLevel;
@@ -33,8 +35,7 @@ import com.google.common.collect.Sets;
 
 public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, ChronoEdge {
 
-	public static ChronoEdgeImpl create(final ChronoGraph graph, final ChronoGraphTransaction tx,
-			final EdgeRecord record) {
+	public static ChronoEdgeImpl create(final ChronoGraph graph, final ChronoGraphTransaction tx, final EdgeRecord record) {
 		checkNotNull(graph, "Precondition violation - argument 'graph' must not be NULL!");
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		checkNotNull(record, "Precondition violation - argument 'record' must not be NULL!");
@@ -48,8 +49,7 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		return edge;
 	}
 
-	public static ChronoEdgeImpl create(final String id, final ChronoVertexImpl outV, final String label,
-			final ChronoVertexImpl inV) {
+	public static ChronoEdgeImpl create(final String id, final ChronoVertexImpl outV, final String label, final ChronoVertexImpl inV) {
 		checkNotNull(outV, "Precondition violation - argument 'outV' must not be NULL!");
 		ElementHelper.validateLabel(label);
 		checkNotNull(inV, "Precondition violation - argument 'inV' must not be NULL!");
@@ -58,29 +58,25 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		return edge;
 	}
 
-	public static ChronoEdgeImpl incomingEdgeFromRecord(final ChronoVertexImpl owner, final String label,
-			final EdgeTargetRecord record) {
+	public static ChronoEdgeImpl incomingEdgeFromRecord(final ChronoVertexImpl owner, final String label, final EdgeTargetRecord record) {
 		checkNotNull(owner, "Precondition violation - argument 'owner' must not be NULL!");
 		checkNotNull(record, "Precondition violation - argument 'record' must not be NULL!");
 		checkNotNull(label, "Precondition violation - argument 'label' must not be NULL!");
 		String id = record.getEdgeId();
 		String otherEndVertexId = record.getOtherEndVertexId();
-		ChronoEdgeImpl edge = new ChronoEdgeImpl(id, label, owner, otherEndVertexId, owner.id(),
-				ElementLifecycleStatus.PERSISTED);
+		ChronoEdgeImpl edge = new ChronoEdgeImpl(id, label, owner, otherEndVertexId, owner.id(), ElementLifecycleStatus.PERSISTED);
 		// tell the edge that it's properties must be loaded from the backing data store on first access
 		edge.lazyLoadProperties = true;
 		return edge;
 	}
 
-	public static ChronoEdgeImpl outgoingEdgeFromRecord(final ChronoVertexImpl owner, final String label,
-			final EdgeTargetRecord record) {
+	public static ChronoEdgeImpl outgoingEdgeFromRecord(final ChronoVertexImpl owner, final String label, final EdgeTargetRecord record) {
 		checkNotNull(owner, "Precondition violation - argument 'owner' must not be NULL!");
 		checkNotNull(record, "Precondition violation - argument 'record' must not be NULL!");
 		checkNotNull(label, "Precondition violation - argument 'label' must not be NULL!");
 		String id = record.getEdgeId();
 		String otherEndVertexId = record.getOtherEndVertexId();
-		ChronoEdgeImpl edge = new ChronoEdgeImpl(id, label, owner, owner.id(), otherEndVertexId,
-				ElementLifecycleStatus.PERSISTED);
+		ChronoEdgeImpl edge = new ChronoEdgeImpl(id, label, owner, owner.id(), otherEndVertexId, ElementLifecycleStatus.PERSISTED);
 		// tell the edge that it's properties must be loaded from the backing data store on first access
 		edge.lazyLoadProperties = true;
 		return edge;
@@ -103,8 +99,7 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 	// =================================================================================================================
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	protected ChronoEdgeImpl(final ChronoGraph graph, final ChronoGraphTransaction tx, final String id,
-			final String outVid, final String label, final String inVid, final Set<PropertyRecord> properties) {
+	protected ChronoEdgeImpl(final ChronoGraph graph, final ChronoGraphTransaction tx, final String id, final String outVid, final String label, final String inVid, final Set<PropertyRecord> properties) {
 		super(graph, tx, id, label, false);
 		checkNotNull(outVid, "Precondition violation - argument 'outVid' must not be NULL!");
 		checkNotNull(inVid, "Precondition violation - argument 'inVid' must not be NULL!");
@@ -118,8 +113,7 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		}
 	}
 
-	protected ChronoEdgeImpl(final String id, final String label, final ChronoVertexImpl owner, final String outVid,
-			final String inVid, final ElementLifecycleStatus status) {
+	protected ChronoEdgeImpl(final String id, final String label, final ChronoVertexImpl owner, final String outVid, final String inVid, final ElementLifecycleStatus status) {
 		super(owner.graph(), owner.getOwningTransaction(), id, label, false);
 		checkNotNull(outVid, "Precondition violation - argument 'outVid' must not be NULL!");
 		checkNotNull(inVid, "Precondition violation - argument 'inVid' must not be NULL!");
@@ -136,8 +130,7 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		}
 	}
 
-	protected ChronoEdgeImpl(final String id, final ChronoVertexImpl outV, final String label,
-			final ChronoVertexImpl inV) {
+	protected ChronoEdgeImpl(final String id, final ChronoVertexImpl outV, final String label, final ChronoVertexImpl inV) {
 		super(inV.graph(), inV.getGraphTransaction(), id, label, false);
 		checkNotNull(outV, "Precondition violation - argument 'outV' must not be NULL!");
 		checkNotNull(inV, "Precondition violation - argument 'inV' must not be NULL!");
@@ -147,8 +140,7 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		if (outV.getOwningTransaction().equals(inV.getOwningTransaction()) == false) {
 			throw new IllegalArgumentException("The given vertices are bound to different transactions!");
 		}
-		if (outV.getOwningThread().equals(Thread.currentThread()) == false
-				|| inV.getOwningThread().equals(Thread.currentThread()) == false) {
+		if (outV.getOwningThread().equals(Thread.currentThread()) == false || inV.getOwningThread().equals(Thread.currentThread()) == false) {
 			throw new IllegalStateException("Cannot create edge - neighboring vertices belong to different threads!");
 		}
 		this.outVid = outV.id();
@@ -198,9 +190,15 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		this.loadLazyPropertiesIfRequired();
 		Set<Property> matchingProperties = Sets.newHashSet();
 		if (propertyKeys == null || propertyKeys.length <= 0) {
+			// note: the TinkerPop test suite explicitly demands that predefined property keys,
+			// such as T.id, T.label etc. are EXCLUDED from the iterator in this case.
 			matchingProperties.addAll(this.properties.values());
 		} else {
 			for (String key : propertyKeys) {
+				PredefinedProperty<?> predefinedProperty = ChronoGraphElementUtil.asPredefinedProperty(this, key);
+				if (predefinedProperty != null) {
+					matchingProperties.add(predefinedProperty);
+				}
 				Property property = this.properties.get(key);
 				if (property != null) {
 					matchingProperties.add(property);
@@ -352,9 +350,7 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		ChronoGraphTransaction graphTx = this.getGraphTransaction();
 		EdgeRecord edgeRecord = graphTx.getBackingDBTransaction().get(ChronoGraphConstants.KEYSPACE_EDGE, this.id());
 		if (edgeRecord == null) {
-			throw new IllegalStateException(
-					"Failed to load edge properties - there is no backing Edge Record in the database for ID: '"
-							+ this.id().toString() + "'!");
+			throw new IllegalStateException("Failed to load edge properties - there is no backing Edge Record in the database for ID: '" + this.id().toString() + "'!");
 		}
 		// load the properties from the edge record
 		for (PropertyRecord propertyRecord : edgeRecord.getProperties()) {
