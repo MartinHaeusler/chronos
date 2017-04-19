@@ -131,4 +131,4 @@ Any object that follows the Java Beans pattern is fair game here, as well as any
 In general, `null` is **never a valid value**. Delete the property instead.
 
 ### What about licensing?
-ChronoDB is provided as-is under the aGPLv3 license, just like all other [Chronos](https://github.com/MartinHaeusler/chronos) components (unless noted explicitly)
+ChronoGraph is based on a dual-license. For academic and open-source projects, the general license is the aGPLv3 license, unless noted otherwise. Commercial licenses are also available on demand.
