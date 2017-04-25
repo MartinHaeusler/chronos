@@ -123,3 +123,11 @@ ChronoSphere comes with its own query framework, which we call *EQuery*. EQuery 
 
 The EQuery language is very varied. The documentation is still a "todo", but you can use the code completion of your IDE to explore the possibilities.
 
+Frequently Asked Questions
+==========================
+
+## What about generated code (Ecore Genmodels)?
+We do not explicitly support them. These classes **may** work with ChronoSphere, but we do not provide dedicated support. The reason is that ChronoSphere supports *metamodel evolution* and *versioning* at the same time. If you evolve your metamodel, and travel back in time, your new generated classes will not match the old metamodel anymore. Your code will break. Use dynamic Ecore instead.
+
+## What about licensing?
+ChronoSphere is based on a dual-license. For academic and open-source projects, the general license is the aGPLv3 license, unless noted otherwise. Commercial licenses are also available on demand.
