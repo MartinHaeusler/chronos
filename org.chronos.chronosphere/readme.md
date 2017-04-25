@@ -103,4 +103,4 @@ Let's add some actual EObjects to our repository:
     }
 ```
 
-
+In the method `createSomeEObject` above, you can create virtually any `EObject` of your choice. As long as it is a syntactically valid `EObject` and adheres to the Ecore contract, it will work with ChronoSphere. Afterwards, we call `attach` in order to add this `EObject` to our repository. There are several overloads for `attach`, e.g. one that accepts `Iterable`s of `EObject`s for your convenience, in case that you want to add multiple elements at once. **Don't forget to call `commmit` to save your changes!**
