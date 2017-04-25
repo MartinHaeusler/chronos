@@ -84,6 +84,23 @@ To open a transaction on a ChronoSphere instance, call the `tx()` method, like s
 ```java
     ChronoSphere repository = ...;
     try(ChronoSphereTransaction tx = repository.tx()){
-    
+        // perform work here
     }
 ```
+
+The example above makes use of Java's [try-with-resources](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html) statement. It *automatically* closes the transaction for you. 
+
+**/!\ Attention**: When a transaction is **closed** by the `try-with-resources` statement, any changes will be **rolled back** (i.e. undone), unless you call `tx.commit()` before reaching the end of the `try` block.
+
+Let's add some actual EObjects to our repository:
+
+```java
+    ChronoSphere repository = ...;
+    try(ChronoSphereTransaction tx = repository.tx()){
+        EObject eObject = createSomeEObject();
+        tx.attach(eObject);
+        tx.commit();
+    }
+```
+
+
