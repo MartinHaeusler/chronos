@@ -13,7 +13,7 @@ Core Features
 * Lightweight Branching
 * Model indexing and model-level query support.
 * Developer-friendly API
-* Dependency management via Maven / Gradle. No Eclipse / OSGi environment needed.
+* Dependency management via Maven / Gradle. No Eclipse or OSGi environment needed.
 * Full support for dynamic Ecore (no source code generation required).
 * Based on [ChronoGraph](https://github.com/MartinHaeusler/chronos/tree/master/org.chronos.chronograph), a versioned graph database.
 
@@ -48,4 +48,29 @@ repositories {
     mavenCentral()
 }
 ```
+## Running some basic examples
 
+ChronoSphere employs an API design which we like to call a *Forward API*. It is designed to make the best possible use of code completion in an IDE, such as Eclipse, IntelliJ IDEA, Netbeans, or others. The key concept is to start with a simple object, and the rest of the API unfolds via code completion.
+
+Let's create a new instance of ChronoSphere. Following the Forward API principle, you start simple - with the `ChronoSphere` interface. Code completion will reveal the static `FACTORY` field. From there, it's a fluent builder pattern:
+   
+```java
+    ChronoSphere repository = ChronoSphere.FACTORY.create().inMemoryRepository().build();
+    
+    // remember to close this repository once you are done working with it.
+    repository.close();
+```
+
+Note that the builder pattern employed above has many other options, and several different backends are supported. For a list of supported backends, please check the code completion.
+
+After starting up a ChronoSphere instance, you should check the registered `EPackage`s:
+
+```java
+    Set<EPackage> ePackages = sphere.getEPackageManager().getRegisteredEPackages();
+    if(ePackages.isEmpty()){
+        // no EPackages are registered, add the EPackage(s) you want to work with.
+        sphere.getEPackageManager().registerOrUpdateEPackage(myEPackage);
+    }
+```
+
+Please note that **no code generation is required** when working with ChronoSphere. The **preferred** way of interacting with Ecore in ChronoSphere is to use the *Reflective API* (e.g. `eObject.eGet(...)` and `eObject.eSet(...)`).
