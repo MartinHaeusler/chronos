@@ -29,7 +29,7 @@ Feature Highlights
 Getting Started
 ===============
 
-ChronoGraph is currently available from the Sonatype Snapshots repository.
+ChronoGraph is available from the Maven Central repository.
 
 ## Installing with Maven
 Add the following to the `<dependencies>` section in your `pom.xml`:
@@ -46,7 +46,7 @@ Add the following to the `<dependencies>` section in your `pom.xml`:
 Add the following line to the `dependencies` section in your `build.gradle` file:
 
 ```groovy
-compile group: 'com.github.martinhaeusler', name: 'org.chronos.chronograph', version: '0.5.4'
+compile group: 'com.github.martinhaeusler', name: 'org.chronos.chronograph', version: '0.5.7'
 ```
 
 In case your `build.gradle` file does not already reference the Maven Central Repository, you also have to add the following to your `build.gradle`:
