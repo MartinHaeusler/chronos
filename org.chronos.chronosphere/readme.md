@@ -48,7 +48,7 @@ repositories {
     mavenCentral()
 }
 ```
-## Running some basic examples
+## Starting a new instance
 
 ChronoSphere employs an API design which we like to call a *Forward API*. It is designed to make the best possible use of code completion in an IDE, such as Eclipse, IntelliJ IDEA, Netbeans, or others. The key concept is to start with a simple object, and the rest of the API unfolds via code completion.
 
@@ -74,3 +74,16 @@ After starting up a ChronoSphere instance, you should check the registered `EPac
 ```
 
 Please note that **no code generation is required** when working with ChronoSphere. The **preferred** way of interacting with Ecore in ChronoSphere is to use the *Reflective API* (e.g. `eObject.eGet(...)` and `eObject.eSet(...)`).
+
+## Transactions
+
+In order to perform actual work on a ChronoSphere instance, you need to make use of `Transaction`s. A transaction is a unit of work that will be executed on the repository according to the [ACID](https://en.wikipedia.org/wiki/ACID) properties. You also profit from the highest isolation level ("serializable", a.k.a. *snapshot isolation*), which means that parallel transactions will never interfere with each other in unpredictable ways.
+
+To open a transaction on a ChronoSphere instance, call the `tx()` method, like so:
+
+```java
+    ChronoSphere repository = ...;
+    try(ChronoSphereTransaction tx = repository.tx()){
+    
+    }
+```
