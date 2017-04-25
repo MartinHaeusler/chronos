@@ -131,3 +131,5 @@ We do not explicitly support them. These classes **may** work with ChronoSphere,
 
 ## What about licensing?
 ChronoSphere is based on a dual-license. For academic and open-source projects, the general license is the aGPLv3 license, unless noted otherwise. Commercial licenses are also available on demand.
+
+**BY CONTRIBUTING TO CHRONOSPHERE, YOU AGREE THAT YOUR CONTRIBUTIONS WILL BE LICENSED UNDER THE aGPL v3 LICENSE**. Furthermore, by contributing to ChronoSphere, you hereby grant to Martin Häusler and any recipients of your contributions, including but not limited to users of this site, a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable license to reproduce, prepare derivative works of, publicly display, publicly perform, sublicense, use, make and distribute your contributions and any derivative works under all intellectual property rights including but not limited to copyright and patent. BY CONTRIBUTING TO CHRONOSPHERE, YOU REPRESENT AND WARRANT THAT YOU ARE LEGALLY ENTITLED TO GRANT THE FOREGOING LICENSE.
