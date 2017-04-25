@@ -38,7 +38,7 @@ Add the following to the `<dependencies>` section in your `pom.xml`:
 <dependency>
   	<groupId>com.github.martinhaeusler</groupId>
   	<artifactId>org.chronos.chronodb</artifactId>
-  	<version>0.5.4</version>
+  	<version>0.5.7</version>
  </dependency>
 ```
 
