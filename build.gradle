@@ -29,7 +29,7 @@ allprojects {
 	
 	// configure the group and version for this project
 	group = 'com.github.martinhaeusler'
-	version = '0.5.7-RELEASE'
+	version = '0.5.7'
 
 	
 	// java version
@@ -175,7 +175,7 @@ allprojects {
    		sign configurations.archives
 	}
 	
-/*	uploadArchives {
+	uploadArchives {
 	  repositories {
 	    mavenDeployer {
 	      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
@@ -219,7 +219,6 @@ allprojects {
 	    }
 	  }
 	}
-*/
 }
 
 
