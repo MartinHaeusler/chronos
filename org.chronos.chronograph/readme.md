@@ -3,7 +3,7 @@
 About ChronoGraph
 =================
 
-ChronoGraph is one of the major components of [Chronos](https://github.com/MartinHaeusler/chronos). It is a versioned graph database and an implementation of the [Apache TinkerPop AP](https://tinkerpop.apache.org/). As with all Chronos Components, ChronoGraph is written in 100% pure Java and should run in any environment supported by JRE 1.8 or later.
+ChronoGraph is one of the major components of [Chronos](https://github.com/MartinHaeusler/chronos). It is a versioned graph database and an official implementation of the [Apache TinkerPop AP](https://tinkerpop.apache.org/). As with all Chronos Components, ChronoGraph is written in 100% pure Java and should run in any environment supported by JRE 1.8 or later.
 
 
 Feature Highlights
