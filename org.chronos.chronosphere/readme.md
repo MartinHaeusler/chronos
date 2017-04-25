@@ -104,3 +104,22 @@ Let's add some actual EObjects to our repository:
 ```
 
 In the method `createSomeEObject` above, you can create virtually any `EObject` of your choice. As long as it is a syntactically valid `EObject` and adheres to the Ecore contract, it will work with ChronoSphere. Afterwards, we call `attach` in order to add this `EObject` to our repository. There are several overloads for `attach`, e.g. one that accepts `Iterable`s of `EObject`s for your convenience, in case that you want to add multiple elements at once. **Don't forget to call `commmit` to save your changes!**
+
+
+## Queries
+ChronoSphere comes with its own query framework, which we call *EQuery*. EQuery is a flexible, **traversal-based** query language that is **embedded into Java** as an [internal DSL](https://martinfowler.com/bliki/InternalDslStyle.html). So, in essence, it's just Java, so you should not have any issues with its syntax. Let's start simple:
+
+```java
+    ChronoSphere repository = ...;
+    try(ChronoSphereTransaction tx = repository.tx()){
+        // fetch the Ecore metadata we need from our registerd EPackage
+        EClass person = EMFUtils.getEClassBySimpleName(tx.getEPackages(), "Person");
+        EAttribute firstName = EMFUtils.getEAttribute(person,"firstName");
+        // run the query
+        Set<EObject> johns = tx.find().startingFromEObjectsWith(firstName, "John").toSet();
+        System.out.println("Found " + johns.size() + " Person(s) with 'firstName' equal to 'John'");
+    }
+```
+
+The EQuery language is very varied. The documentation is still a "todo", but you can use the code completion of your IDE to explore the possibilities.
+
