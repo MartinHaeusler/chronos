@@ -14,6 +14,18 @@ Currently, the following Chronos Components are available in the public reposito
  - [ChronoSphere](https://github.com/MartinHaeusler/chronos/tree/master/org.chronos.chronosphere), a full-featured Ecore Model Repository
 
 
+Version History
+---------------
+
+### 0.7.3
+ - Added capabilities to index floating point numbers as well as integers (in addition to strings)
+ - Many bugfixes to secondary indexing across all layers
+ - Stability improvements
+ - JavaDoc expanded
+
+### 0.5.x Early Release
+
+
 Frequently Asked Questions
 --------------------------
 
