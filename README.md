@@ -24,6 +24,7 @@ Version History
  - JavaDoc expanded
 
 ### 0.5.x Early Release
+ - First release with ChronoDB, ChronoGraph and ChronoSphere
 
 
 Frequently Asked Questions
