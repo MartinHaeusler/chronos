@@ -11,7 +11,7 @@ import java.util.UUID;
 
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
-import org.chronos.chronodb.internal.impl.BranchMetadata;
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
 import org.chronos.chronodb.internal.impl.jdbc.table.DefaultJdbcTable;
 import org.chronos.chronodb.internal.impl.jdbc.table.IndexDeclaration;
 import org.chronos.chronodb.internal.impl.jdbc.table.TableColumn;
@@ -34,12 +34,10 @@ import com.google.common.collect.Sets;
  * +-------------+--------------+--------------+--------------+--------------------+
  * </pre>
  *
- * There is exactly one instance of this table per {@link ChronoDB}. The name of this table is stored in the constant
- * {@link JdbcBranchMetadataTable#NAME}.
+ * There is exactly one instance of this table per {@link ChronoDB}. The name of this table is stored in the constant {@link JdbcBranchMetadataTable#NAME}.
  *
  * <p>
- * This class has <tt>default</tt> visibility (<tt>friendly</tt> visibility) on purpose. It is not intended to be used
- * outside of the package it resides in.
+ * This class has <tt>default</tt> visibility (<tt>friendly</tt> visibility) on purpose. It is not intended to be used outside of the package it resides in.
  *
  * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
  *
@@ -147,7 +145,7 @@ public class JdbcBranchMetadataTable extends DefaultJdbcTable {
 	// PUBLIC API
 	// =================================================================================================================
 
-	public void insertOrUpdate(final BranchMetadata metadata) {
+	public void insertOrUpdate(final IBranchMetadata metadata) {
 		checkNotNull(metadata, "Precondition violation - argument 'metadata' must not be NULL!");
 		String sql;
 		sql = NAMED_SQL_REMOVE_BRANCH;
@@ -170,16 +168,16 @@ public class JdbcBranchMetadataTable extends DefaultJdbcTable {
 		}
 	}
 
-	public Set<BranchMetadata> getAll() {
+	public Set<IBranchMetadata> getAll() {
 		String sql = SQL_SELECT_ALL;
 		try (PreparedStatement pStmt = this.connection.prepareStatement(sql)) {
 			try (ResultSet resultSet = pStmt.executeQuery()) {
-				Set<BranchMetadata> allMetadata = Sets.newHashSet();
+				Set<IBranchMetadata> allMetadata = Sets.newHashSet();
 				while (resultSet.next()) {
 					String branchName = resultSet.getString(PROPERTY_BRANCH_NAME);
 					String parentName = resultSet.getString(PROPERTY_PARENT_BRANCH_NAME);
 					long branchingTimestamp = resultSet.getLong(PROPERTY_BRANCHING_TIMESTAMP);
-					BranchMetadata metadata = new BranchMetadata(branchName, parentName, branchingTimestamp);
+					IBranchMetadata metadata = IBranchMetadata.create(branchName, parentName, branchingTimestamp, null);
 					allMetadata.add(metadata);
 				}
 				return allMetadata;

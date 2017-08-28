@@ -14,11 +14,11 @@ public class ConditionNegationTest extends ChronoDBUnitTest {
 	@Test
 	public void conditionNegationWorks() {
 		for (Condition condition : Condition.values()) {
-			Condition negated = condition.getNegated();
+			Condition negated = condition.negate();
 			// every condition can be negated
 			assertNotNull(negated);
 			// the negation of the negation is the original
-			Condition doubleNegated = negated.getNegated();
+			Condition doubleNegated = negated.negate();
 			assertEquals(condition, doubleNegated);
 		}
 	}

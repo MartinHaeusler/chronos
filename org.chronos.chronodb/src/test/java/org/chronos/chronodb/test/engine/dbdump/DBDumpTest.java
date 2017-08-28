@@ -1,25 +1,26 @@
 package org.chronos.chronodb.test.engine.dbdump;
 
-import static org.junit.Assert.*;
-
 import static com.google.common.base.Preconditions.*;
+import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.time.DayOfWeek;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
-import org.chronos.chronodb.api.ChronoIndexer;
 import org.chronos.chronodb.api.DumpOption;
 import org.chronos.chronodb.api.dump.ChronoConverter;
 import org.chronos.chronodb.api.dump.ChronoDBDumpFormat;
 import org.chronos.chronodb.api.dump.annotations.ChronosExternalizable;
+import org.chronos.chronodb.api.indexing.StringIndexer;
 import org.chronos.chronodb.internal.util.ChronosFileUtils;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
 import org.chronos.common.test.junit.categories.IntegrationTest;
@@ -36,6 +37,33 @@ public class DBDumpTest extends AllChronoDBBackendsTest {
 	// =================================================================================================================
 	// TEST METHODS
 	// =================================================================================================================
+
+	@Test
+	public void canCreateDumpFileIfNotExists() {
+		ChronoDB db = this.getChronoDB();
+		{ // insert test data
+			ChronoDBTransaction tx = db.tx();
+			tx.put("p1", new Person("John", "Doe"));
+			tx.put("p2", new Person("Jane", "Doe"));
+			tx.commit();
+		}
+		// create the file
+		File dumpFile = this.createTestFile("Test.chronodump");
+		// delete the file (we only want the file "pointer")
+		dumpFile.delete();
+		// write to output
+		db.writeDump(dumpFile,
+				// alias person class with a shorter name
+				DumpOption.aliasHint(PersonDump.class, "person"),
+				// use the default converter for persons
+				DumpOption.defaultConverter(Person.class, new PersonDefaultConverter())
+		// end of dump command
+		);
+		// assert that the output file exists
+		assertTrue(dumpFile.exists());
+		// delete it again
+		dumpFile.delete();
+	}
 
 	@Test
 	public void canLoadDumpWithInMemoryDB() {
@@ -535,6 +563,131 @@ public class DBDumpTest extends AllChronoDBBackendsTest {
 		}
 	}
 
+	@Test
+	public void canAccessCommitTimestampsAfterReadingDump() {
+		ChronoDB db = this.getChronoDB();
+		{ // insert test data
+			ChronoDBTransaction tx = db.tx();
+			tx.put("p1", new ExternalizablePerson("John", "Doe"));
+			tx.put("p2", new ExternalizablePerson("Jane", "Doe"));
+			tx.commit();
+
+			tx.put("p3", new ExternalizablePerson("Jack", "Smith"));
+			tx.commit();
+
+			db.getBranchManager().createBranch("test");
+			tx = db.tx("test");
+			tx.put("p4", new ExternalizablePerson("Sarah", "Doe"));
+			tx.commit();
+
+			db.getBranchManager().createBranch("test", "testsub");
+			tx = db.tx("testsub");
+			tx.put("p5", new ExternalizablePerson("James", "Smith"));
+			tx.commit();
+		}
+		// create the file
+		File dumpFile = this.createTestFile("Test.chronodump");
+		// write to output
+		db.writeDump(dumpFile,
+				// alias person class with a shorter name
+				DumpOption.aliasHint(PersonDump.class, "person"),
+				// use the default converter for persons
+				DumpOption.defaultConverter(ExternalizablePerson.class, new PersonDefaultConverter())
+		// end of dump command
+		);
+
+		// read the dump
+		ChronoDB db2 = this.reinstantiateDB();
+		db2.readDump(dumpFile,
+				// alias person class with a shorter name
+				DumpOption.aliasHint(PersonDump.class, "person")
+		// end of dump read command
+		);
+
+		{ // assert that the commit history is accessible
+			// there should be two commits on "master"
+			assertEquals(2, db2.tx().countCommitTimestamps());
+			// there should be one commit on "test"
+			assertEquals(1, db2.tx("test").countCommitTimestamps());
+			// there should be one commit on "testsub"
+			assertEquals(1, db2.tx("testsub").countCommitTimestamps());
+		}
+	}
+
+	@Test
+	public void canAccessCommitMetadataAfterReadingDump() throws Exception {
+		long commit1;
+		long commit2;
+		long commit3;
+		long commit4;
+		ChronoDB db = this.getChronoDB();
+		{ // insert test data
+			ChronoDBTransaction tx = db.tx();
+			tx.put("p1", new ExternalizablePerson("John", "Doe"));
+			tx.put("p2", new ExternalizablePerson("Jane", "Doe"));
+			tx.commit("first");
+			commit1 = tx.getTimestamp();
+
+			tx.put("p3", new ExternalizablePerson("Jack", "Smith"));
+			tx.commit("second");
+			commit2 = tx.getTimestamp();
+
+			db.getBranchManager().createBranch("test");
+			tx = db.tx("test");
+			tx.put("p4", new ExternalizablePerson("Sarah", "Doe"));
+			tx.commit("third");
+			commit3 = tx.getTimestamp();
+
+			db.getBranchManager().createBranch("test", "testsub");
+			tx = db.tx("testsub");
+			tx.put("p5", new ExternalizablePerson("James", "Smith"));
+			tx.commit("fourth");
+			commit4 = tx.getTimestamp();
+		}
+		// create the file
+		File dumpFile = this.createTestFile("Test.chronodump");
+		// write to output
+		db.writeDump(dumpFile,
+				// alias person class with a shorter name
+				DumpOption.aliasHint(PersonDump.class, "person"),
+				// use the default converter for persons
+				DumpOption.defaultConverter(ExternalizablePerson.class, new PersonDefaultConverter())
+		// end of dump command
+		);
+
+		// read the dump
+		ChronoDB db2 = this.reinstantiateDB();
+		db2.readDump(dumpFile,
+				// alias person class with a shorter name
+				DumpOption.aliasHint(PersonDump.class, "person")
+		// end of dump read command
+		);
+
+		{ // assert that the commit history is accessible
+			// there should be two commits on "master"
+			assertEquals(2, db2.tx().countCommitTimestamps());
+			// there should be one commit on "test"
+			assertEquals(1, db2.tx("test").countCommitTimestamps());
+			// there should be one commit on "testsub"
+			assertEquals(1, db2.tx("testsub").countCommitTimestamps());
+
+			// assert that the metadata is accessible
+			List<Entry<Long, Object>> commits = db2.tx().getCommitMetadataBefore(System.currentTimeMillis() + 1, 2);
+			assertEquals(commit2, (long) commits.get(0).getKey());
+			assertEquals("second", commits.get(0).getValue());
+			assertEquals(commit1, (long) commits.get(1).getKey());
+			assertEquals("first", commits.get(1).getValue());
+
+			commits = db2.tx("test").getCommitMetadataBefore(System.currentTimeMillis() + 1, 1);
+			assertEquals(commit3, (long) commits.get(0).getKey());
+			assertEquals("third", commits.get(0).getValue());
+
+			commits = db2.tx("testsub").getCommitMetadataBefore(System.currentTimeMillis() + 1, 1);
+			assertEquals(commit4, (long) commits.get(0).getKey());
+			assertEquals("fourth", commits.get(0).getValue());
+		}
+	}
+
 	// =====================================================================================================================
 	// HELPER METHODS
 	// =====================================================================================================================
@@ -759,7 +912,7 @@ public class DBDumpTest extends AllChronoDBBackendsTest {
 
 	}
 
-	private static abstract class PersonIndexer implements ChronoIndexer {
+	private static abstract class PersonIndexer implements StringIndexer {
 
 		@Override
 		public boolean canIndex(final Object object) {

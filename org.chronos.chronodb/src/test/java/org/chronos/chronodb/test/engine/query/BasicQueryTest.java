@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.api.ChronoDBTransaction;
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.indexing.StringIndexer;
 import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.internal.api.query.ChronoDBQuery;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
@@ -31,7 +31,7 @@ public class BasicQueryTest extends AllChronoDBBackendsTest {
 	public void basicQueryingWorks() {
 		ChronoDB db = this.getChronoDB();
 		// set up the "name" index
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 
@@ -57,7 +57,7 @@ public class BasicQueryTest extends AllChronoDBBackendsTest {
 	public void queryResultSetMethodsWork() {
 		ChronoDB db = this.getChronoDB();
 		// set up the "name" index
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 
@@ -114,7 +114,7 @@ public class BasicQueryTest extends AllChronoDBBackendsTest {
 	public void doubleNegationEliminationWorks() {
 		ChronoDB db = this.getChronoDB();
 		// set up the "name" index
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 
@@ -135,4 +135,49 @@ public class BasicQueryTest extends AllChronoDBBackendsTest {
 		assertTrue(keySet.contains("np1"));
 	}
 
+	@Test
+	public void multipleAndWorks() {
+		ChronoDB db = this.getChronoDB();
+		// set up the "name" index
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
+		db.getIndexManager().addIndexer("name", nameIndexer);
+		db.getIndexManager().reindexAll();
+
+		// generate and insert test data
+		NamedPayload np1 = NamedPayload.create1KB("Hello World");
+		NamedPayload np2 = NamedPayload.create1KB("Foo Bar");
+		NamedPayload np3 = NamedPayload.create1KB("Foo Baz");
+		ChronoDBTransaction tx = db.tx();
+		tx.put("np1", np1);
+		tx.put("np2", np2);
+		tx.put("np3", np3);
+		tx.commit();
+
+		long count = tx.find().inDefaultKeyspace().where("name").contains("o").and().where("name").contains("a").and()
+				.where("name").endsWith("z").count();
+		assertEquals(1, count);
+	}
+
+	@Test
+	public void multipleOrWorks() {
+		ChronoDB db = this.getChronoDB();
+		// set up the "name" index
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
+		db.getIndexManager().addIndexer("name", nameIndexer);
+		db.getIndexManager().reindexAll();
+
+		// generate and insert test data
+		NamedPayload np1 = NamedPayload.create1KB("Hello World");
+		NamedPayload np2 = NamedPayload.create1KB("Foo Bar");
+		NamedPayload np3 = NamedPayload.create1KB("Foo Baz");
+		ChronoDBTransaction tx = db.tx();
+		tx.put("np1", np1);
+		tx.put("np2", np2);
+		tx.put("np3", np3);
+		tx.commit();
+
+		long count = tx.find().inDefaultKeyspace().where("name").contains("z").or().where("name").contains("ar").or()
+				.where("name").endsWith("oo").count();
+		assertEquals(2, count);
+	}
 }

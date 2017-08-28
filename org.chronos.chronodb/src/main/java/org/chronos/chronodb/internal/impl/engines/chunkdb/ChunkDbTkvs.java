@@ -105,7 +105,7 @@ public class ChunkDbTkvs extends AbstractTemporalKeyValueStore {
 	}
 
 	@Override
-	protected CommitMetadataStore getCommitMetadataStore() {
+	public CommitMetadataStore getCommitMetadataStore() {
 		return this.commitMetadataStore;
 	}
 
@@ -148,9 +148,8 @@ public class ChunkDbTkvs extends AbstractTemporalKeyValueStore {
 				// don't rollover exactly at a commit timestamp
 				timestamp = now + 1;
 			}
-			String branchName = this.getOwningBranch().getName();
 			BranchChunkManager chunkManager = this.getOwningDB().getChunkManager()
-					.getOrCreateChunkManagerForBranch(branchName);
+					.getOrCreateChunkManagerForBranch(this.getOwningBranch());
 			// create a file to hold the data. It will be renamed later on.
 			File newChunkDataFile = new File(chunkManager.getRootDirectory(),
 					"temp." + ChronoChunk.CHUNK_FILE_EXTENSION);

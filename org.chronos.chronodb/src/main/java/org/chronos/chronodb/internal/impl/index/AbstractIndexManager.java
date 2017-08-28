@@ -10,19 +10,24 @@ import java.util.stream.Collectors;
 import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.IndexManager;
 import org.chronos.chronodb.api.exceptions.ChronoDBQuerySyntaxException;
+import org.chronos.chronodb.api.exceptions.InvalidIndexAccessException;
 import org.chronos.chronodb.api.exceptions.UnknownIndexException;
-import org.chronos.chronodb.api.key.ChronoIdentifier;
+import org.chronos.chronodb.api.indexing.DoubleIndexer;
+import org.chronos.chronodb.api.indexing.Indexer;
+import org.chronos.chronodb.api.indexing.LongIndexer;
+import org.chronos.chronodb.api.indexing.StringIndexer;
 import org.chronos.chronodb.api.key.QualifiedKey;
-import org.chronos.chronodb.api.query.Condition;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
 import org.chronos.chronodb.internal.api.Lockable.LockHolder;
 import org.chronos.chronodb.internal.api.query.ChronoDBQuery;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.DoubleSearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.LongSearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.StringSearchSpecification;
 import org.chronos.chronodb.internal.impl.index.querycache.ChronoIndexQueryCache;
 import org.chronos.chronodb.internal.impl.index.querycache.LRUIndexQueryCache;
 import org.chronos.chronodb.internal.impl.index.querycache.NoIndexQueryCache;
-import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.chronodb.internal.impl.query.parser.ast.BinaryOperatorElement;
 import org.chronos.chronodb.internal.impl.query.parser.ast.BinaryQueryOperator;
 import org.chronos.chronodb.internal.impl.query.parser.ast.QueryElement;
@@ -75,19 +80,20 @@ public abstract class AbstractIndexManager<C extends ChronoDBInternal> implement
 	// =================================================================================================================
 
 	@Override
-	public Set<ChronoIdentifier> queryIndex(final long timestamp, final Branch branch,
-			final SearchSpecification searchSpec) {
+	public Set<String> queryIndex(final long timestamp, final Branch branch, final String keyspace,
+			final SearchSpecification<?> searchSpec) {
 		String property = searchSpec.getProperty();
 		if (this.getIndexNames().contains(property) == false) {
 			throw new UnknownIndexException("There is no index named '" + property + "'!");
 		}
+		this.assertIndexAccessIsOk(searchSpec);
 		if (this.queryCache == null) {
 			// cache disabled, return the result of the request directly
-			return this.performIndexQuery(timestamp, branch, searchSpec);
+			return this.performIndexQuery(timestamp, branch, keyspace, searchSpec);
 		} else {
 			// cache enabled, pipe the request through the cache
-			return this.queryCache.getOrCalculate(timestamp, branch, searchSpec, () -> {
-				return this.performIndexQuery(timestamp, branch, searchSpec);
+			return this.queryCache.getOrCalculate(timestamp, branch, keyspace, searchSpec, () -> {
+				return this.performIndexQuery(timestamp, branch, keyspace, searchSpec);
 			});
 		}
 	}
@@ -140,8 +146,7 @@ public abstract class AbstractIndexManager<C extends ChronoDBInternal> implement
 	// ABSTRACT METHOD DECLARATIONS
 	// =================================================================================================================
 
-	protected abstract Set<ChronoIdentifier> performIndexQuery(final long timestamp, final Branch branch,
-			final SearchSpecification searchSpec);
+	protected abstract Set<String> performIndexQuery(final long timestamp, final Branch branch, String keyspace, final SearchSpecification<?> searchSpec);
 
 	// =================================================================================================================
 	// HELPER METHODS
@@ -176,21 +181,14 @@ public abstract class AbstractIndexManager<C extends ChronoDBInternal> implement
 			}
 			return Collections.unmodifiableSet(resultSet);
 		} else if (element instanceof WhereElement) {
-			WhereElement whereElement = (WhereElement) element;
+			WhereElement<?, ?> whereElement = (WhereElement<?, ?>) element;
 			// disassemble and execute the atomic query
-			String indexName = whereElement.getIndexName();
-			Condition condition = whereElement.getCondition();
-			TextMatchMode matchMode = whereElement.getMatchMode();
-			String comparisonValue = whereElement.getComparisonValue();
-			SearchSpecification searchSpec = SearchSpecification.create(indexName, condition, matchMode,
-					comparisonValue);
-			Set<ChronoIdentifier> identifiers = this.queryIndex(timestamp, branch, searchSpec);
+			SearchSpecification<?> searchSpec = whereElement.toSearchSpecification();
+			Set<String> keys = this.queryIndex(timestamp, branch, keyspace, searchSpec);
 			// remove the non-matching keyspaces and reduce from ChronoIdentifier to qualified key
-			Set<QualifiedKey> filtered = identifiers.parallelStream()
-					// remove non-matching keyspaces
-					.filter(id -> id.getKeyspace().equals(keyspace))
-					// we don't need timestamps, so convert into qualified keys instead
-					.map(id -> QualifiedKey.create(id.getKeyspace(), id.getKey()))
+			Set<QualifiedKey> filtered = keys.parallelStream()
+					// attach keyspace info
+					.map(key -> QualifiedKey.create(keyspace, key))
 					// ... and collect everything in a set
 					.collect(Collectors.toSet());
 			return Collections.unmodifiableSet(filtered);
@@ -198,6 +196,29 @@ public abstract class AbstractIndexManager<C extends ChronoDBInternal> implement
 			// all other elements should be eliminated by optimizations...
 			throw new ChronoDBQuerySyntaxException("Query contains unsupported element of class '"
 					+ element.getClass().getName() + "' - was the query optimized?");
+		}
+	}
+
+	protected void assertIndexAccessIsOk(final SearchSpecification<?> searchSpec) {
+		String indexName = searchSpec.getProperty();
+		Set<Indexer<?>> indexers = this.getIndexersByIndexName().get(indexName);
+		if (indexers == null || indexers.isEmpty()) {
+			throw new UnknownIndexException("There is no index named '" + indexName + "'!");
+		}
+		boolean isStringIndex = indexers.stream().allMatch(indexer -> indexer instanceof StringIndexer);
+		boolean isLongIndex = indexers.stream().allMatch(indexer -> indexer instanceof LongIndexer);
+		boolean isDoubleIndex = indexers.stream().allMatch(indexer -> indexer instanceof DoubleIndexer);
+		if (!isStringIndex && !isLongIndex && !isDoubleIndex) {
+			throw new IllegalStateException("Could not determine index type of index '" + indexName + "'!");
+		}
+		if (isStringIndex && searchSpec instanceof StringSearchSpecification == false) {
+			throw new InvalidIndexAccessException("Cannot access String index '" + indexName + "' with " + searchSpec.getDescriptiveSearchType() + " search [" + searchSpec + "]!");
+		}
+		if (isLongIndex && searchSpec instanceof LongSearchSpecification == false) {
+			throw new InvalidIndexAccessException("Cannot access Long index '" + indexName + "' with " + searchSpec.getDescriptiveSearchType() + " search [" + searchSpec + "]!");
+		}
+		if (isDoubleIndex && searchSpec instanceof DoubleSearchSpecification == false) {
+			throw new InvalidIndexAccessException("Cannot access Double index '" + indexName + "' with " + searchSpec.getDescriptiveSearchType() + " search [" + searchSpec + "]!");
 		}
 	}
 }

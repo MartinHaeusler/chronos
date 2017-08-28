@@ -40,6 +40,9 @@ public abstract class AllChronoGraphBackendsTest extends AllBackendsTest {
 	@After
 	public void cleanUp() {
 		if (this.graph != null && this.graph.isClosed() == false) {
+			if (this.graph.tx().isOpen()) {
+				this.graph.tx().rollback();
+			}
 			ChronoLogger.logDebug("Closing ChronoDB on backend '" + this.backend + "'.");
 			this.graph.close();
 		}

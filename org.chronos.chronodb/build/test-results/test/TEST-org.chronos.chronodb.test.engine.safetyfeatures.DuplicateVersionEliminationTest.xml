@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.engine.safetyfeatures.DuplicateVersionEliminationTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:53:15" hostname="Aurora" time="0.852">
+  <properties/>
+  <testcase name="duplicateVersionEliminationOnCommitWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.safetyfeatures.DuplicateVersionEliminationTest" time="0.009"/>
+  <testcase name="duplicateVersionEliminationOnCommitWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.safetyfeatures.DuplicateVersionEliminationTest" time="0.023"/>
+  <testcase name="duplicateVersionEliminationOnCommitWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.safetyfeatures.DuplicateVersionEliminationTest" time="0.168"/>
+  <testcase name="duplicateVersionEliminationOnCommitWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.safetyfeatures.DuplicateVersionEliminationTest" time="0.432"/>
+  <testcase name="duplicateVersionEliminationOnCommitWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.safetyfeatures.DuplicateVersionEliminationTest" time="0.22"/>
+  <system-out><![CDATA[19:53:15.517 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DuplicateVersionEliminationTest
+    Test method: duplicateVersionEliminationOnCommitWorks[Using inmemory]
+    Start time:  2017/08/28 19:53:15
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DuplicateVersionEliminationTest
+    Test method: duplicateVersionEliminationOnCommitWorks[Using inmemory]
+    End time:    2017/08/28 19:53:15 (Duration: 9ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DuplicateVersionEliminationTest
+    Test method: duplicateVersionEliminationOnCommitWorks[Using jdbc]
+    Start time:  2017/08/28 19:53:15
+================================================================================
+
+
+
+19:53:15.526 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|345a6f93,name=1hgeqrl9qbn6pz6yfah30|345a6f93 registered.
+19:53:15.526 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|345a6f93,name=1hgeqrl9qbn6pz6yfah30|345a6f93 unregistered, in order to be reregistered after update.
+19:53:15.526 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|345a6f93,name=1hgeqrl9qbn6pz6yfah30|345a6f93 registered.
+19:53:15.526 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@dec9292d [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@9d8d1cb6 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|69775e61, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@4755ef9a [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|b03b48a, jdbcUrl -> jdbc:h2:mem:c683f88957104badb52ab58e6fd17305, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|345a6f93, numHelperThreads -> 3 ]
+19:53:15.526 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@c766ab2 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:53:15.526 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:53:15.526 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:53:15.526 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:53:15.549 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|345a6f93,name=1hgeqrl9qbn6pz6yfah30|345a6f93 unregistered.
+19:53:15.549 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:53:15.549 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@675ce904
+19:53:15.549 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@675ce904
+19:53:15.549 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@675ce904
+19:53:15.549 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@675ce904
+19:53:15.549 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7f69eb33
+19:53:15.549 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7f69eb33
+19:53:15.549 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7f69eb33
+19:53:15.549 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7f69eb33
+19:53:15.549 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@d761cf2
+19:53:15.549 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@d761cf2
+19:53:15.549 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@d761cf2
+19:53:15.549 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@d761cf2
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DuplicateVersionEliminationTest
+    Test method: duplicateVersionEliminationOnCommitWorks[Using jdbc]
+    End time:    2017/08/28 19:53:15 (Duration: 23ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DuplicateVersionEliminationTest
+    Test method: duplicateVersionEliminationOnCommitWorks[Using tupl]
+    Start time:  2017/08/28 19:53:15
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DuplicateVersionEliminationTest
+    Test method: duplicateVersionEliminationOnCommitWorks[Using tupl]
+    End time:    2017/08/28 19:53:15 (Duration: 168ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DuplicateVersionEliminationTest
+    Test method: duplicateVersionEliminationOnCommitWorks[Using mapdb]
+    Start time:  2017/08/28 19:53:15
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DuplicateVersionEliminationTest
+    Test method: duplicateVersionEliminationOnCommitWorks[Using mapdb]
+    End time:    2017/08/28 19:53:16 (Duration: 432ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DuplicateVersionEliminationTest
+    Test method: duplicateVersionEliminationOnCommitWorks[Using chunked]
+    Start time:  2017/08/28 19:53:16
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DuplicateVersionEliminationTest
+    Test method: duplicateVersionEliminationOnCommitWorks[Using chunked]
+    End time:    2017/08/28 19:53:16 (Duration: 220ms)
+================================================================================
+
+
+
+19:53:16.369 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:53:16.370 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

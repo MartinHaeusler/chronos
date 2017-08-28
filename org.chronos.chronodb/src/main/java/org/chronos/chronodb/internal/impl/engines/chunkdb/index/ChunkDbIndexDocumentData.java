@@ -7,7 +7,7 @@ public class ChunkDbIndexDocumentData {
 	private String indexName;
 	private String keyspace;
 	private String key;
-	private String indexedValue;
+	private Object indexedValue;
 	private long validFrom;
 	private long validTo;
 
@@ -19,12 +19,12 @@ public class ChunkDbIndexDocumentData {
 		// default constructor for serialization
 	}
 
-	public ChunkDbIndexDocumentData(final String indexName, final String keyspace, final String key, final String value,
+	public ChunkDbIndexDocumentData(final String indexName, final String keyspace, final String key, final Object value,
 			final long validFrom) {
 		this(indexName, keyspace, key, value, validFrom, Long.MAX_VALUE);
 	}
 
-	public ChunkDbIndexDocumentData(final String indexName, final String keyspace, final String key, final String value,
+	public ChunkDbIndexDocumentData(final String indexName, final String keyspace, final String key, final Object value,
 			final long validFrom, final long validTo) {
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
@@ -53,7 +53,7 @@ public class ChunkDbIndexDocumentData {
 		return this.key;
 	}
 
-	public String getIndexedValue() {
+	public Object getIndexedValue() {
 		return this.indexedValue;
 	}
 

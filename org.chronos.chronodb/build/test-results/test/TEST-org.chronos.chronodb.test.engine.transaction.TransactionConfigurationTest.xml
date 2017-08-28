@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" tests="25" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:54:14" hostname="Aurora" time="3.318">
+  <properties/>
+  <testcase name="branchConfigurationWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.001"/>
+  <testcase name="cantWriteInReadOnlyTransaction[Using inmemory]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.001"/>
+  <testcase name="configuringBlindOverwriteWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.001"/>
+  <testcase name="threadSafeConfigurationCreatesThreadSafeTransaction[Using inmemory]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.002"/>
+  <testcase name="transactionsRunOnMasterBranchByDefault[Using inmemory]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.0"/>
+  <testcase name="branchConfigurationWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.178"/>
+  <testcase name="cantWriteInReadOnlyTransaction[Using chunked]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.138"/>
+  <testcase name="configuringBlindOverwriteWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.185"/>
+  <testcase name="threadSafeConfigurationCreatesThreadSafeTransaction[Using chunked]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.248"/>
+  <testcase name="transactionsRunOnMasterBranchByDefault[Using chunked]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.354"/>
+  <testcase name="branchConfigurationWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.297"/>
+  <testcase name="cantWriteInReadOnlyTransaction[Using mapdb]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.274"/>
+  <testcase name="configuringBlindOverwriteWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.267"/>
+  <testcase name="threadSafeConfigurationCreatesThreadSafeTransaction[Using mapdb]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.27"/>
+  <testcase name="transactionsRunOnMasterBranchByDefault[Using mapdb]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.301"/>
+  <testcase name="branchConfigurationWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.017"/>
+  <testcase name="cantWriteInReadOnlyTransaction[Using jdbc]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.047"/>
+  <testcase name="configuringBlindOverwriteWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.02"/>
+  <testcase name="threadSafeConfigurationCreatesThreadSafeTransaction[Using jdbc]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.016"/>
+  <testcase name="transactionsRunOnMasterBranchByDefault[Using jdbc]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.015"/>
+  <testcase name="branchConfigurationWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.116"/>
+  <testcase name="cantWriteInReadOnlyTransaction[Using tupl]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.116"/>
+  <testcase name="configuringBlindOverwriteWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.1"/>
+  <testcase name="threadSafeConfigurationCreatesThreadSafeTransaction[Using tupl]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.17"/>
+  <testcase name="transactionsRunOnMasterBranchByDefault[Using tupl]" classname="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" time="0.184"/>
+  <system-out><![CDATA[19:54:14.791 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: branchConfigurationWorks[Using inmemory]
+    Start time:  2017/08/28 19:54:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: branchConfigurationWorks[Using inmemory]
+    End time:    2017/08/28 19:54:14 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: cantWriteInReadOnlyTransaction[Using inmemory]
+    Start time:  2017/08/28 19:54:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: cantWriteInReadOnlyTransaction[Using inmemory]
+    End time:    2017/08/28 19:54:14 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: configuringBlindOverwriteWorks[Using inmemory]
+    Start time:  2017/08/28 19:54:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: configuringBlindOverwriteWorks[Using inmemory]
+    End time:    2017/08/28 19:54:14 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: threadSafeConfigurationCreatesThreadSafeTransaction[Using inmemory]
+    Start time:  2017/08/28 19:54:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: threadSafeConfigurationCreatesThreadSafeTransaction[Using inmemory]
+    End time:    2017/08/28 19:54:14 (Duration: 2ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: transactionsRunOnMasterBranchByDefault[Using inmemory]
+    Start time:  2017/08/28 19:54:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: transactionsRunOnMasterBranchByDefault[Using inmemory]
+    End time:    2017/08/28 19:54:14 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: branchConfigurationWorks[Using chunked]
+    Start time:  2017/08/28 19:54:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: branchConfigurationWorks[Using chunked]
+    End time:    2017/08/28 19:54:14 (Duration: 178ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: cantWriteInReadOnlyTransaction[Using chunked]
+    Start time:  2017/08/28 19:54:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: cantWriteInReadOnlyTransaction[Using chunked]
+    End time:    2017/08/28 19:54:15 (Duration: 138ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: configuringBlindOverwriteWorks[Using chunked]
+    Start time:  2017/08/28 19:54:15
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: configuringBlindOverwriteWorks[Using chunked]
+    End time:    2017/08/28 19:54:15 (Duration: 185ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: threadSafeConfigurationCreatesThreadSafeTransaction[Using chunked]
+    Start time:  2017/08/28 19:54:15
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: threadSafeConfigurationCreatesThreadSafeTransaction[Using chunked]
+    End time:    2017/08/28 19:54:15 (Duration: 248ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: transactionsRunOnMasterBranchByDefault[Using chunked]
+    Start time:  2017/08/28 19:54:15
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: transactionsRunOnMasterBranchByDefault[Using chunked]
+    End time:    2017/08/28 19:54:15 (Duration: 354ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: branchConfigurationWorks[Using mapdb]
+    Start time:  2017/08/28 19:54:15
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: branchConfigurationWorks[Using mapdb]
+    End time:    2017/08/28 19:54:16 (Duration: 297ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: cantWriteInReadOnlyTransaction[Using mapdb]
+    Start time:  2017/08/28 19:54:16
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: cantWriteInReadOnlyTransaction[Using mapdb]
+    End time:    2017/08/28 19:54:16 (Duration: 274ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: configuringBlindOverwriteWorks[Using mapdb]
+    Start time:  2017/08/28 19:54:16
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: configuringBlindOverwriteWorks[Using mapdb]
+    End time:    2017/08/28 19:54:16 (Duration: 267ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: threadSafeConfigurationCreatesThreadSafeTransaction[Using mapdb]
+    Start time:  2017/08/28 19:54:16
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: threadSafeConfigurationCreatesThreadSafeTransaction[Using mapdb]
+    End time:    2017/08/28 19:54:17 (Duration: 270ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: transactionsRunOnMasterBranchByDefault[Using mapdb]
+    Start time:  2017/08/28 19:54:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: transactionsRunOnMasterBranchByDefault[Using mapdb]
+    End time:    2017/08/28 19:54:17 (Duration: 301ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: branchConfigurationWorks[Using jdbc]
+    Start time:  2017/08/28 19:54:17
+================================================================================
+
+
+
+19:54:17.308 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|481f3cd6,name=1hgeqrl9qbn6pz6yfah30|481f3cd6 registered.
+19:54:17.324 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|481f3cd6,name=1hgeqrl9qbn6pz6yfah30|481f3cd6 unregistered, in order to be reregistered after update.
+19:54:17.324 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|481f3cd6,name=1hgeqrl9qbn6pz6yfah30|481f3cd6 registered.
+19:54:17.324 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@a9dd5f69 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@481a4dc [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|6fd38bcb, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@3bebd67f [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|5bc4cb8, jdbcUrl -> jdbc:h2:mem:177bc8c4493b47ebb343829939afcb5f, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|481f3cd6, numHelperThreads -> 3 ]
+19:54:17.324 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@5e91fd23 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:54:17.324 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:54:17.324 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:54:17.324 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:54:17.325 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|481f3cd6,name=1hgeqrl9qbn6pz6yfah30|481f3cd6 unregistered.
+19:54:17.325 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:54:17.325 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@2cd1f920
+19:54:17.325 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@2cd1f920
+19:54:17.325 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@2cd1f920
+19:54:17.325 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@2cd1f920
+19:54:17.325 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@57da05e8
+19:54:17.325 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@57da05e8
+19:54:17.325 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@57da05e8
+19:54:17.325 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@57da05e8
+19:54:17.325 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@65581d7b
+19:54:17.325 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@65581d7b
+19:54:17.325 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@65581d7b
+19:54:17.325 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@65581d7b
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: branchConfigurationWorks[Using jdbc]
+    End time:    2017/08/28 19:54:17 (Duration: 17ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: cantWriteInReadOnlyTransaction[Using jdbc]
+    Start time:  2017/08/28 19:54:17
+================================================================================
+
+
+
+19:54:17.325 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|33d00d74,name=1hgeqrl9qbn6pz6yfah30|33d00d74 registered.
+19:54:17.340 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|33d00d74,name=1hgeqrl9qbn6pz6yfah30|33d00d74 unregistered, in order to be reregistered after update.
+19:54:17.340 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|33d00d74,name=1hgeqrl9qbn6pz6yfah30|33d00d74 registered.
+19:54:17.340 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@c630e0e7 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@2a5d9359 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|4f0c5968, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@a1153efd [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|69550f5c, jdbcUrl -> jdbc:h2:mem:17ac4dd299b74e5c99852c31329ae2de, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|33d00d74, numHelperThreads -> 3 ]
+19:54:17.340 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@60bb7834 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:54:17.340 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:54:17.340 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:54:17.340 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:54:17.372 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|33d00d74,name=1hgeqrl9qbn6pz6yfah30|33d00d74 unregistered.
+19:54:17.372 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:54:17.372 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5f55ff65
+19:54:17.372 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5f55ff65
+19:54:17.372 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5f55ff65
+19:54:17.372 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5f55ff65
+19:54:17.372 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7ab59cd5
+19:54:17.372 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7ab59cd5
+19:54:17.372 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7ab59cd5
+19:54:17.372 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7ab59cd5
+19:54:17.372 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5bf09a7e
+19:54:17.372 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5bf09a7e
+19:54:17.372 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5bf09a7e
+19:54:17.372 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5bf09a7e
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: cantWriteInReadOnlyTransaction[Using jdbc]
+    End time:    2017/08/28 19:54:17 (Duration: 47ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: configuringBlindOverwriteWorks[Using jdbc]
+    Start time:  2017/08/28 19:54:17
+================================================================================
+
+
+
+19:54:17.372 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|525b91d5,name=1hgeqrl9qbn6pz6yfah30|525b91d5 registered.
+19:54:17.372 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|525b91d5,name=1hgeqrl9qbn6pz6yfah30|525b91d5 unregistered, in order to be reregistered after update.
+19:54:17.372 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|525b91d5,name=1hgeqrl9qbn6pz6yfah30|525b91d5 registered.
+19:54:17.372 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@78c49311 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@e1cbc7e9 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|1baeab16, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@5581d3b9 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|110f2d58, jdbcUrl -> jdbc:h2:mem:3a04091809bf4153b4e108813b52657c, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|525b91d5, numHelperThreads -> 3 ]
+19:54:17.372 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@4e758c1b config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:54:17.372 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:54:17.372 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:54:17.372 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:54:17.391 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|525b91d5,name=1hgeqrl9qbn6pz6yfah30|525b91d5 unregistered.
+19:54:17.391 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:54:17.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3a3b4111
+19:54:17.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3a3b4111
+19:54:17.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3a3b4111
+19:54:17.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3a3b4111
+19:54:17.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3d68ff05
+19:54:17.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3d68ff05
+19:54:17.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3d68ff05
+19:54:17.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3d68ff05
+19:54:17.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@24d91a34
+19:54:17.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@24d91a34
+19:54:17.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@24d91a34
+19:54:17.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@24d91a34
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: configuringBlindOverwriteWorks[Using jdbc]
+    End time:    2017/08/28 19:54:17 (Duration: 20ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: threadSafeConfigurationCreatesThreadSafeTransaction[Using jdbc]
+    Start time:  2017/08/28 19:54:17
+================================================================================
+
+
+
+19:54:17.392 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|219852fc,name=1hgeqrl9qbn6pz6yfah30|219852fc registered.
+19:54:17.392 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|219852fc,name=1hgeqrl9qbn6pz6yfah30|219852fc unregistered, in order to be reregistered after update.
+19:54:17.392 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|219852fc,name=1hgeqrl9qbn6pz6yfah30|219852fc registered.
+19:54:17.392 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@e0cc9aec [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@8b1dc6c3 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|68a12a88, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@995c1f2d [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|e9350a4, jdbcUrl -> jdbc:h2:mem:0449f3a6357745eb9d7e211a1cd98d0f, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|219852fc, numHelperThreads -> 3 ]
+19:54:17.392 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@38b61c8a config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:54:17.392 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:54:17.392 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:54:17.392 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:54:17.408 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|219852fc,name=1hgeqrl9qbn6pz6yfah30|219852fc unregistered.
+19:54:17.408 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:54:17.408 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@534af103
+19:54:17.408 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@534af103
+19:54:17.408 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@534af103
+19:54:17.408 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@534af103
+19:54:17.408 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@265e05aa
+19:54:17.408 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@265e05aa
+19:54:17.408 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@265e05aa
+19:54:17.408 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@265e05aa
+19:54:17.408 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1792b097
+19:54:17.408 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1792b097
+19:54:17.408 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1792b097
+19:54:17.408 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1792b097
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: threadSafeConfigurationCreatesThreadSafeTransaction[Using jdbc]
+    End time:    2017/08/28 19:54:17 (Duration: 16ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: transactionsRunOnMasterBranchByDefault[Using jdbc]
+    Start time:  2017/08/28 19:54:17
+================================================================================
+
+
+
+19:54:17.408 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|63148d70,name=1hgeqrl9qbn6pz6yfah30|63148d70 registered.
+19:54:17.408 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|63148d70,name=1hgeqrl9qbn6pz6yfah30|63148d70 unregistered, in order to be reregistered after update.
+19:54:17.408 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|63148d70,name=1hgeqrl9qbn6pz6yfah30|63148d70 registered.
+19:54:17.408 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@e55880ff [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@291f1e99 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|3c678420, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@cb650b7 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|1e954ba, jdbcUrl -> jdbc:h2:mem:7a1676d898b24dc29c176233f678a10e, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|63148d70, numHelperThreads -> 3 ]
+19:54:17.408 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@74923f4b config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:54:17.408 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:54:17.408 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:54:17.408 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:54:17.423 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|63148d70,name=1hgeqrl9qbn6pz6yfah30|63148d70 unregistered.
+19:54:17.423 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:54:17.423 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6a760aff
+19:54:17.423 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6a760aff
+19:54:17.423 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6a760aff
+19:54:17.423 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6a760aff
+19:54:17.423 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5ed768e4
+19:54:17.423 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5ed768e4
+19:54:17.423 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5ed768e4
+19:54:17.423 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5ed768e4
+19:54:17.423 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5ac08c0d
+19:54:17.423 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5ac08c0d
+19:54:17.423 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5ac08c0d
+19:54:17.423 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5ac08c0d
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: transactionsRunOnMasterBranchByDefault[Using jdbc]
+    End time:    2017/08/28 19:54:17 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: branchConfigurationWorks[Using tupl]
+    Start time:  2017/08/28 19:54:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: branchConfigurationWorks[Using tupl]
+    End time:    2017/08/28 19:54:17 (Duration: 116ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: cantWriteInReadOnlyTransaction[Using tupl]
+    Start time:  2017/08/28 19:54:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: cantWriteInReadOnlyTransaction[Using tupl]
+    End time:    2017/08/28 19:54:17 (Duration: 116ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: configuringBlindOverwriteWorks[Using tupl]
+    Start time:  2017/08/28 19:54:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: configuringBlindOverwriteWorks[Using tupl]
+    End time:    2017/08/28 19:54:17 (Duration: 100ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: threadSafeConfigurationCreatesThreadSafeTransaction[Using tupl]
+    Start time:  2017/08/28 19:54:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: threadSafeConfigurationCreatesThreadSafeTransaction[Using tupl]
+    End time:    2017/08/28 19:54:17 (Duration: 170ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: transactionsRunOnMasterBranchByDefault[Using tupl]
+    Start time:  2017/08/28 19:54:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransactionConfigurationTest
+    Test method: transactionsRunOnMasterBranchByDefault[Using tupl]
+    End time:    2017/08/28 19:54:18 (Duration: 184ms)
+================================================================================
+
+
+
+19:54:18.109 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:54:18.124 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

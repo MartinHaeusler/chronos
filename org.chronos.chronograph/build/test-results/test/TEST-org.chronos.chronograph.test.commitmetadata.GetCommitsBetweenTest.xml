@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" tests="20" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:55:36" hostname="Aurora" time="4.162">
+  <properties/>
+  <testcase name="retrievingCommitTimestampsIsBranchLocal[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.615"/>
+  <testcase name="retrievingInvalidTimeRangeProducesAnEmptyIterator[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.363"/>
+  <testcase name="canRetrieveCommitsWithAndWithoutMetadata[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.654"/>
+  <testcase name="canRetrieveCommitsWhenNoMetadataWasGiven[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.368"/>
+  <testcase name="retrievingCommitTimestampsIsBranchLocal[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.039"/>
+  <testcase name="retrievingInvalidTimeRangeProducesAnEmptyIterator[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.031"/>
+  <testcase name="canRetrieveCommitsWithAndWithoutMetadata[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.029"/>
+  <testcase name="canRetrieveCommitsWhenNoMetadataWasGiven[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.017"/>
+  <testcase name="retrievingCommitTimestampsIsBranchLocal[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.009"/>
+  <testcase name="retrievingInvalidTimeRangeProducesAnEmptyIterator[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.0"/>
+  <testcase name="canRetrieveCommitsWithAndWithoutMetadata[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.007"/>
+  <testcase name="canRetrieveCommitsWhenNoMetadataWasGiven[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.0"/>
+  <testcase name="retrievingCommitTimestampsIsBranchLocal[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.247"/>
+  <testcase name="retrievingInvalidTimeRangeProducesAnEmptyIterator[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.084"/>
+  <testcase name="canRetrieveCommitsWithAndWithoutMetadata[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.137"/>
+  <testcase name="canRetrieveCommitsWhenNoMetadataWasGiven[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.097"/>
+  <testcase name="retrievingCommitTimestampsIsBranchLocal[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.35"/>
+  <testcase name="retrievingInvalidTimeRangeProducesAnEmptyIterator[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.316"/>
+  <testcase name="canRetrieveCommitsWithAndWithoutMetadata[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.415"/>
+  <testcase name="canRetrieveCommitsWhenNoMetadataWasGiven[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenTest" time="0.384"/>
+  <system-out><![CDATA[[INFO ] 2017-08-28 19:55:36 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using mapdb]
+    Start time:  2017/08/28 19:55:36
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using mapdb]
+    End time:    2017/08/28 19:55:37 (Duration: 615ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using mapdb]
+    Start time:  2017/08/28 19:55:37
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using mapdb]
+    End time:    2017/08/28 19:55:37 (Duration: 363ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using mapdb]
+    Start time:  2017/08/28 19:55:37
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using mapdb]
+    End time:    2017/08/28 19:55:38 (Duration: 654ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using mapdb]
+    Start time:  2017/08/28 19:55:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using mapdb]
+    End time:    2017/08/28 19:55:38 (Duration: 368ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using jdbc]
+    Start time:  2017/08/28 19:55:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using jdbc]
+    End time:    2017/08/28 19:55:38 (Duration: 39ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using jdbc]
+    Start time:  2017/08/28 19:55:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using jdbc]
+    End time:    2017/08/28 19:55:38 (Duration: 31ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using jdbc]
+    Start time:  2017/08/28 19:55:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using jdbc]
+    End time:    2017/08/28 19:55:38 (Duration: 29ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using jdbc]
+    Start time:  2017/08/28 19:55:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using jdbc]
+    End time:    2017/08/28 19:55:38 (Duration: 17ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using inmemory]
+    Start time:  2017/08/28 19:55:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using inmemory]
+    End time:    2017/08/28 19:55:38 (Duration: 9ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using inmemory]
+    Start time:  2017/08/28 19:55:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using inmemory]
+    End time:    2017/08/28 19:55:38 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using inmemory]
+    Start time:  2017/08/28 19:55:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using inmemory]
+    End time:    2017/08/28 19:55:38 (Duration: 7ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using inmemory]
+    Start time:  2017/08/28 19:55:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using inmemory]
+    End time:    2017/08/28 19:55:38 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using tupl]
+    Start time:  2017/08/28 19:55:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using tupl]
+    End time:    2017/08/28 19:55:39 (Duration: 247ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using tupl]
+    Start time:  2017/08/28 19:55:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using tupl]
+    End time:    2017/08/28 19:55:39 (Duration: 84ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using tupl]
+    Start time:  2017/08/28 19:55:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using tupl]
+    End time:    2017/08/28 19:55:39 (Duration: 137ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using tupl]
+    Start time:  2017/08/28 19:55:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using tupl]
+    End time:    2017/08/28 19:55:39 (Duration: 97ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using chunked]
+    Start time:  2017/08/28 19:55:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using chunked]
+    End time:    2017/08/28 19:55:39 (Duration: 350ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using chunked]
+    Start time:  2017/08/28 19:55:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using chunked]
+    End time:    2017/08/28 19:55:40 (Duration: 316ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using chunked]
+    Start time:  2017/08/28 19:55:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using chunked]
+    End time:    2017/08/28 19:55:40 (Duration: 415ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using chunked]
+    Start time:  2017/08/28 19:55:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using chunked]
+    End time:    2017/08/28 19:55:40 (Duration: 384ms)
+================================================================================
+
+
+
+[INFO ] 2017-08-28 19:55:40 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+[INFO ] 2017-08-28 19:55:40 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

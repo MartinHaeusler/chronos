@@ -126,10 +126,10 @@ public class CrossCuttingFeaturesTest extends AllChronoGraphBackendsTest {
 	private static void runPhase1(final ChronoGraph graph) {
 		try {
 			// create indices
-			graph.getIndexManager().createIndex().onVertexProperty(P_FIRST_NAME).build();
-			graph.getIndexManager().createIndex().onVertexProperty(P_LAST_NAME).build();
-			graph.getIndexManager().createIndex().onEdgeProperty(E_KIND).build();
-			graph.getIndexManager().createIndex().onVertexProperty(P_NICKNAMES).build();
+			graph.getIndexManager().create().stringIndex().onVertexProperty(P_FIRST_NAME).build();
+			graph.getIndexManager().create().stringIndex().onVertexProperty(P_LAST_NAME).build();
+			graph.getIndexManager().create().stringIndex().onEdgeProperty(E_KIND).build();
+			graph.getIndexManager().create().stringIndex().onVertexProperty(P_NICKNAMES).build();
 
 			// create the base graph
 			graph.tx().open();
@@ -151,7 +151,7 @@ public class CrossCuttingFeaturesTest extends AllChronoGraphBackendsTest {
 						assertLastNameCountEquals(graph, "Doe", 2);
 						// there should be 2 persons with a nickname that starts with "J"
 						assertEquals(2, graph.find().vertices().where(P_NICKNAMES).startsWithIgnoreCase("j").count());
-					} ,
+					},
 					// commit function
 					(final ChronoGraph g) -> {
 						g.tx().commit();
@@ -247,7 +247,7 @@ public class CrossCuttingFeaturesTest extends AllChronoGraphBackendsTest {
 						// jill should know jane
 						assertEquals(1, g.traversal().V(v3).outE("knows").toSet().size());
 						assertEquals(1, g.traversal().V(v2).inE("knows").toSet().size());
-					} ,
+					},
 					// commit function
 					(final ChronoGraph g) -> {
 						g.tx().commit();
@@ -274,9 +274,7 @@ public class CrossCuttingFeaturesTest extends AllChronoGraphBackendsTest {
 	 *
 	 * <p>
 	 * <b>INFORMAL SCENARIO DESCRIPTION:</b><br>
-	 * John Doe marries Jane Smith. She takes his last name, becoming "Jane Doe". Of course, her prior nickname, "JS",
-	 * no longer fits and is replaced by "JD". John and Jane have a daughter, Sarah Doe. Since Jane is married to John,
-	 * Jane becomes Jack's Sister-in-Law. Jack is also the uncle of Sarah.
+	 * John Doe marries Jane Smith. She takes his last name, becoming "Jane Doe". Of course, her prior nickname, "JS", no longer fits and is replaced by "JD". John and Jane have a daughter, Sarah Doe. Since Jane is married to John, Jane becomes Jack's Sister-in-Law. Jack is also the uncle of Sarah.
 	 *
 	 * <p>
 	 * <b>RESULTING GRAPH:</b>
@@ -356,7 +354,7 @@ public class CrossCuttingFeaturesTest extends AllChronoGraphBackendsTest {
 						assertEquals(vJane, g.traversal().V(vSarah).inE("family").has(E_KIND, "mother").outV().next());
 						assertEquals(vJohn, g.traversal().V(vSarah).inE("family").has(E_KIND, "father").outV().next());
 						assertEquals(vJack, g.traversal().V(vSarah).inE("family").has(E_KIND, "uncle").outV().next());
-					} ,
+					},
 					// commit function
 					(final ChronoGraph g) -> {
 						// this lambda expression describes how to commit the first tx and open the next
@@ -477,7 +475,7 @@ public class CrossCuttingFeaturesTest extends AllChronoGraphBackendsTest {
 						assertTrue(JDs.contains(vJack));
 						// ... but John should be missing
 						assertFalse(JDs.contains(vJohn));
-					} ,
+					},
 					// commit function
 					(final ChronoGraph g) -> {
 						g.tx().commit();

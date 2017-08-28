@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronograph.test.id.FetchElementsByIdTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:56:28" hostname="Aurora" time="0.954">
+  <properties/>
+  <testcase name="fetchingUnknownEdgeIdReturnsEmptyIterator[Using tupl]" classname="org.chronos.chronograph.test.id.FetchElementsByIdTest" time="0.101"/>
+  <testcase name="fetchingUnknownVertexIdReturnsEmptyIterator[Using tupl]" classname="org.chronos.chronograph.test.id.FetchElementsByIdTest" time="0.121"/>
+  <testcase name="fetchingUnknownEdgeIdReturnsEmptyIterator[Using chunked]" classname="org.chronos.chronograph.test.id.FetchElementsByIdTest" time="0.147"/>
+  <testcase name="fetchingUnknownVertexIdReturnsEmptyIterator[Using chunked]" classname="org.chronos.chronograph.test.id.FetchElementsByIdTest" time="0.153"/>
+  <testcase name="fetchingUnknownEdgeIdReturnsEmptyIterator[Using inmemory]" classname="org.chronos.chronograph.test.id.FetchElementsByIdTest" time="0.0"/>
+  <testcase name="fetchingUnknownVertexIdReturnsEmptyIterator[Using inmemory]" classname="org.chronos.chronograph.test.id.FetchElementsByIdTest" time="0.0"/>
+  <testcase name="fetchingUnknownEdgeIdReturnsEmptyIterator[Using mapdb]" classname="org.chronos.chronograph.test.id.FetchElementsByIdTest" time="0.2"/>
+  <testcase name="fetchingUnknownVertexIdReturnsEmptyIterator[Using mapdb]" classname="org.chronos.chronograph.test.id.FetchElementsByIdTest" time="0.201"/>
+  <testcase name="fetchingUnknownEdgeIdReturnsEmptyIterator[Using jdbc]" classname="org.chronos.chronograph.test.id.FetchElementsByIdTest" time="0.015"/>
+  <testcase name="fetchingUnknownVertexIdReturnsEmptyIterator[Using jdbc]" classname="org.chronos.chronograph.test.id.FetchElementsByIdTest" time="0.016"/>
+  <system-out><![CDATA[[INFO ] 2017-08-28 19:56:28 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownEdgeIdReturnsEmptyIterator[Using tupl]
+    Start time:  2017/08/28 19:56:28
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownEdgeIdReturnsEmptyIterator[Using tupl]
+    End time:    2017/08/28 19:56:28 (Duration: 101ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownVertexIdReturnsEmptyIterator[Using tupl]
+    Start time:  2017/08/28 19:56:28
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownVertexIdReturnsEmptyIterator[Using tupl]
+    End time:    2017/08/28 19:56:29 (Duration: 121ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownEdgeIdReturnsEmptyIterator[Using chunked]
+    Start time:  2017/08/28 19:56:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownEdgeIdReturnsEmptyIterator[Using chunked]
+    End time:    2017/08/28 19:56:29 (Duration: 147ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownVertexIdReturnsEmptyIterator[Using chunked]
+    Start time:  2017/08/28 19:56:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownVertexIdReturnsEmptyIterator[Using chunked]
+    End time:    2017/08/28 19:56:29 (Duration: 153ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownEdgeIdReturnsEmptyIterator[Using inmemory]
+    Start time:  2017/08/28 19:56:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownEdgeIdReturnsEmptyIterator[Using inmemory]
+    End time:    2017/08/28 19:56:29 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownVertexIdReturnsEmptyIterator[Using inmemory]
+    Start time:  2017/08/28 19:56:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownVertexIdReturnsEmptyIterator[Using inmemory]
+    End time:    2017/08/28 19:56:29 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownEdgeIdReturnsEmptyIterator[Using mapdb]
+    Start time:  2017/08/28 19:56:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownEdgeIdReturnsEmptyIterator[Using mapdb]
+    End time:    2017/08/28 19:56:29 (Duration: 200ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownVertexIdReturnsEmptyIterator[Using mapdb]
+    Start time:  2017/08/28 19:56:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownVertexIdReturnsEmptyIterator[Using mapdb]
+    End time:    2017/08/28 19:56:29 (Duration: 201ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownEdgeIdReturnsEmptyIterator[Using jdbc]
+    Start time:  2017/08/28 19:56:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownEdgeIdReturnsEmptyIterator[Using jdbc]
+    End time:    2017/08/28 19:56:29 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownVertexIdReturnsEmptyIterator[Using jdbc]
+    Start time:  2017/08/28 19:56:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  FetchElementsByIdTest
+    Test method: fetchingUnknownVertexIdReturnsEmptyIterator[Using jdbc]
+    End time:    2017/08/28 19:56:29 (Duration: 16ms)
+================================================================================
+
+
+
+[INFO ] 2017-08-28 19:56:29 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+[INFO ] 2017-08-28 19:56:29 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -2,6 +2,9 @@ package org.chronos.chronograph.internal.impl.structure.record;
 
 import static com.google.common.base.Preconditions.*;
 
+import org.chronos.common.annotation.PersistentClass;
+
+@PersistentClass("kryo")
 public class EdgeTargetRecord implements ElementRecord {
 
 	/** The string representation of the {@link ChronoVertexId} of the vertex at the "other end" of the edge. */

@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.0.0" sequence="0" timestamp="1503943247341" analysisTimestamp="1503943247430" release="">
+  <Project projectName="">
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\builder\repository\ChronoSphereBaseBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\builder\repository\ChronoSphereFinalizableBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\builder\repository\ChronoSphereInMemoryBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\builder\repository\ChronoSpherePropertyFileBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\ChronoSphere.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\ChronoSphereBranchManager.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\ChronoSphereEPackageManager.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\ChronoSphereFactory.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\ChronoSphereIndexManager.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\ChronoSphereTransaction.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\ChronoSphereCommitException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\ChronoSphereConfigurationException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\ChronoSphereException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\ChronoSphereQueryException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\ElementCannotBeEvolvedException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\emf\ChronoSphereEMFException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\emf\NameResolutionException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\emf\XMIConversionFailedException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\EObjectPersistenceException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\EPackagesAreNotSelfContainedException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\MetaModelEvolutionCanceledException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\MetaModelEvolutionException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\ResourceIsAlreadyClosedException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\exceptions\StorageBackendCorruptedException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\MetaModelEvolutionContext.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\MetaModelEvolutionController.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\MetaModelEvolutionIncubator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\query\EObjectQueryStepBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\query\NumericCastableQueryStepBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\query\NumericQueryStepBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\query\Order.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\query\QueryStepBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\query\QueryStepBuilderInternal.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\query\QueryStepBuilderStarter.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\query\SubQuery.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\query\UntypedQueryStepBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\api\SphereBranch.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\emf\api\ChronoEObject.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\emf\impl\ChronoEFactory.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\emf\impl\ChronoEObjectImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\emf\internal\api\ChronoEObjectInternal.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\emf\internal\api\ChronoEObjectLifecycle.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\emf\internal\api\ChronoResource$TimeMachine.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\emf\internal\api\ChronoResource.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\emf\internal\impl\store\AbstractChronoEStore.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\emf\internal\impl\store\ChronoEStore.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\emf\internal\impl\store\ChronoGraphEStore.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\emf\internal\impl\store\OwnedTransientEStore.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\emf\internal\util\EMFUtils.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\ChronoSphereBranchManagerImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\ChronoSphereEPackageManagerImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\ChronoSphereFactoryImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\ChronoSphereIndexManagerImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\evolution\IncubatorBasedModelEvolutionController.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\evolution\MetaModelEvolutionProcess.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\evolution\ModelEvolutionContextImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\query\AbstractQueryStepBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\query\EObjectAttributeComparator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\query\EObjectQueryStepBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\query\NumericQueryStepBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\query\ObjectQueryStepBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\query\QueryStepBuilderStarterImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\SphereBranchImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\StandardChronoSphere.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\impl\transaction\ChronoSphereTransactionImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\api\ChronoSphereEPackageManagerInternal.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\api\ChronoSphereInternal.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\api\ChronoSphereTransactionInternal.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\api\SphereTransactionContext.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\builder\repository\impl\AbstractChronoSphereBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\builder\repository\impl\AbstractChronoSphereFinalizableBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\builder\repository\impl\ChronoSphereBaseBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\builder\repository\impl\ChronoSphereInMemoryBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\builder\repository\impl\ChronoSpherePropertyFileBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\configuration\api\ChronoSphereConfiguration.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\configuration\impl\ChronoSphereConfigurationImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\ogm\api\ChronoEPackageRegistry.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\ogm\api\ChronoEPackageRegistryInternal.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\ogm\api\ChronoSphereGraphFormat.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\ogm\api\EObjectToGraphMapper.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\ogm\api\EPackageBundle.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\ogm\api\EPackageToGraphMapper.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\ogm\api\GraphToEcoreMapper.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\ogm\api\VertexKind.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\ogm\impl\ChronoEPackageRegistryImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\ogm\impl\EObjectToGraphMapperImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\ogm\impl\EPackageBundleImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\ogm\impl\EPackageToGraphMapperImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main\org\chronos\chronosphere\internal\ogm\impl\GremlinUtils.class</Jar>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\19.0\6ce200f6b23222af3d8abb6b6459e6c44f4bb0e9\guava-19.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-lang3\3.4\5fe28b9518e58819180a43a850fbc0dd24b7c050\commons-lang3-3.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-collections4\4.1\a4cf4688fe1c7e3a63aa636cc96d013af537768e\commons-collections4-4.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-io\commons-io\2.4\b1b6ea3b7e4aa4f492509a4952029cd8e48019ad\commons-io-2.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-configuration\commons-configuration\1.10\2b36e4adfb66d966c5aef2d73deb6be716389dc9\commons-configuration-1.10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-api\1.7.12\8e20852d05222dc286bf1c71d78d0531e177c317\slf4j-api-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\jcl-over-slf4j\1.7.12\adef7a9e1263298255fdb5cb107ff171d07c82f3\jcl-over-slf4j-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\jul-to-slf4j\1.7.12\8811e2e9ab9055e557598dc9aedc64fd43e0ab20\jul-to-slf4j-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-classic\1.1.3\d90276fff414f06cb375f2057f6778cd63c6082f\logback-classic-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.common\build\libs\org.chronos.common-0.7.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\libs\org.chronos.chronodb-0.7.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\libs\org.chronos.chronograph-0.7.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.eclipse.emf\org.eclipse.emf.ecore\2.11.1-v20150805-0538\70743ad82e79a7c9304150f9a26f33554834f85f\org.eclipse.emf.ecore-2.11.1-v20150805-0538.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.eclipse.emf\org.eclipse.emf.common\2.11.0-v20150805-0538\c86adcd76d95413fce1fe2199c9202d2f8951e06\org.eclipse.emf.common-2.11.0-v20150805-0538.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.eclipse.emf\org.eclipse.emf.ecore.xmi\2.11.1-v20150805-0538\1af83557dfd265e23da645a77a0cb47bb2e5ee32\org.eclipse.emf.ecore.xmi-2.11.1-v20150805-0538.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-lang\commons-lang\2.6\ce1edb914c94ebc388f086c6827e8bdeec71ac2\commons-lang-2.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.1.1\5043bfebc3db072ed80fbd362e7caf00e885d8ae\commons-logging-1.1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-core\1.1.3\e3c02049f2dbbc764681b40094ecf0dcbc99b157\logback-core-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\kryo\3.0.3\1ebca99f633ef31484176a727093e78c7fa43e7\kryo-3.0.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.mapdb\mapdb\2.0-beta13\42ef2ab0f51f72ec1da2aa3c2d6b2d232b492347\mapdb-2.0-beta13.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-core\5.5.0\a74fd869bb5ad7fe6b4cd29df9543a34aea81164\lucene-core-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-analyzers-common\5.5.0\1e0e8243a4410be20c34683034fafa7bb52e55cc\lucene-analyzers-common-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queryparser\5.5.0\fddc49725b562fd48dff0cff004336ad2a090a4\lucene-queryparser-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queries\5.5.0\60ca161c1dd5f127907423b6f039b846fb713de0\lucene-queries-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.mchange\c3p0\0.9.5.1\69b2af361fb6a0feb65ccc20c29d949566f0a3ba\c3p0-0.9.5.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.h2database\h2\1.4.187\f6b109788d196430458309ea28ce9a77830b3ed8\h2-1.4.187.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.cojen\tupl\1.3.11\b28c5d4fec92f4619a38fa818e56172abb22a745\tupl-1.3.11.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.thoughtworks.xstream\xstream\1.4.9\c43f6e6bfa79b56e04a8898a923c3cf7144dd460\xstream-1.4.9.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.tinkerpop\gremlin-core\3.1.0-incubating\3b524b0866f1b545ecc14dfbfc740c3e75bba07a\gremlin-core-3.1.0-incubating.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\reflectasm\1.10.1\515402cd542ab967a1b5028b4dee1e1800db205b\reflectasm-1.10.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\minlog\1.3.0\ff07b5f1b01d2f92bb00a337f9a94873712f0827\minlog-1.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.objenesis\objenesis\2.1\87c0ea803b69252868d09308b4618f766f135a96\objenesis-2.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-sandbox\5.5.0\b7da8e187acd6e4d7781ba41fac8b9082dd27409\lucene-sandbox-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.mchange\mchange-commons-java\0.2.10\1f1f90ddc403e60e0089756f04119948f6a49a04\mchange-commons-java-0.2.10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna-platform\4.4.0\f396b0ceb7ababb8b4a5ea25e6742ced81e3d86f\jna-platform-4.4.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\xmlpull\xmlpull\1.1.3.1\2b8e230d2ab644e4ecaa94db7cdedbc40c805dfa\xmlpull-1.1.3.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\xpp3\xpp3_min\1.1.4c\19d4e90b43059058f6e056f794f0ea4030d60b86\xpp3_min-1.1.4c.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.tinkerpop\gremlin-shaded\3.1.0-incubating\cd711f3f7751ecfc49f573596285db65107114bf\gremlin-shaded-3.1.0-incubating.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.yaml\snakeyaml\1.15\3b132bea69e8ee099f416044970997bde80f4ea6\snakeyaml-1.15.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.javatuples\javatuples\1.2\507312ac4b601204a72a83380badbca82683dd36\javatuples-1.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.carrotsearch\hppc\0.7.1\8b5057f74ea378c0150a1860874a3ebdcb713767\hppc-0.7.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.jcabi\jcabi-manifests\1.1\e4f4488c0e3905c6fab287aca2569928fe1712df\jcabi-manifests-1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-log4j12\1.7.12\485f77901840cf4e8bf852f2abb9b723eb8ec29\slf4j-log4j12-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.ow2.asm\asm\5.0.3\dcc2193db20e19e1feca8b1240dbbc4e190824fa\asm-5.0.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna\4.4.0\cb208278274bf12ebdb56c61bd7407e6f774d65a\jna-4.4.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.jcabi\jcabi-log\0.14\819a57348f2448f01d74f8a317dab61d6a90cac2\jcabi-log-0.14.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\log4j\log4j\1.2.17\5af35056b4d257e4b64b9e8069c0746e8b08629f\log4j-1.2.17.jar</AuxClasspathEntry>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\builder\repository\ChronoSphereBaseBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\builder\repository\ChronoSphereFinalizableBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\builder\repository\ChronoSphereInMemoryBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\builder\repository\ChronoSpherePropertyFileBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\ChronoSphere.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\ChronoSphereBranchManager.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\ChronoSphereEPackageManager.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\ChronoSphereFactory.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\ChronoSphereIndexManager.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\ChronoSphereTransaction.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\ChronoSphereCommitException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\ChronoSphereConfigurationException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\ChronoSphereException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\ChronoSphereQueryException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\ElementCannotBeEvolvedException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\emf\ChronoSphereEMFException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\emf\NameResolutionException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\emf\XMIConversionFailedException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\EObjectPersistenceException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\EPackagesAreNotSelfContainedException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\MetaModelEvolutionCanceledException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\MetaModelEvolutionException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\ResourceIsAlreadyClosedException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\exceptions\StorageBackendCorruptedException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\MetaModelEvolutionContext.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\MetaModelEvolutionController.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\MetaModelEvolutionIncubator.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\query\EObjectQueryStepBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\query\NumericCastableQueryStepBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\query\NumericQueryStepBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\query\Order.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\query\QueryStepBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\query\QueryStepBuilderInternal.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\query\QueryStepBuilderStarter.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\query\SubQuery.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\query\UntypedQueryStepBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\api\SphereBranch.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\emf\api\ChronoEObject.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\emf\impl\ChronoEFactory.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\emf\impl\ChronoEObjectImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\emf\internal\api\ChronoEObjectInternal.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\emf\internal\api\ChronoEObjectLifecycle.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\emf\internal\api\ChronoResource.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\emf\internal\impl\store\AbstractChronoEStore.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\emf\internal\impl\store\ChronoEStore.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\emf\internal\impl\store\ChronoGraphEStore.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\emf\internal\impl\store\OwnedTransientEStore.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\emf\internal\util\EMFUtils.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\ChronoSphereBranchManagerImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\ChronoSphereEPackageManagerImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\ChronoSphereFactoryImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\ChronoSphereIndexManagerImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\evolution\IncubatorBasedModelEvolutionController.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\evolution\MetaModelEvolutionProcess.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\evolution\ModelEvolutionContextImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\query\AbstractQueryStepBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\query\EObjectAttributeComparator.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\query\EObjectQueryStepBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\query\NumericQueryStepBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\query\ObjectQueryStepBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\query\QueryStepBuilderStarterImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\SphereBranchImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\StandardChronoSphere.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\impl\transaction\ChronoSphereTransactionImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\api\ChronoSphereEPackageManagerInternal.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\api\ChronoSphereInternal.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\api\ChronoSphereTransactionInternal.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\api\SphereTransactionContext.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\builder\repository\impl\AbstractChronoSphereBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\builder\repository\impl\AbstractChronoSphereFinalizableBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\builder\repository\impl\ChronoSphereBaseBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\builder\repository\impl\ChronoSphereInMemoryBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\builder\repository\impl\ChronoSpherePropertyFileBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\configuration\api\ChronoSphereConfiguration.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\configuration\impl\ChronoSphereConfigurationImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\ogm\api\ChronoEPackageRegistry.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\ogm\api\ChronoEPackageRegistryInternal.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\ogm\api\ChronoSphereGraphFormat.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\ogm\api\EObjectToGraphMapper.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\ogm\api\EPackageBundle.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\ogm\api\EPackageToGraphMapper.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\ogm\api\GraphToEcoreMapper.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\ogm\api\VertexKind.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\ogm\impl\ChronoEPackageRegistryImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\ogm\impl\EObjectToGraphMapperImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\ogm\impl\EPackageBundleImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\ogm\impl\EPackageToGraphMapperImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\main\java\org\chronos\chronosphere\internal\ogm\impl\GremlinUtils.java</SrcDir>
+  </Project>
+  <BugInstance type="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" priority="2" rank="18" abbrev="RCN" category="STYLE">
+    <Class classname="org.chronos.chronosphere.emf.internal.impl.store.ChronoGraphEStore">
+      <SourceLine classname="org.chronos.chronosphere.emf.internal.impl.store.ChronoGraphEStore" start="50" end="761" sourcefile="ChronoGraphEStore.java" sourcepath="org/chronos/chronosphere/emf/internal/impl/store/ChronoGraphEStore.java"/>
+    </Class>
+    <Method classname="org.chronos.chronosphere.emf.internal.impl.store.ChronoGraphEStore" name="getContainingFeature" signature="(Lorg/eclipse/emf/ecore/InternalEObject;)Lorg/eclipse/emf/ecore/EStructuralFeature;" isStatic="false">
+      <SourceLine classname="org.chronos.chronosphere.emf.internal.impl.store.ChronoGraphEStore" start="406" end="430" startBytecode="0" endBytecode="365" sourcefile="ChronoGraphEStore.java" sourcepath="org/chronos/chronosphere/emf/internal/impl/store/ChronoGraphEStore.java"/>
+    </Method>
+    <LocalVariable name="eContainingFeatureID" register="4" pc="96" role="LOCAL_VARIABLE_VALUE_OF"/>
+    <Method classname="org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat" name="getEContainingFeatureId" signature="(Lorg/apache/tinkerpop/gremlin/structure/Vertex;)Ljava/lang/Integer;" isStatic="true" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat" start="1012" end="1013" startBytecode="0" endBytecode="70" sourcefile="ChronoSphereGraphFormat.java" sourcepath="org/chronos/chronosphere/internal/ogm/api/ChronoSphereGraphFormat.java"/>
+    </Method>
+    <SourceLine classname="org.chronos.chronosphere.emf.internal.impl.store.ChronoGraphEStore" start="426" end="426" startBytecode="98" endBytecode="98" sourcefile="ChronoGraphEStore.java" sourcepath="org/chronos/chronosphere/emf/internal/impl/store/ChronoGraphEStore.java" role="SOURCE_REDUNDANT_NULL_CHECK"/>
+  </BugInstance>
+  <BugInstance type="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" priority="2" rank="18" abbrev="RCN" category="STYLE">
+    <Class classname="org.chronos.chronosphere.emf.internal.impl.store.OwnedTransientEStore">
+      <SourceLine classname="org.chronos.chronosphere.emf.internal.impl.store.OwnedTransientEStore" start="24" end="318" sourcefile="OwnedTransientEStore.java" sourcepath="org/chronos/chronosphere/emf/internal/impl/store/OwnedTransientEStore.java"/>
+    </Class>
+    <Method classname="org.chronos.chronosphere.emf.internal.impl.store.OwnedTransientEStore" name="getContainingFeature" signature="(Lorg/eclipse/emf/ecore/InternalEObject;)Lorg/eclipse/emf/ecore/EStructuralFeature;" isStatic="false">
+      <SourceLine classname="org.chronos.chronosphere.emf.internal.impl.store.OwnedTransientEStore" start="239" end="260" startBytecode="0" endBytecode="283" sourcefile="OwnedTransientEStore.java" sourcepath="org/chronos/chronosphere/emf/internal/impl/store/OwnedTransientEStore.java"/>
+    </Method>
+    <Field classname="org.chronos.chronosphere.emf.internal.impl.store.OwnedTransientEStore" name="eContainingFeatureID" signature="Ljava/lang/Integer;" isStatic="false" role="FIELD_VALUE_OF">
+      <SourceLine classname="org.chronos.chronosphere.emf.internal.impl.store.OwnedTransientEStore" sourcefile="OwnedTransientEStore.java" sourcepath="org/chronos/chronosphere/emf/internal/impl/store/OwnedTransientEStore.java"/>
+    </Field>
+    <SourceLine classname="org.chronos.chronosphere.emf.internal.impl.store.OwnedTransientEStore" start="255" end="255" startBytecode="82" endBytecode="82" sourcefile="OwnedTransientEStore.java" sourcepath="org/chronos/chronosphere/emf/internal/impl/store/OwnedTransientEStore.java" role="SOURCE_REDUNDANT_NULL_CHECK"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N">
+    <Class classname="org.chronos.chronosphere.emf.internal.util.EMFUtils">
+      <SourceLine classname="org.chronos.chronosphere.emf.internal.util.EMFUtils" start="41" end="1157" sourcefile="EMFUtils.java" sourcepath="org/chronos/chronosphere/emf/internal/util/EMFUtils.java"/>
+    </Class>
+    <Method classname="org.chronos.chronosphere.emf.internal.util.EMFUtils" name="readEObjectsFromXMI" signature="(Ljava/lang/String;Ljava/util/Set;)Ljava/util/List;" isStatic="true">
+      <SourceLine classname="org.chronos.chronosphere.emf.internal.util.EMFUtils" start="273" end="280" startBytecode="0" endBytecode="458" sourcefile="EMFUtils.java" sourcepath="org/chronos/chronosphere/emf/internal/util/EMFUtils.java"/>
+    </Method>
+    <Method classname="java.lang.String" name="getBytes" signature="()[B" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.lang.String" start="958" end="958" startBytecode="0" endBytecode="37" sourcefile="String.java" sourcepath="java/lang/String.java"/>
+    </Method>
+    <SourceLine classname="org.chronos.chronosphere.emf.internal.util.EMFUtils" start="276" end="276" startBytecode="30" endBytecode="30" sourcefile="EMFUtils.java" sourcepath="org/chronos/chronosphere/emf/internal/util/EMFUtils.java"/>
+  </BugInstance>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N">
+    <Class classname="org.chronos.chronosphere.emf.internal.util.EMFUtils">
+      <SourceLine classname="org.chronos.chronosphere.emf.internal.util.EMFUtils" start="41" end="1157" sourcefile="EMFUtils.java" sourcepath="org/chronos/chronosphere/emf/internal/util/EMFUtils.java"/>
+    </Class>
+    <Method classname="org.chronos.chronosphere.emf.internal.util.EMFUtils" name="writeEObjectsToXMI" signature="(Ljava/lang/Iterable;)Ljava/lang/String;" isStatic="true">
+      <SourceLine classname="org.chronos.chronosphere.emf.internal.util.EMFUtils" start="238" end="246" startBytecode="0" endBytecode="473" sourcefile="EMFUtils.java" sourcepath="org/chronos/chronosphere/emf/internal/util/EMFUtils.java"/>
+    </Method>
+    <Method classname="java.io.ByteArrayOutputStream" name="toString" signature="()Ljava/lang/String;" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.ByteArrayOutputStream" start="221" end="221" startBytecode="0" endBytecode="40" sourcefile="ByteArrayOutputStream.java" sourcepath="java/io/ByteArrayOutputStream.java"/>
+    </Method>
+    <SourceLine classname="org.chronos.chronosphere.emf.internal.util.EMFUtils" start="243" end="243" startBytecode="44" endBytecode="44" sourcefile="EMFUtils.java" sourcepath="org/chronos/chronosphere/emf/internal/util/EMFUtils.java"/>
+  </BugInstance>
+  <BugInstance type="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" priority="2" rank="18" abbrev="RCN" category="STYLE">
+    <Class classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl">
+      <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="29" end="135" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java"/>
+    </Class>
+    <Method classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" name="createIndexOn" signature="(Lorg/eclipse/emf/ecore/EAttribute;)Z" isStatic="false">
+      <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="41" end="57" startBytecode="0" endBytecode="609" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java"/>
+    </Method>
+    <LocalVariable name="propertyKey" register="5" pc="47" role="LOCAL_VARIABLE_VALUE_OF"/>
+    <Method classname="org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat" name="createVertexPropertyKey" signature="(Lorg/chronos/chronosphere/internal/ogm/api/ChronoEPackageRegistry;Lorg/eclipse/emf/ecore/EAttribute;)Ljava/lang/String;" isStatic="true" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat" start="138" end="145" startBytecode="0" endBytecode="182" sourcefile="ChronoSphereGraphFormat.java" sourcepath="org/chronos/chronosphere/internal/ogm/api/ChronoSphereGraphFormat.java"/>
+    </Method>
+    <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="45" end="45" startBytecode="49" endBytecode="49" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java" role="SOURCE_REDUNDANT_NULL_CHECK"/>
+  </BugInstance>
+  <BugInstance type="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" priority="2" rank="18" abbrev="RCN" category="STYLE">
+    <Class classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl">
+      <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="29" end="135" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java"/>
+    </Class>
+    <Method classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" name="dropIndexOn" signature="(Lorg/eclipse/emf/ecore/EAttribute;)Z" isStatic="false">
+      <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="76" end="93" startBytecode="0" endBytecode="618" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java"/>
+    </Method>
+    <LocalVariable name="propertyKey" register="5" pc="47" role="LOCAL_VARIABLE_VALUE_OF"/>
+    <Method classname="org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat" name="createVertexPropertyKey" signature="(Lorg/chronos/chronosphere/internal/ogm/api/ChronoEPackageRegistry;Lorg/eclipse/emf/ecore/EAttribute;)Ljava/lang/String;" isStatic="true" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat" start="138" end="145" startBytecode="0" endBytecode="182" sourcefile="ChronoSphereGraphFormat.java" sourcepath="org/chronos/chronosphere/internal/ogm/api/ChronoSphereGraphFormat.java"/>
+    </Method>
+    <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="80" end="80" startBytecode="49" endBytecode="49" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java" role="SOURCE_REDUNDANT_NULL_CHECK"/>
+  </BugInstance>
+  <BugInstance type="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" priority="2" rank="18" abbrev="RCN" category="STYLE">
+    <Class classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl">
+      <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="29" end="135" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java"/>
+    </Class>
+    <Method classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" name="existsIndexOn" signature="(Lorg/eclipse/emf/ecore/EAttribute;)Z" isStatic="false">
+      <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="62" end="71" startBytecode="0" endBytecode="464" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java"/>
+    </Method>
+    <LocalVariable name="propertyKey" register="5" pc="47" role="LOCAL_VARIABLE_VALUE_OF"/>
+    <Method classname="org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat" name="createVertexPropertyKey" signature="(Lorg/chronos/chronosphere/internal/ogm/api/ChronoEPackageRegistry;Lorg/eclipse/emf/ecore/EAttribute;)Ljava/lang/String;" isStatic="true" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat" start="138" end="145" startBytecode="0" endBytecode="182" sourcefile="ChronoSphereGraphFormat.java" sourcepath="org/chronos/chronosphere/internal/ogm/api/ChronoSphereGraphFormat.java"/>
+    </Method>
+    <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="66" end="66" startBytecode="49" endBytecode="49" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java" role="SOURCE_REDUNDANT_NULL_CHECK"/>
+  </BugInstance>
+  <BugInstance type="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" priority="2" rank="18" abbrev="RCN" category="STYLE">
+    <Class classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl">
+      <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="29" end="135" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java"/>
+    </Class>
+    <Method classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" name="isIndexDirty" signature="(Lorg/eclipse/emf/ecore/EAttribute;)Z" isStatic="false">
+      <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="117" end="127" startBytecode="0" endBytecode="483" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java"/>
+    </Method>
+    <LocalVariable name="propertyKey" register="5" pc="47" role="LOCAL_VARIABLE_VALUE_OF"/>
+    <Method classname="org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat" name="createVertexPropertyKey" signature="(Lorg/chronos/chronosphere/internal/ogm/api/ChronoEPackageRegistry;Lorg/eclipse/emf/ecore/EAttribute;)Ljava/lang/String;" isStatic="true" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat" start="138" end="145" startBytecode="0" endBytecode="182" sourcefile="ChronoSphereGraphFormat.java" sourcepath="org/chronos/chronosphere/internal/ogm/api/ChronoSphereGraphFormat.java"/>
+    </Method>
+    <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="121" end="121" startBytecode="49" endBytecode="49" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java" role="SOURCE_REDUNDANT_NULL_CHECK"/>
+  </BugInstance>
+  <BugInstance type="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" priority="2" rank="18" abbrev="RCN" category="STYLE">
+    <Class classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl">
+      <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="29" end="135" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java"/>
+    </Class>
+    <Method classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" name="reindex" signature="(Lorg/eclipse/emf/ecore/EAttribute;)V" isStatic="false">
+      <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="103" end="113" startBytecode="0" endBytecode="450" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java"/>
+    </Method>
+    <LocalVariable name="propertyKey" register="5" pc="47" role="LOCAL_VARIABLE_VALUE_OF"/>
+    <Method classname="org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat" name="createVertexPropertyKey" signature="(Lorg/chronos/chronosphere/internal/ogm/api/ChronoEPackageRegistry;Lorg/eclipse/emf/ecore/EAttribute;)Ljava/lang/String;" isStatic="true" role="METHOD_RETURN_VALUE_OF">
+      <SourceLine classname="org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat" start="138" end="145" startBytecode="0" endBytecode="182" sourcefile="ChronoSphereGraphFormat.java" sourcepath="org/chronos/chronosphere/internal/ogm/api/ChronoSphereGraphFormat.java"/>
+    </Method>
+    <SourceLine classname="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" start="107" end="107" startBytecode="49" endBytecode="49" sourcefile="ChronoSphereIndexManagerImpl.java" sourcepath="org/chronos/chronosphere/impl/ChronoSphereIndexManagerImpl.java" role="SOURCE_REDUNDANT_NULL_CHECK"/>
+  </BugInstance>
+  <BugInstance type="NP_NULL_ON_SOME_PATH_MIGHT_BE_INFEASIBLE" priority="2" rank="13" abbrev="NP" category="STYLE">
+    <Class classname="org.chronos.chronosphere.impl.query.EObjectAttributeComparator">
+      <SourceLine classname="org.chronos.chronosphere.impl.query.EObjectAttributeComparator" start="11" end="63" sourcefile="EObjectAttributeComparator.java" sourcepath="org/chronos/chronosphere/impl/query/EObjectAttributeComparator.java"/>
+    </Class>
+    <Method classname="org.chronos.chronosphere.impl.query.EObjectAttributeComparator" name="compareInternal" signature="(Lorg/eclipse/emf/ecore/EObject;Lorg/eclipse/emf/ecore/EObject;)I" isStatic="false">
+      <SourceLine classname="org.chronos.chronosphere.impl.query.EObjectAttributeComparator" start="35" end="63" startBytecode="0" endBytecode="479" sourcefile="EObjectAttributeComparator.java" sourcepath="org/chronos/chronosphere/impl/query/EObjectAttributeComparator.java"/>
+    </Method>
+    <LocalVariable name="o1" register="1" pc="32" role="LOCAL_VARIABLE_VALUE_OF"/>
+    <SourceLine classname="org.chronos.chronosphere.impl.query.EObjectAttributeComparator" start="42" end="42" startBytecode="35" endBytecode="35" sourcefile="EObjectAttributeComparator.java" sourcepath="org/chronos/chronosphere/impl/query/EObjectAttributeComparator.java" role="SOURCE_LINE_DEREF"/>
+    <SourceLine classname="org.chronos.chronosphere.impl.query.EObjectAttributeComparator" start="37" end="37" startBytecode="15" endBytecode="15" sourcefile="EObjectAttributeComparator.java" sourcepath="org/chronos/chronosphere/impl/query/EObjectAttributeComparator.java" role="SOURCE_LINE_KNOWN_NULL"/>
+    <SourceLine classname="org.chronos.chronosphere.impl.query.EObjectAttributeComparator" start="39" end="39" startBytecode="21" endBytecode="21" sourcefile="EObjectAttributeComparator.java" sourcepath="org/chronos/chronosphere/impl/query/EObjectAttributeComparator.java" role="SOURCE_LINE_KNOWN_NULL"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Mon, 28 Aug 2017 20:00:47 +0200" total_classes="89" referenced_classes="385" total_bugs="10" total_size="4863" num_packages="20" java_version="1.8.0_74" vm_version="25.74-b02" cpu_seconds="15.73" clock_seconds="3.44" peak_mbytes="362.71" alloc_mbytes="7264.00" gc_seconds="0.13" priority_2="8" priority_1="2">
+    <PackageStats package="org.chronos.chronosphere.api" total_bugs="0" total_types="10" total_size="293">
+      <ClassStats class="org.chronos.chronosphere.api.ChronoSphere" sourceFile="ChronoSphere.java" interface="true" size="114" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.ChronoSphereBranchManager" sourceFile="ChronoSphereBranchManager.java" interface="true" size="11" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.ChronoSphereEPackageManager" sourceFile="ChronoSphereEPackageManager.java" interface="true" size="84" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.ChronoSphereFactory" sourceFile="ChronoSphereFactory.java" interface="true" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.ChronoSphereIndexManager" sourceFile="ChronoSphereIndexManager.java" interface="true" size="7" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.ChronoSphereTransaction" sourceFile="ChronoSphereTransaction.java" interface="true" size="47" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.MetaModelEvolutionContext" sourceFile="MetaModelEvolutionContext.java" interface="true" size="13" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.MetaModelEvolutionController" sourceFile="MetaModelEvolutionController.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.MetaModelEvolutionIncubator" sourceFile="MetaModelEvolutionIncubator.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.SphereBranch" sourceFile="SphereBranch.java" interface="true" size="6" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.api.builder.repository" total_bugs="0" total_types="4" total_size="10">
+      <ClassStats class="org.chronos.chronosphere.api.builder.repository.ChronoSphereBaseBuilder" sourceFile="ChronoSphereBaseBuilder.java" interface="true" size="6" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.builder.repository.ChronoSphereFinalizableBuilder" sourceFile="ChronoSphereFinalizableBuilder.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.builder.repository.ChronoSphereInMemoryBuilder" sourceFile="ChronoSphereInMemoryBuilder.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.builder.repository.ChronoSpherePropertyFileBuilder" sourceFile="ChronoSpherePropertyFileBuilder.java" interface="true" size="1" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.api.exceptions" total_bugs="0" total_types="11" total_size="186">
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.ChronoSphereCommitException" sourceFile="ChronoSphereCommitException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.ChronoSphereConfigurationException" sourceFile="ChronoSphereConfigurationException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.ChronoSphereException" sourceFile="ChronoSphereException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.ChronoSphereQueryException" sourceFile="ChronoSphereQueryException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.EObjectPersistenceException" sourceFile="EObjectPersistenceException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.EPackagesAreNotSelfContainedException" sourceFile="EPackagesAreNotSelfContainedException.java" interface="false" size="26" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.ElementCannotBeEvolvedException" sourceFile="ElementCannotBeEvolvedException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.MetaModelEvolutionCanceledException" sourceFile="MetaModelEvolutionCanceledException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.MetaModelEvolutionException" sourceFile="MetaModelEvolutionException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.ResourceIsAlreadyClosedException" sourceFile="ResourceIsAlreadyClosedException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.StorageBackendCorruptedException" sourceFile="StorageBackendCorruptedException.java" interface="false" size="16" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.api.exceptions.emf" total_bugs="0" total_types="3" total_size="48">
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.emf.ChronoSphereEMFException" sourceFile="ChronoSphereEMFException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.emf.NameResolutionException" sourceFile="NameResolutionException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.exceptions.emf.XMIConversionFailedException" sourceFile="XMIConversionFailedException.java" interface="false" size="16" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.api.query" total_bugs="0" total_types="9" total_size="177">
+      <ClassStats class="org.chronos.chronosphere.api.query.EObjectQueryStepBuilder" sourceFile="EObjectQueryStepBuilder.java" interface="true" size="30" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.query.NumericCastableQueryStepBuilder" sourceFile="NumericCastableQueryStepBuilder.java" interface="true" size="7" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.query.NumericQueryStepBuilder" sourceFile="NumericQueryStepBuilder.java" interface="true" size="12" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.query.Order" sourceFile="Order.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.query.QueryStepBuilder" sourceFile="QueryStepBuilder.java" interface="true" size="20" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.query.QueryStepBuilderInternal" sourceFile="QueryStepBuilderInternal.java" interface="true" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.query.QueryStepBuilderStarter" sourceFile="QueryStepBuilderStarter.java" interface="true" size="8" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.query.SubQuery" sourceFile="SubQuery.java" interface="false" size="81" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.api.query.UntypedQueryStepBuilder" sourceFile="UntypedQueryStepBuilder.java" interface="true" size="4" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.emf.api" total_bugs="0" total_types="1" total_size="3">
+      <ClassStats class="org.chronos.chronosphere.emf.api.ChronoEObject" sourceFile="ChronoEObject.java" interface="true" size="3" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.emf.impl" total_bugs="0" total_types="2" total_size="112">
+      <ClassStats class="org.chronos.chronosphere.emf.impl.ChronoEFactory" sourceFile="ChronoEFactory.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.emf.impl.ChronoEObjectImpl" sourceFile="ChronoEObjectImpl.java" interface="false" size="104" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.emf.internal.api" total_bugs="0" total_types="4" total_size="42">
+      <ClassStats class="org.chronos.chronosphere.emf.internal.api.ChronoEObjectInternal" sourceFile="ChronoEObjectInternal.java" interface="true" size="6" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.emf.internal.api.ChronoEObjectLifecycle" sourceFile="ChronoEObjectLifecycle.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.emf.internal.api.ChronoResource" sourceFile="ChronoResource.java" interface="true" size="14" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.emf.internal.api.ChronoResource$TimeMachine" sourceFile="ChronoResource.java" interface="true" size="4" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.emf.internal.impl.store" total_bugs="2" total_types="4" total_size="749" priority_2="2">
+      <ClassStats class="org.chronos.chronosphere.emf.internal.impl.store.AbstractChronoEStore" sourceFile="AbstractChronoEStore.java" interface="false" size="89" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.emf.internal.impl.store.ChronoEStore" sourceFile="ChronoEStore.java" interface="true" size="6" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.emf.internal.impl.store.ChronoGraphEStore" sourceFile="ChronoGraphEStore.java" interface="false" size="487" bugs="1" priority_2="1"/>
+      <ClassStats class="org.chronos.chronosphere.emf.internal.impl.store.OwnedTransientEStore" sourceFile="OwnedTransientEStore.java" interface="false" size="167" bugs="1" priority_2="1"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.emf.internal.util" total_bugs="2" total_types="1" total_size="576" priority_1="2">
+      <ClassStats class="org.chronos.chronosphere.emf.internal.util.EMFUtils" sourceFile="EMFUtils.java" interface="false" size="576" bugs="2" priority_1="2"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.impl" total_bugs="5" total_types="6" total_size="373" priority_2="5">
+      <ClassStats class="org.chronos.chronosphere.impl.ChronoSphereBranchManagerImpl" sourceFile="ChronoSphereBranchManagerImpl.java" interface="false" size="47" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.impl.ChronoSphereEPackageManagerImpl" sourceFile="ChronoSphereEPackageManagerImpl.java" interface="false" size="66" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.impl.ChronoSphereFactoryImpl" sourceFile="ChronoSphereFactoryImpl.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.impl.ChronoSphereIndexManagerImpl" sourceFile="ChronoSphereIndexManagerImpl.java" interface="false" size="69" bugs="5" priority_2="5"/>
+      <ClassStats class="org.chronos.chronosphere.impl.SphereBranchImpl" sourceFile="SphereBranchImpl.java" interface="false" size="52" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.impl.StandardChronoSphere" sourceFile="StandardChronoSphere.java" interface="false" size="134" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.impl.evolution" total_bugs="0" total_types="3" total_size="132">
+      <ClassStats class="org.chronos.chronosphere.impl.evolution.IncubatorBasedModelEvolutionController" sourceFile="IncubatorBasedModelEvolutionController.java" interface="false" size="50" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.impl.evolution.MetaModelEvolutionProcess" sourceFile="MetaModelEvolutionProcess.java" interface="false" size="31" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.impl.evolution.ModelEvolutionContextImpl" sourceFile="ModelEvolutionContextImpl.java" interface="false" size="51" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.impl.query" total_bugs="1" total_types="6" total_size="771" priority_2="1">
+      <ClassStats class="org.chronos.chronosphere.impl.query.AbstractQueryStepBuilder" sourceFile="AbstractQueryStepBuilder.java" interface="false" size="158" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.impl.query.EObjectAttributeComparator" sourceFile="EObjectAttributeComparator.java" interface="false" size="43" bugs="1" priority_2="1"/>
+      <ClassStats class="org.chronos.chronosphere.impl.query.EObjectQueryStepBuilderImpl" sourceFile="EObjectQueryStepBuilderImpl.java" interface="false" size="271" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.impl.query.NumericQueryStepBuilderImpl" sourceFile="NumericQueryStepBuilderImpl.java" interface="false" size="170" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.impl.query.ObjectQueryStepBuilderImpl" sourceFile="ObjectQueryStepBuilderImpl.java" interface="false" size="41" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.impl.query.QueryStepBuilderStarterImpl" sourceFile="QueryStepBuilderStarterImpl.java" interface="false" size="88" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.impl.transaction" total_bugs="0" total_types="1" total_size="216">
+      <ClassStats class="org.chronos.chronosphere.impl.transaction.ChronoSphereTransactionImpl" sourceFile="ChronoSphereTransactionImpl.java" interface="false" size="216" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.internal.api" total_bugs="0" total_types="4" total_size="19">
+      <ClassStats class="org.chronos.chronosphere.internal.api.ChronoSphereEPackageManagerInternal" sourceFile="ChronoSphereEPackageManagerInternal.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.api.ChronoSphereInternal" sourceFile="ChronoSphereInternal.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.api.ChronoSphereTransactionInternal" sourceFile="ChronoSphereTransactionInternal.java" interface="true" size="8" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.api.SphereTransactionContext" sourceFile="SphereTransactionContext.java" interface="true" size="5" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.internal.builder.repository.impl" total_bugs="0" total_types="5" total_size="64">
+      <ClassStats class="org.chronos.chronosphere.internal.builder.repository.impl.AbstractChronoSphereBuilder" sourceFile="AbstractChronoSphereBuilder.java" interface="false" size="3" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.builder.repository.impl.AbstractChronoSphereFinalizableBuilder" sourceFile="AbstractChronoSphereFinalizableBuilder.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.builder.repository.impl.ChronoSphereBaseBuilderImpl" sourceFile="ChronoSphereBaseBuilderImpl.java" interface="false" size="21" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.builder.repository.impl.ChronoSphereInMemoryBuilderImpl" sourceFile="ChronoSphereInMemoryBuilderImpl.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.builder.repository.impl.ChronoSpherePropertyFileBuilderImpl" sourceFile="ChronoSpherePropertyFileBuilderImpl.java" interface="false" size="27" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.internal.configuration.api" total_bugs="0" total_types="1" total_size="5">
+      <ClassStats class="org.chronos.chronosphere.internal.configuration.api.ChronoSphereConfiguration" sourceFile="ChronoSphereConfiguration.java" interface="true" size="5" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.internal.configuration.impl" total_bugs="0" total_types="1" total_size="7">
+      <ClassStats class="org.chronos.chronosphere.internal.configuration.impl.ChronoSphereConfigurationImpl" sourceFile="ChronoSphereConfigurationImpl.java" interface="false" size="7" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.internal.ogm.api" total_bugs="0" total_types="8" total_size="492">
+      <ClassStats class="org.chronos.chronosphere.internal.ogm.api.ChronoEPackageRegistry" sourceFile="ChronoEPackageRegistry.java" interface="true" size="27" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.ogm.api.ChronoEPackageRegistryInternal" sourceFile="ChronoEPackageRegistryInternal.java" interface="true" size="6" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat" sourceFile="ChronoSphereGraphFormat.java" interface="false" size="405" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.ogm.api.EObjectToGraphMapper" sourceFile="EObjectToGraphMapper.java" interface="true" size="8" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.ogm.api.EPackageBundle" sourceFile="EPackageBundle.java" interface="true" size="10" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.ogm.api.EPackageToGraphMapper" sourceFile="EPackageToGraphMapper.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.ogm.api.GraphToEcoreMapper" sourceFile="GraphToEcoreMapper.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.ogm.api.VertexKind" sourceFile="VertexKind.java" interface="false" size="30" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.internal.ogm.impl" total_bugs="0" total_types="5" total_size="588">
+      <ClassStats class="org.chronos.chronosphere.internal.ogm.impl.ChronoEPackageRegistryImpl" sourceFile="ChronoEPackageRegistryImpl.java" interface="false" size="138" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.ogm.impl.EObjectToGraphMapperImpl" sourceFile="EObjectToGraphMapperImpl.java" interface="false" size="93" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.ogm.impl.EPackageBundleImpl" sourceFile="EPackageBundleImpl.java" interface="false" size="26" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.ogm.impl.EPackageToGraphMapperImpl" sourceFile="EPackageToGraphMapperImpl.java" interface="false" size="244" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.internal.ogm.impl.GremlinUtils" sourceFile="GremlinUtils.java" interface="false" size="87" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="251" invocations="786" avgMicrosecondsPerInvocation="320" maxMicrosecondsPerInvocation="88058" standardDeviationMircosecondsPerInvocation="3155"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="251" invocations="1681" avgMicrosecondsPerInvocation="149" maxMicrosecondsPerInvocation="7505" standardDeviationMircosecondsPerInvocation="324"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="188" invocations="771" avgMicrosecondsPerInvocation="244" maxMicrosecondsPerInvocation="15837" standardDeviationMircosecondsPerInvocation="635"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="186" invocations="385" avgMicrosecondsPerInvocation="485" maxMicrosecondsPerInvocation="9696" standardDeviationMircosecondsPerInvocation="984"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="141" invocations="779" avgMicrosecondsPerInvocation="181" maxMicrosecondsPerInvocation="3870" standardDeviationMircosecondsPerInvocation="328"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="131" invocations="795" avgMicrosecondsPerInvocation="165" maxMicrosecondsPerInvocation="8993" standardDeviationMircosecondsPerInvocation="398"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="128" invocations="1362" avgMicrosecondsPerInvocation="94" maxMicrosecondsPerInvocation="1979" standardDeviationMircosecondsPerInvocation="159"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="107" invocations="1689" avgMicrosecondsPerInvocation="63" maxMicrosecondsPerInvocation="9395" standardDeviationMircosecondsPerInvocation="229"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="100" invocations="798" avgMicrosecondsPerInvocation="125" maxMicrosecondsPerInvocation="7310" standardDeviationMircosecondsPerInvocation="318"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="85" invocations="751" avgMicrosecondsPerInvocation="114" maxMicrosecondsPerInvocation="1870" standardDeviationMircosecondsPerInvocation="182"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="83" invocations="786" avgMicrosecondsPerInvocation="106" maxMicrosecondsPerInvocation="8466" standardDeviationMircosecondsPerInvocation="313"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="64" invocations="498" avgMicrosecondsPerInvocation="129" maxMicrosecondsPerInvocation="10081" standardDeviationMircosecondsPerInvocation="481"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="53" invocations="385" avgMicrosecondsPerInvocation="139" maxMicrosecondsPerInvocation="13292" standardDeviationMircosecondsPerInvocation="749"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="47" invocations="1015" avgMicrosecondsPerInvocation="47" maxMicrosecondsPerInvocation="25588" standardDeviationMircosecondsPerInvocation="802"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="47" invocations="385" avgMicrosecondsPerInvocation="123" maxMicrosecondsPerInvocation="2067" standardDeviationMircosecondsPerInvocation="238"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="42" invocations="385" avgMicrosecondsPerInvocation="111" maxMicrosecondsPerInvocation="2854" standardDeviationMircosecondsPerInvocation="201"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="37" invocations="1627" avgMicrosecondsPerInvocation="23" maxMicrosecondsPerInvocation="491" standardDeviationMircosecondsPerInvocation="44"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.LoadOfKnownNullValue" totalMilliseconds="36" invocations="89" avgMicrosecondsPerInvocation="407" maxMicrosecondsPerInvocation="3991" standardDeviationMircosecondsPerInvocation="777"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="33" invocations="385" avgMicrosecondsPerInvocation="86" maxMicrosecondsPerInvocation="4652" standardDeviationMircosecondsPerInvocation="265"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ConstantDataflowFactory" totalMilliseconds="32" invocations="786" avgMicrosecondsPerInvocation="41" maxMicrosecondsPerInvocation="1304" standardDeviationMircosecondsPerInvocation="75"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindBadCast2" totalMilliseconds="29" invocations="89" avgMicrosecondsPerInvocation="336" maxMicrosecondsPerInvocation="5847" standardDeviationMircosecondsPerInvocation="912"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="28" invocations="385" avgMicrosecondsPerInvocation="73" maxMicrosecondsPerInvocation="856" standardDeviationMircosecondsPerInvocation="128"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.TypeQualifierNullnessAnnotationDatabase" totalMilliseconds="27" invocations="21530" avgMicrosecondsPerInvocation="1" maxMicrosecondsPerInvocation="1017" standardDeviationMircosecondsPerInvocation="8"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="25" invocations="89" avgMicrosecondsPerInvocation="290" maxMicrosecondsPerInvocation="7057" standardDeviationMircosecondsPerInvocation="1019"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.URLProblems" totalMilliseconds="23" invocations="89" avgMicrosecondsPerInvocation="259" maxMicrosecondsPerInvocation="2391" standardDeviationMircosecondsPerInvocation="442"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.LiveLocalStoreDataflowFactory" totalMilliseconds="21" invocations="697" avgMicrosecondsPerInvocation="30" maxMicrosecondsPerInvocation="663" standardDeviationMircosecondsPerInvocation="53"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison" totalMilliseconds="20" invocations="89" avgMicrosecondsPerInvocation="228" maxMicrosecondsPerInvocation="2220" standardDeviationMircosecondsPerInvocation="371"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.UnreadFields" totalMilliseconds="20" invocations="89" avgMicrosecondsPerInvocation="227" maxMicrosecondsPerInvocation="1507" standardDeviationMircosecondsPerInvocation="326"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindInconsistentSync2" totalMilliseconds="20" invocations="89" avgMicrosecondsPerInvocation="227" maxMicrosecondsPerInvocation="1632" standardDeviationMircosecondsPerInvocation="364"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNullDeref$CheckCallSitesAndReturnInstructions" totalMilliseconds="19" invocations="771" avgMicrosecondsPerInvocation="25" maxMicrosecondsPerInvocation="496" standardDeviationMircosecondsPerInvocation="34"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.EqualsOperandShouldHaveClassCompatibleWithThis" totalMilliseconds="18" invocations="385" avgMicrosecondsPerInvocation="49" maxMicrosecondsPerInvocation="797" standardDeviationMircosecondsPerInvocation="85"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ReflectiveClasses" totalMilliseconds="18" invocations="385" avgMicrosecondsPerInvocation="47" maxMicrosecondsPerInvocation="514" standardDeviationMircosecondsPerInvocation="85"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

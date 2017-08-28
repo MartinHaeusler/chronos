@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" tests="35" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:59:01" hostname="Aurora" time="0.02">
+  <properties/>
+  <testcase name="shouldSetValueOnGraph[supportsBooleanValues(true)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsBooleanValues(false)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsDoubleValues(179.769.313.486.231.570.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsDoubleValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsDoubleValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsFloatValues(340.282.346.638.528.860.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsFloatValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsFloatValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsIntegerValues(-2.147.483.648)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsIntegerValues(2.147.483.647)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsIntegerValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsIntegerValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsIntegerValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsLongValues(-9.223.372.036.854.775.808)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsLongValues(9.223.372.036.854.775.807)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsLongValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsLongValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsLongValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsMapValues({testInteger=123, testString=try})]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsMixedListValues([try1, 2])]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsBooleanArrayValues([Z@193174ba)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsDoubleArrayValues([D@466a1e41)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsFloatArrayValues([F@d2924c)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.015"/>
+  <testcase name="shouldSetValueOnGraph[supportsIntegerArrayValues([I@1b543294)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.001"/>
+  <testcase name="shouldSetValueOnGraph[supportsLongArrayValues([J@95201e0)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.001"/>
+  <testcase name="shouldSetValueOnGraph[supportsStringArrayValues([Ljava.lang.String;@1fdc9e9d)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsIntegerArrayValues([I@b883fd8)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.001"/>
+  <testcase name="shouldSetValueOnGraph[supportsSerializableValues(org.apache.tinkerpop.gremlin.structure.MockSerializable@31f27caf)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.001"/>
+  <testcase name="shouldSetValueOnGraph[supportsStringValues(short string)]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnGraph[supportsUniformListValues([100, 200, 300])]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.001"/>
+  <testcase name="shouldSetValueOnGraph[supportsUniformListValues([try1, try2])]" classname="org.apache.tinkerpop.gremlin.structure.VariablesTest$GraphVariablesFeatureSupportTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

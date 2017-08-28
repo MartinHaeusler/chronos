@@ -13,30 +13,34 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.Stack;
+import java.util.UUID;
 
 import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.BranchManager;
 import org.chronos.chronodb.api.ChronoDBConstants;
-import org.chronos.chronodb.api.ChronoIndexer;
 import org.chronos.chronodb.api.IndexManager;
 import org.chronos.chronodb.api.SerializationManager;
 import org.chronos.chronodb.api.dump.ChronoConverter;
 import org.chronos.chronodb.api.dump.annotations.ChronosExternalizable;
 import org.chronos.chronodb.api.exceptions.ChronoDBSerializationException;
+import org.chronos.chronodb.api.indexing.Indexer;
 import org.chronos.chronodb.api.key.ChronoIdentifier;
+import org.chronos.chronodb.internal.api.BranchInternal;
 import org.chronos.chronodb.internal.api.BranchManagerInternal;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
+import org.chronos.chronodb.internal.api.CommitMetadataStore;
 import org.chronos.chronodb.internal.api.stream.ChronoDBEntry;
 import org.chronos.chronodb.internal.api.stream.CloseableIterator;
 import org.chronos.chronodb.internal.api.stream.ObjectInput;
 import org.chronos.chronodb.internal.api.stream.ObjectOutput;
-import org.chronos.chronodb.internal.impl.BranchMetadata;
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
 import org.chronos.chronodb.internal.impl.dump.base.ChronoDBDumpElement;
 import org.chronos.chronodb.internal.impl.dump.entry.ChronoDBDumpBinaryEntry;
 import org.chronos.chronodb.internal.impl.dump.entry.ChronoDBDumpEntry;
 import org.chronos.chronodb.internal.impl.dump.entry.ChronoDBDumpPlainEntry;
 import org.chronos.chronodb.internal.impl.dump.meta.BranchDumpMetadata;
 import org.chronos.chronodb.internal.impl.dump.meta.ChronoDBDumpMetadata;
+import org.chronos.chronodb.internal.impl.dump.meta.CommitDumpMetadata;
 import org.chronos.chronodb.internal.impl.dump.meta.IndexerDumpMetadata;
 import org.chronos.chronodb.internal.impl.engines.chunkdb.ChunkedChronoDB;
 import org.chronos.common.logging.ChronoLogger;
@@ -104,7 +108,7 @@ public class ChronoDBDumpUtil {
 			// with the metadata, we set up the branches
 			createBranches(db, metadata);
 			// load the elements
-			loadEntries(db, input, converters, options);
+			loadEntries(db, input, metadata, converters, options);
 			// set up the indexers
 			if (db instanceof ChunkedChronoDB) {
 				// for the chunked version, don't reindex - the index loader takes care of that
@@ -226,13 +230,25 @@ public class ChronoDBDumpUtil {
 			BranchDumpMetadata branchDump = new BranchDumpMetadata(branch);
 			dbDumpMetadata.getBranchDumpMetadata().add(branchDump);
 		}
+		// copy commit metadata
+		for (Branch branch : branchManager.getBranches()) {
+			String branchName = branch.getName();
+			CommitMetadataStore commitStore = ((BranchInternal) branch).getTemporalKeyValueStore().getCommitMetadataStore();
+			List<Entry<Long, Object>> commits = commitStore.getCommitMetadataBefore(System.currentTimeMillis() + 1, Integer.MAX_VALUE);
+			for (Entry<Long, Object> commit : commits) {
+				Long timestamp = commit.getKey();
+				Object metadata = commit.getValue();
+				CommitDumpMetadata commitDump = new CommitDumpMetadata(branchName, timestamp, metadata);
+				dbDumpMetadata.getCommitDumpMetadata().add(commitDump);
+			}
+		}
 		// copy indexer metadata
 		IndexManager indexManager = db.getIndexManager();
-		Map<String, Set<ChronoIndexer>> indexersByIndexName = indexManager.getIndexersByIndexName();
-		for (Entry<String, Set<ChronoIndexer>> indexNameToIndexers : indexersByIndexName.entrySet()) {
+		Map<String, Set<Indexer<?>>> indexersByIndexName = indexManager.getIndexersByIndexName();
+		for (Entry<String, Set<Indexer<?>>> indexNameToIndexers : indexersByIndexName.entrySet()) {
 			String indexName = indexNameToIndexers.getKey();
-			Set<ChronoIndexer> indexers = indexNameToIndexers.getValue();
-			for (ChronoIndexer indexer : indexers) {
+			Set<Indexer<?>> indexers = indexNameToIndexers.getValue();
+			for (Indexer<?> indexer : indexers) {
 				IndexerDumpMetadata indexDump = new IndexerDumpMetadata(indexName, indexer);
 				dbDumpMetadata.getIndexerDumpMetadata().add(indexDump);
 			}
@@ -359,20 +375,28 @@ public class ChronoDBDumpUtil {
 			branchByName.put(branch.getName(), branch);
 		}
 		// convert to "real" branch objects
-		BranchMetadata master = BranchMetadata.createMasterBranchMetadata();
-		List<BranchMetadata> loadedBranches = Lists.newArrayList();
-		Stack<BranchMetadata> branchesToVisit = new Stack<BranchMetadata>();
+		IBranchMetadata master = IBranchMetadata.createMasterBranchMetadata();
+		List<IBranchMetadata> loadedBranches = Lists.newArrayList();
+		Stack<IBranchMetadata> branchesToVisit = new Stack<>();
 		// start the conversion at the master branch
 		branchesToVisit.push(master);
 		while (branchesToVisit.isEmpty() == false) {
-			BranchMetadata currentBranch = branchesToVisit.pop();
+			IBranchMetadata currentBranch = branchesToVisit.pop();
 			Set<BranchDumpMetadata> childDumpBranches = subBranches.get(currentBranch.getName());
 			for (BranchDumpMetadata childDumpBranch : childDumpBranches) {
 				String childBranchName = childDumpBranch.getName();
 				long branchingTimestamp = childDumpBranch.getBranchingTimestamp();
+				String directoryName = null;
+				if (db.isFileBased()) {
+					if (childBranchName.equals(ChronoDBConstants.MASTER_BRANCH_IDENTIFIER)) {
+						directoryName = ChronoDBConstants.MASTER_BRANCH_IDENTIFIER;
+					} else {
+						directoryName = UUID.randomUUID().toString().replaceAll("-", "_");
+					}
+				}
 				// create the child
-				BranchMetadata childBranchMetadata = new BranchMetadata(childBranchName, currentBranch.getName(),
-						branchingTimestamp);
+				IBranchMetadata childBranchMetadata = IBranchMetadata.create(childBranchName, currentBranch.getName(),
+						branchingTimestamp, directoryName);
 				// remember to visit this child to create its children
 				branchesToVisit.push(childBranchMetadata);
 				// remember that we created this child
@@ -384,15 +408,23 @@ public class ChronoDBDumpUtil {
 	}
 
 	private static void loadEntries(final ChronoDBInternal db, final ObjectInput input,
-			final ConverterRegistry converters, final DumpOptions options) {
+			final ChronoDBDumpMetadata metadata, final ConverterRegistry converters, final DumpOptions options) {
 		checkNotNull(db, "Precondition violation - argument 'db' must not be NULL!");
 		checkNotNull(input, "Precondition violation - argument 'input' must not be NULL!");
+		checkNotNull(metadata, "Precondition violation - argument 'metadata' must not be NULL!");
 		checkNotNull(converters, "Precondition violation - argument 'converters' must not be NULL!");
 		checkNotNull(options, "Precondition violation - argument 'options' must not be NULL!");
 		SerializationManager sm = db.getSerializationManager();
 		// this is our read batch. We fill it one by one, when it's full, we load that batch into the DB.
 		List<ChronoDBEntry> readBatch = Lists.newArrayList();
 		int batchSize = options.getBatchSize();
+		// we also maintain a list of encountered commit timestamps.
+		CommitMetadataMap commitMetadataMap = new CommitMetadataMap();
+		// copy over the commits we obtained from the commit metadata map (if any)
+		List<CommitDumpMetadata> commitDumpMetadata = metadata.getCommitDumpMetadata();
+		for (CommitDumpMetadata commit : commitDumpMetadata) {
+			commitMetadataMap.addEntry(commit.getBranch(), commit.getTimestamp(), commit.getMetadata());
+		}
 		while (input.hasNext()) {
 			ChronoDBDumpElement element = (ChronoDBDumpElement) input.next();
 			// this element should be an entry...
@@ -406,6 +438,7 @@ public class ChronoDBDumpUtil {
 			ChronoDBDumpEntry<?> dumpEntry = (ChronoDBDumpEntry<?>) element;
 			ChronoDBEntry entry = convertDumpEntryToDBEntry(dumpEntry, sm, converters);
 			readBatch.add(entry);
+			commitMetadataMap.addEntry(entry.getIdentifier());
 			// check if we need to flush our read batch into the DB
 			if (readBatch.size() >= batchSize) {
 				ChronoLogger.logDebug("Reading a batch of size " + batchSize);
@@ -418,6 +451,8 @@ public class ChronoDBDumpUtil {
 			db.loadEntries(readBatch);
 			readBatch.clear();
 		}
+		// write the commit timestamps table
+		db.loadCommitTimestamps(commitMetadataMap);
 	}
 
 	private static ChronoDBEntry convertDumpEntryToDBEntry(final ChronoDBDumpEntry<?> dumpEntry,
@@ -486,7 +521,7 @@ public class ChronoDBDumpUtil {
 		Set<IndexerDumpMetadata> indexerDumpMetadata = metadata.getIndexerDumpMetadata();
 		// insert the indexers, one by one
 		for (IndexerDumpMetadata indexerMetadata : indexerDumpMetadata) {
-			ChronoIndexer indexer = indexerMetadata.getIndexer();
+			Indexer<?> indexer = indexerMetadata.getIndexer();
 			String name = indexerMetadata.getIndexName();
 			if (indexer == null) {
 				ChronoLogger.logError("Failed to reconstruct index '" + name + "' because indexer is unavailable"

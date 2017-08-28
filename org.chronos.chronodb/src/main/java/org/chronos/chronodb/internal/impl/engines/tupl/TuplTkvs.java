@@ -1,8 +1,7 @@
 package org.chronos.chronodb.internal.impl.engines.tupl;
 
-import static org.chronos.common.logging.ChronoLogger.*;
-
 import static com.google.common.base.Preconditions.*;
+import static org.chronos.common.logging.ChronoLogger.*;
 
 import java.util.Set;
 
@@ -47,7 +46,7 @@ public class TuplTkvs extends AbstractTemporalKeyValueStore {
 	}
 
 	@Override
-	protected CommitMetadataStore getCommitMetadataStore() {
+	public CommitMetadataStore getCommitMetadataStore() {
 		return this.commitMetadataStore;
 	}
 

@@ -9,9 +9,7 @@ import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
  * The top-level interface for interaction with a {@link ChronoDB} instance.
  *
  * <p>
- * This interface represents the entire database instance. Its primary purpose is to spawn instances of
- * {@link ChronoDBTransaction}. Instances of this interface represent (and abstract from) an active connection to a
- * backing datastore.
+ * This interface represents the entire database instance. Its primary purpose is to spawn instances of {@link ChronoDBTransaction}. Instances of this interface represent (and abstract from) an active connection to a backing datastore.
  *
  * <p>
  * You can acquire an instance of this class by using the static {@link #FACTORY} variable, like so:
@@ -21,9 +19,7 @@ import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
  * </pre>
  *
  * <p>
- * Note that this interface extends {@link AutoCloseable}. The {@link #close()} method is used to close this database.
- * As a database instance may hold resources that do not get released automatically upon garbage collection, <b>calling
- * {@link #close()} is mandatory</b>.
+ * Note that this interface extends {@link AutoCloseable}. The {@link #close()} method is used to close this database. As a database instance may hold resources that do not get released automatically upon garbage collection, <b>calling {@link #close()} is mandatory</b>.
  *
  * <p>
  * Instances of this class are guaranteed to be thread-safe and may be shared freely among threads.
@@ -85,24 +81,18 @@ public interface ChronoDB extends TransactionSource, AutoCloseable {
 	 * Creates a database dump of the entire current database state.
 	 *
 	 * <p>
-	 * Please note that the database is not available for write operations while the dump process is running. Read
-	 * operations will work concurrently as usual.
+	 * Please note that the database is not available for write operations while the dump process is running. Read operations will work concurrently as usual.
 	 *
 	 * <p>
-	 * <b>WARNING:</b> The file created by this process may be very large (several gigabytes), depending on the size of
-	 * the database. It is the responsibility of the user of this API to ensure that enough disk space is available;
-	 * this method does not perform any checks regarding disk space availability!
+	 * <b>WARNING:</b> The file created by this process may be very large (several gigabytes), depending on the size of the database. It is the responsibility of the user of this API to ensure that enough disk space is available; this method does not perform any checks regarding disk space availability!
 	 *
 	 * <p>
 	 * <b>WARNING:</b> The given file will be <b>overwritten</b> without further notice!
 	 *
 	 * @param dumpFile
-	 *            The file to store the dump into. Must not be <code>null</code>. Must point to a file (not a
-	 *            directory). The standard file extension <code>*.chronodump</code> is recommmended, but not required.
-	 *            If the file does not exist, the file (and any missing parent directory) will be created.
+	 *            The file to store the dump into. Must not be <code>null</code>. Must point to a file (not a directory). The standard file extension <code>*.chronodump</code> is recommmended, but not required. If the file does not exist, the file (and any missing parent directory) will be created.
 	 * @param dumpOptions
-	 *            The options to use for this dump (optional). Please refer to the documentation of the invididual
-	 *            constants for details.
+	 *            The options to use for this dump (optional). Please refer to the documentation of the invididual constants for details.
 	 */
 	public void writeDump(File dumpFile, DumpOption... dumpOptions);
 
@@ -110,20 +100,16 @@ public interface ChronoDB extends TransactionSource, AutoCloseable {
 	 * Reads the contents of the given dump file into this database.
 	 *
 	 * <p>
-	 * This is a management operation; it completely locks the database. No concurrent writes or reads will be permitted
-	 * while this operation is being executed.
+	 * This is a management operation; it completely locks the database. No concurrent writes or reads will be permitted while this operation is being executed.
 	 *
 	 * <p>
-	 * <b>WARNING:</b> The current contents of the database will be <b>merged</b> with the contents of the dump! In case
-	 * of conflicts, the data stored in the dump file will take precedence. It is <i>strongly recommended</i> to perform
-	 * this operation only on an <b>empty</b> database!
+	 * <b>WARNING:</b> The current contents of the database will be <b>merged</b> with the contents of the dump! In case of conflicts, the data stored in the dump file will take precedence. It is <i>strongly recommended</i> to perform this operation only on an <b>empty</b> database!
 	 *
 	 * <p>
 	 * <b>WARNING:</b> As this is a management operation, there is no rollback or undo option!
 	 *
 	 * @param dumpFile
-	 *            The dump file to read the data from. Must not be <code>null</code>, must exist, and must point to a
-	 *            file (not a directory).
+	 *            The dump file to read the data from. Must not be <code>null</code>, must exist, and must point to a file (not a directory).
 	 * @param options
 	 *            The options to use while reading (optional). May be empty.
 	 */
@@ -136,8 +122,7 @@ public interface ChronoDB extends TransactionSource, AutoCloseable {
 	 * This completely shuts down the database. Any further calls to retrieve or store data will fail.
 	 *
 	 * <p>
-	 * Users are responsible for calling this method when the interaction with the database stops in order to allow
-	 * ChronoDB to shutdown gracefully.
+	 * Users are responsible for calling this method when the interaction with the database stops in order to allow ChronoDB to shutdown gracefully.
 	 */
 	@Override
 	public void close();
@@ -151,5 +136,14 @@ public interface ChronoDB extends TransactionSource, AutoCloseable {
 	 * @return <code>true</code> if this ChronoDB instance is closed, otherwise <code>false</code>.
 	 */
 	public boolean isClosed();
+
+	/**
+	 * Checks if this {@link ChronoDB} instance relies on a file-based backend.
+	 *
+	 * @return <code>true</code> if the backend is file-based, otherwise <code>false</code>.
+	 *
+	 * @since 0.6.0
+	 */
+	public boolean isFileBased();
 
 }

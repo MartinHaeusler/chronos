@@ -2,7 +2,6 @@ package org.chronos.chronodb.internal.impl.engines.inmemory;
 
 import static com.google.common.base.Preconditions.*;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -11,20 +10,17 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.chronos.chronodb.api.ChronoDB;
-import org.chronos.chronodb.api.ChronoIndexer;
 import org.chronos.chronodb.api.exceptions.UnknownIndexException;
+import org.chronos.chronodb.api.indexing.Indexer;
 import org.chronos.chronodb.api.key.ChronoIdentifier;
-import org.chronos.chronodb.api.query.Condition;
 import org.chronos.chronodb.internal.api.index.ChronoIndexDocument;
 import org.chronos.chronodb.internal.api.index.ChronoIndexModifications;
 import org.chronos.chronodb.internal.api.index.DocumentAddition;
 import org.chronos.chronodb.internal.api.index.DocumentDeletion;
 import org.chronos.chronodb.internal.api.index.DocumentValidityTermination;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractDocumentBasedIndexManagerBackend;
-import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.common.base.CCC;
-import org.chronos.common.exceptions.UnknownEnumLiteralException;
 import org.chronos.common.logging.ChronoLogger;
 import org.chronos.common.logging.LogLevel;
 
@@ -42,7 +38,7 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 	protected final Map<String, Map<String, Map<String, SetMultimap<String, ChronoIndexDocument>>>> documents;
 
 	/** Index name -> indexers */
-	protected final SetMultimap<String, ChronoIndexer> indexNameToIndexers;
+	protected final SetMultimap<String, Indexer<?>> indexNameToIndexers;
 
 	protected final Map<String, Boolean> indexNameToDirtyFlag;
 
@@ -63,12 +59,12 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 	// =================================================================================================================
 
 	@Override
-	public SetMultimap<String, ChronoIndexer> loadIndexersFromPersistence() {
+	public SetMultimap<String, Indexer<?>> loadIndexersFromPersistence() {
 		return HashMultimap.create(this.indexNameToIndexers);
 	}
 
 	@Override
-	public void persistIndexers(final SetMultimap<String, ChronoIndexer> indexNameToIndexers) {
+	public void persistIndexers(final SetMultimap<String, Indexer<?>> indexNameToIndexers) {
 		this.indexNameToIndexers.clear();
 		this.indexNameToIndexers.putAll(indexNameToIndexers);
 	}
@@ -78,6 +74,12 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 		this.indexNameToIndexers.removeAll(indexName);
 		this.documents.remove(indexName);
 		this.indexNameToDocuments.removeAll(indexName);
+	}
+
+	@Override
+	public void deleteAllIndexContents() {
+		this.documents.clear();
+		this.indexNameToDocuments.clear();
 	}
 
 	@Override
@@ -94,7 +96,7 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 	}
 
 	@Override
-	public void persistIndexer(final String indexName, final ChronoIndexer indexer) {
+	public void persistIndexer(final String indexName, final Indexer<?> indexer) {
 		this.indexNameToIndexers.put(indexName, indexer);
 	}
 
@@ -116,34 +118,6 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 	// =================================================================================================================
 	// INDEX DOCUMENT MANAGEMENT
 	// =================================================================================================================
-
-	// @Override
-	// public IndexerKeyspaceState getLatestIndexDocumentsFor(final String branch, final String keyspace) {
-	// checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
-	// // prepare the result object builder
-	// IndexerKeyspaceState.Builder builder = IndexerKeyspaceState.build(keyspace);
-	// for (String indexName : this.documents.keySet()) {
-	// Map<String, SetMultimap<String, ChronoIndexDocument>> keyspaceToKeyToDocument = this.documents
-	// .get(indexName);
-	// if (keyspaceToKeyToDocument == null || keyspaceToKeyToDocument.isEmpty()) {
-	// // we have no documents for this index name
-	// continue;
-	// }
-	// SetMultimap<String, ChronoIndexDocument> keyToDocument = keyspaceToKeyToDocument.get(keyspace);
-	// if (keyToDocument == null || keyToDocument.isEmpty()) {
-	// // we have no documents in this index for the given keyspace
-	// continue;
-	// }
-	// Set<ChronoIndexDocument> docs = keyToDocument.values().stream()
-	// // only use the LATEST documents, i.e. the documents with infinite "valid to" timestamp
-	// .filter(d -> d.getValidToTimestamp() == Long.MAX_VALUE)
-	// // collect them in a set
-	// .collect(Collectors.toSet());
-	// // add them to the result
-	// builder.addDocuments(docs);
-	// }
-	// return builder.build();
-	// }
 
 	@Override
 	public void applyModifications(final ChronoIndexModifications indexModifications) {
@@ -195,20 +169,20 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 			final Set<String> branches) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		Set<ChronoIndexDocument> resultSet = Sets.newHashSet();
-		if ((branches != null) && branches.isEmpty()) {
+		if (branches != null && branches.isEmpty()) {
 			// no branches are requested, so the result set is empty by definition.
 			return resultSet;
 		}
 		for (ChronoIndexDocument document : this.indexNameToDocuments.values()) {
-			if ((branches != null) && (branches.contains(document.getBranch()) == false)) {
+			if (branches != null && branches.contains(document.getBranch()) == false) {
 				// the branch of the document is not in the set of requested branches -> ignore the document
 				continue;
 			}
 			if (document.getValidFromTimestamp() >= timestamp) {
 				// the document was added at or after the timestamp in question
 				resultSet.add(document);
-			} else if ((document.getValidToTimestamp() < Long.MAX_VALUE)
-					&& (document.getValidToTimestamp() >= timestamp)) {
+			} else if (document.getValidToTimestamp() < Long.MAX_VALUE
+					&& document.getValidToTimestamp() >= timestamp) {
 				// the document was modified at or after the timestamp in question
 				resultSet.add(document);
 			}
@@ -221,10 +195,10 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 	// =================================================================================================================
 
 	@Override
-	public Map<String, Map<String, ChronoIndexDocument>> getMatchingBranchLocalDocuments(
+	public Map<String, SetMultimap<Object, ChronoIndexDocument>> getMatchingBranchLocalDocuments(
 			final ChronoIdentifier chronoIdentifier) {
 		checkNotNull(chronoIdentifier, "Precondition violation - argument 'chronoIdentifier' must not be NULL!");
-		Map<String, Map<String, ChronoIndexDocument>> indexToIndexedValueToDocument = Maps.newHashMap();
+		Map<String, SetMultimap<Object, ChronoIndexDocument>> indexToIndexedValueToDocument = Maps.newHashMap();
 		for (Entry<String, Map<String, Map<String, SetMultimap<String, ChronoIndexDocument>>>> entry : this.documents
 				.entrySet()) {
 			String indexName = entry.getKey();
@@ -243,10 +217,10 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 				continue;
 			}
 			for (ChronoIndexDocument document : documents) {
-				String indexedValue = document.getIndexedValue();
-				Map<String, ChronoIndexDocument> indexedValueToDocuments = indexToIndexedValueToDocument.get(indexName);
+				Object indexedValue = document.getIndexedValue();
+				SetMultimap<Object, ChronoIndexDocument> indexedValueToDocuments = indexToIndexedValueToDocument.get(indexName);
 				if (indexedValueToDocuments == null) {
-					indexedValueToDocuments = Maps.newHashMap();
+					indexedValueToDocuments = HashMultimap.create();
 					indexToIndexedValueToDocument.put(indexName, indexedValueToDocuments);
 				}
 				indexedValueToDocuments.put(indexedValue, document);
@@ -260,8 +234,8 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 	// =================================================================================================================
 
 	@Override
-	protected Set<ChronoIndexDocument> getMatchingBranchLocalDocuments(final long timestamp, final String branchName,
-			final SearchSpecification searchSpec) {
+	protected Set<ChronoIndexDocument> getMatchingBranchLocalDocuments(final long timestamp, final String branchName, final String keyspace,
+			final SearchSpecification<?> searchSpec) {
 		checkArgument(timestamp >= 0,
 				"Precondition violation - argument 'timestamp' must be >= 0 (value: " + timestamp + ")!");
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
@@ -272,30 +246,24 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 		}
 		Map<String, Map<String, SetMultimap<String, ChronoIndexDocument>>> branchToKeyspace = this.documents
 				.get(indexName);
-		if ((branchToKeyspace == null) || branchToKeyspace.isEmpty()) {
+		if (branchToKeyspace == null || branchToKeyspace.isEmpty()) {
 			return Collections.emptySet();
 		}
 		Map<String, SetMultimap<String, ChronoIndexDocument>> keyspaceToKeyToDoc = branchToKeyspace.get(branchName);
-		if ((keyspaceToKeyToDoc == null) || keyspaceToKeyToDoc.isEmpty()) {
+		if (keyspaceToKeyToDoc == null || keyspaceToKeyToDoc.isEmpty()) {
 			return Collections.emptySet();
 		}
-		Condition condition = searchSpec.getCondition();
-		TextMatchMode matchMode = searchSpec.getMatchMode();
-		String comparisonValue = searchSpec.getSearchText();
-		Predicate<? super ChronoIndexDocument> filter = this.createMatchFilter(timestamp, condition, matchMode,
-				comparisonValue);
-		Set<ChronoIndexDocument> resultSet = Sets.newHashSet();
-		for (Entry<String, SetMultimap<String, ChronoIndexDocument>> entry : keyspaceToKeyToDoc.entrySet()) {
-			Collection<ChronoIndexDocument> docsToCheck = entry.getValue().values();
-			Set<ChronoIndexDocument> filtered = docsToCheck.parallelStream().filter(filter).collect(Collectors.toSet());
-			resultSet.addAll(filtered);
+		SetMultimap<String, ChronoIndexDocument> keyToDoc = keyspaceToKeyToDoc.get(keyspace);
+		if (keyToDoc == null || keyToDoc.isEmpty()) {
+			return Collections.emptySet();
 		}
-		return Collections.unmodifiableSet(resultSet);
+		Predicate<? super ChronoIndexDocument> filter = this.createMatchFilter(timestamp, searchSpec.toFilterPredicate());
+		return Collections.unmodifiableSet(keyToDoc.values().parallelStream().filter(filter).collect(Collectors.toSet()));
 	}
 
 	@Override
-	protected Set<ChronoIndexDocument> getTerminatedBranchLocalDocuments(final long timestamp, final String branchName,
-			final SearchSpecification searchSpec) {
+	protected Set<ChronoIndexDocument> getTerminatedBranchLocalDocuments(final long timestamp, final String branchName, final String keyspace,
+			final SearchSpecification<?> searchSpec) {
 		checkArgument(timestamp >= 0,
 				"Precondition violation - argument 'timestamp' must be >= 0 (value: " + timestamp + ")!");
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
@@ -306,118 +274,39 @@ public class InMemoryIndexManagerBackend extends AbstractDocumentBasedIndexManag
 		}
 		Map<String, Map<String, SetMultimap<String, ChronoIndexDocument>>> branchToKeyspace = this.documents
 				.get(indexName);
-		if ((branchToKeyspace == null) || branchToKeyspace.isEmpty()) {
+		if (branchToKeyspace == null || branchToKeyspace.isEmpty()) {
 			return Collections.emptySet();
 		}
 		Map<String, SetMultimap<String, ChronoIndexDocument>> keyspaceToKeyToDoc = branchToKeyspace.get(branchName);
-		if ((keyspaceToKeyToDoc == null) || keyspaceToKeyToDoc.isEmpty()) {
+		if (keyspaceToKeyToDoc == null || keyspaceToKeyToDoc.isEmpty()) {
 			return Collections.emptySet();
 		}
-		Condition condition = searchSpec.getCondition();
-		TextMatchMode matchMode = searchSpec.getMatchMode();
-		String comparisonValue = searchSpec.getSearchText();
-		Predicate<? super ChronoIndexDocument> filter = this.createDeletionFilter(timestamp, condition, matchMode,
-				comparisonValue);
-		Set<ChronoIndexDocument> resultSet = Sets.newHashSet();
-		for (Entry<String, SetMultimap<String, ChronoIndexDocument>> entry : keyspaceToKeyToDoc.entrySet()) {
-			Collection<ChronoIndexDocument> docsToCheck = entry.getValue().values();
-			Set<ChronoIndexDocument> filtered = docsToCheck.parallelStream().filter(filter).collect(Collectors.toSet());
-			resultSet.addAll(filtered);
+		SetMultimap<String, ChronoIndexDocument> keyToDoc = keyspaceToKeyToDoc.get(keyspace);
+		if (keyToDoc == null || keyToDoc.isEmpty()) {
+			return Collections.emptySet();
 		}
-		return Collections.unmodifiableSet(resultSet);
+		Predicate<? super ChronoIndexDocument> filter = this.createDeletionFilter(timestamp, searchSpec.toFilterPredicate());
+		return Collections.unmodifiableSet(keyToDoc.values().parallelStream().filter(filter).collect(Collectors.toSet()));
 	}
 
-	protected Predicate<? super ChronoIndexDocument> createMatchFilter(final long timestamp, final Condition condition,
-			final TextMatchMode matchMode, final String comparisonValue) {
+	private Predicate<? super ChronoIndexDocument> createMatchFilter(final long timestamp, final Predicate<Object> filterPredicate) {
 		return (doc) -> {
-			String indexedValue = doc.getIndexedValue();
-			String searchString = comparisonValue;
-			switch (matchMode) {
-			case STRICT:
-				break;
-			case CASE_INSENSITIVE:
-				indexedValue = doc.getIndexedValueCaseInsensitive();
-				searchString = searchString.toLowerCase();
-				break;
-			default:
-				throw new UnknownEnumLiteralException(matchMode);
+			Object indexedValue = doc.getIndexedValue();
+			boolean timeRangeOk = doc.getValidFromTimestamp() <= timestamp && timestamp < doc.getValidToTimestamp();
+			if (timeRangeOk == false) {
+				return false;
 			}
-			switch (condition) {
-			case EQUALS:
-				return indexedValue.contentEquals(searchString) && (doc.getValidFromTimestamp() <= timestamp)
-						&& (timestamp < doc.getValidToTimestamp());
-			case NOT_EQUALS:
-				return (indexedValue.contentEquals(searchString) == false) && (doc.getValidFromTimestamp() <= timestamp)
-						&& (timestamp < doc.getValidToTimestamp());
-			case CONTAINS:
-				return indexedValue.contains(searchString) && (doc.getValidFromTimestamp() <= timestamp)
-						&& (timestamp < doc.getValidToTimestamp());
-			case NOT_CONTAINS:
-				return (indexedValue.contains(searchString) == false) && (doc.getValidFromTimestamp() <= timestamp)
-						&& (timestamp < doc.getValidToTimestamp());
-			case STARTS_WITH:
-				return indexedValue.startsWith(searchString) && (doc.getValidFromTimestamp() <= timestamp)
-						&& (timestamp < doc.getValidToTimestamp());
-			case NOT_STARTS_WITH:
-				return (indexedValue.startsWith(searchString) == false) && (doc.getValidFromTimestamp() <= timestamp)
-						&& (timestamp < doc.getValidToTimestamp());
-			case ENDS_WITH:
-				return indexedValue.endsWith(searchString) && (doc.getValidFromTimestamp() <= timestamp)
-						&& (timestamp < doc.getValidToTimestamp());
-			case NOT_ENDS_WITH:
-				return (indexedValue.endsWith(searchString) == false) && (doc.getValidFromTimestamp() <= timestamp)
-						&& (timestamp < doc.getValidToTimestamp());
-			case MATCHES_REGEX:
-				return indexedValue.matches(searchString) && (doc.getValidFromTimestamp() <= timestamp)
-						&& (timestamp < doc.getValidToTimestamp());
-			case NOT_MATCHES_REGEX:
-				return (indexedValue.matches(searchString) == false) && (doc.getValidFromTimestamp() <= timestamp)
-						&& (timestamp < doc.getValidToTimestamp());
-			default:
-				throw new UnknownEnumLiteralException(condition);
-			}
+			return filterPredicate.test(indexedValue);
 		};
 	}
 
-	protected Predicate<? super ChronoIndexDocument> createDeletionFilter(final long timestamp,
-			final Condition condition, final TextMatchMode matchMode, final String comparisonValue) {
+	private Predicate<? super ChronoIndexDocument> createDeletionFilter(final long timestamp, final Predicate<Object> filterPredicate) {
 		return (doc) -> {
-			String indexedValue = doc.getIndexedValue();
-			String searchString = comparisonValue;
-			switch (matchMode) {
-			case STRICT:
-				break;
-			case CASE_INSENSITIVE:
-				indexedValue = doc.getIndexedValueCaseInsensitive();
-				searchString = searchString.toLowerCase();
-				break;
-			default:
-				throw new UnknownEnumLiteralException(matchMode);
+			boolean timeRangeOk = doc.getValidToTimestamp() <= timestamp;
+			if (timeRangeOk == false) {
+				return false;
 			}
-			switch (condition) {
-			case EQUALS:
-				return indexedValue.contentEquals(searchString) && (doc.getValidToTimestamp() <= timestamp);
-			case NOT_EQUALS:
-				return (indexedValue.contentEquals(searchString) == false) && (doc.getValidToTimestamp() <= timestamp);
-			case CONTAINS:
-				return indexedValue.contains(searchString) && (doc.getValidToTimestamp() <= timestamp);
-			case NOT_CONTAINS:
-				return (indexedValue.contains(searchString) == false) && (doc.getValidToTimestamp() <= timestamp);
-			case STARTS_WITH:
-				return indexedValue.startsWith(searchString) && (doc.getValidToTimestamp() <= timestamp);
-			case NOT_STARTS_WITH:
-				return (indexedValue.startsWith(searchString) == false) && (doc.getValidToTimestamp() <= timestamp);
-			case ENDS_WITH:
-				return indexedValue.endsWith(searchString) && (doc.getValidToTimestamp() <= timestamp);
-			case NOT_ENDS_WITH:
-				return (indexedValue.endsWith(searchString) == false) && (doc.getValidToTimestamp() <= timestamp);
-			case MATCHES_REGEX:
-				return indexedValue.matches(searchString) && (doc.getValidToTimestamp() <= timestamp);
-			case NOT_MATCHES_REGEX:
-				return (indexedValue.matches(searchString) == false) && (doc.getValidToTimestamp() <= timestamp);
-			default:
-				throw new UnknownEnumLiteralException(condition);
-			}
+			return filterPredicate.test(doc.getIndexedValue());
 		};
 	}
 

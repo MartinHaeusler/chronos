@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" tests="15" skipped="10" failures="0" errors="0" timestamp="2017-08-28T17:58:58" hostname="Aurora" time="0.0">
+  <properties/>
+  <testcase name="shouldSupportUserSuppliedIdsOfTypeUuid" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0"/>
+  <testcase name="shouldSupportStringIdsIfStringIdsAreGeneratedFromTheGraph" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportUserSuppliedIdsOfTypeAny" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0"/>
+  <testcase name="shouldSupportUserSuppliedIdsIfAnIdCanBeAssigned" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportNumericIdsIfNumericIdsAreGeneratedFromTheGraph" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportMetaPropertyIfPropertiesCanBePutOnProperties" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportUserSuppliedIdsOfTypeString" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldNotAllowAnyIdsIfUserSuppliedIdsIsFalse" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportUserSuppliedIdsOfTypeNumericLong" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0"/>
+  <testcase name="shouldSupportMultiPropertyIfTheSameKeyCanBeAssignedMoreThanOnce" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0"/>
+  <testcase name="shouldSupportMetaPropertyIfPropertiesHaveAnIteratorViaVertexProperty" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportMetaPropertyIfPropertiesCanBePutOnPropertiesViaVertexProperty" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportRemovePropertyIfAPropertyCanBeRemoved" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportUuidIdsIfUuidIdsAreGeneratedFromTheGraph" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportUserSuppliedIdsOfTypeNumericInt" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$VertexPropertyFunctionalityTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

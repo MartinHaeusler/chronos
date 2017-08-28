@@ -2,7 +2,7 @@
 
 include "org.chronos.common", 
         "org.chronos.chronodb",
-		"org.chronos.chronograph",
-		"org.chronos.chronosphere",
+        "org.chronos.chronograph",
+        "org.chronos.chronosphere",
         // non-source projects
         "org.chronos.common.testing"

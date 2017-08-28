@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.temporal.InverseUnqualifiedTemporalKeyTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:54:30" hostname="Aurora" time="0.0">
+  <properties/>
+  <testcase name="serializationFormatOrderingWorks" classname="org.chronos.chronodb.test.temporal.InverseUnqualifiedTemporalKeyTest" time="0.0"/>
+  <testcase name="emptyKeyIsSmallestInOrder" classname="org.chronos.chronodb.test.temporal.InverseUnqualifiedTemporalKeyTest" time="0.0"/>
+  <testcase name="parseFromStringWorks" classname="org.chronos.chronodb.test.temporal.InverseUnqualifiedTemporalKeyTest" time="0.0"/>
+  <system-out><![CDATA[19:54:30.865 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  InverseUnqualifiedTemporalKeyTest
+    Test method: serializationFormatOrderingWorks
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+Key List:
+	0000000000000000001#a
+	0000000000000000001#aa
+	0000000000000000001#ab
+	0000000000000000001#b
+	0000000000000000010#a
+	0000000000000000010#ab
+	0000000000000000010#b
+	0000000000000000100#aaa
+String List:
+	0000000000000000001#a
+	0000000000000000001#aa
+	0000000000000000001#ab
+	0000000000000000001#b
+	0000000000000000010#a
+	0000000000000000010#ab
+	0000000000000000010#b
+	0000000000000000100#aaa
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  InverseUnqualifiedTemporalKeyTest
+    Test method: serializationFormatOrderingWorks
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  InverseUnqualifiedTemporalKeyTest
+    Test method: emptyKeyIsSmallestInOrder
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  InverseUnqualifiedTemporalKeyTest
+    Test method: emptyKeyIsSmallestInOrder
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  InverseUnqualifiedTemporalKeyTest
+    Test method: parseFromStringWorks
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  InverseUnqualifiedTemporalKeyTest
+    Test method: parseFromStringWorks
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+19:54:30.865 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:54:30.865 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

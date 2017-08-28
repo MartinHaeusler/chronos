@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.indexing.Indexer;
 import org.chronos.chronodb.internal.util.MultiMapUtil;
 import org.chronos.common.exceptions.ChronosIOException;
 import org.chronos.common.serialization.KryoManager;
@@ -115,7 +115,7 @@ public class DocumentChunkIndexData {
 
 	// metadata section
 	private String branchName = null;
-	private Map<String, Set<ChronoIndexer>> propertyNameToIndexers;
+	private Map<String, Set<Indexer<?>>> propertyNameToIndexers;
 
 	// data section
 	private List<ChunkDbIndexDocumentData> documents;
@@ -142,13 +142,13 @@ public class DocumentChunkIndexData {
 		this.branchName = branchName;
 	}
 
-	public void setIndexers(final Map<String, Set<ChronoIndexer>> propertyNameToIndexers) {
+	public void setIndexers(final Map<String, Set<Indexer<?>>> propertyNameToIndexers) {
 		checkNotNull(propertyNameToIndexers,
 				"Precondition violation - argument 'propertyNameToIndexers' must not be NULL!");
 		this.propertyNameToIndexers = MultiMapUtil.copy(propertyNameToIndexers);
 	}
 
-	public void setIndexers(final SetMultimap<String, ChronoIndexer> propertyNameToIndexers) {
+	public void setIndexers(final SetMultimap<String, Indexer<?>> propertyNameToIndexers) {
 		checkNotNull(propertyNameToIndexers,
 				"Precondition violation - argument 'propertyNameToIndexers' must not be NULL!");
 		this.propertyNameToIndexers = MultiMapUtil.copyToMap(propertyNameToIndexers);
@@ -162,7 +162,7 @@ public class DocumentChunkIndexData {
 		return Collections.unmodifiableSet(this.propertyNameToIndexers.keySet());
 	}
 
-	public SetMultimap<String, ChronoIndexer> getIndexersByPropertyName() {
+	public SetMultimap<String, Indexer<?>> getIndexersByPropertyName() {
 		return MultiMapUtil.copyToMultimap(this.propertyNameToIndexers);
 	}
 

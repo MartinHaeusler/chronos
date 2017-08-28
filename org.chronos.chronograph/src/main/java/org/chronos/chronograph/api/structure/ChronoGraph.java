@@ -22,6 +22,14 @@ import org.chronos.chronograph.api.transaction.ChronoGraphTransactionManager;
 import org.chronos.chronograph.internal.api.configuration.ChronoGraphConfiguration;
 import org.chronos.chronograph.internal.impl.factory.ChronoGraphFactoryImpl;
 
+/**
+ * The main entry point into the ChronoGraph API. Represents the entire graph instance.
+ *
+ * <p>
+ * You can acquire an instance of this class through the static {@link ChronoGraph#FACTORY} field and by using the fluent graph builder API that it offers.
+ *
+ * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
+ */
 @Graph.OptIn(Graph.OptIn.SUITE_STRUCTURE_STANDARD)
 @Graph.OptOut(test = "org.apache.tinkerpop.gremlin.structure.io.IoGraphTest", method = "shouldReadWriteModernToFileWithHelpers", specific = "graphml", reason = "The Gremlin Test Suite has File I/O issues on Windows.")
 @Graph.OptOut(test = "org.apache.tinkerpop.gremlin.structure.io.IoGraphTest", method = "shouldReadWriteClassicToFileWithHelpers", specific = "graphml", reason = "The Gremlin Test Suite has File I/O issues on Windows.")
@@ -34,6 +42,7 @@ import org.chronos.chronograph.internal.impl.factory.ChronoGraphFactoryImpl;
 @GraphFactoryClass(ChronoGraphFactoryImpl.class)
 public interface ChronoGraph extends Graph {
 
+	/** The main {@link ChronoGraphFactory} instance to create new graphs with. */
 	public static final ChronoGraphFactory FACTORY = ChronoGraphFactory.INSTANCE;
 
 	// =================================================================================================================

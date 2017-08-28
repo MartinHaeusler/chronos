@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.cache.MutableValuesCacheTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:50:31" hostname="Aurora" time="1.178">
+  <properties/>
+  <testcase name="disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using jdbc]" classname="org.chronos.chronodb.test.cache.MutableValuesCacheTest" time="0.047"/>
+  <testcase name="passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using jdbc]" classname="org.chronos.chronodb.test.cache.MutableValuesCacheTest" time="0.046"/>
+  <testcase name="disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using inmemory]" classname="org.chronos.chronodb.test.cache.MutableValuesCacheTest" time="0.0"/>
+  <testcase name="passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using inmemory]" classname="org.chronos.chronodb.test.cache.MutableValuesCacheTest" time="0.0"/>
+  <testcase name="disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using tupl]" classname="org.chronos.chronodb.test.cache.MutableValuesCacheTest" time="0.084"/>
+  <testcase name="passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using tupl]" classname="org.chronos.chronodb.test.cache.MutableValuesCacheTest" time="0.078"/>
+  <testcase name="disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using chunked]" classname="org.chronos.chronodb.test.cache.MutableValuesCacheTest" time="0.184"/>
+  <testcase name="passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using chunked]" classname="org.chronos.chronodb.test.cache.MutableValuesCacheTest" time="0.2"/>
+  <testcase name="disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using mapdb]" classname="org.chronos.chronodb.test.cache.MutableValuesCacheTest" time="0.27"/>
+  <testcase name="passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using mapdb]" classname="org.chronos.chronodb.test.cache.MutableValuesCacheTest" time="0.253"/>
+  <system-out><![CDATA[19:50:31.598 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using jdbc]
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+19:50:31.598 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|188b7348,name=1hgeqrl9qbn6pz6yfah30|188b7348 registered.
+19:50:31.613 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|188b7348,name=1hgeqrl9qbn6pz6yfah30|188b7348 unregistered, in order to be reregistered after update.
+19:50:31.613 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|188b7348,name=1hgeqrl9qbn6pz6yfah30|188b7348 registered.
+19:50:31.613 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@d5c64033 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@4caeaba2 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|611a16d6, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@c13ebd41 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|62e9484c, jdbcUrl -> jdbc:h2:mem:b56beacc8b534ea3a62052dd9686640c, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|188b7348, numHelperThreads -> 3 ]
+19:50:31.613 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@1b1b633f config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:31.613 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:31.613 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:31.613 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:31.645 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|188b7348,name=1hgeqrl9qbn6pz6yfah30|188b7348 unregistered.
+19:50:31.645 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7d5f7ed7
+19:50:31.645 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:31.645 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7d5f7ed7
+19:50:31.645 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7d5f7ed7
+19:50:31.645 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7d5f7ed7
+19:50:31.645 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@286c6d30
+19:50:31.645 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@286c6d30
+19:50:31.645 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@286c6d30
+19:50:31.645 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@286c6d30
+19:50:31.645 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@59635205
+19:50:31.645 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@59635205
+19:50:31.645 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@59635205
+19:50:31.645 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@59635205
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using jdbc]
+    End time:    2017/08/28 19:50:31 (Duration: 47ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using jdbc]
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+19:50:31.645 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|12f9a5d5,name=1hgeqrl9qbn6pz6yfah30|12f9a5d5 registered.
+19:50:31.670 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|12f9a5d5,name=1hgeqrl9qbn6pz6yfah30|12f9a5d5 unregistered, in order to be reregistered after update.
+19:50:31.670 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|12f9a5d5,name=1hgeqrl9qbn6pz6yfah30|12f9a5d5 registered.
+19:50:31.671 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@c6db55eb [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@79f443f8 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|65226ddc, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@a2d62580 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|69446755, jdbcUrl -> jdbc:h2:mem:7951b5cd59c940abab10fb9e56d339e3, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|12f9a5d5, numHelperThreads -> 3 ]
+19:50:31.671 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@7fcd8edb config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:31.671 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:31.671 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:31.672 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:31.691 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@439d2794
+19:50:31.691 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|12f9a5d5,name=1hgeqrl9qbn6pz6yfah30|12f9a5d5 unregistered.
+19:50:31.691 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@439d2794
+19:50:31.691 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:31.691 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@439d2794
+19:50:31.691 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@439d2794
+19:50:31.691 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@23cbbaf9
+19:50:31.691 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@23cbbaf9
+19:50:31.691 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@23cbbaf9
+19:50:31.691 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@23cbbaf9
+19:50:31.691 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@37c55c49
+19:50:31.691 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@37c55c49
+19:50:31.691 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@37c55c49
+19:50:31.691 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@37c55c49
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using jdbc]
+    End time:    2017/08/28 19:50:31 (Duration: 46ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using inmemory]
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using inmemory]
+    End time:    2017/08/28 19:50:31 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using inmemory]
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using inmemory]
+    End time:    2017/08/28 19:50:31 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using tupl]
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using tupl]
+    End time:    2017/08/28 19:50:31 (Duration: 84ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using tupl]
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using tupl]
+    End time:    2017/08/28 19:50:31 (Duration: 78ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using chunked]
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using chunked]
+    End time:    2017/08/28 19:50:32 (Duration: 184ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using chunked]
+    Start time:  2017/08/28 19:50:32
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using chunked]
+    End time:    2017/08/28 19:50:32 (Duration: 200ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using mapdb]
+    Start time:  2017/08/28 19:50:32
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: disablingCachedValuesImmutabilityAssumptionPreventsCacheStateCorruption[Using mapdb]
+    End time:    2017/08/28 19:50:32 (Duration: 270ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using mapdb]
+    Start time:  2017/08/28 19:50:32
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableValuesCacheTest
+    Test method: passingMutableObjectsToTheCacheAsValuesCanModifyItsState[Using mapdb]
+    End time:    2017/08/28 19:50:32 (Duration: 253ms)
+================================================================================
+
+
+
+19:50:32.776 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:50:32.776 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

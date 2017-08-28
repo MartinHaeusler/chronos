@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" tests="20" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:58:08" hostname="Aurora" time="11.841">
+  <properties/>
+  <testcase name="phase1Works[Using tupl]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.325"/>
+  <testcase name="phase2Works[Using tupl]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.583"/>
+  <testcase name="phase3Works[Using tupl]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.339"/>
+  <testcase name="phase4Works[Using tupl]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.394"/>
+  <testcase name="phase1Works[Using jdbc]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.029"/>
+  <testcase name="phase2Works[Using jdbc]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.037"/>
+  <testcase name="phase3Works[Using jdbc]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.041"/>
+  <testcase name="phase4Works[Using jdbc]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.088"/>
+  <testcase name="phase1Works[Using inmemory]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.007"/>
+  <testcase name="phase2Works[Using inmemory]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.007"/>
+  <testcase name="phase3Works[Using inmemory]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.015"/>
+  <testcase name="phase4Works[Using inmemory]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.017"/>
+  <testcase name="phase1Works[Using mapdb]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="1.027"/>
+  <testcase name="phase2Works[Using mapdb]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="1.568"/>
+  <testcase name="phase3Works[Using mapdb]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="2.116"/>
+  <testcase name="phase4Works[Using mapdb]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="2.83"/>
+  <testcase name="phase1Works[Using chunked]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.584"/>
+  <testcase name="phase2Works[Using chunked]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.318"/>
+  <testcase name="phase3Works[Using chunked]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="0.453"/>
+  <testcase name="phase4Works[Using chunked]" classname="org.chronos.chronograph.test.system.CrossCuttingFeaturesTest" time="1.046"/>
+  <system-out><![CDATA[[INFO ] 2017-08-28 19:58:08 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase1Works[Using tupl]
+    Start time:  2017/08/28 19:58:08
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase1Works[Using tupl]
+    End time:    2017/08/28 19:58:08 (Duration: 325ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase2Works[Using tupl]
+    Start time:  2017/08/28 19:58:08
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase2Works[Using tupl]
+    End time:    2017/08/28 19:58:09 (Duration: 583ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase3Works[Using tupl]
+    Start time:  2017/08/28 19:58:09
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase3Works[Using tupl]
+    End time:    2017/08/28 19:58:09 (Duration: 339ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase4Works[Using tupl]
+    Start time:  2017/08/28 19:58:09
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase4Works[Using tupl]
+    End time:    2017/08/28 19:58:09 (Duration: 394ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase1Works[Using jdbc]
+    Start time:  2017/08/28 19:58:09
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase1Works[Using jdbc]
+    End time:    2017/08/28 19:58:09 (Duration: 29ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase2Works[Using jdbc]
+    Start time:  2017/08/28 19:58:09
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase2Works[Using jdbc]
+    End time:    2017/08/28 19:58:09 (Duration: 37ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase3Works[Using jdbc]
+    Start time:  2017/08/28 19:58:09
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase3Works[Using jdbc]
+    End time:    2017/08/28 19:58:10 (Duration: 41ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase4Works[Using jdbc]
+    Start time:  2017/08/28 19:58:10
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase4Works[Using jdbc]
+    End time:    2017/08/28 19:58:10 (Duration: 88ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase1Works[Using inmemory]
+    Start time:  2017/08/28 19:58:10
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase1Works[Using inmemory]
+    End time:    2017/08/28 19:58:10 (Duration: 7ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase2Works[Using inmemory]
+    Start time:  2017/08/28 19:58:10
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase2Works[Using inmemory]
+    End time:    2017/08/28 19:58:10 (Duration: 7ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase3Works[Using inmemory]
+    Start time:  2017/08/28 19:58:10
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase3Works[Using inmemory]
+    End time:    2017/08/28 19:58:10 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase4Works[Using inmemory]
+    Start time:  2017/08/28 19:58:10
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase4Works[Using inmemory]
+    End time:    2017/08/28 19:58:10 (Duration: 17ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase1Works[Using mapdb]
+    Start time:  2017/08/28 19:58:10
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase1Works[Using mapdb]
+    End time:    2017/08/28 19:58:11 (Duration: 1027ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase2Works[Using mapdb]
+    Start time:  2017/08/28 19:58:11
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase2Works[Using mapdb]
+    End time:    2017/08/28 19:58:12 (Duration: 1568ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase3Works[Using mapdb]
+    Start time:  2017/08/28 19:58:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase3Works[Using mapdb]
+    End time:    2017/08/28 19:58:14 (Duration: 2116ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase4Works[Using mapdb]
+    Start time:  2017/08/28 19:58:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase4Works[Using mapdb]
+    End time:    2017/08/28 19:58:17 (Duration: 2830ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase1Works[Using chunked]
+    Start time:  2017/08/28 19:58:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase1Works[Using chunked]
+    End time:    2017/08/28 19:58:18 (Duration: 584ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase2Works[Using chunked]
+    Start time:  2017/08/28 19:58:18
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase2Works[Using chunked]
+    End time:    2017/08/28 19:58:18 (Duration: 318ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase3Works[Using chunked]
+    Start time:  2017/08/28 19:58:18
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase3Works[Using chunked]
+    End time:    2017/08/28 19:58:19 (Duration: 453ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase4Works[Using chunked]
+    Start time:  2017/08/28 19:58:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  CrossCuttingFeaturesTest
+    Test method: phase4Works[Using chunked]
+    End time:    2017/08/28 19:58:20 (Duration: 1046ms)
+================================================================================
+
+
+
+[INFO ] 2017-08-28 19:58:20 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+[INFO ] 2017-08-28 19:58:20 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

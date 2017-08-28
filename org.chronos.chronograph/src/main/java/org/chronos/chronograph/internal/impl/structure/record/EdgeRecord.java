@@ -14,6 +14,7 @@ import org.chronos.chronograph.api.transaction.ChronoGraphTransaction;
 import org.chronos.chronograph.internal.impl.dumpformat.converter.EdgeRecordConverter;
 import org.chronos.chronograph.internal.impl.structure.graph.ChronoEdgeImpl;
 import org.chronos.chronograph.internal.impl.structure.graph.ChronoProperty;
+import org.chronos.common.annotation.PersistentClass;
 
 import com.google.common.collect.Sets;
 
@@ -21,29 +22,22 @@ import com.google.common.collect.Sets;
  * An {@link EdgeRecord} is the immutable data core of an edge that has been persisted to the database.
  *
  * <p>
- * This is the class that will actually get serialized as the <code>value</code> in
- * {@link ChronoDBTransaction#put(String, Object)}.
+ * This is the class that will actually get serialized as the <code>value</code> in {@link ChronoDBTransaction#put(String, Object)}.
  *
  * <p>
- * It is crucial that all instances of this class are to be treated as immutable after their creation, as these
- * instances are potentially shared among threads due to caching mechanisms.
+ * It is crucial that all instances of this class are to be treated as immutable after their creation, as these instances are potentially shared among threads due to caching mechanisms.
  *
  * <p>
- * The {@link ChronoEdgeImpl} implementation which typically wraps an {@link EdgeRecord} is mutable and contains the
- * transient (i.e. not yet persisted) state of the edge that is specific for the transaction at hand. Upon calling
- * {@link ChronoGraphTransaction#commit()}, the transient state in {@link ChronoEdgeImpl} will be written into a new
- * {@link EdgeRecord} and persisted to the database with a new timestamp (but the same vertex id), provided that the
- * edge has indeed been modified by the user.
+ * The {@link ChronoEdgeImpl} implementation which typically wraps an {@link EdgeRecord} is mutable and contains the transient (i.e. not yet persisted) state of the edge that is specific for the transaction at hand. Upon calling {@link ChronoGraphTransaction#commit()}, the transient state in {@link ChronoEdgeImpl} will be written into a new {@link EdgeRecord} and persisted to the database with a new timestamp (but the same vertex id), provided that the edge has indeed been modified by the user.
  *
  *
  * <p>
- * Note that an {@link EdgeRecord} only contains the id of <b>one</b> end of the edge. The reason is that the edge will
- * always be serialized embedded in an {@link VertexRecord}, and the vertex record keeps track of the incoming and
- * outgoing edges. Therefore, one 'end' of the edge is always given by the containment structure.
+ * Note that an {@link EdgeRecord} only contains the id of <b>one</b> end of the edge. The reason is that the edge will always be serialized embedded in an {@link VertexRecord}, and the vertex record keeps track of the incoming and outgoing edges. Therefore, one 'end' of the edge is always given by the containment structure.
  *
  * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
  *
  */
+@PersistentClass("kryo")
 @ChronosExternalizable(converterClass = EdgeRecordConverter.class)
 public final class EdgeRecord implements ElementRecord {
 

@@ -77,7 +77,7 @@ public final class ReflectionUtils {
 	public static Set<Field> getAnnotatedFields(final Class<?> clazz,
 			final Class<? extends Annotation>... annotations) {
 		checkNotNull(clazz, "Precondition violation - argument 'clazz' must not be NULL!");
-		if ((annotations == null) || (annotations.length <= 0)) {
+		if (annotations == null || annotations.length <= 0) {
 			return getAllFields(clazz);
 		}
 		Set<Class<? extends Annotation>> annotationSet = Sets.newHashSet(annotations);
@@ -232,6 +232,36 @@ public final class ReflectionUtils {
 			constructor.setAccessible(true);
 		}
 		return constructor.newInstance();
+	}
+
+	public static boolean isLongCompatible(final Object value) {
+		return value instanceof Byte || value instanceof Short || value instanceof Integer || value instanceof Long;
+	}
+
+	public static long asLong(final Object value) {
+		if (value == null) {
+			throw new NullPointerException("Cannot convert NULL to java.lang.Long!");
+		}
+		if (!isLongCompatible(value)) {
+			throw new IllegalArgumentException("Cannot convert " + value.getClass().getName() + " to java.lang.Long!");
+		}
+		Number number = (Number) value;
+		return number.longValue();
+	}
+
+	public static boolean isDoubleCompatible(final Object value) {
+		return value instanceof Number;
+	}
+
+	public static double asDouble(final Object value) {
+		if (value == null) {
+			throw new NullPointerException("Cannot convert NULL to java.lang.Double!");
+		}
+		if (!isDoubleCompatible(value)) {
+			throw new IllegalArgumentException("Cannot convert " + value.getClass().getName() + " to java.lang.Double!");
+		}
+		Number number = (Number) value;
+		return number.doubleValue();
 	}
 
 	// =====================================================================================================================

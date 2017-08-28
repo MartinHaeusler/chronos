@@ -9,6 +9,7 @@ import org.apache.commons.configuration.Configuration;
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.internal.impl.ChronoDBConfigurationImpl;
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
 import org.chronos.chronodb.internal.impl.engines.chunkdb.BranchChunkManager;
 import org.chronos.chronodb.internal.impl.engines.chunkdb.GlobalChunkManager;
 import org.chronos.chronodb.internal.impl.engines.tupl.TuplUtils;
@@ -55,7 +56,8 @@ public class GlobalChunkManagerTest extends ChronoDBUnitTest {
 	public void canCreateBranch() {
 		assertNull(this.manager.getChunkManagerForBranch("myBranch"));
 		assertFalse(this.manager.hasChunkManagerForBranch("myBranch"));
-		BranchChunkManager branchChunkManager = this.manager.getOrCreateChunkManagerForBranch("myBranch");
+		IBranchMetadata myBranch = IBranchMetadata.create("myBranch", ChronoDBConstants.MASTER_BRANCH_IDENTIFIER, 0, "myBranch");
+		BranchChunkManager branchChunkManager = this.manager.getOrCreateChunkManagerForBranch(myBranch);
 		assertNotNull(branchChunkManager);
 		assertTrue(this.manager.hasChunkManagerForBranch("myBranch"));
 		assertEquals(branchChunkManager, this.manager.getChunkManagerForBranch("myBranch"));
@@ -65,7 +67,8 @@ public class GlobalChunkManagerTest extends ChronoDBUnitTest {
 	public void canDetectBranchOnStartup() {
 		assertNull(this.manager.getChunkManagerForBranch("myBranch"));
 		assertFalse(this.manager.hasChunkManagerForBranch("myBranch"));
-		BranchChunkManager branchChunkManager = this.manager.getOrCreateChunkManagerForBranch("myBranch");
+		IBranchMetadata myBranch = IBranchMetadata.create("myBranch", ChronoDBConstants.MASTER_BRANCH_IDENTIFIER, 0, "myBranch");
+		BranchChunkManager branchChunkManager = this.manager.getOrCreateChunkManagerForBranch(myBranch);
 		assertNotNull(branchChunkManager);
 		assertEquals(branchChunkManager, this.manager.getChunkManagerForBranch("myBranch"));
 		this.manager.shutdown();
@@ -77,7 +80,8 @@ public class GlobalChunkManagerTest extends ChronoDBUnitTest {
 
 	@Test
 	public void canOpenTransactionAndCommit() {
-		this.manager.getOrCreateChunkManagerForBranch("myBranch");
+		IBranchMetadata myBranch = IBranchMetadata.create("myBranch", ChronoDBConstants.MASTER_BRANCH_IDENTIFIER, 0, "myBranch");
+		this.manager.getOrCreateChunkManagerForBranch(myBranch);
 		TuplTransaction tx = this.manager.openTransactionOn("myBranch", 0);
 		assertNotNull(tx);
 		tx.store("test", "key", TuplUtils.encodeString("value"));
@@ -91,7 +95,8 @@ public class GlobalChunkManagerTest extends ChronoDBUnitTest {
 
 	@Test
 	public void canOpenTransactionAndRollback() {
-		this.manager.getOrCreateChunkManagerForBranch("myBranch");
+		IBranchMetadata myBranch = IBranchMetadata.create("myBranch", ChronoDBConstants.MASTER_BRANCH_IDENTIFIER, 0, "myBranch");
+		this.manager.getOrCreateChunkManagerForBranch(myBranch);
 		TuplTransaction tx = this.manager.openTransactionOn("myBranch", 0);
 		assertNotNull(tx);
 		tx.store("test", "key", TuplUtils.encodeString("value"));

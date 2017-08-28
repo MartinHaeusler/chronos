@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronograph.test.builder.ChronoGraphCreationTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:54:42" hostname="Aurora" time="0.532">
+  <properties/>
+  <testcase name="graphCreationWorks[Using chunked]" classname="org.chronos.chronograph.test.builder.ChronoGraphCreationTest" time="0.216"/>
+  <testcase name="graphCreationWorks[Using jdbc]" classname="org.chronos.chronograph.test.builder.ChronoGraphCreationTest" time="0.047"/>
+  <testcase name="graphCreationWorks[Using tupl]" classname="org.chronos.chronograph.test.builder.ChronoGraphCreationTest" time="0.053"/>
+  <testcase name="graphCreationWorks[Using mapdb]" classname="org.chronos.chronograph.test.builder.ChronoGraphCreationTest" time="0.216"/>
+  <testcase name="graphCreationWorks[Using inmemory]" classname="org.chronos.chronograph.test.builder.ChronoGraphCreationTest" time="0.0"/>
+  <system-out><![CDATA[[INFO ] 2017-08-28 19:54:42 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphCreationTest
+    Test method: graphCreationWorks[Using chunked]
+    Start time:  2017/08/28 19:54:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphCreationTest
+    Test method: graphCreationWorks[Using chunked]
+    End time:    2017/08/28 19:54:42 (Duration: 216ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphCreationTest
+    Test method: graphCreationWorks[Using jdbc]
+    Start time:  2017/08/28 19:54:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphCreationTest
+    Test method: graphCreationWorks[Using jdbc]
+    End time:    2017/08/28 19:54:42 (Duration: 47ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphCreationTest
+    Test method: graphCreationWorks[Using tupl]
+    Start time:  2017/08/28 19:54:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphCreationTest
+    Test method: graphCreationWorks[Using tupl]
+    End time:    2017/08/28 19:54:42 (Duration: 53ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphCreationTest
+    Test method: graphCreationWorks[Using mapdb]
+    Start time:  2017/08/28 19:54:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphCreationTest
+    Test method: graphCreationWorks[Using mapdb]
+    End time:    2017/08/28 19:54:42 (Duration: 216ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphCreationTest
+    Test method: graphCreationWorks[Using inmemory]
+    Start time:  2017/08/28 19:54:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphCreationTest
+    Test method: graphCreationWorks[Using inmemory]
+    End time:    2017/08/28 19:54:42 (Duration: 0ms)
+================================================================================
+
+
+
+[INFO ] 2017-08-28 19:54:42 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+[INFO ] 2017-08-28 19:54:42 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

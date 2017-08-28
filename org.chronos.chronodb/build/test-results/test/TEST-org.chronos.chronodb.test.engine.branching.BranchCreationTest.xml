@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.engine.branching.BranchCreationTest" tests="35" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:50:34" hostname="Aurora" time="10.9">
+  <properties/>
+  <testcase name="removingValuesInBranchWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.879"/>
+  <testcase name="branchingAKeyspaceWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.601"/>
+  <testcase name="basicBranchCreationWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.338"/>
+  <testcase name="branchingFromBranchWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.615"/>
+  <testcase name="addingValuesInBranchesWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.832"/>
+  <testcase name="overridingValuesInBranchWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.88"/>
+  <testcase name="canUseBranchNamesWithNonAlphanumericCharacters[Using chunked]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.423"/>
+  <testcase name="removingValuesInBranchWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.178"/>
+  <testcase name="branchingAKeyspaceWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.122"/>
+  <testcase name="basicBranchCreationWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.116"/>
+  <testcase name="branchingFromBranchWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.216"/>
+  <testcase name="addingValuesInBranchesWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.264"/>
+  <testcase name="overridingValuesInBranchWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.32"/>
+  <testcase name="canUseBranchNamesWithNonAlphanumericCharacters[Using tupl]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.316"/>
+  <testcase name="removingValuesInBranchWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.007"/>
+  <testcase name="branchingAKeyspaceWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.009"/>
+  <testcase name="basicBranchCreationWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.003"/>
+  <testcase name="branchingFromBranchWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.004"/>
+  <testcase name="addingValuesInBranchesWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.005"/>
+  <testcase name="overridingValuesInBranchWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.015"/>
+  <testcase name="canUseBranchNamesWithNonAlphanumericCharacters[Using inmemory]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.006"/>
+  <testcase name="removingValuesInBranchWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.084"/>
+  <testcase name="branchingAKeyspaceWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.049"/>
+  <testcase name="basicBranchCreationWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.062"/>
+  <testcase name="branchingFromBranchWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.042"/>
+  <testcase name="addingValuesInBranchesWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.053"/>
+  <testcase name="overridingValuesInBranchWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.07"/>
+  <testcase name="canUseBranchNamesWithNonAlphanumericCharacters[Using jdbc]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.042"/>
+  <testcase name="removingValuesInBranchWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.92"/>
+  <testcase name="branchingAKeyspaceWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.463"/>
+  <testcase name="basicBranchCreationWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.335"/>
+  <testcase name="branchingFromBranchWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.465"/>
+  <testcase name="addingValuesInBranchesWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.653"/>
+  <testcase name="overridingValuesInBranchWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.93"/>
+  <testcase name="canUseBranchNamesWithNonAlphanumericCharacters[Using mapdb]" classname="org.chronos.chronodb.test.engine.branching.BranchCreationTest" time="0.581"/>
+  <system-out><![CDATA[19:50:34.261 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: removingValuesInBranchWorks[Using chunked]
+    Start time:  2017/08/28 19:50:34
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: removingValuesInBranchWorks[Using chunked]
+    End time:    2017/08/28 19:50:35 (Duration: 879ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingAKeyspaceWorks[Using chunked]
+    Start time:  2017/08/28 19:50:35
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingAKeyspaceWorks[Using chunked]
+    End time:    2017/08/28 19:50:35 (Duration: 601ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: basicBranchCreationWorks[Using chunked]
+    Start time:  2017/08/28 19:50:35
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: basicBranchCreationWorks[Using chunked]
+    End time:    2017/08/28 19:50:36 (Duration: 338ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingFromBranchWorks[Using chunked]
+    Start time:  2017/08/28 19:50:36
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingFromBranchWorks[Using chunked]
+    End time:    2017/08/28 19:50:36 (Duration: 615ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: addingValuesInBranchesWorks[Using chunked]
+    Start time:  2017/08/28 19:50:36
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: addingValuesInBranchesWorks[Using chunked]
+    End time:    2017/08/28 19:50:37 (Duration: 832ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: overridingValuesInBranchWorks[Using chunked]
+    Start time:  2017/08/28 19:50:37
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: overridingValuesInBranchWorks[Using chunked]
+    End time:    2017/08/28 19:50:38 (Duration: 880ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: canUseBranchNamesWithNonAlphanumericCharacters[Using chunked]
+    Start time:  2017/08/28 19:50:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: canUseBranchNamesWithNonAlphanumericCharacters[Using chunked]
+    End time:    2017/08/28 19:50:38 (Duration: 423ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: removingValuesInBranchWorks[Using tupl]
+    Start time:  2017/08/28 19:50:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: removingValuesInBranchWorks[Using tupl]
+    End time:    2017/08/28 19:50:39 (Duration: 178ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingAKeyspaceWorks[Using tupl]
+    Start time:  2017/08/28 19:50:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingAKeyspaceWorks[Using tupl]
+    End time:    2017/08/28 19:50:39 (Duration: 122ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: basicBranchCreationWorks[Using tupl]
+    Start time:  2017/08/28 19:50:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: basicBranchCreationWorks[Using tupl]
+    End time:    2017/08/28 19:50:39 (Duration: 116ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingFromBranchWorks[Using tupl]
+    Start time:  2017/08/28 19:50:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingFromBranchWorks[Using tupl]
+    End time:    2017/08/28 19:50:39 (Duration: 216ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: addingValuesInBranchesWorks[Using tupl]
+    Start time:  2017/08/28 19:50:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: addingValuesInBranchesWorks[Using tupl]
+    End time:    2017/08/28 19:50:39 (Duration: 264ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: overridingValuesInBranchWorks[Using tupl]
+    Start time:  2017/08/28 19:50:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: overridingValuesInBranchWorks[Using tupl]
+    End time:    2017/08/28 19:50:40 (Duration: 320ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: canUseBranchNamesWithNonAlphanumericCharacters[Using tupl]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: canUseBranchNamesWithNonAlphanumericCharacters[Using tupl]
+    End time:    2017/08/28 19:50:40 (Duration: 301ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: removingValuesInBranchWorks[Using inmemory]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: removingValuesInBranchWorks[Using inmemory]
+    End time:    2017/08/28 19:50:40 (Duration: 7ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingAKeyspaceWorks[Using inmemory]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingAKeyspaceWorks[Using inmemory]
+    End time:    2017/08/28 19:50:40 (Duration: 9ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: basicBranchCreationWorks[Using inmemory]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: basicBranchCreationWorks[Using inmemory]
+    End time:    2017/08/28 19:50:40 (Duration: 3ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingFromBranchWorks[Using inmemory]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingFromBranchWorks[Using inmemory]
+    End time:    2017/08/28 19:50:40 (Duration: 4ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: addingValuesInBranchesWorks[Using inmemory]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: addingValuesInBranchesWorks[Using inmemory]
+    End time:    2017/08/28 19:50:40 (Duration: 5ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: overridingValuesInBranchWorks[Using inmemory]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: overridingValuesInBranchWorks[Using inmemory]
+    End time:    2017/08/28 19:50:40 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: canUseBranchNamesWithNonAlphanumericCharacters[Using inmemory]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: canUseBranchNamesWithNonAlphanumericCharacters[Using inmemory]
+    End time:    2017/08/28 19:50:40 (Duration: 6ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: removingValuesInBranchWorks[Using jdbc]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+19:50:40.411 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|655f7eea,name=1hgeqrl9qbn6pz6yfah30|655f7eea registered.
+19:50:40.427 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|655f7eea,name=1hgeqrl9qbn6pz6yfah30|655f7eea unregistered, in order to be reregistered after update.
+19:50:40.427 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|655f7eea,name=1hgeqrl9qbn6pz6yfah30|655f7eea registered.
+19:50:40.427 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@71f87baa [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@3a8e1e8b [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|3fe162ec, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@f3f63a54 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|34ffd47, jdbcUrl -> jdbc:h2:mem:34573817da5b4bfaaf07ea75b86802b0, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|655f7eea, numHelperThreads -> 3 ]
+19:50:40.428 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@6ca8319e config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:40.428 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:40.428 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:40.428 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:40.495 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|655f7eea,name=1hgeqrl9qbn6pz6yfah30|655f7eea unregistered.
+19:50:40.495 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:40.495 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3222121
+19:50:40.495 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3222121
+19:50:40.495 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3222121
+19:50:40.495 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3222121
+19:50:40.495 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@30f79de3
+19:50:40.495 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@30f79de3
+19:50:40.495 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@30f79de3
+19:50:40.495 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@30f79de3
+19:50:40.495 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6f444fb2
+19:50:40.495 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6f444fb2
+19:50:40.495 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6f444fb2
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: removingValuesInBranchWorks[Using jdbc]
+    End time:    2017/08/28 19:50:40 (Duration: 84ms)
+================================================================================
+
+
+
+19:50:40.495 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6f444fb2
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingAKeyspaceWorks[Using jdbc]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+19:50:40.495 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|66598cc9,name=1hgeqrl9qbn6pz6yfah30|66598cc9 registered.
+19:50:40.511 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|66598cc9,name=1hgeqrl9qbn6pz6yfah30|66598cc9 unregistered, in order to be reregistered after update.
+19:50:40.511 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|66598cc9,name=1hgeqrl9qbn6pz6yfah30|66598cc9 registered.
+19:50:40.511 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@3f8bf59f [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@5c80afb6 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|14ebd057, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@47adec3f [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|453864de, jdbcUrl -> jdbc:h2:mem:2e41143cb65b4436afa6cea772d2a4ff, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|66598cc9, numHelperThreads -> 3 ]
+19:50:40.511 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@a589740 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:40.511 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:40.511 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:40.511 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:40.544 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|66598cc9,name=1hgeqrl9qbn6pz6yfah30|66598cc9 unregistered.
+19:50:40.544 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@74b6b8e6
+19:50:40.544 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:40.544 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@74b6b8e6
+19:50:40.544 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@74b6b8e6
+19:50:40.544 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@74b6b8e6
+19:50:40.544 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6d31db60
+19:50:40.544 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6d31db60
+19:50:40.544 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6d31db60
+19:50:40.544 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6d31db60
+19:50:40.544 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1f91c50
+19:50:40.544 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1f91c50
+19:50:40.544 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1f91c50
+19:50:40.544 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1f91c50
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingAKeyspaceWorks[Using jdbc]
+    End time:    2017/08/28 19:50:40 (Duration: 49ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: basicBranchCreationWorks[Using jdbc]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+19:50:40.559 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|664ca2aa,name=1hgeqrl9qbn6pz6yfah30|664ca2aa registered.
+19:50:40.559 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|664ca2aa,name=1hgeqrl9qbn6pz6yfah30|664ca2aa unregistered, in order to be reregistered after update.
+19:50:40.559 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|664ca2aa,name=1hgeqrl9qbn6pz6yfah30|664ca2aa registered.
+19:50:40.559 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@3edf07e4 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@d5792ecc [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|5598fc95, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@8151e10e [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|601dfd9d, jdbcUrl -> jdbc:h2:mem:b871b4b5955248729ae83e86f4772a01, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|664ca2aa, numHelperThreads -> 3 ]
+19:50:40.559 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@7dd8b983 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:40.559 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:40.559 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:40.559 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:40.606 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|664ca2aa,name=1hgeqrl9qbn6pz6yfah30|664ca2aa unregistered.
+19:50:40.606 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6aec1bed
+19:50:40.606 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:40.606 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6aec1bed
+19:50:40.606 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6aec1bed
+19:50:40.606 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6aec1bed
+19:50:40.606 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@187f196b
+19:50:40.606 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@187f196b
+19:50:40.606 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@187f196b
+19:50:40.606 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@187f196b
+19:50:40.606 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6e154910
+19:50:40.606 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6e154910
+19:50:40.606 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6e154910
+19:50:40.606 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6e154910
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: basicBranchCreationWorks[Using jdbc]
+    End time:    2017/08/28 19:50:40 (Duration: 62ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingFromBranchWorks[Using jdbc]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+19:50:40.606 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2095cf9f,name=1hgeqrl9qbn6pz6yfah30|2095cf9f registered.
+19:50:40.628 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2095cf9f,name=1hgeqrl9qbn6pz6yfah30|2095cf9f unregistered, in order to be reregistered after update.
+19:50:40.628 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2095cf9f,name=1hgeqrl9qbn6pz6yfah30|2095cf9f registered.
+19:50:40.628 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@15c775da [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@dbf0a4ac [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|635c4aff, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@204f474a [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|fa17485, jdbcUrl -> jdbc:h2:mem:e2c7029fcaf7412da0c33bb22b5c3c6c, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|2095cf9f, numHelperThreads -> 3 ]
+19:50:40.629 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@6163d6e0 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:40.629 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:40.629 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:40.629 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:40.648 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@548c5725
+19:50:40.648 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2095cf9f,name=1hgeqrl9qbn6pz6yfah30|2095cf9f unregistered.
+19:50:40.648 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@548c5725
+19:50:40.648 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:40.648 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@548c5725
+19:50:40.648 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@548c5725
+19:50:40.648 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@44c122ed
+19:50:40.648 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@44c122ed
+19:50:40.648 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@44c122ed
+19:50:40.648 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@44c122ed
+19:50:40.648 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@70d2810
+19:50:40.648 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@70d2810
+19:50:40.648 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@70d2810
+19:50:40.648 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@70d2810
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingFromBranchWorks[Using jdbc]
+    End time:    2017/08/28 19:50:40 (Duration: 42ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: addingValuesInBranchesWorks[Using jdbc]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+19:50:40.664 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|69466c8f,name=1hgeqrl9qbn6pz6yfah30|69466c8f registered.
+19:50:40.664 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|69466c8f,name=1hgeqrl9qbn6pz6yfah30|69466c8f unregistered, in order to be reregistered after update.
+19:50:40.664 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|69466c8f,name=1hgeqrl9qbn6pz6yfah30|69466c8f registered.
+19:50:40.664 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@a2b950c4 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@8d2bc345 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|4d4f5c4c, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@491162e9 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|11913039, jdbcUrl -> jdbc:h2:mem:d304dc6c33ff40ba8c0f30753c0b86be, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|69466c8f, numHelperThreads -> 3 ]
+19:50:40.664 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@1c5f9153 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:40.664 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:40.664 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:40.664 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:40.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1a8e4b8f
+19:50:40.701 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|69466c8f,name=1hgeqrl9qbn6pz6yfah30|69466c8f unregistered.
+19:50:40.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1a8e4b8f
+19:50:40.701 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:40.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1a8e4b8f
+19:50:40.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1a8e4b8f
+19:50:40.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@199a8f3e
+19:50:40.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@199a8f3e
+19:50:40.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@199a8f3e
+19:50:40.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@199a8f3e
+19:50:40.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5e953c42
+19:50:40.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5e953c42
+19:50:40.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5e953c42
+19:50:40.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5e953c42
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: addingValuesInBranchesWorks[Using jdbc]
+    End time:    2017/08/28 19:50:40 (Duration: 53ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: overridingValuesInBranchWorks[Using jdbc]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+19:50:40.721 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|67ba11a9,name=1hgeqrl9qbn6pz6yfah30|67ba11a9 registered.
+19:50:40.728 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|67ba11a9,name=1hgeqrl9qbn6pz6yfah30|67ba11a9 unregistered, in order to be reregistered after update.
+19:50:40.728 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|67ba11a9,name=1hgeqrl9qbn6pz6yfah30|67ba11a9 registered.
+19:50:40.729 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@bbabe4cc [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@870740c2 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|7c6f1689, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@a59a6f26 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|2fc4ada7, jdbcUrl -> jdbc:h2:mem:af2e3096f2f84560b2d9fc63c9b20162, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|67ba11a9, numHelperThreads -> 3 ]
+19:50:40.729 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@28c92cb6 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:40.729 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:40.730 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:40.730 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:40.771 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@d005793
+19:50:40.771 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|67ba11a9,name=1hgeqrl9qbn6pz6yfah30|67ba11a9 unregistered.
+19:50:40.771 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@d005793
+19:50:40.771 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:40.771 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@d005793
+19:50:40.771 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@d005793
+19:50:40.771 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@335a3caf
+19:50:40.771 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@335a3caf
+19:50:40.771 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@335a3caf
+19:50:40.771 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@335a3caf
+19:50:40.771 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7f139fb4
+19:50:40.771 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7f139fb4
+19:50:40.771 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7f139fb4
+19:50:40.771 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7f139fb4
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: overridingValuesInBranchWorks[Using jdbc]
+    End time:    2017/08/28 19:50:40 (Duration: 70ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: canUseBranchNamesWithNonAlphanumericCharacters[Using jdbc]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+19:50:40.771 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2d49fd81,name=1hgeqrl9qbn6pz6yfah30|2d49fd81 registered.
+19:50:40.787 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2d49fd81,name=1hgeqrl9qbn6pz6yfah30|2d49fd81 unregistered, in order to be reregistered after update.
+19:50:40.787 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2d49fd81,name=1hgeqrl9qbn6pz6yfah30|2d49fd81 registered.
+19:50:40.787 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@5f51f476 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@112f9e82 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|2db47049, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@2d2bc490 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|5d142499, jdbcUrl -> jdbc:h2:mem:6ac95d67e5984b938fd22bbfe75e7bee, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|2d49fd81, numHelperThreads -> 3 ]
+19:50:40.787 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@7d8188ce config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:40.787 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:40.787 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:40.787 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:40.813 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@33e1d405
+19:50:40.813 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2d49fd81,name=1hgeqrl9qbn6pz6yfah30|2d49fd81 unregistered.
+19:50:40.813 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@33e1d405
+19:50:40.813 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:40.813 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@33e1d405
+19:50:40.813 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@33e1d405
+19:50:40.813 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@342b32a7
+19:50:40.813 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@342b32a7
+19:50:40.813 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@342b32a7
+19:50:40.813 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@342b32a7
+19:50:40.813 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5ed550b9
+19:50:40.813 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5ed550b9
+19:50:40.813 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5ed550b9
+19:50:40.813 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5ed550b9
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: canUseBranchNamesWithNonAlphanumericCharacters[Using jdbc]
+    End time:    2017/08/28 19:50:40 (Duration: 42ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: removingValuesInBranchWorks[Using mapdb]
+    Start time:  2017/08/28 19:50:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: removingValuesInBranchWorks[Using mapdb]
+    End time:    2017/08/28 19:50:41 (Duration: 920ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingAKeyspaceWorks[Using mapdb]
+    Start time:  2017/08/28 19:50:41
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingAKeyspaceWorks[Using mapdb]
+    End time:    2017/08/28 19:50:42 (Duration: 463ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: basicBranchCreationWorks[Using mapdb]
+    Start time:  2017/08/28 19:50:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: basicBranchCreationWorks[Using mapdb]
+    End time:    2017/08/28 19:50:42 (Duration: 335ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingFromBranchWorks[Using mapdb]
+    Start time:  2017/08/28 19:50:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: branchingFromBranchWorks[Using mapdb]
+    End time:    2017/08/28 19:50:42 (Duration: 465ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: addingValuesInBranchesWorks[Using mapdb]
+    Start time:  2017/08/28 19:50:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: addingValuesInBranchesWorks[Using mapdb]
+    End time:    2017/08/28 19:50:43 (Duration: 653ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: overridingValuesInBranchWorks[Using mapdb]
+    Start time:  2017/08/28 19:50:43
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: overridingValuesInBranchWorks[Using mapdb]
+    End time:    2017/08/28 19:50:44 (Duration: 930ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: canUseBranchNamesWithNonAlphanumericCharacters[Using mapdb]
+    Start time:  2017/08/28 19:50:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchCreationTest
+    Test method: canUseBranchNamesWithNonAlphanumericCharacters[Using mapdb]
+    End time:    2017/08/28 19:50:45 (Duration: 581ms)
+================================================================================
+
+
+
+19:50:45.161 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:50:45.161 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

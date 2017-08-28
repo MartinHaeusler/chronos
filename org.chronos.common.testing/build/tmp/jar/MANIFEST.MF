@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Implementation-Title: Chronos Common Testing Utils
+Implementation-Version: 0.7.3
+provider: chronos.org
+

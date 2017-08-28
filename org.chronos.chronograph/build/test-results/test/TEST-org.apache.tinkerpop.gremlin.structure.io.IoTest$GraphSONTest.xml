@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.io.IoTest$GraphSONTest" tests="4" skipped="2" failures="0" errors="0" timestamp="2017-08-28T17:59:01" hostname="Aurora" time="0.031">
+  <properties/>
+  <testcase name="shouldProperlySerializeCustomIdWithGraphSON" classname="org.apache.tinkerpop.gremlin.structure.io.IoTest$GraphSONTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldWriteNormalizedGraphSON" classname="org.apache.tinkerpop.gremlin.structure.io.IoTest$GraphSONTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldReadLegacyGraphSON" classname="org.apache.tinkerpop.gremlin.structure.io.IoTest$GraphSONTest" time="0.015"/>
+  <testcase name="shouldReadWriteModernWrappedInJsonObject" classname="org.apache.tinkerpop.gremlin.structure.io.IoTest$GraphSONTest" time="0.016"/>
+  <system-out><![CDATA[[WARN ] 2017-08-28 19:59:01 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all edges. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all edges. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:59:01 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -7,7 +7,7 @@ import java.util.Set;
 import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.indexing.StringIndexer;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
 import org.chronos.chronodb.test.base.InstantiateChronosWith;
@@ -158,7 +158,7 @@ public class BranchSecondaryIndexingTest extends AllChronoDBBackendsTest {
 
 	}
 
-	private static class TestObjectNameIndexer implements ChronoIndexer {
+	private static class TestObjectNameIndexer implements StringIndexer {
 
 		@Override
 		public boolean canIndex(final Object object) {

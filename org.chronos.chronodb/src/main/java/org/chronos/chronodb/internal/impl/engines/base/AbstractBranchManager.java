@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.BranchManager;
@@ -13,7 +14,7 @@ import org.chronos.chronodb.api.exceptions.ChronoDBBranchingException;
 import org.chronos.chronodb.internal.api.BranchInternal;
 import org.chronos.chronodb.internal.api.BranchManagerInternal;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
-import org.chronos.chronodb.internal.impl.BranchMetadata;
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
 
 import com.google.common.collect.Sets;
 
@@ -79,7 +80,11 @@ public abstract class AbstractBranchManager implements BranchManager, BranchMana
 		long now = this.getBranchInternal(parentName).getTemporalKeyValueStore().getNow();
 		checkArgument(branchingTimestamp <= now,
 				"Precondition violation - argument 'branchingTimestamp' must be less than the timestamp of the latest commit on the parent branch!");
-		BranchMetadata metadata = new BranchMetadata(newBranchName, parentName, branchingTimestamp);
+		String directoryName = null;
+		if (this.owningDb.isFileBased()) {
+			directoryName = UUID.randomUUID().toString().replaceAll("-", "_");
+		}
+		IBranchMetadata metadata = IBranchMetadata.create(newBranchName, parentName, branchingTimestamp, directoryName);
 		return this.createBranch(metadata);
 	}
 
@@ -111,9 +116,9 @@ public abstract class AbstractBranchManager implements BranchManager, BranchMana
 	// =====================================================================================================================
 
 	@Override
-	public void loadBranchDataFromDump(final List<BranchMetadata> branches) {
+	public void loadBranchDataFromDump(final List<IBranchMetadata> branches) {
 		checkNotNull(branches, "Precondition violation - argument 'branches' must not be NULL!");
-		for (BranchMetadata branchMetadata : branches) {
+		for (IBranchMetadata branchMetadata : branches) {
 			// assert that the branch does not yet exist
 			if (this.existsBranch(branchMetadata.getName())) {
 				throw new IllegalStateException(
@@ -155,7 +160,7 @@ public abstract class AbstractBranchManager implements BranchManager, BranchMana
 	// ABSTRACT METHOD DECLARATIONS
 	// =====================================================================================================================
 
-	protected abstract BranchInternal createBranch(BranchMetadata metadata);
+	protected abstract BranchInternal createBranch(IBranchMetadata metadata);
 
 	protected abstract BranchInternal getBranchInternal(final String name);
 }

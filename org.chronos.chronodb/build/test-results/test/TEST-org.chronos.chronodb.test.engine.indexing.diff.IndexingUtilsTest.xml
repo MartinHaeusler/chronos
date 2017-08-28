@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.engine.indexing.diff.IndexingUtilsTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:52:12" hostname="Aurora" time="0.009">
+  <properties/>
+  <testcase name="indexedValuesDoNotContainNullOrEmptyString" classname="org.chronos.chronodb.test.engine.indexing.diff.IndexingUtilsTest" time="0.001"/>
+  <testcase name="canGetIndexValuesForNullValuedFields" classname="org.chronos.chronodb.test.engine.indexing.diff.IndexingUtilsTest" time="0.001"/>
+  <testcase name="canCalculateAdditiveDiff" classname="org.chronos.chronodb.test.engine.indexing.diff.IndexingUtilsTest" time="0.002"/>
+  <testcase name="canGetIndexValuesForEmptyCollectionFields" classname="org.chronos.chronodb.test.engine.indexing.diff.IndexingUtilsTest" time="0.0"/>
+  <testcase name="canCalculateSubtractiveDiff" classname="org.chronos.chronodb.test.engine.indexing.diff.IndexingUtilsTest" time="0.001"/>
+  <testcase name="attemptingToGetIndexValuesWithoutIndexerProducesEmptySet" classname="org.chronos.chronodb.test.engine.indexing.diff.IndexingUtilsTest" time="0.001"/>
+  <testcase name="canCalculateMixedDiff" classname="org.chronos.chronodb.test.engine.indexing.diff.IndexingUtilsTest" time="0.001"/>
+  <testcase name="canCalculateEntryRemovalDiff" classname="org.chronos.chronodb.test.engine.indexing.diff.IndexingUtilsTest" time="0.001"/>
+  <testcase name="canGetIndexValuesForObject" classname="org.chronos.chronodb.test.engine.indexing.diff.IndexingUtilsTest" time="0.0"/>
+  <testcase name="canCalculateEntryAdditionDiff" classname="org.chronos.chronodb.test.engine.indexing.diff.IndexingUtilsTest" time="0.001"/>
+  <system-out><![CDATA[19:52:12.594 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: indexedValuesDoNotContainNullOrEmptyString
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: indexedValuesDoNotContainNullOrEmptyString
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canGetIndexValuesForNullValuedFields
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canGetIndexValuesForNullValuedFields
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canCalculateAdditiveDiff
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canCalculateAdditiveDiff
+    End time:    2017/08/28 19:52:12 (Duration: 2ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canGetIndexValuesForEmptyCollectionFields
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canGetIndexValuesForEmptyCollectionFields
+    End time:    2017/08/28 19:52:12 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canCalculateSubtractiveDiff
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canCalculateSubtractiveDiff
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: attemptingToGetIndexValuesWithoutIndexerProducesEmptySet
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: attemptingToGetIndexValuesWithoutIndexerProducesEmptySet
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canCalculateMixedDiff
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canCalculateMixedDiff
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canCalculateEntryRemovalDiff
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canCalculateEntryRemovalDiff
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canGetIndexValuesForObject
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canGetIndexValuesForObject
+    End time:    2017/08/28 19:52:12 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canCalculateEntryAdditionDiff
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IndexingUtilsTest
+    Test method: canCalculateEntryAdditionDiff
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+19:52:12.603 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:52:12.604 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

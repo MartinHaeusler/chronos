@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" tests="140" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:59:01" hostname="Aurora" time="0.063">
+  <properties/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsBooleanValues(true)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsBooleanValues(true)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsBooleanValues(true)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsBooleanValues(true)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsBooleanValues(false)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsBooleanValues(false)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsBooleanValues(false)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsBooleanValues(false)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsDoubleValues(179.769.313.486.231.570.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsDoubleValues(179.769.313.486.231.570.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsDoubleValues(179.769.313.486.231.570.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsDoubleValues(179.769.313.486.231.570.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsDoubleValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsDoubleValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsDoubleValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsDoubleValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsDoubleValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsDoubleValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsDoubleValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsDoubleValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.016"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsFloatValues(340.282.346.638.528.860.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsFloatValues(340.282.346.638.528.860.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsFloatValues(340.282.346.638.528.860.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsFloatValues(340.282.346.638.528.860.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsFloatValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsFloatValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsFloatValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsFloatValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsFloatValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsFloatValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsFloatValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsFloatValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsIntegerValues(-2.147.483.648)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsIntegerValues(-2.147.483.648)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsIntegerValues(-2.147.483.648)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsIntegerValues(-2.147.483.648)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsIntegerValues(2.147.483.647)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsIntegerValues(2.147.483.647)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsIntegerValues(2.147.483.647)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsIntegerValues(2.147.483.647)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsIntegerValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsIntegerValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsIntegerValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsIntegerValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsIntegerValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.015"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsIntegerValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsIntegerValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsIntegerValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsIntegerValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsIntegerValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsIntegerValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsIntegerValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsLongValues(-9.223.372.036.854.775.808)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsLongValues(-9.223.372.036.854.775.808)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsLongValues(-9.223.372.036.854.775.808)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsLongValues(-9.223.372.036.854.775.808)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsLongValues(9.223.372.036.854.775.807)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsLongValues(9.223.372.036.854.775.807)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsLongValues(9.223.372.036.854.775.807)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsLongValues(9.223.372.036.854.775.807)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsLongValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsLongValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsLongValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsLongValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsLongValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsLongValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsLongValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsLongValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsLongValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsLongValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsLongValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsLongValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsMapValues({testInteger=123, testString=try})]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsMapValues({testInteger=123, testString=try})]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsMapValues({testInteger=123, testString=try})]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsMapValues({testInteger=123, testString=try})]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsMixedListValues([try1, 2])]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.016"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsMixedListValues([try1, 2])]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsMixedListValues([try1, 2])]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsMixedListValues([try1, 2])]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsStringArrayValues([Z@3ce65f2e)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsStringArrayValues([Z@3ce65f2e)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsStringArrayValues([Z@3ce65f2e)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsStringArrayValues([Z@3ce65f2e)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsDoubleArrayValues([D@6481c395)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsDoubleArrayValues([D@6481c395)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsDoubleArrayValues([D@6481c395)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsDoubleArrayValues([D@6481c395)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsFloatArrayValues([F@1eee4ca2)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsFloatArrayValues([F@1eee4ca2)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsFloatArrayValues([F@1eee4ca2)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsFloatArrayValues([F@1eee4ca2)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsIntegerArrayValues([I@20cca56b)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsIntegerArrayValues([I@20cca56b)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsIntegerArrayValues([I@20cca56b)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsIntegerArrayValues([I@20cca56b)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsLongArrayValues([J@2e5d9173)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsLongArrayValues([J@2e5d9173)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsLongArrayValues([J@2e5d9173)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsLongArrayValues([J@2e5d9173)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsStringArrayValues([Ljava.lang.String;@44aa7246)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsStringArrayValues([Ljava.lang.String;@44aa7246)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsStringArrayValues([Ljava.lang.String;@44aa7246)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsStringArrayValues([Ljava.lang.String;@44aa7246)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsIntegerArrayValues([I@284dbd2d)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.016"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsIntegerArrayValues([I@284dbd2d)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsIntegerArrayValues([I@284dbd2d)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsIntegerArrayValues([I@284dbd2d)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsSerializableValues(org.apache.tinkerpop.gremlin.structure.MockSerializable@6defb2b2)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsSerializableValues(org.apache.tinkerpop.gremlin.structure.MockSerializable@6defb2b2)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsSerializableValues(org.apache.tinkerpop.gremlin.structure.MockSerializable@6defb2b2)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsSerializableValues(org.apache.tinkerpop.gremlin.structure.MockSerializable@6defb2b2)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsStringValues(short string)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsStringValues(short string)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsStringValues(short string)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsStringValues(short string)]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsUniformListValues([100, 200, 300])]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsUniformListValues([100, 200, 300])]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsUniformListValues([100, 200, 300])]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsUniformListValues([100, 200, 300])]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertexOnAdd[supportsUniformListValues([try1, try2])]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdgeOnAdd[supportsUniformListValues([try1, try2])]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnVertex[supportsUniformListValues([try1, try2])]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSetValueOnEdge[supportsUniformListValues([try1, try2])]" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$PropertyFeatureSupportTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

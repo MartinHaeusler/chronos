@@ -7,8 +7,6 @@ import java.util.UUID;
 import org.chronos.chronodb.api.key.ChronoIdentifier;
 import org.chronos.chronodb.internal.api.index.ChronoIndexDocument;
 
-import com.google.common.base.Objects;
-
 public class ChronoIndexDocumentImpl implements ChronoIndexDocument {
 
 	// =================================================================================================================
@@ -20,8 +18,7 @@ public class ChronoIndexDocumentImpl implements ChronoIndexDocument {
 	private final String indexName;
 	private final String keyspace;
 	private final String key;
-	private final String indexedValue;
-	private final String indexedValueCaseInsensitive;
+	private final Object indexedValue;
 	private final long validFrom;
 	private long validTo;
 
@@ -29,30 +26,25 @@ public class ChronoIndexDocumentImpl implements ChronoIndexDocument {
 	// CONSTRUCTOR
 	// =================================================================================================================
 
-	public ChronoIndexDocumentImpl(final ChronoIdentifier identifier, final String indexName, final String indexValue,
-			final String indexedValueCaseInsensitive) {
+	public ChronoIndexDocumentImpl(final ChronoIdentifier identifier, final String indexName, final Object indexValue) {
 		this(indexName, identifier.getBranchName(), identifier.getKeyspace(), identifier.getKey(), indexValue,
-				indexedValueCaseInsensitive, identifier.getTimestamp());
+				identifier.getTimestamp());
 	}
 
 	public ChronoIndexDocumentImpl(final String indexName, final String branchName, final String keyspace,
-			final String key, final String indexedValue, final String indexedValueCaseInsensitive,
+			final String key, final Object indexedValue,
 			final long validFrom) {
-		this(UUID.randomUUID().toString(), indexName, branchName, keyspace, key, indexedValue,
-				indexedValueCaseInsensitive, validFrom, Long.MAX_VALUE);
+		this(UUID.randomUUID().toString(), indexName, branchName, keyspace, key, indexedValue, validFrom, Long.MAX_VALUE);
 	}
 
 	public ChronoIndexDocumentImpl(final String id, final String indexName, final String branchName,
-			final String keyspace, final String key, final String indexedValue,
-			final String indexedValueCaseInsensitive, final long validFrom, final long validTo) {
+			final String keyspace, final String key, final Object indexedValue, final long validFrom, final long validTo) {
 		checkNotNull(id, "Precondition violation - argument 'id' must not be NULL!");
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
 		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
 		checkNotNull(key, "Precondition violation - argument 'key' must not be NULL!");
 		checkNotNull(indexedValue, "Precondition violation - argument 'indexedValue' must not be NULL!");
-		checkNotNull(indexedValueCaseInsensitive,
-				"Precondition violation - argument 'indexedValueCaseInsensitive' must not be NULL!");
 		checkArgument(validFrom >= 0,
 				"Precondition violation - argument 'validFrom' must be >= 0 (value: " + validFrom + ")!");
 		checkArgument(validTo >= 0,
@@ -64,7 +56,6 @@ public class ChronoIndexDocumentImpl implements ChronoIndexDocument {
 		this.keyspace = keyspace;
 		this.key = key;
 		this.indexedValue = indexedValue;
-		this.indexedValueCaseInsensitive = indexedValueCaseInsensitive;
 		this.validFrom = validFrom;
 		this.validTo = validTo;
 	}
@@ -99,13 +90,8 @@ public class ChronoIndexDocumentImpl implements ChronoIndexDocument {
 	}
 
 	@Override
-	public String getIndexedValue() {
+	public Object getIndexedValue() {
 		return this.indexedValue;
-	}
-
-	@Override
-	public String getIndexedValueCaseInsensitive() {
-		return this.indexedValueCaseInsensitive;
 	}
 
 	@Override
@@ -153,42 +139,6 @@ public class ChronoIndexDocumentImpl implements ChronoIndexDocument {
 				return false;
 			}
 		} else if (!this.documentId.equals(other.documentId)) {
-			return false;
-		}
-		return true;
-	}
-
-	// =================================================================================================================
-	// CONTENT EQUALS
-	// =================================================================================================================
-
-	@Override
-	public boolean contentEquals(final ChronoIndexDocument other) {
-		if (other == null) {
-			return false;
-		}
-		if (Objects.equal(this.getIndexName(), other.getIndexName()) == false) {
-			return false;
-		}
-		if (Objects.equal(this.getBranch(), other.getBranch()) == false) {
-			return false;
-		}
-		if (Objects.equal(this.getKeyspace(), other.getKeyspace()) == false) {
-			return false;
-		}
-		if (Objects.equal(this.getKey(), other.getKey()) == false) {
-			return false;
-		}
-		if (Objects.equal(this.getIndexedValue(), other.getIndexedValue()) == false) {
-			return false;
-		}
-		if (Objects.equal(this.getIndexedValueCaseInsensitive(), other.getIndexedValueCaseInsensitive()) == false) {
-			return false;
-		}
-		if (Objects.equal(this.getValidFromTimestamp(), other.getValidFromTimestamp()) == false) {
-			return false;
-		}
-		if (Objects.equal(this.getValidToTimestamp(), other.getValidToTimestamp()) == false) {
 			return false;
 		}
 		return true;

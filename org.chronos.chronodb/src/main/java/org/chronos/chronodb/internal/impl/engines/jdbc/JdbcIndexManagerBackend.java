@@ -10,23 +10,29 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.chronos.chronodb.api.ChronoIndexer;
 import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
 import org.chronos.chronodb.api.exceptions.JdbcTableException;
 import org.chronos.chronodb.api.exceptions.UnknownIndexException;
+import org.chronos.chronodb.api.indexing.Indexer;
 import org.chronos.chronodb.api.key.ChronoIdentifier;
-import org.chronos.chronodb.api.query.Condition;
+import org.chronos.chronodb.api.query.NumberCondition;
+import org.chronos.chronodb.api.query.StringCondition;
 import org.chronos.chronodb.internal.api.index.ChronoIndexDocument;
 import org.chronos.chronodb.internal.api.index.ChronoIndexModifications;
 import org.chronos.chronodb.internal.api.index.DocumentAddition;
 import org.chronos.chronodb.internal.api.index.DocumentDeletion;
 import org.chronos.chronodb.internal.api.index.DocumentValidityTermination;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.DoubleSearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.LongSearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.StringSearchSpecification;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractDocumentBasedIndexManagerBackend;
 import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 import org.chronos.common.logging.ChronoLogger;
+import org.chronos.common.util.ReflectionUtils;
 
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Sets;
@@ -47,7 +53,7 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 	// =================================================================================================================
 
 	@Override
-	public SetMultimap<String, ChronoIndexer> loadIndexersFromPersistence() {
+	public SetMultimap<String, Indexer<?>> loadIndexersFromPersistence() {
 		try (Connection connection = this.openConnection()) {
 			return JdbcIndexerTable.get(connection).getIndexers();
 		} catch (SQLException | JdbcTableException e) {
@@ -56,7 +62,7 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 	}
 
 	@Override
-	public void persistIndexers(final SetMultimap<String, ChronoIndexer> indexNameToIndexers) {
+	public void persistIndexers(final SetMultimap<String, Indexer<?>> indexNameToIndexers) {
 		checkNotNull(indexNameToIndexers, "Precondition violation - argument 'indexNameToIndexers' must not be NULL!");
 		try (Connection connection = this.openConnection()) {
 			connection.setAutoCommit(false);
@@ -66,10 +72,10 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 				// TODO PERFORMANCE JDBC: dropping all and re-inserting to avoid UPDATE is not very efficient.
 				indexerTable.removeAllIndexersOfIndex(indexName);
 			}
-			for (Entry<String, Collection<ChronoIndexer>> entry : indexNameToIndexers.asMap().entrySet()) {
+			for (Entry<String, Collection<Indexer<?>>> entry : indexNameToIndexers.asMap().entrySet()) {
 				String indexName = entry.getKey();
-				Collection<ChronoIndexer> indexers = entry.getValue();
-				for (ChronoIndexer indexer : indexers) {
+				Collection<Indexer<?>> indexers = entry.getValue();
+				for (Indexer<?> indexer : indexers) {
 					indexerTable.insert(indexName, indexer);
 				}
 			}
@@ -111,7 +117,7 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 	}
 
 	@Override
-	public void persistIndexer(final String indexName, final ChronoIndexer indexer) {
+	public void persistIndexer(final String indexName, final Indexer<?> indexer) {
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		checkNotNull(indexer, "Precondition violation - argument 'indexer' must not be NULL!");
 		try (Connection connection = this.openConnection()) {
@@ -159,6 +165,17 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 	// =================================================================================================================
 
 	@Override
+	public void deleteAllIndexContents() {
+		try (Connection connection = this.openConnection()) {
+			JdbcStringIndexDocumentTable documentsTable = JdbcStringIndexDocumentTable.get(connection);
+			documentsTable.drop();
+			documentsTable.create();
+		} catch (SQLException | JdbcTableException e) {
+			throw new ChronoDBStorageBackendException("Failed to query Index Documents Table!", e);
+		}
+	}
+
+	@Override
 	public void applyModifications(final ChronoIndexModifications indexModifications) {
 		checkNotNull(indexModifications, "Precondition violation - argument 'indexModifications' must not be NULL!");
 		if (indexModifications.isEmpty()) {
@@ -187,12 +204,18 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 	protected Set<ChronoIndexDocument> getDocumentsTouchedAtOrAfterTimestamp(final long timestamp, final Set<String> branches) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(branches, "Precondition violation - argument 'branches' must not be NULL!");
+		Set<ChronoIndexDocument> resultSet = Sets.newHashSet();
 		if (branches.isEmpty()) {
-			return Sets.newHashSet();
+			return resultSet;
 		}
 		try (Connection connection = this.openConnection()) {
-			JdbcIndexDocumentTable documentsTable = JdbcIndexDocumentTable.get(connection);
-			return documentsTable.getDocumentsTouchedAtOrAfterTimestamp(timestamp, branches);
+			JdbcStringIndexDocumentTable documentsTable = JdbcStringIndexDocumentTable.get(connection);
+			resultSet.addAll(documentsTable.getDocumentsTouchedAtOrAfterTimestamp(timestamp, branches));
+			JdbcLongIndexDocumentTable longDocumentsTable = JdbcLongIndexDocumentTable.get(connection);
+			resultSet.addAll(longDocumentsTable.getDocumentsTouchedAtOrAfterTimestamp(timestamp, branches));
+			JdbcDoubleIndexDocumentTable doubleDocumentsTable = JdbcDoubleIndexDocumentTable.get(connection);
+			resultSet.addAll(doubleDocumentsTable.getDocumentsTouchedAtOrAfterTimestamp(timestamp, branches));
+			return resultSet;
 		} catch (SQLException | JdbcTableException e) {
 			throw new ChronoDBStorageBackendException("Failed to query Index Documents Table!", e);
 		}
@@ -203,21 +226,23 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 	// =================================================================================================================
 
 	@Override
-	public Map<String, Map<String, ChronoIndexDocument>> getMatchingBranchLocalDocuments(final ChronoIdentifier chronoIdentifier) {
+	public Map<String, SetMultimap<Object, ChronoIndexDocument>> getMatchingBranchLocalDocuments(final ChronoIdentifier chronoIdentifier) {
 		checkNotNull(chronoIdentifier, "Precondition violation - argument 'chronoIdentifier' must not be NULL!");
-		Collection<ChronoIndexDocument> documents = null;
+		Set<ChronoIndexDocument> documents = Sets.newHashSet();
 		try (Connection connection = this.openConnection()) {
-			documents = JdbcIndexDocumentTable.get(connection).getMatchingBranchLocalDocuments(chronoIdentifier);
+			documents.addAll(JdbcStringIndexDocumentTable.get(connection).getMatchingBranchLocalDocuments(chronoIdentifier));
+			documents.addAll(JdbcLongIndexDocumentTable.get(connection).getMatchingBranchLocalDocuments(chronoIdentifier));
+			documents.addAll(JdbcDoubleIndexDocumentTable.get(connection).getMatchingBranchLocalDocuments(chronoIdentifier));
 		} catch (SQLException | JdbcTableException e) {
 			throw new ChronoDBStorageBackendException("Failed to query Index Documents Table!", e);
 		}
 		// sort the resulting documents into the required structure and convert lucene docs to chrono index docs
-		Map<String, Map<String, ChronoIndexDocument>> resultMap = Maps.newHashMap();
+		Map<String, SetMultimap<Object, ChronoIndexDocument>> resultMap = Maps.newHashMap();
 		for (ChronoIndexDocument document : documents) {
 			String indexName = document.getIndexName();
-			Map<String, ChronoIndexDocument> indexValueToDocument = resultMap.get(indexName);
+			SetMultimap<Object, ChronoIndexDocument> indexValueToDocument = resultMap.get(indexName);
 			if (indexValueToDocument == null) {
-				indexValueToDocument = Maps.newHashMap();
+				indexValueToDocument = HashMultimap.create();
 				resultMap.put(indexName, indexValueToDocument);
 			}
 			indexValueToDocument.put(document.getIndexedValue(), document);
@@ -226,28 +251,48 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 	}
 
 	@Override
-	protected Collection<ChronoIndexDocument> getTerminatedBranchLocalDocuments(final long timestamp, final String branchName, final SearchSpecification searchSpec) {
+	protected Collection<ChronoIndexDocument> getTerminatedBranchLocalDocuments(final long timestamp, final String branchName, final String keyspace, final SearchSpecification<?> searchSpec) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
 		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
-		return this.performSearchInternal(branchName, timestamp, TimeSearchMode.TERMINATED_AT_OR_BEFORE_TIMESTAMP, searchSpec);
+		return this.performSearchInternal(branchName, keyspace, timestamp, TimeSearchMode.TERMINATED_AT_OR_BEFORE_TIMESTAMP, searchSpec);
 	}
 
 	@Override
-	protected Collection<ChronoIndexDocument> getMatchingBranchLocalDocuments(final long timestamp, final String branchName, final SearchSpecification searchSpec) {
+	protected Collection<ChronoIndexDocument> getMatchingBranchLocalDocuments(final long timestamp, final String branchName, final String keyspace, final SearchSpecification<?> searchSpec) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
 		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
-		return this.performSearchInternal(branchName, timestamp, TimeSearchMode.VALID_AT_TIMESTAMP, searchSpec);
+		return this.performSearchInternal(branchName, keyspace, timestamp, TimeSearchMode.VALID_AT_TIMESTAMP, searchSpec);
 	}
 
-	private Set<ChronoIndexDocument> performSearchInternal(final String branchName, final long timestamp, final TimeSearchMode timeSearchMode, final SearchSpecification searchSpec) {
+	private Set<ChronoIndexDocument> performSearchInternal(final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final SearchSpecification<?> searchSpec) {
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkNotNull(timeSearchMode, "Precondition violation - argument 'timeSearchMode' must not be NULL!");
+		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
+		if (searchSpec instanceof StringSearchSpecification) {
+			return this.performSearchInternal(branchName, keyspace, timestamp, timeSearchMode, (StringSearchSpecification) searchSpec);
+		} else if (searchSpec instanceof LongSearchSpecification) {
+			return this.performSearchInternal(branchName, keyspace, timestamp, timeSearchMode, (LongSearchSpecification) searchSpec);
+		} else if (searchSpec instanceof DoubleSearchSpecification) {
+			return this.performSearchInternal(branchName, keyspace, timestamp, timeSearchMode, (DoubleSearchSpecification) searchSpec);
+		} else {
+			throw new IllegalStateException("Unknown search specification class: '" + searchSpec.getClass().getName() + "'!");
+		}
+	}
+
+	private Set<ChronoIndexDocument> performSearchInternal(final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final StringSearchSpecification searchSpec) {
+		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(timeSearchMode, "Precondition violation - argument 'timeSearchMode' must not be NULL!");
 		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
 		try (Connection connection = this.openConnection()) {
-			JdbcIndexDocumentTable documentsTable = JdbcIndexDocumentTable.get(connection);
+			JdbcStringIndexDocumentTable documentsTable = JdbcStringIndexDocumentTable.get(connection);
 			JdbcIndexDirtyFlagsTable indexDirtyFlagsTable = JdbcIndexDirtyFlagsTable.get(connection);
 			String indexName = searchSpec.getProperty();
 			Boolean indexState = indexDirtyFlagsTable.isIndexDirty(indexName);
@@ -257,86 +302,160 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 			}
 			// we need to do a case distinction based on the condition at hand, because some of the
 			// conditions are natively supported by SQL, others need to be emulated.
-			Condition condition = searchSpec.getCondition();
-			String comparisonValue = searchSpec.getSearchText();
+			StringCondition condition = searchSpec.getCondition();
+			String comparisonValue = searchSpec.getSearchValue();
 			TextMatchMode matchMode = searchSpec.getMatchMode();
-			switch (condition) {
-			case CONTAINS:
-				return this.getMatchingDocumentsContains(documentsTable, indexName, branchName, timestamp, timeSearchMode, comparisonValue, matchMode);
-			case ENDS_WITH:
-				return this.getMatchingDocumentsEndsWith(documentsTable, indexName, branchName, timestamp, timeSearchMode, comparisonValue, matchMode);
-			case EQUALS:
-				return this.getMatchingDocumentsEquals(documentsTable, indexName, branchName, timestamp, timeSearchMode, comparisonValue, matchMode);
-			case MATCHES_REGEX:
-				return this.getMatchingDocumentsMatchesRegex(documentsTable, indexName, branchName, timestamp, timeSearchMode, comparisonValue, matchMode);
-			case NOT_CONTAINS:
-				return this.getMatchingDocumentsNotContains(documentsTable, indexName, branchName, timestamp, timeSearchMode, comparisonValue, matchMode);
-			case NOT_ENDS_WITH:
-				return this.getMatchingDocumentsNotEndsWith(documentsTable, indexName, branchName, timestamp, timeSearchMode, comparisonValue, matchMode);
-			case NOT_EQUALS:
-				return this.getMatchingDocumentsNotEquals(documentsTable, indexName, branchName, timestamp, timeSearchMode, comparisonValue, matchMode);
-			case NOT_MATCHES_REGEX:
-				return this.getMatchingDocumentsNotMatchesRegex(documentsTable, indexName, branchName, timestamp, timeSearchMode, comparisonValue, matchMode);
-			case NOT_STARTS_WITH:
-				return this.getMatchingDocumentsNotStartsWith(documentsTable, indexName, branchName, timestamp, timeSearchMode, comparisonValue, matchMode);
-			case STARTS_WITH:
-				return this.getMatchingDocumentsStartsWith(documentsTable, indexName, branchName, timestamp, timeSearchMode, comparisonValue, matchMode);
-			default:
-				throw new UnknownEnumLiteralException(condition);
+			if (condition.equals(StringCondition.CONTAINS)) {
+				return this.getMatchingDocumentsContains(documentsTable, indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue, matchMode);
+			} else if (condition.equals(StringCondition.ENDS_WITH)) {
+				return this.getMatchingDocumentsEndsWith(documentsTable, indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue, matchMode);
+			} else if (condition.equals(StringCondition.EQUALS)) {
+				return this.getMatchingDocumentsEquals(documentsTable, indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue, matchMode);
+			} else if (condition.equals(StringCondition.MATCHES_REGEX)) {
+				return this.getMatchingDocumentsMatchesRegex(documentsTable, indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue, matchMode);
+			} else if (condition.equals(StringCondition.NOT_CONTAINS)) {
+				return this.getMatchingDocumentsNotContains(documentsTable, indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue, matchMode);
+			} else if (condition.equals(StringCondition.NOT_ENDS_WITH)) {
+				return this.getMatchingDocumentsNotEndsWith(documentsTable, indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue, matchMode);
+			} else if (condition.equals(StringCondition.NOT_EQUALS)) {
+				return this.getMatchingDocumentsNotEquals(documentsTable, indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue, matchMode);
+			} else if (condition.equals(StringCondition.NOT_MATCHES_REGEX)) {
+				return this.getMatchingDocumentsNotMatchesRegex(documentsTable, indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue, matchMode);
+			} else if (condition.equals(StringCondition.NOT_STARTS_WITH)) {
+				return this.getMatchingDocumentsNotStartsWith(documentsTable, indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue, matchMode);
+			} else if (condition.equals(StringCondition.STARTS_WITH)) {
+				return this.getMatchingDocumentsStartsWith(documentsTable, indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue, matchMode);
+			} else {
+				throw new IllegalStateException("Unknown StringCondition: '" + condition.getClass().getName() + "'!");
 			}
 		} catch (SQLException | JdbcTableException e) {
 			throw new ChronoDBStorageBackendException("Could not query Index Documents Table!", e);
 		}
 	}
 
-	private Set<ChronoIndexDocument> getMatchingDocumentsContains(final JdbcIndexDocumentTable documentsTable, final String indexName, final String branchName, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
+	private Set<ChronoIndexDocument> performSearchInternal(final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final LongSearchSpecification searchSpec) {
+		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkNotNull(timeSearchMode, "Precondition violation - argument 'timeSearchMode' must not be NULL!");
+		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
+		try (Connection connection = this.openConnection()) {
+			JdbcLongIndexDocumentTable documentsTable = JdbcLongIndexDocumentTable.get(connection);
+			JdbcIndexDirtyFlagsTable indexDirtyFlagsTable = JdbcIndexDirtyFlagsTable.get(connection);
+			String indexName = searchSpec.getProperty();
+			Boolean indexState = indexDirtyFlagsTable.isIndexDirty(indexName);
+			if (indexState == null) {
+				// index does not exist!
+				throw new UnknownIndexException("There is no index named '" + indexName + "'!");
+			}
+			NumberCondition condition = searchSpec.getCondition();
+			long comparisonValue = searchSpec.getSearchValue();
+			if (condition.equals(NumberCondition.EQUALS)) {
+				return documentsTable.getDocumentsWhereValueEquals(indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue);
+			} else if (condition.equals(NumberCondition.NOT_EQUALS)) {
+				return documentsTable.getDocumentsWhereValueNotEquals(indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue);
+			} else if (condition.equals(NumberCondition.GREATER_THAN)) {
+				return documentsTable.getDocumentsWhereValueIsGreaterThan(indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue);
+			} else if (condition.equals(NumberCondition.GREATER_EQUAL)) {
+				return documentsTable.getDocumentsWhereValueIsGreaterOrEqual(indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue);
+			} else if (condition.equals(NumberCondition.LESS_THAN)) {
+				return documentsTable.getDocumentsWhereValueIsLessThan(indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue);
+			} else if (condition.equals(NumberCondition.LESS_EQUAL)) {
+				return documentsTable.getDocumentsWhereValueIsLessOrEqual(indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue);
+			} else {
+				throw new IllegalStateException("Unknown StringCondition: '" + condition.getClass().getName() + "'!");
+			}
+		} catch (SQLException | JdbcTableException e) {
+			throw new ChronoDBStorageBackendException("Could not query Index Documents Table!", e);
+		}
+	}
+
+	private Set<ChronoIndexDocument> performSearchInternal(final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final DoubleSearchSpecification searchSpec) {
+		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		checkNotNull(timeSearchMode, "Precondition violation - argument 'timeSearchMode' must not be NULL!");
+		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
+		try (Connection connection = this.openConnection()) {
+			JdbcDoubleIndexDocumentTable documentsTable = JdbcDoubleIndexDocumentTable.get(connection);
+			JdbcIndexDirtyFlagsTable indexDirtyFlagsTable = JdbcIndexDirtyFlagsTable.get(connection);
+			String indexName = searchSpec.getProperty();
+			Boolean indexState = indexDirtyFlagsTable.isIndexDirty(indexName);
+			if (indexState == null) {
+				// index does not exist!
+				throw new UnknownIndexException("There is no index named '" + indexName + "'!");
+			}
+			NumberCondition condition = searchSpec.getCondition();
+			double comparisonValue = searchSpec.getSearchValue();
+			double equalityTolerance = searchSpec.getEqualityTolerance();
+			if (condition.equals(NumberCondition.EQUALS)) {
+				return documentsTable.getDocumentsWhereValueEquals(indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue, equalityTolerance);
+			} else if (condition.equals(NumberCondition.NOT_EQUALS)) {
+				return documentsTable.getDocumentsWhereValueNotEquals(indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue, equalityTolerance);
+			} else if (condition.equals(NumberCondition.GREATER_THAN)) {
+				return documentsTable.getDocumentsWhereValueIsGreaterThan(indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue);
+			} else if (condition.equals(NumberCondition.GREATER_EQUAL)) {
+				return documentsTable.getDocumentsWhereValueIsGreaterOrEqual(indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue);
+			} else if (condition.equals(NumberCondition.LESS_THAN)) {
+				return documentsTable.getDocumentsWhereValueIsLessThan(indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue);
+			} else if (condition.equals(NumberCondition.LESS_EQUAL)) {
+				return documentsTable.getDocumentsWhereValueIsLessOrEqual(indexName, branchName, keyspace, timestamp, timeSearchMode, comparisonValue);
+			} else {
+				throw new IllegalStateException("Unknown StringCondition: '" + condition.getClass().getName() + "'!");
+			}
+		} catch (SQLException | JdbcTableException e) {
+			throw new ChronoDBStorageBackendException("Could not query Index Documents Table!", e);
+		}
+	}
+
+	private Set<ChronoIndexDocument> getMatchingDocumentsContains(final JdbcStringIndexDocumentTable documentsTable, final String indexName, final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
 		String realComparisonValue = "%" + this.escapeSQL(this.normalize(comparisonValue, matchMode), '|') + "%";
-		return documentsTable.getDocumentsWhereLike(indexName, branchName, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
+		return documentsTable.getDocumentsWhereLike(indexName, branchName, keyspace, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
 	}
 
-	private Set<ChronoIndexDocument> getMatchingDocumentsNotContains(final JdbcIndexDocumentTable documentsTable, final String indexName, final String branchName, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
+	private Set<ChronoIndexDocument> getMatchingDocumentsNotContains(final JdbcStringIndexDocumentTable documentsTable, final String indexName, final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
 		String realComparisonValue = "%" + this.escapeSQL(this.normalize(comparisonValue, matchMode), '|') + "%";
-		return documentsTable.getDocumentsWhereNotLike(indexName, branchName, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
+		return documentsTable.getDocumentsWhereNotLike(indexName, branchName, keyspace, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
 	}
 
-	private Set<ChronoIndexDocument> getMatchingDocumentsEndsWith(final JdbcIndexDocumentTable documentsTable, final String indexName, final String branchName, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
+	private Set<ChronoIndexDocument> getMatchingDocumentsEndsWith(final JdbcStringIndexDocumentTable documentsTable, final String indexName, final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
 		String realComparisonValue = "%" + this.escapeSQL(this.normalize(comparisonValue, matchMode), '|');
-		return documentsTable.getDocumentsWhereLike(indexName, branchName, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
+		return documentsTable.getDocumentsWhereLike(indexName, branchName, keyspace, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
 	}
 
-	private Set<ChronoIndexDocument> getMatchingDocumentsNotEndsWith(final JdbcIndexDocumentTable documentsTable, final String indexName, final String branchName, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
+	private Set<ChronoIndexDocument> getMatchingDocumentsNotEndsWith(final JdbcStringIndexDocumentTable documentsTable, final String indexName, final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
 		String realComparisonValue = "%" + this.escapeSQL(this.normalize(comparisonValue, matchMode), '|');
-		return documentsTable.getDocumentsWhereNotLike(indexName, branchName, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
+		return documentsTable.getDocumentsWhereNotLike(indexName, branchName, keyspace, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
 	}
 
-	private Set<ChronoIndexDocument> getMatchingDocumentsStartsWith(final JdbcIndexDocumentTable documentsTable, final String indexName, final String branchName, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
+	private Set<ChronoIndexDocument> getMatchingDocumentsStartsWith(final JdbcStringIndexDocumentTable documentsTable, final String indexName, final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
 		String realComparisonValue = this.escapeSQL(this.normalize(comparisonValue, matchMode), '|') + "%";
-		return documentsTable.getDocumentsWhereLike(indexName, branchName, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
+		return documentsTable.getDocumentsWhereLike(indexName, branchName, keyspace, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
 	}
 
-	private Set<ChronoIndexDocument> getMatchingDocumentsNotStartsWith(final JdbcIndexDocumentTable documentsTable, final String indexName, final String branchName, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
+	private Set<ChronoIndexDocument> getMatchingDocumentsNotStartsWith(final JdbcStringIndexDocumentTable documentsTable, final String indexName, final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
 		String realComparisonValue = this.escapeSQL(this.normalize(comparisonValue, matchMode), '|') + "%";
-		return documentsTable.getDocumentsWhereNotLike(indexName, branchName, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
+		return documentsTable.getDocumentsWhereNotLike(indexName, branchName, keyspace, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
 	}
 
-	private Set<ChronoIndexDocument> getMatchingDocumentsEquals(final JdbcIndexDocumentTable documentsTable, final String indexName, final String branchName, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
+	private Set<ChronoIndexDocument> getMatchingDocumentsEquals(final JdbcStringIndexDocumentTable documentsTable, final String indexName, final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
 		String realComparisonValue = this.escapeSQL(this.normalize(comparisonValue, matchMode), '|');
-		return documentsTable.getDocumentsWhereLike(indexName, branchName, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
+		return documentsTable.getDocumentsWhereLike(indexName, branchName, keyspace, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
 	}
 
-	private Set<ChronoIndexDocument> getMatchingDocumentsNotEquals(final JdbcIndexDocumentTable documentsTable, final String indexName, final String branchName, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
+	private Set<ChronoIndexDocument> getMatchingDocumentsNotEquals(final JdbcStringIndexDocumentTable documentsTable, final String indexName, final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
 		String realComparisonValue = this.escapeSQL(this.normalize(comparisonValue, matchMode), '|');
-		return documentsTable.getDocumentsWhereNotLike(indexName, branchName, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
+		return documentsTable.getDocumentsWhereNotLike(indexName, branchName, keyspace, timestamp, timeSearchMode, realComparisonValue, '|', matchMode);
 	}
 
-	private Set<ChronoIndexDocument> getMatchingDocumentsMatchesRegex(final JdbcIndexDocumentTable documentsTable, final String indexName, final String branchName, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
+	private Set<ChronoIndexDocument> getMatchingDocumentsMatchesRegex(final JdbcStringIndexDocumentTable documentsTable, final String indexName, final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
 		// this one is different because there is no database-independent way to execute a java.util.regex in a query.
 		// For that reason, we apply the following strategy:
 		// 1) Retrieve all indexed values that occur (at our timestamp)
 		// 2) Filter the indexed values by applying the regex at the client
 		// 3) For each remaining indexed value, retrieve the documents by running one query for each of them
 		// This procedure is VERY inefficient, but unfortunately the only viable way to support this feature.
-		Set<String> indexedValues = documentsTable.getIndexedValues(indexName, branchName, timestamp, timeSearchMode);
+		Set<String> indexedValues = documentsTable.getIndexedValues(indexName, branchName, keyspace, timestamp, timeSearchMode);
 		// in case of the MATCHES operator, the comparison value contains the REGEX
 		String expression;
 		switch (matchMode) {
@@ -359,20 +478,20 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 		for (String indexedValue : matchingValues) {
 			// escape the value
 			String escapedValue = this.escapeSQL(indexedValue, '|');
-			Set<ChronoIndexDocument> resultingDocuments = documentsTable.getDocumentsWhereLike(indexName, branchName, timestamp, timeSearchMode, escapedValue, '|', TextMatchMode.STRICT);
+			Set<ChronoIndexDocument> resultingDocuments = documentsTable.getDocumentsWhereLike(indexName, branchName, keyspace, timestamp, timeSearchMode, escapedValue, '|', TextMatchMode.STRICT);
 			documents.addAll(resultingDocuments);
 		}
 		return documents;
 	}
 
-	private Set<ChronoIndexDocument> getMatchingDocumentsNotMatchesRegex(final JdbcIndexDocumentTable documentsTable, final String indexName, final String branchName, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
+	private Set<ChronoIndexDocument> getMatchingDocumentsNotMatchesRegex(final JdbcStringIndexDocumentTable documentsTable, final String indexName, final String branchName, final String keyspace, final long timestamp, final TimeSearchMode timeSearchMode, final String comparisonValue, final TextMatchMode matchMode) {
 		// this one is different because there is no database-independent way to execute a java.util.regex in a query.
 		// For that reason, we apply the following strategy:
 		// 1) Retrieve all indexed values that occur (at our timestamp)
 		// 2) Filter the indexed values by applying the regex at the client and keep the ones that do NOT match
 		// 3) For each remaining indexed value, retrieve the documents by running one query for each of them
 		// This procedure is VERY inefficient, but unfortunately the only viable way to support this feature.
-		Set<String> indexedValues = documentsTable.getIndexedValues(indexName, branchName, timestamp, timeSearchMode);
+		Set<String> indexedValues = documentsTable.getIndexedValues(indexName, branchName, keyspace, timestamp, timeSearchMode);
 		// in case of the MATCHES operator, the comparison value contains the REGEX
 		String expression;
 		switch (matchMode) {
@@ -395,7 +514,7 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 		for (String indexedValue : matchingValues) {
 			// escape the value
 			String escapedValue = this.escapeSQL(indexedValue, '|');
-			Set<ChronoIndexDocument> resultingDocuments = documentsTable.getDocumentsWhereLike(indexName, branchName, timestamp, timeSearchMode, escapedValue, '|', TextMatchMode.STRICT);
+			Set<ChronoIndexDocument> resultingDocuments = documentsTable.getDocumentsWhereLike(indexName, branchName, keyspace, timestamp, timeSearchMode, escapedValue, '|', TextMatchMode.STRICT);
 			documents.addAll(resultingDocuments);
 		}
 		return documents;
@@ -409,7 +528,9 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 		try (Connection connection = this.openConnection()) {
 			JdbcIndexerTable.get(connection).ensureExists();
 			JdbcIndexDirtyFlagsTable.get(connection).ensureExists();
-			JdbcIndexDocumentTable.get(connection).ensureExists();
+			JdbcStringIndexDocumentTable.get(connection).ensureExists();
+			JdbcLongIndexDocumentTable.get(connection).ensureExists();
+			JdbcDoubleIndexDocumentTable.get(connection).ensureExists();
 		} catch (SQLException | JdbcTableException e) {
 			throw new ChronoDBStorageBackendException("Could not open Connection to database!", e);
 		}
@@ -444,24 +565,43 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 	private void persistDocument(final Connection connection, final ChronoIndexDocument document) {
 		checkNotNull(connection, "Precondition violation - argument 'connection' must not be NULL!");
 		checkNotNull(document, "Precondition violation - argument 'document' must not be NULL!");
-		JdbcIndexDocumentTable documentsTable = JdbcIndexDocumentTable.get(connection);
 		String index = document.getIndexName();
 		String branch = document.getBranch();
 		String keyspace = document.getKeyspace();
 		String key = document.getKey();
-		String value = document.getIndexedValue();
-		String valueCI = document.getIndexedValueCaseInsensitive();
 		long validFrom = document.getValidFromTimestamp();
 		long validTo = document.getValidToTimestamp();
-		documentsTable.insert(branch, keyspace, key, index, value, valueCI, validFrom, validTo);
+		Object value = document.getIndexedValue();
+		if (value instanceof String) {
+			JdbcStringIndexDocumentTable documentsTable = JdbcStringIndexDocumentTable.get(connection);
+			String valueCI = ((String) value).toLowerCase();
+			documentsTable.insert(branch, keyspace, key, index, (String) value, valueCI, validFrom, validTo);
+		} else if (ReflectionUtils.isLongCompatible(value)) {
+			JdbcLongIndexDocumentTable documentsTable = JdbcLongIndexDocumentTable.get(connection);
+			documentsTable.insert(branch, keyspace, key, index, ReflectionUtils.asLong(value), validFrom, validTo);
+		} else if (ReflectionUtils.isDoubleCompatible(value)) {
+			JdbcDoubleIndexDocumentTable documentsTable = JdbcDoubleIndexDocumentTable.get(connection);
+			documentsTable.insert(branch, keyspace, key, index, ReflectionUtils.asDouble(value), validFrom, validTo);
+		} else {
+			throw new IllegalStateException("Unknown index value type: '" + value.getClass().getName() + "'!");
+		}
 	}
 
 	private void terminateDocumentValidity(final Connection connection, final ChronoIndexDocument indexDocument, final long timestamp) {
 		checkNotNull(connection, "Precondition violation - argument 'connection' must not be NULL!");
 		checkNotNull(indexDocument, "Precondition violation - argument 'indexDocument' must not be NULL!");
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
-		JdbcIndexDocumentTable documentsTable = JdbcIndexDocumentTable.get(connection);
-		documentsTable.updateValidTo(indexDocument.getDocumentId(), timestamp);
+		Object value = indexDocument.getIndexedValue();
+		if (value instanceof String) {
+			JdbcStringIndexDocumentTable documentsTable = JdbcStringIndexDocumentTable.get(connection);
+			documentsTable.updateValidTo(indexDocument.getDocumentId(), timestamp);
+		} else if (ReflectionUtils.isLongCompatible(value)) {
+			JdbcLongIndexDocumentTable documentsTable = JdbcLongIndexDocumentTable.get(connection);
+			documentsTable.updateValidTo(indexDocument.getDocumentId(), timestamp);
+		} else if (ReflectionUtils.isDoubleCompatible(value)) {
+			JdbcDoubleIndexDocumentTable documentsTable = JdbcDoubleIndexDocumentTable.get(connection);
+			documentsTable.updateValidTo(indexDocument.getDocumentId(), timestamp);
+		}
 		// database operation successful, update the bean
 		indexDocument.setValidToTimestamp(timestamp);
 	}
@@ -469,8 +609,9 @@ public class JdbcIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 	private void deleteIndexDocument(final Connection connection, final ChronoIndexDocument documentToDelete) {
 		checkNotNull(connection, "Precondition violation - argument 'connection' must not be NULL!");
 		checkNotNull(documentToDelete, "Precondition violation - argument 'documentToDelete' must not be NULL!");
-		JdbcIndexDocumentTable documentsTable = JdbcIndexDocumentTable.get(connection);
-		documentsTable.delete(documentToDelete);
+		JdbcStringIndexDocumentTable.get(connection).delete(documentToDelete);
+		JdbcLongIndexDocumentTable.get(connection).delete(documentToDelete);
+		JdbcDoubleIndexDocumentTable.get(connection).delete(documentToDelete);
 	}
 
 	private JdbcChronoDB getOwningDB() {

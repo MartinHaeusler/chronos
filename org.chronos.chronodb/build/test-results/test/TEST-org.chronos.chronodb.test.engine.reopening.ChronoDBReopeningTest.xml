@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" tests="30" skipped="12" failures="0" errors="0" timestamp="2017-08-28T17:53:08" hostname="Aurora" time="6.333">
+  <properties/>
+  <testcase name="reopeningChronoDbPreservesConfiguration[Using jdbc]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="reopeningChronoDbWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="reopeningChronoDbPreservesContents[Using jdbc]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="reopeningChronoDbPreservesIndexDirtyFlags[Using jdbc]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="reopeningChronoDbPreservesBranches[Using jdbc]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="reopeningChronoDbPreservesIndexers[Using jdbc]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="reopeningChronoDbPreservesConfiguration[Using tupl]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.169"/>
+  <testcase name="reopeningChronoDbWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.146"/>
+  <testcase name="reopeningChronoDbPreservesContents[Using tupl]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.2"/>
+  <testcase name="reopeningChronoDbPreservesIndexDirtyFlags[Using tupl]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.201"/>
+  <testcase name="reopeningChronoDbPreservesBranches[Using tupl]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.414"/>
+  <testcase name="reopeningChronoDbPreservesIndexers[Using tupl]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.1"/>
+  <testcase name="reopeningChronoDbPreservesConfiguration[Using mapdb]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.316"/>
+  <testcase name="reopeningChronoDbWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.301"/>
+  <testcase name="reopeningChronoDbPreservesContents[Using mapdb]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.353"/>
+  <testcase name="reopeningChronoDbPreservesIndexDirtyFlags[Using mapdb]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.486"/>
+  <testcase name="reopeningChronoDbPreservesBranches[Using mapdb]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.763"/>
+  <testcase name="reopeningChronoDbPreservesIndexers[Using mapdb]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.484"/>
+  <testcase name="reopeningChronoDbPreservesConfiguration[Using chunked]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.301"/>
+  <testcase name="reopeningChronoDbWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.299"/>
+  <testcase name="reopeningChronoDbPreservesContents[Using chunked]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.384"/>
+  <testcase name="reopeningChronoDbPreservesIndexDirtyFlags[Using chunked]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.253"/>
+  <testcase name="reopeningChronoDbPreservesBranches[Using chunked]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.831"/>
+  <testcase name="reopeningChronoDbPreservesIndexers[Using chunked]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.316"/>
+  <testcase name="reopeningChronoDbPreservesConfiguration[Using inmemory]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="reopeningChronoDbWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="reopeningChronoDbPreservesContents[Using inmemory]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="reopeningChronoDbPreservesIndexDirtyFlags[Using inmemory]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="reopeningChronoDbPreservesBranches[Using inmemory]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="reopeningChronoDbPreservesIndexers[Using inmemory]" classname="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" time="0.016">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[19:53:08.300 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesConfiguration[Using jdbc]
+    Start time:  2017/08/28 19:53:08
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbWorks[Using jdbc]
+    Start time:  2017/08/28 19:53:08
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesContents[Using jdbc]
+    Start time:  2017/08/28 19:53:08
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexDirtyFlags[Using jdbc]
+    Start time:  2017/08/28 19:53:08
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesBranches[Using jdbc]
+    Start time:  2017/08/28 19:53:08
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexers[Using jdbc]
+    Start time:  2017/08/28 19:53:08
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesConfiguration[Using tupl]
+    Start time:  2017/08/28 19:53:08
+================================================================================
+
+
+
+19:53:08.416 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesConfiguration[Using tupl]
+    End time:    2017/08/28 19:53:08 (Duration: 169ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbWorks[Using tupl]
+    Start time:  2017/08/28 19:53:08
+================================================================================
+
+
+
+19:53:08.568 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbWorks[Using tupl]
+    End time:    2017/08/28 19:53:08 (Duration: 146ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesContents[Using tupl]
+    Start time:  2017/08/28 19:53:08
+================================================================================
+
+
+
+19:53:08.768 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesContents[Using tupl]
+    End time:    2017/08/28 19:53:08 (Duration: 200ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexDirtyFlags[Using tupl]
+    Start time:  2017/08/28 19:53:08
+================================================================================
+
+
+
+19:53:08.967 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexDirtyFlags[Using tupl]
+    End time:    2017/08/28 19:53:09 (Duration: 201ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesBranches[Using tupl]
+    Start time:  2017/08/28 19:53:09
+================================================================================
+
+
+
+19:53:09.330 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesBranches[Using tupl]
+    End time:    2017/08/28 19:53:09 (Duration: 414ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexers[Using tupl]
+    Start time:  2017/08/28 19:53:09
+================================================================================
+
+
+
+19:53:09.499 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexers[Using tupl]
+    End time:    2017/08/28 19:53:09 (Duration: 100ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesConfiguration[Using mapdb]
+    Start time:  2017/08/28 19:53:09
+================================================================================
+
+
+
+19:53:09.730 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesConfiguration[Using mapdb]
+    End time:    2017/08/28 19:53:09 (Duration: 316ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbWorks[Using mapdb]
+    Start time:  2017/08/28 19:53:09
+================================================================================
+
+
+
+19:53:10.031 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbWorks[Using mapdb]
+    End time:    2017/08/28 19:53:10 (Duration: 301ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesContents[Using mapdb]
+    Start time:  2017/08/28 19:53:10
+================================================================================
+
+
+
+19:53:10.400 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesContents[Using mapdb]
+    End time:    2017/08/28 19:53:10 (Duration: 353ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexDirtyFlags[Using mapdb]
+    Start time:  2017/08/28 19:53:10
+================================================================================
+
+
+
+19:53:10.832 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexDirtyFlags[Using mapdb]
+    End time:    2017/08/28 19:53:10 (Duration: 486ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesBranches[Using mapdb]
+    Start time:  2017/08/28 19:53:10
+================================================================================
+
+
+
+19:53:11.602 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesBranches[Using mapdb]
+    End time:    2017/08/28 19:53:11 (Duration: 763ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexers[Using mapdb]
+    Start time:  2017/08/28 19:53:11
+================================================================================
+
+
+
+19:53:12.086 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexers[Using mapdb]
+    End time:    2017/08/28 19:53:12 (Duration: 484ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesConfiguration[Using chunked]
+    Start time:  2017/08/28 19:53:12
+================================================================================
+
+
+
+19:53:12.467 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesConfiguration[Using chunked]
+    End time:    2017/08/28 19:53:12 (Duration: 301ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbWorks[Using chunked]
+    Start time:  2017/08/28 19:53:12
+================================================================================
+
+
+
+19:53:12.770 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbWorks[Using chunked]
+    End time:    2017/08/28 19:53:12 (Duration: 299ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesContents[Using chunked]
+    Start time:  2017/08/28 19:53:12
+================================================================================
+
+
+
+19:53:13.133 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesContents[Using chunked]
+    End time:    2017/08/28 19:53:13 (Duration: 384ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexDirtyFlags[Using chunked]
+    Start time:  2017/08/28 19:53:13
+================================================================================
+
+
+
+19:53:13.417 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexDirtyFlags[Using chunked]
+    End time:    2017/08/28 19:53:13 (Duration: 253ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesBranches[Using chunked]
+    Start time:  2017/08/28 19:53:13
+================================================================================
+
+
+
+19:53:14.033 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesBranches[Using chunked]
+    End time:    2017/08/28 19:53:14 (Duration: 831ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexers[Using chunked]
+    Start time:  2017/08/28 19:53:14
+================================================================================
+
+
+
+19:53:14.548 [Test worker] WARN  o.c.c.c.ChronosConfigurationUtil - Configuration issue: the parameter 'org.chronos.chronodb.storage.file.drop_on_shutdown' in your configuration is ignored due to an overriding other parameter. Please refer to the documentation.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexers[Using chunked]
+    End time:    2017/08/28 19:53:14 (Duration: 316ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesConfiguration[Using inmemory]
+    Start time:  2017/08/28 19:53:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbWorks[Using inmemory]
+    Start time:  2017/08/28 19:53:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesContents[Using inmemory]
+    Start time:  2017/08/28 19:53:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexDirtyFlags[Using inmemory]
+    Start time:  2017/08/28 19:53:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesBranches[Using inmemory]
+    Start time:  2017/08/28 19:53:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBReopeningTest
+    Test method: reopeningChronoDbPreservesIndexers[Using inmemory]
+    Start time:  2017/08/28 19:53:14
+================================================================================
+
+
+
+19:53:14.633 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:53:14.633 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -304,7 +304,7 @@ public class StandardChronoSphere implements ChronoSphere, ChronoSphereInternal 
 		ChronoGraphIndexManager indexManager = this.getRootGraph().getIndexManager();
 		ChronoGraphIndex kindIndex = indexManager.getVertexIndex(ChronoSphereGraphFormat.V_PROP__KIND);
 		if (kindIndex == null) {
-			indexManager.createIndex().onVertexProperty(ChronoSphereGraphFormat.V_PROP__KIND).build();
+			indexManager.create().stringIndex().onVertexProperty(ChronoSphereGraphFormat.V_PROP__KIND).build();
 		}
 	}
 

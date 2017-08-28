@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenPagedTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class org.chronos.chronograph.test.commitmetadata.GetCommitsBetweenPagedTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/org.chronos.chronograph.test.commitmetadata.html">org.chronos.chronograph.test.commitmetadata</a> &gt; GetCommitsBetweenPagedTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">30</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">9.888s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">ascendingPaginationWorks[Using chunked]</td>
+<td>0.372s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">ascendingPaginationWorks[Using inmemory]</td>
+<td>0.033s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">ascendingPaginationWorks[Using jdbc]</td>
+<td>0.077s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">ascendingPaginationWorks[Using mapdb]</td>
+<td>1.785s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">ascendingPaginationWorks[Using tupl]</td>
+<td>0.316s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canRetrieveCommitsWhenNoMetadataWasGiven[Using chunked]</td>
+<td>0.346s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canRetrieveCommitsWhenNoMetadataWasGiven[Using inmemory]</td>
+<td>0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canRetrieveCommitsWhenNoMetadataWasGiven[Using jdbc]</td>
+<td>0.027s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canRetrieveCommitsWhenNoMetadataWasGiven[Using mapdb]</td>
+<td>0.363s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canRetrieveCommitsWhenNoMetadataWasGiven[Using tupl]</td>
+<td>0.153s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canRetrieveCommitsWithAndWithoutMetadata[Using chunked]</td>
+<td>0.401s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canRetrieveCommitsWithAndWithoutMetadata[Using inmemory]</td>
+<td>0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canRetrieveCommitsWithAndWithoutMetadata[Using jdbc]</td>
+<td>0.045s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canRetrieveCommitsWithAndWithoutMetadata[Using mapdb]</td>
+<td>0.637s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">canRetrieveCommitsWithAndWithoutMetadata[Using tupl]</td>
+<td>0.200s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">descendingPaginationWorks[Using chunked]</td>
+<td>0.752s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">descendingPaginationWorks[Using inmemory]</td>
+<td>0.027s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">descendingPaginationWorks[Using jdbc]</td>
+<td>0.068s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">descendingPaginationWorks[Using mapdb]</td>
+<td>1.819s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">descendingPaginationWorks[Using tupl]</td>
+<td>0.547s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">retrievingCommitTimestampsIsBranchLocal[Using chunked]</td>
+<td>0.432s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">retrievingCommitTimestampsIsBranchLocal[Using inmemory]</td>
+<td>0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">retrievingCommitTimestampsIsBranchLocal[Using jdbc]</td>
+<td>0.034s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">retrievingCommitTimestampsIsBranchLocal[Using mapdb]</td>
+<td>0.469s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">retrievingCommitTimestampsIsBranchLocal[Using tupl]</td>
+<td>0.132s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">retrievingInvalidTimeRangeProducesAnEmptyIterator[Using chunked]</td>
+<td>0.352s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">retrievingInvalidTimeRangeProducesAnEmptyIterator[Using inmemory]</td>
+<td>0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">retrievingInvalidTimeRangeProducesAnEmptyIterator[Using jdbc]</td>
+<td>0.015s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">retrievingInvalidTimeRangeProducesAnEmptyIterator[Using mapdb]</td>
+<td>0.378s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">retrievingInvalidTimeRangeProducesAnEmptyIterator[Using tupl]</td>
+<td>0.100s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>[INFO ] 2017-08-28 19:55:26 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 77ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 34ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using jdbc]
+    End time:    2017/08/28 19:55:27 (Duration: 45ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using jdbc]
+    Start time:  2017/08/28 19:55:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using jdbc]
+    End time:    2017/08/28 19:55:27 (Duration: 27ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using jdbc]
+    Start time:  2017/08/28 19:55:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using jdbc]
+    End time:    2017/08/28 19:55:27 (Duration: 68ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using inmemory]
+    Start time:  2017/08/28 19:55:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using inmemory]
+    End time:    2017/08/28 19:55:27 (Duration: 33ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using inmemory]
+    Start time:  2017/08/28 19:55:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using inmemory]
+    End time:    2017/08/28 19:55:27 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using inmemory]
+    Start time:  2017/08/28 19:55:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using inmemory]
+    End time:    2017/08/28 19:55:27 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using inmemory]
+    Start time:  2017/08/28 19:55:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using inmemory]
+    End time:    2017/08/28 19:55:27 (Duration: 7ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using inmemory]
+    Start time:  2017/08/28 19:55:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using inmemory]
+    End time:    2017/08/28 19:55:27 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using inmemory]
+    Start time:  2017/08/28 19:55:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using inmemory]
+    End time:    2017/08/28 19:55:27 (Duration: 27ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using chunked]
+    Start time:  2017/08/28 19:55:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using chunked]
+    End time:    2017/08/28 19:55:27 (Duration: 372ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using chunked]
+    Start time:  2017/08/28 19:55:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using chunked]
+    End time:    2017/08/28 19:55:27 (Duration: 432ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using chunked]
+    Start time:  2017/08/28 19:55:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using chunked]
+    End time:    2017/08/28 19:55:28 (Duration: 352ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using chunked]
+    Start time:  2017/08/28 19:55:28
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using chunked]
+    End time:    2017/08/28 19:55:28 (Duration: 401ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using chunked]
+    Start time:  2017/08/28 19:55:28
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using chunked]
+    End time:    2017/08/28 19:55:29 (Duration: 346ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using chunked]
+    Start time:  2017/08/28 19:55:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using chunked]
+    End time:    2017/08/28 19:55:29 (Duration: 752ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using tupl]
+    Start time:  2017/08/28 19:55:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using tupl]
+    End time:    2017/08/28 19:55:30 (Duration: 316ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using tupl]
+    Start time:  2017/08/28 19:55:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using tupl]
+    End time:    2017/08/28 19:55:30 (Duration: 132ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using tupl]
+    Start time:  2017/08/28 19:55:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using tupl]
+    End time:    2017/08/28 19:55:30 (Duration: 100ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using tupl]
+    Start time:  2017/08/28 19:55:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using tupl]
+    End time:    2017/08/28 19:55:30 (Duration: 200ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using tupl]
+    Start time:  2017/08/28 19:55:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using tupl]
+    End time:    2017/08/28 19:55:30 (Duration: 153ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using tupl]
+    Start time:  2017/08/28 19:55:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using tupl]
+    End time:    2017/08/28 19:55:31 (Duration: 547ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using mapdb]
+    Start time:  2017/08/28 19:55:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using mapdb]
+    End time:    2017/08/28 19:55:33 (Duration: 1785ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using mapdb]
+    Start time:  2017/08/28 19:55:33
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using mapdb]
+    End time:    2017/08/28 19:55:33 (Duration: 469ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using mapdb]
+    Start time:  2017/08/28 19:55:33
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using mapdb]
+    End time:    2017/08/28 19:55:33 (Duration: 378ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using mapdb]
+    Start time:  2017/08/28 19:55:33
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using mapdb]
+    End time:    2017/08/28 19:55:34 (Duration: 637ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using mapdb]
+    Start time:  2017/08/28 19:55:34
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using mapdb]
+    End time:    2017/08/28 19:55:34 (Duration: 363ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using mapdb]
+    Start time:  2017/08/28 19:55:34
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using mapdb]
+    End time:    2017/08/28 19:55:36 (Duration: 1819ms)
+================================================================================
+
+
+
+[INFO ] 2017-08-28 19:55:36 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+[INFO ] 2017-08-28 19:55:36 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Successfully deleted temp directory
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 3.4</a> at 28.08.2017 19:59:11</p>
+</div>
+</div>
+</body>
+</html>

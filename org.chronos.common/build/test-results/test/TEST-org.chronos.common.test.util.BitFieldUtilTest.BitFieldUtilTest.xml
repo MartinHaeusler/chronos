@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.common.test.util.BitFieldUtilTest.BitFieldUtilTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2017-08-28T18:00:03" hostname="Aurora" time="0.004">
+  <properties/>
+  <testcase name="settingNthBitWorks" classname="org.chronos.common.test.util.BitFieldUtilTest.BitFieldUtilTest" time="0.0"/>
+  <testcase name="getNthBitWorks" classname="org.chronos.common.test.util.BitFieldUtilTest.BitFieldUtilTest" time="0.0"/>
+  <testcase name="unsettingNthBitWorks" classname="org.chronos.common.test.util.BitFieldUtilTest.BitFieldUtilTest" time="0.0"/>
+  <testcase name="getBitsWorks" classname="org.chronos.common.test.util.BitFieldUtilTest.BitFieldUtilTest" time="0.0"/>
+  <testcase name="binaryConversionWorks" classname="org.chronos.common.test.util.BitFieldUtilTest.BitFieldUtilTest" time="0.003"/>
+  <testcase name="popCountUpToBitIndexWorks" classname="org.chronos.common.test.util.BitFieldUtilTest.BitFieldUtilTest" time="0.0"/>
+  <testcase name="getBitsAndShiftRightWorks" classname="org.chronos.common.test.util.BitFieldUtilTest.BitFieldUtilTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

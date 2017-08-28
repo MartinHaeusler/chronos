@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:50:45" hostname="Aurora" time="4.241">
+  <properties/>
+  <testcase name="canAddNewIndexedValuesInBranch[Using inmemory]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.01"/>
+  <testcase name="canAddMultiplicityManyValuesInBranch[Using inmemory]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.005"/>
+  <testcase name="canChangeMultiplicityManyValuesInBranch[Using inmemory]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.012"/>
+  <testcase name="canAddNewIndexedValuesInBranch[Using jdbc]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.034"/>
+  <testcase name="canAddMultiplicityManyValuesInBranch[Using jdbc]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.032"/>
+  <testcase name="canChangeMultiplicityManyValuesInBranch[Using jdbc]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.044"/>
+  <testcase name="canAddNewIndexedValuesInBranch[Using tupl]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.279"/>
+  <testcase name="canAddMultiplicityManyValuesInBranch[Using tupl]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.169"/>
+  <testcase name="canChangeMultiplicityManyValuesInBranch[Using tupl]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.185"/>
+  <testcase name="canAddNewIndexedValuesInBranch[Using chunked]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.347"/>
+  <testcase name="canAddMultiplicityManyValuesInBranch[Using chunked]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.585"/>
+  <testcase name="canChangeMultiplicityManyValuesInBranch[Using chunked]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.632"/>
+  <testcase name="canAddNewIndexedValuesInBranch[Using mapdb]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.722"/>
+  <testcase name="canAddMultiplicityManyValuesInBranch[Using mapdb]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.663"/>
+  <testcase name="canChangeMultiplicityManyValuesInBranch[Using mapdb]" classname="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" time="0.522"/>
+  <system-out><![CDATA[19:50:45.177 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddNewIndexedValuesInBranch[Using inmemory]
+    Start time:  2017/08/28 19:50:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddNewIndexedValuesInBranch[Using inmemory]
+    End time:    2017/08/28 19:50:45 (Duration: 10ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddMultiplicityManyValuesInBranch[Using inmemory]
+    Start time:  2017/08/28 19:50:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddMultiplicityManyValuesInBranch[Using inmemory]
+    End time:    2017/08/28 19:50:45 (Duration: 5ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canChangeMultiplicityManyValuesInBranch[Using inmemory]
+    Start time:  2017/08/28 19:50:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canChangeMultiplicityManyValuesInBranch[Using inmemory]
+    End time:    2017/08/28 19:50:45 (Duration: 12ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddNewIndexedValuesInBranch[Using jdbc]
+    Start time:  2017/08/28 19:50:45
+================================================================================
+
+
+
+19:50:45.208 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2e1bb5df,name=1hgeqrl9qbn6pz6yfah30|2e1bb5df registered.
+19:50:45.215 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2e1bb5df,name=1hgeqrl9qbn6pz6yfah30|2e1bb5df unregistered, in order to be reregistered after update.
+19:50:45.215 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2e1bb5df,name=1hgeqrl9qbn6pz6yfah30|2e1bb5df registered.
+19:50:45.215 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@2d4afbcb [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@43038686 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|292f7527, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@57baf818 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|56d02a4d, jdbcUrl -> jdbc:h2:mem:aa592de56ee0448e9500fff2ad279748, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|2e1bb5df, numHelperThreads -> 3 ]
+19:50:45.215 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@110d1623 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:45.215 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:45.215 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:45.215 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:45.238 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2e1bb5df,name=1hgeqrl9qbn6pz6yfah30|2e1bb5df unregistered.
+19:50:45.238 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@2053ce7b
+19:50:45.238 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:45.238 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@2053ce7b
+19:50:45.238 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@2053ce7b
+19:50:45.238 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@2053ce7b
+19:50:45.238 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@63729f8c
+19:50:45.238 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@63729f8c
+19:50:45.238 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@63729f8c
+19:50:45.238 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@63729f8c
+19:50:45.238 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@17ff78e8
+19:50:45.238 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@17ff78e8
+19:50:45.238 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@17ff78e8
+19:50:45.238 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@17ff78e8
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddNewIndexedValuesInBranch[Using jdbc]
+    End time:    2017/08/28 19:50:45 (Duration: 34ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddMultiplicityManyValuesInBranch[Using jdbc]
+    Start time:  2017/08/28 19:50:45
+================================================================================
+
+
+
+19:50:45.238 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|451f93ee,name=1hgeqrl9qbn6pz6yfah30|451f93ee registered.
+19:50:45.254 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|451f93ee,name=1hgeqrl9qbn6pz6yfah30|451f93ee unregistered, in order to be reregistered after update.
+19:50:45.254 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|451f93ee,name=1hgeqrl9qbn6pz6yfah30|451f93ee registered.
+19:50:45.254 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@488e0ad4 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@f45534b1 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|34a0f0c, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@5e4966fe [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|14db8948, jdbcUrl -> jdbc:h2:mem:db60b19aae8c471b92ed5792e4fc5be5, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|451f93ee, numHelperThreads -> 3 ]
+19:50:45.254 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@546c9fd config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:45.254 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:45.254 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:45.254 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:45.270 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|451f93ee,name=1hgeqrl9qbn6pz6yfah30|451f93ee unregistered.
+19:50:45.270 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@4117cb41
+19:50:45.270 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:45.270 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@4117cb41
+19:50:45.270 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@4117cb41
+19:50:45.270 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@4117cb41
+19:50:45.270 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@69280636
+19:50:45.270 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@69280636
+19:50:45.270 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@69280636
+19:50:45.270 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@69280636
+19:50:45.270 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@2b780c6f
+19:50:45.270 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@2b780c6f
+19:50:45.270 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@2b780c6f
+19:50:45.270 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@2b780c6f
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddMultiplicityManyValuesInBranch[Using jdbc]
+    End time:    2017/08/28 19:50:45 (Duration: 32ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canChangeMultiplicityManyValuesInBranch[Using jdbc]
+    Start time:  2017/08/28 19:50:45
+================================================================================
+
+
+
+19:50:45.285 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|460fe89c,name=1hgeqrl9qbn6pz6yfah30|460fe89c registered.
+19:50:45.285 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|460fe89c,name=1hgeqrl9qbn6pz6yfah30|460fe89c unregistered, in order to be reregistered after update.
+19:50:45.285 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|460fe89c,name=1hgeqrl9qbn6pz6yfah30|460fe89c registered.
+19:50:45.285 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@15489a6f [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@71541824 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|57601ad8, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@533b7108 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|4e7cebbd, jdbcUrl -> jdbc:h2:mem:94454f8087fd4429a439ddab5d2f7659, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|460fe89c, numHelperThreads -> 3 ]
+19:50:45.285 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@4ff1c37a config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:45.285 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:45.285 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:45.285 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:45.314 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|460fe89c,name=1hgeqrl9qbn6pz6yfah30|460fe89c unregistered.
+19:50:45.314 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@31a9b6c1
+19:50:45.314 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:45.314 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@31a9b6c1
+19:50:45.314 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@31a9b6c1
+19:50:45.314 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@31a9b6c1
+19:50:45.314 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7b40db09
+19:50:45.314 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7b40db09
+19:50:45.314 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7b40db09
+19:50:45.314 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7b40db09
+19:50:45.314 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@4b38858b
+19:50:45.314 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@4b38858b
+19:50:45.314 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@4b38858b
+19:50:45.314 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@4b38858b
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canChangeMultiplicityManyValuesInBranch[Using jdbc]
+    End time:    2017/08/28 19:50:45 (Duration: 44ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddNewIndexedValuesInBranch[Using tupl]
+    Start time:  2017/08/28 19:50:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddNewIndexedValuesInBranch[Using tupl]
+    End time:    2017/08/28 19:50:45 (Duration: 279ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddMultiplicityManyValuesInBranch[Using tupl]
+    Start time:  2017/08/28 19:50:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddMultiplicityManyValuesInBranch[Using tupl]
+    End time:    2017/08/28 19:50:45 (Duration: 169ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canChangeMultiplicityManyValuesInBranch[Using tupl]
+    Start time:  2017/08/28 19:50:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canChangeMultiplicityManyValuesInBranch[Using tupl]
+    End time:    2017/08/28 19:50:45 (Duration: 185ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddNewIndexedValuesInBranch[Using chunked]
+    Start time:  2017/08/28 19:50:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddNewIndexedValuesInBranch[Using chunked]
+    End time:    2017/08/28 19:50:46 (Duration: 347ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddMultiplicityManyValuesInBranch[Using chunked]
+    Start time:  2017/08/28 19:50:46
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddMultiplicityManyValuesInBranch[Using chunked]
+    End time:    2017/08/28 19:50:46 (Duration: 585ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canChangeMultiplicityManyValuesInBranch[Using chunked]
+    Start time:  2017/08/28 19:50:46
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canChangeMultiplicityManyValuesInBranch[Using chunked]
+    End time:    2017/08/28 19:50:47 (Duration: 632ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddNewIndexedValuesInBranch[Using mapdb]
+    Start time:  2017/08/28 19:50:47
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddNewIndexedValuesInBranch[Using mapdb]
+    End time:    2017/08/28 19:50:48 (Duration: 722ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddMultiplicityManyValuesInBranch[Using mapdb]
+    Start time:  2017/08/28 19:50:48
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canAddMultiplicityManyValuesInBranch[Using mapdb]
+    End time:    2017/08/28 19:50:48 (Duration: 663ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canChangeMultiplicityManyValuesInBranch[Using mapdb]
+    Start time:  2017/08/28 19:50:48
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  BranchSecondaryIndexingTest
+    Test method: canChangeMultiplicityManyValuesInBranch[Using mapdb]
+    End time:    2017/08/28 19:50:49 (Duration: 522ms)
+================================================================================
+
+
+
+19:50:49.418 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:50:49.418 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

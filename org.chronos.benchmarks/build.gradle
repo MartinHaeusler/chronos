@@ -1,0 +1,26 @@
+// ORG.CHRONOS.BENCHMARKS/build.gradle
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Chronos Benchmarks'
+    }
+}
+
+
+dependencies {
+    compile project(':org.chronos.common');
+    compile project(':org.chronos.chronodb');
+    compile project(':org.chronos.chronograph');
+    compile project(':org.chronos.chronosphere');
+    
+    testCompile project(':org.chronos.common').sourceSets.test.output;
+    testCompile project(':org.chronos.chronodb').sourceSets.test.output;
+    testCompile project(':org.chronos.chronograph').sourceSets.test.output;
+    testCompile project(':org.chronos.chronosphere').sourceSets.test.output;
+    testCompile project(':org.chronos.common.testing')
+}
+
+test {
+	// do NOT include the benchmarks in the build tests
+	exclude 'org/chronos/benchmarks/**'
+}

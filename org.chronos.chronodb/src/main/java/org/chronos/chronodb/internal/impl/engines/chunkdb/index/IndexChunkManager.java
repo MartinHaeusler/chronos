@@ -19,9 +19,9 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.api.ChronoDBTransaction;
-import org.chronos.chronodb.api.ChronoIndexer;
 import org.chronos.chronodb.api.SerializationManager;
 import org.chronos.chronodb.api.exceptions.ChronoDBIndexingException;
+import org.chronos.chronodb.api.indexing.Indexer;
 import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.internal.api.Period;
 import org.chronos.chronodb.internal.api.stream.CloseableIterator;
@@ -75,13 +75,10 @@ public class IndexChunkManager {
 	 * Returns the index for the given chunk.
 	 *
 	 * <p>
-	 * Please note that this is a potentially expensive operation in the case that the given chunk has no persistent
-	 * index.
+	 * Please note that this is a potentially expensive operation in the case that the given chunk has no persistent index.
 	 *
 	 * <p>
-	 * <b>IMPORTANT NOTE:</b> Do not store the returned instance for extended periods of time, e.g. in fields. Re-fetch
-	 * it as needed, the instances are cached. The reason is that the indices may be deleted via
-	 * {@link #deleteIndexForChunk(ChronoChunk)}.
+	 * <b>IMPORTANT NOTE:</b> Do not store the returned instance for extended periods of time, e.g. in fields. Re-fetch it as needed, the instances are cached. The reason is that the indices may be deleted via {@link #deleteIndexForChunk(ChronoChunk)}.
 	 *
 	 * @param chunk
 	 *            The chunk to get the index for. Must not be <code>null</code>.
@@ -100,13 +97,10 @@ public class IndexChunkManager {
 	 * Returns the index for the given chunk, as a {@link Future}.
 	 *
 	 * <p>
-	 * Please note that this is a potentially expensive operation in the case that the given chunk has no persistent
-	 * index.
+	 * Please note that this is a potentially expensive operation in the case that the given chunk has no persistent index.
 	 *
 	 * <p>
-	 * <b>IMPORTANT NOTE:</b> Do not store the returned instance for extended periods of time, e.g. in fields. Re-fetch
-	 * it as needed, the instances are cached. The reason is that the indices may be deleted via
-	 * {@link #deleteIndexForChunk(ChronoChunk)}.
+	 * <b>IMPORTANT NOTE:</b> Do not store the returned instance for extended periods of time, e.g. in fields. Re-fetch it as needed, the instances are cached. The reason is that the indices may be deleted via {@link #deleteIndexForChunk(ChronoChunk)}.
 	 *
 	 *
 	 * @param chunk
@@ -122,7 +116,7 @@ public class IndexChunkManager {
 			DocumentBasedChunkIndex index = this.chunkToIndex.getIfPresent(chunk);
 			if (index != null) {
 				// index is already loaded
-				return new ResolvedFuture<DocumentBasedChunkIndex>(index);
+				return new ResolvedFuture<>(index);
 			}
 			// index is not yet loaded; check if somebody else is loading it
 			Future<DocumentBasedChunkIndex> future = this.indicesBeingLoaded.get(chunk);
@@ -145,9 +139,7 @@ public class IndexChunkManager {
 	 * Deletes all indices (both in-memory representation and files) for the given chunk.
 	 *
 	 * <p>
-	 * Calling this method inevitably entails that the next call to {@link #getIndexForChunk(ChronoChunk)} (with the
-	 * given chunk as argument) will have to re-create that index from scratch, which is an expensive operation. Use
-	 * this method with care!
+	 * Calling this method inevitably entails that the next call to {@link #getIndexForChunk(ChronoChunk)} (with the given chunk as argument) will have to re-create that index from scratch, which is an expensive operation. Use this method with care!
 	 *
 	 * <p>
 	 * If the given chunk has no index, this method does nothing.
@@ -172,8 +164,7 @@ public class IndexChunkManager {
 	 * Deletes all chunk indices (both in-memory representation and files).
 	 *
 	 * <p>
-	 * Calling this method inevitably entails that the next call to {@link #getIndexForChunk(ChronoChunk)} will have to
-	 * re-create that index from scratch, which is an expensive operation. Use this method with care!
+	 * Calling this method inevitably entails that the next call to {@link #getIndexForChunk(ChronoChunk)} will have to re-create that index from scratch, which is an expensive operation. Use this method with care!
 	 *
 	 * <p>
 	 * If no indices exist, this method does nothing.
@@ -194,11 +185,9 @@ public class IndexChunkManager {
 	 * Rolls back the contents of chunk indices.
 	 *
 	 * @param branchNames
-	 *            The branches to roll back. Must not be <code>null</code>. If this is set is empty, this method returns
-	 *            immediately without performing any operations.
+	 *            The branches to roll back. Must not be <code>null</code>. If this is set is empty, this method returns immediately without performing any operations.
 	 * @param timestamp
-	 *            The timestamp to roll back to. Must not be negative. Must be within the validity period of the last
-	 *            chunk.
+	 *            The timestamp to roll back to. Must not be negative. Must be within the validity period of the last chunk.
 	 */
 	public void rollbackChunkIndices(final Set<String> branchNames, final long timestamp) {
 		this.rollbackChunkIndices(branchNames, timestamp, null);
@@ -208,18 +197,14 @@ public class IndexChunkManager {
 	 * Rolls back the contents of chunk indices.
 	 *
 	 * <p>
-	 * This is possible only for indices of chunks that are open-ended, i.e. the last chunk in each branch. This method
-	 * has no effect on intermediate chunks.
+	 * This is possible only for indices of chunks that are open-ended, i.e. the last chunk in each branch. This method has no effect on intermediate chunks.
 	 *
 	 * @param branches
-	 *            The branches to consider for rollback. Must not be <code>null</code>. If this is set is empty, this
-	 *            method returns immediately without performing any operations.
+	 *            The branches to consider for rollback. Must not be <code>null</code>. If this is set is empty, this method returns immediately without performing any operations.
 	 * @param timestamp
-	 *            The timestamp to roll back to. Must not be negative. Must be within the validity period of the last
-	 *            chunk.
+	 *            The timestamp to roll back to. Must not be negative. Must be within the validity period of the last chunk.
 	 * @param keys
-	 *            The set of keys to roll back. If this is the empty set, no key will be rolled back and this method
-	 *            returns immediately. If this is <code>null</code>, then all keys will be rolled back.
+	 *            The set of keys to roll back. If this is the empty set, no key will be rolled back and this method returns immediately. If this is <code>null</code>, then all keys will be rolled back.
 	 */
 	public void rollbackChunkIndices(final Set<String> branches, final long timestamp, final Set<QualifiedKey> keys) {
 		checkNotNull(branches, "Precondition violation - argument 'branches' must not be NULL!");
@@ -264,9 +249,7 @@ public class IndexChunkManager {
 	 * Deletes the contents of the given index, for all branches.
 	 *
 	 * <p>
-	 * For indices that are being held in memory, this means that the index with the given name will be deleted. For
-	 * persistent indices, this will result in the deletion of the entire index (file), which will entail a full
-	 * re-index on the next request.
+	 * For indices that are being held in memory, this means that the index with the given name will be deleted. For persistent indices, this will result in the deletion of the entire index (file), which will entail a full re-index on the next request.
 	 *
 	 * @param indexName
 	 *            The index to delete. Must not be <code>null</code>.
@@ -295,24 +278,6 @@ public class IndexChunkManager {
 		}
 	}
 
-	/**
-	 * Adds the given indexer to all index chunks.
-	 *
-	 * <p>
-	 * Please note that this might result in the deletion of all chunk indices.
-	 *
-	 * @param indexName
-	 *            The index that was added. Must not be <code>null</code>.
-	 * @param indexer
-	 *            The indexer that was added. Must not be <code>null</code>.
-	 */
-	public void addIndexer(final String indexName, final ChronoIndexer indexer) {
-		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
-		checkNotNull(indexer, "Precondition violation - argument 'indexer' must not be NULL!");
-		// TODO PERFORMANCE METADB: deleting all chunks might not be optimal, but it's an easy consistent solution.
-		this.deleteAllChunkIndices();
-	}
-
 	// =====================================================================================================================
 	// INTERNAL HELPER METHODS
 	// =====================================================================================================================
@@ -321,9 +286,7 @@ public class IndexChunkManager {
 	 * Performs the actual loading work for the index of the given chunk.
 	 *
 	 * <p>
-	 * This is a <b>potentially expensive</b> procedure (CPU, RAM, Disk I/O...). If there is an index file for the given
-	 * chunk, this method should be quite efficient. However, if iteration over the primary index is required to
-	 * reconstruct the secondary index, then this method will be expensive to compute.
+	 * This is a <b>potentially expensive</b> procedure (CPU, RAM, Disk I/O...). If there is an index file for the given chunk, this method should be quite efficient. However, if iteration over the primary index is required to reconstruct the secondary index, then this method will be expensive to compute.
 	 *
 	 * <p>
 	 * The strategy is as follows:
@@ -332,8 +295,7 @@ public class IndexChunkManager {
 	 * <li>If the index file exists and is correct, load it via deserialization.
 	 * <li>If the file is corrupt, delete it.
 	 * <li>If we managed to load the index, we return it and are done.
-	 * <li>Otherwise, we create the index for the chunk from scratch by consulting the primary index. Then, save the
-	 * result to disk and return the computed index.
+	 * <li>Otherwise, we create the index for the chunk from scratch by consulting the primary index. Then, save the result to disk and return the computed index.
 	 * </ol>
 	 *
 	 * @param chunk
@@ -395,8 +357,7 @@ public class IndexChunkManager {
 	 * Creates a {@link DocumentBasedChunkIndex} for the given chunk from scratch.
 	 *
 	 * <p>
-	 * This is an <b>expensive</b> procedure (CPU, RAM, Disk I/O...) that should be avoided unless strictly necessary.
-	 * Cases where this method should be called include:
+	 * This is an <b>expensive</b> procedure (CPU, RAM, Disk I/O...) that should be avoided unless strictly necessary. Cases where this method should be called include:
 	 * <ul>
 	 * <li>Loss of index chunk (file was deleted or corrupted)
 	 * <li>Change in indexers (reindexing)
@@ -413,7 +374,7 @@ public class IndexChunkManager {
 		// System.out.println("IndexChunkManager :: loading index for Chunk '" + branchName + "#"
 		// + chunk.getSequenceNumber() + "', period: " + chunk.getMetaData().getValidPeriod());
 		// get access to the indexers
-		Map<String, Set<ChronoIndexer>> indexNameToIndexer = this.owningDB.getIndexManager().getIndexersByIndexName();
+		Map<String, Set<Indexer<?>>> indexNameToIndexer = this.owningDB.getIndexManager().getIndexersByIndexName();
 		// prepare the document container
 		DocumentChunkIndexData indexData = new DocumentChunkIndexData();
 		indexData.setBranchName(branchName);
@@ -448,14 +409,12 @@ public class IndexChunkManager {
 	 * Checks if the given chunk is the first in the chunk series for a non-master branch.
 	 *
 	 * <p>
-	 * Those chunks contain the delta to their origin branch at the branching timestamp. After the first rollover, they
-	 * will contain the full information.
+	 * Those chunks contain the delta to their origin branch at the branching timestamp. After the first rollover, they will contain the full information.
 	 *
 	 * @param chunk
 	 *            The chunk to check. Must not be <code>null</code>.
 	 *
-	 * @return <code>true</code> if the given chunk is a delta chunk, i.e. the first chunk after a branching operation,
-	 *         otherwise <code>false</code>.
+	 * @return <code>true</code> if the given chunk is a delta chunk, i.e. the first chunk after a branching operation, otherwise <code>false</code>.
 	 */
 	private boolean isBranchDeltaChunk(final ChronoChunk chunk) {
 		Period validPeriod = chunk.getMetaData().getValidPeriod();
@@ -486,15 +445,12 @@ public class IndexChunkManager {
 	 * </ul>
 	 *
 	 * <p>
-	 * The critical property of a "regular" chunk is that it does not contain an entire snapshot of the contents, i.e.
-	 * it is not self-contained. The opposite of a "delta" chunk is a "regular" chunk, which can be indexed via
-	 * {@link #createIndexDocumentsForRegularChunk(ChronoChunk)}.
+	 * The critical property of a "regular" chunk is that it does not contain an entire snapshot of the contents, i.e. it is not self-contained. The opposite of a "delta" chunk is a "regular" chunk, which can be indexed via {@link #createIndexDocumentsForRegularChunk(ChronoChunk)}.
 	 *
 	 * @param chunk
 	 *            The chunk to index. Must not be <code>null</code>.
 	 *
-	 * @return The list of index documents extracted from this chunk (in no particular order). May be empty, but never
-	 *         <code>null</code>.
+	 * @return The list of index documents extracted from this chunk (in no particular order). May be empty, but never <code>null</code>.
 	 */
 	private List<ChunkDbIndexDocumentData> createIndexDocumentsForDeltaChunk(final ChronoChunk chunk) {
 		checkNotNull(chunk, "Precondition violation - argument 'chunk' must not be NULL!");
@@ -512,7 +468,7 @@ public class IndexChunkManager {
 		// create the document list builder that will be passed to the indexing methods
 		DocumentListBuilder documentListBuilder = new DocumentListBuilder();
 		// fetch the indexers from our owning DB
-		SetMultimap<String, ChronoIndexer> indexerMultimap = MultiMapUtil
+		SetMultimap<String, Indexer<?>> indexerMultimap = MultiMapUtil
 				.copyToMultimap(this.owningDB.getIndexManager().getIndexersByIndexName());
 		// iterate over all keyspaces
 		for (KeyspaceMetadata keyspaceMetadata : allKeyspaceMetadata) {
@@ -538,11 +494,11 @@ public class IndexChunkManager {
 					continue;
 				}
 				// index the given value, creating new documents
-				SetMultimap<String, String> indexedValues = IndexingUtils.getIndexedValuesForObject(indexerMultimap,
+				SetMultimap<String, Object> indexedValues = IndexingUtils.getIndexedValuesForObject(indexerMultimap,
 						object);
-				for (Entry<String, String> indexEntry : indexedValues.entries()) {
+				for (Entry<String, Object> indexEntry : indexedValues.entries()) {
 					String indexName = indexEntry.getKey();
-					String value = indexEntry.getValue();
+					Object value = indexEntry.getValue();
 					ChunkDbIndexDocumentData document = new ChunkDbIndexDocumentData(indexName, keyspace, key, value,
 							timestamp);
 					documentListBuilder.addDocument(document);
@@ -568,15 +524,12 @@ public class IndexChunkManager {
 	 * </ul>
 	 *
 	 * <p>
-	 * The critical property of a "regular" chunk is that it contains an entire snapshot of the contents, i.e. it is
-	 * self-contained. The opposite of a "regular" chunk is a "delta" chunk, which can be indexed via
-	 * {@link #createIndexDocumentsForDeltaChunk(ChronoChunk)}.
+	 * The critical property of a "regular" chunk is that it contains an entire snapshot of the contents, i.e. it is self-contained. The opposite of a "regular" chunk is a "delta" chunk, which can be indexed via {@link #createIndexDocumentsForDeltaChunk(ChronoChunk)}.
 	 *
 	 * @param chunk
 	 *            The chunk to index. Must not be <code>null</code>.
 	 *
-	 * @return The list of index documents extracted from this chunk (in no particular order). May be empty, but never
-	 *         <code>null</code>.
+	 * @return The list of index documents extracted from this chunk (in no particular order). May be empty, but never <code>null</code>.
 	 */
 	private List<ChunkDbIndexDocumentData> createIndexDocumentsForRegularChunk(final ChronoChunk chunk) {
 		checkNotNull(chunk, "Precondition violation - argument 'chunk' must not be NULL!");
@@ -591,8 +544,7 @@ public class IndexChunkManager {
 	 * Creates the full list of index documents for the given chunk and fills them into the given document list builder.
 	 *
 	 * <p>
-	 * Please note that this method will only consider the contents of the given chunk, i.e. it will not consider any
-	 * other chunks in the branch sequence, or the origin chunk (if any).
+	 * Please note that this method will only consider the contents of the given chunk, i.e. it will not consider any other chunks in the branch sequence, or the origin chunk (if any).
 	 *
 	 * @param chunk
 	 *            The chunk to index. Must not be <code>null</code>.
@@ -646,17 +598,14 @@ public class IndexChunkManager {
 	}
 
 	/**
-	 * Indexes the contents of the given keyspace and fills the resulting documents into the given document list
-	 * builder.
+	 * Indexes the contents of the given keyspace and fills the resulting documents into the given document list builder.
 	 *
 	 * @param keyspaceName
 	 *            The name of the keyspace to index. Must not be <code>null</code>.
 	 * @param keyspaceEntryIterator
-	 *            The iterator over the keyspace contents. Must not be <code>null</code>. The iteration order is assumed
-	 *            to be "first by key, then by timestamp ascending".
+	 *            The iterator over the keyspace contents. Must not be <code>null</code>. The iteration order is assumed to be "first by key, then by timestamp ascending".
 	 * @param documentListBuilder
-	 *            The document list builder that manages the produced documents. Must not be <code>null</code>. Will be
-	 *            filled during the execution of this method with the documents extracted from the given entry iterator.
+	 *            The document list builder that manages the produced documents. Must not be <code>null</code>. Will be filled during the execution of this method with the documents extracted from the given entry iterator.
 	 */
 	private void indexKeyspaceContents(final String keyspaceName,
 			final Iterator<UnqualifiedTemporalEntry> keyspaceEntryIterator,
@@ -666,7 +615,7 @@ public class IndexChunkManager {
 				"Precondition violation - argument 'keyspaceEntryIterator' must not be NULL!");
 		checkNotNull(documentListBuilder, "Precondition violation - argument 'documentListBuilder' must not be NULL!");
 		SerializationManager serializationManager = this.owningDB.getSerializationManager();
-		SetMultimap<String, ChronoIndexer> indexerMultimap = MultiMapUtil
+		SetMultimap<String, Indexer<?>> indexerMultimap = MultiMapUtil
 				.copyToMultimap(this.owningDB.getIndexManager().getIndexersByIndexName());
 		while (keyspaceEntryIterator.hasNext()) {
 			UnqualifiedTemporalEntry entry = keyspaceEntryIterator.next();
@@ -685,7 +634,7 @@ public class IndexChunkManager {
 				}
 			} else {
 				// addition or update; create the index values
-				SetMultimap<String, String> indexNameToValues = IndexingUtils.getIndexedValuesForObject(indexerMultimap,
+				SetMultimap<String, Object> indexNameToValues = IndexingUtils.getIndexedValuesForObject(indexerMultimap,
 						newValue);
 				// for all open documents that belong to this entry, check if they are
 				// still valid, terminate them if not, and create new documents for
@@ -693,7 +642,7 @@ public class IndexChunkManager {
 				Set<ChunkDbIndexDocumentData> openDocuments = documentListBuilder.getOpenDocuments(keyspaceName, key);
 				for (ChunkDbIndexDocumentData doc : openDocuments) {
 					String indexName = doc.getIndexName();
-					String indexValue = doc.getIndexedValue();
+					Object indexValue = doc.getIndexedValue();
 					if (indexNameToValues.containsEntry(indexName, indexValue)) {
 						// document continues to be valid, no need to create a new one
 						indexNameToValues.remove(indexName, indexValue);
@@ -704,9 +653,9 @@ public class IndexChunkManager {
 				}
 				// all entries that remain in our index value map have no document yet,
 				// so we create one for each of them.
-				for (Entry<String, String> indexNameToValue : indexNameToValues.entries()) {
+				for (Entry<String, Object> indexNameToValue : indexNameToValues.entries()) {
 					String indexName = indexNameToValue.getKey();
-					String indexValue = indexNameToValue.getValue();
+					Object indexValue = indexNameToValue.getValue();
 					ChunkDbIndexDocumentData doc = new ChunkDbIndexDocumentData(indexName, keyspaceName,
 							entry.getKey().getKey(), indexValue, entry.getKey().getTimestamp());
 					documentListBuilder.addDocument(doc);

@@ -45,7 +45,7 @@ public class ChronoSphereIndexManagerTest extends AllChronoSphereBackendsTest {
 		assertTrue(sphere.getIndexManager().isIndexDirty(eaFirstName));
 
 		// reindex it
-		sphere.getIndexManager().reindex(eaFirstName);
+		sphere.getIndexManager().reindexAll();
 
 		// it should not be dirty anymore
 		assertFalse(sphere.getIndexManager().isIndexDirty(eaFirstName));
@@ -73,7 +73,7 @@ public class ChronoSphereIndexManagerTest extends AllChronoSphereBackendsTest {
 
 		// create the index
 		sphere.getIndexManager().createIndexOn(eaFirstName);
-		sphere.getIndexManager().reindex(eaFirstName);
+		sphere.getIndexManager().reindexAll();
 		assertTrue(sphere.getIndexManager().existsIndexOn(eaFirstName));
 		assertFalse(sphere.getIndexManager().isIndexDirty(eaFirstName));
 

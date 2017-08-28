@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.SortedMap;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -24,6 +26,7 @@ import org.chronos.chronodb.api.exceptions.InvalidTransactionTimestampException;
 import org.chronos.chronodb.internal.api.BranchInternal;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
+import org.chronos.chronodb.internal.api.CommitMetadataStore;
 import org.chronos.chronodb.internal.api.TemporalKeyValueStore;
 import org.chronos.chronodb.internal.api.TransactionConfigurationInternal;
 import org.chronos.chronodb.internal.api.stream.ChronoDBEntry;
@@ -32,6 +35,7 @@ import org.chronos.chronodb.internal.api.stream.ObjectInput;
 import org.chronos.chronodb.internal.api.stream.ObjectOutput;
 import org.chronos.chronodb.internal.impl.builder.transaction.DefaultTransactionBuilder;
 import org.chronos.chronodb.internal.impl.dump.ChronoDBDumpUtil;
+import org.chronos.chronodb.internal.impl.dump.CommitMetadataMap;
 import org.chronos.chronodb.internal.impl.dump.DumpOptions;
 import org.chronos.chronodb.internal.util.ThreadBound;
 import org.chronos.common.logging.ChronoLogger;
@@ -179,6 +183,19 @@ public abstract class AbstractChronoDB implements ChronoDB, ChronoDBInternal {
 	}
 
 	@Override
+	public void loadCommitTimestamps(final CommitMetadataMap commitMetadata) {
+		checkNotNull(commitMetadata, "Precondition violation - argument 'commitMetadata' must not be NULL!");
+		for (String branchName : commitMetadata.getContainedBranches()) {
+			SortedMap<Long, Object> branchCommitMetadata = commitMetadata.getCommitMetadataForBranch(branchName);
+			BranchInternal branch = (BranchInternal) this.getBranchManager().getBranch(branchName);
+			CommitMetadataStore metadataStore = branch.getTemporalKeyValueStore().getCommitMetadataStore();
+			for (Entry<Long, Object> entry : branchCommitMetadata.entrySet()) {
+				metadataStore.put(entry.getKey(), entry.getValue());
+			}
+		}
+	}
+
+	@Override
 	public void writeDump(final File dumpFile, final DumpOption... dumpOptions) {
 		checkNotNull(dumpFile, "Precondition violation - argument 'dumpFile' must not be NULL!");
 		if (dumpFile.exists()) {
@@ -186,7 +203,7 @@ public abstract class AbstractChronoDB implements ChronoDB, ChronoDBInternal {
 					"Precondition violation - argument 'dumpFile' must be a file (not a directory)!");
 		} else {
 			try {
-				dumpFile.mkdirs();
+				dumpFile.getParentFile().mkdirs();
 				dumpFile.createNewFile();
 			} catch (IOException e) {
 				throw new ChronoDBStorageBackendException(
@@ -271,10 +288,8 @@ public abstract class AbstractChronoDB implements ChronoDB, ChronoDBInternal {
 	 * <li>Check if the version identifier in the database exists.
 	 * <ol>
 	 * <li>If there is no version identifier, write {@link ChronosVersion#getCurrentVersion()}.
-	 * <li>If there is a version identifier, and it is smaller than {@link ChronosVersion#getCurrentVersion()},
-	 * overwrite it (<i>Note:</i> in the future, we may perform data migration steps here).
-	 * <li>If there is a version identifier larger than {@link ChronosVersion#getCurrentVersion()}, throw a
-	 * {@link ChronosBuildVersionConflictException}.
+	 * <li>If there is a version identifier, and it is smaller than {@link ChronosVersion#getCurrentVersion()}, overwrite it (<i>Note:</i> in the future, we may perform data migration steps here).
+	 * <li>If there is a version identifier larger than {@link ChronosVersion#getCurrentVersion()}, throw a {@link ChronosBuildVersionConflictException}.
 	 * </ol>
 	 * </ol>
 	 */

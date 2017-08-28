@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.common.test.configuration.ChronosConfigurationUtilTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2017-08-28T18:00:03" hostname="Aurora" time="0.236">
+  <properties/>
+  <testcase name="valueAliasingWorks" classname="org.chronos.common.test.configuration.ChronosConfigurationUtilTest" time="0.217"/>
+  <testcase name="customValueParsingWorks" classname="org.chronos.common.test.configuration.ChronosConfigurationUtilTest" time="0.001"/>
+  <testcase name="wrongEnumValuesAreDetectedProperly" classname="org.chronos.common.test.configuration.ChronosConfigurationUtilTest" time="0.001"/>
+  <testcase name="correctConfiguration1Works" classname="org.chronos.common.test.configuration.ChronosConfigurationUtilTest" time="0.001"/>
+  <testcase name="correctConfiguration2Works" classname="org.chronos.common.test.configuration.ChronosConfigurationUtilTest" time="0.001"/>
+  <testcase name="missingValuesAreDetectedProperly" classname="org.chronos.common.test.configuration.ChronosConfigurationUtilTest" time="0.001"/>
+  <testcase name="enumFactoryMethodAnnotationWorks" classname="org.chronos.common.test.configuration.ChronosConfigurationUtilTest" time="0.001"/>
+  <testcase name="canDependOnAValueOfTypeBoolean_case1" classname="org.chronos.common.test.configuration.ChronosConfigurationUtilTest" time="0.001"/>
+  <testcase name="canDependOnAValueOfTypeBoolean_case2" classname="org.chronos.common.test.configuration.ChronosConfigurationUtilTest" time="0.0"/>
+  <testcase name="canDependOnAValueOfTypeBoolean_case3" classname="org.chronos.common.test.configuration.ChronosConfigurationUtilTest" time="0.001"/>
+  <testcase name="configWithSuperfluousParametersWorks" classname="org.chronos.common.test.configuration.ChronosConfigurationUtilTest" time="0.009"/>
+  <system-out><![CDATA[[WARN ] 2017-08-28 20:00:03 [    Test worker] [c.c.c.ChronosConfigurationUtil]:  Configuration issue: the parameter 'org.chronos.common.test.unknown' is unknown, but in the namespace 'org.chronos.common.test' - please check the spelling.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.0.0" sequence="0" timestamp="1503943251934" analysisTimestamp="1503943251958" release="">
+  <Project projectName="">
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\base\AllChronoSphereBackendsTest$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\base\AllChronoSphereBackendsTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\base\ChronoSphereUnitTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\builder\ChronoSphereBuilderTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\configuration\ChronoSphereConfigurationTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\emf\EMFUtilsTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\emf\estore\base\EmfAPI.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\emf\estore\base\EStoreTest$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\emf\estore\base\EStoreTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\emf\estore\impl\BasicEStoreTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\evolution\BasicMetamodelEvolutionTest$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\evolution\BasicMetamodelEvolutionTest$PersonMetamodelIncubator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\evolution\BasicMetamodelEvolutionTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\indexing\ChronoSphereIndexManagerTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\performancetest\grabats\GrabatsTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\query\QueryAPITest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\transaction\ChronoSphereTransactionTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\test\_suite\ChronoSphereTestSuite.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\testmodels\instance\AbstractTestModel.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\testmodels\instance\JohnDoeFamilyModel.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\testmodels\instance\TestModel.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\testmodels\meta\GrabatsMetamodel.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\testmodels\meta\PersonMetamodel.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\testutils\ChronoSphereTestUtils.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\testutils\EMFTestUtils.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\testutils\factories\EMFEFactory.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\test\org\chronos\chronosphere\testutils\factories\EStoreEFactory.class</Jar>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\classes\main</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.chronosphere\build\resources\main</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\test</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.common\build\resources\test</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\resources\test</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\test</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\resources\test</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\19.0\6ce200f6b23222af3d8abb6b6459e6c44f4bb0e9\guava-19.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-lang3\3.4\5fe28b9518e58819180a43a850fbc0dd24b7c050\commons-lang3-3.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-collections4\4.1\a4cf4688fe1c7e3a63aa636cc96d013af537768e\commons-collections4-4.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-io\commons-io\2.4\b1b6ea3b7e4aa4f492509a4952029cd8e48019ad\commons-io-2.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-configuration\commons-configuration\1.10\2b36e4adfb66d966c5aef2d73deb6be716389dc9\commons-configuration-1.10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-api\1.7.12\8e20852d05222dc286bf1c71d78d0531e177c317\slf4j-api-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\jcl-over-slf4j\1.7.12\adef7a9e1263298255fdb5cb107ff171d07c82f3\jcl-over-slf4j-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\jul-to-slf4j\1.7.12\8811e2e9ab9055e557598dc9aedc64fd43e0ab20\jul-to-slf4j-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-classic\1.1.3\d90276fff414f06cb375f2057f6778cd63c6082f\logback-classic-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.common\build\libs\org.chronos.common-0.7.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\libs\org.chronos.chronodb-0.7.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\libs\org.chronos.chronograph-0.7.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.eclipse.emf\org.eclipse.emf.ecore\2.11.1-v20150805-0538\70743ad82e79a7c9304150f9a26f33554834f85f\org.eclipse.emf.ecore-2.11.1-v20150805-0538.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.eclipse.emf\org.eclipse.emf.common\2.11.0-v20150805-0538\c86adcd76d95413fce1fe2199c9202d2f8951e06\org.eclipse.emf.common-2.11.0-v20150805-0538.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.eclipse.emf\org.eclipse.emf.ecore.xmi\2.11.1-v20150805-0538\1af83557dfd265e23da645a77a0cb47bb2e5ee32\org.eclipse.emf.ecore.xmi-2.11.1-v20150805-0538.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\junit\junit\4.12\2973d150c0dc1fefe998f834810d68f278ea58ec\junit-4.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.common.testing\build\libs\org.chronos.common.testing-0.7.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.tinkerpop\gremlin-test\3.1.0-incubating\97eef4c21d41ff820d2b1d8dc1236b33e47e18f\gremlin-test-3.1.0-incubating.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-lang\commons-lang\2.6\ce1edb914c94ebc388f086c6827e8bdeec71ac2\commons-lang-2.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.1.1\5043bfebc3db072ed80fbd362e7caf00e885d8ae\commons-logging-1.1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-core\1.1.3\e3c02049f2dbbc764681b40094ecf0dcbc99b157\logback-core-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\kryo\3.0.3\1ebca99f633ef31484176a727093e78c7fa43e7\kryo-3.0.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.mapdb\mapdb\2.0-beta13\42ef2ab0f51f72ec1da2aa3c2d6b2d232b492347\mapdb-2.0-beta13.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-core\5.5.0\a74fd869bb5ad7fe6b4cd29df9543a34aea81164\lucene-core-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-analyzers-common\5.5.0\1e0e8243a4410be20c34683034fafa7bb52e55cc\lucene-analyzers-common-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queryparser\5.5.0\fddc49725b562fd48dff0cff004336ad2a090a4\lucene-queryparser-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queries\5.5.0\60ca161c1dd5f127907423b6f039b846fb713de0\lucene-queries-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.mchange\c3p0\0.9.5.1\69b2af361fb6a0feb65ccc20c29d949566f0a3ba\c3p0-0.9.5.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.h2database\h2\1.4.187\f6b109788d196430458309ea28ce9a77830b3ed8\h2-1.4.187.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.cojen\tupl\1.3.11\b28c5d4fec92f4619a38fa818e56172abb22a745\tupl-1.3.11.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.thoughtworks.xstream\xstream\1.4.9\c43f6e6bfa79b56e04a8898a923c3cf7144dd460\xstream-1.4.9.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.tinkerpop\gremlin-core\3.1.0-incubating\3b524b0866f1b545ecc14dfbfc740c3e75bba07a\gremlin-core-3.1.0-incubating.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.carrotsearch\junit-benchmarks\0.7.2\47678828916449646a8bbd46618f32c13b082f6\junit-benchmarks-0.7.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.mockito\mockito-all\1.9.5\79a8984096fc6591c1e3690e07d41be506356fa5\mockito-all-1.9.5.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-all\1.3\63a21ebc981131004ad02e0434e799fd7f3a8d5a\hamcrest-all-1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\reflectasm\1.10.1\515402cd542ab967a1b5028b4dee1e1800db205b\reflectasm-1.10.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\minlog\1.3.0\ff07b5f1b01d2f92bb00a337f9a94873712f0827\minlog-1.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.objenesis\objenesis\2.1\87c0ea803b69252868d09308b4618f766f135a96\objenesis-2.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-sandbox\5.5.0\b7da8e187acd6e4d7781ba41fac8b9082dd27409\lucene-sandbox-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.mchange\mchange-commons-java\0.2.10\1f1f90ddc403e60e0089756f04119948f6a49a04\mchange-commons-java-0.2.10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna-platform\4.4.0\f396b0ceb7ababb8b4a5ea25e6742ced81e3d86f\jna-platform-4.4.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\xmlpull\xmlpull\1.1.3.1\2b8e230d2ab644e4ecaa94db7cdedbc40c805dfa\xmlpull-1.1.3.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\xpp3\xpp3_min\1.1.4c\19d4e90b43059058f6e056f794f0ea4030d60b86\xpp3_min-1.1.4c.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.tinkerpop\gremlin-shaded\3.1.0-incubating\cd711f3f7751ecfc49f573596285db65107114bf\gremlin-shaded-3.1.0-incubating.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.yaml\snakeyaml\1.15\3b132bea69e8ee099f416044970997bde80f4ea6\snakeyaml-1.15.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.javatuples\javatuples\1.2\507312ac4b601204a72a83380badbca82683dd36\javatuples-1.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.carrotsearch\hppc\0.7.1\8b5057f74ea378c0150a1860874a3ebdcb713767\hppc-0.7.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.jcabi\jcabi-manifests\1.1\e4f4488c0e3905c6fab287aca2569928fe1712df\jcabi-manifests-1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-log4j12\1.7.12\485f77901840cf4e8bf852f2abb9b723eb8ec29\slf4j-log4j12-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.ow2.asm\asm\5.0.3\dcc2193db20e19e1feca8b1240dbbc4e190824fa\asm-5.0.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna\4.4.0\cb208278274bf12ebdb56c61bd7407e6f774d65a\jna-4.4.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.jcabi\jcabi-log\0.14\819a57348f2448f01d74f8a317dab61d6a90cac2\jcabi-log-0.14.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\log4j\log4j\1.2.17\5af35056b4d257e4b64b9e8069c0746e8b08629f\log4j-1.2.17.jar</AuxClasspathEntry>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\base\AllChronoSphereBackendsTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\base\ChronoSphereUnitTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\builder\ChronoSphereBuilderTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\configuration\ChronoSphereConfigurationTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\emf\EMFUtilsTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\emf\estore\base\EmfAPI.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\emf\estore\base\EStoreTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\emf\estore\impl\BasicEStoreTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\evolution\BasicMetamodelEvolutionTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\indexing\ChronoSphereIndexManagerTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\performancetest\grabats\GrabatsTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\query\QueryAPITest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\transaction\ChronoSphereTransactionTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\test\_suite\ChronoSphereTestSuite.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\testmodels\instance\AbstractTestModel.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\testmodels\instance\JohnDoeFamilyModel.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\testmodels\instance\TestModel.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\testmodels\meta\GrabatsMetamodel.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\testmodels\meta\PersonMetamodel.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\testutils\ChronoSphereTestUtils.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\testutils\EMFTestUtils.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\testutils\factories\EMFEFactory.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronosphere\src\test\java\org\chronos\chronosphere\testutils\factories\EStoreEFactory.java</SrcDir>
+  </Project>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Mon, 28 Aug 2017 20:00:51 +0200" total_classes="27" referenced_classes="302" total_bugs="0" total_size="2209" num_packages="16" java_version="1.8.0_74" vm_version="25.74-b02" cpu_seconds="19.53" clock_seconds="5.13" peak_mbytes="246.85" alloc_mbytes="7264.00" gc_seconds="0.16">
+    <PackageStats package="org.chronos.chronosphere.test._suite" total_bugs="0" total_types="1" total_size="3">
+      <ClassStats class="org.chronos.chronosphere.test._suite.ChronoSphereTestSuite" sourceFile="ChronoSphereTestSuite.java" interface="false" size="3" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.test.base" total_bugs="0" total_types="3" total_size="71">
+      <ClassStats class="org.chronos.chronosphere.test.base.AllChronoSphereBackendsTest" sourceFile="AllChronoSphereBackendsTest.java" interface="false" size="64" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.test.base.AllChronoSphereBackendsTest$1" sourceFile="AllChronoSphereBackendsTest.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.test.base.ChronoSphereUnitTest" sourceFile="ChronoSphereUnitTest.java" interface="false" size="3" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.test.builder" total_bugs="0" total_types="1" total_size="7">
+      <ClassStats class="org.chronos.chronosphere.test.builder.ChronoSphereBuilderTest" sourceFile="ChronoSphereBuilderTest.java" interface="false" size="7" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.test.configuration" total_bugs="0" total_types="1" total_size="17">
+      <ClassStats class="org.chronos.chronosphere.test.configuration.ChronoSphereConfigurationTest" sourceFile="ChronoSphereConfigurationTest.java" interface="false" size="17" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.test.emf" total_bugs="0" total_types="1" total_size="99">
+      <ClassStats class="org.chronos.chronosphere.test.emf.EMFUtilsTest" sourceFile="EMFUtilsTest.java" interface="false" size="99" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.test.emf.estore.base" total_bugs="0" total_types="3" total_size="107">
+      <ClassStats class="org.chronos.chronosphere.test.emf.estore.base.EStoreTest" sourceFile="EStoreTest.java" interface="false" size="88" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.test.emf.estore.base.EStoreTest$1" sourceFile="EStoreTest.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.test.emf.estore.base.EmfAPI" sourceFile="EmfAPI.java" interface="false" size="15" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.test.emf.estore.impl" total_bugs="0" total_types="1" total_size="896">
+      <ClassStats class="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" sourceFile="BasicEStoreTest.java" interface="false" size="896" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.test.evolution" total_bugs="0" total_types="3" total_size="119">
+      <ClassStats class="org.chronos.chronosphere.test.evolution.BasicMetamodelEvolutionTest" sourceFile="BasicMetamodelEvolutionTest.java" interface="false" size="70" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.test.evolution.BasicMetamodelEvolutionTest$1" sourceFile="BasicMetamodelEvolutionTest.java" interface="false" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.test.evolution.BasicMetamodelEvolutionTest$PersonMetamodelIncubator" sourceFile="BasicMetamodelEvolutionTest.java" interface="false" size="48" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.test.indexing" total_bugs="0" total_types="1" total_size="44">
+      <ClassStats class="org.chronos.chronosphere.test.indexing.ChronoSphereIndexManagerTest" sourceFile="ChronoSphereIndexManagerTest.java" interface="false" size="44" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.test.performancetest.grabats" total_bugs="0" total_types="1" total_size="79">
+      <ClassStats class="org.chronos.chronosphere.test.performancetest.grabats.GrabatsTest" sourceFile="GrabatsTest.java" interface="false" size="79" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.test.query" total_bugs="0" total_types="1" total_size="77">
+      <ClassStats class="org.chronos.chronosphere.test.query.QueryAPITest" sourceFile="QueryAPITest.java" interface="false" size="77" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.test.transaction" total_bugs="0" total_types="1" total_size="456">
+      <ClassStats class="org.chronos.chronosphere.test.transaction.ChronoSphereTransactionTest" sourceFile="ChronoSphereTransactionTest.java" interface="false" size="456" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.testmodels.instance" total_bugs="0" total_types="3" total_size="92">
+      <ClassStats class="org.chronos.chronosphere.testmodels.instance.AbstractTestModel" sourceFile="AbstractTestModel.java" interface="false" size="31" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.testmodels.instance.JohnDoeFamilyModel" sourceFile="JohnDoeFamilyModel.java" interface="false" size="57" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.testmodels.instance.TestModel" sourceFile="TestModel.java" interface="true" size="4" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.testmodels.meta" total_bugs="0" total_types="2" total_size="76">
+      <ClassStats class="org.chronos.chronosphere.testmodels.meta.GrabatsMetamodel" sourceFile="GrabatsMetamodel.java" interface="false" size="26" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.testmodels.meta.PersonMetamodel" sourceFile="PersonMetamodel.java" interface="false" size="50" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.testutils" total_bugs="0" total_types="2" total_size="58">
+      <ClassStats class="org.chronos.chronosphere.testutils.ChronoSphereTestUtils" sourceFile="ChronoSphereTestUtils.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.testutils.EMFTestUtils" sourceFile="EMFTestUtils.java" interface="false" size="45" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronosphere.testutils.factories" total_bugs="0" total_types="2" total_size="8">
+      <ClassStats class="org.chronos.chronosphere.testutils.factories.EMFEFactory" sourceFile="EMFEFactory.java" interface="false" size="3" bugs="0"/>
+      <ClassStats class="org.chronos.chronosphere.testutils.factories.EStoreEFactory" sourceFile="EStoreEFactory.java" interface="false" size="5" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="2686" invocations="1540" avgMicrosecondsPerInvocation="1744" maxMicrosecondsPerInvocation="12210" standardDeviationMircosecondsPerInvocation="1078"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="249" invocations="1528" avgMicrosecondsPerInvocation="163" maxMicrosecondsPerInvocation="11175" standardDeviationMircosecondsPerInvocation="512"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="140" invocations="302" avgMicrosecondsPerInvocation="465" maxMicrosecondsPerInvocation="8689" standardDeviationMircosecondsPerInvocation="1023"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="115" invocations="144" avgMicrosecondsPerInvocation="803" maxMicrosecondsPerInvocation="11969" standardDeviationMircosecondsPerInvocation="1411"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CheckRelaxingNullnessAnnotation" totalMilliseconds="113" invocations="27" avgMicrosecondsPerInvocation="4195" maxMicrosecondsPerInvocation="102939" standardDeviationMircosecondsPerInvocation="19385"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="109" invocations="144" avgMicrosecondsPerInvocation="762" maxMicrosecondsPerInvocation="7227" standardDeviationMircosecondsPerInvocation="1217"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="88" invocations="692" avgMicrosecondsPerInvocation="127" maxMicrosecondsPerInvocation="2427" standardDeviationMircosecondsPerInvocation="189"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="87" invocations="144" avgMicrosecondsPerInvocation="610" maxMicrosecondsPerInvocation="5820" standardDeviationMircosecondsPerInvocation="987"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

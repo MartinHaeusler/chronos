@@ -35,8 +35,12 @@ import org.apache.lucene.store.FSDirectory;
 import org.chronos.chronodb.api.exceptions.ChronoDBQuerySyntaxException;
 import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
 import org.chronos.chronodb.api.key.ChronoIdentifier;
-import org.chronos.chronodb.api.query.Condition;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
+import org.chronos.chronodb.api.query.NumberCondition;
+import org.chronos.chronodb.api.query.StringCondition;
+import org.chronos.chronodb.internal.api.query.searchspec.DoubleSearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.LongSearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.StringSearchSpecification;
 import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 
@@ -70,7 +74,7 @@ public class LuceneWrapper implements AutoCloseable {
 		this.ioDirectory = directory;
 		this.ioDirectory.mkdirs();
 		this.ioDirectory.mkdir();
-		if ((this.ioDirectory.exists() == false) || (this.ioDirectory.isDirectory() == false)) {
+		if (this.ioDirectory.exists() == false || this.ioDirectory.isDirectory() == false) {
 			throw new IllegalStateException(
 					"Failed to initialize indexing directory '" + directory.getAbsolutePath() + "'!");
 		}
@@ -160,12 +164,13 @@ public class LuceneWrapper implements AutoCloseable {
 	}
 
 	public List<Document> getMatchingBranchLocalDocuments(final long timestamp, final String branchName,
-			final SearchSpecification searchSpec) {
+			final String keyspace, final SearchSpecification<?> searchSpec) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
 		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
 		Query indexNameQuery = termQuery(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEX_NAME, searchSpec.getProperty());
 		Query branchQuery = termQuery(ChronoDBLuceneUtil.DOCUMENT_FIELD_BRANCH, branchName);
+		Query keyspaceQuery = termQuery(ChronoDBLuceneUtil.DOCUMENT_FIELD_KEYSPACE, keyspace);
 		// 0 <= validFrom <= timestamp
 		Query validFromQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_FROM, 0L,
 				timestamp, true, true);
@@ -173,20 +178,20 @@ public class LuceneWrapper implements AutoCloseable {
 		Query validToQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_TO, timestamp,
 				Long.MAX_VALUE, false, true);
 
-		SearchSpecification searchSpec2 = searchSpec;
+		SearchSpecification<?> searchSpec2 = searchSpec;
 		boolean isNegated = false;
 		if (searchSpec.getCondition().isNegated()) {
 			// remember that we need to negate the result and query for the non-negated spec
 			isNegated = true;
 			// create the non-negated spec
-			searchSpec2 = SearchSpecification.create(searchSpec.getProperty(), searchSpec.getCondition().getNegated(),
-					searchSpec.getMatchMode(), searchSpec.getSearchText());
+			searchSpec2 = searchSpec.negate();
 		}
 		Query searchSpecQuery = this.createSearchSpecQuery(searchSpec2);
 		// build the composite query
 		Builder queryBuilder = new Builder();
 		queryBuilder.add(indexNameQuery, Occur.FILTER);
 		queryBuilder.add(branchQuery, Occur.FILTER);
+		queryBuilder.add(keyspaceQuery, Occur.FILTER);
 		queryBuilder.add(validFromQuery, Occur.FILTER);
 		queryBuilder.add(validToQuery, Occur.FILTER);
 		if (isNegated) {
@@ -194,7 +199,8 @@ public class LuceneWrapper implements AutoCloseable {
 		} else {
 			queryBuilder.add(searchSpecQuery, Occur.FILTER);
 		}
-		return this.search(queryBuilder.build());
+		Query query = queryBuilder.build();
+		return this.search(query);
 	}
 
 	public List<Document> getMatchingBranchLocalDocuments(final ChronoIdentifier chronoIdentifier) {
@@ -219,9 +225,10 @@ public class LuceneWrapper implements AutoCloseable {
 	}
 
 	public Collection<Document> getTerminatedBranchLocalDocuments(final long timestamp, final String branchName,
-			final SearchSpecification searchSpec) {
+			final String keyspace, final SearchSpecification<?> searchSpec) {
 		Query indexNameQuery = termQuery(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEX_NAME, searchSpec.getProperty());
 		Query branchQuery = termQuery(ChronoDBLuceneUtil.DOCUMENT_FIELD_BRANCH, branchName);
+		Query keyspaceQuery = termQuery(ChronoDBLuceneUtil.DOCUMENT_FIELD_KEYSPACE, keyspace);
 		// 0 <= validTo <= timestamp
 		Query validToQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_TO, 0L, timestamp,
 				true, true);
@@ -230,6 +237,7 @@ public class LuceneWrapper implements AutoCloseable {
 		Builder queryBuilder = new Builder();
 		queryBuilder.add(indexNameQuery, Occur.FILTER);
 		queryBuilder.add(branchQuery, Occur.FILTER);
+		queryBuilder.add(keyspaceQuery, Occur.FILTER);
 		queryBuilder.add(validToQuery, Occur.FILTER);
 		queryBuilder.add(searchSpecQuery, Occur.FILTER);
 		return this.search(queryBuilder.build());
@@ -266,6 +274,12 @@ public class LuceneWrapper implements AutoCloseable {
 		} catch (IOException e) {
 			throw new ChronoDBStorageBackendException("Failed to perform index modification!", e);
 		}
+	}
+
+	public void deleteAllDocuments() {
+		this.performIndexWrite(indexWriter -> {
+			indexWriter.deleteAll();
+		});
 	}
 
 	public void deleteDocumentsByIndexName(final String indexName) {
@@ -342,40 +356,80 @@ public class LuceneWrapper implements AutoCloseable {
 		return new TermQuery(new Term(field, text));
 	}
 
-	private Query createSearchSpecQuery(final SearchSpecification searchSpec) {
+	private Query createSearchSpecQuery(final SearchSpecification<?> searchSpec) {
 		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
-		Condition condition = searchSpec.getCondition();
-		TextMatchMode matchMode = searchSpec.getMatchMode();
-		String comparisonValue = searchSpec.getSearchText();
-		switch (condition) {
-		case EQUALS:
-			return this.createEqualsQuery(comparisonValue, matchMode);
-		case NOT_EQUALS:
-			return this.createNotEqualsQuery(comparisonValue, matchMode);
-		case CONTAINS:
-			return this.createContainsQuery(comparisonValue, matchMode);
-		case NOT_CONTAINS:
-			return this.createNotContainsQuery(comparisonValue, matchMode);
-		case STARTS_WITH:
-			return this.createStartsWithQuery(comparisonValue, matchMode);
-		case NOT_STARTS_WITH:
-			return this.createNotStartsWithQuery(comparisonValue, matchMode);
-		case ENDS_WITH:
-			return this.createEndsWithQuery(comparisonValue, matchMode);
-		case NOT_ENDS_WITH:
-			return this.createNotEndsWithQuery(comparisonValue, matchMode);
-		case MATCHES_REGEX:
-			// in this case, the comparison value contains the regex to match
-			return this.createRegexQuery(comparisonValue, matchMode);
-		case NOT_MATCHES_REGEX:
-			// in this case, the comparison value contains the regex to match
-			return this.createNegatedRegexQuery(comparisonValue, matchMode);
-		default:
-			throw new UnknownEnumLiteralException(condition);
+		if (searchSpec instanceof StringSearchSpecification) {
+			return this.createStringSearchSpecQuery((StringSearchSpecification) searchSpec);
+		} else if (searchSpec instanceof LongSearchSpecification) {
+			return this.createLongSearchSpecQuery((LongSearchSpecification) searchSpec);
+		} else if (searchSpec instanceof DoubleSearchSpecification) {
+			return this.createDoubleSearchSpecQuery((DoubleSearchSpecification) searchSpec);
+		} else {
+			throw new IllegalStateException("Unknown search specification class: '" + searchSpec.getClass().getName() + "'!");
 		}
 	}
 
-	private Query createEqualsQuery(final String comparisonValue, final TextMatchMode matchMode) {
+	private Query createStringSearchSpecQuery(final StringSearchSpecification searchSpec) {
+		StringCondition condition = searchSpec.getCondition();
+		TextMatchMode matchMode = searchSpec.getMatchMode();
+		String comparisonValue = searchSpec.getSearchValue();
+		// note: negated conditions (e.g. NOT_EQUALS) are handled on a higher level.
+		if (condition.equals(StringCondition.EQUALS)) {
+			return this.createStringEqualsQuery(comparisonValue, matchMode);
+		} else if (condition.equals(StringCondition.CONTAINS)) {
+			return this.createStringContainsQuery(comparisonValue, matchMode);
+		} else if (condition.equals(StringCondition.STARTS_WITH)) {
+			return this.createStringStartsWithQuery(comparisonValue, matchMode);
+		} else if (condition.equals(StringCondition.ENDS_WITH)) {
+			return this.createStringEndsWithQuery(comparisonValue, matchMode);
+		} else if (condition.equals(StringCondition.MATCHES_REGEX)) {
+			// in this case, the comparison value contains the regex to match
+			return this.createStringRegexQuery(comparisonValue, matchMode);
+		} else {
+			throw new IllegalStateException("Unknown StringCondition: '" + condition.getClass().getName() + "'!");
+		}
+	}
+
+	private Query createLongSearchSpecQuery(final LongSearchSpecification searchSpec) {
+		NumberCondition condition = searchSpec.getCondition();
+		long comparisonValue = searchSpec.getSearchValue();
+		// note: negated conditions (e.g. NOT_EQUALS) are handled on a higher level.
+		if (condition.equals(NumberCondition.EQUALS)) {
+			return this.createLongEqualsQuery(comparisonValue);
+		} else if (condition.equals(NumberCondition.GREATER_THAN)) {
+			return this.createLongGreaterThanQuery(comparisonValue);
+		} else if (condition.equals(NumberCondition.GREATER_EQUAL)) {
+			return this.createLongGreaterEqualQuery(comparisonValue);
+		} else if (condition.equals(NumberCondition.LESS_THAN)) {
+			return this.createLongLessThanQuery(comparisonValue);
+		} else if (condition.equals(NumberCondition.LESS_EQUAL)) {
+			return this.createLongLessEqualQuery(comparisonValue);
+		} else {
+			throw new IllegalStateException("Unknown NumberCondition: '" + condition.getClass().getName() + "'!");
+		}
+	}
+
+	private Query createDoubleSearchSpecQuery(final DoubleSearchSpecification searchSpec) {
+		NumberCondition condition = searchSpec.getCondition();
+		double comparisonValue = searchSpec.getSearchValue();
+		double equalityTolerance = searchSpec.getEqualityTolerance();
+		// note: negated conditions (e.g. NOT_EQUALS) are handled on a higher level.
+		if (condition.equals(NumberCondition.EQUALS)) {
+			return this.createDoubleEqualsQuery(comparisonValue, equalityTolerance);
+		} else if (condition.equals(NumberCondition.GREATER_THAN)) {
+			return this.createDoubleGreaterThanQuery(comparisonValue);
+		} else if (condition.equals(NumberCondition.GREATER_EQUAL)) {
+			return this.createDoubleGreaterEqualQuery(comparisonValue);
+		} else if (condition.equals(NumberCondition.LESS_THAN)) {
+			return this.createDoubleLessThanQuery(comparisonValue);
+		} else if (condition.equals(NumberCondition.LESS_EQUAL)) {
+			return this.createDoubleLessEqualQuery(comparisonValue);
+		} else {
+			throw new IllegalStateException("Unknown NumberCondition: '" + condition.getClass().getName() + "'!");
+		}
+	}
+
+	private Query createStringEqualsQuery(final String comparisonValue, final TextMatchMode matchMode) {
 		String field = null;
 		switch (matchMode) {
 		case STRICT:
@@ -390,43 +444,22 @@ public class LuceneWrapper implements AutoCloseable {
 		return termQuery(field, this.preprocessString(comparisonValue, matchMode));
 	}
 
-	private Query createNotEqualsQuery(final String comparisonValue, final TextMatchMode matchMode) {
-		Builder queryBuilder = new Builder();
-		queryBuilder.add(this.createEqualsQuery(comparisonValue, matchMode), Occur.MUST_NOT);
-		return queryBuilder.build();
-	}
-
-	private Query createContainsQuery(final String comparisonValue, final TextMatchMode matchMode) {
+	private Query createStringContainsQuery(final String comparisonValue, final TextMatchMode matchMode) {
 		String regex = ".*" + Pattern.quote(this.preprocessString(comparisonValue, matchMode)) + ".*";
-		return this.createRegexQuery(regex, matchMode);
+		return this.createStringRegexQuery(regex, matchMode);
 	}
 
-	private Query createNotContainsQuery(final String comparisonValue, final TextMatchMode matchMode) {
-		String regex = ".*" + Pattern.quote(this.preprocessString(comparisonValue, matchMode)) + ".*";
-		return this.createNegatedRegexQuery(regex, matchMode);
-	}
-
-	private Query createStartsWithQuery(final String comparisonValue, final TextMatchMode matchMode) {
+	private Query createStringStartsWithQuery(final String comparisonValue, final TextMatchMode matchMode) {
 		String regex = Pattern.quote(this.preprocessString(comparisonValue, matchMode)) + ".*";
-		return this.createRegexQuery(regex, matchMode);
+		return this.createStringRegexQuery(regex, matchMode);
 	}
 
-	private Query createNotStartsWithQuery(final String comparisonValue, final TextMatchMode matchMode) {
-		String regex = Pattern.quote(this.preprocessString(comparisonValue, matchMode)) + ".*";
-		return this.createNegatedRegexQuery(regex, matchMode);
-	}
-
-	private Query createEndsWithQuery(final String comparisonValue, final TextMatchMode matchMode) {
+	private Query createStringEndsWithQuery(final String comparisonValue, final TextMatchMode matchMode) {
 		String regex = ".*" + Pattern.quote(this.preprocessString(comparisonValue, matchMode));
-		return this.createRegexQuery(regex, matchMode);
+		return this.createStringRegexQuery(regex, matchMode);
 	}
 
-	private Query createNotEndsWithQuery(final String comparisonValue, final TextMatchMode matchMode) {
-		String regex = ".*" + Pattern.quote(this.preprocessString(comparisonValue, matchMode));
-		return this.createNegatedRegexQuery(regex, matchMode);
-	}
-
-	private Query createRegexQuery(final String regex, final TextMatchMode matchMode) {
+	private Query createStringRegexQuery(final String regex, final TextMatchMode matchMode) {
 		String field = null;
 		String expression = regex;
 		switch (matchMode) {
@@ -445,23 +478,44 @@ public class LuceneWrapper implements AutoCloseable {
 		return new RegexQuery(new Term(field, expression));
 	}
 
-	private Query createNegatedRegexQuery(final String regex, final TextMatchMode matchMode) {
-		String field = null;
-		String expression = regex;
-		switch (matchMode) {
-		case STRICT:
-			field = ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEXED_VALUE;
-			break;
-		case CASE_INSENSITIVE:
-			field = ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEXED_VALUE_CI;
-			if (expression.startsWith(REGEX_CI_CONSTRUCT) == false) {
-				expression = REGEX_CI_CONSTRUCT + expression;
-			}
-			break;
-		default:
-			throw new UnknownEnumLiteralException(matchMode);
-		}
-		return new RegexQuery(new Term(field, expression));
+	private Query createLongEqualsQuery(final long comparisonValue) {
+		return NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEXED_VALUE_LONG, comparisonValue, comparisonValue, true, true);
+	}
+
+	private Query createLongGreaterThanQuery(final long comparisonValue) {
+		return NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEXED_VALUE_LONG, comparisonValue, Long.MAX_VALUE, false, true);
+	}
+
+	private Query createLongGreaterEqualQuery(final long comparisonValue) {
+		return NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEXED_VALUE_LONG, comparisonValue, Long.MAX_VALUE, true, true);
+	}
+
+	private Query createLongLessThanQuery(final long comparisonValue) {
+		return NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEXED_VALUE_LONG, Long.MIN_VALUE, comparisonValue, true, false);
+	}
+
+	private Query createLongLessEqualQuery(final long comparisonValue) {
+		return NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEXED_VALUE_LONG, Long.MIN_VALUE, comparisonValue, true, true);
+	}
+
+	private Query createDoubleEqualsQuery(final double comparisonValue, final double equalityTolerance) {
+		return NumericRangeQuery.newDoubleRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEXED_VALUE_DOUBLE, comparisonValue - equalityTolerance, comparisonValue + equalityTolerance, true, true);
+	}
+
+	private Query createDoubleGreaterThanQuery(final double comparisonValue) {
+		return NumericRangeQuery.newDoubleRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEXED_VALUE_DOUBLE, comparisonValue, Double.MAX_VALUE, false, true);
+	}
+
+	private Query createDoubleGreaterEqualQuery(final double comparisonValue) {
+		return NumericRangeQuery.newDoubleRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEXED_VALUE_DOUBLE, comparisonValue, Double.MAX_VALUE, true, true);
+	}
+
+	private Query createDoubleLessThanQuery(final double comparisonValue) {
+		return NumericRangeQuery.newDoubleRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEXED_VALUE_DOUBLE, Double.MIN_VALUE, comparisonValue, true, false);
+	}
+
+	private Query createDoubleLessEqualQuery(final double comparisonValue) {
+		return NumericRangeQuery.newDoubleRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_INDEXED_VALUE_DOUBLE, Double.MIN_VALUE, comparisonValue, true, true);
 	}
 
 	// =================================================================================================================

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.cache.mosaic.MosaicRowTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:50:31" hostname="Aurora" time="0.023">
+  <properties/>
+  <testcase name="canCreateMosaicRow" classname="org.chronos.chronodb.test.cache.mosaic.MosaicRowTest" time="0.0"/>
+  <testcase name="leastRecentlyUsedEvictionWorks" classname="org.chronos.chronodb.test.cache.mosaic.MosaicRowTest" time="0.019"/>
+  <testcase name="writeThroughWorks" classname="org.chronos.chronodb.test.cache.mosaic.MosaicRowTest" time="0.004"/>
+  <testcase name="putAndGetAreConsistent" classname="org.chronos.chronodb.test.cache.mosaic.MosaicRowTest" time="0.0"/>
+  <testcase name="periodsAreArrangedInDescendingOrder" classname="org.chronos.chronodb.test.cache.mosaic.MosaicRowTest" time="0.0"/>
+  <system-out><![CDATA[19:50:31.575 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MosaicRowTest
+    Test method: canCreateMosaicRow
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MosaicRowTest
+    Test method: canCreateMosaicRow
+    End time:    2017/08/28 19:50:31 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MosaicRowTest
+    Test method: leastRecentlyUsedEvictionWorks
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MosaicRowTest
+    Test method: leastRecentlyUsedEvictionWorks
+    End time:    2017/08/28 19:50:31 (Duration: 19ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MosaicRowTest
+    Test method: writeThroughWorks
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+Before 'get(350)': [GetResult[key=QK['default->Test'], period=Period[300;MAX), value=Foo, isHit=true]->GetResult[key=QK['default->Test'], period=Period[200;300), value=World, isHit=true]->GetResult[key=QK['default->Test'], period=Period[200;MAX), value=World, isHit=true]->GetResult[key=QK['default->Test'], period=Period[100;200), value=Hello, isHit=true]]
+After 'get(350)' : [GetResult[key=QK['default->Test'], period=Period[300;MAX), value=Foo, isHit=true]->GetResult[key=QK['default->Test'], period=Period[200;300), value=World, isHit=true]->GetResult[key=QK['default->Test'], period=Period[200;MAX), value=World, isHit=true]->GetResult[key=QK['default->Test'], period=Period[100;200), value=Hello, isHit=true]]
+After 'get(150)':  [GetResult[key=QK['default->Test'], period=Period[100;200), value=Hello, isHit=true]->GetResult[key=QK['default->Test'], period=Period[300;MAX), value=Foo, isHit=true]->GetResult[key=QK['default->Test'], period=Period[200;300), value=World, isHit=true]->GetResult[key=QK['default->Test'], period=Period[200;MAX), value=World, isHit=true]]
+After 'get(250)':  [GetResult[key=QK['default->Test'], period=Period[200;300), value=World, isHit=true]->GetResult[key=QK['default->Test'], period=Period[100;200), value=Hello, isHit=true]->GetResult[key=QK['default->Test'], period=Period[300;MAX), value=Foo, isHit=true]->GetResult[key=QK['default->Test'], period=Period[200;MAX), value=World, isHit=true]]
+After reduce:      [GetResult[key=QK['default->Test'], period=Period[200;300), value=World, isHit=true]->GetResult[key=QK['default->Test'], period=Period[100;200), value=Hello, isHit=true]]
+Elements in row:   [GetResult[key=QK['default->Test'], period=Period[200;300), value=World, isHit=true], GetResult[key=QK['default->Test'], period=Period[100;200), value=Hello, isHit=true]]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MosaicRowTest
+    Test method: writeThroughWorks
+    End time:    2017/08/28 19:50:31 (Duration: 4ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MosaicRowTest
+    Test method: putAndGetAreConsistent
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MosaicRowTest
+    Test method: putAndGetAreConsistent
+    End time:    2017/08/28 19:50:31 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MosaicRowTest
+    Test method: periodsAreArrangedInDescendingOrder
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MosaicRowTest
+    Test method: periodsAreArrangedInDescendingOrder
+    End time:    2017/08/28 19:50:31 (Duration: 0ms)
+================================================================================
+
+
+
+19:50:31.598 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:50:31.598 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.serialization.KryoManagerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:59:41" hostname="Aurora" time="0.171">
+  <properties/>
+  <testcase name="canSerializeAndDeserializeMultipleObjectsWithFiles" classname="org.chronos.chronodb.test.serialization.KryoManagerTest" time="0.167"/>
+  <testcase name="canDuplicate" classname="org.chronos.chronodb.test.serialization.KryoManagerTest" time="0.001"/>
+  <testcase name="canSerializeAndDeserializeWithFiles" classname="org.chronos.chronodb.test.serialization.KryoManagerTest" time="0.001"/>
+  <testcase name="canSerializeAndDeserialize" classname="org.chronos.chronodb.test.serialization.KryoManagerTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

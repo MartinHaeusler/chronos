@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 
 import org.apache.tinkerpop.gremlin.structure.Element;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
 import org.chronos.chronograph.api.builder.index.IndexBuilderStarter;
 import org.chronos.chronograph.api.index.ChronoGraphIndex;
 import org.chronos.chronograph.api.index.ChronoGraphIndexManager;
@@ -35,23 +35,23 @@ public class ThreadedChronoGraphIndexManager implements ChronoGraphIndexManager,
 	}
 
 	@Override
-	public Iterator<String> findVertexIdsByIndexedProperties(final Set<SearchSpecification> searchSpecifications) {
+	public Iterator<String> findVertexIdsByIndexedProperties(final Set<SearchSpecification<?>> searchSpecifications) {
 		return this.wrappedManager.executeOnGraph(this.graph, () -> {
 			return this.wrappedManager.findVertexIdsByIndexedProperties(searchSpecifications);
 		});
 	}
 
 	@Override
-	public Iterator<String> findEdgeIdsByIndexedProperties(final Set<SearchSpecification> searchSpecifications) {
+	public Iterator<String> findEdgeIdsByIndexedProperties(final Set<SearchSpecification<?>> searchSpecifications) {
 		return this.wrappedManager.executeOnGraph(this.graph, () -> {
 			return this.wrappedManager.findEdgeIdsByIndexedProperties(searchSpecifications);
 		});
 	}
 
 	@Override
-	public IndexBuilderStarter createIndex() {
+	public IndexBuilderStarter create() {
 		return this.wrappedManager.executeOnGraph(this.graph, () -> {
-			return this.wrappedManager.createIndex();
+			return this.wrappedManager.create();
 		});
 	}
 
@@ -72,7 +72,7 @@ public class ThreadedChronoGraphIndexManager implements ChronoGraphIndexManager,
 	@Override
 	public void reindex(final ChronoGraphIndex index) {
 		this.wrappedManager.executeOnGraph(this.graph, () -> {
-			this.wrappedManager.reindex(index);
+			this.wrappedManager.reindexAll();
 		});
 	}
 

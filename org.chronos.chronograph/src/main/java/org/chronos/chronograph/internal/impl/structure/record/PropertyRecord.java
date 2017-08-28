@@ -2,8 +2,10 @@ package org.chronos.chronograph.internal.impl.structure.record;
 
 import static com.google.common.base.Preconditions.*;
 
+import org.chronos.common.annotation.PersistentClass;
 import org.chronos.common.serialization.KryoManager;
 
+@PersistentClass("kryo")
 public class PropertyRecord implements ElementRecord {
 
 	private String key;

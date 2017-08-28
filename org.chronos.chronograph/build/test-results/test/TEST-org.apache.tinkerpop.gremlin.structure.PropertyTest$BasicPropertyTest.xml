@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.PropertyTest$BasicPropertyTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:59:01" hostname="Aurora" time="0.0">
+  <properties/>
+  <testcase name="shouldReturnEmptyPropertyIfKeyNonExistent" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$BasicPropertyTest" time="0.0"/>
+  <testcase name="shouldAllowRemovalFromVertexWhenAlreadyRemoved" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$BasicPropertyTest" time="0.0"/>
+  <testcase name="shouldHaveStandardStringRepresentation" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$BasicPropertyTest" time="0.0"/>
+  <testcase name="shouldAllowRemovalFromEdgeWhenAlreadyRemoved" classname="org.apache.tinkerpop.gremlin.structure.PropertyTest$BasicPropertyTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

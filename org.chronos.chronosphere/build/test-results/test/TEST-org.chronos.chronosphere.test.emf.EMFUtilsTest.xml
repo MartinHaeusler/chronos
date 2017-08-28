@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronosphere.test.emf.EMFUtilsTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:59:17" hostname="Aurora" time="0.402">
+  <properties/>
+  <testcase name="getFeatureByQualifiedName" classname="org.chronos.chronosphere.test.emf.EMFUtilsTest" time="0.301"/>
+  <testcase name="getEPackageBySimpleName" classname="org.chronos.chronosphere.test.emf.EMFUtilsTest" time="0.016"/>
+  <testcase name="getEClassBySimpleName" classname="org.chronos.chronosphere.test.emf.EMFUtilsTest" time="0.0"/>
+  <testcase name="canConvertBetweenEPackageAndXMI" classname="org.chronos.chronosphere.test.emf.EMFUtilsTest" time="0.051"/>
+  <testcase name="getEAttributeByQualifiedName" classname="org.chronos.chronosphere.test.emf.EMFUtilsTest" time="0.002"/>
+  <testcase name="getEPackageByQualifiedName" classname="org.chronos.chronosphere.test.emf.EMFUtilsTest" time="0.016"/>
+  <testcase name="getEClassByQualifiedName" classname="org.chronos.chronosphere.test.emf.EMFUtilsTest" time="0.0"/>
+  <testcase name="getEReferenceByQualifiedName" classname="org.chronos.chronosphere.test.emf.EMFUtilsTest" time="0.016"/>
+  <system-out><![CDATA[[INFO ] 2017-08-28 19:59:17 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5875214794569470503
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getFeatureByQualifiedName
+    Start time:  2017/08/28 19:59:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getFeatureByQualifiedName
+    End time:    2017/08/28 19:59:18 (Duration: 301ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getEPackageBySimpleName
+    Start time:  2017/08/28 19:59:18
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getEPackageBySimpleName
+    End time:    2017/08/28 19:59:18 (Duration: 16ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getEClassBySimpleName
+    Start time:  2017/08/28 19:59:18
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getEClassBySimpleName
+    End time:    2017/08/28 19:59:18 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: canConvertBetweenEPackageAndXMI
+    Start time:  2017/08/28 19:59:18
+================================================================================
+
+
+
+<?xml version="1.0" encoding="ASCII"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="MyEPackage">
+  <eClassifiers xsi:type="ecore:EClass" name="MyEClass">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="MyAttribute">
+      <eType xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="self" upperBound="-1" eType="//MyEClass"/>
+  </eClassifiers>
+</ecore:EPackage>
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: canConvertBetweenEPackageAndXMI
+    End time:    2017/08/28 19:59:18 (Duration: 50ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getEAttributeByQualifiedName
+    Start time:  2017/08/28 19:59:18
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getEAttributeByQualifiedName
+    End time:    2017/08/28 19:59:18 (Duration: 2ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getEPackageByQualifiedName
+    Start time:  2017/08/28 19:59:18
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getEPackageByQualifiedName
+    End time:    2017/08/28 19:59:18 (Duration: 16ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getEClassByQualifiedName
+    Start time:  2017/08/28 19:59:18
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getEClassByQualifiedName
+    End time:    2017/08/28 19:59:18 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getEReferenceByQualifiedName
+    Start time:  2017/08/28 19:59:18
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  EMFUtilsTest
+    Test method: getEReferenceByQualifiedName
+    End time:    2017/08/28 19:59:18 (Duration: 0ms)
+================================================================================
+
+
+
+[INFO ] 2017-08-28 19:59:18 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5875214794569470503
+[INFO ] 2017-08-28 19:59:18 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

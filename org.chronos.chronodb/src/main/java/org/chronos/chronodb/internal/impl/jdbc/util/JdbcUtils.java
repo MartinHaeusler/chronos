@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.regex.Matcher;
 
 import org.chronos.chronodb.internal.impl.jdbc.table.TableColumn;
 
@@ -185,14 +186,12 @@ public class JdbcUtils {
 	 *
 	 * <p>
 	 * <b>WARNING:</b><br>
-	 * This method is intended primarily for <b>debugging purposes</b> and does not perform any kind of sanity checking.
-	 * It is <b>strongly discouraged</b> to execute the result of this operation on an SQL server!
+	 * This method is intended primarily for <b>debugging purposes</b> and does not perform any kind of sanity checking. It is <b>strongly discouraged</b> to execute the result of this operation on an SQL server!
 	 *
 	 * @param preparedStatement
 	 *            The prepared statement to resolve into a full statement. Must not be <code>null</code>.
 	 * @param args
-	 *            The arguments to use as replacement for the placeholders in the prepared statement. The number of
-	 *            arguments must be equal to the number of placeholders in the prepared statement.
+	 *            The arguments to use as replacement for the placeholders in the prepared statement. The number of arguments must be equal to the number of placeholders in the prepared statement.
 	 * @return The resolved SQL statement as a string. Never <code>null</code>.
 	 */
 	public static String resolvePreparedStatement(final String preparedStatement, final Object... args) {
@@ -200,14 +199,14 @@ public class JdbcUtils {
 		String stmt = preparedStatement;
 		for (Object argument : args) {
 			if (argument instanceof String) {
-				stmt = stmt.replaceFirst("\\?", "'" + argument + "'");
+				stmt = stmt.replaceFirst("\\?", "'" + Matcher.quoteReplacement((String) argument) + "'");
 			} else if (argument instanceof byte[]) {
 				byte[] bytes = (byte[]) argument;
 				stmt = stmt.replaceFirst("\\?", "BLOB{" + bytes.length + "}");
 			} else if (argument == null) {
 				stmt = stmt.replaceFirst("\\?", "NULL");
 			} else {
-				stmt = stmt.replaceFirst("\\?", String.valueOf(argument));
+				stmt = stmt.replaceFirst("\\?", Matcher.quoteReplacement(String.valueOf(argument)));
 			}
 		}
 		return stmt;

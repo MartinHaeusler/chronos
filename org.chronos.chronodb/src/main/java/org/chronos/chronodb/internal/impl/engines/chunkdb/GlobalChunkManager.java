@@ -3,6 +3,7 @@ package org.chronos.chronodb.internal.impl.engines.chunkdb;
 import static com.google.common.base.Preconditions.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -12,12 +13,14 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-import org.chronos.chronodb.api.ChronoDBConstants;
+import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
 import org.chronos.chronodb.internal.impl.engines.tupl.DefaultTuplTransaction;
 import org.chronos.chronodb.internal.impl.engines.tupl.TuplUtils;
 import org.chronos.chronodb.internal.impl.tupl.TuplTransaction;
 import org.chronos.chronodb.internal.impl.tupl.WrappedTuplTransaction;
+import org.chronos.common.exceptions.ChronosIOException;
 import org.cojen.tupl.Database;
 import org.cojen.tupl.Transaction;
 import org.mapdb.DB;
@@ -43,7 +46,8 @@ public class GlobalChunkManager {
 
 	private final File branchesDir;
 	private final ChronoDBConfiguration config;
-	private final Map<String, BranchChunkManager> branchNameToChunkManager;
+	/** DO NOT ACCES this field directly (lazy initialization)! Use {@link #getBranchNameToChunkManager()} instead. */
+	private Map<String, BranchChunkManager> branchNameToChunkManager;
 	private final ReadWriteLock fileSystemLock = new ReentrantReadWriteLock(true);
 
 	private final BiMap<File, Database> fileToOpenDB = HashBiMap.create();
@@ -59,29 +63,6 @@ public class GlobalChunkManager {
 		checkNotNull(config, "Precondition violation - argument 'config' must not be NULL!");
 		this.branchesDir = branchesDir;
 		this.config = config;
-		// initialize all branch chunk managers
-		this.branchNameToChunkManager = this.scanDirectoryForBranches();
-		this.ensureMasterBranchDirectoryExists();
-	}
-
-	// =================================================================================================================
-	// INITIALIZATION HELPERS
-	// =================================================================================================================
-
-	private Map<String, BranchChunkManager> scanDirectoryForBranches() {
-		Map<String, BranchChunkManager> branchNameToChunkManager = Maps.newHashMap();
-		File[] branchDirs = this.branchesDir.listFiles(file -> file.isDirectory());
-		if ((branchDirs != null) && (branchDirs.length > 0)) {
-			for (File branchDir : branchDirs) {
-				BranchChunkManager branchChunkManager = new BranchChunkManager(branchDir);
-				branchNameToChunkManager.put(branchDir.getName(), branchChunkManager);
-			}
-		}
-		return branchNameToChunkManager;
-	}
-
-	private void ensureMasterBranchDirectoryExists() {
-		this.getOrCreateChunkManagerForBranch(ChronoDBConstants.MASTER_BRANCH_IDENTIFIER);
 	}
 
 	// =================================================================================================================
@@ -90,6 +71,7 @@ public class GlobalChunkManager {
 
 	public boolean hasChunkManagerForBranch(final String branchName) {
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		this.ensureInitialized();
 		this.fileSystemLock.readLock().lock();
 		try {
 			return this.getChunkManagerForBranch(branchName) != null;
@@ -100,31 +82,46 @@ public class GlobalChunkManager {
 
 	public BranchChunkManager getChunkManagerForBranch(final String branchName) {
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		this.ensureInitialized();
 		this.fileSystemLock.readLock().lock();
 		try {
-			return this.branchNameToChunkManager.get(branchName);
+			return this.getBranchNameToChunkManager().get(branchName);
 		} finally {
 			this.fileSystemLock.readLock().unlock();
 		}
 	}
 
-	public BranchChunkManager getOrCreateChunkManagerForBranch(final String branchName) {
-		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+	public BranchChunkManager getOrCreateChunkManagerForBranch(final Branch branch) {
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		this.ensureInitialized();
+		return this.getOrCreateChunkManagerForBranch(branch.getMetadata());
+	}
+
+	public BranchChunkManager getOrCreateChunkManagerForBranch(final IBranchMetadata branchMetadata) {
+		checkNotNull(branchMetadata, "Precondition violation - argument 'branchMetadata' must not be NULL!");
+		this.ensureInitialized();
 		this.fileSystemLock.writeLock().lock();
 		try {
-			BranchChunkManager existingManager = this.getChunkManagerForBranch(branchName);
+			BranchChunkManager existingManager = this.getChunkManagerForBranch(branchMetadata.getName());
 			if (existingManager != null) {
 				// manager for the branch already exists
 				return existingManager;
 			}
 			// manager for branch does not exist; create it
-			File masterBranchDir = new File(this.branchesDir, branchName);
+			File masterBranchDir = new File(this.branchesDir, branchMetadata.getDirectoryName());
 			if (masterBranchDir.mkdir() == false) {
 				throw new IllegalStateException(
 						"Failed to create directory '" + masterBranchDir.getAbsolutePath() + "'!");
 			}
+			try {
+				File branchMetadataFile = new File(masterBranchDir, ChunkedChronoDB.FILENAME__BRANCH_METADATA_FILE);
+				branchMetadataFile.createNewFile();
+				BranchMetadataFile.write(branchMetadata, branchMetadataFile);
+			} catch (ChronosIOException | IOException e) {
+				throw new ChronosIOException("Failed to create branch metadata file for branch '" + branchMetadata.getName() + "' (directory: " + branchMetadata.getDirectoryName() + ")!", e);
+			}
 			BranchChunkManager newBranchManager = new BranchChunkManager(masterBranchDir);
-			this.branchNameToChunkManager.put(branchName, newBranchManager);
+			this.getBranchNameToChunkManager().put(branchMetadata.getName(), newBranchManager);
 			return newBranchManager;
 		} finally {
 			this.fileSystemLock.writeLock().unlock();
@@ -134,6 +131,7 @@ public class GlobalChunkManager {
 	public ChunkTuplTransaction openTransactionOn(final String branch, final long timestamp) {
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		this.ensureInitialized();
 		this.dbLock.lock();
 		try {
 			// get the correct chunk
@@ -156,7 +154,8 @@ public class GlobalChunkManager {
 	}
 
 	public void dropChunkIndexFiles() {
-		for (BranchChunkManager manager : this.branchNameToChunkManager.values()) {
+		this.ensureInitialized();
+		for (BranchChunkManager manager : this.getBranchNameToChunkManager().values()) {
 			manager.dropChunkIndexFiles();
 		}
 	}
@@ -165,8 +164,7 @@ public class GlobalChunkManager {
 	 * Ensures that there is no open {@link DB MapDB} instance on the given file.
 	 *
 	 * <p>
-	 * This method assumes that the caller has asserted that there are no open transactions left on the MapDB instance.
-	 * If there still are open transactions, an {@link IllegalStateException} will be thrown.
+	 * This method assumes that the caller has asserted that there are no open transactions left on the MapDB instance. If there still are open transactions, an {@link IllegalStateException} will be thrown.
 	 *
 	 * @param dbFile
 	 *            The file to assert for that the corresponding MapDB instance is closed.
@@ -176,6 +174,7 @@ public class GlobalChunkManager {
 	 */
 	public void ensureTuplDbIsClosed(final File dbFile) {
 		checkNotNull(dbFile, "Precondition violation - argument 'newChunkDataFile' must not be NULL!");
+		this.ensureInitialized();
 		this.dbLock.lock();
 		try {
 			Database db = this.fileToOpenDB.get(dbFile);
@@ -196,7 +195,20 @@ public class GlobalChunkManager {
 		}
 	}
 
+	/**
+	 * Reloads all chunks from the hard drive, creating new {@link BranchChunkManager}s in the process.
+	 *
+	 * <p>
+	 * <b><u>/!\ WARNING /!\</u></b><br>
+	 * This is a <u>potentially dangerous</u> operation that can threaten the ACID safety of operations. It should only be used during DB migrations or explicit maintenance periods! Use at your own risk!
+	 */
+	public void reloadChunksFromDisk() {
+		this.getBranchNameToChunkManager().clear();
+		this.getBranchNameToChunkManager().putAll(this.scanDirectoryForBranches());
+	}
+
 	public void shutdown() {
+		this.ensureInitialized();
 		this.dbLock.lock();
 		try {
 			for (Entry<File, Database> entry : this.fileToOpenDB.entrySet()) {
@@ -212,6 +224,36 @@ public class GlobalChunkManager {
 	// =====================================================================================================================
 	// INTERNAL HELPER METHODS
 	// =====================================================================================================================
+
+	private void ensureInitialized() {
+		this.getBranchNameToChunkManager();
+	}
+
+	private Map<String, BranchChunkManager> getBranchNameToChunkManager() {
+		// note: this is LAZY because the migration from 0.5.x to 0.6.x needs to set up
+		// the required files first to make the scan work.
+		if (this.branchNameToChunkManager == null) {
+			this.branchNameToChunkManager = this.scanDirectoryForBranches();
+			this.ensureMasterBranchDirectoryExists();
+		}
+		return this.branchNameToChunkManager;
+	}
+
+	private Map<String, BranchChunkManager> scanDirectoryForBranches() {
+		Map<String, BranchChunkManager> branchNameToChunkManager = Maps.newHashMap();
+		File[] branchDirs = this.branchesDir.listFiles(file -> file.isDirectory());
+		if (branchDirs != null && branchDirs.length > 0) {
+			for (File branchDir : branchDirs) {
+				BranchChunkManager branchChunkManager = new BranchChunkManager(branchDir);
+				branchNameToChunkManager.put(branchChunkManager.getBranchName(), branchChunkManager);
+			}
+		}
+		return branchNameToChunkManager;
+	}
+
+	private void ensureMasterBranchDirectoryExists() {
+		this.getOrCreateChunkManagerForBranch(IBranchMetadata.createMasterBranchMetadata());
+	}
 
 	private void handleTransactionClosed(final InternalTransaction tx) {
 		this.dbLock.lock();
@@ -236,7 +278,7 @@ public class GlobalChunkManager {
 			}
 			List<Database> dbs = Lists.reverse(this.dbLRUList);
 			Iterator<Database> dbIterator = dbs.iterator();
-			while (dbIterator.hasNext() && (dbs.size() > MAX_OPEN_FILES_THRESHOLD)) {
+			while (dbIterator.hasNext() && dbs.size() > MAX_OPEN_FILES_THRESHOLD) {
 				Database db = dbIterator.next();
 				if (this.dbToOpenTransactions.containsKey(db) == false) {
 					// nobody uses this DB anymore, remove it

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.query.parser.StandardQueryParserTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:54:29" hostname="Aurora" time="0.0">
+  <properties/>
+  <testcase name="andBindsStrongerThanOr" classname="org.chronos.chronodb.test.query.parser.StandardQueryParserTest" time="0.0"/>
+  <testcase name="missingKeyspaceIsRecognized" classname="org.chronos.chronodb.test.query.parser.StandardQueryParserTest" time="0.0"/>
+  <testcase name="notBindsStrongerThanOr" classname="org.chronos.chronodb.test.query.parser.StandardQueryParserTest" time="0.0"/>
+  <testcase name="beginEndBindsStrongerThanNot" classname="org.chronos.chronodb.test.query.parser.StandardQueryParserTest" time="0.0"/>
+  <testcase name="basicQueryParsingWorks" classname="org.chronos.chronodb.test.query.parser.StandardQueryParserTest" time="0.0"/>
+  <testcase name="notBindsStrongerThanAnd" classname="org.chronos.chronodb.test.query.parser.StandardQueryParserTest" time="0.0"/>
+  <testcase name="missingEndOfInputIsRecognized" classname="org.chronos.chronodb.test.query.parser.StandardQueryParserTest" time="0.0"/>
+  <system-out><![CDATA[19:54:29.963 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: andBindsStrongerThanOr
+    Start time:  2017/08/28 19:54:29
+================================================================================
+
+
+
+Query[keyspace='default', AST=((where 'name' == 'Hello World') AND (where 'foo' == 'Bar')) OR (where 'num' == '42')]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: andBindsStrongerThanOr
+    End time:    2017/08/28 19:54:29 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: missingKeyspaceIsRecognized
+    Start time:  2017/08/28 19:54:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: missingKeyspaceIsRecognized
+    End time:    2017/08/28 19:54:29 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: notBindsStrongerThanOr
+    Start time:  2017/08/28 19:54:29
+================================================================================
+
+
+
+Query[keyspace='default', AST=(not(where 'name' == 'Hello World')) OR (where 'foo' == 'Bar')]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: notBindsStrongerThanOr
+    End time:    2017/08/28 19:54:29 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: beginEndBindsStrongerThanNot
+    Start time:  2017/08/28 19:54:29
+================================================================================
+
+
+
+Query[keyspace='default', AST=not((where 'name' == 'Hello World') OR (where 'foo' == 'Bar'))]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: beginEndBindsStrongerThanNot
+    End time:    2017/08/28 19:54:29 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: basicQueryParsingWorks
+    Start time:  2017/08/28 19:54:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: basicQueryParsingWorks
+    End time:    2017/08/28 19:54:29 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: notBindsStrongerThanAnd
+    Start time:  2017/08/28 19:54:29
+================================================================================
+
+
+
+Query[keyspace='default', AST=(not(where 'name' == 'Hello World')) AND (where 'foo' == 'Bar')]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: notBindsStrongerThanAnd
+    End time:    2017/08/28 19:54:29 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: missingEndOfInputIsRecognized
+    Start time:  2017/08/28 19:54:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  StandardQueryParserTest
+    Test method: missingEndOfInputIsRecognized
+    End time:    2017/08/28 19:54:29 (Duration: 0ms)
+================================================================================
+
+
+
+19:54:29.963 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:54:29.963 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

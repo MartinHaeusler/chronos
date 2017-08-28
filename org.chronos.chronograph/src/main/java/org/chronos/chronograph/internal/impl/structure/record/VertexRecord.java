@@ -19,6 +19,7 @@ import org.chronos.chronograph.internal.impl.structure.graph.ChronoEdgeImpl;
 import org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexImpl;
 import org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexProperty;
 import org.chronos.chronograph.internal.impl.util.ChronoProxyUtil;
+import org.chronos.common.annotation.PersistentClass;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Maps;
@@ -30,23 +31,18 @@ import com.google.common.collect.Sets;
  * A {@link VertexRecord} is the immutable data core of a vertex that has been persisted to the database.
  *
  * <p>
- * This is the class that will actually get serialized as the <code>value</code> in
- * {@link ChronoDBTransaction#put(String, Object)}.
+ * This is the class that will actually get serialized as the <code>value</code> in {@link ChronoDBTransaction#put(String, Object)}.
  *
  * <p>
- * It is crucial that all instances of this class are to be treated as immutable after their creation, as these
- * instances are potentially shared among threads due to caching mechanisms.
+ * It is crucial that all instances of this class are to be treated as immutable after their creation, as these instances are potentially shared among threads due to caching mechanisms.
  *
  * <p>
- * The {@link ChronoVertexImpl} implementation which typically wraps a {@link VertexRecord} is mutable and contains the
- * transient (i.e. not yet persisted) state of the vertex that is specific for the transaction at hand. Upon calling
- * {@link ChronoGraphTransaction#commit()}, the transient state in {@link ChronoVertexImpl} will be written into a new
- * {@link VertexRecord} and persisted to the database with a new timestamp (but the same vertex id), provided that the
- * vertex has indeed been modified by the user.
+ * The {@link ChronoVertexImpl} implementation which typically wraps a {@link VertexRecord} is mutable and contains the transient (i.e. not yet persisted) state of the vertex that is specific for the transaction at hand. Upon calling {@link ChronoGraphTransaction#commit()}, the transient state in {@link ChronoVertexImpl} will be written into a new {@link VertexRecord} and persisted to the database with a new timestamp (but the same vertex id), provided that the vertex has indeed been modified by the user.
  *
  * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
  *
  */
+@PersistentClass("kryo")
 @ChronosExternalizable(converterClass = VertexRecordConverter.class)
 public final class VertexRecord implements ElementRecord {
 

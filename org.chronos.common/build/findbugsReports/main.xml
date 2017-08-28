@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.0.0" sequence="0" timestamp="1503943258335" analysisTimestamp="1503943258376" release="">
+  <Project projectName="">
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\annotation\PersistentClass.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\base\CCC.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\builder\AbstractChronoBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\builder\ChronoBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\buildinfo\ChronosBuildConfiguration.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\buildinfo\ChronosBuildConfigurationImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\buildinfo\ChronosBuildInfo.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\base\AbstractImmutableCollection.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\base\AbstractImmutableSet.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\base\ImmutableEntry.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\hamt\HAMTIndexNode$ChildNodeIterator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\hamt\HAMTIndexNode.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\hamt\HAMTLeafNode$EntriesIterator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\hamt\HAMTLeafNode.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\hamt\HAMTNode.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\hamt\HashArrayMappedTree$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\hamt\HashArrayMappedTree$AMTIterator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\hamt\HashArrayMappedTree$AMTPath.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\hamt\HashArrayMappedTree$KeySetView.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\hamt\HashArrayMappedTree$ValuesView.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\hamt\HashArrayMappedTree.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\ImmutableMap.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\ImmutableMaps$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\ImmutableMaps$UnmodifiableMapView$EntrySetView.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\ImmutableMaps$UnmodifiableMapView.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\immutable\ImmutableMaps.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\collections\util\BitFieldUtil.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\AbstractConfiguration.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\annotation\EnumFactoryMethod.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\annotation\IgnoredIf.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\annotation\IgnoredIfConditions.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\annotation\Namespace.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\annotation\Parameter.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\annotation\RequiredIf.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\annotation\RequiredIfConditions.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\annotation\ValueAlias.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\annotation\ValueAliases.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\annotation\ValueConverter.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\ChronosConfiguration.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\ChronosConfigurationUtil.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\Comparison.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\Condition$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\Condition.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\ParameterMetadata.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\ParameterValueConverter.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\ParameterValueConverters$StringToFileConverter.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\configuration\ParameterValueConverters.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\exceptions\ChronosConfigurationException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\exceptions\ChronosException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\exceptions\ChronosIOException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\exceptions\NotInstantiableException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\exceptions\UnknownEnumLiteralException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\logging\ChronoLogger$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\logging\ChronoLogger.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\logging\LogLevel.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\serialization\KryoManager$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\serialization\KryoManager$KryoWrapper.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\serialization\KryoManager.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\util\ClasspathUtils.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\util\LRUCacheUtil$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\util\LRUCacheUtil.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\util\ObjectSizeCalculator$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\util\ObjectSizeCalculator$2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\util\ObjectSizeCalculator$3.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\util\ObjectSizeCalculator$4.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\util\ObjectSizeCalculator$ArrayElementsVisitor.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\util\ObjectSizeCalculator$ClassSizeInfo.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\util\ObjectSizeCalculator$CurrentLayout.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\util\ObjectSizeCalculator$MemoryLayoutSpecification.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\util\ObjectSizeCalculator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\util\ReflectionUtils.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\version\ChronosVersion.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.common\build\classes\main\org\chronos\common\version\VersionKind.class</Jar>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\19.0\6ce200f6b23222af3d8abb6b6459e6c44f4bb0e9\guava-19.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-lang3\3.4\5fe28b9518e58819180a43a850fbc0dd24b7c050\commons-lang3-3.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-collections4\4.1\a4cf4688fe1c7e3a63aa636cc96d013af537768e\commons-collections4-4.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-io\commons-io\2.4\b1b6ea3b7e4aa4f492509a4952029cd8e48019ad\commons-io-2.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-configuration\commons-configuration\1.10\2b36e4adfb66d966c5aef2d73deb6be716389dc9\commons-configuration-1.10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-api\1.7.12\8e20852d05222dc286bf1c71d78d0531e177c317\slf4j-api-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\jcl-over-slf4j\1.7.12\adef7a9e1263298255fdb5cb107ff171d07c82f3\jcl-over-slf4j-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\jul-to-slf4j\1.7.12\8811e2e9ab9055e557598dc9aedc64fd43e0ab20\jul-to-slf4j-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-classic\1.1.3\d90276fff414f06cb375f2057f6778cd63c6082f\logback-classic-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\kryo\3.0.3\1ebca99f633ef31484176a727093e78c7fa43e7\kryo-3.0.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-lang\commons-lang\2.6\ce1edb914c94ebc388f086c6827e8bdeec71ac2\commons-lang-2.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.1.1\5043bfebc3db072ed80fbd362e7caf00e885d8ae\commons-logging-1.1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-core\1.1.3\e3c02049f2dbbc764681b40094ecf0dcbc99b157\logback-core-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\reflectasm\1.10.1\515402cd542ab967a1b5028b4dee1e1800db205b\reflectasm-1.10.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\minlog\1.3.0\ff07b5f1b01d2f92bb00a337f9a94873712f0827\minlog-1.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.objenesis\objenesis\2.1\87c0ea803b69252868d09308b4618f766f135a96\objenesis-2.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.ow2.asm\asm\5.0.3\dcc2193db20e19e1feca8b1240dbbc4e190824fa\asm-5.0.3.jar</AuxClasspathEntry>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\annotation\PersistentClass.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\base\CCC.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\builder\AbstractChronoBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\builder\ChronoBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\buildinfo\ChronosBuildConfiguration.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\buildinfo\ChronosBuildConfigurationImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\buildinfo\ChronosBuildInfo.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\collections\immutable\base\AbstractImmutableCollection.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\collections\immutable\base\AbstractImmutableSet.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\collections\immutable\base\ImmutableEntry.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\collections\immutable\hamt\HAMTIndexNode.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\collections\immutable\hamt\HAMTLeafNode.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\collections\immutable\hamt\HAMTNode.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\collections\immutable\hamt\HashArrayMappedTree.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\collections\immutable\ImmutableMap.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\collections\immutable\ImmutableMaps.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\collections\util\BitFieldUtil.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\AbstractConfiguration.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\annotation\EnumFactoryMethod.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\annotation\IgnoredIf.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\annotation\IgnoredIfConditions.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\annotation\Namespace.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\annotation\Parameter.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\annotation\RequiredIf.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\annotation\RequiredIfConditions.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\annotation\ValueAlias.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\annotation\ValueAliases.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\annotation\ValueConverter.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\ChronosConfiguration.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\ChronosConfigurationUtil.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\Comparison.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\Condition.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\ParameterMetadata.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\ParameterValueConverter.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\configuration\ParameterValueConverters.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\exceptions\ChronosConfigurationException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\exceptions\ChronosException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\exceptions\ChronosIOException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\exceptions\NotInstantiableException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\exceptions\UnknownEnumLiteralException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\logging\ChronoLogger.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\logging\LogLevel.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\serialization\KryoManager.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\util\ClasspathUtils.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\util\LRUCacheUtil.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\util\ObjectSizeCalculator.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\util\ReflectionUtils.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\version\ChronosVersion.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.common\src\main\java\org\chronos\common\version\VersionKind.java</SrcDir>
+  </Project>
+  <BugInstance type="DM_DEFAULT_ENCODING" priority="1" rank="19" abbrev="Dm" category="I18N">
+    <Class classname="org.chronos.common.builder.AbstractChronoBuilder">
+      <SourceLine classname="org.chronos.common.builder.AbstractChronoBuilder" start="23" end="83" sourcefile="AbstractChronoBuilder.java" sourcepath="org/chronos/common/builder/AbstractChronoBuilder.java"/>
+    </Class>
+    <Method classname="org.chronos.common.builder.AbstractChronoBuilder" name="withPropertiesFile" signature="(Ljava/io/File;)Lorg/chronos/common/builder/ChronoBuilder;" isStatic="false">
+      <SourceLine classname="org.chronos.common.builder.AbstractChronoBuilder" start="58" end="76" startBytecode="0" endBytecode="435" sourcefile="AbstractChronoBuilder.java" sourcepath="org/chronos/common/builder/AbstractChronoBuilder.java"/>
+    </Method>
+    <Method classname="java.io.FileReader" name="&lt;init&gt;" signature="(Ljava/io/File;)V" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.FileReader" start="72" end="73" startBytecode="0" endBytecode="40" sourcefile="FileReader.java" sourcepath="java/io/FileReader.java"/>
+    </Method>
+    <SourceLine classname="org.chronos.common.builder.AbstractChronoBuilder" start="65" end="65" startBytecode="52" endBytecode="52" sourcefile="AbstractChronoBuilder.java" sourcepath="org/chronos/common/builder/AbstractChronoBuilder.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Mon, 28 Aug 2017 20:00:58 +0200" total_classes="73" referenced_classes="238" total_bugs="1" total_size="2373" num_packages="15" java_version="1.8.0_74" vm_version="25.74-b02" cpu_seconds="11.95" clock_seconds="2.50" peak_mbytes="244.92" alloc_mbytes="7264.00" gc_seconds="0.12" priority_1="1">
+    <PackageStats package="org.chronos.common.annotation" total_bugs="0" total_types="1" total_size="2">
+      <ClassStats class="org.chronos.common.annotation.PersistentClass" sourceFile="PersistentClass.java" interface="true" size="2" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.base" total_bugs="0" total_types="1" total_size="6">
+      <ClassStats class="org.chronos.common.base.CCC" sourceFile="CCC.java" interface="false" size="6" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.builder" total_bugs="1" total_types="2" total_size="50" priority_1="1">
+      <ClassStats class="org.chronos.common.builder.AbstractChronoBuilder" sourceFile="AbstractChronoBuilder.java" interface="false" size="46" bugs="1" priority_1="1"/>
+      <ClassStats class="org.chronos.common.builder.ChronoBuilder" sourceFile="ChronoBuilder.java" interface="true" size="4" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.buildinfo" total_bugs="0" total_types="3" total_size="27">
+      <ClassStats class="org.chronos.common.buildinfo.ChronosBuildConfiguration" sourceFile="ChronosBuildConfiguration.java" interface="true" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.common.buildinfo.ChronosBuildConfigurationImpl" sourceFile="ChronosBuildConfigurationImpl.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="org.chronos.common.buildinfo.ChronosBuildInfo" sourceFile="ChronosBuildInfo.java" interface="false" size="16" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.collections.immutable" total_bugs="0" total_types="5" total_size="103">
+      <ClassStats class="org.chronos.common.collections.immutable.ImmutableMap" sourceFile="ImmutableMap.java" interface="true" size="37" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.ImmutableMaps" sourceFile="ImmutableMaps.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.ImmutableMaps$1" sourceFile="ImmutableMaps.java" interface="false" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.ImmutableMaps$UnmodifiableMapView" sourceFile="ImmutableMaps.java" interface="false" size="34" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.ImmutableMaps$UnmodifiableMapView$EntrySetView" sourceFile="ImmutableMaps.java" interface="false" size="14" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.collections.immutable.base" total_bugs="0" total_types="3" total_size="139">
+      <ClassStats class="org.chronos.common.collections.immutable.base.AbstractImmutableCollection" sourceFile="AbstractImmutableCollection.java" interface="false" size="56" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.base.AbstractImmutableSet" sourceFile="AbstractImmutableSet.java" interface="false" size="25" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.base.ImmutableEntry" sourceFile="ImmutableEntry.java" interface="false" size="58" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.collections.immutable.hamt" total_bugs="0" total_types="11" total_size="676">
+      <ClassStats class="org.chronos.common.collections.immutable.hamt.HAMTIndexNode" sourceFile="HAMTIndexNode.java" interface="false" size="97" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.hamt.HAMTIndexNode$ChildNodeIterator" sourceFile="HAMTIndexNode.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.hamt.HAMTLeafNode" sourceFile="HAMTLeafNode.java" interface="false" size="118" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.hamt.HAMTLeafNode$EntriesIterator" sourceFile="HAMTLeafNode.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.hamt.HAMTNode" sourceFile="HAMTNode.java" interface="true" size="8" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.hamt.HashArrayMappedTree" sourceFile="HashArrayMappedTree.java" interface="false" size="307" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.hamt.HashArrayMappedTree$1" sourceFile="HashArrayMappedTree.java" interface="false" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.hamt.HashArrayMappedTree$AMTIterator" sourceFile="HashArrayMappedTree.java" interface="false" size="40" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.hamt.HashArrayMappedTree$AMTPath" sourceFile="HashArrayMappedTree.java" interface="false" size="35" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.hamt.HashArrayMappedTree$KeySetView" sourceFile="HashArrayMappedTree.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="org.chronos.common.collections.immutable.hamt.HashArrayMappedTree$ValuesView" sourceFile="HashArrayMappedTree.java" interface="false" size="18" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.collections.util" total_bugs="0" total_types="1" total_size="44">
+      <ClassStats class="org.chronos.common.collections.util.BitFieldUtil" sourceFile="BitFieldUtil.java" interface="false" size="44" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.configuration" total_bugs="0" total_types="10" total_size="368">
+      <ClassStats class="org.chronos.common.configuration.AbstractConfiguration" sourceFile="AbstractConfiguration.java" interface="false" size="41" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.ChronosConfiguration" sourceFile="ChronosConfiguration.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.ChronosConfigurationUtil" sourceFile="ChronosConfigurationUtil.java" interface="false" size="116" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.Comparison" sourceFile="Comparison.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.Condition" sourceFile="Condition.java" interface="false" size="28" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.Condition$1" sourceFile="Condition.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.ParameterMetadata" sourceFile="ParameterMetadata.java" interface="false" size="152" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.ParameterValueConverter" sourceFile="ParameterValueConverter.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.ParameterValueConverters" sourceFile="ParameterValueConverters.java" interface="false" size="3" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.ParameterValueConverters$StringToFileConverter" sourceFile="ParameterValueConverters.java" interface="false" size="7" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.configuration.annotation" total_bugs="0" total_types="10" total_size="27">
+      <ClassStats class="org.chronos.common.configuration.annotation.EnumFactoryMethod" sourceFile="EnumFactoryMethod.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.annotation.IgnoredIf" sourceFile="IgnoredIf.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.annotation.IgnoredIfConditions" sourceFile="IgnoredIfConditions.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.annotation.Namespace" sourceFile="Namespace.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.annotation.Parameter" sourceFile="Parameter.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.annotation.RequiredIf" sourceFile="RequiredIf.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.annotation.RequiredIfConditions" sourceFile="RequiredIfConditions.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.annotation.ValueAlias" sourceFile="ValueAlias.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.annotation.ValueAliases" sourceFile="ValueAliases.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.common.configuration.annotation.ValueConverter" sourceFile="ValueConverter.java" interface="true" size="2" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.exceptions" total_bugs="0" total_types="5" total_size="75">
+      <ClassStats class="org.chronos.common.exceptions.ChronosConfigurationException" sourceFile="ChronosConfigurationException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.common.exceptions.ChronosException" sourceFile="ChronosException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.common.exceptions.ChronosIOException" sourceFile="ChronosIOException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.common.exceptions.NotInstantiableException" sourceFile="NotInstantiableException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.common.exceptions.UnknownEnumLiteralException" sourceFile="UnknownEnumLiteralException.java" interface="false" size="11" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.logging" total_bugs="0" total_types="3" total_size="116">
+      <ClassStats class="org.chronos.common.logging.ChronoLogger" sourceFile="ChronoLogger.java" interface="false" size="86" bugs="0"/>
+      <ClassStats class="org.chronos.common.logging.ChronoLogger$1" sourceFile="ChronoLogger.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.common.logging.LogLevel" sourceFile="LogLevel.java" interface="false" size="26" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.serialization" total_bugs="0" total_types="3" total_size="138">
+      <ClassStats class="org.chronos.common.serialization.KryoManager" sourceFile="KryoManager.java" interface="false" size="52" bugs="0"/>
+      <ClassStats class="org.chronos.common.serialization.KryoManager$1" sourceFile="KryoManager.java" interface="false" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.common.serialization.KryoManager$KryoWrapper" sourceFile="KryoManager.java" interface="false" size="85" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.util" total_bugs="0" total_types="13" total_size="456">
+      <ClassStats class="org.chronos.common.util.ClasspathUtils" sourceFile="ClasspathUtils.java" interface="false" size="47" bugs="0"/>
+      <ClassStats class="org.chronos.common.util.LRUCacheUtil" sourceFile="LRUCacheUtil.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="org.chronos.common.util.LRUCacheUtil$1" sourceFile="LRUCacheUtil.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="org.chronos.common.util.ObjectSizeCalculator" sourceFile="ObjectSizeCalculator.java" interface="false" size="113" bugs="0"/>
+      <ClassStats class="org.chronos.common.util.ObjectSizeCalculator$1" sourceFile="ObjectSizeCalculator.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="org.chronos.common.util.ObjectSizeCalculator$2" sourceFile="ObjectSizeCalculator.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="org.chronos.common.util.ObjectSizeCalculator$3" sourceFile="ObjectSizeCalculator.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="org.chronos.common.util.ObjectSizeCalculator$4" sourceFile="ObjectSizeCalculator.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="org.chronos.common.util.ObjectSizeCalculator$ArrayElementsVisitor" sourceFile="ObjectSizeCalculator.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="org.chronos.common.util.ObjectSizeCalculator$ClassSizeInfo" sourceFile="ObjectSizeCalculator.java" interface="false" size="41" bugs="0"/>
+      <ClassStats class="org.chronos.common.util.ObjectSizeCalculator$CurrentLayout" sourceFile="ObjectSizeCalculator.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="org.chronos.common.util.ObjectSizeCalculator$MemoryLayoutSpecification" sourceFile="ObjectSizeCalculator.java" interface="true" size="6" bugs="0"/>
+      <ClassStats class="org.chronos.common.util.ReflectionUtils" sourceFile="ReflectionUtils.java" interface="false" size="172" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.common.version" total_bugs="0" total_types="2" total_size="146">
+      <ClassStats class="org.chronos.common.version.ChronosVersion" sourceFile="ChronosVersion.java" interface="false" size="123" bugs="0"/>
+      <ClassStats class="org.chronos.common.version.VersionKind" sourceFile="VersionKind.java" interface="false" size="23" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="224" invocations="1317" avgMicrosecondsPerInvocation="170" maxMicrosecondsPerInvocation="9066" standardDeviationMircosecondsPerInvocation="446"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="145" invocations="238" avgMicrosecondsPerInvocation="613" maxMicrosecondsPerInvocation="8010" standardDeviationMircosecondsPerInvocation="1146"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.LiveLocalStoreDataflowFactory" totalMilliseconds="108" invocations="373" avgMicrosecondsPerInvocation="290" maxMicrosecondsPerInvocation="94803" standardDeviationMircosecondsPerInvocation="4900"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="98" invocations="413" avgMicrosecondsPerInvocation="239" maxMicrosecondsPerInvocation="4774" standardDeviationMircosecondsPerInvocation="417"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="92" invocations="426" avgMicrosecondsPerInvocation="216" maxMicrosecondsPerInvocation="7326" standardDeviationMircosecondsPerInvocation="466"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="90" invocations="904" avgMicrosecondsPerInvocation="100" maxMicrosecondsPerInvocation="2162" standardDeviationMircosecondsPerInvocation="166"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="79" invocations="410" avgMicrosecondsPerInvocation="193" maxMicrosecondsPerInvocation="3465" standardDeviationMircosecondsPerInvocation="333"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="78" invocations="399" avgMicrosecondsPerInvocation="196" maxMicrosecondsPerInvocation="1884" standardDeviationMircosecondsPerInvocation="273"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="75" invocations="431" avgMicrosecondsPerInvocation="175" maxMicrosecondsPerInvocation="7681" standardDeviationMircosecondsPerInvocation="442"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="67" invocations="413" avgMicrosecondsPerInvocation="162" maxMicrosecondsPerInvocation="7482" standardDeviationMircosecondsPerInvocation="392"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="64" invocations="1322" avgMicrosecondsPerInvocation="48" maxMicrosecondsPerInvocation="806" standardDeviationMircosecondsPerInvocation="43"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="60" invocations="349" avgMicrosecondsPerInvocation="173" maxMicrosecondsPerInvocation="1641" standardDeviationMircosecondsPerInvocation="257"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="45" invocations="465" avgMicrosecondsPerInvocation="97" maxMicrosecondsPerInvocation="25223" standardDeviationMircosecondsPerInvocation="1168"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="45" invocations="290" avgMicrosecondsPerInvocation="155" maxMicrosecondsPerInvocation="10378" standardDeviationMircosecondsPerInvocation="632"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="40" invocations="238" avgMicrosecondsPerInvocation="168" maxMicrosecondsPerInvocation="1643" standardDeviationMircosecondsPerInvocation="289"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="35" invocations="238" avgMicrosecondsPerInvocation="150" maxMicrosecondsPerInvocation="8533" standardDeviationMircosecondsPerInvocation="584"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="32" invocations="1264" avgMicrosecondsPerInvocation="25" maxMicrosecondsPerInvocation="569" standardDeviationMircosecondsPerInvocation="47"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="30" invocations="238" avgMicrosecondsPerInvocation="127" maxMicrosecondsPerInvocation="2715" standardDeviationMircosecondsPerInvocation="273"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="29" invocations="238" avgMicrosecondsPerInvocation="122" maxMicrosecondsPerInvocation="4169" standardDeviationMircosecondsPerInvocation="316"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ConstantDataflowFactory" totalMilliseconds="25" invocations="413" avgMicrosecondsPerInvocation="61" maxMicrosecondsPerInvocation="914" standardDeviationMircosecondsPerInvocation="109"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="23" invocations="238" avgMicrosecondsPerInvocation="100" maxMicrosecondsPerInvocation="1068" standardDeviationMircosecondsPerInvocation="170"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.URLProblems" totalMilliseconds="17" invocations="73" avgMicrosecondsPerInvocation="244" maxMicrosecondsPerInvocation="2348" standardDeviationMircosecondsPerInvocation="431"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.UnreadFields" totalMilliseconds="17" invocations="73" avgMicrosecondsPerInvocation="234" maxMicrosecondsPerInvocation="1482" standardDeviationMircosecondsPerInvocation="288"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.TypeQualifierNullnessAnnotationDatabase" totalMilliseconds="16" invocations="8673" avgMicrosecondsPerInvocation="1" maxMicrosecondsPerInvocation="600" standardDeviationMircosecondsPerInvocation="9"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.EqualsOperandShouldHaveClassCompatibleWithThis" totalMilliseconds="16" invocations="238" avgMicrosecondsPerInvocation="68" maxMicrosecondsPerInvocation="1733" standardDeviationMircosecondsPerInvocation="148"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison" totalMilliseconds="16" invocations="73" avgMicrosecondsPerInvocation="221" maxMicrosecondsPerInvocation="1905" standardDeviationMircosecondsPerInvocation="365"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.LoadOfKnownNullValue" totalMilliseconds="16" invocations="73" avgMicrosecondsPerInvocation="221" maxMicrosecondsPerInvocation="1983" standardDeviationMircosecondsPerInvocation="400"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DumbMethods" totalMilliseconds="15" invocations="73" avgMicrosecondsPerInvocation="219" maxMicrosecondsPerInvocation="2285" standardDeviationMircosecondsPerInvocation="360"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindInconsistentSync2" totalMilliseconds="15" invocations="73" avgMicrosecondsPerInvocation="218" maxMicrosecondsPerInvocation="1360" standardDeviationMircosecondsPerInvocation="324"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.ReflectiveClasses" totalMilliseconds="15" invocations="238" avgMicrosecondsPerInvocation="64" maxMicrosecondsPerInvocation="776" standardDeviationMircosecondsPerInvocation="116"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindBadCast2" totalMilliseconds="15" invocations="73" avgMicrosecondsPerInvocation="211" maxMicrosecondsPerInvocation="6422" standardDeviationMircosecondsPerInvocation="784"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

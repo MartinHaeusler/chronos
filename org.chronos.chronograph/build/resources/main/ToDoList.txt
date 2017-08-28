@@ -1,0 +1,16 @@
+Functional Requirements
+=======================
+
+[ ] Allow creation of indices on vertices and edges.
+[ ] Create ChronoGraphStepStragegy and ChronoGraphStep (see TitanGraphStepStrategy and TitanGraphStep)
+[ ] Register ChronoGraphStepStrategy at the global cache (see StandardTitanGraph static initializer)
+[ ] Have a look at GraphComputer implementations (Titan, OrientDB, TinkerGraph) and implement one for ChronoGraph (OLAP)
+
+
+Performance Improvements
+========================
+
+[ ] Have a look at Titan's optimization strategies: AdjacentVertexFilterOptimizerStrategy, TitanLocalQueryOptimizerStrategy
+[ ] Have a look at the optimization strategies in OrientDB and TinkerGraph (if any...)
+[ ] Think about custom optimization strategies
+[ ] Implement a graph element cache based on WeakHashMap<Id, SoftReference<Element>> (or LRU)

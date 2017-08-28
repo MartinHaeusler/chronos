@@ -2,6 +2,8 @@ package org.chronos.chronodb.api;
 
 import java.util.List;
 
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
+
 /**
  * A {@link Branch} represents a single stream of changes in the versioning system.
  *
@@ -63,4 +65,23 @@ public interface Branch {
 	 * @return The "now" timestamp. The minimum is the branching timestamp (or zero for the master branch). Never negative.
 	 */
 	public long getNow();
+
+	/**
+	 * Returns the name of the directory where this branch is stored.
+	 *
+	 * <p>
+	 * For backends that are not file based, this value may be <code>null</code>.
+	 *
+	 * @return The name of the directory where this branch is located. May be <code>null</code> if this ChronoDB instance is using a backend that is not file-based.
+	 */
+	public String getDirectoryName();
+
+	/**
+	 * Returns the immutable metadata of this branch.
+	 *
+	 * @return The metadata object. Never <code>null</code>
+	 *
+	 * @since 0.6.0
+	 */
+	public IBranchMetadata getMetadata();
 }

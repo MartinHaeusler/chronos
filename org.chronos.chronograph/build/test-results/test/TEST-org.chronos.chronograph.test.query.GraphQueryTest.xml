@@ -1,0 +1,1744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronograph.test.query.GraphQueryTest" tests="65" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:57:30" hostname="Aurora" time="11.481">
+  <properties/>
+  <testcase name="gremlinQueriesOnPersistentStateWithoutIndexWork[Using mapdb]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.279"/>
+  <testcase name="simpleVertexQueriesOnPersistentStateWithIndexWork[Using mapdb]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.538"/>
+  <testcase name="queryToGremlinSyntaxTest[Using mapdb]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.215"/>
+  <testcase name="gremlinQueriesOnTransientStateWithIndexWork[Using mapdb]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.568"/>
+  <testcase name="canQueryNonStandardObjectTypeInHasClause[Using mapdb]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.397"/>
+  <testcase name="simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using mapdb]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.404"/>
+  <testcase name="simpleVertexQueriesOnTransientStateWithoutIndexWork[Using mapdb]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.262"/>
+  <testcase name="basicQuerySyntaxTest[Using mapdb]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.278"/>
+  <testcase name="gremlinQueriesOnPersistentStateWithIndexWork[Using mapdb]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.661"/>
+  <testcase name="canFindStringWithLeadingWhitespace[Using mapdb]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.385"/>
+  <testcase name="gremlinQueriesOnTransientStateWithoutIndexWork[Using mapdb]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.2"/>
+  <testcase name="simpleVertexQueriesOnTransientStateWithIndexWork[Using mapdb]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.448"/>
+  <testcase name="canFindStringWithTrailingWhitespace[Using mapdb]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.482"/>
+  <testcase name="gremlinQueriesOnPersistentStateWithoutIndexWork[Using tupl]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.184"/>
+  <testcase name="simpleVertexQueriesOnPersistentStateWithIndexWork[Using tupl]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.269"/>
+  <testcase name="queryToGremlinSyntaxTest[Using tupl]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.1"/>
+  <testcase name="gremlinQueriesOnTransientStateWithIndexWork[Using tupl]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.199"/>
+  <testcase name="canQueryNonStandardObjectTypeInHasClause[Using tupl]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.169"/>
+  <testcase name="simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using tupl]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.162"/>
+  <testcase name="simpleVertexQueriesOnTransientStateWithoutIndexWork[Using tupl]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.1"/>
+  <testcase name="basicQuerySyntaxTest[Using tupl]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.116"/>
+  <testcase name="gremlinQueriesOnPersistentStateWithIndexWork[Using tupl]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.285"/>
+  <testcase name="canFindStringWithLeadingWhitespace[Using tupl]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.253"/>
+  <testcase name="gremlinQueriesOnTransientStateWithoutIndexWork[Using tupl]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.062"/>
+  <testcase name="simpleVertexQueriesOnTransientStateWithIndexWork[Using tupl]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.116"/>
+  <testcase name="canFindStringWithTrailingWhitespace[Using tupl]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.122"/>
+  <testcase name="gremlinQueriesOnPersistentStateWithoutIndexWork[Using jdbc]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.031"/>
+  <testcase name="simpleVertexQueriesOnPersistentStateWithIndexWork[Using jdbc]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.05"/>
+  <testcase name="queryToGremlinSyntaxTest[Using jdbc]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.019"/>
+  <testcase name="gremlinQueriesOnTransientStateWithIndexWork[Using jdbc]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.029"/>
+  <testcase name="canQueryNonStandardObjectTypeInHasClause[Using jdbc]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.016"/>
+  <testcase name="simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using jdbc]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.071"/>
+  <testcase name="simpleVertexQueriesOnTransientStateWithoutIndexWork[Using jdbc]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.015"/>
+  <testcase name="basicQuerySyntaxTest[Using jdbc]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.016"/>
+  <testcase name="gremlinQueriesOnPersistentStateWithIndexWork[Using jdbc]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.037"/>
+  <testcase name="canFindStringWithLeadingWhitespace[Using jdbc]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.022"/>
+  <testcase name="gremlinQueriesOnTransientStateWithoutIndexWork[Using jdbc]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.016"/>
+  <testcase name="simpleVertexQueriesOnTransientStateWithIndexWork[Using jdbc]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.031"/>
+  <testcase name="canFindStringWithTrailingWhitespace[Using jdbc]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.027"/>
+  <testcase name="gremlinQueriesOnPersistentStateWithoutIndexWork[Using chunked]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.186"/>
+  <testcase name="simpleVertexQueriesOnPersistentStateWithIndexWork[Using chunked]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.384"/>
+  <testcase name="queryToGremlinSyntaxTest[Using chunked]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.231"/>
+  <testcase name="gremlinQueriesOnTransientStateWithIndexWork[Using chunked]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.4"/>
+  <testcase name="canQueryNonStandardObjectTypeInHasClause[Using chunked]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.35"/>
+  <testcase name="simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using chunked]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.349"/>
+  <testcase name="simpleVertexQueriesOnTransientStateWithoutIndexWork[Using chunked]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.253"/>
+  <testcase name="basicQuerySyntaxTest[Using chunked]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.216"/>
+  <testcase name="gremlinQueriesOnPersistentStateWithIndexWork[Using chunked]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.263"/>
+  <testcase name="canFindStringWithLeadingWhitespace[Using chunked]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.253"/>
+  <testcase name="gremlinQueriesOnTransientStateWithoutIndexWork[Using chunked]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.147"/>
+  <testcase name="simpleVertexQueriesOnTransientStateWithIndexWork[Using chunked]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.353"/>
+  <testcase name="canFindStringWithTrailingWhitespace[Using chunked]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.415"/>
+  <testcase name="gremlinQueriesOnPersistentStateWithoutIndexWork[Using inmemory]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.0"/>
+  <testcase name="simpleVertexQueriesOnPersistentStateWithIndexWork[Using inmemory]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.015"/>
+  <testcase name="queryToGremlinSyntaxTest[Using inmemory]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.0"/>
+  <testcase name="gremlinQueriesOnTransientStateWithIndexWork[Using inmemory]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.006"/>
+  <testcase name="canQueryNonStandardObjectTypeInHasClause[Using inmemory]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.0"/>
+  <testcase name="simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using inmemory]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.0"/>
+  <testcase name="simpleVertexQueriesOnTransientStateWithoutIndexWork[Using inmemory]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.0"/>
+  <testcase name="basicQuerySyntaxTest[Using inmemory]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.0"/>
+  <testcase name="gremlinQueriesOnPersistentStateWithIndexWork[Using inmemory]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.012"/>
+  <testcase name="canFindStringWithLeadingWhitespace[Using inmemory]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.003"/>
+  <testcase name="gremlinQueriesOnTransientStateWithoutIndexWork[Using inmemory]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.0"/>
+  <testcase name="simpleVertexQueriesOnTransientStateWithIndexWork[Using inmemory]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.006"/>
+  <testcase name="canFindStringWithTrailingWhitespace[Using inmemory]" classname="org.chronos.chronograph.test.query.GraphQueryTest" time="0.003"/>
+  <system-out><![CDATA[[INFO ] 2017-08-28 19:57:30 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithoutIndexWork[Using mapdb]
+    Start time:  2017/08/28 19:57:30
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:31 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithoutIndexWork[Using mapdb]
+    End time:    2017/08/28 19:57:31 (Duration: 279ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithIndexWork[Using mapdb]
+    Start time:  2017/08/28 19:57:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithIndexWork[Using mapdb]
+    End time:    2017/08/28 19:57:31 (Duration: 538ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: queryToGremlinSyntaxTest[Using mapdb]
+    Start time:  2017/08/28 19:57:31
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:31 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: queryToGremlinSyntaxTest[Using mapdb]
+    End time:    2017/08/28 19:57:31 (Duration: 215ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithIndexWork[Using mapdb]
+    Start time:  2017/08/28 19:57:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithIndexWork[Using mapdb]
+    End time:    2017/08/28 19:57:32 (Duration: 568ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canQueryNonStandardObjectTypeInHasClause[Using mapdb]
+    Start time:  2017/08/28 19:57:32
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:32 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canQueryNonStandardObjectTypeInHasClause[Using mapdb]
+    End time:    2017/08/28 19:57:32 (Duration: 397ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using mapdb]
+    Start time:  2017/08/28 19:57:32
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using mapdb]
+    End time:    2017/08/28 19:57:33 (Duration: 404ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithoutIndexWork[Using mapdb]
+    Start time:  2017/08/28 19:57:33
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithoutIndexWork[Using mapdb]
+    End time:    2017/08/28 19:57:33 (Duration: 262ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: basicQuerySyntaxTest[Using mapdb]
+    Start time:  2017/08/28 19:57:33
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:33 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [kind]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: basicQuerySyntaxTest[Using mapdb]
+    End time:    2017/08/28 19:57:33 (Duration: 278ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithIndexWork[Using mapdb]
+    Start time:  2017/08/28 19:57:33
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithIndexWork[Using mapdb]
+    End time:    2017/08/28 19:57:34 (Duration: 661ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithLeadingWhitespace[Using mapdb]
+    Start time:  2017/08/28 19:57:34
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithLeadingWhitespace[Using mapdb]
+    End time:    2017/08/28 19:57:34 (Duration: 385ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithoutIndexWork[Using mapdb]
+    Start time:  2017/08/28 19:57:34
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:35 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithoutIndexWork[Using mapdb]
+    End time:    2017/08/28 19:57:35 (Duration: 200ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithIndexWork[Using mapdb]
+    Start time:  2017/08/28 19:57:35
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithIndexWork[Using mapdb]
+    End time:    2017/08/28 19:57:35 (Duration: 448ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithTrailingWhitespace[Using mapdb]
+    Start time:  2017/08/28 19:57:35
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithTrailingWhitespace[Using mapdb]
+    End time:    2017/08/28 19:57:36 (Duration: 482ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithoutIndexWork[Using tupl]
+    Start time:  2017/08/28 19:57:36
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:36 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithoutIndexWork[Using tupl]
+    End time:    2017/08/28 19:57:36 (Duration: 184ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithIndexWork[Using tupl]
+    Start time:  2017/08/28 19:57:36
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithIndexWork[Using tupl]
+    End time:    2017/08/28 19:57:36 (Duration: 269ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: queryToGremlinSyntaxTest[Using tupl]
+    Start time:  2017/08/28 19:57:36
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:36 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: queryToGremlinSyntaxTest[Using tupl]
+    End time:    2017/08/28 19:57:36 (Duration: 100ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithIndexWork[Using tupl]
+    Start time:  2017/08/28 19:57:36
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithIndexWork[Using tupl]
+    End time:    2017/08/28 19:57:36 (Duration: 199ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canQueryNonStandardObjectTypeInHasClause[Using tupl]
+    Start time:  2017/08/28 19:57:36
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:36 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canQueryNonStandardObjectTypeInHasClause[Using tupl]
+    End time:    2017/08/28 19:57:36 (Duration: 169ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using tupl]
+    Start time:  2017/08/28 19:57:36
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using tupl]
+    End time:    2017/08/28 19:57:37 (Duration: 162ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithoutIndexWork[Using tupl]
+    Start time:  2017/08/28 19:57:37
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithoutIndexWork[Using tupl]
+    End time:    2017/08/28 19:57:37 (Duration: 100ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: basicQuerySyntaxTest[Using tupl]
+    Start time:  2017/08/28 19:57:37
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [kind]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: basicQuerySyntaxTest[Using tupl]
+    End time:    2017/08/28 19:57:37 (Duration: 116ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithIndexWork[Using tupl]
+    Start time:  2017/08/28 19:57:37
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithIndexWork[Using tupl]
+    End time:    2017/08/28 19:57:37 (Duration: 285ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithLeadingWhitespace[Using tupl]
+    Start time:  2017/08/28 19:57:37
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithLeadingWhitespace[Using tupl]
+    End time:    2017/08/28 19:57:37 (Duration: 253ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithoutIndexWork[Using tupl]
+    Start time:  2017/08/28 19:57:37
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:37 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithoutIndexWork[Using tupl]
+    End time:    2017/08/28 19:57:37 (Duration: 62ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithIndexWork[Using tupl]
+    Start time:  2017/08/28 19:57:37
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithIndexWork[Using tupl]
+    End time:    2017/08/28 19:57:38 (Duration: 116ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithTrailingWhitespace[Using tupl]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithTrailingWhitespace[Using tupl]
+    End time:    2017/08/28 19:57:38 (Duration: 122ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithoutIndexWork[Using jdbc]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithoutIndexWork[Using jdbc]
+    End time:    2017/08/28 19:57:38 (Duration: 31ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithIndexWork[Using jdbc]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithIndexWork[Using jdbc]
+    End time:    2017/08/28 19:57:38 (Duration: 50ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: queryToGremlinSyntaxTest[Using jdbc]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: queryToGremlinSyntaxTest[Using jdbc]
+    End time:    2017/08/28 19:57:38 (Duration: 19ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithIndexWork[Using jdbc]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithIndexWork[Using jdbc]
+    End time:    2017/08/28 19:57:38 (Duration: 29ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canQueryNonStandardObjectTypeInHasClause[Using jdbc]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canQueryNonStandardObjectTypeInHasClause[Using jdbc]
+    End time:    2017/08/28 19:57:38 (Duration: 16ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using jdbc]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using jdbc]
+    End time:    2017/08/28 19:57:38 (Duration: 71ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithoutIndexWork[Using jdbc]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithoutIndexWork[Using jdbc]
+    End time:    2017/08/28 19:57:38 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: basicQuerySyntaxTest[Using jdbc]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [kind]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: basicQuerySyntaxTest[Using jdbc]
+    End time:    2017/08/28 19:57:38 (Duration: 16ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithIndexWork[Using jdbc]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithIndexWork[Using jdbc]
+    End time:    2017/08/28 19:57:38 (Duration: 37ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithLeadingWhitespace[Using jdbc]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithLeadingWhitespace[Using jdbc]
+    End time:    2017/08/28 19:57:38 (Duration: 22ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithoutIndexWork[Using jdbc]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithoutIndexWork[Using jdbc]
+    End time:    2017/08/28 19:57:38 (Duration: 16ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithIndexWork[Using jdbc]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithIndexWork[Using jdbc]
+    End time:    2017/08/28 19:57:38 (Duration: 31ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithTrailingWhitespace[Using jdbc]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithTrailingWhitespace[Using jdbc]
+    End time:    2017/08/28 19:57:38 (Duration: 26ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithoutIndexWork[Using chunked]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:38 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithoutIndexWork[Using chunked]
+    End time:    2017/08/28 19:57:38 (Duration: 186ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithIndexWork[Using chunked]
+    Start time:  2017/08/28 19:57:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithIndexWork[Using chunked]
+    End time:    2017/08/28 19:57:39 (Duration: 384ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: queryToGremlinSyntaxTest[Using chunked]
+    Start time:  2017/08/28 19:57:39
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:39 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: queryToGremlinSyntaxTest[Using chunked]
+    End time:    2017/08/28 19:57:39 (Duration: 231ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithIndexWork[Using chunked]
+    Start time:  2017/08/28 19:57:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithIndexWork[Using chunked]
+    End time:    2017/08/28 19:57:39 (Duration: 400ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canQueryNonStandardObjectTypeInHasClause[Using chunked]
+    Start time:  2017/08/28 19:57:39
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canQueryNonStandardObjectTypeInHasClause[Using chunked]
+    End time:    2017/08/28 19:57:40 (Duration: 350ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using chunked]
+    Start time:  2017/08/28 19:57:40
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using chunked]
+    End time:    2017/08/28 19:57:40 (Duration: 349ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithoutIndexWork[Using chunked]
+    Start time:  2017/08/28 19:57:40
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithoutIndexWork[Using chunked]
+    End time:    2017/08/28 19:57:40 (Duration: 253ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: basicQuerySyntaxTest[Using chunked]
+    Start time:  2017/08/28 19:57:40
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [kind]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: basicQuerySyntaxTest[Using chunked]
+    End time:    2017/08/28 19:57:40 (Duration: 216ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithIndexWork[Using chunked]
+    Start time:  2017/08/28 19:57:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithIndexWork[Using chunked]
+    End time:    2017/08/28 19:57:41 (Duration: 263ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithLeadingWhitespace[Using chunked]
+    Start time:  2017/08/28 19:57:41
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithLeadingWhitespace[Using chunked]
+    End time:    2017/08/28 19:57:41 (Duration: 253ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithoutIndexWork[Using chunked]
+    Start time:  2017/08/28 19:57:41
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:41 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithoutIndexWork[Using chunked]
+    End time:    2017/08/28 19:57:41 (Duration: 147ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithIndexWork[Using chunked]
+    Start time:  2017/08/28 19:57:41
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithIndexWork[Using chunked]
+    End time:    2017/08/28 19:57:41 (Duration: 353ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithTrailingWhitespace[Using chunked]
+    Start time:  2017/08/28 19:57:41
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithTrailingWhitespace[Using chunked]
+    End time:    2017/08/28 19:57:42 (Duration: 415ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithoutIndexWork[Using inmemory]
+    Start time:  2017/08/28 19:57:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithoutIndexWork[Using inmemory]
+    End time:    2017/08/28 19:57:42 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithIndexWork[Using inmemory]
+    Start time:  2017/08/28 19:57:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithIndexWork[Using inmemory]
+    End time:    2017/08/28 19:57:42 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: queryToGremlinSyntaxTest[Using inmemory]
+    Start time:  2017/08/28 19:57:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: queryToGremlinSyntaxTest[Using inmemory]
+    End time:    2017/08/28 19:57:42 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithIndexWork[Using inmemory]
+    Start time:  2017/08/28 19:57:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithIndexWork[Using inmemory]
+    End time:    2017/08/28 19:57:42 (Duration: 6ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canQueryNonStandardObjectTypeInHasClause[Using inmemory]
+    Start time:  2017/08/28 19:57:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canQueryNonStandardObjectTypeInHasClause[Using inmemory]
+    End time:    2017/08/28 19:57:42 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using inmemory]
+    Start time:  2017/08/28 19:57:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnPersistentStateWithoutIndexWork[Using inmemory]
+    End time:    2017/08/28 19:57:42 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithoutIndexWork[Using inmemory]
+    Start time:  2017/08/28 19:57:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithoutIndexWork[Using inmemory]
+    End time:    2017/08/28 19:57:42 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: basicQuerySyntaxTest[Using inmemory]
+    Start time:  2017/08/28 19:57:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [kind]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: basicQuerySyntaxTest[Using inmemory]
+    End time:    2017/08/28 19:57:42 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithIndexWork[Using inmemory]
+    Start time:  2017/08/28 19:57:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnPersistentStateWithIndexWork[Using inmemory]
+    End time:    2017/08/28 19:57:42 (Duration: 12ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithLeadingWhitespace[Using inmemory]
+    Start time:  2017/08/28 19:57:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithLeadingWhitespace[Using inmemory]
+    End time:    2017/08/28 19:57:42 (Duration: 3ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithoutIndexWork[Using inmemory]
+    Start time:  2017/08/28 19:57:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:57:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: gremlinQueriesOnTransientStateWithoutIndexWork[Using inmemory]
+    End time:    2017/08/28 19:57:42 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithIndexWork[Using inmemory]
+    Start time:  2017/08/28 19:57:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: simpleVertexQueriesOnTransientStateWithIndexWork[Using inmemory]
+    End time:    2017/08/28 19:57:42 (Duration: 6ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithTrailingWhitespace[Using inmemory]
+    Start time:  2017/08/28 19:57:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GraphQueryTest
+    Test method: canFindStringWithTrailingWhitespace[Using inmemory]
+    End time:    2017/08/28 19:57:42 (Duration: 3ms)
+================================================================================
+
+
+
+[INFO ] 2017-08-28 19:57:42 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+[INFO ] 2017-08-28 19:57:42 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

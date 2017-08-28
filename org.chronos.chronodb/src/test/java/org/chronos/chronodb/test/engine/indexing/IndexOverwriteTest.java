@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.indexing.StringIndexer;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
 import org.chronos.chronodb.test.util.model.payload.NamedPayload;
 import org.chronos.chronodb.test.util.model.payload.NamedPayloadNameIndexer;
@@ -18,7 +18,7 @@ public class IndexOverwriteTest extends AllChronoDBBackendsTest {
 	@Test
 	public void overwrittenIndexEntryIsNoLongerPresent() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 

@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
-import org.chronos.chronodb.internal.impl.BranchMetadata;
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
 
 import com.google.common.collect.Sets;
 
@@ -22,21 +22,21 @@ public class BranchMetadataMap {
 	// PUBLIC API
 	// =====================================================================================================================
 
-	public static void insertOrUpdate(final MapDBTransaction tx, final BranchMetadata metadata) {
+	public static void insertOrUpdate(final MapDBTransaction tx, final IBranchMetadata metadata) {
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		checkNotNull(metadata, "Precondition violation - argument 'metadata' must not be NULL!");
-		Map<String, BranchMetadata> map = getMapForWriting(tx);
+		Map<String, IBranchMetadata> map = getMapForWriting(tx);
 		map.put(metadata.getName(), metadata);
 	}
 
-	public static BranchMetadata getMetadata(final MapDBTransaction tx, final String name) {
+	public static IBranchMetadata getMetadata(final MapDBTransaction tx, final String name) {
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		checkNotNull(name, "Precondition violation - argument 'name' must not be NULL!");
-		Map<String, BranchMetadata> map = getMapForReading(tx);
+		Map<String, IBranchMetadata> map = getMapForReading(tx);
 		return map.get(name);
 	}
 
-	public static Set<BranchMetadata> values(final MapDBTransaction tx) {
+	public static Set<IBranchMetadata> values(final MapDBTransaction tx) {
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		return Sets.newHashSet(getMapForReading(tx).values());
 	}
@@ -53,7 +53,7 @@ public class BranchMetadataMap {
 	 *
 	 * @return The Navigation Map for read-write access. May be empty, but never <code>null</code>.
 	 */
-	private static Map<String, BranchMetadata> getMapForWriting(final MapDBTransaction tx) {
+	private static Map<String, IBranchMetadata> getMapForWriting(final MapDBTransaction tx) {
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		return tx.treeMap(NAME);
 	}
@@ -66,7 +66,7 @@ public class BranchMetadataMap {
 	 *
 	 * @return The Navigation Map for read-only access. May be empty, but never <code>null</code>.
 	 */
-	private static Map<String, BranchMetadata> getMapForReading(final MapDBTransaction tx) {
+	private static Map<String, IBranchMetadata> getMapForReading(final MapDBTransaction tx) {
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		if (tx.exists(NAME)) {
 			return Collections.unmodifiableMap(tx.treeMap(NAME));

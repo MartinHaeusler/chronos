@@ -3,11 +3,21 @@ package org.chronos.chronograph.internal.impl.index;
 import java.util.Optional;
 import java.util.Set;
 
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.indexing.StringIndexer;
 import org.chronos.chronograph.internal.impl.structure.record.PropertyRecord;
 import org.chronos.chronograph.internal.impl.structure.record.VertexRecord;
+import org.chronos.common.annotation.PersistentClass;
 
-public class VertexRecordPropertyIndexer extends AbstractRecordPropertyIndexer implements ChronoIndexer {
+/**
+ * An indexer working on {@link VertexRecord}s.
+ *
+ * @deprecated Superseded by {@link VertexRecordPropertyIndexer2}.
+ *
+ * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
+ */
+@Deprecated
+@PersistentClass("kryo")
+public class VertexRecordPropertyIndexer extends AbstractRecordPropertyIndexer implements StringIndexer {
 
 	protected VertexRecordPropertyIndexer() {
 		// default constructor for serializer

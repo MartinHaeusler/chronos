@@ -1,0 +1,38 @@
+Functional Requirements
+=======================
+
+[ ] Allow indexing of multiplicity-many fields. Ideally, this means changing the result type of the ChronoIndexer#index function from "String" to "Set<String>".
+[ ] Think about indexing for non-string values.
+[ ] Think about implementing a more object-oriented branching API (Branch becomes a real interface)
+[ ] Allow to put limits on the history of a key for slicing, i.e. history from timestamp 1000 to timestamp 2000 (which may be empty in this range); upper limit has to be <= transaction timestamp.
+
+
+
+
+
+Performance Improvements
+========================
+
+Preparation work
+----------------
+[ ] Write a suite of performance test to measure the performance optimization impacts. Keep the tests close to use cases.
+[ ] Use MapDB data pump API to perform loading of ChronoDB dumps quicker. This will save a lot of time in benchmark execution.
+[X] Update MapDB to the latest version.
+
+Actual performance improvements
+-------------------------------
+
+Quick Wins
+[X] Disable MapDB transactions. At least disable TxMaker, maybe also call ".disableTransactions" on the mapDB instance if necessary.
+[X] avoid serialization / deserialization of "UnqualifiedTemporalKey" by constructing a suitable string representation (instead of object rep) by concatenating the key and the timestamp in a way such that string.compareTo(..) delivers the same ordering as for unqualifiedtemporalkeys.
+[ ] Check if lucene really re-creates the entire index if a document is added and/or modified. This absolutely must not happen. Look at the titan-lucene connector for reference.
+[ ] Check how MapDB behaves if the temporal data matrix becomes larger than the -Xmx setting (max memory) of the JVM.
+[ ] Check how MapDB behaves if executed under Linux x64 with MMAP ennabled.
+
+The hard ones
+[ ] If necessary, write an own B-Tree implementation instead of using MapDB. Maybe consider B+Trees to answer chrono's "get" calls. Check Christian Lechner's master seminar paper again to look for alternatives. See: https://de.wikipedia.org/wiki/B%2B-Baum
+[ ] If a custom B-Tree is implemented, use Java Memory Mapped files.
+[ ] Another way of processing would be: have a persistent hash set for the keys, and each value points to a b-tree that exclusively indexes the versions of that key only. complexity: O(1) + O(log(v)).
+[ ] Investigate other ways to make better use of regular hash maps instead of B-Trees to compete with "regular" key-value stores.
+[ ] Investigate ways how to utilize multi-core processors (multi-threading) in ChronoDB.
+[ ] Implement query caching. Due to temporal considerations, only precise time matching may be done in caching, i.e. get("x", 123) can be answered by cache only if get("x",123) was performed; get("x",122) might have had a different value!

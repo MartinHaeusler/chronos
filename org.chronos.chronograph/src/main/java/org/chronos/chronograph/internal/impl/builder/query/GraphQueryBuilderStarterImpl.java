@@ -49,7 +49,7 @@ public class GraphQueryBuilderStarterImpl implements GraphQueryBuilderStarter {
 	@SuppressWarnings("unchecked")
 	public GraphQueryBuilder<Vertex> vertices() {
 		this.backendQuery = this.tx.getBackingDBTransaction().find().inKeyspace(ChronoGraphConstants.KEYSPACE_VERTEX);
-		this.finalizableBuilder = new GraphFinalizableQueryBuilderImpl<Vertex>(Vertex.class);
+		this.finalizableBuilder = new GraphFinalizableQueryBuilderImpl<>(Vertex.class);
 		return (GraphQueryBuilder<Vertex>) this.queryBuilder;
 	}
 
@@ -57,7 +57,7 @@ public class GraphQueryBuilderStarterImpl implements GraphQueryBuilderStarter {
 	@SuppressWarnings("unchecked")
 	public GraphQueryBuilder<Edge> edges() {
 		this.backendQuery = this.tx.getBackingDBTransaction().find().inKeyspace(ChronoGraphConstants.KEYSPACE_EDGE);
-		this.finalizableBuilder = new GraphFinalizableQueryBuilderImpl<Edge>(Edge.class);
+		this.finalizableBuilder = new GraphFinalizableQueryBuilderImpl<>(Edge.class);
 		return (GraphQueryBuilder<Edge>) this.queryBuilder;
 	}
 
@@ -98,6 +98,10 @@ public class GraphQueryBuilderStarterImpl implements GraphQueryBuilderStarter {
 	}
 
 	private class GraphWhereBuilderImpl<E extends Element> implements GraphWhereBuilder<E> {
+
+		// =================================================================================================================
+		// STRING OPERATIONS
+		// =================================================================================================================
 
 		@Override
 		@SuppressWarnings("unchecked")
@@ -312,6 +316,146 @@ public class GraphQueryBuilderStarterImpl implements GraphQueryBuilderStarter {
 			}
 			self.finalizableBackendQuery = self.currentWhereQuery.isNotEqualToIgnoreCase(value);
 			self.currentWhereQuery = null;
+			return (GraphFinalizableQueryBuilder<E>) self.finalizableBuilder;
+		}
+
+		// =================================================================================================================
+		// LONG OPERATIONS
+		// =================================================================================================================
+
+		@Override
+		@SuppressWarnings("unchecked")
+		public GraphFinalizableQueryBuilder<E> isEqualTo(final long value) {
+			GraphQueryBuilderStarterImpl self = GraphQueryBuilderStarterImpl.this;
+			if (self.currentWhereQuery == null) {
+				throw new IllegalStateException("Cannot apply filter - no current 'where' clause is given!");
+			}
+			self.finalizableBackendQuery = self.currentWhereQuery.isEqualTo(value);
+			return (GraphFinalizableQueryBuilder<E>) self.finalizableBuilder;
+		}
+
+		@Override
+		@SuppressWarnings("unchecked")
+		public GraphFinalizableQueryBuilder<E> isNotEqualTo(final long value) {
+			GraphQueryBuilderStarterImpl self = GraphQueryBuilderStarterImpl.this;
+			if (self.currentWhereQuery == null) {
+				throw new IllegalStateException("Cannot apply filter - no current 'where' clause is given!");
+			}
+			self.finalizableBackendQuery = self.currentWhereQuery.isNotEqualTo(value);
+			return (GraphFinalizableQueryBuilder<E>) self.finalizableBuilder;
+		}
+
+		@Override
+		@SuppressWarnings("unchecked")
+		public GraphFinalizableQueryBuilder<E> isGreaterThan(final long value) {
+			GraphQueryBuilderStarterImpl self = GraphQueryBuilderStarterImpl.this;
+			if (self.currentWhereQuery == null) {
+				throw new IllegalStateException("Cannot apply filter - no current 'where' clause is given!");
+			}
+			self.finalizableBackendQuery = self.currentWhereQuery.isGreaterThan(value);
+			return (GraphFinalizableQueryBuilder<E>) self.finalizableBuilder;
+		}
+
+		@Override
+		@SuppressWarnings("unchecked")
+		public GraphFinalizableQueryBuilder<E> isGreaterThanOrEqualTo(final long value) {
+			GraphQueryBuilderStarterImpl self = GraphQueryBuilderStarterImpl.this;
+			if (self.currentWhereQuery == null) {
+				throw new IllegalStateException("Cannot apply filter - no current 'where' clause is given!");
+			}
+			self.finalizableBackendQuery = self.currentWhereQuery.isGreaterThanOrEqualTo(value);
+			return (GraphFinalizableQueryBuilder<E>) self.finalizableBuilder;
+		}
+
+		@Override
+		@SuppressWarnings("unchecked")
+		public GraphFinalizableQueryBuilder<E> isLessThan(final long value) {
+			GraphQueryBuilderStarterImpl self = GraphQueryBuilderStarterImpl.this;
+			if (self.currentWhereQuery == null) {
+				throw new IllegalStateException("Cannot apply filter - no current 'where' clause is given!");
+			}
+			self.finalizableBackendQuery = self.currentWhereQuery.isLessThan(value);
+			return (GraphFinalizableQueryBuilder<E>) self.finalizableBuilder;
+		}
+
+		@Override
+		@SuppressWarnings("unchecked")
+		public GraphFinalizableQueryBuilder<E> isLessThanOrEqualTo(final long value) {
+			GraphQueryBuilderStarterImpl self = GraphQueryBuilderStarterImpl.this;
+			if (self.currentWhereQuery == null) {
+				throw new IllegalStateException("Cannot apply filter - no current 'where' clause is given!");
+			}
+			self.finalizableBackendQuery = self.currentWhereQuery.isLessThanOrEqualTo(value);
+			return (GraphFinalizableQueryBuilder<E>) self.finalizableBuilder;
+		}
+
+		// =================================================================================================================
+		// DOUBLE OPERATIONS
+		// =================================================================================================================
+
+		@Override
+		@SuppressWarnings("unchecked")
+		public GraphFinalizableQueryBuilder<E> isEqualTo(final double value, final double equalityTolerance) {
+			GraphQueryBuilderStarterImpl self = GraphQueryBuilderStarterImpl.this;
+			if (self.currentWhereQuery == null) {
+				throw new IllegalStateException("Cannot apply filter - no current 'where' clause is given!");
+			}
+			self.finalizableBackendQuery = self.currentWhereQuery.isEqualTo(value, equalityTolerance);
+			return (GraphFinalizableQueryBuilder<E>) self.finalizableBuilder;
+		}
+
+		@Override
+		@SuppressWarnings("unchecked")
+		public GraphFinalizableQueryBuilder<E> isNotEqualTo(final double value, final double equalityTolerance) {
+			GraphQueryBuilderStarterImpl self = GraphQueryBuilderStarterImpl.this;
+			if (self.currentWhereQuery == null) {
+				throw new IllegalStateException("Cannot apply filter - no current 'where' clause is given!");
+			}
+			self.finalizableBackendQuery = self.currentWhereQuery.isNotEqualTo(value, equalityTolerance);
+			return (GraphFinalizableQueryBuilder<E>) self.finalizableBuilder;
+		}
+
+		@Override
+		@SuppressWarnings("unchecked")
+		public GraphFinalizableQueryBuilder<E> isGreaterThan(final double value) {
+			GraphQueryBuilderStarterImpl self = GraphQueryBuilderStarterImpl.this;
+			if (self.currentWhereQuery == null) {
+				throw new IllegalStateException("Cannot apply filter - no current 'where' clause is given!");
+			}
+			self.finalizableBackendQuery = self.currentWhereQuery.isGreaterThan(value);
+			return (GraphFinalizableQueryBuilder<E>) self.finalizableBuilder;
+		}
+
+		@Override
+		@SuppressWarnings("unchecked")
+		public GraphFinalizableQueryBuilder<E> isGreaterThanOrEqualTo(final double value) {
+			GraphQueryBuilderStarterImpl self = GraphQueryBuilderStarterImpl.this;
+			if (self.currentWhereQuery == null) {
+				throw new IllegalStateException("Cannot apply filter - no current 'where' clause is given!");
+			}
+			self.finalizableBackendQuery = self.currentWhereQuery.isGreaterThanOrEqualTo(value);
+			return (GraphFinalizableQueryBuilder<E>) self.finalizableBuilder;
+		}
+
+		@Override
+		@SuppressWarnings("unchecked")
+		public GraphFinalizableQueryBuilder<E> isLessThan(final double value) {
+			GraphQueryBuilderStarterImpl self = GraphQueryBuilderStarterImpl.this;
+			if (self.currentWhereQuery == null) {
+				throw new IllegalStateException("Cannot apply filter - no current 'where' clause is given!");
+			}
+			self.finalizableBackendQuery = self.currentWhereQuery.isLessThan(value);
+			return (GraphFinalizableQueryBuilder<E>) self.finalizableBuilder;
+		}
+
+		@Override
+		@SuppressWarnings("unchecked")
+		public GraphFinalizableQueryBuilder<E> isLessThanOrEqualTo(final double value) {
+			GraphQueryBuilderStarterImpl self = GraphQueryBuilderStarterImpl.this;
+			if (self.currentWhereQuery == null) {
+				throw new IllegalStateException("Cannot apply filter - no current 'where' clause is given!");
+			}
+			self.finalizableBackendQuery = self.currentWhereQuery.isLessThanOrEqualTo(value);
 			return (GraphFinalizableQueryBuilder<E>) self.finalizableBuilder;
 		}
 

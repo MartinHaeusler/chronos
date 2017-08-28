@@ -11,9 +11,7 @@ import java.util.stream.Collectors;
 
 import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
-import org.chronos.chronodb.api.query.Condition;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
-import org.chronos.chronodb.internal.impl.query.TextMatchMode;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
 import org.chronos.chronograph.api.structure.ChronoEdge;
 import org.chronos.chronograph.api.structure.ChronoElement;
 import org.chronos.chronograph.api.structure.ChronoVertex;
@@ -234,7 +232,7 @@ public class GraphTransactionContext {
 		return this.propertyNameToModifiedProperties.containsValue(IdentityWrapper.of(property));
 	}
 
-	public List<ChronoProperty<?>> getModifiedProperties(final SearchSpecification searchSpec) {
+	public List<ChronoProperty<?>> getModifiedProperties(final SearchSpecification<?> searchSpec) {
 		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
 		// only look at the modified properties that have the property key we are interested in
 		String propertyKey = searchSpec.getProperty();
@@ -243,9 +241,6 @@ public class GraphTransactionContext {
 		// use a list here, because #hashCode and #equals on Properties is defined on key and value only (not on parent
 		// element id)
 		List<ChronoProperty<?>> resultList = Lists.newArrayList();
-		String searchText = searchSpec.getSearchText();
-		Condition condition = searchSpec.getCondition();
-		TextMatchMode matchMode = searchSpec.getMatchMode();
 		for (IdentityWrapper<ChronoProperty<?>> wrapper : modifiedProperties) {
 			ChronoProperty<?> property = wrapper.get();
 			if (property.isRemoved()) {
@@ -255,7 +250,7 @@ public class GraphTransactionContext {
 				continue;
 			}
 			Object value = property.value();
-			if (ChronoGraphQueryUtil.conditionApplies(condition, value, searchText, matchMode)) {
+			if (ChronoGraphQueryUtil.searchSpecApplies(searchSpec, value)) {
 				resultList.add(property);
 			}
 		}

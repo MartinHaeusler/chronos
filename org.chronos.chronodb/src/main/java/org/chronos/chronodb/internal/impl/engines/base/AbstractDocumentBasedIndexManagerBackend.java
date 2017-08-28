@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.*;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.chronos.chronodb.api.Branch;
@@ -13,9 +14,10 @@ import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.internal.api.index.ChronoIndexDocument;
 import org.chronos.chronodb.internal.api.index.ChronoIndexModifications;
 import org.chronos.chronodb.internal.api.index.DocumentBasedIndexManagerBackend;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
 
 import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Maps;
 import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Sets;
 
@@ -41,8 +43,8 @@ public abstract class AbstractDocumentBasedIndexManagerBackend implements Docume
 	// =====================================================================================================================
 
 	@Override
-	public Collection<ChronoIndexDocument> getMatchingDocuments(final long timestamp, final Branch branch,
-			final SearchSpecification searchSpec) {
+	public Collection<ChronoIndexDocument> getMatchingDocuments(final long timestamp, final Branch branch, final String keyspace,
+			final SearchSpecification<?> searchSpec) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
 		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
@@ -50,6 +52,27 @@ public abstract class AbstractDocumentBasedIndexManagerBackend implements Docume
 		List<Branch> branches = branch.getOriginsRecursive();
 		// always add the branch we need to actually process to the end of the list
 		branches.add(branch);
+
+		// we will later require information when a branch was "branched out" into the child branch we are interested
+		// in, so we build this map now. It is a mapping from a branch to the timestamp when the relevant child branch
+		// was created. It is the same info as branch#getBranchingTimestamp(), just attached to the parent (not the
+		// child).
+		//
+		// Example:
+		// We have: {"B", origin: "A", timestamp: 1234}, {"A", origin: "master", timestamp: 123}, {"master"}
+		// We need: {"master" branchedIntoA_At: 123} {"A" branchedIntoB_At: 1234} {"B"}
+		Map<Branch, Long> branchOutTimestamps = Maps.newHashMap();
+		for (int i = 0; i < branches.size(); i++) {
+			Branch b = branches.get(i);
+			if (b.equals(branch)) {
+				// the request branch has no "branch out" timestamp
+				continue;
+			}
+			Branch childBranch = branches.get(i + 1);
+			// the root branch was "branched out" to the child branch at this timestamp
+			branchOutTimestamps.put(b, childBranch.getBranchingTimestamp());
+		}
+
 		// prepare a mapping from qualified keys to document that holds our result
 		SetMultimap<QualifiedKey, ChronoIndexDocument> resultMap = HashMultimap.create();
 		// now, iterate over the list and repeat the matching algorithm for every branch:
@@ -58,11 +81,21 @@ public abstract class AbstractDocumentBasedIndexManagerBackend implements Docume
 		// 3) Add the matches local to our current branch
 		for (Branch currentBranch : branches) {
 			String branchName = currentBranch.getName();
+			// Important note: if the branch we are currently dealing with is NOT the branch that we are
+			// querying, but a PARENT branch instead, we must use the MINIMUM of (branching timestamp; request
+			// timestamp), because the branch might have changes that are AFTER the branching timestamp but BEFORE the
+			// request timestamp, and we don't want to see those in the result.
+			long scanTimestamp = timestamp;
+			if (currentBranch.equals(branch) == false) {
+				// not the request timestamp; calculate the scan timestamp
+				long branchOutTimestamp = branchOutTimestamps.get(currentBranch);
+				scanTimestamp = Math.min(timestamp, branchOutTimestamp);
+			}
 			// check if we have a non-empty result set (in that case, we have to respect branch-local deletions)
 			if (resultMap.isEmpty() == false) {
 				// find the branch-local deletions
-				Collection<ChronoIndexDocument> localDeletions = this.getTerminatedBranchLocalDocuments(timestamp,
-						branchName, searchSpec);
+				Collection<ChronoIndexDocument> localDeletions = this.getTerminatedBranchLocalDocuments(scanTimestamp,
+						branchName, keyspace, searchSpec);
 				// remove the local deletions from our overall result
 				for (ChronoIndexDocument localDeletion : localDeletions) {
 					QualifiedKey qKey = QualifiedKey.create(localDeletion.getKeyspace(), localDeletion.getKey());
@@ -76,9 +109,9 @@ public abstract class AbstractDocumentBasedIndexManagerBackend implements Docume
 					}
 				}
 			}
-			// find the branch-local matches
-			Collection<ChronoIndexDocument> localMatches = this.getMatchingBranchLocalDocuments(timestamp, branchName,
-					searchSpec);
+			// find the branch-local matches of the given branch.
+			Collection<ChronoIndexDocument> localMatches = this.getMatchingBranchLocalDocuments(scanTimestamp,
+					branchName, keyspace, searchSpec);
 			// add the local matches to our overall result
 			for (ChronoIndexDocument localMatch : localMatches) {
 				QualifiedKey qKey = QualifiedKey.create(localMatch.getKeyspace(), localMatch.getKey());
@@ -199,11 +232,12 @@ public abstract class AbstractDocumentBasedIndexManagerBackend implements Docume
 	 *
 	 * @return The set of index documents that were added and/or modified exactly at or after the given timestamp. May be empty, but never <code>null</code>.
 	 */
-	protected abstract Set<ChronoIndexDocument> getDocumentsTouchedAtOrAfterTimestamp(long timestamp, Set<String> branches);
+	protected abstract Set<ChronoIndexDocument> getDocumentsTouchedAtOrAfterTimestamp(long timestamp,
+			Set<String> branches);
 
 	protected abstract Collection<ChronoIndexDocument> getTerminatedBranchLocalDocuments(long timestamp,
-			String branchName, SearchSpecification searchSpec);
+			String branchName, String keyspace, SearchSpecification<?> searchSpec);
 
 	protected abstract Collection<ChronoIndexDocument> getMatchingBranchLocalDocuments(long timestamp,
-			String branchName, SearchSpecification searchSpec);
+			String branchName, String keyspace, SearchSpecification<?> searchSpec);
 }

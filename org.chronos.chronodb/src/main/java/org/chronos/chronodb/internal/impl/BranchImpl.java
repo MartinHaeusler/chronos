@@ -17,11 +17,11 @@ public class BranchImpl implements BranchInternal {
 	// =====================================================================================================================
 
 	public static BranchImpl createMasterBranch() {
-		BranchMetadata masterBranchMetadata = BranchMetadata.createMasterBranchMetadata();
+		IBranchMetadata masterBranchMetadata = IBranchMetadata.createMasterBranchMetadata();
 		return new BranchImpl(masterBranchMetadata, null);
 	}
 
-	public static BranchImpl createBranch(final BranchMetadata metadata, final Branch parentBranch) {
+	public static BranchImpl createBranch(final IBranchMetadata metadata, final Branch parentBranch) {
 		checkNotNull(metadata, "Precondition violation - argument 'metadata' must not be NULL!");
 		checkNotNull(parentBranch, "Precondition violation - argument 'parentBranch' must not be NULL!");
 		return new BranchImpl(metadata, parentBranch);
@@ -31,7 +31,7 @@ public class BranchImpl implements BranchInternal {
 	// FIELDS
 	// =====================================================================================================================
 
-	private final BranchMetadata metadata;
+	private final IBranchMetadata metadata;
 	private final Branch origin;
 	private TemporalKeyValueStore tkvs;
 
@@ -39,7 +39,7 @@ public class BranchImpl implements BranchInternal {
 	// CONSTRUCTOR
 	// =====================================================================================================================
 
-	protected BranchImpl(final BranchMetadata metadata, final Branch origin) {
+	protected BranchImpl(final IBranchMetadata metadata, final Branch origin) {
 		checkNotNull(metadata, "Precondition violation - argument 'metadata' must not be NULL!");
 		// if we have an origin, its name must match the one stored in the metadata
 		if (origin != null) {
@@ -95,6 +95,11 @@ public class BranchImpl implements BranchInternal {
 		}
 	}
 
+	@Override
+	public String getDirectoryName() {
+		return this.metadata.getDirectoryName();
+	}
+
 	// =====================================================================================================================
 	// HASH CODE & EQUALS
 	// =====================================================================================================================
@@ -148,7 +153,7 @@ public class BranchImpl implements BranchInternal {
 	// =====================================================================================================================
 
 	@Override
-	public BranchMetadata getMetadata() {
+	public IBranchMetadata getMetadata() {
 		return this.metadata;
 	}
 

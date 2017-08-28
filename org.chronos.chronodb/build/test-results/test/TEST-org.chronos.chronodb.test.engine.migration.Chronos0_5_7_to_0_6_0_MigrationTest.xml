@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.engine.migration.Chronos0_5_7_to_0_6_0_MigrationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:53:02" hostname="Aurora" time="0.447">
+  <properties/>
+  <testcase name="canMigrateBranchFormat" classname="org.chronos.chronodb.test.engine.migration.Chronos0_5_7_to_0_6_0_MigrationTest" time="0.447"/>
+  <system-out><![CDATA[19:53:02.067 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  Chronos0_5_7_to_0_6_0_MigrationTest
+    Test method: canMigrateBranchFormat
+    Start time:  2017/08/28 19:53:02
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  Chronos0_5_7_to_0_6_0_MigrationTest
+    Test method: canMigrateBranchFormat
+    End time:    2017/08/28 19:53:02 (Duration: 447ms)
+================================================================================
+
+
+
+19:53:02.514 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:53:02.514 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

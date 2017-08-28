@@ -1,0 +1,884 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" tests="35" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:55:40" hostname="Aurora" time="4.402">
+  <properties/>
+  <testcase name="enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using tupl]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.116"/>
+  <testcase name="chronoGraphConfigurationIsPresent[Using tupl]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.12"/>
+  <testcase name="canOpenManualTransactionsWhenAutoStartIsDisabled[Using tupl]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.164"/>
+  <testcase name="canDisableIdExistenceCheckWithTestAnnotation[Using tupl]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.1"/>
+  <testcase name="idExistenceCheckIsEnabledByDefault[Using tupl]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.116"/>
+  <testcase name="canDisableAutoStartTransactions[Using tupl]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.121"/>
+  <testcase name="disablingIdExistenceCheckWorks[Using tupl]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.1"/>
+  <testcase name="enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using chunked]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.262"/>
+  <testcase name="chronoGraphConfigurationIsPresent[Using chunked]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.138"/>
+  <testcase name="canOpenManualTransactionsWhenAutoStartIsDisabled[Using chunked]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.215"/>
+  <testcase name="canDisableIdExistenceCheckWithTestAnnotation[Using chunked]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.131"/>
+  <testcase name="idExistenceCheckIsEnabledByDefault[Using chunked]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.154"/>
+  <testcase name="canDisableAutoStartTransactions[Using chunked]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.199"/>
+  <testcase name="disablingIdExistenceCheckWorks[Using chunked]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.248"/>
+  <testcase name="enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using inmemory]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.0"/>
+  <testcase name="chronoGraphConfigurationIsPresent[Using inmemory]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.0"/>
+  <testcase name="canOpenManualTransactionsWhenAutoStartIsDisabled[Using inmemory]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.0"/>
+  <testcase name="canDisableIdExistenceCheckWithTestAnnotation[Using inmemory]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.0"/>
+  <testcase name="idExistenceCheckIsEnabledByDefault[Using inmemory]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.0"/>
+  <testcase name="canDisableAutoStartTransactions[Using inmemory]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.0"/>
+  <testcase name="disablingIdExistenceCheckWorks[Using inmemory]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.015"/>
+  <testcase name="enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using mapdb]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.253"/>
+  <testcase name="chronoGraphConfigurationIsPresent[Using mapdb]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.279"/>
+  <testcase name="canOpenManualTransactionsWhenAutoStartIsDisabled[Using mapdb]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.367"/>
+  <testcase name="canDisableIdExistenceCheckWithTestAnnotation[Using mapdb]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.254"/>
+  <testcase name="idExistenceCheckIsEnabledByDefault[Using mapdb]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.264"/>
+  <testcase name="canDisableAutoStartTransactions[Using mapdb]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.284"/>
+  <testcase name="disablingIdExistenceCheckWorks[Using mapdb]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.285"/>
+  <testcase name="enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using jdbc]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.031"/>
+  <testcase name="chronoGraphConfigurationIsPresent[Using jdbc]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.022"/>
+  <testcase name="canOpenManualTransactionsWhenAutoStartIsDisabled[Using jdbc]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.031"/>
+  <testcase name="canDisableIdExistenceCheckWithTestAnnotation[Using jdbc]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.032"/>
+  <testcase name="idExistenceCheckIsEnabledByDefault[Using jdbc]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.037"/>
+  <testcase name="canDisableAutoStartTransactions[Using jdbc]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.032"/>
+  <testcase name="disablingIdExistenceCheckWorks[Using jdbc]" classname="org.chronos.chronograph.test.configuration.ChronoGraphConfigurationTest" time="0.031"/>
+  <system-out><![CDATA[[INFO ] 2017-08-28 19:55:40 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using tupl]
+    Start time:  2017/08/28 19:55:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using tupl]
+    End time:    2017/08/28 19:55:41 (Duration: 116ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: chronoGraphConfigurationIsPresent[Using tupl]
+    Start time:  2017/08/28 19:55:41
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: chronoGraphConfigurationIsPresent[Using tupl]
+    End time:    2017/08/28 19:55:41 (Duration: 120ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canOpenManualTransactionsWhenAutoStartIsDisabled[Using tupl]
+    Start time:  2017/08/28 19:55:41
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canOpenManualTransactionsWhenAutoStartIsDisabled[Using tupl]
+    End time:    2017/08/28 19:55:41 (Duration: 164ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableIdExistenceCheckWithTestAnnotation[Using tupl]
+    Start time:  2017/08/28 19:55:41
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableIdExistenceCheckWithTestAnnotation[Using tupl]
+    End time:    2017/08/28 19:55:41 (Duration: 100ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: idExistenceCheckIsEnabledByDefault[Using tupl]
+    Start time:  2017/08/28 19:55:41
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: idExistenceCheckIsEnabledByDefault[Using tupl]
+    End time:    2017/08/28 19:55:41 (Duration: 116ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableAutoStartTransactions[Using tupl]
+    Start time:  2017/08/28 19:55:41
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableAutoStartTransactions[Using tupl]
+    End time:    2017/08/28 19:55:41 (Duration: 121ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: disablingIdExistenceCheckWorks[Using tupl]
+    Start time:  2017/08/28 19:55:41
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: disablingIdExistenceCheckWorks[Using tupl]
+    End time:    2017/08/28 19:55:41 (Duration: 100ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using chunked]
+    Start time:  2017/08/28 19:55:41
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using chunked]
+    End time:    2017/08/28 19:55:42 (Duration: 262ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: chronoGraphConfigurationIsPresent[Using chunked]
+    Start time:  2017/08/28 19:55:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: chronoGraphConfigurationIsPresent[Using chunked]
+    End time:    2017/08/28 19:55:42 (Duration: 138ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canOpenManualTransactionsWhenAutoStartIsDisabled[Using chunked]
+    Start time:  2017/08/28 19:55:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canOpenManualTransactionsWhenAutoStartIsDisabled[Using chunked]
+    End time:    2017/08/28 19:55:42 (Duration: 215ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableIdExistenceCheckWithTestAnnotation[Using chunked]
+    Start time:  2017/08/28 19:55:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableIdExistenceCheckWithTestAnnotation[Using chunked]
+    End time:    2017/08/28 19:55:42 (Duration: 131ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: idExistenceCheckIsEnabledByDefault[Using chunked]
+    Start time:  2017/08/28 19:55:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: idExistenceCheckIsEnabledByDefault[Using chunked]
+    End time:    2017/08/28 19:55:42 (Duration: 154ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableAutoStartTransactions[Using chunked]
+    Start time:  2017/08/28 19:55:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableAutoStartTransactions[Using chunked]
+    End time:    2017/08/28 19:55:42 (Duration: 199ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: disablingIdExistenceCheckWorks[Using chunked]
+    Start time:  2017/08/28 19:55:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: disablingIdExistenceCheckWorks[Using chunked]
+    End time:    2017/08/28 19:55:43 (Duration: 248ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using inmemory]
+    Start time:  2017/08/28 19:55:43
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using inmemory]
+    End time:    2017/08/28 19:55:43 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: chronoGraphConfigurationIsPresent[Using inmemory]
+    Start time:  2017/08/28 19:55:43
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: chronoGraphConfigurationIsPresent[Using inmemory]
+    End time:    2017/08/28 19:55:43 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canOpenManualTransactionsWhenAutoStartIsDisabled[Using inmemory]
+    Start time:  2017/08/28 19:55:43
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canOpenManualTransactionsWhenAutoStartIsDisabled[Using inmemory]
+    End time:    2017/08/28 19:55:43 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableIdExistenceCheckWithTestAnnotation[Using inmemory]
+    Start time:  2017/08/28 19:55:43
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableIdExistenceCheckWithTestAnnotation[Using inmemory]
+    End time:    2017/08/28 19:55:43 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: idExistenceCheckIsEnabledByDefault[Using inmemory]
+    Start time:  2017/08/28 19:55:43
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: idExistenceCheckIsEnabledByDefault[Using inmemory]
+    End time:    2017/08/28 19:55:43 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableAutoStartTransactions[Using inmemory]
+    Start time:  2017/08/28 19:55:43
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableAutoStartTransactions[Using inmemory]
+    End time:    2017/08/28 19:55:43 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: disablingIdExistenceCheckWorks[Using inmemory]
+    Start time:  2017/08/28 19:55:43
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: disablingIdExistenceCheckWorks[Using inmemory]
+    End time:    2017/08/28 19:55:43 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using mapdb]
+    Start time:  2017/08/28 19:55:43
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using mapdb]
+    End time:    2017/08/28 19:55:43 (Duration: 253ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: chronoGraphConfigurationIsPresent[Using mapdb]
+    Start time:  2017/08/28 19:55:43
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: chronoGraphConfigurationIsPresent[Using mapdb]
+    End time:    2017/08/28 19:55:43 (Duration: 278ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canOpenManualTransactionsWhenAutoStartIsDisabled[Using mapdb]
+    Start time:  2017/08/28 19:55:43
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canOpenManualTransactionsWhenAutoStartIsDisabled[Using mapdb]
+    End time:    2017/08/28 19:55:44 (Duration: 367ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableIdExistenceCheckWithTestAnnotation[Using mapdb]
+    Start time:  2017/08/28 19:55:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableIdExistenceCheckWithTestAnnotation[Using mapdb]
+    End time:    2017/08/28 19:55:44 (Duration: 254ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: idExistenceCheckIsEnabledByDefault[Using mapdb]
+    Start time:  2017/08/28 19:55:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: idExistenceCheckIsEnabledByDefault[Using mapdb]
+    End time:    2017/08/28 19:55:44 (Duration: 264ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableAutoStartTransactions[Using mapdb]
+    Start time:  2017/08/28 19:55:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableAutoStartTransactions[Using mapdb]
+    End time:    2017/08/28 19:55:44 (Duration: 284ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: disablingIdExistenceCheckWorks[Using mapdb]
+    Start time:  2017/08/28 19:55:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: disablingIdExistenceCheckWorks[Using mapdb]
+    End time:    2017/08/28 19:55:45 (Duration: 285ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using jdbc]
+    Start time:  2017/08/28 19:55:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: enablingIdExistenceCheckThrowsExceptionIfIdIsUsedTwice[Using jdbc]
+    End time:    2017/08/28 19:55:45 (Duration: 31ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: chronoGraphConfigurationIsPresent[Using jdbc]
+    Start time:  2017/08/28 19:55:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: chronoGraphConfigurationIsPresent[Using jdbc]
+    End time:    2017/08/28 19:55:45 (Duration: 22ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canOpenManualTransactionsWhenAutoStartIsDisabled[Using jdbc]
+    Start time:  2017/08/28 19:55:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canOpenManualTransactionsWhenAutoStartIsDisabled[Using jdbc]
+    End time:    2017/08/28 19:55:45 (Duration: 31ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableIdExistenceCheckWithTestAnnotation[Using jdbc]
+    Start time:  2017/08/28 19:55:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableIdExistenceCheckWithTestAnnotation[Using jdbc]
+    End time:    2017/08/28 19:55:45 (Duration: 32ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: idExistenceCheckIsEnabledByDefault[Using jdbc]
+    Start time:  2017/08/28 19:55:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: idExistenceCheckIsEnabledByDefault[Using jdbc]
+    End time:    2017/08/28 19:55:45 (Duration: 37ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableAutoStartTransactions[Using jdbc]
+    Start time:  2017/08/28 19:55:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: canDisableAutoStartTransactions[Using jdbc]
+    End time:    2017/08/28 19:55:45 (Duration: 32ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: disablingIdExistenceCheckWorks[Using jdbc]
+    Start time:  2017/08/28 19:55:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoGraphConfigurationTest
+    Test method: disablingIdExistenceCheckWorks[Using jdbc]
+    End time:    2017/08/28 19:55:45 (Duration: 31ms)
+================================================================================
+
+
+
+[INFO ] 2017-08-28 19:55:45 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+[INFO ] 2017-08-28 19:55:45 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -14,8 +14,8 @@ public class MutableIndexValueDiff implements IndexValueDiff {
 	private final Object oldValue;
 	private final Object newValue;
 
-	private SetMultimap<String, String> indexNameToAdditions;
-	private SetMultimap<String, String> indexNameToRemovals;
+	private SetMultimap<String, Object> indexNameToAdditions;
+	private SetMultimap<String, Object> indexNameToRemovals;
 
 	public MutableIndexValueDiff(final Object oldValue, final Object newValue) {
 		this.oldValue = oldValue;
@@ -33,7 +33,7 @@ public class MutableIndexValueDiff implements IndexValueDiff {
 	}
 
 	@Override
-	public Set<String> getAdditions(final String indexName) {
+	public Set<Object> getAdditions(final String indexName) {
 		if (this.indexNameToAdditions == null || this.indexNameToAdditions.isEmpty()) {
 			return Collections.emptySet();
 		}
@@ -41,7 +41,7 @@ public class MutableIndexValueDiff implements IndexValueDiff {
 	}
 
 	@Override
-	public Set<String> getRemovals(final String indexName) {
+	public Set<Object> getRemovals(final String indexName) {
 		if (this.indexNameToRemovals == null || this.indexNameToRemovals.isEmpty()) {
 			return Collections.emptySet();
 		}
@@ -114,10 +114,9 @@ public class MutableIndexValueDiff implements IndexValueDiff {
 		return false;
 	}
 
-	public void add(final String index, final String value) {
+	public void add(final String index, final Object value) {
 		checkNotNull(index, "Precondition violation - argument 'index' must not be NULL!");
 		checkNotNull(value, "Precondition violation - argument 'value' must not be NULL!");
-		checkArgument(value.isEmpty() == false, "Precondition violation - argument 'value' must not be empty!");
 		if (this.isEntryRemoval()) {
 			throw new IllegalStateException(
 					"Cannot insert additive diff values to a diff that represents an entry removal!");
@@ -141,10 +140,9 @@ public class MutableIndexValueDiff implements IndexValueDiff {
 		}
 	}
 
-	public void remove(final String index, final String value) {
+	public void removeSingleValue(final String index, final Object value) {
 		checkNotNull(index, "Precondition violation - argument 'index' must not be NULL!");
 		checkNotNull(value, "Precondition violation - argument 'value' must not be NULL!");
-		checkArgument(value.isEmpty() == false, "Precondition violation - argument 'value' must not be empty!");
 		if (this.isEntryAddition()) {
 			throw new IllegalStateException(
 					"Cannot insert subtractive diff values to a diff that represents an entry addition!");
@@ -158,13 +156,13 @@ public class MutableIndexValueDiff implements IndexValueDiff {
 		}
 	}
 
-	public void remove(final String index, final Set<String> values) {
+	public void removeMultipleValues(final String index, final Set<Object> values) {
 		checkNotNull(index, "Precondition violation - argument 'index' must not be NULL!");
 		if (values == null || values.isEmpty()) {
 			return;
 		}
-		for (String value : values) {
-			this.remove(index, value);
+		for (Object value : values) {
+			this.removeSingleValue(index, value);
 		}
 	}
 

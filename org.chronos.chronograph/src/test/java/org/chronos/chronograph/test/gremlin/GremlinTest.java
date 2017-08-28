@@ -66,8 +66,8 @@ public class GremlinTest extends AllChronoGraphBackendsTest {
 	public void multipleHasClausesWorksOnIndexedVertexProperty() {
 		ChronoGraph graph = this.getGraph();
 		ChronoGraphIndexManager indexManager = graph.getIndexManager();
-		indexManager.createIndex().onVertexProperty("name").build();
-		indexManager.createIndex().onVertexProperty("kind").build();
+		indexManager.create().stringIndex().onVertexProperty("name").build();
+		indexManager.create().stringIndex().onVertexProperty("kind").build();
 		indexManager.reindexAll();
 		Vertex vExpected = graph.addVertex("kind", "person", "name", "Martin");
 		graph.addVertex("kind", "person", "name", "Thomas");
@@ -105,7 +105,7 @@ public class GremlinTest extends AllChronoGraphBackendsTest {
 		ChronoGraph graph = this.getGraph();
 		ChronoGraphIndexManager indexManager = graph.getIndexManager();
 		// do not index 'name', but index 'kind'
-		indexManager.createIndex().onVertexProperty("kind").build();
+		indexManager.create().stringIndex().onVertexProperty("kind").build();
 		indexManager.reindexAll();
 		Vertex vExpected = graph.addVertex("kind", "person", "name", "Martin");
 		graph.addVertex("kind", "person", "name", "Thomas");
@@ -125,8 +125,8 @@ public class GremlinTest extends AllChronoGraphBackendsTest {
 	public void multipleHasClausesWorksOnIndexedEdgeProperty() {
 		ChronoGraph graph = this.getGraph();
 		ChronoGraphIndexManager indexManager = graph.getIndexManager();
-		indexManager.createIndex().onEdgeProperty("a").build();
-		indexManager.createIndex().onEdgeProperty("b").build();
+		indexManager.create().stringIndex().onEdgeProperty("a").build();
+		indexManager.create().stringIndex().onEdgeProperty("b").build();
 		indexManager.reindexAll();
 		Vertex v1 = graph.addVertex();
 		Vertex v2 = graph.addVertex();
@@ -150,7 +150,7 @@ public class GremlinTest extends AllChronoGraphBackendsTest {
 		ChronoGraph graph = this.getGraph();
 		ChronoGraphIndexManager indexManager = graph.getIndexManager();
 		// do not index 'a', but index 'b'
-		indexManager.createIndex().onEdgeProperty("b").build();
+		indexManager.create().stringIndex().onEdgeProperty("b").build();
 		indexManager.reindexAll();
 		Vertex v1 = graph.addVertex();
 		Vertex v2 = graph.addVertex();

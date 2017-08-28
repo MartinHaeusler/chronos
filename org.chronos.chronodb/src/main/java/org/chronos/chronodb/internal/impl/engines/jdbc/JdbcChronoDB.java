@@ -1,5 +1,7 @@
 package org.chronos.chronodb.internal.impl.engines.jdbc;
 
+import static com.google.common.base.Preconditions.*;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -39,8 +41,7 @@ import com.mchange.v2.c3p0.DataSources;
  *
  * <p>
  * <b>Performance note:</b><br>
- * This implementation will likely not scale as well as the NoSQL-based performance backends with respect to runtime, in
- * particular if the relational database needs to be accessed via network.
+ * This implementation will likely not scale as well as the NoSQL-based performance backends with respect to runtime, in particular if the relational database needs to be accessed via network.
  *
  *
  * <p>
@@ -48,19 +49,13 @@ import com.mchange.v2.c3p0.DataSources;
  * This implementation makes use of several tables:
  * <ul>
  * <li><b>Navigation Table</b><br>
- * This table serves for navigation purposes. It relates branch names and keyspace names to the tables in which this
- * particular branch/keyspace combination is stored. For more details, see {@link JdbcNavigationTable}. Results
- * retrieved from this table are cached internally to maximize the runtime efficiency. There is exactly one Navigation
- * Table per ChronoDB instance.
+ * This table serves for navigation purposes. It relates branch names and keyspace names to the tables in which this particular branch/keyspace combination is stored. For more details, see {@link JdbcNavigationTable}. Results retrieved from this table are cached internally to maximize the runtime efficiency. There is exactly one Navigation Table per ChronoDB instance.
  *
  * <li><b>Time Table</b><br>
- * The time table serves the purpose of storing the "now" timestamp for each keyspace. This table is updated on each
- * successful commit. In contrast to other tables, this table may be subject to <code>UPDATE</code> statements. For
- * details, please refer to {@link JdbcTimeTable}. There is exactly one Time Table per ChronoDB instance.
+ * The time table serves the purpose of storing the "now" timestamp for each keyspace. This table is updated on each successful commit. In contrast to other tables, this table may be subject to <code>UPDATE</code> statements. For details, please refer to {@link JdbcTimeTable}. There is exactly one Time Table per ChronoDB instance.
  *
  * <li><b>Matrix Tables</b><br>
- * Matrix tables are used for the actual key-value storage. These tables are strictly append-only. There can be multiple
- * matrix tables per ChronoDB. For details, please refer to {@link JdbcMatrixTable}.
+ * Matrix tables are used for the actual key-value storage. These tables are strictly append-only. There can be multiple matrix tables per ChronoDB. For details, please refer to {@link JdbcMatrixTable}.
  * </ul>
  *
  *
@@ -138,6 +133,24 @@ public class JdbcChronoDB extends AbstractChronoDB {
 	@Override
 	public ChronoDBCache getCache() {
 		return this.cache;
+	}
+
+	@Override
+	public boolean isFileBased() {
+		return false;
+	}
+
+	@Override
+	public void updateChronosVersionTo(final ChronosVersion chronosVersion) {
+		checkNotNull(chronosVersion, "Precondition violation - argument 'chronosVersion' must not be NULL!");
+		try (Connection connection = this.getDataSource().getConnection()) {
+			JdbcChronosBuildVersionTable table = JdbcChronosBuildVersionTable.get(connection);
+			table.ensureExists();
+			table.setChronosVersion(chronosVersion.toString());
+			connection.commit();
+		} catch (SQLException e) {
+			throw new ChronoDBStorageBackendException("Failed to update Chronos Build Version in database!", e);
+		}
 	}
 
 	// =================================================================================================================

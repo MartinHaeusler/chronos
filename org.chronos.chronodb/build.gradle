@@ -23,15 +23,11 @@ afterEvaluate { project ->
 				//the maven descriptor info
 				groupId project.group
 				artifactId jar.baseName
-				version project.version
+				version project.mavenVersion
 			}
 		}
 	}
-
 }
-
-
-
 
 dependencies {
 	// chronos project dependencies
@@ -50,7 +46,7 @@ dependencies {
     compile("com.h2database:h2:${project.h2Version}");
     
     // Backend C) Tupl
-    compile("com.truward.tupl:tupl:${project.tuplVersion}");
+    compile("org.cojen:tupl:${project.tuplVersion}");
     
     // Utilities
     compile("com.esotericsoftware:kryo:${project.kryoVersion}");

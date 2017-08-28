@@ -1,0 +1,3759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" tests="150" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:54:50" hostname="Aurora" time="35.958">
+  <properties/>
+  <testcase name="commitsAfterWorksIfThereAreNoCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.246"/>
+  <testcase name="commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.386"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.771"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.549"/>
+  <testcase name="commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.901"/>
+  <testcase name="commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.739"/>
+  <testcase name="commitsBeforeWorksIfThereAreNotEnoughCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.562"/>
+  <testcase name="commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.854"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreNoCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.284"/>
+  <testcase name="commitsAfterWorksIfThereAreNotEnoughCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.62"/>
+  <testcase name="commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.563"/>
+  <testcase name="commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.638"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.646"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.731"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreNoCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.269"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.553"/>
+  <testcase name="commitTimestampsAfterZeroWorks[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.914"/>
+  <testcase name="commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.564"/>
+  <testcase name="commitsAfterWorksIfThereAreExactlyEnoughCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.623"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.831"/>
+  <testcase name="commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.867"/>
+  <testcase name="commitsBeforeWorksIfThereAreTooManyCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.762"/>
+  <testcase name="commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.385"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.684"/>
+  <testcase name="commitsAfterWorksIfThereAreTooManyCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.831"/>
+  <testcase name="commitsAroundWorksIfNoCommitsArePresent[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.269"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreTooManyCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.816"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.569"/>
+  <testcase name="commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.731"/>
+  <testcase name="commitsBeforeWorksIfThereAreNoCommits[Using mapdb]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.27"/>
+  <testcase name="commitsAfterWorksIfThereAreNoCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.231"/>
+  <testcase name="commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.384"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.448"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.285"/>
+  <testcase name="commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.3"/>
+  <testcase name="commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.254"/>
+  <testcase name="commitsBeforeWorksIfThereAreNotEnoughCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.463"/>
+  <testcase name="commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.501"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreNoCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.252"/>
+  <testcase name="commitsAfterWorksIfThereAreNotEnoughCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.418"/>
+  <testcase name="commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.369"/>
+  <testcase name="commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.271"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.259"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.254"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreNoCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.147"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.251"/>
+  <testcase name="commitTimestampsAfterZeroWorks[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.402"/>
+  <testcase name="commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.446"/>
+  <testcase name="commitsAfterWorksIfThereAreExactlyEnoughCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.4"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.451"/>
+  <testcase name="commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.359"/>
+  <testcase name="commitsBeforeWorksIfThereAreTooManyCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.242"/>
+  <testcase name="commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.22"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.238"/>
+  <testcase name="commitsAfterWorksIfThereAreTooManyCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.261"/>
+  <testcase name="commitsAroundWorksIfNoCommitsArePresent[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.186"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreTooManyCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.468"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.484"/>
+  <testcase name="commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.431"/>
+  <testcase name="commitsBeforeWorksIfThereAreNoCommits[Using chunked]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.253"/>
+  <testcase name="commitsAfterWorksIfThereAreNoCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.0"/>
+  <testcase name="commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.013"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.011"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.005"/>
+  <testcase name="commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.068"/>
+  <testcase name="commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.009"/>
+  <testcase name="commitsBeforeWorksIfThereAreNotEnoughCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.01"/>
+  <testcase name="commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.01"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreNoCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.0"/>
+  <testcase name="commitsAfterWorksIfThereAreNotEnoughCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.007"/>
+  <testcase name="commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.005"/>
+  <testcase name="commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.01"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.009"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.007"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreNoCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.0"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.007"/>
+  <testcase name="commitTimestampsAfterZeroWorks[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.01"/>
+  <testcase name="commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.01"/>
+  <testcase name="commitsAfterWorksIfThereAreExactlyEnoughCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.007"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.009"/>
+  <testcase name="commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.066"/>
+  <testcase name="commitsBeforeWorksIfThereAreTooManyCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.009"/>
+  <testcase name="commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.006"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.008"/>
+  <testcase name="commitsAfterWorksIfThereAreTooManyCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.008"/>
+  <testcase name="commitsAroundWorksIfNoCommitsArePresent[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.0"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreTooManyCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.011"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.009"/>
+  <testcase name="commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.008"/>
+  <testcase name="commitsBeforeWorksIfThereAreNoCommits[Using inmemory]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.0"/>
+  <testcase name="commitsAfterWorksIfThereAreNoCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.116"/>
+  <testcase name="commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.179"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.155"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.119"/>
+  <testcase name="commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.162"/>
+  <testcase name="commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.154"/>
+  <testcase name="commitsBeforeWorksIfThereAreNotEnoughCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.141"/>
+  <testcase name="commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.241"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreNoCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.117"/>
+  <testcase name="commitsAfterWorksIfThereAreNotEnoughCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.2"/>
+  <testcase name="commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.215"/>
+  <testcase name="commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.269"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.262"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.253"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreNoCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.116"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.2"/>
+  <testcase name="commitTimestampsAfterZeroWorks[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.301"/>
+  <testcase name="commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.143"/>
+  <testcase name="commitsAfterWorksIfThereAreExactlyEnoughCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.126"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.14"/>
+  <testcase name="commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.238"/>
+  <testcase name="commitsBeforeWorksIfThereAreTooManyCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.269"/>
+  <testcase name="commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.2"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.232"/>
+  <testcase name="commitsAfterWorksIfThereAreTooManyCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.268"/>
+  <testcase name="commitsAroundWorksIfNoCommitsArePresent[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.116"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreTooManyCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.253"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.281"/>
+  <testcase name="commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.265"/>
+  <testcase name="commitsBeforeWorksIfThereAreNoCommits[Using tupl]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.237"/>
+  <testcase name="commitsAfterWorksIfThereAreNoCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.047"/>
+  <testcase name="commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.051"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.046"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.047"/>
+  <testcase name="commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.101"/>
+  <testcase name="commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.047"/>
+  <testcase name="commitsBeforeWorksIfThereAreNotEnoughCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.051"/>
+  <testcase name="commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.048"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreNoCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.031"/>
+  <testcase name="commitsAfterWorksIfThereAreNotEnoughCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.044"/>
+  <testcase name="commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.042"/>
+  <testcase name="commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.045"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.051"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.039"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreNoCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.026"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.03"/>
+  <testcase name="commitTimestampsAfterZeroWorks[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.039"/>
+  <testcase name="commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.038"/>
+  <testcase name="commitsAfterWorksIfThereAreExactlyEnoughCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.039"/>
+  <testcase name="commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.039"/>
+  <testcase name="commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.093"/>
+  <testcase name="commitsBeforeWorksIfThereAreTooManyCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.036"/>
+  <testcase name="commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.031"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.038"/>
+  <testcase name="commitsAfterWorksIfThereAreTooManyCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.04"/>
+  <testcase name="commitsAroundWorksIfNoCommitsArePresent[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.016"/>
+  <testcase name="commitTimestampsAfterWorksIfThereAreTooManyCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.046"/>
+  <testcase name="commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.039"/>
+  <testcase name="commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.037"/>
+  <testcase name="commitsBeforeWorksIfThereAreNoCommits[Using jdbc]" classname="org.chronos.chronograph.test.commitmetadata.GetCommitsBeforeAfterAroundTest" time="0.024"/>
+  <system-out><![CDATA[[INFO ] 2017-08-28 19:54:50 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNoCommits[Using mapdb]
+    Start time:  2017/08/28 19:54:50
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNoCommits[Using mapdb]
+    End time:    2017/08/28 19:54:51 (Duration: 246ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using mapdb]
+    Start time:  2017/08/28 19:54:51
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using mapdb]
+    End time:    2017/08/28 19:54:51 (Duration: 386ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using mapdb]
+    Start time:  2017/08/28 19:54:51
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using mapdb]
+    End time:    2017/08/28 19:54:52 (Duration: 771ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using mapdb]
+    Start time:  2017/08/28 19:54:52
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using mapdb]
+    End time:    2017/08/28 19:54:52 (Duration: 549ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using mapdb]
+    Start time:  2017/08/28 19:54:52
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using mapdb]
+    End time:    2017/08/28 19:54:53 (Duration: 901ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using mapdb]
+    Start time:  2017/08/28 19:54:53
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using mapdb]
+    End time:    2017/08/28 19:54:54 (Duration: 739ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNotEnoughCommits[Using mapdb]
+    Start time:  2017/08/28 19:54:54
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNotEnoughCommits[Using mapdb]
+    End time:    2017/08/28 19:54:55 (Duration: 562ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using mapdb]
+    Start time:  2017/08/28 19:54:55
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using mapdb]
+    End time:    2017/08/28 19:54:55 (Duration: 854ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNoCommits[Using mapdb]
+    Start time:  2017/08/28 19:54:55
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNoCommits[Using mapdb]
+    End time:    2017/08/28 19:54:56 (Duration: 284ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNotEnoughCommits[Using mapdb]
+    Start time:  2017/08/28 19:54:56
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNotEnoughCommits[Using mapdb]
+    End time:    2017/08/28 19:54:56 (Duration: 620ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using mapdb]
+    Start time:  2017/08/28 19:54:56
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using mapdb]
+    End time:    2017/08/28 19:54:57 (Duration: 563ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using mapdb]
+    Start time:  2017/08/28 19:54:57
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using mapdb]
+    End time:    2017/08/28 19:54:58 (Duration: 638ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using mapdb]
+    Start time:  2017/08/28 19:54:58
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using mapdb]
+    End time:    2017/08/28 19:54:58 (Duration: 646ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using mapdb]
+    Start time:  2017/08/28 19:54:58
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using mapdb]
+    End time:    2017/08/28 19:54:59 (Duration: 731ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNoCommits[Using mapdb]
+    Start time:  2017/08/28 19:54:59
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNoCommits[Using mapdb]
+    End time:    2017/08/28 19:54:59 (Duration: 269ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using mapdb]
+    Start time:  2017/08/28 19:54:59
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using mapdb]
+    End time:    2017/08/28 19:55:00 (Duration: 553ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterZeroWorks[Using mapdb]
+    Start time:  2017/08/28 19:55:00
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterZeroWorks[Using mapdb]
+    End time:    2017/08/28 19:55:01 (Duration: 914ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using mapdb]
+    Start time:  2017/08/28 19:55:01
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using mapdb]
+    End time:    2017/08/28 19:55:01 (Duration: 564ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreExactlyEnoughCommits[Using mapdb]
+    Start time:  2017/08/28 19:55:01
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreExactlyEnoughCommits[Using mapdb]
+    End time:    2017/08/28 19:55:02 (Duration: 623ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using mapdb]
+    Start time:  2017/08/28 19:55:02
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using mapdb]
+    End time:    2017/08/28 19:55:03 (Duration: 831ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using mapdb]
+    Start time:  2017/08/28 19:55:03
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using mapdb]
+    End time:    2017/08/28 19:55:04 (Duration: 867ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreTooManyCommits[Using mapdb]
+    Start time:  2017/08/28 19:55:04
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreTooManyCommits[Using mapdb]
+    End time:    2017/08/28 19:55:04 (Duration: 762ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using mapdb]
+    Start time:  2017/08/28 19:55:04
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using mapdb]
+    End time:    2017/08/28 19:55:05 (Duration: 385ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using mapdb]
+    Start time:  2017/08/28 19:55:05
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using mapdb]
+    End time:    2017/08/28 19:55:05 (Duration: 684ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreTooManyCommits[Using mapdb]
+    Start time:  2017/08/28 19:55:05
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreTooManyCommits[Using mapdb]
+    End time:    2017/08/28 19:55:06 (Duration: 831ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNoCommitsArePresent[Using mapdb]
+    Start time:  2017/08/28 19:55:06
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNoCommitsArePresent[Using mapdb]
+    End time:    2017/08/28 19:55:06 (Duration: 269ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreTooManyCommits[Using mapdb]
+    Start time:  2017/08/28 19:55:06
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreTooManyCommits[Using mapdb]
+    End time:    2017/08/28 19:55:07 (Duration: 816ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using mapdb]
+    Start time:  2017/08/28 19:55:07
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using mapdb]
+    End time:    2017/08/28 19:55:08 (Duration: 569ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using mapdb]
+    Start time:  2017/08/28 19:55:08
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using mapdb]
+    End time:    2017/08/28 19:55:09 (Duration: 731ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNoCommits[Using mapdb]
+    Start time:  2017/08/28 19:55:09
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNoCommits[Using mapdb]
+    End time:    2017/08/28 19:55:09 (Duration: 270ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNoCommits[Using chunked]
+    Start time:  2017/08/28 19:55:09
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNoCommits[Using chunked]
+    End time:    2017/08/28 19:55:09 (Duration: 231ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using chunked]
+    Start time:  2017/08/28 19:55:09
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using chunked]
+    End time:    2017/08/28 19:55:09 (Duration: 384ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using chunked]
+    Start time:  2017/08/28 19:55:09
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using chunked]
+    End time:    2017/08/28 19:55:10 (Duration: 448ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using chunked]
+    Start time:  2017/08/28 19:55:10
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using chunked]
+    End time:    2017/08/28 19:55:10 (Duration: 285ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using chunked]
+    Start time:  2017/08/28 19:55:10
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using chunked]
+    End time:    2017/08/28 19:55:10 (Duration: 300ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using chunked]
+    Start time:  2017/08/28 19:55:10
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using chunked]
+    End time:    2017/08/28 19:55:11 (Duration: 254ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNotEnoughCommits[Using chunked]
+    Start time:  2017/08/28 19:55:11
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNotEnoughCommits[Using chunked]
+    End time:    2017/08/28 19:55:11 (Duration: 463ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using chunked]
+    Start time:  2017/08/28 19:55:11
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using chunked]
+    End time:    2017/08/28 19:55:12 (Duration: 501ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNoCommits[Using chunked]
+    Start time:  2017/08/28 19:55:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNoCommits[Using chunked]
+    End time:    2017/08/28 19:55:12 (Duration: 252ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNotEnoughCommits[Using chunked]
+    Start time:  2017/08/28 19:55:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNotEnoughCommits[Using chunked]
+    End time:    2017/08/28 19:55:12 (Duration: 418ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using chunked]
+    Start time:  2017/08/28 19:55:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using chunked]
+    End time:    2017/08/28 19:55:13 (Duration: 369ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using chunked]
+    Start time:  2017/08/28 19:55:13
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using chunked]
+    End time:    2017/08/28 19:55:13 (Duration: 271ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using chunked]
+    Start time:  2017/08/28 19:55:13
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using chunked]
+    End time:    2017/08/28 19:55:13 (Duration: 259ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using chunked]
+    Start time:  2017/08/28 19:55:13
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using chunked]
+    End time:    2017/08/28 19:55:14 (Duration: 254ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNoCommits[Using chunked]
+    Start time:  2017/08/28 19:55:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNoCommits[Using chunked]
+    End time:    2017/08/28 19:55:14 (Duration: 147ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using chunked]
+    Start time:  2017/08/28 19:55:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using chunked]
+    End time:    2017/08/28 19:55:14 (Duration: 251ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterZeroWorks[Using chunked]
+    Start time:  2017/08/28 19:55:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterZeroWorks[Using chunked]
+    End time:    2017/08/28 19:55:14 (Duration: 402ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using chunked]
+    Start time:  2017/08/28 19:55:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using chunked]
+    End time:    2017/08/28 19:55:15 (Duration: 446ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreExactlyEnoughCommits[Using chunked]
+    Start time:  2017/08/28 19:55:15
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreExactlyEnoughCommits[Using chunked]
+    End time:    2017/08/28 19:55:15 (Duration: 400ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using chunked]
+    Start time:  2017/08/28 19:55:15
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using chunked]
+    End time:    2017/08/28 19:55:16 (Duration: 451ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using chunked]
+    Start time:  2017/08/28 19:55:16
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using chunked]
+    End time:    2017/08/28 19:55:16 (Duration: 358ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreTooManyCommits[Using chunked]
+    Start time:  2017/08/28 19:55:16
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreTooManyCommits[Using chunked]
+    End time:    2017/08/28 19:55:16 (Duration: 242ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using chunked]
+    Start time:  2017/08/28 19:55:16
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using chunked]
+    End time:    2017/08/28 19:55:16 (Duration: 220ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using chunked]
+    Start time:  2017/08/28 19:55:16
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using chunked]
+    End time:    2017/08/28 19:55:17 (Duration: 238ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreTooManyCommits[Using chunked]
+    Start time:  2017/08/28 19:55:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreTooManyCommits[Using chunked]
+    End time:    2017/08/28 19:55:17 (Duration: 261ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNoCommitsArePresent[Using chunked]
+    Start time:  2017/08/28 19:55:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNoCommitsArePresent[Using chunked]
+    End time:    2017/08/28 19:55:17 (Duration: 186ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreTooManyCommits[Using chunked]
+    Start time:  2017/08/28 19:55:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreTooManyCommits[Using chunked]
+    End time:    2017/08/28 19:55:18 (Duration: 468ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using chunked]
+    Start time:  2017/08/28 19:55:18
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using chunked]
+    End time:    2017/08/28 19:55:18 (Duration: 484ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using chunked]
+    Start time:  2017/08/28 19:55:18
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using chunked]
+    End time:    2017/08/28 19:55:19 (Duration: 431ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNoCommits[Using chunked]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNoCommits[Using chunked]
+    End time:    2017/08/28 19:55:19 (Duration: 253ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNoCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNoCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 13ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 11ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 5ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 68ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 9ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNotEnoughCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNotEnoughCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 10ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 10ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNoCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNoCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNotEnoughCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNotEnoughCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 7ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 5ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 10ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 9ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 7ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNoCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNoCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 7ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterZeroWorks[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterZeroWorks[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 10ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 10ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreExactlyEnoughCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreExactlyEnoughCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 7ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 9ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 66ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreTooManyCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreTooManyCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 9ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 6ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 8ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreTooManyCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreTooManyCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 8ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNoCommitsArePresent[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNoCommitsArePresent[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreTooManyCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreTooManyCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 11ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 9ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 8ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNoCommits[Using inmemory]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNoCommits[Using inmemory]
+    End time:    2017/08/28 19:55:19 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNoCommits[Using tupl]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNoCommits[Using tupl]
+    End time:    2017/08/28 19:55:19 (Duration: 116ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using tupl]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using tupl]
+    End time:    2017/08/28 19:55:19 (Duration: 179ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using tupl]
+    Start time:  2017/08/28 19:55:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using tupl]
+    End time:    2017/08/28 19:55:20 (Duration: 155ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using tupl]
+    Start time:  2017/08/28 19:55:20
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using tupl]
+    End time:    2017/08/28 19:55:20 (Duration: 119ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using tupl]
+    Start time:  2017/08/28 19:55:20
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using tupl]
+    End time:    2017/08/28 19:55:20 (Duration: 162ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using tupl]
+    Start time:  2017/08/28 19:55:20
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using tupl]
+    End time:    2017/08/28 19:55:20 (Duration: 154ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNotEnoughCommits[Using tupl]
+    Start time:  2017/08/28 19:55:20
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNotEnoughCommits[Using tupl]
+    End time:    2017/08/28 19:55:20 (Duration: 141ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using tupl]
+    Start time:  2017/08/28 19:55:20
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using tupl]
+    End time:    2017/08/28 19:55:20 (Duration: 241ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNoCommits[Using tupl]
+    Start time:  2017/08/28 19:55:20
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNoCommits[Using tupl]
+    End time:    2017/08/28 19:55:20 (Duration: 117ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNotEnoughCommits[Using tupl]
+    Start time:  2017/08/28 19:55:20
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNotEnoughCommits[Using tupl]
+    End time:    2017/08/28 19:55:21 (Duration: 200ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using tupl]
+    Start time:  2017/08/28 19:55:21
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using tupl]
+    End time:    2017/08/28 19:55:21 (Duration: 215ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using tupl]
+    Start time:  2017/08/28 19:55:21
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using tupl]
+    End time:    2017/08/28 19:55:21 (Duration: 269ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using tupl]
+    Start time:  2017/08/28 19:55:21
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using tupl]
+    End time:    2017/08/28 19:55:21 (Duration: 262ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using tupl]
+    Start time:  2017/08/28 19:55:21
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using tupl]
+    End time:    2017/08/28 19:55:22 (Duration: 253ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNoCommits[Using tupl]
+    Start time:  2017/08/28 19:55:22
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNoCommits[Using tupl]
+    End time:    2017/08/28 19:55:22 (Duration: 116ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using tupl]
+    Start time:  2017/08/28 19:55:22
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using tupl]
+    End time:    2017/08/28 19:55:22 (Duration: 200ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterZeroWorks[Using tupl]
+    Start time:  2017/08/28 19:55:22
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterZeroWorks[Using tupl]
+    End time:    2017/08/28 19:55:22 (Duration: 301ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using tupl]
+    Start time:  2017/08/28 19:55:22
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using tupl]
+    End time:    2017/08/28 19:55:22 (Duration: 143ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreExactlyEnoughCommits[Using tupl]
+    Start time:  2017/08/28 19:55:22
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreExactlyEnoughCommits[Using tupl]
+    End time:    2017/08/28 19:55:23 (Duration: 126ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using tupl]
+    Start time:  2017/08/28 19:55:23
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using tupl]
+    End time:    2017/08/28 19:55:23 (Duration: 140ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using tupl]
+    Start time:  2017/08/28 19:55:23
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using tupl]
+    End time:    2017/08/28 19:55:23 (Duration: 238ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreTooManyCommits[Using tupl]
+    Start time:  2017/08/28 19:55:23
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreTooManyCommits[Using tupl]
+    End time:    2017/08/28 19:55:23 (Duration: 269ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using tupl]
+    Start time:  2017/08/28 19:55:23
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using tupl]
+    End time:    2017/08/28 19:55:23 (Duration: 200ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using tupl]
+    Start time:  2017/08/28 19:55:23
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using tupl]
+    End time:    2017/08/28 19:55:24 (Duration: 232ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreTooManyCommits[Using tupl]
+    Start time:  2017/08/28 19:55:24
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreTooManyCommits[Using tupl]
+    End time:    2017/08/28 19:55:24 (Duration: 268ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNoCommitsArePresent[Using tupl]
+    Start time:  2017/08/28 19:55:24
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNoCommitsArePresent[Using tupl]
+    End time:    2017/08/28 19:55:24 (Duration: 116ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreTooManyCommits[Using tupl]
+    Start time:  2017/08/28 19:55:24
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreTooManyCommits[Using tupl]
+    End time:    2017/08/28 19:55:24 (Duration: 253ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using tupl]
+    Start time:  2017/08/28 19:55:24
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using tupl]
+    End time:    2017/08/28 19:55:25 (Duration: 281ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using tupl]
+    Start time:  2017/08/28 19:55:25
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using tupl]
+    End time:    2017/08/28 19:55:25 (Duration: 265ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNoCommits[Using tupl]
+    Start time:  2017/08/28 19:55:25
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNoCommits[Using tupl]
+    End time:    2017/08/28 19:55:25 (Duration: 237ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNoCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:25
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNoCommits[Using jdbc]
+    End time:    2017/08/28 19:55:25 (Duration: 47ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using jdbc]
+    Start time:  2017/08/28 19:55:25
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using jdbc]
+    End time:    2017/08/28 19:55:25 (Duration: 51ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:25
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreTooManyCommits[Using jdbc]
+    End time:    2017/08/28 19:55:25 (Duration: 46ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using jdbc]
+    Start time:  2017/08/28 19:55:25
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using jdbc]
+    End time:    2017/08/28 19:55:25 (Duration: 47ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using jdbc]
+    Start time:  2017/08/28 19:55:25
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using jdbc]
+    End time:    2017/08/28 19:55:25 (Duration: 101ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using jdbc]
+    Start time:  2017/08/28 19:55:25
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using jdbc]
+    End time:    2017/08/28 19:55:25 (Duration: 47ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNotEnoughCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:25
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNotEnoughCommits[Using jdbc]
+    End time:    2017/08/28 19:55:25 (Duration: 51ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using jdbc]
+    Start time:  2017/08/28 19:55:25
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfMoreElementsThanNecessaryArePresentOnBothSides[Using jdbc]
+    End time:    2017/08/28 19:55:25 (Duration: 48ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNoCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:25
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNoCommits[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 31ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNotEnoughCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreNotEnoughCommits[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 44ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughCommitsArePresentOnEitherSide[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 42ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreExactlyEnoughCommits[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 45ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreExactlyEnoughCommits[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 51ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentBefore[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 39ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNoCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNoCommits[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 26ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreNotEnoughCommits[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 30ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterZeroWorks[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterZeroWorks[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 39ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentAfter[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 38ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreExactlyEnoughCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreExactlyEnoughCommits[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 39ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsBeforeWorksIfThereAreNotEnoughCommits[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 39ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfTimestampIsNotExactlyMatchingACommit[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 93ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreTooManyCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreTooManyCommits[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 36ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfExactlyEnoughElementsArePresentOnBothSides[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 31ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreExactlyEnoughCommits[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 38ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreTooManyCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAfterWorksIfThereAreTooManyCommits[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 40ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNoCommitsArePresent[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNoCommitsArePresent[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 16ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreTooManyCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAfterWorksIfThereAreTooManyCommits[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 46ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitTimestampsAroundWorksIfNotEnoughElementsArePresentAfter[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 39ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsAroundWorksIfNotEnoughElementsArePresentBefore[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 37ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNoCommits[Using jdbc]
+    Start time:  2017/08/28 19:55:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBeforeAfterAroundTest
+    Test method: commitsBeforeWorksIfThereAreNoCommits[Using jdbc]
+    End time:    2017/08/28 19:55:26 (Duration: 24ms)
+================================================================================
+
+
+
+[INFO ] 2017-08-28 19:55:26 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+[INFO ] 2017-08-28 19:55:26 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,5 +1,7 @@
 package org.chronos.chronodb.internal.impl.engines.tupl;
 
+import static com.google.common.base.Preconditions.*;
+
 import java.io.File;
 
 import org.chronos.chronodb.api.IndexManager;
@@ -94,6 +96,21 @@ public class TuplChronoDB extends AbstractChronoDB {
 		return this.cache;
 	}
 
+	@Override
+	public boolean isFileBased() {
+		return true;
+	}
+
+	@Override
+	public void updateChronosVersionTo(final ChronosVersion chronosVersion) {
+		checkNotNull(chronosVersion, "Precondition violation - argument 'chronosVersion' must not be NULL!");
+		try (DefaultTuplTransaction tx = this.openTransaction()) {
+			byte[] buildVersion = TuplUtils.encodeString(chronosVersion.toString());
+			tx.store(MANAGEMENT_INDEX_NAME, MANAGEMENT_INDEX__CHRONOS_BUILD_VERSION, buildVersion);
+			tx.commit();
+		}
+	}
+
 	// =====================================================================================================================
 	// INTERNAL METHODS
 	// =====================================================================================================================
@@ -129,7 +146,7 @@ public class TuplChronoDB extends AbstractChronoDB {
 								+ "'! Older versions of Chronos cannot open databases created by newer versions!");
 					}
 				} else {
-					// database was created by an older version of chronos; upate it
+					// database was created by an older version of chronos; update it
 					buildVersion = TuplUtils.encodeString(ChronosVersion.getCurrentVersion().toString());
 					tx.store(MANAGEMENT_INDEX_NAME, MANAGEMENT_INDEX__CHRONOS_BUILD_VERSION, buildVersion);
 				}

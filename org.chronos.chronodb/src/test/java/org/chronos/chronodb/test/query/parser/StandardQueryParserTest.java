@@ -57,7 +57,7 @@ public class StandardQueryParserTest extends ChronoDBUnitTest {
 		assertNotNull(query);
 		assertEquals(ChronoDBConstants.DEFAULT_KEYSPACE_NAME, query.getKeyspace());
 		assertTrue(query.getRootElement() instanceof WhereElement);
-		WhereElement where = (WhereElement) query.getRootElement();
+		WhereElement<?, ?> where = (WhereElement<?, ?>) query.getRootElement();
 		assertEquals("name", where.getIndexName());
 		assertEquals(Condition.EQUALS, where.getCondition());
 		assertEquals("Hello World", where.getComparisonValue());

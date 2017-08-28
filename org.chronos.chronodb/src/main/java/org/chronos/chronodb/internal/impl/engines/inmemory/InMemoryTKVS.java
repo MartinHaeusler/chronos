@@ -96,7 +96,7 @@ public class InMemoryTKVS extends AbstractTemporalKeyValueStore implements Tempo
 	}
 
 	@Override
-	protected CommitMetadataStore getCommitMetadataStore() {
+	public CommitMetadataStore getCommitMetadataStore() {
 		return this.commitMetadataStore;
 	}
 

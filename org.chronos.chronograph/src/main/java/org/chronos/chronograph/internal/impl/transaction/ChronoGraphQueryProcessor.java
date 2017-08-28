@@ -21,7 +21,10 @@ import org.chronos.chronodb.api.exceptions.ChronoDBQuerySyntaxException;
 import org.chronos.chronodb.api.exceptions.UnknownKeyspaceException;
 import org.chronos.chronodb.api.query.Condition;
 import org.chronos.chronodb.internal.api.query.ChronoDBQuery;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.DoubleSearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.LongSearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.StringSearchSpecification;
 import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.chronodb.internal.impl.query.parser.ast.BinaryOperatorElement;
 import org.chronos.chronodb.internal.impl.query.parser.ast.BinaryQueryOperator;
@@ -39,6 +42,7 @@ import org.chronos.chronograph.internal.impl.util.ChronoGraphQueryUtil;
 import org.chronos.chronograph.internal.impl.util.ChronoProxyUtil;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 import org.chronos.common.logging.ChronoLogger;
+import org.chronos.common.util.ReflectionUtils;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.HashMultimap;
@@ -123,11 +127,11 @@ public class ChronoGraphQueryProcessor {
 		return ChronoProxyUtil.replaceVerticesByProxies(resultIterator, this.tx);
 	}
 
-	public Iterator<Vertex> getVerticesBySearchSpecifications(final Set<SearchSpecification> searchSpecifications) {
+	public Iterator<Vertex> getVerticesBySearchSpecifications(final Set<SearchSpecification<?>> searchSpecifications) {
 		checkNotNull(searchSpecifications,
 				"Precondition violation - argument 'searchSpecifications' must not be NULL!");
-		SetMultimap<String, SearchSpecification> propertyToSearchSpecifications = HashMultimap.create();
-		for (SearchSpecification spec : searchSpecifications) {
+		SetMultimap<String, SearchSpecification<?>> propertyToSearchSpecifications = HashMultimap.create();
+		for (SearchSpecification<?> spec : searchSpecifications) {
 			propertyToSearchSpecifications.put(spec.getProperty(), spec);
 		}
 		ChronoGraphIndexManagerInternal indexManager = this.getIndexManager();
@@ -147,20 +151,20 @@ public class ChronoGraphQueryProcessor {
 								+ " For better performance use indices. Requested properties: "
 								+ propertyToSearchSpecifications.keySet().toString());
 				Iterator<Vertex> allVerticesIterator = this.tx.getAllVerticesIterator();
-				Predicate<Vertex> filterPredicate = new PropertyValueFilterPredicate<Vertex>(searchSpecifications);
+				Predicate<Vertex> filterPredicate = new PropertyValueFilterPredicate<>(searchSpecifications);
 				resultIterator = Iterators.filter(allVerticesIterator, filterPredicate);
 			} else {
 				// at least one of the given properties is indexed; do index query with post-processing filter
-				Set<SearchSpecification> indexedSearches = Sets.newHashSet();
+				Set<SearchSpecification<?>> indexedSearches = Sets.newHashSet();
 				for (String indexedProperty : indexedPropertiesToUse) {
-					Set<SearchSpecification> set = propertyToSearchSpecifications.get(indexedProperty);
+					Set<SearchSpecification<?>> set = propertyToSearchSpecifications.get(indexedProperty);
 					indexedSearches.addAll(set);
 				}
 				Iterator<Vertex> indexIterator = this.performVertexQueryOnIndex(indexedSearches);
 				// prepare the map of properties we need to filter manually
-				Set<SearchSpecification> nonIndexedSearches = Sets.newHashSet(searchSpecifications);
+				Set<SearchSpecification<?>> nonIndexedSearches = Sets.newHashSet(searchSpecifications);
 				nonIndexedSearches.removeAll(indexedSearches);
-				Predicate<Vertex> filterPredicate = new PropertyValueFilterPredicate<Vertex>(nonIndexedSearches);
+				Predicate<Vertex> filterPredicate = new PropertyValueFilterPredicate<>(nonIndexedSearches);
 				resultIterator = Iterators.filter(indexIterator, filterPredicate);
 			}
 		}
@@ -169,19 +173,10 @@ public class ChronoGraphQueryProcessor {
 		return ChronoProxyUtil.replaceVerticesByProxies(resultIterator, this.tx);
 	}
 
-	public Iterator<Vertex> getVerticesByProperties(final Map<String, String> propertyKeyToPropertyValue) {
+	public Iterator<Vertex> getVerticesByProperties(final Map<String, Object> propertyKeyToPropertyValue) {
 		checkNotNull(propertyKeyToPropertyValue,
 				"Precondition violation - argument 'propertyKeyToPropertyValue' must not be NULL!");
-		Set<SearchSpecification> searchSpecifications = Sets.newHashSet();
-		// in this method, we ALWAYS look for 'equals'
-		Condition condition = Condition.EQUALS;
-		// ... and we also always use strict matching (as opposed to case-insensitive matching)
-		TextMatchMode matchMode = TextMatchMode.STRICT;
-		for (Entry<String, String> entry : propertyKeyToPropertyValue.entrySet()) {
-			String property = entry.getKey();
-			String searchString = entry.getValue();
-			searchSpecifications.add(SearchSpecification.create(property, condition, matchMode, searchString));
-		}
+		Set<SearchSpecification<?>> searchSpecifications = equalityMapToSearchSpecifications(propertyKeyToPropertyValue);
 		return this.getVerticesBySearchSpecifications(searchSpecifications);
 	}
 
@@ -257,11 +252,11 @@ public class ChronoGraphQueryProcessor {
 		return ChronoProxyUtil.replaceEdgesByProxies(edges, this.tx);
 	}
 
-	public Iterator<Edge> getEdgesBySearchSpecifications(final Set<SearchSpecification> searchSpecifications) {
+	public Iterator<Edge> getEdgesBySearchSpecifications(final Set<SearchSpecification<?>> searchSpecifications) {
 		checkNotNull(searchSpecifications,
 				"Precondition violation - argument 'searchSpecifications' must not be NULL!");
-		SetMultimap<String, SearchSpecification> propertyToSearchSpecifications = HashMultimap.create();
-		for (SearchSpecification spec : searchSpecifications) {
+		SetMultimap<String, SearchSpecification<?>> propertyToSearchSpecifications = HashMultimap.create();
+		for (SearchSpecification<?> spec : searchSpecifications) {
 			propertyToSearchSpecifications.put(spec.getProperty(), spec);
 		}
 		ChronoGraphIndexManagerInternal indexManager = this.getIndexManager();
@@ -281,20 +276,20 @@ public class ChronoGraphQueryProcessor {
 								+ " For better performance use indices. Requested properties: "
 								+ propertyToSearchSpecifications.keySet().toString());
 				Iterator<Edge> allEdgesIterator = this.tx.getAllEdgesIterator();
-				Predicate<Edge> filterPredicate = new PropertyValueFilterPredicate<Edge>(searchSpecifications);
+				Predicate<Edge> filterPredicate = new PropertyValueFilterPredicate<>(searchSpecifications);
 				resultIterator = Iterators.filter(allEdgesIterator, filterPredicate);
 			} else {
 				// at least one of the given properties is indexed; do index query with post-processing filter
-				Set<SearchSpecification> indexedSearches = Sets.newHashSet();
+				Set<SearchSpecification<?>> indexedSearches = Sets.newHashSet();
 				for (String indexedProperty : indexedPropertiesToUse) {
-					Set<SearchSpecification> set = propertyToSearchSpecifications.get(indexedProperty);
+					Set<SearchSpecification<?>> set = propertyToSearchSpecifications.get(indexedProperty);
 					indexedSearches.addAll(set);
 				}
 				Iterator<Edge> indexIterator = this.performEdgeQueryOnIndex(indexedSearches);
 				// prepare the map of properties we need to filter manually
-				Set<SearchSpecification> nonIndexedSearches = Sets.newHashSet(searchSpecifications);
+				Set<SearchSpecification<?>> nonIndexedSearches = Sets.newHashSet(searchSpecifications);
 				nonIndexedSearches.removeAll(indexedSearches);
-				Predicate<Edge> filterPredicate = new PropertyValueFilterPredicate<Edge>(nonIndexedSearches);
+				Predicate<Edge> filterPredicate = new PropertyValueFilterPredicate<>(nonIndexedSearches);
 				resultIterator = Iterators.filter(indexIterator, filterPredicate);
 			}
 		}
@@ -302,19 +297,10 @@ public class ChronoGraphQueryProcessor {
 		return ChronoProxyUtil.replaceEdgesByProxies(resultIterator, this.tx);
 	}
 
-	public Iterator<Edge> getEdgesByProperties(final Map<String, String> propertyKeyToPropertyValue) {
+	public Iterator<Edge> getEdgesByProperties(final Map<String, Object> propertyKeyToPropertyValue) {
 		checkNotNull(propertyKeyToPropertyValue,
 				"Precondition violation - argument 'propertyKeyToPropertyValue' must not be NULL!");
-		Set<SearchSpecification> searchSpecifications = Sets.newHashSet();
-		// in this method, we ALWAYS look for 'equals'
-		Condition condition = Condition.EQUALS;
-		// ... and we also always use strict matching (as opposed to case-insensitive matching)
-		TextMatchMode matchMode = TextMatchMode.STRICT;
-		for (Entry<String, String> entry : propertyKeyToPropertyValue.entrySet()) {
-			String property = entry.getKey();
-			String searchString = entry.getValue();
-			searchSpecifications.add(SearchSpecification.create(property, condition, matchMode, searchString));
-		}
+		Set<SearchSpecification<?>> searchSpecifications = equalityMapToSearchSpecifications(propertyKeyToPropertyValue);
 		return this.getEdgesBySearchSpecifications(searchSpecifications);
 	}
 
@@ -334,7 +320,7 @@ public class ChronoGraphQueryProcessor {
 		return (ChronoGraphIndexManagerInternal) this.tx.getGraph().getIndexManager(branchName);
 	}
 
-	private Iterator<Vertex> performVertexQueryOnIndex(final Set<SearchSpecification> searchSpecs) {
+	private Iterator<Vertex> performVertexQueryOnIndex(final Set<SearchSpecification<?>> searchSpecs) {
 		checkNotNull(searchSpecs, "Precondition violation - argument 'searchSpecs' must not be NULL!");
 		ChronoGraphIndexManagerInternal indexManager = this.getIndexManager();
 		Iterator<String> indexQueryResultIdIterator = indexManager.findVertexIdsByIndexedProperties(searchSpecs);
@@ -342,11 +328,11 @@ public class ChronoGraphQueryProcessor {
 		if (this.tx.getContext().isDirty()) {
 			// query context is dirty and requires post-processing to properly reflect the transient state
 			List<ChronoProperty<?>> transientMatches = Lists.newArrayList();
-			for (SearchSpecification searchSpec : searchSpecs) {
+			for (SearchSpecification<?> searchSpec : searchSpecs) {
 				transientMatches.addAll(this.tx.getContext().getModifiedProperties(searchSpec));
 			}
 			Set<String> resultSet = Sets.newHashSet();
-			PropertyValueFilterPredicate<Vertex> filterPredicate = new PropertyValueFilterPredicate<Vertex>(
+			PropertyValueFilterPredicate<Vertex> filterPredicate = new PropertyValueFilterPredicate<>(
 					searchSpecs);
 			// for every vertex in the index result set, check if it is modified or not
 			while (indexQueryResultIdIterator.hasNext()) {
@@ -379,7 +365,7 @@ public class ChronoGraphQueryProcessor {
 			// the set of search specs needs to be AND-connected, so we apply the filters one by one on the transient
 			// state
 			Set<Vertex> verticesToKeep = transientVertices;
-			for (SearchSpecification searchSpec : searchSpecs) {
+			for (SearchSpecification<?> searchSpec : searchSpecs) {
 				String property = searchSpec.getProperty();
 				Set<Vertex> matchingVertices = Sets.newHashSet();
 				for (Vertex vertex : verticesToKeep) {
@@ -404,17 +390,17 @@ public class ChronoGraphQueryProcessor {
 		}
 	}
 
-	private Iterator<Edge> performEdgeQueryOnIndex(final Set<SearchSpecification> searchSpecs) {
+	private Iterator<Edge> performEdgeQueryOnIndex(final Set<SearchSpecification<?>> searchSpecs) {
 		ChronoGraphIndexManagerInternal indexManager = this.getIndexManager();
 		Iterator<String> indexQueryResultIdIterator = indexManager.findEdgeIdsByIndexedProperties(searchSpecs);
 		// we now enhance this iterator by looking at the modifications performed by the user in the transaction context
 		if (this.tx.getContext().isDirty()) {
 			// query context is dirty and requires post-processing to properly reflect the transient state
 			List<ChronoProperty<?>> transientMatches = Lists.newArrayList();
-			for (SearchSpecification searchSpec : searchSpecs) {
+			for (SearchSpecification<?> searchSpec : searchSpecs) {
 				transientMatches.addAll(this.tx.getContext().getModifiedProperties(searchSpec));
 			}
-			PropertyValueFilterPredicate<Edge> filterPredicate = new PropertyValueFilterPredicate<Edge>(searchSpecs);
+			PropertyValueFilterPredicate<Edge> filterPredicate = new PropertyValueFilterPredicate<>(searchSpecs);
 			Set<String> resultSet = Sets.newHashSet();
 			// for every vertex in the index result set, check if it is modified or not
 			while (indexQueryResultIdIterator.hasNext()) {
@@ -447,7 +433,7 @@ public class ChronoGraphQueryProcessor {
 			// the set of search specs needs to be AND-connected, so we apply the filters one by one on the transient
 			// state
 			Set<Edge> edgesToKeep = transientEdges;
-			for (SearchSpecification searchSpec : searchSpecs) {
+			for (SearchSpecification<?> searchSpec : searchSpecs) {
 				String property = searchSpec.getProperty();
 				Set<Edge> matchingEdges = Sets.newHashSet();
 				for (Edge edge : edgesToKeep) {
@@ -500,14 +486,9 @@ public class ChronoGraphQueryProcessor {
 			}
 			return Collections.unmodifiableSet(resultSet);
 		} else if (element instanceof WhereElement) {
-			WhereElement whereElement = (WhereElement) element;
+			WhereElement<?, ?> whereElement = (WhereElement<?, ?>) element;
 			// disassemble and execute the atomic query
-			String indexName = whereElement.getIndexName();
-			Condition condition = whereElement.getCondition();
-			TextMatchMode matchMode = whereElement.getMatchMode();
-			String comparisonValue = whereElement.getComparisonValue();
-			SearchSpecification searchSpec = SearchSpecification.create(indexName, condition, matchMode,
-					comparisonValue);
+			SearchSpecification<?> searchSpec = whereElement.toSearchSpecification();
 			Iterator<E> iterator = null;
 			if (Vertex.class.isAssignableFrom(clazz)) {
 				// vertex query
@@ -528,6 +509,30 @@ public class ChronoGraphQueryProcessor {
 			throw new ChronoDBQuerySyntaxException("Query contains unsupported element of class '"
 					+ element.getClass().getName() + "' - was the query optimized?");
 		}
+	}
+
+	private static Set<SearchSpecification<?>> equalityMapToSearchSpecifications(final Map<String, Object> map) {
+		Set<SearchSpecification<?>> searchSpecs = Sets.newHashSet();
+		for (Entry<String, Object> entry : map.entrySet()) {
+			String property = entry.getKey();
+			Object searchValue = entry.getValue();
+			if (searchValue == null) {
+				throw new IllegalArgumentException("NULL cannot be used as a search value!");
+			}
+			if (searchValue instanceof String) {
+				String stringVal = (String) searchValue;
+				searchSpecs.add(StringSearchSpecification.create(property, Condition.EQUALS, TextMatchMode.STRICT, stringVal));
+			} else if (ReflectionUtils.isLongCompatible(searchValue)) {
+				long longVal = ReflectionUtils.asLong(searchValue);
+				searchSpecs.add(LongSearchSpecification.create(property, Condition.EQUALS, longVal));
+			} else if (ReflectionUtils.isDoubleCompatible(searchValue)) {
+				double doubleVal = ReflectionUtils.asDouble(searchValue);
+				searchSpecs.add(DoubleSearchSpecification.create(property, Condition.EQUALS, doubleVal, ChronoGraphQueryUtil.DOUBLE_EQUALITY_TOLERANCE));
+			} else {
+				throw new IllegalArgumentException("The value '" + searchValue + "' (class: " + searchValue.getClass().getName() + ") cannot be used for searching. Supported types are String, Long and Double.");
+			}
+		}
+		return searchSpecs;
 	}
 
 	// =====================================================================================================================
@@ -639,9 +644,9 @@ public class ChronoGraphQueryProcessor {
 
 	private class PropertyValueFilterPredicate<V extends Element> implements Predicate<V> {
 
-		private final Set<SearchSpecification> searchSpecifications;
+		private final Set<SearchSpecification<?>> searchSpecifications;
 
-		private PropertyValueFilterPredicate(final Set<SearchSpecification> searchSpecs) {
+		private PropertyValueFilterPredicate(final Set<SearchSpecification<?>> searchSpecs) {
 			checkNotNull(searchSpecs, "Precondition violation - argument 'searchSpecs' must not be NULL!");
 			this.searchSpecifications = searchSpecs;
 		}
@@ -653,7 +658,7 @@ public class ChronoGraphQueryProcessor {
 				// never consider removed elements
 				return false;
 			}
-			for (SearchSpecification searchSpec : this.searchSpecifications) {
+			for (SearchSpecification<?> searchSpec : this.searchSpecifications) {
 				if (element.property(searchSpec.getProperty()).isPresent() == false) {
 					// the property in question is not present, it is NOT possible to make
 					// any decision if it matches the given search criterion or not. In particular,

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.util.star.StarGraphTest" tests="6" skipped="6" failures="0" errors="0" timestamp="2017-08-28T17:59:01" hostname="Aurora" time="0.0">
+  <properties/>
+  <testcase name="shouldAttachWithGetMethod" classname="org.apache.tinkerpop.gremlin.structure.util.star.StarGraphTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldValidateThatOriginalAndStarVerticesHaveTheSameTopology" classname="org.apache.tinkerpop.gremlin.structure.util.star.StarGraphTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldAttachWithCreateMethod" classname="org.apache.tinkerpop.gremlin.structure.util.star.StarGraphTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSerializeCorrectlyUsingGryo" classname="org.apache.tinkerpop.gremlin.structure.util.star.StarGraphTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldCopyFromGraphAToGraphB" classname="org.apache.tinkerpop.gremlin.structure.util.star.StarGraphTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldHashAndEqualsCorrectly" classname="org.apache.tinkerpop.gremlin.structure.util.star.StarGraphTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

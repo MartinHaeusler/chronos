@@ -8,13 +8,14 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.ChronoDBConstants;
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.indexing.Indexer;
 import org.chronos.chronodb.api.key.ChronoIdentifier;
 import org.chronos.chronodb.internal.api.Period;
 import org.chronos.chronodb.internal.api.index.ChronoIndexDocument;
 import org.chronos.chronodb.internal.api.index.ChronoIndexModifications;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractDocumentBasedIndexManagerBackend;
 import org.chronos.chronodb.internal.impl.engines.chunkdb.BranchChunkManager;
 import org.chronos.chronodb.internal.impl.engines.chunkdb.ChronoChunk;
@@ -42,7 +43,7 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 
 	protected final IndexChunkManager indexChunkManager;
 
-	protected final SetMultimap<String, ChronoIndexer> indexNameToIndexers = HashMultimap.create();
+	protected final SetMultimap<String, Indexer<?>> indexNameToIndexers = HashMultimap.create();
 	protected final Map<String, Boolean> indexNameToDirtyFlag = Maps.newHashMap();
 
 	// =================================================================================================================
@@ -62,6 +63,10 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 	public void deleteIndexContents(final String indexName) {
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		this.indexChunkManager.deleteIndexContents(indexName);
+	}
+
+	public void deleteIndexContents() {
+		this.indexChunkManager.deleteAllChunkIndices();
 	}
 
 	@Override
@@ -87,7 +92,7 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 	}
 
 	@Override
-	public Map<String, Map<String, ChronoIndexDocument>> getMatchingBranchLocalDocuments(
+	public Map<String, SetMultimap<Object, ChronoIndexDocument>> getMatchingBranchLocalDocuments(
 			final ChronoIdentifier chronoIdentifier) {
 		checkNotNull(chronoIdentifier, "Precondition violation - argument 'chronoIdentifier' must not be NULL!");
 		String branchName = chronoIdentifier.getBranchName();
@@ -101,14 +106,14 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 	}
 
 	@Override
-	public SetMultimap<String, ChronoIndexer> loadIndexersFromPersistence() {
+	public SetMultimap<String, Indexer<?>> loadIndexersFromPersistence() {
 		try (TuplTransaction tx = this.getOwningDB().openTx()) {
 			return this.loadIndexersMap(tx);
 		}
 	}
 
 	@Override
-	public void persistIndexers(final SetMultimap<String, ChronoIndexer> indexNameToIndexers) {
+	public void persistIndexers(final SetMultimap<String, Indexer<?>> indexNameToIndexers) {
 		try (TuplTransaction tx = this.getOwningDB().openTx()) {
 			this.persistIndexersMap(indexNameToIndexers, tx);
 			tx.commit();
@@ -116,15 +121,21 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 	}
 
 	@Override
-	public void persistIndexer(final String indexName, final ChronoIndexer indexer) {
+	public void persistIndexer(final String indexName, final Indexer<?> indexer) {
 		// TODO PERFORMANCE TUPL: Storing the entire map just to add one indexer is not very efficient.
 		try (TuplTransaction tx = this.getOwningDB().openTx()) {
-			SetMultimap<String, ChronoIndexer> map = this.loadIndexersMap(tx);
+			SetMultimap<String, Indexer<?>> map = this.loadIndexersMap(tx);
 			map.put(indexName, indexer);
 			this.persistIndexersMap(map, tx);
-			this.indexChunkManager.addIndexer(indexName, indexer);
+			// TODO PERFORMANCE METADB: deleting all chunks might not be optimal, but it's an easy consistent solution.
+			this.indexChunkManager.deleteAllChunkIndices();
 			tx.commit();
 		}
+	}
+
+	@Override
+	public void deleteAllIndexContents() {
+		this.indexChunkManager.deleteAllChunkIndices();
 	}
 
 	@Override
@@ -132,7 +143,7 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		// first, delete the indexers
 		try (TuplTransaction tx = this.getOwningDB().openTx()) {
-			SetMultimap<String, ChronoIndexer> indexersMap = this.loadIndexersFromPersistence();
+			SetMultimap<String, Indexer<?>> indexersMap = this.loadIndexersFromPersistence();
 			indexersMap.removeAll(indexName);
 			this.persistIndexers(indexersMap);
 			tx.commit();
@@ -144,7 +155,7 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 	public void deleteAllIndicesAndIndexers() {
 		// first, delete the indexers
 		try (TuplTransaction tx = this.getOwningDB().openTx()) {
-			SetMultimap<String, ChronoIndexer> indexersMap = HashMultimap.create();
+			SetMultimap<String, Indexer<?>> indexersMap = HashMultimap.create();
 			this.persistIndexers(indexersMap);
 			tx.commit();
 		}
@@ -204,9 +215,10 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 
 	@Override
 	protected Collection<ChronoIndexDocument> getTerminatedBranchLocalDocuments(final long timestamp,
-			final String branchName, final SearchSpecification searchSpec) {
+			final String branchName, final String keyspace, final SearchSpecification<?> searchSpec) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
 		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
 		// get the data chunk
 		ChronoChunk chunk = this.getOwningDB().getChunkManager().getChunkManagerForBranch(branchName)
@@ -214,12 +226,12 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 		// get the corresponding index
 		DocumentBasedChunkIndex index = this.indexChunkManager.getIndexForChunk(chunk);
 		// forward the call
-		return index.getTerminatedBranchLocalDocuments(timestamp, branchName, searchSpec);
+		return index.getTerminatedBranchLocalDocuments(timestamp, branchName, keyspace, searchSpec);
 	}
 
 	@Override
 	protected Collection<ChronoIndexDocument> getMatchingBranchLocalDocuments(final long timestamp,
-			final String branchName, final SearchSpecification searchSpec) {
+			final String branchName, final String keyspace, final SearchSpecification<?> searchSpec) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
 		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
@@ -229,7 +241,7 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 		// get the corresponding index
 		DocumentBasedChunkIndex index = this.indexChunkManager.getIndexForChunk(chunk);
 		// forward the call
-		return index.getMatchingBranchLocalDocuments(timestamp, branchName, searchSpec);
+		return index.getMatchingBranchLocalDocuments(timestamp, branchName, keyspace, searchSpec);
 	}
 
 	// =================================================================================================================
@@ -270,19 +282,19 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 		tx.store(indexName, key, serialForm);
 	}
 
-	private SetMultimap<String, ChronoIndexer> loadIndexersMap(final TuplTransaction tx) {
+	private SetMultimap<String, Indexer<?>> loadIndexersMap(final TuplTransaction tx) {
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		byte[] serializedForm = this.getIndexersSerialForm(tx);
 		// Kryo doesn't like to convert the SetMultimap class directly, so we transform
 		// it into a regular hash map with sets as values.
-		Map<String, Set<ChronoIndexer>> map = this.deserializeObject(serializedForm);
+		Map<String, Set<Indexer<?>>> map = this.deserializeObject(serializedForm);
 		if (map == null) {
 			return HashMultimap.create();
 		} else {
 			// we need to convert our internal map representation back into its multimap form
-			SetMultimap<String, ChronoIndexer> multiMap = HashMultimap.create();
-			for (Entry<String, Set<ChronoIndexer>> entry : map.entrySet()) {
-				for (ChronoIndexer indexer : entry.getValue()) {
+			SetMultimap<String, Indexer<?>> multiMap = HashMultimap.create();
+			for (Entry<String, Set<Indexer<?>>> entry : map.entrySet()) {
+				for (Indexer<?> indexer : entry.getValue()) {
 					multiMap.put(entry.getKey(), indexer);
 				}
 			}
@@ -290,16 +302,16 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 		}
 	}
 
-	private void persistIndexersMap(final SetMultimap<String, ChronoIndexer> indexNameToIndexers,
+	private void persistIndexersMap(final SetMultimap<String, Indexer<?>> indexNameToIndexers,
 			final TuplTransaction tx) {
 		checkNotNull(indexNameToIndexers, "Precondition violation - argument 'indexNameToIndexers' must not be NULL!");
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		// Kryo doesn't like to convert the SetMultimap class directly, so we transform
 		// it into a regular hash map with sets as values.
-		Map<String, Set<ChronoIndexer>> persistentMap = Maps.newHashMap();
+		Map<String, Set<Indexer<?>>> persistentMap = Maps.newHashMap();
 		// we need to transform the multimap into an internal representation using a normal hash map.
-		for (Entry<String, ChronoIndexer> entry : indexNameToIndexers.entries()) {
-			Set<ChronoIndexer> set = persistentMap.get(entry.getKey());
+		for (Entry<String, Indexer<?>> entry : indexNameToIndexers.entries()) {
+			Set<Indexer<?>> set = persistentMap.get(entry.getKey());
 			if (set == null) {
 				set = Sets.newHashSet();
 			}
@@ -340,15 +352,31 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 		}
 	}
 
-	public void rebuildIndexOnAllChunks(final String indexName) {
-		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
-		this.deleteIndexContents(indexName);
+	public void rebuildIndexOnAllChunks() {
+		this.deleteIndexContents();
 		// iterate over all branches
-		for (String branch : this.getOwningDB().getBranchManager().getBranchNames()) {
+		for (Branch branch : this.getOwningDB().getBranchManager().getBranches()) {
 			BranchChunkManager branchChunkManager = this.getOwningDB().getChunkManager()
 					.getOrCreateChunkManagerForBranch(branch);
 			// iterate over all chunks
 			List<ChronoChunk> chunks = branchChunkManager.getChunksForPeriod(Period.createOpenEndedRange(0));
+			this.indexChunkManager.deleteAllChunkIndices();
+			for (ChronoChunk chunk : chunks) {
+				this.indexChunkManager.getIndexForChunk(chunk);
+			}
+		}
+	}
+
+	public void rebuildIndexOnAllChunks(final String indexName) {
+		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
+		this.deleteIndexContents(indexName);
+		// iterate over all branches
+		for (Branch branch : this.getOwningDB().getBranchManager().getBranches()) {
+			BranchChunkManager branchChunkManager = this.getOwningDB().getChunkManager()
+					.getOrCreateChunkManagerForBranch(branch);
+			// iterate over all chunks
+			List<ChronoChunk> chunks = branchChunkManager.getChunksForPeriod(Period.createOpenEndedRange(0));
+			this.indexChunkManager.deleteAllChunkIndices();
 			for (ChronoChunk chunk : chunks) {
 				this.indexChunkManager.getIndexForChunk(chunk);
 			}
@@ -357,8 +385,9 @@ public class ChunkDbIndexManagerBackend extends AbstractDocumentBasedIndexManage
 
 	public void rebuildIndexOnHeadChunk(final String branchName) {
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		Branch branch = this.getOwningDB().getBranchManager().getBranch(branchName);
 		BranchChunkManager branchChunkManager = this.getOwningDB().getChunkManager()
-				.getOrCreateChunkManagerForBranch(branchName);
+				.getOrCreateChunkManagerForBranch(branch);
 		this.indexChunkManager.deleteIndexForChunk(branchChunkManager.getChunkForHeadRevision());
 		this.indexChunkManager.getIndexForChunk(branchChunkManager.getChunkForHeadRevision());
 	}

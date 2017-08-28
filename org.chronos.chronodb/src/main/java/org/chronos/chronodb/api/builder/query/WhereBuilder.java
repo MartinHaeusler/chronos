@@ -16,6 +16,10 @@ import java.util.regex.Pattern;
  */
 public interface WhereBuilder {
 
+	// =================================================================================================================
+	// STRING OPERATIONS
+	// =================================================================================================================
+
 	/**
 	 * Adds a text containment constraint.
 	 *
@@ -244,8 +248,7 @@ public interface WhereBuilder {
 	 *
 	 *
 	 * @param regex
-	 *            The regex to search for. Must not be <code>null</code> or empty. Supports the full range of
-	 *            expressions defined in <code>java.util.regex.</code>{@link Pattern}.
+	 *            The regex to search for. Must not be <code>null</code> or empty. Supports the full range of expressions defined in <code>java.util.regex.</code>{@link Pattern}.
 	 *
 	 * @return The next builder. Never <code>null</code>.
 	 */
@@ -263,8 +266,7 @@ public interface WhereBuilder {
 	 *
 	 *
 	 * @param regex
-	 *            The regex to search for. Must not be <code>null</code> or empty. Supports the full range of
-	 *            expressions defined in <code>java.util.regex.</code>{@link Pattern}.
+	 *            The regex to search for. Must not be <code>null</code> or empty. Supports the full range of expressions defined in <code>java.util.regex.</code>{@link Pattern}.
 	 *
 	 * @return The next builder. Never <code>null</code>.
 	 */
@@ -342,4 +344,223 @@ public interface WhereBuilder {
 	 */
 	public FinalizableQueryBuilder isNotEqualToIgnoreCase(String value);
 
+	// =================================================================================================================
+	// LONG OPERATIONS
+	// =================================================================================================================
+
+	/**
+	 * Adds a long equality constraint.
+	 *
+	 * <p>
+	 * Usage example:
+	 *
+	 * <pre>
+	 * tx.find().where("height").isEqualTo(8000).getResult();
+	 * </pre>
+	 *
+	 *
+	 * @param value
+	 *            The value to compare against.
+	 *
+	 * @return The next builder. Never <code>null</code>.
+	 */
+	public FinalizableQueryBuilder isEqualTo(long value);
+
+	/**
+	 * Adds a negated long equality constraint.
+	 *
+	 * <p>
+	 * Usage example:
+	 *
+	 * <pre>
+	 * tx.find().where(height).isNotEqualTo(8000).getResult();
+	 * </pre>
+	 *
+	 *
+	 * @param value
+	 *            The value to compare against.
+	 *
+	 * @return The next builder. Never <code>null</code>.
+	 */
+	public FinalizableQueryBuilder isNotEqualTo(long value);
+
+	/**
+	 * Adds a "greater than" ( <code>&gt</code> ) constraint.
+	 *
+	 * <p>
+	 * Usage example:
+	 *
+	 * <pre>
+	 * tx.find().where(height).isGreaterThan(8000).getResult();
+	 * </pre>
+	 *
+	 * @param value
+	 *            The value to compare against.
+	 *
+	 * @return The next builder. Never <code>null</code>.
+	 */
+	public FinalizableQueryBuilder isGreaterThan(long value);
+
+	/**
+	 * Adds a "greater than or equal to" ( <code>&gt=</code> ) constraint.
+	 *
+	 * <p>
+	 * Usage example:
+	 *
+	 * <pre>
+	 * tx.find().where(height).isGreaterThanOrEqualTo(8000).getResult();
+	 * </pre>
+	 *
+	 * @param value
+	 *            The value to compare against.
+	 *
+	 * @return The next builder. Never <code>null</code>.
+	 */
+	public FinalizableQueryBuilder isGreaterThanOrEqualTo(long value);
+
+	/**
+	 * Adds a "less than" ( <code>&lt</code> ) constraint.
+	 *
+	 * <p>
+	 * Usage example:
+	 *
+	 * <pre>
+	 * tx.find().where(height).isLessThan(8000).getResult();
+	 * </pre>
+	 *
+	 * @param value
+	 *            The value to compare against.
+	 *
+	 * @return The next builder. Never <code>null</code>.
+	 */
+	public FinalizableQueryBuilder isLessThan(long value);
+
+	/**
+	 * Adds a "less than or equal to" ( <code>&lt=</code> ) constraint.
+	 *
+	 * <p>
+	 * Usage example:
+	 *
+	 * <pre>
+	 * tx.find().where(height).isLessThanOrEqualTo(8000).getResult();
+	 * </pre>
+	 *
+	 * @param value
+	 *            The value to compare against.
+	 *
+	 * @return The next builder. Never <code>null</code>.
+	 */
+	public FinalizableQueryBuilder isLessThanOrEqualTo(long value);
+
+	// =================================================================================================================
+	// DOUBLE OPERATIONS
+	// =================================================================================================================
+
+	/**
+	 * Adds a long equality constraint.
+	 *
+	 * <p>
+	 * Usage example:
+	 *
+	 * <pre>
+	 * tx.find().where("height").isEqualTo(1.75, 0.01).getResult();
+	 * </pre>
+	 *
+	 *
+	 * @param value
+	 *            The value to compare against.
+	 * @param tolerance
+	 *            The allowed tolerance range for equality checks. Will be applied in positive AND negative direction. Must not be negative.
+	 *
+	 * @return The next builder. Never <code>null</code>.
+	 */
+	public FinalizableQueryBuilder isEqualTo(double value, double tolerance);
+
+	/**
+	 * Adds a negated long equality constraint.
+	 *
+	 * <p>
+	 * Usage example:
+	 *
+	 * <pre>
+	 * tx.find().where(height).isNotEqualTo(1.75, 0.01).getResult();
+	 * </pre>
+	 *
+	 *
+	 * @param value
+	 *            The value to compare against.
+	 * @param tolerance
+	 *            The allowed tolerance range for equality checks. Will be applied in positive AND negative direction. Must not be negative.
+	 *
+	 * @return The next builder. Never <code>null</code>.
+	 */
+	public FinalizableQueryBuilder isNotEqualTo(double value, double tolerance);
+
+	/**
+	 * Adds a "greater than" ( <code>&gt</code> ) constraint.
+	 *
+	 * <p>
+	 * Usage example:
+	 *
+	 * <pre>
+	 * tx.find().where(height).isGreaterThan(1.75).getResult();
+	 * </pre>
+	 *
+	 * @param value
+	 *            The value to compare against.
+	 *
+	 * @return The next builder. Never <code>null</code>.
+	 */
+	public FinalizableQueryBuilder isGreaterThan(double value);
+
+	/**
+	 * Adds a "greater than or equal to" ( <code>&gt=</code> ) constraint.
+	 *
+	 * <p>
+	 * Usage example:
+	 *
+	 * <pre>
+	 * tx.find().where(height).isGreaterThanOrEqualTo(1.75).getResult();
+	 * </pre>
+	 *
+	 * @param value
+	 *            The value to compare against.
+	 *
+	 * @return The next builder. Never <code>null</code>.
+	 */
+	public FinalizableQueryBuilder isGreaterThanOrEqualTo(double value);
+
+	/**
+	 * Adds a "less than" ( <code>&lt</code> ) constraint.
+	 *
+	 * <p>
+	 * Usage example:
+	 *
+	 * <pre>
+	 * tx.find().where(height).isLessThan(1.75).getResult();
+	 * </pre>
+	 *
+	 * @param value
+	 *            The value to compare against.
+	 *
+	 * @return The next builder. Never <code>null</code>.
+	 */
+	public FinalizableQueryBuilder isLessThan(double value);
+
+	/**
+	 * Adds a "less than or equal to" ( <code>&lt=</code> ) constraint.
+	 *
+	 * <p>
+	 * Usage example:
+	 *
+	 * <pre>
+	 * tx.find().where(height).isLessThanOrEqualTo(1.75).getResult();
+	 * </pre>
+	 *
+	 * @param value
+	 *            The value to compare against.
+	 *
+	 * @return The next builder. Never <code>null</code>.
+	 */
+	public FinalizableQueryBuilder isLessThanOrEqualTo(double value);
 }

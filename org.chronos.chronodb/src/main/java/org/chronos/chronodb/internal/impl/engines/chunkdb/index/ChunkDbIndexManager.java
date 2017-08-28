@@ -13,10 +13,22 @@ public class ChunkDbIndexManager extends DocumentBasedIndexManager {
 	}
 
 	@Override
-	public void reindex(final String indexName) {
+	public void reindexAll() {
+		// this is a more efficient implementation for the ChunkDB indexer than the superclass
+		// can offer. This is due to the fact that when re-indexing a chunk, ALL indices are
+		// rebuilt for better performance. It therefore makes no sense to iterate over the
+		// individual indices and attempt to rebuild them one by one (as the superclass does).
 		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
-			this.getIndexManagerBackend().rebuildIndexOnAllChunks(indexName);
-			this.setIndexClean(indexName);
+			if (this.getDirtyIndices().isEmpty()) {
+				// no indices are dirty -> no need to re-index
+				return;
+			}
+			this.getIndexManagerBackend().rebuildIndexOnAllChunks();
+			for (String indexName : this.getIndexNames()) {
+				this.setIndexClean(indexName);
+			}
+			this.getIndexManagerBackend().persistIndexDirtyStates(this.indexNameToDirtyFlag);
+			this.clearQueryCache();
 		}
 	}
 

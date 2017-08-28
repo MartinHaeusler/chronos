@@ -1,0 +1,15 @@
+org.chronos.common.annotation
+org.chronos.common.base
+org.chronos.common.builder
+org.chronos.common.buildinfo
+org.chronos.common.collections.immutable
+org.chronos.common.collections.immutable.base
+org.chronos.common.collections.immutable.hamt
+org.chronos.common.collections.util
+org.chronos.common.configuration
+org.chronos.common.configuration.annotation
+org.chronos.common.exceptions
+org.chronos.common.logging
+org.chronos.common.serialization
+org.chronos.common.util
+org.chronos.common.version

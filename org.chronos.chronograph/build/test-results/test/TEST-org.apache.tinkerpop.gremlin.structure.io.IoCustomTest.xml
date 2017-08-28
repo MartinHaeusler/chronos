@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.io.IoCustomTest" tests="4" skipped="2" failures="0" errors="0" timestamp="2017-08-28T17:58:58" hostname="Aurora" time="0.235">
+  <properties/>
+  <testcase name="shouldSupportUUID[graphson-embedded]" classname="org.apache.tinkerpop.gremlin.structure.io.IoCustomTest" time="0.219"/>
+  <testcase name="shouldProperlySerializeCustomId[graphson-embedded]" classname="org.apache.tinkerpop.gremlin.structure.io.IoCustomTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportUUID[gryo]" classname="org.apache.tinkerpop.gremlin.structure.io.IoCustomTest" time="0.016"/>
+  <testcase name="shouldProperlySerializeCustomId[gryo]" classname="org.apache.tinkerpop.gremlin.structure.io.IoCustomTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

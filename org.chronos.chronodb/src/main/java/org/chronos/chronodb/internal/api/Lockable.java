@@ -7,8 +7,10 @@ import java.util.concurrent.locks.Lock;
 import org.chronos.chronodb.internal.impl.lock.BasicLockHolder;
 
 /**
- * A {@link Lockable} is any object that can be locked {@linkplain #lockExclusive() exclusively} or
- * {@linkplain #lockNonExclusive() non-exclusively} using the <code>try-with-resources</code> pattern.
+ * A {@link Lockable} is any object that can be locked {@linkplain #lockExclusive() exclusively} or {@linkplain #lockNonExclusive() non-exclusively} using the <code>try-with-resources</code> pattern.
+ *
+ * <p>
+ * See {@link #lockExclusive()} and {@link #lockNonExclusive()} for example usages.
  *
  * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
  *
@@ -29,14 +31,12 @@ public interface Lockable {
 	 *
 	 * This method ensures that exclusive operations are properly blocked when another operation is taking place.
 	 *
-	 * @return The object representing lock ownership. The lock ownership will be released once
-	 *         {@link LockHolder#close()} is invoked, which is called automatically by the try-with-resources statement.
+	 * @return The object representing lock ownership. The lock ownership will be released once {@link LockHolder#close()} is invoked, which is called automatically by the try-with-resources statement.
 	 */
 	public LockHolder lockExclusive();
 
 	/**
-	 * Declares that a thread is about to perform a non-exclusive task that can run in parallel with other non-exclusive
-	 * locking tasks.
+	 * Declares that a thread is about to perform a non-exclusive task that can run in parallel with other non-exclusive locking tasks.
 	 *
 	 * <p>
 	 * All invocations of this method must adhere to the following usage pattern:
@@ -47,11 +47,9 @@ public interface Lockable {
 	 * }
 	 * </pre>
 	 *
-	 * This method ensures that non-exclusive operations are properly blocked when an exclusive operation is taking
-	 * place.
+	 * This method ensures that non-exclusive operations are properly blocked when an exclusive operation is taking place.
 	 *
-	 * @return The object representing lock ownership. The lock ownership will be released once
-	 *         {@link LockHolder#close()} is invoked, which is called automatically by the try-with-resources statement.
+	 * @return The object representing lock ownership. The lock ownership will be released once {@link LockHolder#close()} is invoked, which is called automatically by the try-with-resources statement.
 	 */
 	public LockHolder lockNonExclusive();
 
@@ -63,13 +61,10 @@ public interface Lockable {
 	 * A {@link LockHolder} is an object that represents ownership over some sort of {@link Lock}.
 	 *
 	 * <p>
-	 * The basic idea here is to have a lock representatin that implements {@link AutoCloseable} and can therefore work
-	 * with the <code>try-with-resources</code> statement.
+	 * The basic idea here is to have a lock representatin that implements {@link AutoCloseable} and can therefore work with the <code>try-with-resources</code> statement.
 	 *
 	 * <p>
-	 * In general, a class making use of LockHolders should offer factory methods for the locks. These factories should
-	 * create a new lock holder (e.g. via {@link #createBasicLockHolderFor(Lock)}, then call {@link #acquireLock()} on
-	 * it before returning it. The caller can then use the following pattern:
+	 * In general, a class making use of LockHolders should offer factory methods for the locks. These factories should create a new lock holder (e.g. via {@link #createBasicLockHolderFor(Lock)}, then call {@link #acquireLock()} on it before returning it. The caller can then use the following pattern:
 	 *
 	 * <pre>
 	 * try (LockHolder lock = theThingToBeLocked.lockFactoryMethod()) {
@@ -117,8 +112,7 @@ public interface Lockable {
 		 * Adds 1 to the internal lock counter.
 		 *
 		 * <p>
-		 * <b>Calling this method is usually not required.</b> It is recommended to stick to the default
-		 * {@link LockHolder} pattern using <code>try-with-resources</code> statements.
+		 * <b>Calling this method is usually not required.</b> It is recommended to stick to the default {@link LockHolder} pattern using <code>try-with-resources</code> statements.
 		 *
 		 * @see #releaseLock()
 		 */
@@ -128,8 +122,7 @@ public interface Lockable {
 		 * Subtracts 1 from the internal lock counter, unlocking the lock if the counter reaches zero.
 		 *
 		 * <p>
-		 * <b>Calling this method is usually not required.</b> It is recommended to stick to the default
-		 * {@link LockHolder} pattern using <code>try-with-resources</code> statements.
+		 * <b>Calling this method is usually not required.</b> It is recommended to stick to the default {@link LockHolder} pattern using <code>try-with-resources</code> statements.
 		 *
 		 * @see #releaseLock()
 		 */

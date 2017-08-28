@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.temporal.TemporalKeyTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:54:30" hostname="Aurora" time="0.015">
+  <properties/>
+  <testcase name="canCreateTemporalKeyAtMaximumTimestamp" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <testcase name="canConvertChronoIdentifierToTemporalKey" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <testcase name="canConvertTemporalKeyIntoQualifiedKey" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <testcase name="temporalKeyImplementsHashCodeAndEqualsCorrectly" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.015"/>
+  <testcase name="canCreateChronoIdentifierFromQualifiedKey" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <testcase name="canCreateTemporalKeyFromQualifiedKey" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <testcase name="canCreateQualifiedKey" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <testcase name="qualifiedKeyImplementsHashCodeAndEqualsCorrectly" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <testcase name="canCreateChronoIdentifier" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <testcase name="canCreateQualifiedKeyInDefaultKeyspace" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <testcase name="canConvertChronoIdentifierToQualifiedKey" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <testcase name="chronoIdentifierImplementsHashCodeAndEqualsCorrectly" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <testcase name="canCreateChronoIdentifierFromTemporalKey" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <testcase name="canCreateTemporalKey" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <testcase name="canCreateTemporalKeyAtMinimumTimestamp" classname="org.chronos.chronodb.test.temporal.TemporalKeyTest" time="0.0"/>
+  <system-out><![CDATA[19:54:30.887 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateTemporalKeyAtMaximumTimestamp
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateTemporalKeyAtMaximumTimestamp
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canConvertChronoIdentifierToTemporalKey
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canConvertChronoIdentifierToTemporalKey
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canConvertTemporalKeyIntoQualifiedKey
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canConvertTemporalKeyIntoQualifiedKey
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: temporalKeyImplementsHashCodeAndEqualsCorrectly
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: temporalKeyImplementsHashCodeAndEqualsCorrectly
+    End time:    2017/08/28 19:54:30 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateChronoIdentifierFromQualifiedKey
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateChronoIdentifierFromQualifiedKey
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateTemporalKeyFromQualifiedKey
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateTemporalKeyFromQualifiedKey
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateQualifiedKey
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateQualifiedKey
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: qualifiedKeyImplementsHashCodeAndEqualsCorrectly
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: qualifiedKeyImplementsHashCodeAndEqualsCorrectly
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateChronoIdentifier
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateChronoIdentifier
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateQualifiedKeyInDefaultKeyspace
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateQualifiedKeyInDefaultKeyspace
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canConvertChronoIdentifierToQualifiedKey
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canConvertChronoIdentifierToQualifiedKey
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: chronoIdentifierImplementsHashCodeAndEqualsCorrectly
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: chronoIdentifierImplementsHashCodeAndEqualsCorrectly
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateChronoIdentifierFromTemporalKey
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateChronoIdentifierFromTemporalKey
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateTemporalKey
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateTemporalKey
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateTemporalKeyAtMinimumTimestamp
+    Start time:  2017/08/28 19:54:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TemporalKeyTest
+    Test method: canCreateTemporalKeyAtMinimumTimestamp
+    End time:    2017/08/28 19:54:30 (Duration: 0ms)
+================================================================================
+
+
+
+19:54:30.902 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:54:30.902 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

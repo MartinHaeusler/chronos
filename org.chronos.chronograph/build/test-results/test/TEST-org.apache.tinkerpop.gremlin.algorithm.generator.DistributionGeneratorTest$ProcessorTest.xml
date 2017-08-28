@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.algorithm.generator.DistributionGeneratorTest$ProcessorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:58:56" hostname="Aurora" time="0.014">
+  <properties/>
+  <testcase name="shouldProcessEdges" classname="org.apache.tinkerpop.gremlin.algorithm.generator.DistributionGeneratorTest$ProcessorTest" time="0.014"/>
+  <system-out><![CDATA[[WARN ] 2017-08-28 19:58:56 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:56 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all edges. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:56 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:56 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all edges. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:56 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all edges. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:56 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:56 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all edges. For better performance, use 'has(...)' clauses in your gremlin.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

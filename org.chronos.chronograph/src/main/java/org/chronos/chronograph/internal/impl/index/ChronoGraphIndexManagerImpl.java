@@ -17,22 +17,29 @@ import org.apache.tinkerpop.gremlin.structure.Element;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
-import org.chronos.chronodb.api.ChronoIndexer;
 import org.chronos.chronodb.api.IndexManager;
 import org.chronos.chronodb.api.builder.query.FinalizableQueryBuilder;
 import org.chronos.chronodb.api.builder.query.QueryBuilder;
 import org.chronos.chronodb.api.builder.query.WhereBuilder;
 import org.chronos.chronodb.api.exceptions.UnknownKeyspaceException;
+import org.chronos.chronodb.api.indexing.Indexer;
 import org.chronos.chronodb.api.key.QualifiedKey;
-import org.chronos.chronodb.api.query.Condition;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
+import org.chronos.chronodb.api.query.NumberCondition;
+import org.chronos.chronodb.api.query.StringCondition;
+import org.chronos.chronodb.internal.api.query.searchspec.DoubleSearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.LongSearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.StringSearchSpecification;
 import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.chronograph.api.builder.index.IndexBuilderStarter;
 import org.chronos.chronograph.api.index.ChronoGraphIndex;
 import org.chronos.chronograph.api.index.ChronoGraphIndexManager;
 import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.internal.ChronoGraphConstants;
+import org.chronos.chronograph.internal.api.index.ChronoGraphIndexInternal;
 import org.chronos.chronograph.internal.api.index.ChronoGraphIndexManagerInternal;
+import org.chronos.chronograph.internal.api.index.IChronoGraphEdgeIndex;
+import org.chronos.chronograph.internal.api.index.IChronoGraphVertexIndex;
 import org.chronos.chronograph.internal.impl.builder.index.ChronoGraphIndexBuilder;
 import org.chronos.chronograph.internal.impl.structure.graph.StandardChronoGraph;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
@@ -53,8 +60,8 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 	private ChronoGraph graph;
 	private final String branchName;
 
-	private final Map<String, ChronoGraphVertexIndex> vertexIndices;
-	private final Map<String, ChronoGraphEdgeIndex> edgeIndices;
+	private final Map<String, IChronoGraphVertexIndex> vertexIndices;
+	private final Map<String, IChronoGraphEdgeIndex> edgeIndices;
 
 	private final ReadWriteLock lock;
 
@@ -73,7 +80,7 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 	// =====================================================================================================================
 
 	@Override
-	public IndexBuilderStarter createIndex() {
+	public IndexBuilderStarter create() {
 		return new ChronoGraphIndexBuilder(this);
 	}
 
@@ -128,28 +135,26 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 	@Override
 	public void reindex(final ChronoGraphIndex index) {
 		checkNotNull(index, "Precondition violation - argument 'index' must not be NULL!");
-		this.performExclusive(() -> {
-			IndexManager indexManager = this.getChronoDBIndexManager();
-			indexManager.reindex(index.getBackendIndexKey());
-		});
+		this.reindexAll();
 	}
 
 	@Override
 	public void dropIndex(final ChronoGraphIndex index) {
 		checkNotNull(index, "Precondition violation - argument 'index' must not be NULL!");
 		this.performExclusive(() -> {
+			ChronoGraphIndexInternal indexInternal = (ChronoGraphIndexInternal) index;
 			IndexManager indexManager = this.getChronoDBIndexManager();
-			indexManager.removeIndex(index.getBackendIndexKey());
+			indexManager.removeIndex(indexInternal.getBackendIndexKey());
 			// FIXME CONSISTENCY: What happens if an exception occurs at this line (or JVM shutdown, or...)?
 			ChronoDB db = this.getDB();
 			ChronoDBTransaction tx = db.tx(this.branchName);
-			tx.remove(index.getBackendIndexKey());
+			tx.remove(indexInternal.getBackendIndexKey());
 			tx.commit();
 			// FIXME CONSISTENCY: What happens if an exception occurs at this line (or JVM shutdown, or...)?
-			if (index instanceof ChronoGraphVertexIndex) {
-				this.vertexIndices.remove(index.getBackendIndexKey());
-			} else if (index instanceof ChronoGraphEdgeIndex) {
-				this.edgeIndices.remove(index.getBackendIndexKey());
+			if (indexInternal instanceof IChronoGraphVertexIndex) {
+				this.vertexIndices.remove(indexInternal.getBackendIndexKey());
+			} else if (indexInternal instanceof IChronoGraphEdgeIndex) {
+				this.edgeIndices.remove(indexInternal.getBackendIndexKey());
 			}
 		});
 	}
@@ -163,7 +168,7 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 			ChronoDB db = this.getDB();
 			ChronoDBTransaction tx = db.tx(this.branchName);
 			for (ChronoGraphIndex index : this.getAllIndices()) {
-				tx.remove(index.getBackendIndexKey());
+				tx.remove(((ChronoGraphIndexInternal) index).getBackendIndexKey());
 			}
 			tx.commit();
 			// FIXME CONSISTENCY: What happens if an exception occurs at this line (or JVM shutdown, or...)?
@@ -183,28 +188,22 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 			if (this.getAllIndices().contains(index)) {
 				throw new IllegalArgumentException("The given index already exists: " + index.toString());
 			}
-			ChronoIndexer indexer = null;
-			if (index instanceof ChronoGraphVertexIndex) {
-				indexer = new VertexRecordPropertyIndexer(index.getIndexedProperty());
-			} else if (index instanceof ChronoGraphEdgeIndex) {
-				indexer = new EdgeRecordPropertyIndexer(index.getIndexedProperty());
-			} else {
-				throw new IllegalArgumentException("Unknown index class: '" + index.getClass().getName() + "'!");
-			}
+			ChronoGraphIndexInternal indexInternal = (ChronoGraphIndexInternal) index;
+			Indexer<?> indexer = indexInternal.createIndexer();
 			IndexManager indexManager = this.getChronoDBIndexManager();
-			indexManager.addIndexer(index.getBackendIndexKey(), indexer);
+			indexManager.addIndexer(indexInternal.getBackendIndexKey(), indexer);
 			// FIXME CONSISTENCY: What happens if an exception occurs at this line (or JVM shutdown, or...)?
 			ChronoDB db = this.getDB();
 			ChronoDBTransaction tx = db.tx(this.branchName);
-			tx.put(ChronoGraphConstants.KEYSPACE_MANAGEMENT_INDICES, index.getBackendIndexKey(), index);
+			tx.put(ChronoGraphConstants.KEYSPACE_MANAGEMENT_INDICES, indexInternal.getBackendIndexKey(), indexInternal);
 			tx.commit();
 			// FIXME CONSISTENCY: What happens if an exception occurs at this line (or JVM shutdown, or...)?
-			if (index instanceof ChronoGraphVertexIndex) {
-				this.vertexIndices.put(index.getBackendIndexKey(), (ChronoGraphVertexIndex) index);
-			} else if (index instanceof ChronoGraphEdgeIndex) {
-				this.edgeIndices.put(index.getBackendIndexKey(), (ChronoGraphEdgeIndex) index);
+			if (indexInternal instanceof IChronoGraphVertexIndex) {
+				this.vertexIndices.put(indexInternal.getBackendIndexKey(), (IChronoGraphVertexIndex) indexInternal);
+			} else if (indexInternal instanceof IChronoGraphEdgeIndex) {
+				this.edgeIndices.put(indexInternal.getBackendIndexKey(), (IChronoGraphEdgeIndex) indexInternal);
 			} else {
-				throw new IllegalArgumentException("Unknown index class: '" + index.getClass().getName() + "'!");
+				throw new IllegalArgumentException("Unknown index class: '" + indexInternal.getClass().getName() + "'!");
 			}
 		});
 	}
@@ -214,7 +213,7 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 	// =====================================================================================================================
 
 	@Override
-	public Iterator<String> findVertexIdsByIndexedProperties(final Set<SearchSpecification> searchSpecifications) {
+	public Iterator<String> findVertexIdsByIndexedProperties(final Set<SearchSpecification<?>> searchSpecifications) {
 		checkNotNull(searchSpecifications,
 				"Precondition violation - argument 'searchSpecifications' must not be NULL!");
 		return this.findElementsByIndexedProperties(Vertex.class, ChronoGraphConstants.KEYSPACE_VERTEX,
@@ -222,7 +221,7 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 	}
 
 	@Override
-	public Iterator<String> findEdgeIdsByIndexedProperties(final Set<SearchSpecification> searchSpecifications) {
+	public Iterator<String> findEdgeIdsByIndexedProperties(final Set<SearchSpecification<?>> searchSpecifications) {
 		checkNotNull(searchSpecifications,
 				"Precondition violation - argument 'searchSpecifications' must not be NULL!");
 		return this.findElementsByIndexedProperties(Edge.class, ChronoGraphConstants.KEYSPACE_EDGE,
@@ -230,7 +229,7 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 	}
 
 	private Iterator<String> findElementsByIndexedProperties(final Class<? extends Element> clazz,
-			final String keyspace, final Set<SearchSpecification> searchSpecifications) {
+			final String keyspace, final Set<SearchSpecification<?>> searchSpecifications) {
 		checkNotNull(clazz, "Precondition violation - argument 'clazz' must not be NULL!");
 		checkNotNull(keyspace, "Precondition violation - argument 'key' must not be NULL!");
 		checkNotNull(searchSpecifications,
@@ -242,13 +241,13 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 				.collect(Collectors.toSet());
 		this.assertAllPropertiesAreIndexed(clazz, properties);
 		// build a map from 'backend property key' to 'search specifications'
-		SetMultimap<String, SearchSpecification> backendPropertyKeyToSearchSpecs = HashMultimap.create();
+		SetMultimap<String, SearchSpecification<?>> backendPropertyKeyToSearchSpecs = HashMultimap.create();
 		Set<ChronoGraphIndex> graphIndices = this.getIndexedPropertiesOf(clazz);
-		for (SearchSpecification searchSpec : searchSpecifications) {
+		for (SearchSpecification<?> searchSpec : searchSpecifications) {
 			String propertyName = searchSpec.getProperty();
 			ChronoGraphIndex index = graphIndices.stream().filter(idx -> idx.getIndexedProperty().equals(propertyName))
 					.findAny().get();
-			String backendPropertyKey = index.getBackendIndexKey();
+			String backendPropertyKey = ((ChronoGraphIndexInternal) index).getBackendIndexKey();
 			backendPropertyKeyToSearchSpecs.put(backendPropertyKey, searchSpec);
 		}
 		// assert that we have a transaction to the backend
@@ -261,9 +260,9 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 		List<String> propertyList = Lists.newArrayList(backendPropertyKeyToSearchSpecs.keySet());
 		for (int i = 0; i < propertyList.size(); i++) {
 			String propertyName = propertyList.get(i);
-			Set<SearchSpecification> searchSpecs = backendPropertyKeyToSearchSpecs.get(propertyName);
+			Set<SearchSpecification<?>> searchSpecs = backendPropertyKeyToSearchSpecs.get(propertyName);
 			FinalizableQueryBuilder innerTempBuilder = null;
-			for (SearchSpecification searchSpec : searchSpecs) {
+			for (SearchSpecification<?> searchSpec : searchSpecs) {
 				WhereBuilder whereBuilder = null;
 				if (innerTempBuilder == null) {
 					whereBuilder = builder.where(propertyName);
@@ -353,11 +352,12 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 			if (index == null) {
 				throw new IllegalStateException("Could not find index specification for index key '" + indexKey + "'!");
 			}
-			if (index instanceof ChronoGraphVertexIndex) {
-				ChronoGraphVertexIndex vertexIndex = (ChronoGraphVertexIndex) index;
+			index = IndexMigrationUtil.migrate(index);
+			if (index instanceof IChronoGraphVertexIndex) {
+				IChronoGraphVertexIndex vertexIndex = (IChronoGraphVertexIndex) index;
 				this.vertexIndices.put(vertexIndex.getBackendIndexKey(), vertexIndex);
-			} else if (index instanceof ChronoGraphEdgeIndex) {
-				ChronoGraphEdgeIndex edgeIndex = (ChronoGraphEdgeIndex) index;
+			} else if (index instanceof IChronoGraphEdgeIndex) {
+				IChronoGraphEdgeIndex edgeIndex = (IChronoGraphEdgeIndex) index;
 				this.edgeIndices.put(edgeIndex.getBackendIndexKey(), edgeIndex);
 			} else {
 				throw new IllegalStateException(
@@ -448,12 +448,24 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 	}
 
 	private FinalizableQueryBuilder applyCondition(final WhereBuilder whereBuilder,
-			final SearchSpecification searchSpec) {
-		Condition condition = searchSpec.getCondition();
+			final SearchSpecification<?> searchSpec) {
+		if (searchSpec instanceof StringSearchSpecification) {
+			return this.applyCondition(whereBuilder, (StringSearchSpecification) searchSpec);
+		} else if (searchSpec instanceof LongSearchSpecification) {
+			return this.applyCondition(whereBuilder, (LongSearchSpecification) searchSpec);
+		} else if (searchSpec instanceof DoubleSearchSpecification) {
+			return this.applyCondition(whereBuilder, (DoubleSearchSpecification) searchSpec);
+		} else {
+			throw new IllegalStateException("Unknown SearchSpecification class: '" + searchSpec.getClass().getName() + "'!");
+		}
+	}
+
+	private FinalizableQueryBuilder applyCondition(final WhereBuilder whereBuilder,
+			final StringSearchSpecification searchSpec) {
+		StringCondition condition = searchSpec.getCondition();
 		TextMatchMode matchMode = searchSpec.getMatchMode();
-		String searchText = searchSpec.getSearchText();
-		switch (condition) {
-		case CONTAINS:
+		String searchText = searchSpec.getSearchValue();
+		if (condition.equals(StringCondition.CONTAINS)) {
 			switch (matchMode) {
 			case CASE_INSENSITIVE:
 				return whereBuilder.containsIgnoreCase(searchText);
@@ -462,7 +474,7 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 			default:
 				throw new UnknownEnumLiteralException(matchMode);
 			}
-		case ENDS_WITH:
+		} else if (condition.equals(StringCondition.ENDS_WITH)) {
 			switch (matchMode) {
 			case CASE_INSENSITIVE:
 				return whereBuilder.endsWithIgnoreCase(searchText);
@@ -471,7 +483,7 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 			default:
 				throw new UnknownEnumLiteralException(matchMode);
 			}
-		case EQUALS:
+		} else if (condition.equals(StringCondition.EQUALS)) {
 			switch (matchMode) {
 			case CASE_INSENSITIVE:
 				return whereBuilder.isEqualToIgnoreCase(searchText);
@@ -480,9 +492,9 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 			default:
 				throw new UnknownEnumLiteralException(matchMode);
 			}
-		case MATCHES_REGEX:
+		} else if (condition.equals(StringCondition.MATCHES_REGEX)) {
 			return whereBuilder.matchesRegex(searchText);
-		case NOT_CONTAINS:
+		} else if (condition.equals(StringCondition.NOT_CONTAINS)) {
 			switch (matchMode) {
 			case CASE_INSENSITIVE:
 				return whereBuilder.notContainsIgnoreCase(searchText);
@@ -491,7 +503,7 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 			default:
 				throw new UnknownEnumLiteralException(matchMode);
 			}
-		case NOT_ENDS_WITH:
+		} else if (condition.equals(StringCondition.NOT_ENDS_WITH)) {
 			switch (matchMode) {
 			case CASE_INSENSITIVE:
 				return whereBuilder.notEndsWithIgnoreCase(searchText);
@@ -500,7 +512,7 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 			default:
 				throw new UnknownEnumLiteralException(matchMode);
 			}
-		case NOT_EQUALS:
+		} else if (condition.equals(StringCondition.NOT_EQUALS)) {
 			switch (matchMode) {
 			case CASE_INSENSITIVE:
 				return whereBuilder.isNotEqualToIgnoreCase(searchText);
@@ -509,9 +521,9 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 			default:
 				throw new UnknownEnumLiteralException(matchMode);
 			}
-		case NOT_MATCHES_REGEX:
+		} else if (condition.equals(StringCondition.NOT_MATCHES_REGEX)) {
 			return whereBuilder.notMatchesRegex(searchText);
-		case NOT_STARTS_WITH:
+		} else if (condition.equals(StringCondition.NOT_STARTS_WITH)) {
 			switch (matchMode) {
 			case CASE_INSENSITIVE:
 				return whereBuilder.notStartsWithIgnoreCase(searchText);
@@ -520,7 +532,7 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 			default:
 				throw new UnknownEnumLiteralException(matchMode);
 			}
-		case STARTS_WITH:
+		} else if (condition.equals(StringCondition.STARTS_WITH)) {
 			switch (matchMode) {
 			case CASE_INSENSITIVE:
 				return whereBuilder.startsWithIgnoreCase(searchText);
@@ -529,8 +541,51 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 			default:
 				throw new UnknownEnumLiteralException(matchMode);
 			}
-		default:
-			throw new UnknownEnumLiteralException(condition);
+		} else {
+			throw new IllegalStateException("Unknown StringCondition: '" + condition.getClass().getName() + "'!");
+		}
+	}
+
+	private FinalizableQueryBuilder applyCondition(final WhereBuilder whereBuilder,
+			final LongSearchSpecification searchSpec) {
+		NumberCondition condition = searchSpec.getCondition();
+		long comparisonValue = searchSpec.getSearchValue();
+		if (condition.equals(NumberCondition.EQUALS)) {
+			return whereBuilder.isEqualTo(comparisonValue);
+		} else if (condition.equals(NumberCondition.NOT_EQUALS)) {
+			return whereBuilder.isNotEqualTo(comparisonValue);
+		} else if (condition.equals(NumberCondition.LESS_EQUAL)) {
+			return whereBuilder.isLessThanOrEqualTo(comparisonValue);
+		} else if (condition.equals(NumberCondition.LESS_THAN)) {
+			return whereBuilder.isLessThan(comparisonValue);
+		} else if (condition.equals(NumberCondition.GREATER_EQUAL)) {
+			return whereBuilder.isGreaterThanOrEqualTo(comparisonValue);
+		} else if (condition.equals(NumberCondition.GREATER_THAN)) {
+			return whereBuilder.isGreaterThan(comparisonValue);
+		} else {
+			throw new IllegalStateException("Unknown NumberCondition: '" + condition.getClass().getName() + "'!");
+		}
+	}
+
+	private FinalizableQueryBuilder applyCondition(final WhereBuilder whereBuilder,
+			final DoubleSearchSpecification searchSpec) {
+		NumberCondition condition = searchSpec.getCondition();
+		double comparisonValue = searchSpec.getSearchValue();
+		double equalityTolerance = searchSpec.getEqualityTolerance();
+		if (condition.equals(NumberCondition.EQUALS)) {
+			return whereBuilder.isEqualTo(comparisonValue, equalityTolerance);
+		} else if (condition.equals(NumberCondition.NOT_EQUALS)) {
+			return whereBuilder.isNotEqualTo(comparisonValue, equalityTolerance);
+		} else if (condition.equals(NumberCondition.LESS_EQUAL)) {
+			return whereBuilder.isLessThanOrEqualTo(comparisonValue);
+		} else if (condition.equals(NumberCondition.LESS_THAN)) {
+			return whereBuilder.isLessThan(comparisonValue);
+		} else if (condition.equals(NumberCondition.GREATER_EQUAL)) {
+			return whereBuilder.isGreaterThanOrEqualTo(comparisonValue);
+		} else if (condition.equals(NumberCondition.GREATER_THAN)) {
+			return whereBuilder.isGreaterThan(comparisonValue);
+		} else {
+			throw new IllegalStateException("Unknown NumberCondition: '" + condition.getClass().getName() + "'!");
 		}
 	}
 }

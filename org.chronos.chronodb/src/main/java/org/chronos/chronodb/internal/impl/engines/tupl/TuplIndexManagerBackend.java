@@ -15,16 +15,16 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.Term;
 import org.chronos.chronodb.api.ChronoDBConstants;
-import org.chronos.chronodb.api.ChronoIndexer;
 import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
 import org.chronos.chronodb.api.exceptions.UnknownIndexException;
+import org.chronos.chronodb.api.indexing.Indexer;
 import org.chronos.chronodb.api.key.ChronoIdentifier;
 import org.chronos.chronodb.internal.api.index.ChronoIndexDocument;
 import org.chronos.chronodb.internal.api.index.ChronoIndexModifications;
 import org.chronos.chronodb.internal.api.index.DocumentAddition;
 import org.chronos.chronodb.internal.api.index.DocumentDeletion;
 import org.chronos.chronodb.internal.api.index.DocumentValidityTermination;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractDocumentBasedIndexManagerBackend;
 import org.chronos.chronodb.internal.impl.engines.mapdb.ChronoDBLuceneUtil;
 import org.chronos.chronodb.internal.impl.engines.mapdb.LuceneWrapper;
@@ -67,14 +67,14 @@ public class TuplIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 	// =================================================================================================================
 
 	@Override
-	public SetMultimap<String, ChronoIndexer> loadIndexersFromPersistence() {
+	public SetMultimap<String, Indexer<?>> loadIndexersFromPersistence() {
 		try (DefaultTuplTransaction tx = this.getOwningDB().openTransaction()) {
 			return this.loadIndexersMap(tx);
 		}
 	}
 
 	@Override
-	public void persistIndexers(final SetMultimap<String, ChronoIndexer> indexNameToIndexers) {
+	public void persistIndexers(final SetMultimap<String, Indexer<?>> indexNameToIndexers) {
 		try (DefaultTuplTransaction tx = this.getOwningDB().openTransaction()) {
 			this.persistIndexersMap(indexNameToIndexers, tx);
 			tx.commit();
@@ -86,7 +86,7 @@ public class TuplIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		// first, delete the indexers
 		try (DefaultTuplTransaction tx = this.getOwningDB().openTransaction()) {
-			SetMultimap<String, ChronoIndexer> indexersMap = this.loadIndexersFromPersistence();
+			SetMultimap<String, Indexer<?>> indexersMap = this.loadIndexersFromPersistence();
 			indexersMap.removeAll(indexName);
 			this.persistIndexers(indexersMap);
 			tx.commit();
@@ -99,7 +99,7 @@ public class TuplIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 	public void deleteAllIndicesAndIndexers() {
 		// first, delete the indexers
 		try (DefaultTuplTransaction tx = this.getOwningDB().openTransaction()) {
-			SetMultimap<String, ChronoIndexer> indexersMap = HashMultimap.create();
+			SetMultimap<String, Indexer<?>> indexersMap = HashMultimap.create();
 			this.persistIndexers(indexersMap);
 			tx.commit();
 		}
@@ -117,16 +117,21 @@ public class TuplIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 	}
 
 	@Override
+	public void deleteAllIndexContents() {
+		this.lucene.deleteAllDocuments();
+	}
+
+	@Override
 	public void deleteIndexContents(final String indexName) {
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		this.lucene.deleteDocumentsByIndexName(indexName);
 	}
 
 	@Override
-	public void persistIndexer(final String indexName, final ChronoIndexer indexer) {
+	public void persistIndexer(final String indexName, final Indexer<?> indexer) {
 		// TODO PERFORMANCE TUPL: Storing the entire map just to add one indexer is not very efficient.
 		try (DefaultTuplTransaction tx = this.getOwningDB().openTransaction()) {
-			SetMultimap<String, ChronoIndexer> map = this.loadIndexersMap(tx);
+			SetMultimap<String, Indexer<?>> map = this.loadIndexersMap(tx);
 			map.put(indexName, indexer);
 			this.persistIndexersMap(map, tx);
 			tx.commit();
@@ -227,19 +232,19 @@ public class TuplIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 	// =================================================================================================================
 
 	@Override
-	public Map<String, Map<String, ChronoIndexDocument>> getMatchingBranchLocalDocuments(
+	public Map<String, SetMultimap<Object, ChronoIndexDocument>> getMatchingBranchLocalDocuments(
 			final ChronoIdentifier chronoIdentifier) {
 		checkNotNull(chronoIdentifier, "Precondition violation - argument 'chronoIdentifier' must not be NULL!");
 		// run the lucene query
 		List<Document> documents = this.lucene.getMatchingBranchLocalDocuments(chronoIdentifier);
 		// sort the resulting documents into the required structure and convert lucene docs to chrono index docs
-		Map<String, Map<String, ChronoIndexDocument>> resultMap = Maps.newHashMap();
+		Map<String, SetMultimap<Object, ChronoIndexDocument>> resultMap = Maps.newHashMap();
 		for (Document luceneDoc : documents) {
 			ChronoIndexDocument chronoDoc = ChronoDBLuceneUtil.convertLuceneDocumentToChronoDocument(luceneDoc);
 			String indexName = chronoDoc.getIndexName();
-			Map<String, ChronoIndexDocument> indexValueToDocument = resultMap.get(indexName);
+			SetMultimap<Object, ChronoIndexDocument> indexValueToDocument = resultMap.get(indexName);
 			if (indexValueToDocument == null) {
-				indexValueToDocument = Maps.newHashMap();
+				indexValueToDocument = HashMultimap.create();
 				resultMap.put(indexName, indexValueToDocument);
 			}
 			indexValueToDocument.put(chronoDoc.getIndexedValue(), chronoDoc);
@@ -253,11 +258,12 @@ public class TuplIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 
 	@Override
 	protected Collection<ChronoIndexDocument> getTerminatedBranchLocalDocuments(final long timestamp,
-			final String branchName, final SearchSpecification searchSpec) {
+			final String branchName, final String keyspace, final SearchSpecification<?> searchSpec) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
 		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
-		Collection<Document> luceneDocs = this.lucene.getTerminatedBranchLocalDocuments(timestamp, branchName,
+		Collection<Document> luceneDocs = this.lucene.getTerminatedBranchLocalDocuments(timestamp, branchName, keyspace,
 				searchSpec);
 		// transform into chrono index documents
 		return ChronoDBLuceneUtil.convertLuceneDocumentsToChronoDocuments(luceneDocs);
@@ -265,9 +271,10 @@ public class TuplIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 
 	@Override
 	protected Collection<ChronoIndexDocument> getMatchingBranchLocalDocuments(final long timestamp,
-			final String branchName, final SearchSpecification searchSpec) {
+			final String branchName, final String keyspace, final SearchSpecification<?> searchSpec) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
 		checkNotNull(searchSpec, "Precondition violation - argument 'searchSpec' must not be NULL!");
 		String indexName = searchSpec.getProperty();
 		// check if the index exists on the branch
@@ -276,7 +283,7 @@ public class TuplIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 			// index does not exist!
 			throw new UnknownIndexException("There is no index named '" + indexName + "'!");
 		}
-		List<Document> luceneDocuments = this.lucene.getMatchingBranchLocalDocuments(timestamp, branchName, searchSpec);
+		List<Document> luceneDocuments = this.lucene.getMatchingBranchLocalDocuments(timestamp, branchName, keyspace, searchSpec);
 		return ChronoDBLuceneUtil.convertLuceneDocumentsToChronoDocuments(luceneDocuments);
 	}
 
@@ -332,19 +339,19 @@ public class TuplIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 		return (T) this.owningDB.getSerializationManager().deserialize(serializedForm);
 	}
 
-	private SetMultimap<String, ChronoIndexer> loadIndexersMap(final DefaultTuplTransaction tx) {
+	private SetMultimap<String, Indexer<?>> loadIndexersMap(final DefaultTuplTransaction tx) {
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		byte[] serializedForm = this.getIndexersSerialForm(tx);
 		// Kryo doesn't like to convert the SetMultimap class directly, so we transform
 		// it into a regular hash map with sets as values.
-		Map<String, Set<ChronoIndexer>> map = this.deserializeObject(serializedForm);
+		Map<String, Set<Indexer<?>>> map = this.deserializeObject(serializedForm);
 		if (map == null) {
 			return HashMultimap.create();
 		} else {
 			// we need to convert our internal map representation back into its multimap form
-			SetMultimap<String, ChronoIndexer> multiMap = HashMultimap.create();
-			for (Entry<String, Set<ChronoIndexer>> entry : map.entrySet()) {
-				for (ChronoIndexer indexer : entry.getValue()) {
+			SetMultimap<String, Indexer<?>> multiMap = HashMultimap.create();
+			for (Entry<String, Set<Indexer<?>>> entry : map.entrySet()) {
+				for (Indexer<?> indexer : entry.getValue()) {
 					multiMap.put(entry.getKey(), indexer);
 				}
 			}
@@ -352,16 +359,16 @@ public class TuplIndexManagerBackend extends AbstractDocumentBasedIndexManagerBa
 		}
 	}
 
-	private void persistIndexersMap(final SetMultimap<String, ChronoIndexer> indexNameToIndexers,
+	private void persistIndexersMap(final SetMultimap<String, Indexer<?>> indexNameToIndexers,
 			final DefaultTuplTransaction tx) {
 		checkNotNull(indexNameToIndexers, "Precondition violation - argument 'indexNameToIndexers' must not be NULL!");
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		// Kryo doesn't like to convert the SetMultimap class directly, so we transform
 		// it into a regular hash map with sets as values.
-		Map<String, Set<ChronoIndexer>> persistentMap = Maps.newHashMap();
+		Map<String, Set<Indexer<?>>> persistentMap = Maps.newHashMap();
 		// we need to transform the multimap into an internal representation using a normal hash map.
-		for (Entry<String, ChronoIndexer> entry : indexNameToIndexers.entries()) {
-			Set<ChronoIndexer> set = persistentMap.get(entry.getKey());
+		for (Entry<String, Indexer<?>> entry : indexNameToIndexers.entries()) {
+			Set<Indexer<?>> set = persistentMap.get(entry.getKey());
 			if (set == null) {
 				set = Sets.newHashSet();
 			}

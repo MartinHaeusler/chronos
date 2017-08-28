@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.0.0" sequence="0" timestamp="1503943233378" analysisTimestamp="1503943233557" release="">
+  <Project projectName="">
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\branch\ChronoGraphBranchManager.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\branch\GraphBranch.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\graph\ChronoGraphBaseBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\graph\ChronoGraphChunkDbBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\graph\ChronoGraphFinalizableBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\graph\ChronoGraphInMemoryBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\graph\ChronoGraphJdbcBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\graph\ChronoGraphMapDbBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\graph\ChronoGraphPropertyFileBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\graph\ChronoGraphTuplBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\index\EdgeIndexBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\index\ElementTypeChoiceIndexBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\index\GraphElementIndexBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\index\IndexBuilderStarter.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\index\VertexIndexBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\query\GraphFinalizableQueryBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\query\GraphQueryBaseBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\query\GraphQueryBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\query\GraphQueryBuilderFinalizer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\query\GraphQueryBuilderStarter.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\builder\query\GraphWhereBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\ChronoGraphFactory.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\exceptions\ChronoGraphConfigurationException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\exceptions\ChronoGraphException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\exceptions\ChronoGraphIndexingException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\exceptions\InvalidChronoIdentifierException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\exceptions\PropertyIsAlreadyIndexedException.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\index\ChronoGraphIndex.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\index\ChronoGraphIndexManager.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\structure\ChronoEdge.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\structure\ChronoElement.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\structure\ChronoGraph.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\structure\ChronoVertex.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\transaction\ChronoGraphTransaction.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\api\transaction\ChronoGraphTransactionManager.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\api\configuration\ChronoGraphConfiguration.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\api\index\ChronoGraphIndexInternal.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\api\index\ChronoGraphIndexManagerInternal.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\api\index\IChronoGraphEdgeIndex.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\api\index\IChronoGraphVertexIndex.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\api\transaction\ChronoGraphTransactionInternal.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\ChronoGraphConstants.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\branch\ChronoGraphBranchManagerImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\branch\GraphBranchImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\graph\AbstractChronoGraphBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\graph\AbstractChronoGraphFinalizableBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphBaseBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphChunkDbBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphInMemoryBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphJdbcBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphMapDbBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphPropertyFileBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphTuplBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\index\AbstractGraphElementIndexBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\index\ChronoGraphIndexBuilder.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\index\EdgeIndexBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\index\ElementTypeChoiceIndexBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\index\VertexIndexBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\query\GraphQueryBuilderStarterImpl$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\query\GraphQueryBuilderStarterImpl$GraphFinalizableQueryBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\query\GraphQueryBuilderStarterImpl$GraphQueryBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\query\GraphQueryBuilderStarterImpl$GraphWhereBuilderImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\builder\query\GraphQueryBuilderStarterImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\configuration\ChronoGraphConfigurationImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\dumpformat\converter\EdgeRecordConverter.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\dumpformat\converter\VertexRecordConverter.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\dumpformat\EdgeDump.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\dumpformat\EdgeTargetDump.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\dumpformat\GraphDumpFormat.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\dumpformat\property\AbstractPropertyDump.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\dumpformat\property\BinaryPropertyDump.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\dumpformat\property\PlainPropertyDump.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\dumpformat\VertexDump.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\dumpformat\vertexproperty\VertexBinaryPropertyDump.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\dumpformat\vertexproperty\VertexPlainPropertyDump.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\dumpformat\vertexproperty\VertexPropertyDump.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\factory\ChronoGraphFactoryImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\AbstractChronoGraphIndex.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\AbstractChronoGraphIndex2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\AbstractRecordPropertyIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\AbstractRecordPropertyIndexer2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\ChronoGraphEdgeIndex.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\ChronoGraphEdgeIndex2$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\ChronoGraphEdgeIndex2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\ChronoGraphIndexManagerImpl$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\ChronoGraphIndexManagerImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\ChronoGraphVertexIndex.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\ChronoGraphVertexIndex2$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\ChronoGraphVertexIndex2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\EdgeRecordDoubleIndexer2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\EdgeRecordLongIndexer2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\EdgeRecordPropertyIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\EdgeRecordPropertyIndexer2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\EdgeRecordStringIndexer2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\GraphIndexingUtils.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\IndexMigrationUtil.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\IndexType.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\VertexRecordDoubleIndexer2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\VertexRecordLongIndexer2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\VertexRecordPropertyIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\VertexRecordPropertyIndexer2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\index\VertexRecordStringIndexer2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\optimizer\step\ChronoGraphStep.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\optimizer\strategy\ChronoGraphStepStrategy.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\AbstractChronoElement.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\ChronoEdgeImpl$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\ChronoEdgeImpl$PropertiesIterator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\ChronoEdgeImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\ChronoGraphIoRegistry.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\ChronoGraphVariables.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\ChronoProperty.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\ChronoVertexImpl$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\ChronoVertexImpl$OtherEndVertexResolvingEdgeIterator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\ChronoVertexImpl$PropertiesIterator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\ChronoVertexImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\ChronoVertexProperty$PropertiesIterator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\ChronoVertexProperty.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\ElementLifecycleStatus.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\features\AbstractChronoGraphFeature.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\features\ChronoEdgeFeatures.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\features\ChronoGraphEdgePropertyFeatures.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\features\ChronoGraphFeatures.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\features\ChronoGraphGraphFeatures.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\features\ChronoVertexFeatures.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\features\ChronoVertexPropertyFeatures.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\proxy\AbstractElementProxy.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\proxy\ChronoEdgeProxy.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\proxy\ChronoVertexProxy.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\graph\StandardChronoGraph.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\record\EdgeRecord.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\record\EdgeTargetRecord.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\record\ElementRecord.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\record\PropertyRecord.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\record\VertexPropertyRecord.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\structure\record\VertexRecord.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\ChronoGraphQueryProcessor$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\ChronoGraphQueryProcessor$EdgeResolvingIterator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\ChronoGraphQueryProcessor$PropertyValueFilterPredicate.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\ChronoGraphQueryProcessor$VertexResolvingIterator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\ChronoGraphQueryProcessor.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\ChronoGraphTransactionManagerImpl.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\ElementLoadMode.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\GraphTransactionContext.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\StandardChronoGraphTransaction$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\StandardChronoGraphTransaction.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\threaded\ChronoThreadedTransactionGraph.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\threaded\ThreadedChronoGraphIndexManager.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\threaded\ThreadedChronoGraphTransaction.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\transaction\threaded\ThreadedChronoGraphTransactionManager.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\util\ChronoGraphElementUtil.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\util\ChronoGraphQueryUtil$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\util\ChronoGraphQueryUtil.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\util\ChronoId.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\util\ChronoProxyUtil.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\util\ChronoTraversalUtil.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\util\IdentityWrapper.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\util\PredefinedProperty$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\util\PredefinedProperty.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\util\PredefinedVertexProperty$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronograph\build\classes\main\org\chronos\chronograph\internal\impl\util\PredefinedVertexProperty.class</Jar>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\19.0\6ce200f6b23222af3d8abb6b6459e6c44f4bb0e9\guava-19.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-lang3\3.4\5fe28b9518e58819180a43a850fbc0dd24b7c050\commons-lang3-3.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-collections4\4.1\a4cf4688fe1c7e3a63aa636cc96d013af537768e\commons-collections4-4.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-io\commons-io\2.4\b1b6ea3b7e4aa4f492509a4952029cd8e48019ad\commons-io-2.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-configuration\commons-configuration\1.10\2b36e4adfb66d966c5aef2d73deb6be716389dc9\commons-configuration-1.10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-api\1.7.12\8e20852d05222dc286bf1c71d78d0531e177c317\slf4j-api-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\jcl-over-slf4j\1.7.12\adef7a9e1263298255fdb5cb107ff171d07c82f3\jcl-over-slf4j-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\jul-to-slf4j\1.7.12\8811e2e9ab9055e557598dc9aedc64fd43e0ab20\jul-to-slf4j-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-classic\1.1.3\d90276fff414f06cb375f2057f6778cd63c6082f\logback-classic-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.common\build\libs\org.chronos.common-0.7.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\libs\org.chronos.chronodb-0.7.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.tinkerpop\gremlin-core\3.1.0-incubating\3b524b0866f1b545ecc14dfbfc740c3e75bba07a\gremlin-core-3.1.0-incubating.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-lang\commons-lang\2.6\ce1edb914c94ebc388f086c6827e8bdeec71ac2\commons-lang-2.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.1.1\5043bfebc3db072ed80fbd362e7caf00e885d8ae\commons-logging-1.1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-core\1.1.3\e3c02049f2dbbc764681b40094ecf0dcbc99b157\logback-core-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\kryo\3.0.3\1ebca99f633ef31484176a727093e78c7fa43e7\kryo-3.0.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.mapdb\mapdb\2.0-beta13\42ef2ab0f51f72ec1da2aa3c2d6b2d232b492347\mapdb-2.0-beta13.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-core\5.5.0\a74fd869bb5ad7fe6b4cd29df9543a34aea81164\lucene-core-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-analyzers-common\5.5.0\1e0e8243a4410be20c34683034fafa7bb52e55cc\lucene-analyzers-common-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queryparser\5.5.0\fddc49725b562fd48dff0cff004336ad2a090a4\lucene-queryparser-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queries\5.5.0\60ca161c1dd5f127907423b6f039b846fb713de0\lucene-queries-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.mchange\c3p0\0.9.5.1\69b2af361fb6a0feb65ccc20c29d949566f0a3ba\c3p0-0.9.5.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.h2database\h2\1.4.187\f6b109788d196430458309ea28ce9a77830b3ed8\h2-1.4.187.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.cojen\tupl\1.3.11\b28c5d4fec92f4619a38fa818e56172abb22a745\tupl-1.3.11.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.thoughtworks.xstream\xstream\1.4.9\c43f6e6bfa79b56e04a8898a923c3cf7144dd460\xstream-1.4.9.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.tinkerpop\gremlin-shaded\3.1.0-incubating\cd711f3f7751ecfc49f573596285db65107114bf\gremlin-shaded-3.1.0-incubating.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.yaml\snakeyaml\1.15\3b132bea69e8ee099f416044970997bde80f4ea6\snakeyaml-1.15.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.javatuples\javatuples\1.2\507312ac4b601204a72a83380badbca82683dd36\javatuples-1.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.carrotsearch\hppc\0.7.1\8b5057f74ea378c0150a1860874a3ebdcb713767\hppc-0.7.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.jcabi\jcabi-manifests\1.1\e4f4488c0e3905c6fab287aca2569928fe1712df\jcabi-manifests-1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-log4j12\1.7.12\485f77901840cf4e8bf852f2abb9b723eb8ec29\slf4j-log4j12-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\reflectasm\1.10.1\515402cd542ab967a1b5028b4dee1e1800db205b\reflectasm-1.10.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\minlog\1.3.0\ff07b5f1b01d2f92bb00a337f9a94873712f0827\minlog-1.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.objenesis\objenesis\2.1\87c0ea803b69252868d09308b4618f766f135a96\objenesis-2.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-sandbox\5.5.0\b7da8e187acd6e4d7781ba41fac8b9082dd27409\lucene-sandbox-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.mchange\mchange-commons-java\0.2.10\1f1f90ddc403e60e0089756f04119948f6a49a04\mchange-commons-java-0.2.10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna-platform\4.4.0\f396b0ceb7ababb8b4a5ea25e6742ced81e3d86f\jna-platform-4.4.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\xmlpull\xmlpull\1.1.3.1\2b8e230d2ab644e4ecaa94db7cdedbc40c805dfa\xmlpull-1.1.3.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\xpp3\xpp3_min\1.1.4c\19d4e90b43059058f6e056f794f0ea4030d60b86\xpp3_min-1.1.4c.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.jcabi\jcabi-log\0.14\819a57348f2448f01d74f8a317dab61d6a90cac2\jcabi-log-0.14.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\log4j\log4j\1.2.17\5af35056b4d257e4b64b9e8069c0746e8b08629f\log4j-1.2.17.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.ow2.asm\asm\5.0.3\dcc2193db20e19e1feca8b1240dbbc4e190824fa\asm-5.0.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna\4.4.0\cb208278274bf12ebdb56c61bd7407e6f774d65a\jna-4.4.0.jar</AuxClasspathEntry>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\branch\ChronoGraphBranchManager.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\branch\GraphBranch.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\graph\ChronoGraphBaseBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\graph\ChronoGraphChunkDbBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\graph\ChronoGraphFinalizableBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\graph\ChronoGraphInMemoryBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\graph\ChronoGraphJdbcBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\graph\ChronoGraphMapDbBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\graph\ChronoGraphPropertyFileBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\graph\ChronoGraphTuplBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\index\EdgeIndexBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\index\ElementTypeChoiceIndexBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\index\GraphElementIndexBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\index\IndexBuilderStarter.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\index\VertexIndexBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\query\GraphFinalizableQueryBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\query\GraphQueryBaseBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\query\GraphQueryBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\query\GraphQueryBuilderFinalizer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\query\GraphQueryBuilderStarter.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\builder\query\GraphWhereBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\ChronoGraphFactory.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\exceptions\ChronoGraphConfigurationException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\exceptions\ChronoGraphException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\exceptions\ChronoGraphIndexingException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\exceptions\InvalidChronoIdentifierException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\exceptions\PropertyIsAlreadyIndexedException.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\index\ChronoGraphIndex.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\index\ChronoGraphIndexManager.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\structure\ChronoEdge.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\structure\ChronoElement.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\structure\ChronoGraph.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\structure\ChronoVertex.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\transaction\ChronoGraphTransaction.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\api\transaction\ChronoGraphTransactionManager.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\api\configuration\ChronoGraphConfiguration.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\api\index\ChronoGraphIndexInternal.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\api\index\ChronoGraphIndexManagerInternal.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\api\index\IChronoGraphEdgeIndex.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\api\index\IChronoGraphVertexIndex.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\api\transaction\ChronoGraphTransactionInternal.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\ChronoGraphConstants.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\branch\ChronoGraphBranchManagerImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\branch\GraphBranchImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\graph\AbstractChronoGraphBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\graph\AbstractChronoGraphFinalizableBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphBaseBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphChunkDbBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphInMemoryBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphJdbcBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphMapDbBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphPropertyFileBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\graph\ChronoGraphTuplBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\index\AbstractGraphElementIndexBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\index\ChronoGraphIndexBuilder.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\index\EdgeIndexBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\index\ElementTypeChoiceIndexBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\index\VertexIndexBuilderImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\builder\query\GraphQueryBuilderStarterImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\configuration\ChronoGraphConfigurationImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\dumpformat\converter\EdgeRecordConverter.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\dumpformat\converter\VertexRecordConverter.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\dumpformat\EdgeDump.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\dumpformat\EdgeTargetDump.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\dumpformat\GraphDumpFormat.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\dumpformat\property\AbstractPropertyDump.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\dumpformat\property\BinaryPropertyDump.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\dumpformat\property\PlainPropertyDump.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\dumpformat\VertexDump.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\dumpformat\vertexproperty\VertexBinaryPropertyDump.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\dumpformat\vertexproperty\VertexPlainPropertyDump.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\dumpformat\vertexproperty\VertexPropertyDump.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\factory\ChronoGraphFactoryImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\AbstractChronoGraphIndex.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\AbstractChronoGraphIndex2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\AbstractRecordPropertyIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\AbstractRecordPropertyIndexer2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\ChronoGraphEdgeIndex.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\ChronoGraphEdgeIndex2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\ChronoGraphIndexManagerImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\ChronoGraphVertexIndex.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\ChronoGraphVertexIndex2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\EdgeRecordDoubleIndexer2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\EdgeRecordLongIndexer2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\EdgeRecordPropertyIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\EdgeRecordPropertyIndexer2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\EdgeRecordStringIndexer2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\GraphIndexingUtils.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\IndexMigrationUtil.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\IndexType.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\VertexRecordDoubleIndexer2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\VertexRecordLongIndexer2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\VertexRecordPropertyIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\VertexRecordPropertyIndexer2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\index\VertexRecordStringIndexer2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\optimizer\step\ChronoGraphStep.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\optimizer\strategy\ChronoGraphStepStrategy.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\AbstractChronoElement.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\ChronoEdgeImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\ChronoGraphIoRegistry.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\ChronoGraphVariables.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\ChronoProperty.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\ChronoVertexImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\ChronoVertexProperty.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\ElementLifecycleStatus.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\features\AbstractChronoGraphFeature.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\features\ChronoEdgeFeatures.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\features\ChronoGraphEdgePropertyFeatures.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\features\ChronoGraphFeatures.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\features\ChronoGraphGraphFeatures.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\features\ChronoVertexFeatures.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\features\ChronoVertexPropertyFeatures.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\proxy\AbstractElementProxy.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\proxy\ChronoEdgeProxy.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\proxy\ChronoVertexProxy.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\graph\StandardChronoGraph.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\record\EdgeRecord.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\record\EdgeTargetRecord.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\record\ElementRecord.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\record\PropertyRecord.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\record\VertexPropertyRecord.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\structure\record\VertexRecord.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\transaction\ChronoGraphQueryProcessor.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\transaction\ChronoGraphTransactionManagerImpl.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\transaction\ElementLoadMode.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\transaction\GraphTransactionContext.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\transaction\StandardChronoGraphTransaction.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\transaction\threaded\ChronoThreadedTransactionGraph.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\transaction\threaded\ThreadedChronoGraphIndexManager.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\transaction\threaded\ThreadedChronoGraphTransaction.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\transaction\threaded\ThreadedChronoGraphTransactionManager.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\util\ChronoGraphElementUtil.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\util\ChronoGraphQueryUtil.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\util\ChronoId.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\util\ChronoProxyUtil.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\util\ChronoTraversalUtil.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\util\IdentityWrapper.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\util\PredefinedProperty.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronograph\src\main\java\org\chronos\chronograph\internal\impl\util\PredefinedVertexProperty.java</SrcDir>
+  </Project>
+  <BugInstance type="UPM_UNCALLED_PRIVATE_METHOD" priority="2" rank="18" abbrev="UPM" category="PERFORMANCE">
+    <Class classname="org.chronos.chronograph.internal.impl.index.ChronoGraphIndexManagerImpl">
+      <SourceLine classname="org.chronos.chronograph.internal.impl.index.ChronoGraphIndexManagerImpl" start="68" end="588" sourcefile="ChronoGraphIndexManagerImpl.java" sourcepath="org/chronos/chronograph/internal/impl/index/ChronoGraphIndexManagerImpl.java"/>
+    </Class>
+    <Method classname="org.chronos.chronograph.internal.impl.index.ChronoGraphIndexManagerImpl" name="performExclusive" signature="(Ljava/util/concurrent/Callable;)Ljava/lang/Object;" isStatic="false">
+      <SourceLine classname="org.chronos.chronograph.internal.impl.index.ChronoGraphIndexManagerImpl" start="391" end="397" startBytecode="0" endBytecode="225" sourcefile="ChronoGraphIndexManagerImpl.java" sourcepath="org/chronos/chronograph/internal/impl/index/ChronoGraphIndexManagerImpl.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="UPM_UNCALLED_PRIVATE_METHOD" priority="2" rank="18" abbrev="UPM" category="PERFORMANCE">
+    <Class classname="org.chronos.chronograph.internal.impl.index.ChronoGraphIndexManagerImpl">
+      <SourceLine classname="org.chronos.chronograph.internal.impl.index.ChronoGraphIndexManagerImpl" start="68" end="588" sourcefile="ChronoGraphIndexManagerImpl.java" sourcepath="org/chronos/chronograph/internal/impl/index/ChronoGraphIndexManagerImpl.java"/>
+    </Class>
+    <Method classname="org.chronos.chronograph.internal.impl.index.ChronoGraphIndexManagerImpl" name="performNonExclusive" signature="(Ljava/lang/Runnable;)V" isStatic="false">
+      <SourceLine classname="org.chronos.chronograph.internal.impl.index.ChronoGraphIndexManagerImpl" start="403" end="409" startBytecode="0" endBytecode="147" sourcefile="ChronoGraphIndexManagerImpl.java" sourcepath="org/chronos/chronograph/internal/impl/index/ChronoGraphIndexManagerImpl.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC" priority="2" rank="18" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoEdgeImpl$PropertiesIterator">
+      <SourceLine classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoEdgeImpl$PropertiesIterator" start="431" end="450" sourcefile="ChronoEdgeImpl.java" sourcepath="org/chronos/chronograph/internal/impl/structure/graph/ChronoEdgeImpl.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="MS_SHOULD_BE_FINAL" priority="1" rank="16" abbrev="MS" category="MALICIOUS_CODE">
+    <Class classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoGraphIoRegistry">
+      <SourceLine classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoGraphIoRegistry" start="7" end="14" sourcefile="ChronoGraphIoRegistry.java" sourcepath="org/chronos/chronograph/internal/impl/structure/graph/ChronoGraphIoRegistry.java"/>
+    </Class>
+    <Field classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoGraphIoRegistry" name="INSTANCE" signature="Lorg/chronos/chronograph/internal/impl/structure/graph/ChronoGraphIoRegistry;" isStatic="true">
+      <SourceLine classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoGraphIoRegistry" sourcefile="ChronoGraphIoRegistry.java" sourcepath="org/chronos/chronograph/internal/impl/structure/graph/ChronoGraphIoRegistry.java"/>
+    </Field>
+    <SourceLine classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoGraphIoRegistry" start="7" end="7" startBytecode="7" endBytecode="7" sourcefile="ChronoGraphIoRegistry.java" sourcepath="org/chronos/chronograph/internal/impl/structure/graph/ChronoGraphIoRegistry.java"/>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC" priority="2" rank="18" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexImpl$PropertiesIterator">
+      <SourceLine classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexImpl$PropertiesIterator" start="548" end="564" sourcefile="ChronoVertexImpl.java" sourcepath="org/chronos/chronograph/internal/impl/structure/graph/ChronoVertexImpl.java"/>
+    </Class>
+  </BugInstance>
+  <BugInstance type="EQ_DOESNT_OVERRIDE_EQUALS" priority="2" rank="17" abbrev="Eq" category="STYLE">
+    <Class classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexProperty">
+      <SourceLine classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexProperty" start="21" end="137" sourcefile="ChronoVertexProperty.java" sourcepath="org/chronos/chronograph/internal/impl/structure/graph/ChronoVertexProperty.java"/>
+    </Class>
+    <SourceLine classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexProperty" start="1" end="1" startBytecode="0" endBytecode="0" sourcefile="ChronoVertexProperty.java" sourcepath="org/chronos/chronograph/internal/impl/structure/graph/ChronoVertexProperty.java"/>
+    <Method classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoProperty" name="equals" signature="(Ljava/lang/Object;)Z" isStatic="false" role="METHOD_DID_YOU_MEAN_TO_OVERRIDE">
+      <SourceLine classname="org.chronos.chronograph.internal.impl.structure.graph.ChronoProperty" start="96" end="96" startBytecode="0" endBytecode="75" sourcefile="ChronoProperty.java" sourcepath="org/chronos/chronograph/internal/impl/structure/graph/ChronoProperty.java"/>
+    </Method>
+  </BugInstance>
+  <BugInstance type="SIC_INNER_SHOULD_BE_STATIC" priority="2" rank="18" abbrev="SIC" category="PERFORMANCE">
+    <Class classname="org.chronos.chronograph.internal.impl.transaction.ChronoGraphQueryProcessor$PropertyValueFilterPredicate">
+      <SourceLine classname="org.chronos.chronograph.internal.impl.transaction.ChronoGraphQueryProcessor$PropertyValueFilterPredicate" start="645" end="677" sourcefile="ChronoGraphQueryProcessor.java" sourcepath="org/chronos/chronograph/internal/impl/transaction/ChronoGraphQueryProcessor.java"/>
+    </Class>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Mon, 28 Aug 2017 20:00:33 +0200" total_classes="160" referenced_classes="447" total_bugs="7" total_size="5839" num_packages="33" java_version="1.8.0_74" vm_version="25.74-b02" cpu_seconds="16.78" clock_seconds="3.72" peak_mbytes="419.92" alloc_mbytes="7264.00" gc_seconds="0.13" priority_2="6" priority_1="1">
+    <PackageStats package="org.chronos.chronograph.api" total_bugs="0" total_types="1" total_size="5">
+      <ClassStats class="org.chronos.chronograph.api.ChronoGraphFactory" sourceFile="ChronoGraphFactory.java" interface="true" size="5" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.api.branch" total_bugs="0" total_types="2" total_size="17">
+      <ClassStats class="org.chronos.chronograph.api.branch.ChronoGraphBranchManager" sourceFile="ChronoGraphBranchManager.java" interface="true" size="11" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.branch.GraphBranch" sourceFile="GraphBranch.java" interface="true" size="6" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.api.builder.graph" total_bugs="0" total_types="8" total_size="25">
+      <ClassStats class="org.chronos.chronograph.api.builder.graph.ChronoGraphBaseBuilder" sourceFile="ChronoGraphBaseBuilder.java" interface="true" size="10" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.graph.ChronoGraphChunkDbBuilder" sourceFile="ChronoGraphChunkDbBuilder.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.graph.ChronoGraphFinalizableBuilder" sourceFile="ChronoGraphFinalizableBuilder.java" interface="true" size="7" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.graph.ChronoGraphInMemoryBuilder" sourceFile="ChronoGraphInMemoryBuilder.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.graph.ChronoGraphJdbcBuilder" sourceFile="ChronoGraphJdbcBuilder.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.graph.ChronoGraphMapDbBuilder" sourceFile="ChronoGraphMapDbBuilder.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.graph.ChronoGraphPropertyFileBuilder" sourceFile="ChronoGraphPropertyFileBuilder.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.graph.ChronoGraphTuplBuilder" sourceFile="ChronoGraphTuplBuilder.java" interface="true" size="2" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.api.builder.index" total_bugs="0" total_types="5" total_size="11">
+      <ClassStats class="org.chronos.chronograph.api.builder.index.EdgeIndexBuilder" sourceFile="EdgeIndexBuilder.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.index.ElementTypeChoiceIndexBuilder" sourceFile="ElementTypeChoiceIndexBuilder.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.index.GraphElementIndexBuilder" sourceFile="GraphElementIndexBuilder.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.index.IndexBuilderStarter" sourceFile="IndexBuilderStarter.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.index.VertexIndexBuilder" sourceFile="VertexIndexBuilder.java" interface="true" size="1" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.api.builder.query" total_bugs="0" total_types="6" total_size="70">
+      <ClassStats class="org.chronos.chronograph.api.builder.query.GraphFinalizableQueryBuilder" sourceFile="GraphFinalizableQueryBuilder.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.query.GraphQueryBaseBuilder" sourceFile="GraphQueryBaseBuilder.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.query.GraphQueryBuilder" sourceFile="GraphQueryBuilder.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.query.GraphQueryBuilderFinalizer" sourceFile="GraphQueryBuilderFinalizer.java" interface="true" size="22" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.query.GraphQueryBuilderStarter" sourceFile="GraphQueryBuilderStarter.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.builder.query.GraphWhereBuilder" sourceFile="GraphWhereBuilder.java" interface="true" size="35" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.api.exceptions" total_bugs="0" total_types="5" total_size="80">
+      <ClassStats class="org.chronos.chronograph.api.exceptions.ChronoGraphConfigurationException" sourceFile="ChronoGraphConfigurationException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.exceptions.ChronoGraphException" sourceFile="ChronoGraphException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.exceptions.ChronoGraphIndexingException" sourceFile="ChronoGraphIndexingException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.exceptions.InvalidChronoIdentifierException" sourceFile="InvalidChronoIdentifierException.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.exceptions.PropertyIsAlreadyIndexedException" sourceFile="PropertyIsAlreadyIndexedException.java" interface="false" size="16" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.api.index" total_bugs="0" total_types="2" total_size="60">
+      <ClassStats class="org.chronos.chronograph.api.index.ChronoGraphIndex" sourceFile="ChronoGraphIndex.java" interface="true" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.index.ChronoGraphIndexManager" sourceFile="ChronoGraphIndexManager.java" interface="true" size="56" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.api.structure" total_bugs="0" total_types="4" total_size="88">
+      <ClassStats class="org.chronos.chronograph.api.structure.ChronoEdge" sourceFile="ChronoEdge.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.structure.ChronoElement" sourceFile="ChronoElement.java" interface="true" size="12" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.structure.ChronoGraph" sourceFile="ChronoGraph.java" interface="true" size="74" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.structure.ChronoVertex" sourceFile="ChronoVertex.java" interface="true" size="1" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.api.transaction" total_bugs="0" total_types="2" total_size="75">
+      <ClassStats class="org.chronos.chronograph.api.transaction.ChronoGraphTransaction" sourceFile="ChronoGraphTransaction.java" interface="true" size="53" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.api.transaction.ChronoGraphTransactionManager" sourceFile="ChronoGraphTransactionManager.java" interface="true" size="22" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal" total_bugs="0" total_types="1" total_size="10">
+      <ClassStats class="org.chronos.chronograph.internal.ChronoGraphConstants" sourceFile="ChronoGraphConstants.java" interface="false" size="10" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.api.configuration" total_bugs="0" total_types="1" total_size="7">
+      <ClassStats class="org.chronos.chronograph.internal.api.configuration.ChronoGraphConfiguration" sourceFile="ChronoGraphConfiguration.java" interface="true" size="7" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.api.index" total_bugs="0" total_types="4" total_size="11">
+      <ClassStats class="org.chronos.chronograph.internal.api.index.ChronoGraphIndexInternal" sourceFile="ChronoGraphIndexInternal.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.api.index.ChronoGraphIndexManagerInternal" sourceFile="ChronoGraphIndexManagerInternal.java" interface="true" size="6" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.api.index.IChronoGraphEdgeIndex" sourceFile="IChronoGraphEdgeIndex.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.api.index.IChronoGraphVertexIndex" sourceFile="IChronoGraphVertexIndex.java" interface="true" size="1" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.api.transaction" total_bugs="0" total_types="1" total_size="3">
+      <ClassStats class="org.chronos.chronograph.internal.api.transaction.ChronoGraphTransactionInternal" sourceFile="ChronoGraphTransactionInternal.java" interface="true" size="3" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.branch" total_bugs="0" total_types="2" total_size="99">
+      <ClassStats class="org.chronos.chronograph.internal.impl.branch.ChronoGraphBranchManagerImpl" sourceFile="ChronoGraphBranchManagerImpl.java" interface="false" size="47" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.branch.GraphBranchImpl" sourceFile="GraphBranchImpl.java" interface="false" size="52" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.builder.graph" total_bugs="0" total_types="9" total_size="140">
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.graph.AbstractChronoGraphBuilder" sourceFile="AbstractChronoGraphBuilder.java" interface="false" size="3" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.graph.AbstractChronoGraphFinalizableBuilder" sourceFile="AbstractChronoGraphFinalizableBuilder.java" interface="false" size="26" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.graph.ChronoGraphBaseBuilderImpl" sourceFile="ChronoGraphBaseBuilderImpl.java" interface="false" size="45" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.graph.ChronoGraphChunkDbBuilderImpl" sourceFile="ChronoGraphChunkDbBuilderImpl.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.graph.ChronoGraphInMemoryBuilderImpl" sourceFile="ChronoGraphInMemoryBuilderImpl.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.graph.ChronoGraphJdbcBuilderImpl" sourceFile="ChronoGraphJdbcBuilderImpl.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.graph.ChronoGraphMapDbBuilderImpl" sourceFile="ChronoGraphMapDbBuilderImpl.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.graph.ChronoGraphPropertyFileBuilderImpl" sourceFile="ChronoGraphPropertyFileBuilderImpl.java" interface="false" size="28" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.graph.ChronoGraphTuplBuilderImpl" sourceFile="ChronoGraphTuplBuilderImpl.java" interface="false" size="9" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.builder.index" total_bugs="0" total_types="5" total_size="56">
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.index.AbstractGraphElementIndexBuilder" sourceFile="AbstractGraphElementIndexBuilder.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.index.ChronoGraphIndexBuilder" sourceFile="ChronoGraphIndexBuilder.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.index.EdgeIndexBuilderImpl" sourceFile="EdgeIndexBuilderImpl.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.index.ElementTypeChoiceIndexBuilderImpl" sourceFile="ElementTypeChoiceIndexBuilderImpl.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.index.VertexIndexBuilderImpl" sourceFile="VertexIndexBuilderImpl.java" interface="false" size="8" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.builder.query" total_bugs="0" total_types="5" total_size="323">
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.query.GraphQueryBuilderStarterImpl" sourceFile="GraphQueryBuilderStarterImpl.java" interface="false" size="38" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.query.GraphQueryBuilderStarterImpl$1" sourceFile="GraphQueryBuilderStarterImpl.java" interface="false" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.query.GraphQueryBuilderStarterImpl$GraphFinalizableQueryBuilderImpl" sourceFile="GraphQueryBuilderStarterImpl.java" interface="false" size="57" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.query.GraphQueryBuilderStarterImpl$GraphQueryBuilderImpl" sourceFile="GraphQueryBuilderStarterImpl.java" interface="false" size="24" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.builder.query.GraphQueryBuilderStarterImpl$GraphWhereBuilderImpl" sourceFile="GraphQueryBuilderStarterImpl.java" interface="false" size="203" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.configuration" total_bugs="0" total_types="1" total_size="11">
+      <ClassStats class="org.chronos.chronograph.internal.impl.configuration.ChronoGraphConfigurationImpl" sourceFile="ChronoGraphConfigurationImpl.java" interface="false" size="11" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.dumpformat" total_bugs="0" total_types="4" total_size="175">
+      <ClassStats class="org.chronos.chronograph.internal.impl.dumpformat.EdgeDump" sourceFile="EdgeDump.java" interface="false" size="38" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.dumpformat.EdgeTargetDump" sourceFile="EdgeTargetDump.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.dumpformat.GraphDumpFormat" sourceFile="GraphDumpFormat.java" interface="false" size="41" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.dumpformat.VertexDump" sourceFile="VertexDump.java" interface="false" size="80" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.dumpformat.converter" total_bugs="0" total_types="2" total_size="26">
+      <ClassStats class="org.chronos.chronograph.internal.impl.dumpformat.converter.EdgeRecordConverter" sourceFile="EdgeRecordConverter.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.dumpformat.converter.VertexRecordConverter" sourceFile="VertexRecordConverter.java" interface="false" size="13" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.dumpformat.property" total_bugs="0" total_types="3" total_size="58">
+      <ClassStats class="org.chronos.chronograph.internal.impl.dumpformat.property.AbstractPropertyDump" sourceFile="AbstractPropertyDump.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.dumpformat.property.BinaryPropertyDump" sourceFile="BinaryPropertyDump.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.dumpformat.property.PlainPropertyDump" sourceFile="PlainPropertyDump.java" interface="false" size="32" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.dumpformat.vertexproperty" total_bugs="0" total_types="3" total_size="50">
+      <ClassStats class="org.chronos.chronograph.internal.impl.dumpformat.vertexproperty.VertexBinaryPropertyDump" sourceFile="VertexBinaryPropertyDump.java" interface="false" size="21" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.dumpformat.vertexproperty.VertexPlainPropertyDump" sourceFile="VertexPlainPropertyDump.java" interface="false" size="24" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.dumpformat.vertexproperty.VertexPropertyDump" sourceFile="VertexPropertyDump.java" interface="true" size="5" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.factory" total_bugs="0" total_types="1" total_size="8">
+      <ClassStats class="org.chronos.chronograph.internal.impl.factory.ChronoGraphFactoryImpl" sourceFile="ChronoGraphFactoryImpl.java" interface="false" size="8" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.index" total_bugs="2" total_types="25" total_size="741" priority_2="2">
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.AbstractChronoGraphIndex" sourceFile="AbstractChronoGraphIndex.java" interface="false" size="33" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.AbstractChronoGraphIndex2" sourceFile="AbstractChronoGraphIndex2.java" interface="false" size="39" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.AbstractRecordPropertyIndexer" sourceFile="AbstractRecordPropertyIndexer.java" interface="false" size="28" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.AbstractRecordPropertyIndexer2" sourceFile="AbstractRecordPropertyIndexer2.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.ChronoGraphEdgeIndex" sourceFile="ChronoGraphEdgeIndex.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.ChronoGraphEdgeIndex2" sourceFile="ChronoGraphEdgeIndex2.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.ChronoGraphEdgeIndex2$1" sourceFile="ChronoGraphEdgeIndex2.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.ChronoGraphIndexManagerImpl" sourceFile="ChronoGraphIndexManagerImpl.java" interface="false" size="340" bugs="2" priority_2="2"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.ChronoGraphIndexManagerImpl$1" sourceFile="ChronoGraphIndexManagerImpl.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.ChronoGraphVertexIndex" sourceFile="ChronoGraphVertexIndex.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.ChronoGraphVertexIndex2" sourceFile="ChronoGraphVertexIndex2.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.ChronoGraphVertexIndex2$1" sourceFile="ChronoGraphVertexIndex2.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.EdgeRecordDoubleIndexer2" sourceFile="EdgeRecordDoubleIndexer2.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.EdgeRecordLongIndexer2" sourceFile="EdgeRecordLongIndexer2.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.EdgeRecordPropertyIndexer" sourceFile="EdgeRecordPropertyIndexer.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.EdgeRecordPropertyIndexer2" sourceFile="EdgeRecordPropertyIndexer2.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.EdgeRecordStringIndexer2" sourceFile="EdgeRecordStringIndexer2.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.GraphIndexingUtils" sourceFile="GraphIndexingUtils.java" interface="false" size="64" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.IndexMigrationUtil" sourceFile="IndexMigrationUtil.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.IndexType" sourceFile="IndexType.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.VertexRecordDoubleIndexer2" sourceFile="VertexRecordDoubleIndexer2.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.VertexRecordLongIndexer2" sourceFile="VertexRecordLongIndexer2.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.VertexRecordPropertyIndexer" sourceFile="VertexRecordPropertyIndexer.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.VertexRecordPropertyIndexer2" sourceFile="VertexRecordPropertyIndexer2.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.index.VertexRecordStringIndexer2" sourceFile="VertexRecordStringIndexer2.java" interface="false" size="10" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.optimizer.step" total_bugs="0" total_types="1" total_size="112">
+      <ClassStats class="org.chronos.chronograph.internal.impl.optimizer.step.ChronoGraphStep" sourceFile="ChronoGraphStep.java" interface="false" size="112" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.optimizer.strategy" total_bugs="0" total_types="1" total_size="23">
+      <ClassStats class="org.chronos.chronograph.internal.impl.optimizer.strategy.ChronoGraphStepStrategy" sourceFile="ChronoGraphStepStrategy.java" interface="false" size="23" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.structure.graph" total_bugs="4" total_types="15" total_size="1184" priority_2="3" priority_1="1">
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.AbstractChronoElement" sourceFile="AbstractChronoElement.java" interface="false" size="154" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.ChronoEdgeImpl" sourceFile="ChronoEdgeImpl.java" interface="false" size="261" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.ChronoEdgeImpl$1" sourceFile="ChronoEdgeImpl.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.ChronoEdgeImpl$PropertiesIterator" sourceFile="ChronoEdgeImpl.java" interface="false" size="14" bugs="1" priority_2="1"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.ChronoGraphIoRegistry" sourceFile="ChronoGraphIoRegistry.java" interface="false" size="7" bugs="1" priority_1="1"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.ChronoGraphVariables" sourceFile="ChronoGraphVariables.java" interface="false" size="47" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.ChronoProperty" sourceFile="ChronoProperty.java" interface="false" size="58" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexImpl" sourceFile="ChronoVertexImpl.java" interface="false" size="301" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexImpl$1" sourceFile="ChronoVertexImpl.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexImpl$OtherEndVertexResolvingEdgeIterator" sourceFile="ChronoVertexImpl.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexImpl$PropertiesIterator" sourceFile="ChronoVertexImpl.java" interface="false" size="14" bugs="1" priority_2="1"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexProperty" sourceFile="ChronoVertexProperty.java" interface="false" size="64" bugs="1" priority_2="1"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexProperty$PropertiesIterator" sourceFile="ChronoVertexProperty.java" interface="false" size="14" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.ElementLifecycleStatus" sourceFile="ElementLifecycleStatus.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.StandardChronoGraph" sourceFile="StandardChronoGraph.java" interface="false" size="205" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.structure.graph.features" total_bugs="0" total_types="7" total_size="212">
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.features.AbstractChronoGraphFeature" sourceFile="AbstractChronoGraphFeature.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.features.ChronoEdgeFeatures" sourceFile="ChronoEdgeFeatures.java" interface="false" size="31" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.features.ChronoGraphEdgePropertyFeatures" sourceFile="ChronoGraphEdgePropertyFeatures.java" interface="false" size="42" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.features.ChronoGraphFeatures" sourceFile="ChronoGraphFeatures.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.features.ChronoGraphGraphFeatures" sourceFile="ChronoGraphGraphFeatures.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.features.ChronoVertexFeatures" sourceFile="ChronoVertexFeatures.java" interface="false" size="34" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.features.ChronoVertexPropertyFeatures" sourceFile="ChronoVertexPropertyFeatures.java" interface="false" size="60" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.structure.graph.proxy" total_bugs="0" total_types="3" total_size="121">
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.proxy.AbstractElementProxy" sourceFile="AbstractElementProxy.java" interface="false" size="64" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.proxy.ChronoEdgeProxy" sourceFile="ChronoEdgeProxy.java" interface="false" size="24" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.graph.proxy.ChronoVertexProxy" sourceFile="ChronoVertexProxy.java" interface="false" size="33" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.structure.record" total_bugs="0" total_types="6" total_size="282">
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.record.EdgeRecord" sourceFile="EdgeRecord.java" interface="false" size="55" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.record.EdgeTargetRecord" sourceFile="EdgeTargetRecord.java" interface="false" size="38" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.record.ElementRecord" sourceFile="ElementRecord.java" interface="true" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.record.PropertyRecord" sourceFile="PropertyRecord.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.record.VertexPropertyRecord" sourceFile="VertexPropertyRecord.java" interface="false" size="36" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.structure.record.VertexRecord" sourceFile="VertexRecord.java" interface="false" size="135" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.transaction" total_bugs="1" total_types="10" total_size="1127" priority_2="1">
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.ChronoGraphQueryProcessor" sourceFile="ChronoGraphQueryProcessor.java" interface="false" size="316" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.ChronoGraphQueryProcessor$1" sourceFile="ChronoGraphQueryProcessor.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.ChronoGraphQueryProcessor$EdgeResolvingIterator" sourceFile="ChronoGraphQueryProcessor.java" interface="false" size="35" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.ChronoGraphQueryProcessor$PropertyValueFilterPredicate" sourceFile="ChronoGraphQueryProcessor.java" interface="false" size="24" bugs="1" priority_2="1"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.ChronoGraphQueryProcessor$VertexResolvingIterator" sourceFile="ChronoGraphQueryProcessor.java" interface="false" size="38" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.ChronoGraphTransactionManagerImpl" sourceFile="ChronoGraphTransactionManagerImpl.java" interface="false" size="164" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.ElementLoadMode" sourceFile="ElementLoadMode.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.GraphTransactionContext" sourceFile="GraphTransactionContext.java" interface="false" size="213" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.StandardChronoGraphTransaction" sourceFile="StandardChronoGraphTransaction.java" interface="false" size="319" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.StandardChronoGraphTransaction$1" sourceFile="StandardChronoGraphTransaction.java" interface="false" size="4" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.transaction.threaded" total_bugs="0" total_types="4" total_size="341">
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.threaded.ChronoThreadedTransactionGraph" sourceFile="ChronoThreadedTransactionGraph.java" interface="false" size="202" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.threaded.ThreadedChronoGraphIndexManager" sourceFile="ThreadedChronoGraphIndexManager.java" interface="false" size="69" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.threaded.ThreadedChronoGraphTransaction" sourceFile="ThreadedChronoGraphTransaction.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.transaction.threaded.ThreadedChronoGraphTransactionManager" sourceFile="ThreadedChronoGraphTransactionManager.java" interface="false" size="60" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronograph.internal.impl.util" total_bugs="0" total_types="11" total_size="288">
+      <ClassStats class="org.chronos.chronograph.internal.impl.util.ChronoGraphElementUtil" sourceFile="ChronoGraphElementUtil.java" interface="false" size="53" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.util.ChronoGraphQueryUtil" sourceFile="ChronoGraphQueryUtil.java" interface="false" size="75" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.util.ChronoGraphQueryUtil$1" sourceFile="ChronoGraphQueryUtil.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.util.ChronoId" sourceFile="ChronoId.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.util.ChronoProxyUtil" sourceFile="ChronoProxyUtil.java" interface="false" size="24" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.util.ChronoTraversalUtil" sourceFile="ChronoTraversalUtil.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.util.IdentityWrapper" sourceFile="IdentityWrapper.java" interface="false" size="27" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.util.PredefinedProperty" sourceFile="PredefinedProperty.java" interface="false" size="31" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.util.PredefinedProperty$1" sourceFile="PredefinedProperty.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.util.PredefinedVertexProperty" sourceFile="PredefinedVertexProperty.java" interface="false" size="44" bugs="0"/>
+      <ClassStats class="org.chronos.chronograph.internal.impl.util.PredefinedVertexProperty$1" sourceFile="PredefinedVertexProperty.java" interface="false" size="4" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="275" invocations="1085" avgMicrosecondsPerInvocation="253" maxMicrosecondsPerInvocation="97053" standardDeviationMircosecondsPerInvocation="2951"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="246" invocations="1600" avgMicrosecondsPerInvocation="154" maxMicrosecondsPerInvocation="11202" standardDeviationMircosecondsPerInvocation="431"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="199" invocations="1135" avgMicrosecondsPerInvocation="175" maxMicrosecondsPerInvocation="7146" standardDeviationMircosecondsPerInvocation="399"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="186" invocations="447" avgMicrosecondsPerInvocation="416" maxMicrosecondsPerInvocation="18019" standardDeviationMircosecondsPerInvocation="1261"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="167" invocations="1100" avgMicrosecondsPerInvocation="152" maxMicrosecondsPerInvocation="5200" standardDeviationMircosecondsPerInvocation="349"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="139" invocations="1136" avgMicrosecondsPerInvocation="123" maxMicrosecondsPerInvocation="6958" standardDeviationMircosecondsPerInvocation="285"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="124" invocations="1154" avgMicrosecondsPerInvocation="108" maxMicrosecondsPerInvocation="5995" standardDeviationMircosecondsPerInvocation="249"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="110" invocations="1585" avgMicrosecondsPerInvocation="69" maxMicrosecondsPerInvocation="1860" standardDeviationMircosecondsPerInvocation="140"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="106" invocations="1609" avgMicrosecondsPerInvocation="66" maxMicrosecondsPerInvocation="4514" standardDeviationMircosecondsPerInvocation="116"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="104" invocations="952" avgMicrosecondsPerInvocation="109" maxMicrosecondsPerInvocation="2553" standardDeviationMircosecondsPerInvocation="209"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="95" invocations="1135" avgMicrosecondsPerInvocation="83" maxMicrosecondsPerInvocation="6821" standardDeviationMircosecondsPerInvocation="215"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="56" invocations="550" avgMicrosecondsPerInvocation="102" maxMicrosecondsPerInvocation="9748" standardDeviationMircosecondsPerInvocation="439"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="53" invocations="1321" avgMicrosecondsPerInvocation="40" maxMicrosecondsPerInvocation="26029" standardDeviationMircosecondsPerInvocation="716"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="46" invocations="447" avgMicrosecondsPerInvocation="104" maxMicrosecondsPerInvocation="3010" standardDeviationMircosecondsPerInvocation="262"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ConstantDataflowFactory" totalMilliseconds="44" invocations="1135" avgMicrosecondsPerInvocation="39" maxMicrosecondsPerInvocation="1240" standardDeviationMircosecondsPerInvocation="80"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="40" invocations="447" avgMicrosecondsPerInvocation="90" maxMicrosecondsPerInvocation="4027" standardDeviationMircosecondsPerInvocation="239"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="36" invocations="447" avgMicrosecondsPerInvocation="81" maxMicrosecondsPerInvocation="4564" standardDeviationMircosecondsPerInvocation="271"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="35" invocations="1544" avgMicrosecondsPerInvocation="22" maxMicrosecondsPerInvocation="1127" standardDeviationMircosecondsPerInvocation="47"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.LoadOfKnownNullValue" totalMilliseconds="33" invocations="159" avgMicrosecondsPerInvocation="213" maxMicrosecondsPerInvocation="2622" standardDeviationMircosecondsPerInvocation="410"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="32" invocations="447" avgMicrosecondsPerInvocation="72" maxMicrosecondsPerInvocation="4438" standardDeviationMircosecondsPerInvocation="232"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.TypeQualifierNullnessAnnotationDatabase" totalMilliseconds="31" invocations="23617" avgMicrosecondsPerInvocation="1" maxMicrosecondsPerInvocation="753" standardDeviationMircosecondsPerInvocation="6"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.EqualsOperandShouldHaveClassCompatibleWithThis" totalMilliseconds="31" invocations="447" avgMicrosecondsPerInvocation="70" maxMicrosecondsPerInvocation="14346" standardDeviationMircosecondsPerInvocation="679"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.UnreadFields" totalMilliseconds="30" invocations="160" avgMicrosecondsPerInvocation="193" maxMicrosecondsPerInvocation="1909" standardDeviationMircosecondsPerInvocation="297"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindBadCast2" totalMilliseconds="29" invocations="160" avgMicrosecondsPerInvocation="185" maxMicrosecondsPerInvocation="5547" standardDeviationMircosecondsPerInvocation="545"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CalledMethods" totalMilliseconds="27" invocations="447" avgMicrosecondsPerInvocation="60" maxMicrosecondsPerInvocation="1148" standardDeviationMircosecondsPerInvocation="119"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.LiveLocalStoreDataflowFactory" totalMilliseconds="25" invocations="997" avgMicrosecondsPerInvocation="25" maxMicrosecondsPerInvocation="742" standardDeviationMircosecondsPerInvocation="56"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNullDeref$CheckCallSitesAndReturnInstructions" totalMilliseconds="25" invocations="1085" avgMicrosecondsPerInvocation="23" maxMicrosecondsPerInvocation="394" standardDeviationMircosecondsPerInvocation="32"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindInconsistentSync2" totalMilliseconds="25" invocations="160" avgMicrosecondsPerInvocation="156" maxMicrosecondsPerInvocation="2213" standardDeviationMircosecondsPerInvocation="264"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison" totalMilliseconds="24" invocations="160" avgMicrosecondsPerInvocation="152" maxMicrosecondsPerInvocation="1325" standardDeviationMircosecondsPerInvocation="248"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.URLProblems" totalMilliseconds="24" invocations="160" avgMicrosecondsPerInvocation="152" maxMicrosecondsPerInvocation="1235" standardDeviationMircosecondsPerInvocation="259"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DumbMethods" totalMilliseconds="24" invocations="160" avgMicrosecondsPerInvocation="152" maxMicrosecondsPerInvocation="1351" standardDeviationMircosecondsPerInvocation="271"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="23" invocations="160" avgMicrosecondsPerInvocation="148" maxMicrosecondsPerInvocation="5184" standardDeviationMircosecondsPerInvocation="642"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.CheckRelaxingNullnessAnnotation" totalMilliseconds="21" invocations="160" avgMicrosecondsPerInvocation="135" maxMicrosecondsPerInvocation="3756" standardDeviationMircosecondsPerInvocation="325"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNullDeref" totalMilliseconds="21" invocations="160" avgMicrosecondsPerInvocation="134" maxMicrosecondsPerInvocation="1538" standardDeviationMircosecondsPerInvocation="223"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

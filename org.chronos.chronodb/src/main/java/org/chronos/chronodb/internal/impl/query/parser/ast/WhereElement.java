@@ -3,40 +3,36 @@ package org.chronos.chronodb.internal.impl.query.parser.ast;
 import static com.google.common.base.Preconditions.*;
 
 import org.chronos.chronodb.api.query.Condition;
-import org.chronos.chronodb.internal.impl.query.TextMatchMode;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
 
-public class WhereElement implements QueryElement {
+public abstract class WhereElement<VALUETYPE, CONDITIONTYPE extends Condition> implements QueryElement {
 
 	// =================================================================================================================
 	// PROPERTIES
 	// =================================================================================================================
 
-	private final Condition condition;
-	private final TextMatchMode matchMode;
-	private final String indexName;
-	private final String comparisonValue;
+	protected final CONDITIONTYPE condition;
+	protected final String indexName;
+	protected final VALUETYPE comparisonValue;
 
 	// =================================================================================================================
 	// CONSTRUCTOR
 	// =================================================================================================================
 
-	public WhereElement(final String indexName, final Condition condition, final TextMatchMode matchMode,
-			final String comparisonValue) {
+	public WhereElement(final String indexName, final CONDITIONTYPE condition, final VALUETYPE comparisonValue) {
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		checkNotNull(condition, "Precondition violation - argument 'condition' must not be NULL!");
-		checkNotNull(matchMode, "Precondition violation - argument 'matchMode' must not be NULL!");
 		checkNotNull(comparisonValue, "Precondition violation - argument 'comparisonValue' must not be NULL!");
 		this.indexName = indexName;
 		this.condition = condition;
-		this.matchMode = matchMode;
 		this.comparisonValue = comparisonValue;
 	}
 
 	// =================================================================================================================
-	// GETTERS & SETTERS
+	// public API
 	// =================================================================================================================
 
-	public Condition getCondition() {
+	public CONDITIONTYPE getCondition() {
 		return this.condition;
 	}
 
@@ -44,13 +40,13 @@ public class WhereElement implements QueryElement {
 		return this.indexName;
 	}
 
-	public String getComparisonValue() {
+	public VALUETYPE getComparisonValue() {
 		return this.comparisonValue;
 	}
 
-	public TextMatchMode getMatchMode() {
-		return this.matchMode;
-	}
+	public abstract WhereElement<VALUETYPE, CONDITIONTYPE> negate();
+
+	public abstract SearchSpecification<?> toSearchSpecification();
 
 	// =================================================================================================================
 	// TO STRING

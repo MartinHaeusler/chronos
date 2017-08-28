@@ -1,5 +1,7 @@
 package org.chronos.chronodb.internal.impl.engines.mapdb;
 
+import static com.google.common.base.Preconditions.*;
+
 import java.io.File;
 
 import org.chronos.chronodb.api.ChronoDB;
@@ -101,6 +103,21 @@ public class MapDBChronoDB extends AbstractChronoDB {
 		return this.cache;
 	}
 
+	@Override
+	public boolean isFileBased() {
+		return true;
+	}
+
+	@Override
+	public void updateChronosVersionTo(final ChronosVersion chronosVersion) {
+		checkNotNull(chronosVersion, "Precondition violation - argument 'chronosVersion' must not be NULL!");
+		try (MapDBTransaction tx = this.openTransaction()) {
+			Var<String> variable = tx.atomicVar(VARIABLE_NAME__CHRONOS_BUILD_VERSION);
+			variable.set(chronosVersion.toString());
+			tx.commit();
+		}
+	}
+
 	// =================================================================================================================
 	// INTERNAL API
 	// =================================================================================================================
@@ -109,9 +126,7 @@ public class MapDBChronoDB extends AbstractChronoDB {
 	 * Opens a transaction on the underlying MapDB instance.
 	 *
 	 * <p>
-	 * It is <b>required</b> to call {@link MapDBTransaction#close()} when the transaction is not needed anymore. It is
-	 * recommended to do so using try-with-resources blocks, as {@link MapDBTransaction} implements
-	 * {@link AutoCloseable}:
+	 * It is <b>required</b> to call {@link MapDBTransaction#close()} when the transaction is not needed anymore. It is recommended to do so using try-with-resources blocks, as {@link MapDBTransaction} implements {@link AutoCloseable}:
 	 *
 	 * <pre>
 	 * try (MapDBTransaction tx = chronoDB.openTransaction()) {

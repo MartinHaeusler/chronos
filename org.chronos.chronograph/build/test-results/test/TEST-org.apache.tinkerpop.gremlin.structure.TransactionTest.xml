@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.TransactionTest" tests="42" skipped="3" failures="0" errors="0" timestamp="2017-08-28T17:59:01" hostname="Aurora" time="10.102">
+  <properties/>
+  <testcase name="shouldCommitPropertyAutoTransactionByDefault" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.008"/>
+  <testcase name="shouldAllowJustRollbackOnlyWithAutoTransaction" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldAllowReferenceOfVertexOutsideOfOriginalTransactionalContextAuto" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldSupportTransactionExponentialBackoff" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="6.419"/>
+  <testcase name="shouldSupportTransactionFireAndForget" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldSupportTransactionOneAndDone" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldAllowReferenceOfVertexIdOutsideOfOriginalThreadAuto" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldHaveExceptionConsistencyWhenTransactionAlreadyOpen" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldExecuteCompetingThreadsOnMultipleDbInstances" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldCountVerticesEdgesOnPreTransactionCommit" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.008"/>
+  <testcase name="shouldSupportTransactionRetryWhenUsingManualTransactions" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.408"/>
+  <testcase name="shouldCommitOnCloseWhenConfigured" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldNotifyTransactionListenersInSameThreadOnlyOnCommitSuccess" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldSupportTransactionRetry" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.399"/>
+  <testcase name="shouldHaveExceptionConsistencyWhenUsingManualTransactionOnRollback" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldHaveExceptionConsistencyWhenUsingManualTransaction" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldNotifyTransactionListenersOnRollbackSuccess" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldCommitElementAutoTransactionByDefault" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.005"/>
+  <testcase name="shouldAllowAutoTransactionToWorkWithoutMutationByDefault" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldHaveExceptionConsistencyWhenOnReadWriteToNull" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldNotifyTransactionListenersOnCommitSuccess" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldRollbackOnCloseByDefault" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldHaveExceptionConsistencyWhenOnCloseToNull" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldHaveExceptionConsistencyWhenTransactionOpenOnClose" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldAllowReferenceOfEdgeIdOutsideOfOriginalThreadAuto" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldAllowReferenceOfEdgeIdOutsideOfOriginalThreadManual" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldNotShareTransactionReadWriteConsumersAcrossThreads" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldSupportTransactionExponentialBackoffWithExceptionChecks" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="2.578"/>
+  <testcase name="shouldAllowJustCommitOnlyWithAutoTransaction" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldSupportTransactionIsolationWithSeparateThreads" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldExecuteWithCompetingThreads" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.277"/>
+  <testcase name="shouldAllowReferenceOfEdgeOutsideOfOriginalTransactionalContextManual" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldNotShareTransactionCloseConsumersAcrossThreads" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldRollbackPropertyAutoTransactionByDefault" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldSupportTransactionIsolationCommitCheck" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldAllowReferenceOfEdgeOutsideOfOriginalTransactionalContextAuto" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldNotifyTransactionListenersInSameThreadOnlyOnRollbackSuccess" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldAllowReferenceOfVertexIdOutsideOfOriginalThreadManual" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldSupportMultipleThreadsOnTheSameTransaction" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldHaveExceptionConsistencyWhenUsingManualTransactionOnCommit" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldAllowReferenceOfVertexOutsideOfOriginalTransactionalContextManual" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <testcase name="shouldRollbackElementAutoTransactionByDefault" classname="org.apache.tinkerpop.gremlin.structure.TransactionTest" time="0.0"/>
+  <system-out><![CDATA[[WARN ] 2017-08-28 19:59:07 [    Thread-2738] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:59:07 [    Thread-2738] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:59:11 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:59:11 [    Thread-2996] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

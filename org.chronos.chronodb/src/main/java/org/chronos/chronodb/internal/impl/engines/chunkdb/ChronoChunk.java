@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
+
 public class ChronoChunk {
 
 	// =================================================================================================================
@@ -35,6 +37,7 @@ public class ChronoChunk {
 	private final long sequenceNumber;
 
 	private final ChronoChunkMetaData metaData;
+	private IBranchMetadata branchMetaData;
 	private final File dataFile;
 	private File indexFile;
 
@@ -111,7 +114,7 @@ public class ChronoChunk {
 	}
 
 	public String getBranchName() {
-		return this.getDataFile().getParentFile().getName();
+		return this.getBranchMetadata().getName();
 	}
 
 	// =================================================================================================================
@@ -155,4 +158,12 @@ public class ChronoChunk {
 		return Long.parseLong(fileName.substring(0, fileName.lastIndexOf(".")));
 	}
 
+	private IBranchMetadata getBranchMetadata() {
+		if (this.branchMetaData == null) {
+			// load the branch metadata from the branch metadata file
+			File branchMetadataFile = new File(this.dataFile.getParentFile(), ChunkedChronoDB.FILENAME__BRANCH_METADATA_FILE);
+			this.branchMetaData = BranchMetadataFile.read(branchMetadataFile).getMetadata();
+		}
+		return this.branchMetaData;
+	}
 }

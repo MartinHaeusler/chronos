@@ -2,9 +2,9 @@ package org.chronos.chronodb.test.util.model.person;
 
 import java.util.Set;
 
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.indexing.StringIndexer;
 
-public abstract class PersonIndexer implements ChronoIndexer {
+public abstract class PersonIndexer implements StringIndexer {
 
 	// =====================================================================================================================
 	// STATIC FACTORY METHODS

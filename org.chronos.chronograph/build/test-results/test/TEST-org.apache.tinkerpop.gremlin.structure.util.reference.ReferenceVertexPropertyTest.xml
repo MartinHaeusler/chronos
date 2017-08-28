@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.util.reference.ReferenceVertexPropertyTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:59:01" hostname="Aurora" time="0.0">
+  <properties/>
+  <testcase name="shouldAttachToVertex" classname="org.apache.tinkerpop.gremlin.structure.util.reference.ReferenceVertexPropertyTest" time="0.0"/>
+  <testcase name="shouldNotBeEqualsPropertiesAsIdIsDifferent" classname="org.apache.tinkerpop.gremlin.structure.util.reference.ReferenceVertexPropertyTest" time="0.0"/>
+  <testcase name="shouldNotConstructNewWithSomethingAlreadyReferenced" classname="org.apache.tinkerpop.gremlin.structure.util.reference.ReferenceVertexPropertyTest" time="0.0"/>
+  <testcase name="shouldAttachToGraph" classname="org.apache.tinkerpop.gremlin.structure.util.reference.ReferenceVertexPropertyTest" time="0.0"/>
+  <testcase name="shouldBeEqualsPropertiesAsIdIsTheSame" classname="org.apache.tinkerpop.gremlin.structure.util.reference.ReferenceVertexPropertyTest" time="0.0"/>
+  <testcase name="shouldNotSupportRemove" classname="org.apache.tinkerpop.gremlin.structure.util.reference.ReferenceVertexPropertyTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

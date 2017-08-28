@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:54:18" hostname="Aurora" time="2.742">
+  <properties/>
+  <testcase name="emptyKeyspaceProducesEmptyIterator[Using jdbc]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.016"/>
+  <testcase name="retrievingMultipleCommitsWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.033"/>
+  <testcase name="retrievingSingleCommitAsResultWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.02"/>
+  <testcase name="emptyKeyspaceProducesEmptyIterator[Using mapdb]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.249"/>
+  <testcase name="retrievingMultipleCommitsWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.423"/>
+  <testcase name="retrievingSingleCommitAsResultWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.332"/>
+  <testcase name="emptyKeyspaceProducesEmptyIterator[Using inmemory]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.0"/>
+  <testcase name="retrievingMultipleCommitsWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.025"/>
+  <testcase name="retrievingSingleCommitAsResultWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.0"/>
+  <testcase name="emptyKeyspaceProducesEmptyIterator[Using chunked]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.345"/>
+  <testcase name="retrievingMultipleCommitsWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.4"/>
+  <testcase name="retrievingSingleCommitAsResultWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.348"/>
+  <testcase name="emptyKeyspaceProducesEmptyIterator[Using tupl]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.153"/>
+  <testcase name="retrievingMultipleCommitsWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.231"/>
+  <testcase name="retrievingSingleCommitAsResultWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" time="0.167"/>
+  <system-out><![CDATA[19:54:18.124 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: emptyKeyspaceProducesEmptyIterator[Using jdbc]
+    Start time:  2017/08/28 19:54:18
+================================================================================
+
+
+
+19:54:18.124 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4c6cc994,name=1hgeqrl9qbn6pz6yfah30|4c6cc994 registered.
+19:54:18.124 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4c6cc994,name=1hgeqrl9qbn6pz6yfah30|4c6cc994 unregistered, in order to be reregistered after update.
+19:54:18.124 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4c6cc994,name=1hgeqrl9qbn6pz6yfah30|4c6cc994 registered.
+19:54:18.124 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@bebe47f7 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@8b20272a [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|6e45f066, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@598b29f1 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|43efbcd6, jdbcUrl -> jdbc:h2:mem:df1ac23d44424acd883b7f86eb199fb0, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|4c6cc994, numHelperThreads -> 3 ]
+19:54:18.124 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@203bbd87 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:54:18.124 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:54:18.124 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:54:18.124 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:54:18.140 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4c6cc994,name=1hgeqrl9qbn6pz6yfah30|4c6cc994 unregistered.
+19:54:18.140 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:54:18.140 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5f7f78cf
+19:54:18.140 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5f7f78cf
+19:54:18.140 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5f7f78cf
+19:54:18.140 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5f7f78cf
+19:54:18.140 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@46b72874
+19:54:18.140 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@46b72874
+19:54:18.140 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@46b72874
+19:54:18.140 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@46b72874
+19:54:18.140 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5626056d
+19:54:18.140 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5626056d
+19:54:18.140 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5626056d
+19:54:18.140 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5626056d
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: emptyKeyspaceProducesEmptyIterator[Using jdbc]
+    End time:    2017/08/28 19:54:18 (Duration: 16ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingMultipleCommitsWorks[Using jdbc]
+    Start time:  2017/08/28 19:54:18
+================================================================================
+
+
+
+19:54:18.140 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|655876f5,name=1hgeqrl9qbn6pz6yfah30|655876f5 registered.
+19:54:18.140 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|655876f5,name=1hgeqrl9qbn6pz6yfah30|655876f5 unregistered, in order to be reregistered after update.
+19:54:18.140 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|655876f5,name=1hgeqrl9qbn6pz6yfah30|655876f5 registered.
+19:54:18.140 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@74816554 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@f796e547 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|2f34726c, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@7b15b86b [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|154f3787, jdbcUrl -> jdbc:h2:mem:b85107d9084e4c57b0538d6a7c555bad, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|655876f5, numHelperThreads -> 3 ]
+19:54:18.140 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@26540972 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:54:18.140 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:54:18.140 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:54:18.140 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:54:18.173 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|655876f5,name=1hgeqrl9qbn6pz6yfah30|655876f5 unregistered.
+19:54:18.173 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:54:18.173 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@4e4822aa
+19:54:18.173 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@4e4822aa
+19:54:18.173 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@4e4822aa
+19:54:18.173 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@4e4822aa
+19:54:18.173 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6382ba59
+19:54:18.173 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6382ba59
+19:54:18.173 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6382ba59
+19:54:18.173 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6382ba59
+19:54:18.173 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@922fca5
+19:54:18.173 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@922fca5
+19:54:18.173 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@922fca5
+19:54:18.173 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@922fca5
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingMultipleCommitsWorks[Using jdbc]
+    End time:    2017/08/28 19:54:18 (Duration: 33ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingSingleCommitAsResultWorks[Using jdbc]
+    Start time:  2017/08/28 19:54:18
+================================================================================
+
+
+
+19:54:18.173 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|152be29d,name=1hgeqrl9qbn6pz6yfah30|152be29d registered.
+19:54:18.173 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|152be29d,name=1hgeqrl9qbn6pz6yfah30|152be29d unregistered, in order to be reregistered after update.
+19:54:18.173 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|152be29d,name=1hgeqrl9qbn6pz6yfah30|152be29d registered.
+19:54:18.173 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@7ea11f98 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@e525462f [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|55041b66, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@77643d08 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|733cbba1, jdbcUrl -> jdbc:h2:mem:d70a3a649b9c4351890bbbb9184fc0e6, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|152be29d, numHelperThreads -> 3 ]
+19:54:18.173 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@51d4548a config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:54:18.173 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:54:18.173 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:54:18.173 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:54:18.193 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|152be29d,name=1hgeqrl9qbn6pz6yfah30|152be29d unregistered.
+19:54:18.193 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:54:18.193 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@718ef87f
+19:54:18.193 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@718ef87f
+19:54:18.193 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@718ef87f
+19:54:18.193 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@718ef87f
+19:54:18.193 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@29de0bf5
+19:54:18.193 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@29de0bf5
+19:54:18.193 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@29de0bf5
+19:54:18.193 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@29de0bf5
+19:54:18.193 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@2c9a2717
+19:54:18.193 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@2c9a2717
+19:54:18.193 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@2c9a2717
+19:54:18.193 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@2c9a2717
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingSingleCommitAsResultWorks[Using jdbc]
+    End time:    2017/08/28 19:54:18 (Duration: 20ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: emptyKeyspaceProducesEmptyIterator[Using mapdb]
+    Start time:  2017/08/28 19:54:18
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: emptyKeyspaceProducesEmptyIterator[Using mapdb]
+    End time:    2017/08/28 19:54:18 (Duration: 249ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingMultipleCommitsWorks[Using mapdb]
+    Start time:  2017/08/28 19:54:18
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingMultipleCommitsWorks[Using mapdb]
+    End time:    2017/08/28 19:54:18 (Duration: 423ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingSingleCommitAsResultWorks[Using mapdb]
+    Start time:  2017/08/28 19:54:18
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingSingleCommitAsResultWorks[Using mapdb]
+    End time:    2017/08/28 19:54:19 (Duration: 316ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: emptyKeyspaceProducesEmptyIterator[Using inmemory]
+    Start time:  2017/08/28 19:54:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: emptyKeyspaceProducesEmptyIterator[Using inmemory]
+    End time:    2017/08/28 19:54:19 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingMultipleCommitsWorks[Using inmemory]
+    Start time:  2017/08/28 19:54:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingMultipleCommitsWorks[Using inmemory]
+    End time:    2017/08/28 19:54:19 (Duration: 25ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingSingleCommitAsResultWorks[Using inmemory]
+    Start time:  2017/08/28 19:54:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingSingleCommitAsResultWorks[Using inmemory]
+    End time:    2017/08/28 19:54:19 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: emptyKeyspaceProducesEmptyIterator[Using chunked]
+    Start time:  2017/08/28 19:54:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: emptyKeyspaceProducesEmptyIterator[Using chunked]
+    End time:    2017/08/28 19:54:19 (Duration: 345ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingMultipleCommitsWorks[Using chunked]
+    Start time:  2017/08/28 19:54:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingMultipleCommitsWorks[Using chunked]
+    End time:    2017/08/28 19:54:19 (Duration: 400ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingSingleCommitAsResultWorks[Using chunked]
+    Start time:  2017/08/28 19:54:19
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingSingleCommitAsResultWorks[Using chunked]
+    End time:    2017/08/28 19:54:20 (Duration: 348ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: emptyKeyspaceProducesEmptyIterator[Using tupl]
+    Start time:  2017/08/28 19:54:20
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: emptyKeyspaceProducesEmptyIterator[Using tupl]
+    End time:    2017/08/28 19:54:20 (Duration: 153ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingMultipleCommitsWorks[Using tupl]
+    Start time:  2017/08/28 19:54:20
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingMultipleCommitsWorks[Using tupl]
+    End time:    2017/08/28 19:54:20 (Duration: 231ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingSingleCommitAsResultWorks[Using tupl]
+    Start time:  2017/08/28 19:54:20
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetModifiedKeysTest
+    Test method: retrievingSingleCommitAsResultWorks[Using tupl]
+    End time:    2017/08/28 19:54:20 (Duration: 167ms)
+================================================================================
+
+
+
+19:54:20.866 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:54:20.867 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -12,7 +12,7 @@ import org.chronos.chronodb.internal.api.BranchInternal;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
 import org.chronos.chronodb.internal.api.TemporalKeyValueStore;
 import org.chronos.chronodb.internal.impl.BranchImpl;
-import org.chronos.chronodb.internal.impl.BranchMetadata;
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractBranchManager;
 
 import com.google.common.collect.Sets;
@@ -53,7 +53,7 @@ public class InMemoryBranchManager extends AbstractBranchManager {
 	}
 
 	@Override
-	protected BranchInternal createBranch(final BranchMetadata metadata) {
+	protected BranchInternal createBranch(final IBranchMetadata metadata) {
 		checkNotNull(metadata, "Precondition violation - argument 'metadata' must not be NULL!");
 		BranchInternal branch = BranchImpl.createBranch(metadata, this.getBranch(metadata.getParentName()));
 		this.createTKVS(branch);

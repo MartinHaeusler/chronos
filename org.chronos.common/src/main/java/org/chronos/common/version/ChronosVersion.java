@@ -115,6 +115,22 @@ public final class ChronosVersion implements Comparable<ChronosVersion> {
 		}
 	}
 
+	public boolean isSmallerThan(final ChronosVersion other) {
+		return this.compareTo(other) < 0;
+	}
+
+	public boolean isSmallerThanOrEqualTo(final ChronosVersion other) {
+		return this.compareTo(other) <= 0;
+	}
+
+	public boolean isGreaterThan(final ChronosVersion other) {
+		return this.compareTo(other) > 0;
+	}
+
+	public boolean isGreaterThanOrEqualTo(final ChronosVersion other) {
+		return this.compareTo(other) >= 0;
+	}
+
 	// =====================================================================================================================
 	// COMPARATOR
 	// =====================================================================================================================

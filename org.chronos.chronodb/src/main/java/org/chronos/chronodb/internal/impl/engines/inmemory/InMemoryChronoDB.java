@@ -1,5 +1,7 @@
 package org.chronos.chronodb.internal.impl.engines.inmemory;
 
+import static com.google.common.base.Preconditions.*;
+
 import org.chronos.chronodb.api.IndexManager;
 import org.chronos.chronodb.api.MaintenanceManager;
 import org.chronos.chronodb.api.SerializationManager;
@@ -10,6 +12,7 @@ import org.chronos.chronodb.internal.api.query.QueryManager;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractChronoDB;
 import org.chronos.chronodb.internal.impl.index.DocumentBasedIndexManager;
 import org.chronos.chronodb.internal.impl.query.StandardQueryManager;
+import org.chronos.common.version.ChronosVersion;
 
 public class InMemoryChronoDB extends AbstractChronoDB {
 
@@ -67,6 +70,17 @@ public class InMemoryChronoDB extends AbstractChronoDB {
 	@Override
 	public ChronoDBCache getCache() {
 		return this.cache;
+	}
+
+	@Override
+	public boolean isFileBased() {
+		return false;
+	}
+
+	@Override
+	public void updateChronosVersionTo(final ChronosVersion chronosVersion) {
+		checkNotNull(chronosVersion, "Precondition violation - argument 'chronosVersion' must not be NULL!");
+		// we can safely ignore this; in-memory DBs never need to be migrated.
 	}
 
 	// =====================================================================================================================

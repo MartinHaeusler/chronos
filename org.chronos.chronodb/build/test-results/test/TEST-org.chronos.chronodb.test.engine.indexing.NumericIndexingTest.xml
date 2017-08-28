@@ -1,0 +1,1626 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" tests="55" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:52:44" hostname="Aurora" time="10.717">
+  <properties/>
+  <testcase name="cannotSearchForStringValueInLongIndex[Using inmemory]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.02"/>
+  <testcase name="canExecuteBasicQueryOnLongIndex[Using inmemory]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.002"/>
+  <testcase name="cannotSearchForLongValueInDoubleIndex[Using inmemory]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.004"/>
+  <testcase name="cannotSearchForLongValueInStringIndex[Using inmemory]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.004"/>
+  <testcase name="canCreateDoubleIndex[Using inmemory]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.0"/>
+  <testcase name="cannotSearchForDoubleValueInStringIndex[Using inmemory]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.004"/>
+  <testcase name="canCreateLongIndex[Using inmemory]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.0"/>
+  <testcase name="cannotSearchForStringValueInDoubleIndex[Using inmemory]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.004"/>
+  <testcase name="canExecuteBasicQueryOnDoubleIndex[Using inmemory]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.003"/>
+  <testcase name="cannotSearchForDoubleValueInLongIndex[Using inmemory]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.003"/>
+  <testcase name="cannotQueryNonExistingIndex[Using inmemory]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.0"/>
+  <testcase name="cannotSearchForStringValueInLongIndex[Using jdbc]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.021"/>
+  <testcase name="canExecuteBasicQueryOnLongIndex[Using jdbc]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.023"/>
+  <testcase name="cannotSearchForLongValueInDoubleIndex[Using jdbc]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.026"/>
+  <testcase name="cannotSearchForLongValueInStringIndex[Using jdbc]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.021"/>
+  <testcase name="canCreateDoubleIndex[Using jdbc]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.016"/>
+  <testcase name="cannotSearchForDoubleValueInStringIndex[Using jdbc]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.025"/>
+  <testcase name="canCreateLongIndex[Using jdbc]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.015"/>
+  <testcase name="cannotSearchForStringValueInDoubleIndex[Using jdbc]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.023"/>
+  <testcase name="canExecuteBasicQueryOnDoubleIndex[Using jdbc]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.021"/>
+  <testcase name="cannotSearchForDoubleValueInLongIndex[Using jdbc]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.026"/>
+  <testcase name="cannotQueryNonExistingIndex[Using jdbc]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.015"/>
+  <testcase name="cannotSearchForStringValueInLongIndex[Using chunked]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.36"/>
+  <testcase name="canExecuteBasicQueryOnLongIndex[Using chunked]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.384"/>
+  <testcase name="cannotSearchForLongValueInDoubleIndex[Using chunked]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.378"/>
+  <testcase name="cannotSearchForLongValueInStringIndex[Using chunked]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.368"/>
+  <testcase name="canCreateDoubleIndex[Using chunked]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.231"/>
+  <testcase name="cannotSearchForDoubleValueInStringIndex[Using chunked]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.222"/>
+  <testcase name="canCreateLongIndex[Using chunked]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.147"/>
+  <testcase name="cannotSearchForStringValueInDoubleIndex[Using chunked]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.216"/>
+  <testcase name="canExecuteBasicQueryOnDoubleIndex[Using chunked]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.253"/>
+  <testcase name="cannotSearchForDoubleValueInLongIndex[Using chunked]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.367"/>
+  <testcase name="cannotQueryNonExistingIndex[Using chunked]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.237"/>
+  <testcase name="cannotSearchForStringValueInLongIndex[Using mapdb]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.578"/>
+  <testcase name="canExecuteBasicQueryOnLongIndex[Using mapdb]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.683"/>
+  <testcase name="cannotSearchForLongValueInDoubleIndex[Using mapdb]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.515"/>
+  <testcase name="cannotSearchForLongValueInStringIndex[Using mapdb]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.4"/>
+  <testcase name="canCreateDoubleIndex[Using mapdb]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.222"/>
+  <testcase name="cannotSearchForDoubleValueInStringIndex[Using mapdb]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.515"/>
+  <testcase name="canCreateLongIndex[Using mapdb]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.301"/>
+  <testcase name="cannotSearchForStringValueInDoubleIndex[Using mapdb]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.584"/>
+  <testcase name="canExecuteBasicQueryOnDoubleIndex[Using mapdb]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.699"/>
+  <testcase name="cannotSearchForDoubleValueInLongIndex[Using mapdb]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.564"/>
+  <testcase name="cannotQueryNonExistingIndex[Using mapdb]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.2"/>
+  <testcase name="cannotSearchForStringValueInLongIndex[Using tupl]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.138"/>
+  <testcase name="canExecuteBasicQueryOnLongIndex[Using tupl]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.162"/>
+  <testcase name="cannotSearchForLongValueInDoubleIndex[Using tupl]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.153"/>
+  <testcase name="cannotSearchForLongValueInStringIndex[Using tupl]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.181"/>
+  <testcase name="canCreateDoubleIndex[Using tupl]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.119"/>
+  <testcase name="cannotSearchForDoubleValueInStringIndex[Using tupl]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.246"/>
+  <testcase name="canCreateLongIndex[Using tupl]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.116"/>
+  <testcase name="cannotSearchForStringValueInDoubleIndex[Using tupl]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.269"/>
+  <testcase name="canExecuteBasicQueryOnDoubleIndex[Using tupl]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.253"/>
+  <testcase name="cannotSearchForDoubleValueInLongIndex[Using tupl]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.278"/>
+  <testcase name="cannotQueryNonExistingIndex[Using tupl]" classname="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" time="0.1"/>
+  <system-out><![CDATA[19:52:44.326 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInLongIndex[Using inmemory]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInLongIndex[Using inmemory]
+    End time:    2017/08/28 19:52:44 (Duration: 20ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnLongIndex[Using inmemory]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnLongIndex[Using inmemory]
+    End time:    2017/08/28 19:52:44 (Duration: 2ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInDoubleIndex[Using inmemory]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInDoubleIndex[Using inmemory]
+    End time:    2017/08/28 19:52:44 (Duration: 4ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInStringIndex[Using inmemory]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInStringIndex[Using inmemory]
+    End time:    2017/08/28 19:52:44 (Duration: 4ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateDoubleIndex[Using inmemory]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateDoubleIndex[Using inmemory]
+    End time:    2017/08/28 19:52:44 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInStringIndex[Using inmemory]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInStringIndex[Using inmemory]
+    End time:    2017/08/28 19:52:44 (Duration: 4ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateLongIndex[Using inmemory]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateLongIndex[Using inmemory]
+    End time:    2017/08/28 19:52:44 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInDoubleIndex[Using inmemory]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInDoubleIndex[Using inmemory]
+    End time:    2017/08/28 19:52:44 (Duration: 4ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnDoubleIndex[Using inmemory]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnDoubleIndex[Using inmemory]
+    End time:    2017/08/28 19:52:44 (Duration: 3ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInLongIndex[Using inmemory]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInLongIndex[Using inmemory]
+    End time:    2017/08/28 19:52:44 (Duration: 3ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotQueryNonExistingIndex[Using inmemory]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotQueryNonExistingIndex[Using inmemory]
+    End time:    2017/08/28 19:52:44 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInLongIndex[Using jdbc]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+19:52:44.370 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|378b86c0,name=1hgeqrl9qbn6pz6yfah30|378b86c0 registered.
+19:52:44.370 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|378b86c0,name=1hgeqrl9qbn6pz6yfah30|378b86c0 unregistered, in order to be reregistered after update.
+19:52:44.370 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|378b86c0,name=1hgeqrl9qbn6pz6yfah30|378b86c0 registered.
+19:52:44.370 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@3ae99c6b [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@f30960a3 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|5e46597b, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@80277c88 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|dd5001, jdbcUrl -> jdbc:h2:mem:78ff4bd28438429499dae34a347796b7, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|378b86c0, numHelperThreads -> 3 ]
+19:52:44.370 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@4ce0e8da config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:52:44.370 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:52:44.370 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:52:44.370 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:52:44.391 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|378b86c0,name=1hgeqrl9qbn6pz6yfah30|378b86c0 unregistered.
+19:52:44.391 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:52:44.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1f58221
+19:52:44.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1f58221
+19:52:44.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1f58221
+19:52:44.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1f58221
+19:52:44.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5552cf7e
+19:52:44.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5552cf7e
+19:52:44.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5552cf7e
+19:52:44.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5552cf7e
+19:52:44.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@514f440a
+19:52:44.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@514f440a
+19:52:44.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@514f440a
+19:52:44.391 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@514f440a
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInLongIndex[Using jdbc]
+    End time:    2017/08/28 19:52:44 (Duration: 21ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnLongIndex[Using jdbc]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+19:52:44.391 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|7622f93a,name=1hgeqrl9qbn6pz6yfah30|7622f93a registered.
+19:52:44.391 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|7622f93a,name=1hgeqrl9qbn6pz6yfah30|7622f93a unregistered, in order to be reregistered after update.
+19:52:44.391 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|7622f93a,name=1hgeqrl9qbn6pz6yfah30|7622f93a registered.
+19:52:44.391 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@dd17b164 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@d43c8bbe [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|7678acbf, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@55f4ba4e [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|64f55b40, jdbcUrl -> jdbc:h2:mem:b568abed958e47f18012bab504d413c4, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|7622f93a, numHelperThreads -> 3 ]
+19:52:44.391 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@5633c68d config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:52:44.391 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:52:44.391 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:52:44.391 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:52:44.414 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|7622f93a,name=1hgeqrl9qbn6pz6yfah30|7622f93a unregistered.
+19:52:44.414 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:52:44.414 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@60333c03
+19:52:44.414 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@60333c03
+19:52:44.414 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@60333c03
+19:52:44.414 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@60333c03
+19:52:44.414 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3f19b1f
+19:52:44.414 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3f19b1f
+19:52:44.414 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3f19b1f
+19:52:44.414 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3f19b1f
+19:52:44.414 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5ea056c7
+19:52:44.414 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5ea056c7
+19:52:44.414 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5ea056c7
+19:52:44.414 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5ea056c7
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnLongIndex[Using jdbc]
+    End time:    2017/08/28 19:52:44 (Duration: 23ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInDoubleIndex[Using jdbc]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+19:52:44.414 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|24fad792,name=1hgeqrl9qbn6pz6yfah30|24fad792 registered.
+19:52:44.414 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|24fad792,name=1hgeqrl9qbn6pz6yfah30|24fad792 unregistered, in order to be reregistered after update.
+19:52:44.414 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|24fad792,name=1hgeqrl9qbn6pz6yfah30|24fad792 registered.
+19:52:44.414 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@f2f8a6fb [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@916e2377 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|13ec52f6, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@6562df24 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|1a3c1ed0, jdbcUrl -> jdbc:h2:mem:629af951b9c14f3fb1637089a4576e11, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|24fad792, numHelperThreads -> 3 ]
+19:52:44.414 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@44622f3c config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:52:44.414 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:52:44.414 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:52:44.414 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:52:44.439 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|24fad792,name=1hgeqrl9qbn6pz6yfah30|24fad792 unregistered.
+19:52:44.440 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:52:44.440 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1fc9a78
+19:52:44.440 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1fc9a78
+19:52:44.440 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1fc9a78
+19:52:44.440 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1fc9a78
+19:52:44.440 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6a1a8b9f
+19:52:44.440 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6a1a8b9f
+19:52:44.440 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6a1a8b9f
+19:52:44.440 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6a1a8b9f
+19:52:44.440 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@47928195
+19:52:44.440 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@47928195
+19:52:44.440 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@47928195
+19:52:44.440 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@47928195
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInDoubleIndex[Using jdbc]
+    End time:    2017/08/28 19:52:44 (Duration: 26ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInStringIndex[Using jdbc]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+19:52:44.444 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2443e239,name=1hgeqrl9qbn6pz6yfah30|2443e239 registered.
+19:52:44.449 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2443e239,name=1hgeqrl9qbn6pz6yfah30|2443e239 unregistered, in order to be reregistered after update.
+19:52:44.449 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2443e239,name=1hgeqrl9qbn6pz6yfah30|2443e239 registered.
+19:52:44.449 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@4ad2ce50 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@a7304253 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|771e0371, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@f3fb492c [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|45d8cede, jdbcUrl -> jdbc:h2:mem:b09b0b2ea3eb438e9f53cd6b611ba1d7, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|2443e239, numHelperThreads -> 3 ]
+19:52:44.449 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@ea76e3c config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:52:44.449 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:52:44.449 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:52:44.449 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:52:44.462 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2443e239,name=1hgeqrl9qbn6pz6yfah30|2443e239 unregistered.
+19:52:44.462 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:52:44.462 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@63aa5d1
+19:52:44.462 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@63aa5d1
+19:52:44.462 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@63aa5d1
+19:52:44.462 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@63aa5d1
+19:52:44.462 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6d0a20c
+19:52:44.462 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6d0a20c
+19:52:44.462 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6d0a20c
+19:52:44.462 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6d0a20c
+19:52:44.462 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7769d2d5
+19:52:44.462 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7769d2d5
+19:52:44.462 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7769d2d5
+19:52:44.462 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7769d2d5
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInStringIndex[Using jdbc]
+    End time:    2017/08/28 19:52:44 (Duration: 21ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateDoubleIndex[Using jdbc]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+19:52:44.462 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|f22fad2,name=1hgeqrl9qbn6pz6yfah30|f22fad2 registered.
+19:52:44.462 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|f22fad2,name=1hgeqrl9qbn6pz6yfah30|f22fad2 unregistered, in order to be reregistered after update.
+19:52:44.462 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|f22fad2,name=1hgeqrl9qbn6pz6yfah30|f22fad2 registered.
+19:52:44.462 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@705ee94b [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@de8a7d5f [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|7166fac3, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@d5d2cd2a [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|d3bf47f, jdbcUrl -> jdbc:h2:mem:14bd9bf8ce044c9fafba25cc797137ec, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|f22fad2, numHelperThreads -> 3 ]
+19:52:44.462 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@1bce4862 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:52:44.462 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:52:44.462 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:52:44.462 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:52:44.478 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|f22fad2,name=1hgeqrl9qbn6pz6yfah30|f22fad2 unregistered.
+19:52:44.478 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:52:44.478 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@2a97bcd
+19:52:44.478 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@2a97bcd
+19:52:44.478 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@2a97bcd
+19:52:44.478 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@2a97bcd
+19:52:44.478 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7c652ea8
+19:52:44.478 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7c652ea8
+19:52:44.478 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7c652ea8
+19:52:44.478 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7c652ea8
+19:52:44.478 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@4cb5ae23
+19:52:44.478 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@4cb5ae23
+19:52:44.478 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@4cb5ae23
+19:52:44.478 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@4cb5ae23
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateDoubleIndex[Using jdbc]
+    End time:    2017/08/28 19:52:44 (Duration: 16ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInStringIndex[Using jdbc]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+19:52:44.478 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|5808b05f,name=1hgeqrl9qbn6pz6yfah30|5808b05f registered.
+19:52:44.478 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|5808b05f,name=1hgeqrl9qbn6pz6yfah30|5808b05f unregistered, in order to be reregistered after update.
+19:52:44.478 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|5808b05f,name=1hgeqrl9qbn6pz6yfah30|5808b05f registered.
+19:52:44.478 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@4624abda [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@73b2dc33 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|2865fa2c, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@64a4cf65 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|10ef896, jdbcUrl -> jdbc:h2:mem:122e67400ef14a2fa1ef002465cbd014, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|5808b05f, numHelperThreads -> 3 ]
+19:52:44.478 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@2d5dcde0 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:52:44.478 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:52:44.478 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:52:44.478 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:52:44.503 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|5808b05f,name=1hgeqrl9qbn6pz6yfah30|5808b05f unregistered.
+19:52:44.503 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:52:44.503 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@9428c49
+19:52:44.503 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@9428c49
+19:52:44.503 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@9428c49
+19:52:44.503 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@9428c49
+19:52:44.503 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@75d85ead
+19:52:44.503 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@75d85ead
+19:52:44.503 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@75d85ead
+19:52:44.503 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@75d85ead
+19:52:44.503 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1afc439
+19:52:44.503 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1afc439
+19:52:44.503 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1afc439
+19:52:44.503 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1afc439
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInStringIndex[Using jdbc]
+    End time:    2017/08/28 19:52:44 (Duration: 25ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateLongIndex[Using jdbc]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+19:52:44.503 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|280e7dac,name=1hgeqrl9qbn6pz6yfah30|280e7dac registered.
+19:52:44.503 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|280e7dac,name=1hgeqrl9qbn6pz6yfah30|280e7dac unregistered, in order to be reregistered after update.
+19:52:44.503 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|280e7dac,name=1hgeqrl9qbn6pz6yfah30|280e7dac registered.
+19:52:44.503 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@7b60d43a [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@de52f41a [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|219e4223, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@2ebd95dd [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|31cdf361, jdbcUrl -> jdbc:h2:mem:8f13b6a465334bfea4e4764347c86363, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|280e7dac, numHelperThreads -> 3 ]
+19:52:44.503 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@763e1623 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:52:44.503 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:52:44.503 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:52:44.503 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:52:44.518 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|280e7dac,name=1hgeqrl9qbn6pz6yfah30|280e7dac unregistered.
+19:52:44.518 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:52:44.518 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@2f9e22bd
+19:52:44.518 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@2f9e22bd
+19:52:44.518 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@2f9e22bd
+19:52:44.518 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@2f9e22bd
+19:52:44.518 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@4a20ed04
+19:52:44.518 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@4a20ed04
+19:52:44.518 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@4a20ed04
+19:52:44.518 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@4a20ed04
+19:52:44.518 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@253eb99a
+19:52:44.518 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@253eb99a
+19:52:44.518 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@253eb99a
+19:52:44.518 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@253eb99a
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateLongIndex[Using jdbc]
+    End time:    2017/08/28 19:52:44 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInDoubleIndex[Using jdbc]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+19:52:44.518 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|71732d1f,name=1hgeqrl9qbn6pz6yfah30|71732d1f registered.
+19:52:44.518 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|71732d1f,name=1hgeqrl9qbn6pz6yfah30|71732d1f unregistered, in order to be reregistered after update.
+19:52:44.518 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|71732d1f,name=1hgeqrl9qbn6pz6yfah30|71732d1f registered.
+19:52:44.518 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@dd178927 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@5df2ac1f [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|1a905df5, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@c75a096c [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|25b635ba, jdbcUrl -> jdbc:h2:mem:62bb7d1d973b4c80922348d008e716a9, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|71732d1f, numHelperThreads -> 3 ]
+19:52:44.518 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@f258679 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:52:44.518 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:52:44.518 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:52:44.518 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:52:44.541 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|71732d1f,name=1hgeqrl9qbn6pz6yfah30|71732d1f unregistered.
+19:52:44.541 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:52:44.541 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@23a83e6d
+19:52:44.541 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@23a83e6d
+19:52:44.541 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@23a83e6d
+19:52:44.541 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@23a83e6d
+19:52:44.541 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3e8222c4
+19:52:44.541 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3e8222c4
+19:52:44.541 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3e8222c4
+19:52:44.541 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3e8222c4
+19:52:44.541 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@112c401a
+19:52:44.541 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@112c401a
+19:52:44.541 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@112c401a
+19:52:44.541 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@112c401a
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInDoubleIndex[Using jdbc]
+    End time:    2017/08/28 19:52:44 (Duration: 23ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnDoubleIndex[Using jdbc]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+19:52:44.545 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2662dc05,name=1hgeqrl9qbn6pz6yfah30|2662dc05 registered.
+19:52:44.549 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2662dc05,name=1hgeqrl9qbn6pz6yfah30|2662dc05 unregistered, in order to be reregistered after update.
+19:52:44.549 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2662dc05,name=1hgeqrl9qbn6pz6yfah30|2662dc05 registered.
+19:52:44.549 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@ddaa7ae0 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@1de4bd30 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|776d756, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@1f23548 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|7dedd972, jdbcUrl -> jdbc:h2:mem:4a835dfd223e4bc4ba1085545897d375, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|2662dc05, numHelperThreads -> 3 ]
+19:52:44.549 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@742c727e config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:52:44.549 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:52:44.549 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:52:44.549 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:52:44.563 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|2662dc05,name=1hgeqrl9qbn6pz6yfah30|2662dc05 unregistered.
+19:52:44.563 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:52:44.563 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7c31bc1a
+19:52:44.563 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7c31bc1a
+19:52:44.563 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7c31bc1a
+19:52:44.563 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7c31bc1a
+19:52:44.563 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@331ad551
+19:52:44.563 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@331ad551
+19:52:44.563 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@331ad551
+19:52:44.563 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@331ad551
+19:52:44.563 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@455e5c89
+19:52:44.563 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@455e5c89
+19:52:44.563 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@455e5c89
+19:52:44.563 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@455e5c89
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnDoubleIndex[Using jdbc]
+    End time:    2017/08/28 19:52:44 (Duration: 21ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInLongIndex[Using jdbc]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+19:52:44.563 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4dba5f0b,name=1hgeqrl9qbn6pz6yfah30|4dba5f0b registered.
+19:52:44.563 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4dba5f0b,name=1hgeqrl9qbn6pz6yfah30|4dba5f0b unregistered, in order to be reregistered after update.
+19:52:44.563 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4dba5f0b,name=1hgeqrl9qbn6pz6yfah30|4dba5f0b registered.
+19:52:44.563 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@3ef34172 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@9a1ae917 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|50a1bf86, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@7f646cf4 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|2349e681, jdbcUrl -> jdbc:h2:mem:b7d2dca205384f22b8bddb315b376185, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|4dba5f0b, numHelperThreads -> 3 ]
+19:52:44.578 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@40360002 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:52:44.578 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:52:44.578 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:52:44.578 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:52:44.589 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4dba5f0b,name=1hgeqrl9qbn6pz6yfah30|4dba5f0b unregistered.
+19:52:44.589 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:52:44.589 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7c2519b4
+19:52:44.589 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7c2519b4
+19:52:44.589 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7c2519b4
+19:52:44.589 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7c2519b4
+19:52:44.589 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@10dd5e7
+19:52:44.589 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@10dd5e7
+19:52:44.589 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@10dd5e7
+19:52:44.589 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@10dd5e7
+19:52:44.589 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@41c09b83
+19:52:44.589 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@41c09b83
+19:52:44.589 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@41c09b83
+19:52:44.589 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@41c09b83
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInLongIndex[Using jdbc]
+    End time:    2017/08/28 19:52:44 (Duration: 26ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotQueryNonExistingIndex[Using jdbc]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+19:52:44.589 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|76d165c6,name=1hgeqrl9qbn6pz6yfah30|76d165c6 registered.
+19:52:44.589 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|76d165c6,name=1hgeqrl9qbn6pz6yfah30|76d165c6 unregistered, in order to be reregistered after update.
+19:52:44.589 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|76d165c6,name=1hgeqrl9qbn6pz6yfah30|76d165c6 registered.
+19:52:44.589 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@87e95506 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@4d807347 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|61233eb1, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@d103ee5b [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|76963dfb, jdbcUrl -> jdbc:h2:mem:be78d29884624b3f8b1bfbd404160fd4, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|76d165c6, numHelperThreads -> 3 ]
+19:52:44.589 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@223488dc config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:52:44.589 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:52:44.589 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:52:44.589 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:52:44.604 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|76d165c6,name=1hgeqrl9qbn6pz6yfah30|76d165c6 unregistered.
+19:52:44.604 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:52:44.604 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6afe0166
+19:52:44.604 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6afe0166
+19:52:44.604 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6afe0166
+19:52:44.604 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6afe0166
+19:52:44.604 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@633e61a
+19:52:44.604 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@633e61a
+19:52:44.604 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@633e61a
+19:52:44.604 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@633e61a
+19:52:44.604 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@47a29957
+19:52:44.604 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@47a29957
+19:52:44.604 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@47a29957
+19:52:44.604 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@47a29957
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotQueryNonExistingIndex[Using jdbc]
+    End time:    2017/08/28 19:52:44 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInLongIndex[Using chunked]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInLongIndex[Using chunked]
+    End time:    2017/08/28 19:52:44 (Duration: 360ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnLongIndex[Using chunked]
+    Start time:  2017/08/28 19:52:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnLongIndex[Using chunked]
+    End time:    2017/08/28 19:52:45 (Duration: 384ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInDoubleIndex[Using chunked]
+    Start time:  2017/08/28 19:52:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInDoubleIndex[Using chunked]
+    End time:    2017/08/28 19:52:45 (Duration: 378ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInStringIndex[Using chunked]
+    Start time:  2017/08/28 19:52:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInStringIndex[Using chunked]
+    End time:    2017/08/28 19:52:46 (Duration: 368ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateDoubleIndex[Using chunked]
+    Start time:  2017/08/28 19:52:46
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateDoubleIndex[Using chunked]
+    End time:    2017/08/28 19:52:46 (Duration: 231ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInStringIndex[Using chunked]
+    Start time:  2017/08/28 19:52:46
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInStringIndex[Using chunked]
+    End time:    2017/08/28 19:52:46 (Duration: 222ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateLongIndex[Using chunked]
+    Start time:  2017/08/28 19:52:46
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateLongIndex[Using chunked]
+    End time:    2017/08/28 19:52:46 (Duration: 147ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInDoubleIndex[Using chunked]
+    Start time:  2017/08/28 19:52:46
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInDoubleIndex[Using chunked]
+    End time:    2017/08/28 19:52:46 (Duration: 216ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnDoubleIndex[Using chunked]
+    Start time:  2017/08/28 19:52:46
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnDoubleIndex[Using chunked]
+    End time:    2017/08/28 19:52:47 (Duration: 253ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInLongIndex[Using chunked]
+    Start time:  2017/08/28 19:52:47
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInLongIndex[Using chunked]
+    End time:    2017/08/28 19:52:47 (Duration: 367ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotQueryNonExistingIndex[Using chunked]
+    Start time:  2017/08/28 19:52:47
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotQueryNonExistingIndex[Using chunked]
+    End time:    2017/08/28 19:52:47 (Duration: 237ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInLongIndex[Using mapdb]
+    Start time:  2017/08/28 19:52:47
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInLongIndex[Using mapdb]
+    End time:    2017/08/28 19:52:48 (Duration: 578ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnLongIndex[Using mapdb]
+    Start time:  2017/08/28 19:52:48
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnLongIndex[Using mapdb]
+    End time:    2017/08/28 19:52:49 (Duration: 683ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInDoubleIndex[Using mapdb]
+    Start time:  2017/08/28 19:52:49
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInDoubleIndex[Using mapdb]
+    End time:    2017/08/28 19:52:49 (Duration: 515ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInStringIndex[Using mapdb]
+    Start time:  2017/08/28 19:52:49
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInStringIndex[Using mapdb]
+    End time:    2017/08/28 19:52:49 (Duration: 400ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateDoubleIndex[Using mapdb]
+    Start time:  2017/08/28 19:52:49
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateDoubleIndex[Using mapdb]
+    End time:    2017/08/28 19:52:50 (Duration: 222ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInStringIndex[Using mapdb]
+    Start time:  2017/08/28 19:52:50
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInStringIndex[Using mapdb]
+    End time:    2017/08/28 19:52:50 (Duration: 515ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateLongIndex[Using mapdb]
+    Start time:  2017/08/28 19:52:50
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateLongIndex[Using mapdb]
+    End time:    2017/08/28 19:52:50 (Duration: 301ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInDoubleIndex[Using mapdb]
+    Start time:  2017/08/28 19:52:50
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInDoubleIndex[Using mapdb]
+    End time:    2017/08/28 19:52:51 (Duration: 584ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnDoubleIndex[Using mapdb]
+    Start time:  2017/08/28 19:52:51
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnDoubleIndex[Using mapdb]
+    End time:    2017/08/28 19:52:52 (Duration: 699ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInLongIndex[Using mapdb]
+    Start time:  2017/08/28 19:52:52
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInLongIndex[Using mapdb]
+    End time:    2017/08/28 19:52:52 (Duration: 564ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotQueryNonExistingIndex[Using mapdb]
+    Start time:  2017/08/28 19:52:52
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotQueryNonExistingIndex[Using mapdb]
+    End time:    2017/08/28 19:52:53 (Duration: 200ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInLongIndex[Using tupl]
+    Start time:  2017/08/28 19:52:53
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInLongIndex[Using tupl]
+    End time:    2017/08/28 19:52:53 (Duration: 138ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnLongIndex[Using tupl]
+    Start time:  2017/08/28 19:52:53
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnLongIndex[Using tupl]
+    End time:    2017/08/28 19:52:53 (Duration: 162ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInDoubleIndex[Using tupl]
+    Start time:  2017/08/28 19:52:53
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInDoubleIndex[Using tupl]
+    End time:    2017/08/28 19:52:53 (Duration: 153ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInStringIndex[Using tupl]
+    Start time:  2017/08/28 19:52:53
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForLongValueInStringIndex[Using tupl]
+    End time:    2017/08/28 19:52:53 (Duration: 181ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateDoubleIndex[Using tupl]
+    Start time:  2017/08/28 19:52:53
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateDoubleIndex[Using tupl]
+    End time:    2017/08/28 19:52:53 (Duration: 119ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInStringIndex[Using tupl]
+    Start time:  2017/08/28 19:52:53
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInStringIndex[Using tupl]
+    End time:    2017/08/28 19:52:54 (Duration: 246ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateLongIndex[Using tupl]
+    Start time:  2017/08/28 19:52:54
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canCreateLongIndex[Using tupl]
+    End time:    2017/08/28 19:52:54 (Duration: 116ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInDoubleIndex[Using tupl]
+    Start time:  2017/08/28 19:52:54
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForStringValueInDoubleIndex[Using tupl]
+    End time:    2017/08/28 19:52:54 (Duration: 269ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnDoubleIndex[Using tupl]
+    Start time:  2017/08/28 19:52:54
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: canExecuteBasicQueryOnDoubleIndex[Using tupl]
+    End time:    2017/08/28 19:52:54 (Duration: 253ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInLongIndex[Using tupl]
+    Start time:  2017/08/28 19:52:54
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotSearchForDoubleValueInLongIndex[Using tupl]
+    End time:    2017/08/28 19:52:54 (Duration: 278ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotQueryNonExistingIndex[Using tupl]
+    Start time:  2017/08/28 19:52:54
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  NumericIndexingTest
+    Test method: cannotQueryNonExistingIndex[Using tupl]
+    End time:    2017/08/28 19:52:55 (Duration: 100ms)
+================================================================================
+
+
+
+19:52:55.043 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:52:55.043 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

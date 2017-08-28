@@ -1,9 +1,7 @@
 package org.chronos.chronodb.internal.impl.query.optimizer;
 
-import org.chronos.chronodb.api.query.Condition;
 import org.chronos.chronodb.internal.api.query.ChronoDBQuery;
 import org.chronos.chronodb.internal.api.query.QueryOptimizer;
-import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.chronodb.internal.impl.query.parser.ast.BinaryOperatorElement;
 import org.chronos.chronodb.internal.impl.query.parser.ast.BinaryQueryOperator;
 import org.chronos.chronodb.internal.impl.query.parser.ast.ChronoDBQueryImpl;
@@ -50,11 +48,7 @@ public class StandardQueryOptimizer implements QueryOptimizer {
 	private QueryElement getNegated(final QueryElement original) {
 		if (original instanceof WhereElement) {
 			// negate the condition, eliminate the parent "not"
-			String indexName = ((WhereElement) original).getIndexName();
-			Condition condition = ((WhereElement) original).getCondition();
-			TextMatchMode matchMode = ((WhereElement) original).getMatchMode();
-			String comparisonValue = ((WhereElement) original).getComparisonValue();
-			WhereElement negatedWhere = new WhereElement(indexName, condition.getNegated(), matchMode, comparisonValue);
+			WhereElement<?, ?> negatedWhere = ((WhereElement<?, ?>) original).negate();
 			return negatedWhere;
 		} else if (original instanceof NotElement) {
 			// double negation elimination: use what's inside the inner "not" and discard both not operators

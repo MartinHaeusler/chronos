@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<BugCollection version="3.0.0" sequence="0" timestamp="1503943225175" analysisTimestamp="1503943225298" release="">
+  <Project projectName="">
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\base\AllBackendsTest$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\base\AllBackendsTest$DontRunWithBackend.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\base\AllBackendsTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\base\AllChronoDBBackendsTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\base\ChronoDBUnitTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\base\InstantiateChronosWith.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\base\InstantiateChronosWithRepeatable.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\base\TestMethodExtraPropertiesTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\builder\ChronoDBConfigurationTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\builder\ChronoDBCreationTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\cache\CachedTemporalKeyValueStoreTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\cache\CacheGetResultTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\cache\mosaic\MosaicCacheTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\cache\mosaic\MosaicRowTest$MosaicRowTestSpy.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\cache\mosaic\MosaicRowTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\cache\MutableValuesCacheTest$MyMutableObject.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\cache\MutableValuesCacheTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\cache\query\QueryCacheTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\cache\util\lru\UsageRegistryTest$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\cache\util\lru\UsageRegistryTest$AssertElementsRemovedListener.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\cache\util\lru\UsageRegistryTest$ElementRemoveCountListener.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\cache\util\lru\UsageRegistryTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\branching\BranchCreationTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\branching\BranchSecondaryIndexingTest$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\branching\BranchSecondaryIndexingTest$TestObject.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\branching\BranchSecondaryIndexingTest$TestObjectNameIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\branching\BranchSecondaryIndexingTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\chunkdb\BranchChunkManagerTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\chunkdb\GlobalChunkManagerTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\commitmetadata\BasicCommitMetadataTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\commitmetadata\CountCommitsTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\commitmetadata\GetCommitsBeforeAfterAroundTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\commitmetadata\GetCommitsBetweenPagedTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\commitmetadata\GetCommitsBetweenTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\dbdump\DBDumpTest$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\dbdump\DBDumpTest$ExternalizablePerson.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\dbdump\DBDumpTest$FirstNameIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\dbdump\DBDumpTest$LastNameIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\dbdump\DBDumpTest$NicknameIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\dbdump\DBDumpTest$Person.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\dbdump\DBDumpTest$PersonDefaultConverter.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\dbdump\DBDumpTest$PersonDump.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\dbdump\DBDumpTest$PersonExternalizer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\dbdump\DBDumpTest$PersonIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\dbdump\DBDumpTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\dbdump\DumpUtilsTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\diff\IndexingUtilsTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\diff\MutableIndexValueDiffTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\DocumentListBuilderTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\IndexDocumentDeleteTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\IndexingTest$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\IndexingTest$DummyDoubleIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\IndexingTest$DummyLongIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\IndexingTest$DummyStringIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\IndexingTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\IndexMatchModesTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\IndexOverwriteTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\MultiValueIndexingTest$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\MultiValueIndexingTest$TestBean.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\MultiValueIndexingTest$TestBeanIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\MultiValueIndexingTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\NegatedIndexQueryTest$TestBean.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\NegatedIndexQueryTest$TestBeanA.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\NegatedIndexQueryTest$TestBeanB.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\NegatedIndexQueryTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\NumericIndexingTest$DoubleBean.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\NumericIndexingTest$LongBean.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\NumericIndexingTest$StringBean.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\NumericIndexingTest$TestBean.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\indexing\NumericIndexingTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\keyspace\KeyspaceTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\maintenance\rollover\RolloverTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\migration\Chronos0_5_7_to_0_6_0_MigrationTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\query\BasicQueryTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\query\QueryReuseTest$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\query\QueryReuseTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\reopening\ChronoDBReopeningTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\safetyfeatures\BlindOverwriteProtectionTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\safetyfeatures\DuplicateVersionEliminationTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\safetyfeatures\RollbackToWALTest$CommitMode.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\safetyfeatures\RollbackToWALTest$ThreadMode.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\safetyfeatures\RollbackToWALTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\transaction\BasicTransactionTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\transaction\IncrementalCommitPerformanceTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\transaction\IncrementalCommitTest$1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\transaction\IncrementalCommitTest$FirstNameIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\transaction\IncrementalCommitTest$LastNameIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\transaction\IncrementalCommitTest$Person.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\transaction\IncrementalCommitTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\transaction\PutOptionsTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\transaction\RollbackTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\transaction\TransactionConfigurationTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\versioning\GetModifiedKeysTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\versioning\RangedGetTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\engine\versioning\VersioningTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\jdbc\JdbcUtilsTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\jdbc\NamedParameterStatementTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\manual\ManualOutOfMemoryErrorTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\manual\ManualProcessKillTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\migration\chainA\MigrationA1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\migration\chainA\MigrationA2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\migration\chainA\MigrationA3.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\migration\chainB\MigrationB1.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\migration\chainB\MigrationB2.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\migration\MigrationChainTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\query\condition\DoubleQueryConditionEqualityToleranceTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\query\condition\DoubleQueryConditionTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\query\condition\LongQueryConditionTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\query\condition\TextualQueryConditionTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\query\optimizer\ConditionNegationTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\query\parser\StandardQueryParserTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\settings\ChronoDBConfigurationTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\settings\ChronoDBPropertiesFileTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\temporal\InverseUnqualifiedTemporalKeyTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\temporal\PeriodTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\temporal\TemporalKeyTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\temporal\UnqualifiedTemporalKeyTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\IteratorUtilsTest.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\KillSwitchCollection.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\model\payload\NamedPayload.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\model\payload\NamedPayloadNameIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\model\person\FavoriteColorIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\model\person\FirstNameIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\model\person\HobbiesIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\model\person\LastNameIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\model\person\Person.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\model\person\PersonGenerator.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\model\person\PersonIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\model\person\PetsIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\ReflectiveDoubleIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\ReflectiveIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\ReflectiveLongIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\ReflectiveStringIndexer.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\util\TestUtils.class</Jar>
+    <Jar>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\test\org\chronos\chronodb\test\_suite\ChronoDBTestSuite.class</Jar>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\classes\main</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.chronodb\build\resources\main</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\19.0\6ce200f6b23222af3d8abb6b6459e6c44f4bb0e9\guava-19.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-lang3\3.4\5fe28b9518e58819180a43a850fbc0dd24b7c050\commons-lang3-3.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-collections4\4.1\a4cf4688fe1c7e3a63aa636cc96d013af537768e\commons-collections4-4.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-io\commons-io\2.4\b1b6ea3b7e4aa4f492509a4952029cd8e48019ad\commons-io-2.4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-configuration\commons-configuration\1.10\2b36e4adfb66d966c5aef2d73deb6be716389dc9\commons-configuration-1.10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-api\1.7.12\8e20852d05222dc286bf1c71d78d0531e177c317\slf4j-api-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\jcl-over-slf4j\1.7.12\adef7a9e1263298255fdb5cb107ff171d07c82f3\jcl-over-slf4j-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.slf4j\jul-to-slf4j\1.7.12\8811e2e9ab9055e557598dc9aedc64fd43e0ab20\jul-to-slf4j-1.7.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-classic\1.1.3\d90276fff414f06cb375f2057f6778cd63c6082f\logback-classic-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.common\build\libs\org.chronos.common-0.7.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.mapdb\mapdb\2.0-beta13\42ef2ab0f51f72ec1da2aa3c2d6b2d232b492347\mapdb-2.0-beta13.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-core\5.5.0\a74fd869bb5ad7fe6b4cd29df9543a34aea81164\lucene-core-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-analyzers-common\5.5.0\1e0e8243a4410be20c34683034fafa7bb52e55cc\lucene-analyzers-common-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queryparser\5.5.0\fddc49725b562fd48dff0cff004336ad2a090a4\lucene-queryparser-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queries\5.5.0\60ca161c1dd5f127907423b6f039b846fb713de0\lucene-queries-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.mchange\c3p0\0.9.5.1\69b2af361fb6a0feb65ccc20c29d949566f0a3ba\c3p0-0.9.5.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.h2database\h2\1.4.187\f6b109788d196430458309ea28ce9a77830b3ed8\h2-1.4.187.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.cojen\tupl\1.3.11\b28c5d4fec92f4619a38fa818e56172abb22a745\tupl-1.3.11.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\kryo\3.0.3\1ebca99f633ef31484176a727093e78c7fa43e7\kryo-3.0.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.thoughtworks.xstream\xstream\1.4.9\c43f6e6bfa79b56e04a8898a923c3cf7144dd460\xstream-1.4.9.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\junit\junit\4.12\2973d150c0dc1fefe998f834810d68f278ea58ec\junit-4.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>D:\git\chronosGithub\chronos\org.chronos.common.testing\build\libs\org.chronos.common.testing-0.7.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-lang\commons-lang\2.6\ce1edb914c94ebc388f086c6827e8bdeec71ac2\commons-lang-2.6.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.1.1\5043bfebc3db072ed80fbd362e7caf00e885d8ae\commons-logging-1.1.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-core\1.1.3\e3c02049f2dbbc764681b40094ecf0dcbc99b157\logback-core-1.1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-sandbox\5.5.0\b7da8e187acd6e4d7781ba41fac8b9082dd27409\lucene-sandbox-5.5.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.mchange\mchange-commons-java\0.2.10\1f1f90ddc403e60e0089756f04119948f6a49a04\mchange-commons-java-0.2.10.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna-platform\4.4.0\f396b0ceb7ababb8b4a5ea25e6742ced81e3d86f\jna-platform-4.4.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\reflectasm\1.10.1\515402cd542ab967a1b5028b4dee1e1800db205b\reflectasm-1.10.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\com.esotericsoftware\minlog\1.3.0\ff07b5f1b01d2f92bb00a337f9a94873712f0827\minlog-1.3.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.objenesis\objenesis\2.1\87c0ea803b69252868d09308b4618f766f135a96\objenesis-2.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\xmlpull\xmlpull\1.1.3.1\2b8e230d2ab644e4ecaa94db7cdedbc40c805dfa\xmlpull-1.1.3.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\xpp3\xpp3_min\1.1.4c\19d4e90b43059058f6e056f794f0ea4030d60b86\xpp3_min-1.1.4c.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-core\1.3\42a25dc3219429f0e5d060061f71acb49bf010a0\hamcrest-core-1.3.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna\4.4.0\cb208278274bf12ebdb56c61bd7407e6f774d65a\jna-4.4.0.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\Martin\.gradle\caches\modules-2\files-2.1\org.ow2.asm\asm\5.0.3\dcc2193db20e19e1feca8b1240dbbc4e190824fa\asm-5.0.3.jar</AuxClasspathEntry>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\base\AllBackendsTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\base\AllChronoDBBackendsTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\base\ChronoDBUnitTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\base\InstantiateChronosWith.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\base\InstantiateChronosWithRepeatable.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\base\TestMethodExtraPropertiesTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\builder\ChronoDBConfigurationTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\builder\ChronoDBCreationTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\cache\CachedTemporalKeyValueStoreTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\cache\CacheGetResultTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\cache\mosaic\MosaicCacheTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\cache\mosaic\MosaicRowTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\cache\MutableValuesCacheTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\cache\query\QueryCacheTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\cache\util\lru\UsageRegistryTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\branching\BranchCreationTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\branching\BranchDeletionTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\branching\BranchSecondaryIndexingTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\chunkdb\BranchChunkManagerTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\chunkdb\GlobalChunkManagerTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\commitmetadata\BasicCommitMetadataTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\commitmetadata\CountCommitsTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\commitmetadata\GetCommitsBeforeAfterAroundTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\commitmetadata\GetCommitsBetweenPagedTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\commitmetadata\GetCommitsBetweenTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\dbdump\DBDumpTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\dbdump\DumpUtilsTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\indexing\diff\IndexingUtilsTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\indexing\diff\MutableIndexValueDiffTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\indexing\DocumentListBuilderTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\indexing\IndexDocumentDeleteTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\indexing\IndexingTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\indexing\IndexMatchModesTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\indexing\IndexOverwriteTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\indexing\MultiValueIndexingTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\indexing\NegatedIndexQueryTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\indexing\NumericIndexingTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\keyspace\KeyspaceTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\maintenance\rollover\RolloverTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\migration\Chronos0_5_7_to_0_6_0_MigrationTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\query\BasicQueryTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\query\QueryReuseTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\reopening\ChronoDBReopeningTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\safetyfeatures\BlindOverwriteProtectionTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\safetyfeatures\DuplicateVersionEliminationTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\safetyfeatures\RollbackToWALTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\transaction\BasicTransactionTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\transaction\IncrementalCommitPerformanceTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\transaction\IncrementalCommitTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\transaction\PutOptionsTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\transaction\RollbackTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\transaction\TransactionConfigurationTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\versioning\GetModifiedKeysTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\versioning\RangedGetTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\engine\versioning\VersioningTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\jdbc\JdbcUtilsTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\jdbc\NamedParameterStatementTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\manual\ManualOutOfMemoryErrorTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\manual\ManualProcessKillTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\migration\chainA\MigrationA1.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\migration\chainA\MigrationA2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\migration\chainA\MigrationA3.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\migration\chainB\MigrationB1.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\migration\chainB\MigrationB2.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\migration\MigrationChainTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\query\condition\DoubleQueryConditionEqualityToleranceTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\query\condition\DoubleQueryConditionTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\query\condition\LongQueryConditionTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\query\condition\TextualQueryConditionTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\query\optimizer\ConditionNegationTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\query\parser\StandardQueryParserTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\settings\ChronoDBConfigurationTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\settings\ChronoDBPropertiesFileTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\temporal\InverseUnqualifiedTemporalKeyTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\temporal\PeriodTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\temporal\TemporalKeyTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\temporal\UnqualifiedTemporalKeyTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\IteratorUtilsTest.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\KillSwitchCollection.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\model\payload\NamedPayload.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\model\payload\NamedPayloadNameIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\model\person\FavoriteColorIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\model\person\FirstNameIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\model\person\HobbiesIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\model\person\LastNameIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\model\person\Person.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\model\person\PersonGenerator.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\model\person\PersonIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\model\person\PetsIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\ReflectiveDoubleIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\ReflectiveIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\ReflectiveLongIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\ReflectiveStringIndexer.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\util\TestUtils.java</SrcDir>
+    <SrcDir>D:\git\chronosGithub\chronos\org.chronos.chronodb\src\test\java\org\chronos\chronodb\test\_suite\ChronoDBTestSuite.java</SrcDir>
+  </Project>
+  <BugInstance type="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE" priority="2" rank="16" abbrev="RV" category="BAD_PRACTICE">
+    <Class classname="org.chronos.chronodb.test.engine.chunkdb.BranchChunkManagerTest">
+      <SourceLine classname="org.chronos.chronodb.test.engine.chunkdb.BranchChunkManagerTest" start="24" end="462" sourcefile="BranchChunkManagerTest.java" sourcepath="org/chronos/chronodb/test/engine/chunkdb/BranchChunkManagerTest.java"/>
+    </Class>
+    <Method classname="org.chronos.chronodb.test.engine.chunkdb.BranchChunkManagerTest" name="createBranchMetadataFile" signature="(Ljava/io/File;)V" isStatic="false">
+      <SourceLine classname="org.chronos.chronodb.test.engine.chunkdb.BranchChunkManagerTest" start="456" end="462" startBytecode="0" endBytecode="156" sourcefile="BranchChunkManagerTest.java" sourcepath="org/chronos/chronodb/test/engine/chunkdb/BranchChunkManagerTest.java"/>
+    </Method>
+    <Method classname="java.io.File" name="createNewFile" signature="()Z" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.File" start="1007" end="1012" startBytecode="0" endBytecode="98" sourcefile="File.java" sourcepath="java/io/File.java"/>
+    </Method>
+    <SourceLine classname="org.chronos.chronodb.test.engine.chunkdb.BranchChunkManagerTest" start="457" end="457" startBytecode="12" endBytecode="12" sourcefile="BranchChunkManagerTest.java" sourcepath="org/chronos/chronodb/test/engine/chunkdb/BranchChunkManagerTest.java"/>
+  </BugInstance>
+  <BugInstance type="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE" priority="2" rank="16" abbrev="RV" category="BAD_PRACTICE">
+    <Class classname="org.chronos.chronodb.test.engine.dbdump.DBDumpTest">
+      <SourceLine classname="org.chronos.chronodb.test.engine.dbdump.DBDumpTest" start="35" end="708" sourcefile="DBDumpTest.java" sourcepath="org/chronos/chronodb/test/engine/dbdump/DBDumpTest.java"/>
+    </Class>
+    <Method classname="org.chronos.chronodb.test.engine.dbdump.DBDumpTest" name="canCreateDumpFileIfNotExists" signature="()V" isStatic="false">
+      <SourceLine classname="org.chronos.chronodb.test.engine.dbdump.DBDumpTest" start="43" end="66" startBytecode="0" endBytecode="248" sourcefile="DBDumpTest.java" sourcepath="org/chronos/chronodb/test/engine/dbdump/DBDumpTest.java"/>
+    </Method>
+    <Method classname="java.io.File" name="delete" signature="()Z" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.File" start="1034" end="1041" startBytecode="0" endBytecode="91" sourcefile="File.java" sourcepath="java/io/File.java"/>
+    </Method>
+    <SourceLine classname="org.chronos.chronodb.test.engine.dbdump.DBDumpTest" start="53" end="53" startBytecode="72" endBytecode="72" sourcefile="DBDumpTest.java" sourcepath="org/chronos/chronodb/test/engine/dbdump/DBDumpTest.java"/>
+    <SourceLine classname="org.chronos.chronodb.test.engine.dbdump.DBDumpTest" start="65" end="65" startBytecode="120" endBytecode="120" sourcefile="DBDumpTest.java" sourcepath="org/chronos/chronodb/test/engine/dbdump/DBDumpTest.java" role="SOURCE_LINE_ANOTHER_INSTANCE"/>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" rank="17" abbrev="DLS" category="STYLE">
+    <Class classname="org.chronos.chronodb.test.engine.transaction.BasicTransactionTest">
+      <SourceLine classname="org.chronos.chronodb.test.engine.transaction.BasicTransactionTest" start="16" end="147" sourcefile="BasicTransactionTest.java" sourcepath="org/chronos/chronodb/test/engine/transaction/BasicTransactionTest.java"/>
+    </Class>
+    <Method classname="org.chronos.chronodb.test.engine.transaction.BasicTransactionTest" name="cantOpenTransactionIntoTheFuture" signature="()V" isStatic="false">
+      <SourceLine classname="org.chronos.chronodb.test.engine.transaction.BasicTransactionTest" start="31" end="42" startBytecode="0" endBytecode="26" sourcefile="BasicTransactionTest.java" sourcepath="org/chronos/chronodb/test/engine/transaction/BasicTransactionTest.java"/>
+    </Method>
+    <LocalVariable name="tx" register="2" pc="52" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="org.chronos.chronodb.test.engine.transaction.BasicTransactionTest" start="37" end="37" startBytecode="51" endBytecode="51" sourcefile="BasicTransactionTest.java" sourcepath="org/chronos/chronodb/test/engine/transaction/BasicTransactionTest.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.METHOD_RESULT" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="tx"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.TWO_STORES_MULTIPLE_LOADS" value="true"/>
+  </BugInstance>
+  <BugInstance type="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE" priority="2" rank="16" abbrev="RV" category="BAD_PRACTICE">
+    <Class classname="org.chronos.chronodb.test.manual.ManualOutOfMemoryErrorTest">
+      <SourceLine classname="org.chronos.chronodb.test.manual.ManualOutOfMemoryErrorTest" start="24" end="176" sourcefile="ManualOutOfMemoryErrorTest.java" sourcepath="org/chronos/chronodb/test/manual/ManualOutOfMemoryErrorTest.java"/>
+    </Class>
+    <Method classname="org.chronos.chronodb.test.manual.ManualOutOfMemoryErrorTest" name="main" signature="([Ljava/lang/String;)V" isStatic="true">
+      <SourceLine classname="org.chronos.chronodb.test.manual.ManualOutOfMemoryErrorTest" start="31" end="66" startBytecode="0" endBytecode="475" sourcefile="ManualOutOfMemoryErrorTest.java" sourcepath="org/chronos/chronodb/test/manual/ManualOutOfMemoryErrorTest.java"/>
+    </Method>
+    <Method classname="java.io.File" name="createNewFile" signature="()Z" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.File" start="1007" end="1012" startBytecode="0" endBytecode="98" sourcefile="File.java" sourcepath="java/io/File.java"/>
+    </Method>
+    <SourceLine classname="org.chronos.chronodb.test.manual.ManualOutOfMemoryErrorTest" start="50" end="50" startBytecode="176" endBytecode="176" sourcefile="ManualOutOfMemoryErrorTest.java" sourcepath="org/chronos/chronodb/test/manual/ManualOutOfMemoryErrorTest.java"/>
+  </BugInstance>
+  <BugInstance type="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE" priority="2" rank="16" abbrev="RV" category="BAD_PRACTICE">
+    <Class classname="org.chronos.chronodb.test.manual.ManualProcessKillTest">
+      <SourceLine classname="org.chronos.chronodb.test.manual.ManualProcessKillTest" start="22" end="179" sourcefile="ManualProcessKillTest.java" sourcepath="org/chronos/chronodb/test/manual/ManualProcessKillTest.java"/>
+    </Class>
+    <Method classname="org.chronos.chronodb.test.manual.ManualProcessKillTest" name="main" signature="([Ljava/lang/String;)V" isStatic="true">
+      <SourceLine classname="org.chronos.chronodb.test.manual.ManualProcessKillTest" start="29" end="76" startBytecode="0" endBytecode="589" sourcefile="ManualProcessKillTest.java" sourcepath="org/chronos/chronodb/test/manual/ManualProcessKillTest.java"/>
+    </Method>
+    <Method classname="java.io.File" name="createNewFile" signature="()Z" isStatic="false" role="METHOD_CALLED">
+      <SourceLine classname="java.io.File" start="1007" end="1012" startBytecode="0" endBytecode="98" sourcefile="File.java" sourcepath="java/io/File.java"/>
+    </Method>
+    <SourceLine classname="org.chronos.chronodb.test.manual.ManualProcessKillTest" start="46" end="46" startBytecode="140" endBytecode="140" sourcefile="ManualProcessKillTest.java" sourcepath="org/chronos/chronodb/test/manual/ManualProcessKillTest.java"/>
+  </BugInstance>
+  <Errors errors="0" missingClasses="0"></Errors>
+  <FindBugsSummary timestamp="Mon, 28 Aug 2017 20:00:25 +0200" total_classes="135" referenced_classes="412" total_bugs="5" total_size="8516" num_packages="34" java_version="1.8.0_74" vm_version="25.74-b02" cpu_seconds="29.59" clock_seconds="3.93" peak_mbytes="495.64" alloc_mbytes="7264.00" gc_seconds="0.17" priority_2="5">
+    <PackageStats package="org.chronos.chronodb.test._suite" total_bugs="0" total_types="1" total_size="3">
+      <ClassStats class="org.chronos.chronodb.test._suite.ChronoDBTestSuite" sourceFile="ChronoDBTestSuite.java" interface="false" size="3" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.base" total_bugs="0" total_types="8" total_size="224">
+      <ClassStats class="org.chronos.chronodb.test.base.AllBackendsTest" sourceFile="AllBackendsTest.java" interface="false" size="144" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.base.AllBackendsTest$1" sourceFile="AllBackendsTest.java" interface="false" size="4" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.base.AllBackendsTest$DontRunWithBackend" sourceFile="AllBackendsTest.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.base.AllChronoDBBackendsTest" sourceFile="AllChronoDBBackendsTest.java" interface="false" size="52" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.base.ChronoDBUnitTest" sourceFile="ChronoDBUnitTest.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.base.InstantiateChronosWith" sourceFile="InstantiateChronosWith.java" interface="true" size="3" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.base.InstantiateChronosWithRepeatable" sourceFile="InstantiateChronosWithRepeatable.java" interface="true" size="2" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.base.TestMethodExtraPropertiesTest" sourceFile="TestMethodExtraPropertiesTest.java" interface="false" size="9" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.builder" total_bugs="0" total_types="2" total_size="60">
+      <ClassStats class="org.chronos.chronodb.test.builder.ChronoDBConfigurationTest" sourceFile="ChronoDBConfigurationTest.java" interface="false" size="53" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.builder.ChronoDBCreationTest" sourceFile="ChronoDBCreationTest.java" interface="false" size="7" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.cache" total_bugs="0" total_types="4" total_size="176">
+      <ClassStats class="org.chronos.chronodb.test.cache.CacheGetResultTest" sourceFile="CacheGetResultTest.java" interface="false" size="46" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.cache.CachedTemporalKeyValueStoreTest" sourceFile="CachedTemporalKeyValueStoreTest.java" interface="false" size="79" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.cache.MutableValuesCacheTest" sourceFile="MutableValuesCacheTest.java" interface="false" size="37" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.cache.MutableValuesCacheTest$MyMutableObject" sourceFile="MutableValuesCacheTest.java" interface="false" size="14" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.cache.mosaic" total_bugs="0" total_types="3" total_size="245">
+      <ClassStats class="org.chronos.chronodb.test.cache.mosaic.MosaicCacheTest" sourceFile="MosaicCacheTest.java" interface="false" size="132" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.cache.mosaic.MosaicRowTest" sourceFile="MosaicRowTest.java" interface="false" size="107" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.cache.mosaic.MosaicRowTest$MosaicRowTestSpy" sourceFile="MosaicRowTest.java" interface="false" size="6" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.cache.query" total_bugs="0" total_types="1" total_size="33">
+      <ClassStats class="org.chronos.chronodb.test.cache.query.QueryCacheTest" sourceFile="QueryCacheTest.java" interface="false" size="33" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.cache.util.lru" total_bugs="0" total_types="4" total_size="181">
+      <ClassStats class="org.chronos.chronodb.test.cache.util.lru.UsageRegistryTest" sourceFile="UsageRegistryTest.java" interface="false" size="150" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.cache.util.lru.UsageRegistryTest$1" sourceFile="UsageRegistryTest.java" interface="false" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.cache.util.lru.UsageRegistryTest$AssertElementsRemovedListener" sourceFile="UsageRegistryTest.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.cache.util.lru.UsageRegistryTest$ElementRemoveCountListener" sourceFile="UsageRegistryTest.java" interface="false" size="11" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.branching" total_bugs="0" total_types="5" total_size="329">
+      <ClassStats class="org.chronos.chronodb.test.engine.branching.BranchCreationTest" sourceFile="BranchCreationTest.java" interface="false" size="240" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest" sourceFile="BranchSecondaryIndexingTest.java" interface="false" size="68" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest$1" sourceFile="BranchSecondaryIndexingTest.java" interface="false" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest$TestObject" sourceFile="BranchSecondaryIndexingTest.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.branching.BranchSecondaryIndexingTest$TestObjectNameIndexer" sourceFile="BranchSecondaryIndexingTest.java" interface="false" size="9" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.chunkdb" total_bugs="1" total_types="2" total_size="297" priority_2="1">
+      <ClassStats class="org.chronos.chronodb.test.engine.chunkdb.BranchChunkManagerTest" sourceFile="BranchChunkManagerTest.java" interface="false" size="227" bugs="1" priority_2="1"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.chunkdb.GlobalChunkManagerTest" sourceFile="GlobalChunkManagerTest.java" interface="false" size="70" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.commitmetadata" total_bugs="0" total_types="5" total_size="1016">
+      <ClassStats class="org.chronos.chronodb.test.engine.commitmetadata.BasicCommitMetadataTest" sourceFile="BasicCommitMetadataTest.java" interface="false" size="74" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.commitmetadata.CountCommitsTest" sourceFile="CountCommitsTest.java" interface="false" size="61" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBeforeAfterAroundTest" sourceFile="GetCommitsBeforeAfterAroundTest.java" interface="false" size="638" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" sourceFile="GetCommitsBetweenPagedTest.java" interface="false" size="155" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenTest" sourceFile="GetCommitsBetweenTest.java" interface="false" size="88" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.dbdump" total_bugs="1" total_types="12" total_size="617" priority_2="1">
+      <ClassStats class="org.chronos.chronodb.test.engine.dbdump.DBDumpTest" sourceFile="DBDumpTest.java" interface="false" size="397" bugs="1" priority_2="1"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.dbdump.DBDumpTest$1" sourceFile="DBDumpTest.java" interface="false" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.dbdump.DBDumpTest$ExternalizablePerson" sourceFile="DBDumpTest.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.dbdump.DBDumpTest$FirstNameIndexer" sourceFile="DBDumpTest.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.dbdump.DBDumpTest$LastNameIndexer" sourceFile="DBDumpTest.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.dbdump.DBDumpTest$NicknameIndexer" sourceFile="DBDumpTest.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.dbdump.DBDumpTest$Person" sourceFile="DBDumpTest.java" interface="false" size="61" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.dbdump.DBDumpTest$PersonDefaultConverter" sourceFile="DBDumpTest.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.dbdump.DBDumpTest$PersonDump" sourceFile="DBDumpTest.java" interface="false" size="30" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.dbdump.DBDumpTest$PersonExternalizer" sourceFile="DBDumpTest.java" interface="false" size="19" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.dbdump.DBDumpTest$PersonIndexer" sourceFile="DBDumpTest.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.dbdump.DumpUtilsTest" sourceFile="DumpUtilsTest.java" interface="false" size="55" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.indexing" total_bugs="0" total_types="22" total_size="1062">
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.DocumentListBuilderTest" sourceFile="DocumentListBuilderTest.java" interface="false" size="48" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.IndexDocumentDeleteTest" sourceFile="IndexDocumentDeleteTest.java" interface="false" size="68" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.IndexMatchModesTest" sourceFile="IndexMatchModesTest.java" interface="false" size="459" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.IndexOverwriteTest" sourceFile="IndexOverwriteTest.java" interface="false" size="29" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.IndexingTest" sourceFile="IndexingTest.java" interface="false" size="107" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.IndexingTest$1" sourceFile="IndexingTest.java" interface="false" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.IndexingTest$DummyDoubleIndexer" sourceFile="IndexingTest.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.IndexingTest$DummyLongIndexer" sourceFile="IndexingTest.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.IndexingTest$DummyStringIndexer" sourceFile="IndexingTest.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.MultiValueIndexingTest" sourceFile="MultiValueIndexingTest.java" interface="false" size="67" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.MultiValueIndexingTest$1" sourceFile="MultiValueIndexingTest.java" interface="false" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.MultiValueIndexingTest$TestBean" sourceFile="MultiValueIndexingTest.java" interface="false" size="13" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.MultiValueIndexingTest$TestBeanIndexer" sourceFile="MultiValueIndexingTest.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.NegatedIndexQueryTest" sourceFile="NegatedIndexQueryTest.java" interface="false" size="23" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.NegatedIndexQueryTest$TestBean" sourceFile="NegatedIndexQueryTest.java" interface="false" size="12" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.NegatedIndexQueryTest$TestBeanA" sourceFile="NegatedIndexQueryTest.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.NegatedIndexQueryTest$TestBeanB" sourceFile="NegatedIndexQueryTest.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest" sourceFile="NumericIndexingTest.java" interface="false" size="146" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest$DoubleBean" sourceFile="NumericIndexingTest.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest$LongBean" sourceFile="NumericIndexingTest.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest$StringBean" sourceFile="NumericIndexingTest.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.NumericIndexingTest$TestBean" sourceFile="NumericIndexingTest.java" interface="false" size="12" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.indexing.diff" total_bugs="0" total_types="2" total_size="320">
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.diff.IndexingUtilsTest" sourceFile="IndexingUtilsTest.java" interface="false" size="180" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" sourceFile="MutableIndexValueDiffTest.java" interface="false" size="140" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.keyspace" total_bugs="0" total_types="1" total_size="55">
+      <ClassStats class="org.chronos.chronodb.test.engine.keyspace.KeyspaceTest" sourceFile="KeyspaceTest.java" interface="false" size="55" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.maintenance.rollover" total_bugs="0" total_types="1" total_size="321">
+      <ClassStats class="org.chronos.chronodb.test.engine.maintenance.rollover.RolloverTest" sourceFile="RolloverTest.java" interface="false" size="321" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.migration" total_bugs="0" total_types="1" total_size="27">
+      <ClassStats class="org.chronos.chronodb.test.engine.migration.Chronos0_5_7_to_0_6_0_MigrationTest" sourceFile="Chronos0_5_7_to_0_6_0_MigrationTest.java" interface="false" size="27" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.query" total_bugs="0" total_types="3" total_size="157">
+      <ClassStats class="org.chronos.chronodb.test.engine.query.BasicQueryTest" sourceFile="BasicQueryTest.java" interface="false" size="117" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.query.QueryReuseTest" sourceFile="QueryReuseTest.java" interface="false" size="32" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.query.QueryReuseTest$1" sourceFile="QueryReuseTest.java" interface="false" size="8" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.reopening" total_bugs="0" total_types="1" total_size="87">
+      <ClassStats class="org.chronos.chronodb.test.engine.reopening.ChronoDBReopeningTest" sourceFile="ChronoDBReopeningTest.java" interface="false" size="87" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.safetyfeatures" total_bugs="0" total_types="5" total_size="252">
+      <ClassStats class="org.chronos.chronodb.test.engine.safetyfeatures.BlindOverwriteProtectionTest" sourceFile="BlindOverwriteProtectionTest.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.safetyfeatures.DuplicateVersionEliminationTest" sourceFile="DuplicateVersionEliminationTest.java" interface="false" size="20" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.safetyfeatures.RollbackToWALTest" sourceFile="RollbackToWALTest.java" interface="false" size="197" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.safetyfeatures.RollbackToWALTest$CommitMode" sourceFile="RollbackToWALTest.java" interface="false" size="10" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.safetyfeatures.RollbackToWALTest$ThreadMode" sourceFile="RollbackToWALTest.java" interface="false" size="10" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.transaction" total_bugs="1" total_types="10" total_size="765" priority_2="1">
+      <ClassStats class="org.chronos.chronodb.test.engine.transaction.BasicTransactionTest" sourceFile="BasicTransactionTest.java" interface="false" size="93" bugs="1" priority_2="1"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.transaction.IncrementalCommitPerformanceTest" sourceFile="IncrementalCommitPerformanceTest.java" interface="false" size="75" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.transaction.IncrementalCommitTest" sourceFile="IncrementalCommitTest.java" interface="false" size="438" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.transaction.IncrementalCommitTest$1" sourceFile="IncrementalCommitTest.java" interface="false" size="1" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.transaction.IncrementalCommitTest$FirstNameIndexer" sourceFile="IncrementalCommitTest.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.transaction.IncrementalCommitTest$LastNameIndexer" sourceFile="IncrementalCommitTest.java" interface="false" size="9" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.transaction.IncrementalCommitTest$Person" sourceFile="IncrementalCommitTest.java" interface="false" size="17" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.transaction.PutOptionsTest" sourceFile="PutOptionsTest.java" interface="false" size="25" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.transaction.RollbackTest" sourceFile="RollbackTest.java" interface="false" size="59" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.transaction.TransactionConfigurationTest" sourceFile="TransactionConfigurationTest.java" interface="false" size="39" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.engine.versioning" total_bugs="0" total_types="3" total_size="411">
+      <ClassStats class="org.chronos.chronodb.test.engine.versioning.GetModifiedKeysTest" sourceFile="GetModifiedKeysTest.java" interface="false" size="70" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.versioning.RangedGetTest" sourceFile="RangedGetTest.java" interface="false" size="165" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.engine.versioning.VersioningTest" sourceFile="VersioningTest.java" interface="false" size="176" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.jdbc" total_bugs="0" total_types="2" total_size="79">
+      <ClassStats class="org.chronos.chronodb.test.jdbc.JdbcUtilsTest" sourceFile="JdbcUtilsTest.java" interface="false" size="16" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.jdbc.NamedParameterStatementTest" sourceFile="NamedParameterStatementTest.java" interface="false" size="63" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.manual" total_bugs="2" total_types="2" total_size="227" priority_2="2">
+      <ClassStats class="org.chronos.chronodb.test.manual.ManualOutOfMemoryErrorTest" sourceFile="ManualOutOfMemoryErrorTest.java" interface="false" size="112" bugs="1" priority_2="1"/>
+      <ClassStats class="org.chronos.chronodb.test.manual.ManualProcessKillTest" sourceFile="ManualProcessKillTest.java" interface="false" size="115" bugs="1" priority_2="1"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.migration" total_bugs="0" total_types="1" total_size="35">
+      <ClassStats class="org.chronos.chronodb.test.migration.MigrationChainTest" sourceFile="MigrationChainTest.java" interface="false" size="35" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.migration.chainA" total_bugs="0" total_types="3" total_size="15">
+      <ClassStats class="org.chronos.chronodb.test.migration.chainA.MigrationA1" sourceFile="MigrationA1.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.migration.chainA.MigrationA2" sourceFile="MigrationA2.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.migration.chainA.MigrationA3" sourceFile="MigrationA3.java" interface="false" size="5" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.migration.chainB" total_bugs="0" total_types="2" total_size="10">
+      <ClassStats class="org.chronos.chronodb.test.migration.chainB.MigrationB1" sourceFile="MigrationB1.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.migration.chainB.MigrationB2" sourceFile="MigrationB2.java" interface="false" size="5" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.query.condition" total_bugs="0" total_types="4" total_size="153">
+      <ClassStats class="org.chronos.chronodb.test.query.condition.DoubleQueryConditionEqualityToleranceTest" sourceFile="DoubleQueryConditionEqualityToleranceTest.java" interface="false" size="11" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.query.condition.DoubleQueryConditionTest" sourceFile="DoubleQueryConditionTest.java" interface="false" size="42" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.query.condition.LongQueryConditionTest" sourceFile="LongQueryConditionTest.java" interface="false" size="42" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.query.condition.TextualQueryConditionTest" sourceFile="TextualQueryConditionTest.java" interface="false" size="58" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.query.optimizer" total_bugs="0" total_types="1" total_size="11">
+      <ClassStats class="org.chronos.chronodb.test.query.optimizer.ConditionNegationTest" sourceFile="ConditionNegationTest.java" interface="false" size="11" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.query.parser" total_bugs="0" total_types="1" total_size="134">
+      <ClassStats class="org.chronos.chronodb.test.query.parser.StandardQueryParserTest" sourceFile="StandardQueryParserTest.java" interface="false" size="134" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.settings" total_bugs="0" total_types="2" total_size="41">
+      <ClassStats class="org.chronos.chronodb.test.settings.ChronoDBConfigurationTest" sourceFile="ChronoDBConfigurationTest.java" interface="false" size="7" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.settings.ChronoDBPropertiesFileTest" sourceFile="ChronoDBPropertiesFileTest.java" interface="false" size="34" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.temporal" total_bugs="0" total_types="4" total_size="675">
+      <ClassStats class="org.chronos.chronodb.test.temporal.InverseUnqualifiedTemporalKeyTest" sourceFile="InverseUnqualifiedTemporalKeyTest.java" interface="false" size="56" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.temporal.PeriodTest" sourceFile="PeriodTest.java" interface="false" size="269" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.temporal.TemporalKeyTest" sourceFile="TemporalKeyTest.java" interface="false" size="188" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.temporal.UnqualifiedTemporalKeyTest" sourceFile="UnqualifiedTemporalKeyTest.java" interface="false" size="162" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.util" total_bugs="0" total_types="7" total_size="197">
+      <ClassStats class="org.chronos.chronodb.test.util.IteratorUtilsTest" sourceFile="IteratorUtilsTest.java" interface="false" size="15" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.KillSwitchCollection" sourceFile="KillSwitchCollection.java" interface="false" size="39" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.ReflectiveDoubleIndexer" sourceFile="ReflectiveDoubleIndexer.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.ReflectiveIndexer" sourceFile="ReflectiveIndexer.java" interface="false" size="25" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.ReflectiveLongIndexer" sourceFile="ReflectiveLongIndexer.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.ReflectiveStringIndexer" sourceFile="ReflectiveStringIndexer.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.TestUtils" sourceFile="TestUtils.java" interface="false" size="64" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.util.model.payload" total_bugs="0" total_types="2" total_size="104">
+      <ClassStats class="org.chronos.chronodb.test.util.model.payload.NamedPayload" sourceFile="NamedPayload.java" interface="false" size="87" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.model.payload.NamedPayloadNameIndexer" sourceFile="NamedPayloadNameIndexer.java" interface="false" size="17" bugs="0"/>
+    </PackageStats>
+    <PackageStats package="org.chronos.chronodb.test.util.model.person" total_bugs="0" total_types="8" total_size="197">
+      <ClassStats class="org.chronos.chronodb.test.util.model.person.FavoriteColorIndexer" sourceFile="FavoriteColorIndexer.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.model.person.FirstNameIndexer" sourceFile="FirstNameIndexer.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.model.person.HobbiesIndexer" sourceFile="HobbiesIndexer.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.model.person.LastNameIndexer" sourceFile="LastNameIndexer.java" interface="false" size="5" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.model.person.Person" sourceFile="Person.java" interface="false" size="115" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.model.person.PersonGenerator" sourceFile="PersonGenerator.java" interface="false" size="39" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.model.person.PersonIndexer" sourceFile="PersonIndexer.java" interface="false" size="18" bugs="0"/>
+      <ClassStats class="org.chronos.chronodb.test.util.model.person.PetsIndexer" sourceFile="PetsIndexer.java" interface="false" size="5" bugs="0"/>
+    </PackageStats>
+    <FindBugsProfile>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="956" invocations="1623" avgMicrosecondsPerInvocation="589" maxMicrosecondsPerInvocation="2164" standardDeviationMircosecondsPerInvocation="369"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="335" invocations="1614" avgMicrosecondsPerInvocation="208" maxMicrosecondsPerInvocation="12502" standardDeviationMircosecondsPerInvocation="507"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="324" invocations="822" avgMicrosecondsPerInvocation="395" maxMicrosecondsPerInvocation="7341" standardDeviationMircosecondsPerInvocation="681"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="313" invocations="826" avgMicrosecondsPerInvocation="379" maxMicrosecondsPerInvocation="7176" standardDeviationMircosecondsPerInvocation="640"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="259" invocations="936" avgMicrosecondsPerInvocation="277" maxMicrosecondsPerInvocation="6448" standardDeviationMircosecondsPerInvocation="558"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.UnconditionalValueDerefDataflowFactory" totalMilliseconds="251" invocations="826" avgMicrosecondsPerInvocation="304" maxMicrosecondsPerInvocation="8155" standardDeviationMircosecondsPerInvocation="598"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="238" invocations="871" avgMicrosecondsPerInvocation="274" maxMicrosecondsPerInvocation="6461" standardDeviationMircosecondsPerInvocation="457"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="211" invocations="412" avgMicrosecondsPerInvocation="512" maxMicrosecondsPerInvocation="11422" standardDeviationMircosecondsPerInvocation="1035"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison$SpecialTypeAnalysis" totalMilliseconds="194" invocations="753" avgMicrosecondsPerInvocation="258" maxMicrosecondsPerInvocation="3364" standardDeviationMircosecondsPerInvocation="389"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="160" invocations="826" avgMicrosecondsPerInvocation="194" maxMicrosecondsPerInvocation="9167" standardDeviationMircosecondsPerInvocation="377"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="140" invocations="1271" avgMicrosecondsPerInvocation="110" maxMicrosecondsPerInvocation="3781" standardDeviationMircosecondsPerInvocation="217"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DefaultEncodingDetector" totalMilliseconds="120" invocations="135" avgMicrosecondsPerInvocation="890" maxMicrosecondsPerInvocation="102117" standardDeviationMircosecondsPerInvocation="8758"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="89" invocations="540" avgMicrosecondsPerInvocation="164" maxMicrosecondsPerInvocation="16591" standardDeviationMircosecondsPerInvocation="1011"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ConstantDataflowFactory" totalMilliseconds="83" invocations="826" avgMicrosecondsPerInvocation="100" maxMicrosecondsPerInvocation="1798" standardDeviationMircosecondsPerInvocation="178"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="69" invocations="832" avgMicrosecondsPerInvocation="83" maxMicrosecondsPerInvocation="32301" standardDeviationMircosecondsPerInvocation="1119"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.LoadOfKnownNullValue" totalMilliseconds="68" invocations="135" avgMicrosecondsPerInvocation="507" maxMicrosecondsPerInvocation="5555" standardDeviationMircosecondsPerInvocation="842"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.URLProblems" totalMilliseconds="63" invocations="135" avgMicrosecondsPerInvocation="468" maxMicrosecondsPerInvocation="9533" standardDeviationMircosecondsPerInvocation="1001"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="58" invocations="412" avgMicrosecondsPerInvocation="141" maxMicrosecondsPerInvocation="3985" standardDeviationMircosecondsPerInvocation="329"/>
+      <ClassProfile name="edu.umd.cs.findbugs.util.TopologicalSort" totalMilliseconds="47" invocations="1567" avgMicrosecondsPerInvocation="30" maxMicrosecondsPerInvocation="1095" standardDeviationMircosecondsPerInvocation="60"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.UnreadFields" totalMilliseconds="47" invocations="135" avgMicrosecondsPerInvocation="349" maxMicrosecondsPerInvocation="3289" standardDeviationMircosecondsPerInvocation="454"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="45" invocations="412" avgMicrosecondsPerInvocation="110" maxMicrosecondsPerInvocation="3224" standardDeviationMircosecondsPerInvocation="251"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindOpenStream" totalMilliseconds="45" invocations="135" avgMicrosecondsPerInvocation="336" maxMicrosecondsPerInvocation="5890" standardDeviationMircosecondsPerInvocation="910"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNullDeref$CheckCallSitesAndReturnInstructions" totalMilliseconds="45" invocations="822" avgMicrosecondsPerInvocation="55" maxMicrosecondsPerInvocation="740" standardDeviationMircosecondsPerInvocation="86"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindPuzzlers" totalMilliseconds="44" invocations="135" avgMicrosecondsPerInvocation="333" maxMicrosecondsPerInvocation="15328" standardDeviationMircosecondsPerInvocation="1333"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindRefComparison" totalMilliseconds="44" invocations="135" avgMicrosecondsPerInvocation="332" maxMicrosecondsPerInvocation="4459" standardDeviationMircosecondsPerInvocation="523"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.DumbMethods" totalMilliseconds="44" invocations="135" avgMicrosecondsPerInvocation="330" maxMicrosecondsPerInvocation="2830" standardDeviationMircosecondsPerInvocation="493"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.LiveLocalStoreDataflowFactory" totalMilliseconds="43" invocations="752" avgMicrosecondsPerInvocation="57" maxMicrosecondsPerInvocation="714" standardDeviationMircosecondsPerInvocation="79"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindBadCast2" totalMilliseconds="43" invocations="135" avgMicrosecondsPerInvocation="320" maxMicrosecondsPerInvocation="7534" standardDeviationMircosecondsPerInvocation="980"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical" totalMilliseconds="42" invocations="412" avgMicrosecondsPerInvocation="102" maxMicrosecondsPerInvocation="7061" standardDeviationMircosecondsPerInvocation="389"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="38" invocations="412" avgMicrosecondsPerInvocation="93" maxMicrosecondsPerInvocation="2225" standardDeviationMircosecondsPerInvocation="199"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.MethodReturnCheck" totalMilliseconds="36" invocations="135" avgMicrosecondsPerInvocation="271" maxMicrosecondsPerInvocation="3425" standardDeviationMircosecondsPerInvocation="471"/>
+    </FindBugsProfile>
+  </FindBugsSummary>
+  <ClassFeatures></ClassFeatures>
+  <History></History>
+</BugCollection>

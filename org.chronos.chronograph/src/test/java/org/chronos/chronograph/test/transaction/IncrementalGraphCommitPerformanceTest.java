@@ -36,7 +36,7 @@ public class IncrementalGraphCommitPerformanceTest extends AllChronoGraphBackend
 		final int MAX_BATCH_SIZE = 25_000;
 		ChronoGraph graph = this.getGraph();
 		// create indices
-		graph.getIndexManager().createIndex().onVertexProperty("kind").build();
+		graph.getIndexManager().create().stringIndex().onVertexProperty("kind").build();
 		// simulate one entity class
 		Vertex classVertex = graph.addVertex("kind", "class");
 		graph.tx().commit();

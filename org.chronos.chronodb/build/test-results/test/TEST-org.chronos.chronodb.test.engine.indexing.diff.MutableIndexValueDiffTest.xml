@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:52:12" hostname="Aurora" time="0.01">
+  <properties/>
+  <testcase name="canCreateEmptyDiff" classname="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" time="0.001"/>
+  <testcase name="canDetectThatDiffIsSubtractive" classname="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" time="0.001"/>
+  <testcase name="canInsertDeletions" classname="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" time="0.001"/>
+  <testcase name="canDetectThatDiffisAdditive" classname="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" time="0.0"/>
+  <testcase name="insertingARemovalOverridesAnAddition" classname="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" time="0.001"/>
+  <testcase name="cannotInsertRemovalsIntoEntryAdditionDiff" classname="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" time="0.001"/>
+  <testcase name="canInsertAdditions" classname="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" time="0.001"/>
+  <testcase name="canCreateEmptyAddition" classname="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" time="0.0"/>
+  <testcase name="canCreateEmtpyUpdate" classname="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" time="0.001"/>
+  <testcase name="canCreateEmptyRemoval" classname="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" time="0.001"/>
+  <testcase name="cannotInsertAdditionsIntoEntryRemovalDiff" classname="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" time="0.001"/>
+  <testcase name="insertingAnAdditionOverridesARemoval" classname="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" time="0.0"/>
+  <testcase name="canDetectThatDiffIsMixed" classname="org.chronos.chronodb.test.engine.indexing.diff.MutableIndexValueDiffTest" time="0.001"/>
+  <system-out><![CDATA[19:52:12.605 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canCreateEmptyDiff
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canCreateEmptyDiff
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canDetectThatDiffIsSubtractive
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canDetectThatDiffIsSubtractive
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canInsertDeletions
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canInsertDeletions
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canDetectThatDiffisAdditive
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canDetectThatDiffisAdditive
+    End time:    2017/08/28 19:52:12 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: insertingARemovalOverridesAnAddition
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: insertingARemovalOverridesAnAddition
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: cannotInsertRemovalsIntoEntryAdditionDiff
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: cannotInsertRemovalsIntoEntryAdditionDiff
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canInsertAdditions
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canInsertAdditions
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canCreateEmptyAddition
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canCreateEmptyAddition
+    End time:    2017/08/28 19:52:12 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canCreateEmtpyUpdate
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canCreateEmtpyUpdate
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canCreateEmptyRemoval
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canCreateEmptyRemoval
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: cannotInsertAdditionsIntoEntryRemovalDiff
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: cannotInsertAdditionsIntoEntryRemovalDiff
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: insertingAnAdditionOverridesARemoval
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: insertingAnAdditionOverridesARemoval
+    End time:    2017/08/28 19:52:12 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canDetectThatDiffIsMixed
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MutableIndexValueDiffTest
+    Test method: canDetectThatDiffIsMixed
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+19:52:12.615 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:52:12.616 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

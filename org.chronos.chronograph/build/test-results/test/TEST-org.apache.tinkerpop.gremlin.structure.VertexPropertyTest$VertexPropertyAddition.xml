@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.VertexPropertyTest$VertexPropertyAddition" tests="6" skipped="5" failures="0" errors="0" timestamp="2017-08-28T17:59:01" hostname="Aurora" time="0.0">
+  <properties/>
+  <testcase name="shouldHandleSingleVertexProperties" classname="org.apache.tinkerpop.gremlin.structure.VertexPropertyTest$VertexPropertyAddition" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSetLabelOfVertexPropertyToKeyOfOwningProperty" classname="org.apache.tinkerpop.gremlin.structure.VertexPropertyTest$VertexPropertyAddition" time="0.0"/>
+  <testcase name="shouldRespectWhatAreEdgesAndWhatArePropertiesInMultiProperties" classname="org.apache.tinkerpop.gremlin.structure.VertexPropertyTest$VertexPropertyAddition" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldHandleSetVertexProperties" classname="org.apache.tinkerpop.gremlin.structure.VertexPropertyTest$VertexPropertyAddition" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldAllowIdAssignment" classname="org.apache.tinkerpop.gremlin.structure.VertexPropertyTest$VertexPropertyAddition" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldHandleListVertexProperties" classname="org.apache.tinkerpop.gremlin.structure.VertexPropertyTest$VertexPropertyAddition" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

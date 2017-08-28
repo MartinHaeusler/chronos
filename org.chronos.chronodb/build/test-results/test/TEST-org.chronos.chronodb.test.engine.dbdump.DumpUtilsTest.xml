@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.engine.dbdump.DumpUtilsTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:52:12" hostname="Aurora" time="0.007">
+  <properties/>
+  <testcase name="canRecognizeSetOfStringsAsWellKnownType" classname="org.chronos.chronodb.test.engine.dbdump.DumpUtilsTest" time="0.0"/>
+  <testcase name="canRecognizeListOfStringsAsWellKnownType" classname="org.chronos.chronodb.test.engine.dbdump.DumpUtilsTest" time="0.001"/>
+  <testcase name="canRecognizeListOfPrimitiveAsWellKnownType" classname="org.chronos.chronodb.test.engine.dbdump.DumpUtilsTest" time="0.001"/>
+  <testcase name="canRecognizeStringAsWellKnownType" classname="org.chronos.chronodb.test.engine.dbdump.DumpUtilsTest" time="0.001"/>
+  <testcase name="canRecognizePrimitivesAsWellKnownTypes" classname="org.chronos.chronodb.test.engine.dbdump.DumpUtilsTest" time="0.0"/>
+  <testcase name="canRecognizeSetOfPrimitiveAsWellKnownType" classname="org.chronos.chronodb.test.engine.dbdump.DumpUtilsTest" time="0.001"/>
+  <testcase name="canRecognizeListOfEnumsAsWellKnownType" classname="org.chronos.chronodb.test.engine.dbdump.DumpUtilsTest" time="0.001"/>
+  <testcase name="canRecognizeMapOfPrimitiveAsWellKnownType" classname="org.chronos.chronodb.test.engine.dbdump.DumpUtilsTest" time="0.001"/>
+  <testcase name="canRecognizeEnumsAsWellKnownType" classname="org.chronos.chronodb.test.engine.dbdump.DumpUtilsTest" time="0.001"/>
+  <system-out><![CDATA[19:52:12.584 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeSetOfStringsAsWellKnownType
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeSetOfStringsAsWellKnownType
+    End time:    2017/08/28 19:52:12 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeListOfStringsAsWellKnownType
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeListOfStringsAsWellKnownType
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeListOfPrimitiveAsWellKnownType
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeListOfPrimitiveAsWellKnownType
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeStringAsWellKnownType
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeStringAsWellKnownType
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizePrimitivesAsWellKnownTypes
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizePrimitivesAsWellKnownTypes
+    End time:    2017/08/28 19:52:12 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeSetOfPrimitiveAsWellKnownType
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeSetOfPrimitiveAsWellKnownType
+    End time:    2017/08/28 19:52:12 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeListOfEnumsAsWellKnownType
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeListOfEnumsAsWellKnownType
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeMapOfPrimitiveAsWellKnownType
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeMapOfPrimitiveAsWellKnownType
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeEnumsAsWellKnownType
+    Start time:  2017/08/28 19:52:12
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  DumpUtilsTest
+    Test method: canRecognizeEnumsAsWellKnownType
+    End time:    2017/08/28 19:52:12 (Duration: 1ms)
+================================================================================
+
+
+
+19:52:12.592 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:52:12.592 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

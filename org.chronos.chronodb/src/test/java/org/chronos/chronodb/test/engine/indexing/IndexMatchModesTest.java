@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.indexing.StringIndexer;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
 import org.chronos.chronodb.test.util.model.payload.NamedPayload;
 import org.chronos.chronodb.test.util.model.payload.NamedPayloadNameIndexer;
@@ -18,7 +18,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testEquals() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -41,7 +41,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testEqualsIgnoreCase() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -78,7 +78,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testNotEquals() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -99,7 +99,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testNotEqualsIgnoreCase() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -135,7 +135,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testContains() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -161,7 +161,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testContainsIgnoreCase() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -208,7 +208,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testNotContains() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -234,7 +234,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testNotContainsIgnoreCase() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -281,7 +281,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testStartsWith() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -302,7 +302,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testStartsWithIgnoreCase() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -338,7 +338,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testNotStartsWith() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -359,7 +359,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testNotStartsWithIgnoreCase() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -395,7 +395,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testEndsWith() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -416,7 +416,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testEndsWithIgnoreCase() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -451,7 +451,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testNotEndsWith() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -472,7 +472,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testNotEndsWithIgnoreCase() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -507,7 +507,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testMatchesRegex() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -528,7 +528,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testMatchesRegexCaseInsensitive() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -547,7 +547,7 @@ public class IndexMatchModesTest extends AllChronoDBBackendsTest {
 	@Test
 	public void testNotMatchesRegex() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data

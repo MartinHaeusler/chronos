@@ -12,13 +12,16 @@ import org.chronos.common.test.junit.categories.IntegrationTest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
+import com.google.common.collect.Iterables;
+
 @Category(IntegrationTest.class)
 public class GraphQueryTest extends AllChronoGraphBackendsTest {
 
 	@Test
 	public void basicQuerySyntaxTest() {
 		ChronoGraph g = this.getGraph();
-		Set<Vertex> set = g.find().vertices().where("name").containsIgnoreCase("EVA").and().where("kind").isEqualTo("entity").toSet();
+		Set<Vertex> set = g.find().vertices().where("name").containsIgnoreCase("EVA").and().where("kind")
+				.isEqualTo("entity").toSet();
 		assertNotNull(set);
 		assertTrue(set.isEmpty());
 	}
@@ -71,18 +74,53 @@ public class GraphQueryTest extends AllChronoGraphBackendsTest {
 		this.performVertexToGremlinQueries(true, true, false);
 	}
 
+	@Test
+	public void canQueryNonStandardObjectTypeInHasClause() {
+		ChronoGraph graph = this.getGraph();
+		graph.addVertex("name", new FullName("John", "Doe"));
+		graph.addVertex("name", new FullName("Jane", "Doe"));
+		graph.tx().commit();
+
+		assertEquals(1, graph.traversal().V().has("name", new FullName("John", "Doe")).toSet().size());
+	}
+
+	@Test
+	public void canFindStringWithTrailingWhitespace() {
+		ChronoGraph graph = this.getGraph();
+		graph.getIndexManager().create().stringIndex().onVertexProperty("name").build();
+		graph.addVertex("name", "John ");
+		graph.addVertex("name", "John");
+		graph.tx().commit();
+
+		assertEquals("John ",
+				Iterables.getOnlyElement(graph.traversal().V().has("name", "John ").toSet()).value("name"));
+	}
+
+	@Test
+	public void canFindStringWithLeadingWhitespace() {
+		ChronoGraph graph = this.getGraph();
+		graph.getIndexManager().create().stringIndex().onVertexProperty("name").build();
+		graph.addVertex("name", " John");
+		graph.addVertex("name", "John");
+		graph.tx().commit();
+
+		assertEquals(" John",
+				Iterables.getOnlyElement(graph.traversal().V().has("name", " John").toSet()).value("name"));
+	}
+
 	// =====================================================================================================================
 	// HELPER METHODS
 	// =====================================================================================================================
 
-	private void performSimpleVertexQueries(final boolean indexName, final boolean indexAge, final boolean performCommit) {
+	private void performSimpleVertexQueries(final boolean indexName, final boolean indexAge,
+			final boolean performCommit) {
 		ChronoGraph g = this.getGraph();
 		if (indexName) {
-			g.getIndexManager().createIndex().onVertexProperty("name").build();
+			g.getIndexManager().create().stringIndex().onVertexProperty("name").build();
 			g.tx().commit();
 		}
 		if (indexAge) {
-			g.getIndexManager().createIndex().onVertexProperty("age").build();
+			g.getIndexManager().create().stringIndex().onVertexProperty("age").build();
 			g.tx().commit();
 		}
 		Vertex vMartin = g.addVertex("name", "Martin", "age", 26);
@@ -142,14 +180,15 @@ public class GraphQueryTest extends AllChronoGraphBackendsTest {
 		assertTrue(set.contains(vMaria));
 	}
 
-	private void performVertexToGremlinQueries(final boolean indexName, final boolean indexAge, final boolean performCommit) {
+	private void performVertexToGremlinQueries(final boolean indexName, final boolean indexAge,
+			final boolean performCommit) {
 		ChronoGraph g = this.getGraph();
 		if (indexName) {
-			g.getIndexManager().createIndex().onVertexProperty("name").build();
+			g.getIndexManager().create().stringIndex().onVertexProperty("name").build();
 			g.tx().commit();
 		}
 		if (indexAge) {
-			g.getIndexManager().createIndex().onVertexProperty("age").build();
+			g.getIndexManager().create().stringIndex().onVertexProperty("age").build();
 			g.tx().commit();
 		}
 		Vertex vMartin = g.addVertex("name", "Martin", "age", 26);
@@ -173,6 +212,61 @@ public class GraphQueryTest extends AllChronoGraphBackendsTest {
 		assertEquals(2, set.size());
 		assertTrue(set.contains(vJohn));
 		assertTrue(set.contains(vMaria));
+	}
+
+	private static class FullName {
+
+		private String firstName;
+		private String lastName;
+
+		@SuppressWarnings("unused")
+		protected FullName() {
+			// (de-)serialization constructor
+		}
+
+		public FullName(final String firstName, final String lastName) {
+			this.firstName = firstName;
+			this.lastName = lastName;
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + (this.firstName == null ? 0 : this.firstName.hashCode());
+			result = prime * result + (this.lastName == null ? 0 : this.lastName.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(final Object obj) {
+			if (this == obj) {
+				return true;
+			}
+			if (obj == null) {
+				return false;
+			}
+			if (this.getClass() != obj.getClass()) {
+				return false;
+			}
+			FullName other = (FullName) obj;
+			if (this.firstName == null) {
+				if (other.firstName != null) {
+					return false;
+				}
+			} else if (!this.firstName.equals(other.firstName)) {
+				return false;
+			}
+			if (this.lastName == null) {
+				if (other.lastName != null) {
+					return false;
+				}
+			} else if (!this.lastName.equals(other.lastName)) {
+				return false;
+			}
+			return true;
+		}
+
 	}
 
 }

@@ -398,7 +398,7 @@ public class StandardChronoGraph implements ChronoGraph {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
-		return this.getBackingDB().tx(branch).getCommitTimestampsBefore(timestamp, count);
+		return this.getBackingDB().tx(branch).getCommitTimestampsAfter(timestamp, count);
 	}
 
 	@Override

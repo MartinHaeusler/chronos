@@ -51,7 +51,7 @@ public class ChronoSphereIndexManagerImpl implements ChronoSphereIndexManager {
 				return false;
 			} else {
 				// index does not exist, create it
-				this.getGraphIndexManager().createIndex().onVertexProperty(propertyKey).build();
+				this.getGraphIndexManager().create().stringIndex().onVertexProperty(propertyKey).build();
 				return true;
 			}
 		}
@@ -108,8 +108,7 @@ public class ChronoSphereIndexManagerImpl implements ChronoSphereIndexManager {
 				throw new IllegalArgumentException("The given EAttribute '" + eAttribute.getName()
 						+ "' is not part of a registered EPackage! Please register the EPackage first.");
 			}
-			ChronoGraphIndex index = this.getGraphIndexManager().getVertexIndex(propertyKey);
-			this.getGraphIndexManager().reindex(index);
+			this.getGraphIndexManager().reindexAll();
 		}
 	}
 

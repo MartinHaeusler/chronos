@@ -10,6 +10,7 @@ import org.chronos.chronodb.api.key.ChronoIdentifier;
  * This interface is essentially just a (largely immutable) collection of primitive values:
  * <ul>
  * <li>Document ID (immutable): {@link #getDocumentId()}
+ * <li>Branch Name (immutable): {@link #getBranch()}
  * <li>Keyspace Name (immutable): {@link #getKeyspace()}
  * <li>Key (immutable): {@link #getKey()}
  * <li>Index Name (immutable): {@link #getIndexName()}
@@ -35,7 +36,6 @@ import org.chronos.chronodb.api.key.ChronoIdentifier;
  * <li>The "valid to" timestamp of a document that is newly created is set to {@link Long#MAX_VALUE}.
  * <li>The "valid to" timestamp may be changed, but it may only be decreased, never increased.
  * <li>The "valid to" timestamp may not be decreased to a value lower than or equal to the "now" timestamp of the branch.
- * <li>At any point in time, there must be at most one document which has the same combination of branch, keyspace, key, and index name. In other words, there must never be two index documents for the same qualified key and index name at any point in time.
  * </ul>
  *
  * <p>
@@ -43,7 +43,6 @@ import org.chronos.chronodb.api.key.ChronoIdentifier;
  *
  *
  * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
- *
  */
 public interface ChronoIndexDocument {
 
@@ -87,14 +86,7 @@ public interface ChronoIndexDocument {
 	 *
 	 * @return The indexed value. Never <code>null</code>.
 	 */
-	public String getIndexedValue();
-
-	/**
-	 * Returns the indexed value represented by this document, in lower case representation (immutable property).
-	 *
-	 * @return The indexed value in lower case representation. Never <code>null</code>.
-	 */
-	public String getIndexedValueCaseInsensitive();
+	public Object getIndexedValue();
 
 	/**
 	 * Returns the "valid from" timestamp. This corresponds to the timestamp at which this document was written (immutable property).
@@ -133,15 +125,4 @@ public interface ChronoIndexDocument {
 	 */
 	public void setValidToTimestamp(long validTo);
 
-	/**
-	 * Checks if this document has the same <i>content</i> as the given document.
-	 *
-	 * <p>
-	 * This comparison is different from {@link ChronoIndexDocument#equals(Object)} in that it <b>does not</b> consider the unique ID of each document, but the other fields instead.
-	 *
-	 * @param other
-	 *            The other document to compare with. May be <code>null</code>, in which case this method returns <code>false</code>.
-	 * @return <code>true</code> if this document has the same content as the given one, <code>false</code> if the contents are different or the given document is <code>null</code>.
-	 */
-	public boolean contentEquals(ChronoIndexDocument other);
 }

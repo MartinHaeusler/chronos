@@ -8,8 +8,7 @@ public interface IndexValueDiff {
 	 * Returns the "old" (previous) value, i.e. the "left" side of the diff.
 	 *
 	 * <p>
-	 * If the {@linkplain #getOldValue() old value} is <code>null</code> and the {@linkplain #getNewValue() new value}
-	 * is non-<code>null</code>, then this diff represents an {@linkplain #isEntryAddition() entry addition}.
+	 * If the {@linkplain #getOldValue() old value} is <code>null</code> and the {@linkplain #getNewValue() new value} is non-<code>null</code>, then this diff represents an {@linkplain #isEntryAddition() entry addition}.
 	 *
 	 * @return The old value. May be <code>null</code>.
 	 */
@@ -19,8 +18,7 @@ public interface IndexValueDiff {
 	 * Returns the "new" (next) value, i.e. the "right" side of the diff.
 	 *
 	 * <p>
-	 * If the {@linkplain #getOldValue() old value} is <code>null</code> and the {@linkplain #getNewValue() new value}
-	 * is non-<code>null</code>, then this diff represents an {@linkplain #isEntryAddition() entry addition}.
+	 * If the {@linkplain #getOldValue() old value} is <code>null</code> and the {@linkplain #getNewValue() new value} is non-<code>null</code>, then this diff represents an {@linkplain #isEntryAddition() entry addition}.
 	 *
 	 * @return The new value. May be <code>null</code>.
 	 */
@@ -34,7 +32,7 @@ public interface IndexValueDiff {
 	 *
 	 * @return The value additions. Never <code>null</code>. May be empty if nothing was added to the given index.
 	 */
-	public Set<String> getAdditions(final String indexName);
+	public Set<Object> getAdditions(final String indexName);
 
 	/**
 	 * Returns the value removals for the given index name.
@@ -44,17 +42,15 @@ public interface IndexValueDiff {
 	 *
 	 * @return The value removals. Never <code>null</code>. May be empty if nothing was removed from the given index.
 	 */
-	public Set<String> getRemovals(final String indexName);
+	public Set<Object> getRemovals(final String indexName);
 
 	/**
 	 * Returns the set of indices that have actual changes in this diff.
 	 *
 	 * <p>
-	 * This is equivalent to the set of indices where the set of {@linkplain #getAdditions(String) additions} and/or the
-	 * set of {@linkplain #getRemovals(String) removals} is non-empty.
+	 * This is equivalent to the set of indices where the set of {@linkplain #getAdditions(String) additions} and/or the set of {@linkplain #getRemovals(String) removals} is non-empty.
 	 *
-	 * @return The set of names of changed indices. May be empty if this diff {@linkplain #isEmpty() is empty}, but
-	 *         never <code>null</code>.
+	 * @return The set of names of changed indices. May be empty if this diff {@linkplain #isEmpty() is empty}, but never <code>null</code>.
 	 */
 	public Set<String> getChangedIndices();
 
@@ -72,8 +68,7 @@ public interface IndexValueDiff {
 	 * Checks if this diff is empty, i.e. does not contain any changes.
 	 *
 	 * <p>
-	 * If this method returns <code>true</code>, then {@link #getChangedIndices()} all of the following methods will
-	 * return the empty set:
+	 * If this method returns <code>true</code>, then {@link #getChangedIndices()} all of the following methods will return the empty set:
 	 * <ul>
 	 * <li>{@link #getChangedIndices()}
 	 * <li>{@link #getAdditions(String)} (for every non-<code>null</code> argument string)
@@ -81,23 +76,17 @@ public interface IndexValueDiff {
 	 * </ul>
 	 *
 	 * <p>
-	 * Please note that any given diff can either be {@linkplain #isAdditive() additive}, {@linkplain #isSubtractive()
-	 * subtractive}, {@linkplain #isMixed() mixed} or {@linkplain #isEmpty() empty}. Every diff will return
-	 * <code>true</code> for exactly one of these states.
+	 * Please note that any given diff can either be {@linkplain #isAdditive() additive}, {@linkplain #isSubtractive() subtractive}, {@linkplain #isMixed() mixed} or {@linkplain #isEmpty() empty}. Every diff will return <code>true</code> for exactly one of these states.
 	 *
 	 * @return <code>true</code> if this is an empty diff, otherwise <code>false</code>.
 	 */
 	public boolean isEmpty();
 
 	/**
-	 * Checks if this diff represents an entry addition, i.e. the {@linkplain #getOldValue() old value} is
-	 * <code>null</code> and the {@linkplain #getNewValue() new value} is non-<code>null</code>.
+	 * Checks if this diff represents an entry addition, i.e. the {@linkplain #getOldValue() old value} is <code>null</code> and the {@linkplain #getNewValue() new value} is non-<code>null</code>.
 	 *
 	 * <p>
-	 * Please note that {@link #isEntryAddition()} and {@link #isEntryRemoval()} will both return <code>false</code> if
-	 * both the {@linkplain #getOldValue() old value} and the {@linkplain #getNewValue() new value} are
-	 * <code>null</code>. In any other case, either {@link #isEntryAddition()} or {@link #isEntryRemoval()} will return
-	 * <code>true</code>, but never both of them.
+	 * Please note that {@link #isEntryAddition()} and {@link #isEntryRemoval()} will both return <code>false</code> if both the {@linkplain #getOldValue() old value} and the {@linkplain #getNewValue() new value} are <code>null</code>. In any other case, either {@link #isEntryAddition()} or {@link #isEntryRemoval()} will return <code>true</code>, but never both of them.
 	 *
 	 * @return <code>true</code> if this diff represents an entry addition, otherwise <code>false</code>.
 	 */
@@ -106,14 +95,10 @@ public interface IndexValueDiff {
 	}
 
 	/**
-	 * Checks if this diff represents an entry removal, i.e. the {@linkplain #getOldValue() old value} is non-
-	 * <code>null</code> and the {@linkplain #getNewValue() new value} is <code>null</code>.
+	 * Checks if this diff represents an entry removal, i.e. the {@linkplain #getOldValue() old value} is non- <code>null</code> and the {@linkplain #getNewValue() new value} is <code>null</code>.
 	 *
 	 * <p>
-	 * Please note that {@link #isEntryAddition()} and {@link #isEntryRemoval()} will both return <code>false</code> if
-	 * both the {@linkplain #getOldValue() old value} and the {@linkplain #getNewValue() new value} are
-	 * <code>null</code>. In any other case, either {@link #isEntryAddition()} or {@link #isEntryRemoval()} will return
-	 * <code>true</code>, but never both of them.
+	 * Please note that {@link #isEntryAddition()} and {@link #isEntryRemoval()} will both return <code>false</code> if both the {@linkplain #getOldValue() old value} and the {@linkplain #getNewValue() new value} are <code>null</code>. In any other case, either {@link #isEntryAddition()} or {@link #isEntryRemoval()} will return <code>true</code>, but never both of them.
 	 *
 	 * @return <code>true</code> if this diff represents an entry removal, otherwise <code>false</code>.
 	 */
@@ -122,8 +107,7 @@ public interface IndexValueDiff {
 	}
 
 	/**
-	 * Checks if this diff represents an entry update, i.e. the {@linkplain #getOldValue() old value} is non-
-	 * <code>null</code> and the {@linkplain #getNewValue() new value} is non-<code>null</code>.
+	 * Checks if this diff represents an entry update, i.e. the {@linkplain #getOldValue() old value} is non- <code>null</code> and the {@linkplain #getNewValue() new value} is non-<code>null</code>.
 	 *
 	 * @return <code>true</code> if this diff represents an entry update, otherwise <code>false</code>.
 	 */
@@ -143,9 +127,7 @@ public interface IndexValueDiff {
 	 * </ul>
 	 *
 	 * <p>
-	 * Please note that any given diff can either be {@linkplain #isAdditive() additive}, {@linkplain #isSubtractive()
-	 * subtractive}, {@linkplain #isMixed() mixed} or {@linkplain #isEmpty() empty}. Every diff will return
-	 * <code>true</code> for exactly one of these states.
+	 * Please note that any given diff can either be {@linkplain #isAdditive() additive}, {@linkplain #isSubtractive() subtractive}, {@linkplain #isMixed() mixed} or {@linkplain #isEmpty() empty}. Every diff will return <code>true</code> for exactly one of these states.
 	 *
 	 * @return <code>true</code> if this diff is additive, otherwise <code>false</code>.
 	 *
@@ -167,9 +149,7 @@ public interface IndexValueDiff {
 	 * </ul>
 	 *
 	 * <p>
-	 * Please note that any given diff can either be {@linkplain #isAdditive() additive}, {@linkplain #isSubtractive()
-	 * subtractive}, {@linkplain #isMixed() mixed} or {@linkplain #isEmpty() empty}. Every diff will return
-	 * <code>true</code> for exactly one of these states.
+	 * Please note that any given diff can either be {@linkplain #isAdditive() additive}, {@linkplain #isSubtractive() subtractive}, {@linkplain #isMixed() mixed} or {@linkplain #isEmpty() empty}. Every diff will return <code>true</code> for exactly one of these states.
 	 *
 	 * @return <code>true</code> if this diff is subtractive, otherwise <code>false</code>.
 	 *
@@ -191,9 +171,7 @@ public interface IndexValueDiff {
 	 * </ul>
 	 *
 	 * <p>
-	 * Please note that any given diff can either be {@linkplain #isAdditive() additive}, {@linkplain #isSubtractive()
-	 * subtractive}, {@linkplain #isMixed() mixed} or {@linkplain #isEmpty() empty}. Every diff will return
-	 * <code>true</code> for exactly one of these states.
+	 * Please note that any given diff can either be {@linkplain #isAdditive() additive}, {@linkplain #isSubtractive() subtractive}, {@linkplain #isMixed() mixed} or {@linkplain #isEmpty() empty}. Every diff will return <code>true</code> for exactly one of these states.
 	 *
 	 * @return <code>true</code> if this diff is mixed, otherwise <code>false</code>.
 	 *

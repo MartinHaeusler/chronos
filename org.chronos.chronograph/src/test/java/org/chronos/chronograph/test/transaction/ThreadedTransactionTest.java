@@ -146,7 +146,7 @@ public class ThreadedTransactionTest extends AllChronoGraphBackendsTest {
 	@InstantiateChronosWith(property = ChronoGraphConfiguration.TRANSACTION_AUTO_OPEN, value = "false")
 	public void canUseIndexManagerFromThreadedTransactionGraph() {
 		ChronoGraph graph = this.getGraph();
-		graph.getIndexManager().createIndex().onVertexProperty("name").build();
+		graph.getIndexManager().create().stringIndex().onVertexProperty("name").build();
 		// work with a threaded graph, add some data
 		ChronoGraph tGraph = graph.tx().createThreadedTx();
 		tGraph.addVertex("name", "Martin");
@@ -163,6 +163,83 @@ public class ThreadedTransactionTest extends AllChronoGraphBackendsTest {
 		Set<Vertex> set2 = tGraph2.find().vertices().where("name").isEqualToIgnoreCase("martin").toSet();
 		assertEquals(1, set2.size());
 		assertEquals("Martin", Iterables.getOnlyElement(set2).value("name"));
+	}
+
+	@Test
+	public void threadBoundTransactionsDoNotInterfereWithThreadedTransactions() {
+		ChronoGraph graph = this.getGraph();
+		graph.addVertex("hello", "world");
+		graph.tx().commit();
+
+		long afterFirstCommit = graph.getNow();
+
+		graph.addVertex("foo", "bar");
+		graph.tx().commit();
+
+		long afterSecondCommit = graph.getNow();
+
+		// open a thread-bound tx on "after first commit"
+
+		graph.tx().open(afterFirstCommit);
+		assertEquals(afterFirstCommit, graph.tx().getCurrentTransaction().getTimestamp());
+
+		// open a threaded tx on "now"
+		try (ChronoGraph txGraph = graph.tx().createThreadedTx()) {
+			// make sure that "now" is correctly set on the threaded tx, even though
+			// the graph has a thread-bound tx set to an earlier date
+			assertEquals(afterSecondCommit, txGraph.getNow());
+		}
+
+	}
+
+	@Test
+	public void threadedTransactionsDoNotInterfereWithThreadBoundTransactions() {
+		ChronoGraph graph = this.getGraph();
+		graph.addVertex("hello", "world");
+		graph.tx().commit();
+
+		long afterFirstCommit = graph.getNow();
+
+		graph.addVertex("foo", "bar");
+		graph.tx().commit();
+
+		long afterSecondCommit = graph.getNow();
+
+		// open a threaded tx on "now"
+		try (ChronoGraph txGraph = graph.tx().createThreadedTx()) {
+			// make sure that "now" is correctly set on the threaded tx, even though
+			// the graph has a thread-bound tx set to an earlier date
+			assertEquals(afterSecondCommit, txGraph.getNow());
+		}
+
+		// open a thread-bound tx on "after first commit"
+
+		graph.tx().open(afterFirstCommit);
+		assertEquals(afterFirstCommit, graph.tx().getCurrentTransaction().getTimestamp());
+	}
+
+	@Test
+	public void threadedTransactionIsNotTreatedAsCurrentTransaction() {
+		ChronoGraph graph = this.getGraph();
+		graph.addVertex("hello", "world");
+		graph.tx().commit();
+
+		long afterFirstCommit = graph.getNow();
+
+		graph.addVertex("foo", "bar");
+		graph.tx().commit();
+
+		long afterSecondCommit = graph.getNow();
+
+		try (ChronoGraph txGraph = graph.tx().createThreadedTx(afterFirstCommit)) {
+			// make sure that "now" is correctly set on the threaded tx, even though
+			// the graph has a thread-bound tx set to an earlier date
+			assertEquals(afterSecondCommit, txGraph.getNow());
+
+			assertFalse(graph.tx().isOpen());
+		}
+
+		assertFalse(graph.tx().isOpen());
 	}
 
 	// =====================================================================================================================

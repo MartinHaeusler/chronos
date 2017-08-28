@@ -1,7 +1,6 @@
 package org.chronos.chronodb.test.engine.indexing;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.Collections;
 import java.util.Set;
@@ -9,13 +8,18 @@ import java.util.stream.Collectors;
 
 import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.ChronoDB;
+import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.api.ChronoDBTransaction;
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.exceptions.ChronoDBIndexingException;
 import org.chronos.chronodb.api.exceptions.UnknownIndexException;
-import org.chronos.chronodb.api.key.ChronoIdentifier;
+import org.chronos.chronodb.api.indexing.DoubleIndexer;
+import org.chronos.chronodb.api.indexing.Indexer;
+import org.chronos.chronodb.api.indexing.LongIndexer;
+import org.chronos.chronodb.api.indexing.StringIndexer;
 import org.chronos.chronodb.api.query.Condition;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.StringSearchSpecification;
 import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
 import org.chronos.chronodb.test.base.InstantiateChronosWith;
@@ -32,7 +36,7 @@ public class IndexingTest extends AllChronoDBBackendsTest {
 	public void indexWritingWorks() {
 		ChronoDB db = this.getChronoDB();
 		// set up the "name" index
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 
@@ -47,14 +51,15 @@ public class IndexingTest extends AllChronoDBBackendsTest {
 		tx.commit();
 
 		Branch masterBranch = db.getBranchManager().getMasterBranch();
+		String defaultKeyspace = ChronoDBConstants.DEFAULT_KEYSPACE_NAME;
 
 		// assert that the index is correct
-		SearchSpecification searchSpec = SearchSpecification.create("name", Condition.EQUALS, TextMatchMode.STRICT,
+		SearchSpecification<?> searchSpec = StringSearchSpecification.create("name", Condition.EQUALS, TextMatchMode.STRICT,
 				"Hello World");
-		Set<ChronoIdentifier> r1 = db.getIndexManager().queryIndex(System.currentTimeMillis(), masterBranch,
+		Set<String> r1 = db.getIndexManager().queryIndex(System.currentTimeMillis(), masterBranch, defaultKeyspace,
 				searchSpec);
 		assertEquals(1, r1.size());
-		assertEquals("np1", r1.iterator().next().getKey());
+		assertEquals("np1", r1.iterator().next());
 	}
 
 	@Test
@@ -62,9 +67,10 @@ public class IndexingTest extends AllChronoDBBackendsTest {
 		ChronoDB db = this.getChronoDB();
 		try {
 			Branch masterBranch = db.getBranchManager().getMasterBranch();
-			SearchSpecification searchSpec = SearchSpecification.create("shenaningan", Condition.EQUALS,
+			String defaultKeyspace = ChronoDBConstants.DEFAULT_KEYSPACE_NAME;
+			SearchSpecification<?> searchSpec = StringSearchSpecification.create("shenaningan", Condition.EQUALS,
 					TextMatchMode.STRICT, "Hello World");
-			db.getIndexManager().queryIndex(System.currentTimeMillis(), masterBranch, searchSpec);
+			db.getIndexManager().queryIndex(System.currentTimeMillis(), masterBranch, defaultKeyspace, searchSpec);
 			fail();
 		} catch (UnknownIndexException e) {
 			// expected
@@ -75,7 +81,7 @@ public class IndexingTest extends AllChronoDBBackendsTest {
 	public void renameTest() {
 		ChronoDB db = this.getChronoDB();
 		// set up the "name" index
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -110,7 +116,7 @@ public class IndexingTest extends AllChronoDBBackendsTest {
 	public void deleteTest() {
 		ChronoDB db = this.getChronoDB();
 		// set up the "name" index
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -136,4 +142,79 @@ public class IndexingTest extends AllChronoDBBackendsTest {
 
 	}
 
+	@Test
+	public void attemptingToMixIndexerTypesShouldThrowAnException() {
+		ChronoDB db = this.getChronoDB();
+		this.assertAddingSecondIndexerFails(db, new DummyStringIndexer(), new DummyLongIndexer());
+		db.getIndexManager().clearAllIndices();
+		this.assertAddingSecondIndexerFails(db, new DummyStringIndexer(), new DummyDoubleIndexer());
+		db.getIndexManager().clearAllIndices();
+		this.assertAddingSecondIndexerFails(db, new DummyLongIndexer(), new DummyStringIndexer());
+		db.getIndexManager().clearAllIndices();
+		this.assertAddingSecondIndexerFails(db, new DummyLongIndexer(), new DummyDoubleIndexer());
+		db.getIndexManager().clearAllIndices();
+		this.assertAddingSecondIndexerFails(db, new DummyDoubleIndexer(), new DummyStringIndexer());
+		db.getIndexManager().clearAllIndices();
+		this.assertAddingSecondIndexerFails(db, new DummyDoubleIndexer(), new DummyLongIndexer());
+	}
+
+	@Test
+	public void canDropAllIndices() {
+		ChronoDB db = this.getChronoDB();
+		db.getIndexManager().addIndexer("name", new DummyStringIndexer());
+		db.getIndexManager().addIndexer("test", new DummyStringIndexer());
+		assertEquals(2, db.getIndexManager().getIndexers().size());
+		db.getIndexManager().clearAllIndices();
+		assertEquals(0, db.getIndexManager().getIndexers().size());
+	}
+
+	private void assertAddingSecondIndexerFails(final ChronoDB db, final Indexer<?> indexer1, final Indexer<?> indexer2) {
+		db.getIndexManager().addIndexer("test", indexer1);
+		try {
+			db.getIndexManager().addIndexer("test", indexer2);
+			fail("Managed to mix indexer classes " + indexer1.getClass().getSimpleName() + " and " + indexer2.getClass().getName() + " in same index!");
+		} catch (ChronoDBIndexingException expected) {
+			// pass
+		}
+	}
+
+	// =================================================================================================================
+	// INNER CLASSES
+	// =================================================================================================================
+
+	private static class DummyStringIndexer implements StringIndexer {
+		@Override
+		public boolean canIndex(final Object object) {
+			return true;
+		}
+
+		@Override
+		public Set<String> getIndexValues(final Object object) {
+			return Collections.singleton(String.valueOf(object));
+		}
+	}
+
+	private static class DummyLongIndexer implements LongIndexer {
+		@Override
+		public boolean canIndex(final Object object) {
+			return true;
+		}
+
+		@Override
+		public Set<Long> getIndexValues(final Object object) {
+			return Collections.singleton((long) String.valueOf(object).length());
+		}
+	}
+
+	private static class DummyDoubleIndexer implements DoubleIndexer {
+		@Override
+		public boolean canIndex(final Object object) {
+			return true;
+		}
+
+		@Override
+		public Set<Double> getIndexValues(final Object object) {
+			return Collections.singleton((double) String.valueOf(object).length());
+		}
+	}
 }

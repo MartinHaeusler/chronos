@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$LogicalFeatureSupportTest" tests="7" skipped="3" failures="0" errors="0" timestamp="2017-08-28T17:58:58" hostname="Aurora" time="0.0">
+  <properties/>
+  <testcase name="shouldSupportRegularTransactionsIfThreadedTransactionsAreEnabled" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$LogicalFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldNotSupportAnyIdsUnlessUserSuppliedIdsIsSupportedOnVertex" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$LogicalFeatureSupportTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldNotSupportAnyIdsUnlessUserSuppliedIdsIsSupportedOnVertexProperty" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$LogicalFeatureSupportTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportADataTypeIfGraphHasVariablesEnabled" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$LogicalFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSupportADataTypeIfEdgeHasPropertyEnabled" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$LogicalFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldSupportADataTypeIfVertexHasPropertyEnabled" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$LogicalFeatureSupportTest" time="0.0"/>
+  <testcase name="shouldNotSupportAnyIdsUnlessUserSuppliedIdsIsSupportedOnEdge" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$LogicalFeatureSupportTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

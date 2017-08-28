@@ -946,4 +946,42 @@ public class GetCommitsBeforeAfterAroundTest extends AllChronoDBBackendsTest {
 		assertEquals(expected, commits);
 	}
 
+	@Test
+	public void commitTimestampsAfterZeroWorks() {
+		ChronoDB db = this.getChronoDB();
+		ChronoDBTransaction tx = db.tx();
+		tx.put("Hello", "World");
+		tx.commit("First");
+
+		long afterFirstCommit = tx.getTimestamp();
+
+		tx.put("Foo", "Bar");
+		tx.commit("Second");
+
+		long afterSecondCommit = tx.getTimestamp();
+
+		tx.put("Pi", "3.1415");
+		tx.commit("Third");
+
+		long afterThirdCommit = tx.getTimestamp();
+
+		tx.put("Test", "Test");
+		tx.commit("Fourth");
+
+		tx.put("XYZ", "XYZ");
+		tx.commit("Fifth");
+
+		tx.put("6", "Six");
+		tx.commit("Sixth");
+
+		List<Long> expected = Lists.newArrayList();
+		expected.add(afterThirdCommit);
+		expected.add(afterSecondCommit);
+		expected.add(afterFirstCommit);
+
+		List<Long> commits = db.tx().getCommitTimestampsAfter(0, 3);
+
+		assertEquals(expected, commits);
+	}
+
 }

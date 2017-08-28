@@ -1,0 +1,1744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" tests="65" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:58:28" hostname="Aurora" time="14.163">
+  <properties/>
+  <testcase name="getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using chunked]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.406"/>
+  <testcase name="canRecreateVertexDuringIncrementalCommitProcess[Using chunked]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.378"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModifications[Using chunked]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.353"/>
+  <testcase name="incrementalCommitsAppearAsSingleCommitInHistory[Using chunked]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.346"/>
+  <testcase name="canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using chunked]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.322"/>
+  <testcase name="canCommitIncrementally[Using chunked]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.215"/>
+  <testcase name="cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using chunked]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.216"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using chunked]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.369"/>
+  <testcase name="secondaryIndexingIsCorrectDuringIncrementalCommit[Using chunked]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.462"/>
+  <testcase name="canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using chunked]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.4"/>
+  <testcase name="rollbackDuringIncrementalCommitWorks[Using chunked]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.352"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using chunked]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.432"/>
+  <testcase name="canCommitDirectlyAfterIncrementalCommit[Using chunked]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.331"/>
+  <testcase name="getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using mapdb]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.337"/>
+  <testcase name="canRecreateVertexDuringIncrementalCommitProcess[Using mapdb]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.331"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModifications[Using mapdb]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.332"/>
+  <testcase name="incrementalCommitsAppearAsSingleCommitInHistory[Using mapdb]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.417"/>
+  <testcase name="canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using mapdb]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.605"/>
+  <testcase name="canCommitIncrementally[Using mapdb]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.4"/>
+  <testcase name="cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using mapdb]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.415"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using mapdb]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.862"/>
+  <testcase name="secondaryIndexingIsCorrectDuringIncrementalCommit[Using mapdb]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.67"/>
+  <testcase name="canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using mapdb]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.584"/>
+  <testcase name="rollbackDuringIncrementalCommitWorks[Using mapdb]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.431"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using mapdb]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.8"/>
+  <testcase name="canCommitDirectlyAfterIncrementalCommit[Using mapdb]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.4"/>
+  <testcase name="getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using tupl]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.184"/>
+  <testcase name="canRecreateVertexDuringIncrementalCommitProcess[Using tupl]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.284"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModifications[Using tupl]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.169"/>
+  <testcase name="incrementalCommitsAppearAsSingleCommitInHistory[Using tupl]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.115"/>
+  <testcase name="canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using tupl]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.114"/>
+  <testcase name="canCommitIncrementally[Using tupl]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.102"/>
+  <testcase name="cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using tupl]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.084"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using tupl]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.284"/>
+  <testcase name="secondaryIndexingIsCorrectDuringIncrementalCommit[Using tupl]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.4"/>
+  <testcase name="canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using tupl]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.216"/>
+  <testcase name="rollbackDuringIncrementalCommitWorks[Using tupl]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.184"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using tupl]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.315"/>
+  <testcase name="canCommitDirectlyAfterIncrementalCommit[Using tupl]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.163"/>
+  <testcase name="getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using inmemory]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.012"/>
+  <testcase name="canRecreateVertexDuringIncrementalCommitProcess[Using inmemory]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.004"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModifications[Using inmemory]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.002"/>
+  <testcase name="incrementalCommitsAppearAsSingleCommitInHistory[Using inmemory]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.002"/>
+  <testcase name="canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using inmemory]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.002"/>
+  <testcase name="canCommitIncrementally[Using inmemory]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.0"/>
+  <testcase name="cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using inmemory]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.0"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using inmemory]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.007"/>
+  <testcase name="secondaryIndexingIsCorrectDuringIncrementalCommit[Using inmemory]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.006"/>
+  <testcase name="canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using inmemory]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.006"/>
+  <testcase name="rollbackDuringIncrementalCommitWorks[Using inmemory]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.0"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using inmemory]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.004"/>
+  <testcase name="canCommitDirectlyAfterIncrementalCommit[Using inmemory]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.0"/>
+  <testcase name="getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using jdbc]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.031"/>
+  <testcase name="canRecreateVertexDuringIncrementalCommitProcess[Using jdbc]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.033"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModifications[Using jdbc]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.012"/>
+  <testcase name="incrementalCommitsAppearAsSingleCommitInHistory[Using jdbc]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.032"/>
+  <testcase name="canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using jdbc]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.034"/>
+  <testcase name="canCommitIncrementally[Using jdbc]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.016"/>
+  <testcase name="cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using jdbc]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.018"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using jdbc]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.037"/>
+  <testcase name="secondaryIndexingIsCorrectDuringIncrementalCommit[Using jdbc]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.032"/>
+  <testcase name="canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using jdbc]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.032"/>
+  <testcase name="rollbackDuringIncrementalCommitWorks[Using jdbc]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.015"/>
+  <testcase name="incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using jdbc]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.03"/>
+  <testcase name="canCommitDirectlyAfterIncrementalCommit[Using jdbc]" classname="org.chronos.chronograph.test.transaction.IncrementalGraphCommitTest" time="0.015"/>
+  <system-out><![CDATA[[INFO ] 2017-08-28 19:58:28 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using chunked]
+    Start time:  2017/08/28 19:58:28
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using chunked]
+    End time:    2017/08/28 19:58:29 (Duration: 406ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canRecreateVertexDuringIncrementalCommitProcess[Using chunked]
+    Start time:  2017/08/28 19:58:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canRecreateVertexDuringIncrementalCommitProcess[Using chunked]
+    End time:    2017/08/28 19:58:29 (Duration: 378ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModifications[Using chunked]
+    Start time:  2017/08/28 19:58:29
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:30 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:30 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:30 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModifications[Using chunked]
+    End time:    2017/08/28 19:58:30 (Duration: 353ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitsAppearAsSingleCommitInHistory[Using chunked]
+    Start time:  2017/08/28 19:58:30
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:30 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:30 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:30 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitsAppearAsSingleCommitInHistory[Using chunked]
+    End time:    2017/08/28 19:58:30 (Duration: 346ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using chunked]
+    Start time:  2017/08/28 19:58:30
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:30 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:30 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using chunked]
+    End time:    2017/08/28 19:58:30 (Duration: 322ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitIncrementally[Using chunked]
+    Start time:  2017/08/28 19:58:30
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:30 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitIncrementally[Using chunked]
+    End time:    2017/08/28 19:58:30 (Duration: 215ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using chunked]
+    Start time:  2017/08/28 19:58:30
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:31 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:31 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:31 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using chunked]
+    End time:    2017/08/28 19:58:31 (Duration: 216ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using chunked]
+    Start time:  2017/08/28 19:58:31
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:31 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:31 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:31 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using chunked]
+    End time:    2017/08/28 19:58:31 (Duration: 369ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: secondaryIndexingIsCorrectDuringIncrementalCommit[Using chunked]
+    Start time:  2017/08/28 19:58:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: secondaryIndexingIsCorrectDuringIncrementalCommit[Using chunked]
+    End time:    2017/08/28 19:58:32 (Duration: 462ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using chunked]
+    Start time:  2017/08/28 19:58:32
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:32 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:32 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using chunked]
+    End time:    2017/08/28 19:58:32 (Duration: 400ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: rollbackDuringIncrementalCommitWorks[Using chunked]
+    Start time:  2017/08/28 19:58:32
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:32 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: rollbackDuringIncrementalCommitWorks[Using chunked]
+    End time:    2017/08/28 19:58:32 (Duration: 352ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using chunked]
+    Start time:  2017/08/28 19:58:32
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:33 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:33 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:33 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using chunked]
+    End time:    2017/08/28 19:58:33 (Duration: 432ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitDirectlyAfterIncrementalCommit[Using chunked]
+    Start time:  2017/08/28 19:58:33
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:33 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitDirectlyAfterIncrementalCommit[Using chunked]
+    End time:    2017/08/28 19:58:33 (Duration: 331ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using mapdb]
+    Start time:  2017/08/28 19:58:33
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using mapdb]
+    End time:    2017/08/28 19:58:33 (Duration: 337ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canRecreateVertexDuringIncrementalCommitProcess[Using mapdb]
+    Start time:  2017/08/28 19:58:33
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canRecreateVertexDuringIncrementalCommitProcess[Using mapdb]
+    End time:    2017/08/28 19:58:34 (Duration: 331ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModifications[Using mapdb]
+    Start time:  2017/08/28 19:58:34
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:34 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:34 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:34 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModifications[Using mapdb]
+    End time:    2017/08/28 19:58:34 (Duration: 332ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitsAppearAsSingleCommitInHistory[Using mapdb]
+    Start time:  2017/08/28 19:58:34
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:34 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:34 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:34 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitsAppearAsSingleCommitInHistory[Using mapdb]
+    End time:    2017/08/28 19:58:34 (Duration: 417ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using mapdb]
+    Start time:  2017/08/28 19:58:34
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:35 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:35 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using mapdb]
+    End time:    2017/08/28 19:58:35 (Duration: 605ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitIncrementally[Using mapdb]
+    Start time:  2017/08/28 19:58:35
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:35 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitIncrementally[Using mapdb]
+    End time:    2017/08/28 19:58:35 (Duration: 400ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using mapdb]
+    Start time:  2017/08/28 19:58:35
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:36 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:36 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:36 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using mapdb]
+    End time:    2017/08/28 19:58:36 (Duration: 415ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using mapdb]
+    Start time:  2017/08/28 19:58:36
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:36 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:37 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:37 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using mapdb]
+    End time:    2017/08/28 19:58:37 (Duration: 862ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: secondaryIndexingIsCorrectDuringIncrementalCommit[Using mapdb]
+    Start time:  2017/08/28 19:58:37
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: secondaryIndexingIsCorrectDuringIncrementalCommit[Using mapdb]
+    End time:    2017/08/28 19:58:37 (Duration: 670ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using mapdb]
+    Start time:  2017/08/28 19:58:37
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:38 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:38 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using mapdb]
+    End time:    2017/08/28 19:58:38 (Duration: 584ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: rollbackDuringIncrementalCommitWorks[Using mapdb]
+    Start time:  2017/08/28 19:58:38
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:38 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: rollbackDuringIncrementalCommitWorks[Using mapdb]
+    End time:    2017/08/28 19:58:38 (Duration: 431ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using mapdb]
+    Start time:  2017/08/28 19:58:38
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:39 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:39 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:39 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using mapdb]
+    End time:    2017/08/28 19:58:39 (Duration: 800ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitDirectlyAfterIncrementalCommit[Using mapdb]
+    Start time:  2017/08/28 19:58:39
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:40 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitDirectlyAfterIncrementalCommit[Using mapdb]
+    End time:    2017/08/28 19:58:40 (Duration: 400ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using tupl]
+    Start time:  2017/08/28 19:58:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using tupl]
+    End time:    2017/08/28 19:58:40 (Duration: 184ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canRecreateVertexDuringIncrementalCommitProcess[Using tupl]
+    Start time:  2017/08/28 19:58:40
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canRecreateVertexDuringIncrementalCommitProcess[Using tupl]
+    End time:    2017/08/28 19:58:40 (Duration: 284ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModifications[Using tupl]
+    Start time:  2017/08/28 19:58:40
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:40 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:40 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:40 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModifications[Using tupl]
+    End time:    2017/08/28 19:58:40 (Duration: 169ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitsAppearAsSingleCommitInHistory[Using tupl]
+    Start time:  2017/08/28 19:58:40
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:40 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:40 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:40 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitsAppearAsSingleCommitInHistory[Using tupl]
+    End time:    2017/08/28 19:58:40 (Duration: 115ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using tupl]
+    Start time:  2017/08/28 19:58:40
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:40 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:40 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using tupl]
+    End time:    2017/08/28 19:58:41 (Duration: 114ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitIncrementally[Using tupl]
+    Start time:  2017/08/28 19:58:41
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:41 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitIncrementally[Using tupl]
+    End time:    2017/08/28 19:58:41 (Duration: 102ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using tupl]
+    Start time:  2017/08/28 19:58:41
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:41 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:41 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:41 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using tupl]
+    End time:    2017/08/28 19:58:41 (Duration: 84ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using tupl]
+    Start time:  2017/08/28 19:58:41
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:41 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:41 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:41 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using tupl]
+    End time:    2017/08/28 19:58:41 (Duration: 284ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: secondaryIndexingIsCorrectDuringIncrementalCommit[Using tupl]
+    Start time:  2017/08/28 19:58:41
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: secondaryIndexingIsCorrectDuringIncrementalCommit[Using tupl]
+    End time:    2017/08/28 19:58:41 (Duration: 400ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using tupl]
+    Start time:  2017/08/28 19:58:41
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using tupl]
+    End time:    2017/08/28 19:58:42 (Duration: 216ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: rollbackDuringIncrementalCommitWorks[Using tupl]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: rollbackDuringIncrementalCommitWorks[Using tupl]
+    End time:    2017/08/28 19:58:42 (Duration: 184ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using tupl]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using tupl]
+    End time:    2017/08/28 19:58:42 (Duration: 315ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitDirectlyAfterIncrementalCommit[Using tupl]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitDirectlyAfterIncrementalCommit[Using tupl]
+    End time:    2017/08/28 19:58:42 (Duration: 163ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using inmemory]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using inmemory]
+    End time:    2017/08/28 19:58:42 (Duration: 12ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canRecreateVertexDuringIncrementalCommitProcess[Using inmemory]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canRecreateVertexDuringIncrementalCommitProcess[Using inmemory]
+    End time:    2017/08/28 19:58:42 (Duration: 4ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModifications[Using inmemory]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModifications[Using inmemory]
+    End time:    2017/08/28 19:58:42 (Duration: 2ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitsAppearAsSingleCommitInHistory[Using inmemory]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitsAppearAsSingleCommitInHistory[Using inmemory]
+    End time:    2017/08/28 19:58:42 (Duration: 2ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using inmemory]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using inmemory]
+    End time:    2017/08/28 19:58:42 (Duration: 2ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitIncrementally[Using inmemory]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitIncrementally[Using inmemory]
+    End time:    2017/08/28 19:58:42 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using inmemory]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using inmemory]
+    End time:    2017/08/28 19:58:42 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using inmemory]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using inmemory]
+    End time:    2017/08/28 19:58:42 (Duration: 7ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: secondaryIndexingIsCorrectDuringIncrementalCommit[Using inmemory]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: secondaryIndexingIsCorrectDuringIncrementalCommit[Using inmemory]
+    End time:    2017/08/28 19:58:42 (Duration: 6ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using inmemory]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using inmemory]
+    End time:    2017/08/28 19:58:42 (Duration: 6ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: rollbackDuringIncrementalCommitWorks[Using inmemory]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: rollbackDuringIncrementalCommitWorks[Using inmemory]
+    End time:    2017/08/28 19:58:42 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using inmemory]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using inmemory]
+    End time:    2017/08/28 19:58:42 (Duration: 4ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitDirectlyAfterIncrementalCommit[Using inmemory]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitDirectlyAfterIncrementalCommit[Using inmemory]
+    End time:    2017/08/28 19:58:42 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using jdbc]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: getAndExistsWorkProperlyAfterDeletionDuringIncrementalCommit[Using jdbc]
+    End time:    2017/08/28 19:58:42 (Duration: 31ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canRecreateVertexDuringIncrementalCommitProcess[Using jdbc]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canRecreateVertexDuringIncrementalCommitProcess[Using jdbc]
+    End time:    2017/08/28 19:58:42 (Duration: 33ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModifications[Using jdbc]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModifications[Using jdbc]
+    End time:    2017/08/28 19:58:42 (Duration: 12ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitsAppearAsSingleCommitInHistory[Using jdbc]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitsAppearAsSingleCommitInHistory[Using jdbc]
+    End time:    2017/08/28 19:58:42 (Duration: 32ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using jdbc]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCanceledIncrementalCommitProcess[Using jdbc]
+    End time:    2017/08/28 19:58:42 (Duration: 34ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitIncrementally[Using jdbc]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitIncrementally[Using jdbc]
+    End time:    2017/08/28 19:58:42 (Duration: 16ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using jdbc]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:42 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: cannotCommitOnOtherTransactionWhileIncrementalCommitProcessIsRunning[Using jdbc]
+    End time:    2017/08/28 19:58:42 (Duration: 18ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using jdbc]
+    Start time:  2017/08/28 19:58:42
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:43 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:43 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:43 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexerWithQueryCaching[Using jdbc]
+    End time:    2017/08/28 19:58:43 (Duration: 37ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: secondaryIndexingIsCorrectDuringIncrementalCommit[Using jdbc]
+    Start time:  2017/08/28 19:58:43
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: secondaryIndexingIsCorrectDuringIncrementalCommit[Using jdbc]
+    End time:    2017/08/28 19:58:43 (Duration: 32ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using jdbc]
+    Start time:  2017/08/28 19:58:43
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:43 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:43 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitRegularlyAfterCompletedIncrementalCommitProcess[Using jdbc]
+    End time:    2017/08/28 19:58:43 (Duration: 31ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: rollbackDuringIncrementalCommitWorks[Using jdbc]
+    Start time:  2017/08/28 19:58:43
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:43 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: rollbackDuringIncrementalCommitWorks[Using jdbc]
+    End time:    2017/08/28 19:58:43 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using jdbc]
+    Start time:  2017/08/28 19:58:43
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:43 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:43 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+[WARN ] 2017-08-28 19:58:43 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: incrementalCommitTransactionCanReadItsOwnModificationsInIndexer[Using jdbc]
+    End time:    2017/08/28 19:58:43 (Duration: 30ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitDirectlyAfterIncrementalCommit[Using jdbc]
+    Start time:  2017/08/28 19:58:43
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:43 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IncrementalGraphCommitTest
+    Test method: canCommitDirectlyAfterIncrementalCommit[Using jdbc]
+    End time:    2017/08/28 19:58:43 (Duration: 15ms)
+================================================================================
+
+
+
+[INFO ] 2017-08-28 19:58:43 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+[INFO ] 2017-08-28 19:58:43 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

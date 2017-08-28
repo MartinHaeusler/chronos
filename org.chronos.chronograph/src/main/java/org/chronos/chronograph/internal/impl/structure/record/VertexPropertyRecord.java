@@ -7,9 +7,11 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.tinkerpop.gremlin.structure.Property;
+import org.chronos.common.annotation.PersistentClass;
 
 import com.google.common.collect.Maps;
 
+@PersistentClass("kryo")
 public final class VertexPropertyRecord extends PropertyRecord {
 
 	// =====================================================================================================================

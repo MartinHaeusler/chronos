@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" tests="24" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:59:58" hostname="Aurora" time="4.661">
+  <properties/>
+  <testcase name="backToBackTestWithHashMap" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="4.601"/>
+  <testcase name="canCreateEmptyTree" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.002"/>
+  <testcase name="canHandleMultipleConflictingKeys" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.015"/>
+  <testcase name="canCreateLeafNode" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="canSerializeAndDeserializeMultipleTrees" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.009"/>
+  <testcase name="canCreateIndexNode" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="puttingSameEntryTwiceLeavesTreeUnmodified" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="removeFromBranchTest" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="canSerializeAndDeserializeSingleTree" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.003"/>
+  <testcase name="canHandleNonConflictingEntries" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.001"/>
+  <testcase name="canAttachChildNode" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="entryIteratorTest" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="canOverrideValueOfKey" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="removeFromRootTest" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="canGetAndSetLeafNodeValue" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="canCreateTreeFromMap" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="canHandleTwoConflictingEntries" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="canAddAndRemoveSingleEntry" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="gettingNonExistingKeyReturnsNull" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="canUseSpliterator" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.028"/>
+  <testcase name="basicPutAndRemoveTest" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="removingNonExistingKeyLeavesTreeUnmodified" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="basicInsertionTest" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <testcase name="attachingAChildCreatesANewNode" classname="org.chronos.common.test.collections.immutable.HashArrayMappedTreeTest" time="0.0"/>
+  <system-out><![CDATA[Insert complete.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

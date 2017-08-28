@@ -82,9 +82,9 @@ public class MutableIndexValueDiffTest extends ChronoDBUnitTest {
 		assertFalse(diff.isEntryAddition());
 		assertFalse(diff.isEntryRemoval());
 		assertTrue(diff.isEntryUpdate());
-		diff.remove("test", "Hello World");
-		diff.remove("test", "Foo Bar");
-		diff.remove("test2", "Baz");
+		diff.removeSingleValue("test", "Hello World");
+		diff.removeSingleValue("test", "Foo Bar");
+		diff.removeSingleValue("test2", "Baz");
 		assertEquals(Sets.newHashSet("test", "test2"), diff.getChangedIndices());
 		assertEquals(Sets.newHashSet("Hello World", "Foo Bar"), diff.getRemovals("test"));
 		assertEquals(Sets.newHashSet("Baz"), diff.getRemovals("test2"));
@@ -99,7 +99,7 @@ public class MutableIndexValueDiffTest extends ChronoDBUnitTest {
 	public void cannotInsertRemovalsIntoEntryAdditionDiff() {
 		MutableIndexValueDiff diff = new MutableIndexValueDiff(null, new Object());
 		try {
-			diff.remove("test", "Hello World");
+			diff.removeSingleValue("test", "Hello World");
 			fail("Managed to remove an index value in an entry addition diff!");
 		} catch (Exception ignored) {
 			// pass
@@ -120,8 +120,8 @@ public class MutableIndexValueDiffTest extends ChronoDBUnitTest {
 	@Test
 	public void insertingAnAdditionOverridesARemoval() {
 		MutableIndexValueDiff diff = new MutableIndexValueDiff(new Object(), new Object());
-		diff.remove("test", "Hello World");
-		diff.remove("test", "Foo Bar");
+		diff.removeSingleValue("test", "Hello World");
+		diff.removeSingleValue("test", "Foo Bar");
 		assertEquals(Sets.newHashSet("test"), diff.getChangedIndices());
 		assertEquals(Sets.newHashSet("Hello World", "Foo Bar"), diff.getRemovals("test"));
 		assertEquals(Collections.emptySet(), diff.getAdditions("test"));
@@ -141,7 +141,7 @@ public class MutableIndexValueDiffTest extends ChronoDBUnitTest {
 		assertEquals(Sets.newHashSet("test"), diff.getChangedIndices());
 		assertEquals(Sets.newHashSet("Hello World", "Foo Bar"), diff.getAdditions("test"));
 		assertEquals(Collections.emptySet(), diff.getRemovals("test"));
-		diff.remove("test", "Hello World");
+		diff.removeSingleValue("test", "Hello World");
 		assertEquals(Sets.newHashSet("test"), diff.getChangedIndices());
 		assertEquals(Sets.newHashSet("Foo Bar"), diff.getAdditions("test"));
 		assertEquals(Sets.newHashSet("Hello World"), diff.getRemovals("test"));
@@ -163,8 +163,8 @@ public class MutableIndexValueDiffTest extends ChronoDBUnitTest {
 	@Test
 	public void canDetectThatDiffIsSubtractive() {
 		MutableIndexValueDiff diff = new MutableIndexValueDiff(new Object(), new Object());
-		diff.remove("test", "Hello World");
-		diff.remove("test", "Foo Bar");
+		diff.removeSingleValue("test", "Hello World");
+		diff.removeSingleValue("test", "Foo Bar");
 		assertFalse(diff.isAdditive());
 		assertTrue(diff.isSubtractive());
 		assertFalse(diff.isMixed());
@@ -175,7 +175,7 @@ public class MutableIndexValueDiffTest extends ChronoDBUnitTest {
 	public void canDetectThatDiffIsMixed() {
 		MutableIndexValueDiff diff = new MutableIndexValueDiff(new Object(), new Object());
 		diff.add("test", "Hello World");
-		diff.remove("test", "Foo Bar");
+		diff.removeSingleValue("test", "Foo Bar");
 		assertFalse(diff.isAdditive());
 		assertFalse(diff.isSubtractive());
 		assertTrue(diff.isMixed());

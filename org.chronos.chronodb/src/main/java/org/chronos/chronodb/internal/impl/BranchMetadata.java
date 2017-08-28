@@ -6,7 +6,14 @@ import java.io.Serializable;
 
 import org.chronos.chronodb.api.ChronoDBConstants;
 
-public class BranchMetadata implements Serializable {
+/**
+ * This class has been superseded by {@link BranchMetadata2} and exists for backwards-compatibility reasons (i.e. there are kryo-instances of this class out there).
+ *
+ * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
+ *
+ */
+@Deprecated
+public class BranchMetadata implements Serializable, IBranchMetadata {
 
 	// =====================================================================================================================
 	// STATIC FACTORY METHODS
@@ -49,16 +56,26 @@ public class BranchMetadata implements Serializable {
 	// PUBLIC API
 	// =====================================================================================================================
 
+	@Override
 	public String getName() {
 		return this.name;
 	}
 
+	@Override
 	public String getParentName() {
 		return this.parentName;
 	}
 
+	@Override
 	public long getBranchingTimestamp() {
 		return this.branchingTimestamp;
+	}
+
+	@Override
+	public String getDirectoryName() {
+		// this is a fallback; the ChronoDB-Migrations will replace this class with another one on startup that
+		// fulfills this property.
+		return null;
 	}
 
 	// =====================================================================================================================

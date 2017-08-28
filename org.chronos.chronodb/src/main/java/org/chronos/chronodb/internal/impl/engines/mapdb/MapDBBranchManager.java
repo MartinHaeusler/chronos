@@ -1,8 +1,7 @@
 package org.chronos.chronodb.internal.impl.engines.mapdb;
 
-import static org.chronos.common.logging.ChronoLogger.*;
-
 import static com.google.common.base.Preconditions.*;
+import static org.chronos.common.logging.ChronoLogger.*;
 
 import java.util.Collections;
 import java.util.Map;
@@ -13,7 +12,7 @@ import org.chronos.chronodb.api.BranchManager;
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.internal.api.BranchInternal;
 import org.chronos.chronodb.internal.impl.BranchImpl;
-import org.chronos.chronodb.internal.impl.BranchMetadata;
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
 import org.chronos.chronodb.internal.impl.MatrixUtils;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractBranchManager;
 import org.chronos.chronodb.internal.impl.mapdb.BranchMetadataMap;
@@ -37,7 +36,7 @@ public class MapDBBranchManager extends AbstractBranchManager implements BranchM
 	// =================================================================================================================
 
 	private final Map<String, BranchInternal> loadedBranches = Maps.newConcurrentMap();
-	private final Map<String, BranchMetadata> branchMetadata = Maps.newConcurrentMap();
+	private final Map<String, IBranchMetadata> branchMetadata = Maps.newConcurrentMap();
 
 	// =====================================================================================================================
 	// CONSTRUCTOR
@@ -59,7 +58,7 @@ public class MapDBBranchManager extends AbstractBranchManager implements BranchM
 	}
 
 	@Override
-	protected BranchInternal createBranch(final BranchMetadata metadata) {
+	protected BranchInternal createBranch(final IBranchMetadata metadata) {
 		BranchInternal parentBranch = null;
 		BranchImpl branch = null;
 		if (metadata.getParentName() != null) {
@@ -94,7 +93,7 @@ public class MapDBBranchManager extends AbstractBranchManager implements BranchM
 			return branch;
 		}
 		// not loaded yet; load it
-		BranchMetadata metadata = this.branchMetadata.get(name);
+		IBranchMetadata metadata = this.branchMetadata.get(name);
 		if (metadata == null) {
 			return null;
 		}
@@ -120,12 +119,14 @@ public class MapDBBranchManager extends AbstractBranchManager implements BranchM
 	}
 
 	private void ensureMasterBranchExists() {
-		BranchMetadata masterBranchMetadata = BranchMetadata.createMasterBranchMetadata();
+		IBranchMetadata masterBranchMetadata = IBranchMetadata.createMasterBranchMetadata();
 		if (this.existsBranch(ChronoDBConstants.MASTER_BRANCH_IDENTIFIER)) {
 			// we know that the master branch exists in our navigation map.
 			// ensure that it also exists in the branch metadata map
 			try (MapDBTransaction tx = this.getOwningDB().openTransaction()) {
-				BranchMetadataMap.insertOrUpdate(tx, masterBranchMetadata);
+				if (BranchMetadataMap.getMetadata(tx, masterBranchMetadata.getName()) == null) {
+					BranchMetadataMap.insertOrUpdate(tx, masterBranchMetadata);
+				}
 				tx.commit();
 			}
 			return;
@@ -135,8 +136,8 @@ public class MapDBBranchManager extends AbstractBranchManager implements BranchM
 
 	private void loadBranchMetadata() {
 		try (MapDBTransaction tx = this.getOwningDB().openTransaction()) {
-			Set<BranchMetadata> allMetadata = BranchMetadataMap.values(tx);
-			for (BranchMetadata metadata : allMetadata) {
+			Set<IBranchMetadata> allMetadata = BranchMetadataMap.values(tx);
+			for (IBranchMetadata metadata : allMetadata) {
 				this.branchMetadata.put(metadata.getName(), metadata);
 			}
 		}

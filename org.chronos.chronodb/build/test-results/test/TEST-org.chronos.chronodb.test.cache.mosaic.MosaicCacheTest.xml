@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.cache.mosaic.MosaicCacheTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:50:31" hostname="Aurora" time="0.022">
+  <properties/>
+  <testcase name="canCreateMosaicCacheInstance" classname="org.chronos.chronodb.test.cache.mosaic.MosaicCacheTest" time="0.0"/>
+  <testcase name="leastRecentlyUsedShrinkOnWriteThroughBehaviourWorks" classname="org.chronos.chronodb.test.cache.mosaic.MosaicCacheTest" time="0.021"/>
+  <testcase name="cacheAndGetAreConsistent" classname="org.chronos.chronodb.test.cache.mosaic.MosaicCacheTest" time="0.001"/>
+  <testcase name="cacheSizeIsCorrect" classname="org.chronos.chronodb.test.cache.mosaic.MosaicCacheTest" time="0.0"/>
+  <testcase name="cacheGetOnNonExistingRowDoesntCrash" classname="org.chronos.chronodb.test.cache.mosaic.MosaicCacheTest" time="0.0"/>
+  <testcase name="leastRecentlyUsedShrinkOnCacheBehaviourWorks" classname="org.chronos.chronodb.test.cache.mosaic.MosaicCacheTest" time="0.0"/>
+  <system-out><![CDATA[19:50:31.553 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MosaicCacheTest
+    Test method: canCreateMosaicCacheInstance
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MosaicCacheTest
+    Test method: canCreateMosaicCacheInstance
+    End time:    2017/08/28 19:50:31 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MosaicCacheTest
+    Test method: leastRecentlyUsedShrinkOnWriteThroughBehaviourWorks
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+Before
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   0
+	Computed Size:  0
+	Row Count:      0
+	Listener Count: 0
+After
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MosaicCacheTest
+    Test method: leastRecentlyUsedShrinkOnWriteThroughBehaviourWorks
+    End time:    2017/08/28 19:50:31 (Duration: 21ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MosaicCacheTest
+    Test method: cacheAndGetAreConsistent
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+Before
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   0
+	Computed Size:  0
+	Row Count:      0
+	Listener Count: 0
+After
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       100
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MosaicCacheTest
+    Test method: cacheAndGetAreConsistent
+    End time:    2017/08/28 19:50:31 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MosaicCacheTest
+    Test method: cacheSizeIsCorrect
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   0
+	Computed Size:  0
+	Row Count:      0
+	Listener Count: 0
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      2
+	Listener Count: 2
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      2
+	Listener Count: 2
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      2
+	Listener Count: 2
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      2
+	Listener Count: 2
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   0
+	Computed Size:  0
+	Row Count:      0
+	Listener Count: 0
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   0
+	Computed Size:  0
+	Row Count:      0
+	Listener Count: 0
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   0
+	Computed Size:  0
+	Row Count:      0
+	Listener Count: 0
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   0
+	Computed Size:  0
+	Row Count:      0
+	Listener Count: 0
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      2
+	Listener Count: 2
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      2
+	Listener Count: 2
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      2
+	Listener Count: 2
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      2
+	Listener Count: 2
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      2
+	Listener Count: 2
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      2
+	Listener Count: 2
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   2
+	Computed Size:  2
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   3
+	Computed Size:  3
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       3
+	Current Size:   0
+	Computed Size:  0
+	Row Count:      0
+	Listener Count: 0
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MosaicCacheTest
+    Test method: cacheSizeIsCorrect
+    End time:    2017/08/28 19:50:31 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MosaicCacheTest
+    Test method: cacheGetOnNonExistingRowDoesntCrash
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+Before
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   0
+	Computed Size:  0
+	Row Count:      0
+	Listener Count: 0
+After
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   0
+	Computed Size:  0
+	Row Count:      0
+	Listener Count: 0
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MosaicCacheTest
+    Test method: cacheGetOnNonExistingRowDoesntCrash
+    End time:    2017/08/28 19:50:31 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MosaicCacheTest
+    Test method: leastRecentlyUsedShrinkOnCacheBehaviourWorks
+    Start time:  2017/08/28 19:50:31
+================================================================================
+
+
+
+Before
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   0
+	Computed Size:  0
+	Row Count:      0
+	Listener Count: 0
+After
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+Before
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+After
+CACHE VALIDATION
+	Max Size:       1
+	Current Size:   1
+	Computed Size:  1
+	Row Count:      1
+	Listener Count: 1
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MosaicCacheTest
+    Test method: leastRecentlyUsedShrinkOnCacheBehaviourWorks
+    End time:    2017/08/28 19:50:31 (Duration: 0ms)
+================================================================================
+
+
+
+19:50:31.575 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:50:31.575 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

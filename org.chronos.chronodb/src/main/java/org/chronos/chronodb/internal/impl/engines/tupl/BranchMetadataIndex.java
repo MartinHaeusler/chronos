@@ -5,7 +5,7 @@ import static com.google.common.base.Preconditions.*;
 import java.io.IOException;
 import java.util.Set;
 
-import org.chronos.chronodb.internal.impl.BranchMetadata;
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
 import org.chronos.chronodb.internal.impl.tupl.TuplTransaction;
 import org.chronos.common.exceptions.ChronosIOException;
 import org.chronos.common.serialization.KryoManager;
@@ -25,13 +25,13 @@ public class BranchMetadataIndex {
 	// PUBLIC API
 	// =====================================================================================================================
 
-	public static void insertOrUpdate(final TuplTransaction tx, final BranchMetadata metadata) {
+	public static void insertOrUpdate(final TuplTransaction tx, final IBranchMetadata metadata) {
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		checkNotNull(metadata, "Precondition violation - argument 'metadata' must not be NULL!");
 		tx.store(NAME, metadata.getName(), KryoManager.serialize(metadata));
 	}
 
-	public static BranchMetadata getMetadata(final TuplTransaction tx, final String name) {
+	public static IBranchMetadata getMetadata(final TuplTransaction tx, final String name) {
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		checkNotNull(name, "Precondition violation - argument 'name' must not be NULL!");
 		byte[] loadedValue = tx.load(NAME, name);
@@ -41,9 +41,9 @@ public class BranchMetadataIndex {
 		return KryoManager.deserialize(loadedValue);
 	}
 
-	public static Set<BranchMetadata> values(final TuplTransaction tx) {
+	public static Set<IBranchMetadata> values(final TuplTransaction tx) {
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
-		Set<BranchMetadata> resultSet = Sets.newHashSet();
+		Set<IBranchMetadata> resultSet = Sets.newHashSet();
 		Cursor cursor = tx.newCursorOn(NAME);
 		try {
 			cursor.first();
@@ -54,7 +54,7 @@ public class BranchMetadataIndex {
 			while (cursor.key() != null) {
 				byte[] value = cursor.value();
 				if (value != null) {
-					BranchMetadata branchMetadata = KryoManager.deserialize(value);
+					IBranchMetadata branchMetadata = KryoManager.deserialize(value);
 					resultSet.add(branchMetadata);
 				}
 				cursor.next();

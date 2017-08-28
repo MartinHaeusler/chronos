@@ -48,9 +48,4 @@ public class ChronoDBBogusCache implements ChronoDBCache {
 		// ignore
 	}
 
-	@Override
-	public void limitAllOpenEndedPeriodsInBranchTo(final String name, final long timestamp) {
-		// ignore
-	}
-
 }

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronograph.test.id.IdsUniqueTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:56:29" hostname="Aurora" time="0.416">
+  <properties/>
+  <testcase name="shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using chunked]" classname="org.chronos.chronograph.test.id.IdsUniqueTest" time="0.131"/>
+  <testcase name="shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using jdbc]" classname="org.chronos.chronograph.test.id.IdsUniqueTest" time="0.035"/>
+  <testcase name="shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using mapdb]" classname="org.chronos.chronograph.test.id.IdsUniqueTest" time="0.181"/>
+  <testcase name="shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using inmemory]" classname="org.chronos.chronograph.test.id.IdsUniqueTest" time="0.016"/>
+  <testcase name="shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using tupl]" classname="org.chronos.chronograph.test.id.IdsUniqueTest" time="0.053"/>
+  <system-out><![CDATA[[INFO ] 2017-08-28 19:56:29 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IdsUniqueTest
+    Test method: shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using chunked]
+    Start time:  2017/08/28 19:56:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IdsUniqueTest
+    Test method: shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using chunked]
+    End time:    2017/08/28 19:56:29 (Duration: 131ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IdsUniqueTest
+    Test method: shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using jdbc]
+    Start time:  2017/08/28 19:56:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IdsUniqueTest
+    Test method: shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using jdbc]
+    End time:    2017/08/28 19:56:29 (Duration: 35ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IdsUniqueTest
+    Test method: shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using mapdb]
+    Start time:  2017/08/28 19:56:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IdsUniqueTest
+    Test method: shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using mapdb]
+    End time:    2017/08/28 19:56:30 (Duration: 181ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IdsUniqueTest
+    Test method: shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using inmemory]
+    Start time:  2017/08/28 19:56:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IdsUniqueTest
+    Test method: shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using inmemory]
+    End time:    2017/08/28 19:56:30 (Duration: 16ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  IdsUniqueTest
+    Test method: shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using tupl]
+    Start time:  2017/08/28 19:56:30
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  IdsUniqueTest
+    Test method: shouldHaveExceptionConsistencyWhenAssigningSameIdOnEdge[Using tupl]
+    End time:    2017/08/28 19:56:30 (Duration: 53ms)
+================================================================================
+
+
+
+[INFO ] 2017-08-28 19:56:30 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+[INFO ] 2017-08-28 19:56:30 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

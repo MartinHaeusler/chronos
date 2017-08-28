@@ -1,0 +1,19 @@
+Starting in 5 seconds.
+GO!
+(INSERTION :: java.util.HashMap -> 12ms
+(INSERTION :: java.util.TreeMap -> 66ms
+-INSERTION :: HashArrayMappedTreeMap -> 78ms
+"GET :: java.util.HashMap -> 14ms
+"GET :: java.util.TreeMap -> 57ms
+GET :: HAMT Map -> 42ms
+$ITER :: java.util.HashMap -> 128ms
+$ITER :: java.util.TreeMap -> 229ms
+)ITER :: HashArrayMappedTreeMap -> 697ms
+Done.
+-INSERTION :: HashArrayMappedTreeMap -> 69ms
+"Starting iteration in 5 seconds.
+GO!
+*ITER :: HashArrayMappedTreeMap -> 5013ms
+
+Insert complete.
+#-ï[WARN ] 2017-08-28 20:00:03 [    Test worker] [c.c.c.ChronosConfigurationUtil]:  Configuration issue: the parameter 'org.chronos.common.test.unknown' is unknown, but in the namespace 'org.chronos.common.test' - please check the spelling.

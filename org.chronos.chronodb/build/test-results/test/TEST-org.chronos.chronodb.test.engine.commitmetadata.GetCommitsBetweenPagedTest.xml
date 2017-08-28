@@ -1,0 +1,891 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" tests="30" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:51:36" hostname="Aurora" time="9.668">
+  <properties/>
+  <testcase name="ascendingPaginationWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="1.799"/>
+  <testcase name="retrievingCommitTimestampsIsBranchLocal[Using mapdb]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.553"/>
+  <testcase name="retrievingInvalidTimeRangeProducesAnEmptyIterator[Using mapdb]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.363"/>
+  <testcase name="canRetrieveCommitsWithAndWithoutMetadata[Using mapdb]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.469"/>
+  <testcase name="canRetrieveCommitsWhenNoMetadataWasGiven[Using mapdb]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.253"/>
+  <testcase name="descendingPaginationWorks[Using mapdb]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="1.878"/>
+  <testcase name="ascendingPaginationWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.584"/>
+  <testcase name="retrievingCommitTimestampsIsBranchLocal[Using tupl]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.134"/>
+  <testcase name="retrievingInvalidTimeRangeProducesAnEmptyIterator[Using tupl]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.082"/>
+  <testcase name="canRetrieveCommitsWithAndWithoutMetadata[Using tupl]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.122"/>
+  <testcase name="canRetrieveCommitsWhenNoMetadataWasGiven[Using tupl]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.1"/>
+  <testcase name="descendingPaginationWorks[Using tupl]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.3"/>
+  <testcase name="ascendingPaginationWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.083"/>
+  <testcase name="retrievingCommitTimestampsIsBranchLocal[Using jdbc]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.032"/>
+  <testcase name="retrievingInvalidTimeRangeProducesAnEmptyIterator[Using jdbc]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.015"/>
+  <testcase name="canRetrieveCommitsWithAndWithoutMetadata[Using jdbc]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.038"/>
+  <testcase name="canRetrieveCommitsWhenNoMetadataWasGiven[Using jdbc]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.015"/>
+  <testcase name="descendingPaginationWorks[Using jdbc]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.069"/>
+  <testcase name="ascendingPaginationWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.788"/>
+  <testcase name="retrievingCommitTimestampsIsBranchLocal[Using chunked]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.58"/>
+  <testcase name="retrievingInvalidTimeRangeProducesAnEmptyIterator[Using chunked]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.354"/>
+  <testcase name="canRetrieveCommitsWithAndWithoutMetadata[Using chunked]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.348"/>
+  <testcase name="canRetrieveCommitsWhenNoMetadataWasGiven[Using chunked]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.2"/>
+  <testcase name="descendingPaginationWorks[Using chunked]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.438"/>
+  <testcase name="ascendingPaginationWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.033"/>
+  <testcase name="retrievingCommitTimestampsIsBranchLocal[Using inmemory]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.004"/>
+  <testcase name="retrievingInvalidTimeRangeProducesAnEmptyIterator[Using inmemory]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.0"/>
+  <testcase name="canRetrieveCommitsWithAndWithoutMetadata[Using inmemory]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.007"/>
+  <testcase name="canRetrieveCommitsWhenNoMetadataWasGiven[Using inmemory]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.0"/>
+  <testcase name="descendingPaginationWorks[Using inmemory]" classname="org.chronos.chronodb.test.engine.commitmetadata.GetCommitsBetweenPagedTest" time="0.027"/>
+  <system-out><![CDATA[19:51:36.331 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using mapdb]
+    Start time:  2017/08/28 19:51:36
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using mapdb]
+    End time:    2017/08/28 19:51:38 (Duration: 1799ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using mapdb]
+    Start time:  2017/08/28 19:51:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using mapdb]
+    End time:    2017/08/28 19:51:38 (Duration: 553ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using mapdb]
+    Start time:  2017/08/28 19:51:38
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using mapdb]
+    End time:    2017/08/28 19:51:39 (Duration: 363ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using mapdb]
+    Start time:  2017/08/28 19:51:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using mapdb]
+    End time:    2017/08/28 19:51:39 (Duration: 469ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using mapdb]
+    Start time:  2017/08/28 19:51:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using mapdb]
+    End time:    2017/08/28 19:51:39 (Duration: 253ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using mapdb]
+    Start time:  2017/08/28 19:51:39
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using mapdb]
+    End time:    2017/08/28 19:51:41 (Duration: 1878ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using tupl]
+    Start time:  2017/08/28 19:51:41
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using tupl]
+    End time:    2017/08/28 19:51:42 (Duration: 584ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using tupl]
+    Start time:  2017/08/28 19:51:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using tupl]
+    End time:    2017/08/28 19:51:42 (Duration: 134ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using tupl]
+    Start time:  2017/08/28 19:51:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using tupl]
+    End time:    2017/08/28 19:51:42 (Duration: 82ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using tupl]
+    Start time:  2017/08/28 19:51:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using tupl]
+    End time:    2017/08/28 19:51:42 (Duration: 122ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using tupl]
+    Start time:  2017/08/28 19:51:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using tupl]
+    End time:    2017/08/28 19:51:42 (Duration: 100ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using tupl]
+    Start time:  2017/08/28 19:51:42
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using tupl]
+    End time:    2017/08/28 19:51:42 (Duration: 300ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using jdbc]
+    Start time:  2017/08/28 19:51:42
+================================================================================
+
+
+
+19:51:42.983 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|28e0edbd,name=1hgeqrl9qbn6pz6yfah30|28e0edbd registered.
+19:51:42.983 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|28e0edbd,name=1hgeqrl9qbn6pz6yfah30|28e0edbd unregistered, in order to be reregistered after update.
+19:51:42.983 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|28e0edbd,name=1hgeqrl9qbn6pz6yfah30|28e0edbd registered.
+19:51:42.983 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@23c5efd2 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@4aad97f1 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|531aa4b4, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@44d1ad77 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|5811bf39, jdbcUrl -> jdbc:h2:mem:221b31f0da654b6aadba8a975e702288, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|28e0edbd, numHelperThreads -> 3 ]
+19:51:42.983 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@6df498a1 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:51:42.983 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:51:42.983 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:51:42.983 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:51:43.051 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|28e0edbd,name=1hgeqrl9qbn6pz6yfah30|28e0edbd unregistered.
+19:51:43.051 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:51:43.051 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@e702e12
+19:51:43.051 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@e702e12
+19:51:43.051 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@e702e12
+19:51:43.051 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@e702e12
+19:51:43.051 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@12a88e53
+19:51:43.051 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@12a88e53
+19:51:43.051 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@12a88e53
+19:51:43.051 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@12a88e53
+19:51:43.051 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@344c36b1
+19:51:43.051 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@344c36b1
+19:51:43.051 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@344c36b1
+19:51:43.051 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@344c36b1
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using jdbc]
+    End time:    2017/08/28 19:51:43 (Duration: 83ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using jdbc]
+    Start time:  2017/08/28 19:51:43
+================================================================================
+
+
+
+19:51:43.051 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|124dd59d,name=1hgeqrl9qbn6pz6yfah30|124dd59d registered.
+19:51:43.068 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|124dd59d,name=1hgeqrl9qbn6pz6yfah30|124dd59d unregistered, in order to be reregistered after update.
+19:51:43.068 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|124dd59d,name=1hgeqrl9qbn6pz6yfah30|124dd59d registered.
+19:51:43.068 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@19ce5a37 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@1e1d6360 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|78d15281, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@5ade7186 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|56b530f3, jdbcUrl -> jdbc:h2:mem:ea5ef451fcbf4e5aaed30ffba1ac2cf3, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|124dd59d, numHelperThreads -> 3 ]
+19:51:43.068 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@50dd8542 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:51:43.068 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:51:43.068 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:51:43.068 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:51:43.083 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|124dd59d,name=1hgeqrl9qbn6pz6yfah30|124dd59d unregistered.
+19:51:43.083 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:51:43.083 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@78ecb834
+19:51:43.083 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@78ecb834
+19:51:43.083 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@78ecb834
+19:51:43.083 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@78ecb834
+19:51:43.083 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3e99ed45
+19:51:43.083 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3e99ed45
+19:51:43.083 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3e99ed45
+19:51:43.083 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3e99ed45
+19:51:43.083 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3afc8159
+19:51:43.083 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3afc8159
+19:51:43.083 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3afc8159
+19:51:43.083 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3afc8159
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using jdbc]
+    End time:    2017/08/28 19:51:43 (Duration: 32ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using jdbc]
+    Start time:  2017/08/28 19:51:43
+================================================================================
+
+
+
+19:51:43.083 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|340071a9,name=1hgeqrl9qbn6pz6yfah30|340071a9 registered.
+19:51:43.083 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|340071a9,name=1hgeqrl9qbn6pz6yfah30|340071a9 unregistered, in order to be reregistered after update.
+19:51:43.083 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|340071a9,name=1hgeqrl9qbn6pz6yfah30|340071a9 registered.
+19:51:43.098 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@ea0431b1 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@4f77d81e [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|6961a81, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@d9665e79 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|4fa31734, jdbcUrl -> jdbc:h2:mem:8a5f7b6de1394b45b84032c619816fcf, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|340071a9, numHelperThreads -> 3 ]
+19:51:43.098 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@7f3bc188 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:51:43.098 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:51:43.098 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:51:43.098 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:51:43.098 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|340071a9,name=1hgeqrl9qbn6pz6yfah30|340071a9 unregistered.
+19:51:43.098 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:51:43.098 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@764b2c32
+19:51:43.098 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@764b2c32
+19:51:43.098 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@764b2c32
+19:51:43.098 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@764b2c32
+19:51:43.098 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3b51204d
+19:51:43.098 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3b51204d
+19:51:43.098 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3b51204d
+19:51:43.098 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3b51204d
+19:51:43.098 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@485837ee
+19:51:43.098 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@485837ee
+19:51:43.098 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@485837ee
+19:51:43.098 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@485837ee
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using jdbc]
+    End time:    2017/08/28 19:51:43 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using jdbc]
+    Start time:  2017/08/28 19:51:43
+================================================================================
+
+
+
+19:51:43.098 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|635e0949,name=1hgeqrl9qbn6pz6yfah30|635e0949 registered.
+19:51:43.114 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|635e0949,name=1hgeqrl9qbn6pz6yfah30|635e0949 unregistered, in order to be reregistered after update.
+19:51:43.114 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|635e0949,name=1hgeqrl9qbn6pz6yfah30|635e0949 registered.
+19:51:43.114 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@dbd6e389 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@948d9fa4 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|42c5bb3c, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@4d8ab733 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|69f2e32f, jdbcUrl -> jdbc:h2:mem:5dd8fb9fe4dc401b840df39d812f1315, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|635e0949, numHelperThreads -> 3 ]
+19:51:43.114 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@7a737e06 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:51:43.114 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:51:43.114 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:51:43.114 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:51:43.136 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|635e0949,name=1hgeqrl9qbn6pz6yfah30|635e0949 unregistered.
+19:51:43.136 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7533d3ba
+19:51:43.136 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:51:43.136 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7533d3ba
+19:51:43.136 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@7533d3ba
+19:51:43.136 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@7533d3ba
+19:51:43.136 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@28e98662
+19:51:43.136 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@28e98662
+19:51:43.136 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@28e98662
+19:51:43.136 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@28e98662
+19:51:43.136 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5bcb1980
+19:51:43.136 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5bcb1980
+19:51:43.136 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5bcb1980
+19:51:43.136 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5bcb1980
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using jdbc]
+    End time:    2017/08/28 19:51:43 (Duration: 38ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using jdbc]
+    Start time:  2017/08/28 19:51:43
+================================================================================
+
+
+
+19:51:43.136 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4c20bdcf,name=1hgeqrl9qbn6pz6yfah30|4c20bdcf registered.
+19:51:43.136 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4c20bdcf,name=1hgeqrl9qbn6pz6yfah30|4c20bdcf unregistered, in order to be reregistered after update.
+19:51:43.136 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4c20bdcf,name=1hgeqrl9qbn6pz6yfah30|4c20bdcf registered.
+19:51:43.136 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@c86026d2 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@76fc0ade [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|28493350, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@78a7dc50 [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|2389300e, jdbcUrl -> jdbc:h2:mem:a5606d469d514311acabc63202e35e91, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|4c20bdcf, numHelperThreads -> 3 ]
+19:51:43.136 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@164d791d config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:51:43.136 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:51:43.136 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:51:43.136 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:51:43.151 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4c20bdcf,name=1hgeqrl9qbn6pz6yfah30|4c20bdcf unregistered.
+19:51:43.151 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:51:43.151 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5e396691
+19:51:43.151 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5e396691
+19:51:43.151 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@5e396691
+19:51:43.151 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@5e396691
+19:51:43.151 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@c070cf5
+19:51:43.151 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@c070cf5
+19:51:43.151 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@c070cf5
+19:51:43.151 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@c070cf5
+19:51:43.151 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@35678eda
+19:51:43.151 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@35678eda
+19:51:43.151 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@35678eda
+19:51:43.151 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@35678eda
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using jdbc]
+    End time:    2017/08/28 19:51:43 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using jdbc]
+    Start time:  2017/08/28 19:51:43
+================================================================================
+
+
+
+19:51:43.151 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4ceab2de,name=1hgeqrl9qbn6pz6yfah30|4ceab2de registered.
+19:51:43.168 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4ceab2de,name=1hgeqrl9qbn6pz6yfah30|4ceab2de unregistered, in order to be reregistered after update.
+19:51:43.168 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4ceab2de,name=1hgeqrl9qbn6pz6yfah30|4ceab2de registered.
+19:51:43.168 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@6ea73b08 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@5eb02b01 [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|607a706, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@10ed3f6f [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|38370419, jdbcUrl -> jdbc:h2:mem:07926b2d1f624c349ddc5097551ffa71, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|4ceab2de, numHelperThreads -> 3 ]
+19:51:43.168 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@21fdbcac config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:51:43.168 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:51:43.168 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:51:43.168 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:51:43.220 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|4ceab2de,name=1hgeqrl9qbn6pz6yfah30|4ceab2de unregistered.
+19:51:43.220 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:51:43.220 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@e94c01
+19:51:43.220 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@e94c01
+19:51:43.220 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@e94c01
+19:51:43.220 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@e94c01
+19:51:43.220 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1f37fe4c
+19:51:43.220 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1f37fe4c
+19:51:43.220 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@1f37fe4c
+19:51:43.220 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@1f37fe4c
+19:51:43.220 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6186b700
+19:51:43.220 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6186b700
+19:51:43.220 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@6186b700
+19:51:43.220 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@6186b700
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using jdbc]
+    End time:    2017/08/28 19:51:43 (Duration: 69ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using chunked]
+    Start time:  2017/08/28 19:51:43
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using chunked]
+    End time:    2017/08/28 19:51:44 (Duration: 787ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using chunked]
+    Start time:  2017/08/28 19:51:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using chunked]
+    End time:    2017/08/28 19:51:44 (Duration: 580ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using chunked]
+    Start time:  2017/08/28 19:51:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using chunked]
+    End time:    2017/08/28 19:51:44 (Duration: 354ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using chunked]
+    Start time:  2017/08/28 19:51:44
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using chunked]
+    End time:    2017/08/28 19:51:45 (Duration: 348ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using chunked]
+    Start time:  2017/08/28 19:51:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using chunked]
+    End time:    2017/08/28 19:51:45 (Duration: 200ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using chunked]
+    Start time:  2017/08/28 19:51:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using chunked]
+    End time:    2017/08/28 19:51:45 (Duration: 438ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using inmemory]
+    Start time:  2017/08/28 19:51:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: ascendingPaginationWorks[Using inmemory]
+    End time:    2017/08/28 19:51:45 (Duration: 33ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using inmemory]
+    Start time:  2017/08/28 19:51:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingCommitTimestampsIsBranchLocal[Using inmemory]
+    End time:    2017/08/28 19:51:45 (Duration: 4ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using inmemory]
+    Start time:  2017/08/28 19:51:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: retrievingInvalidTimeRangeProducesAnEmptyIterator[Using inmemory]
+    End time:    2017/08/28 19:51:45 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using inmemory]
+    Start time:  2017/08/28 19:51:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWithAndWithoutMetadata[Using inmemory]
+    End time:    2017/08/28 19:51:45 (Duration: 7ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using inmemory]
+    Start time:  2017/08/28 19:51:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: canRetrieveCommitsWhenNoMetadataWasGiven[Using inmemory]
+    End time:    2017/08/28 19:51:45 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using inmemory]
+    Start time:  2017/08/28 19:51:45
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  GetCommitsBetweenPagedTest
+    Test method: descendingPaginationWorks[Using inmemory]
+    End time:    2017/08/28 19:51:45 (Duration: 27ms)
+================================================================================
+
+
+
+19:51:45.999 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:51:46.000 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

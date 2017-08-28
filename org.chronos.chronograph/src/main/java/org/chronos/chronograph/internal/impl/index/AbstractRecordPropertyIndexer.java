@@ -6,12 +6,23 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.indexing.StringIndexer;
+import org.chronos.chronograph.internal.impl.structure.record.ElementRecord;
 import org.chronos.chronograph.internal.impl.structure.record.PropertyRecord;
+import org.chronos.common.annotation.PersistentClass;
 
 import com.google.common.collect.Sets;
 
-public abstract class AbstractRecordPropertyIndexer implements ChronoIndexer {
+/**
+ * A base class for all indexers working on {@link ElementRecord}s.
+ *
+ * @deprecated Superseded by {@link AbstractRecordPropertyIndexer2}.
+ *
+ * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
+ */
+@Deprecated
+@PersistentClass("kryo")
+public abstract class AbstractRecordPropertyIndexer implements StringIndexer {
 
 	protected String propertyName;
 

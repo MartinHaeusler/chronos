@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.VertexPropertyTest$VertexPropertyRemoval" tests="4" skipped="4" failures="0" errors="0" timestamp="2017-08-28T17:59:01" hostname="Aurora" time="0.0">
+  <properties/>
+  <testcase name="shouldRemoveMultiPropertiesWhenVerticesAreRemoved" classname="org.apache.tinkerpop.gremlin.structure.VertexPropertyTest$VertexPropertyRemoval" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportIdempotentVertexPropertyRemoval" classname="org.apache.tinkerpop.gremlin.structure.VertexPropertyTest$VertexPropertyRemoval" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldRemoveMultiProperties" classname="org.apache.tinkerpop.gremlin.structure.VertexPropertyTest$VertexPropertyRemoval" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldAllowIteratingAndRemovingVertexPropertyProperties" classname="org.apache.tinkerpop.gremlin.structure.VertexPropertyTest$VertexPropertyRemoval" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

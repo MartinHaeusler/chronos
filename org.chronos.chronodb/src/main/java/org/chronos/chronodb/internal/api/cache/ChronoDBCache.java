@@ -11,12 +11,27 @@ import org.chronos.chronodb.internal.api.GetResult;
 import org.chronos.chronodb.internal.impl.cache.bogus.ChronoDBBogusCache;
 import org.chronos.chronodb.internal.impl.cache.mosaic.MosaicCache;
 
+/**
+ * The {@link ChronoDBCache} is responsible for caching {@link GetResult}s.
+ *
+ * <p>
+ * This helps to reduce accesses to the underlying store, which in turn reduces the need for I/O operations.
+ *
+ * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
+ */
 public interface ChronoDBCache {
 
 	// =====================================================================================================================
 	// FACTORY METHODS
 	// =====================================================================================================================
 
+	/**
+	 * Creates a new cache according to the settings in the given configuration.
+	 *
+	 * @param config
+	 *            The configuration to read the cache settings from. Must not be <code>null</code>.
+	 * @return A cache instance matching the given configuration. Never <code>null</code>.
+	 */
 	public static ChronoDBCache createCacheForConfiguration(final ChronoDBConfiguration config) {
 		checkNotNull(config, "Precondition violation - argument 'config' must not be NULL!");
 		if (config.isCachingEnabled()) {
@@ -27,7 +42,7 @@ public interface ChronoDBCache {
 	}
 
 	// =====================================================================================================================
-	// BASIC METHODS
+	// PUBLIC API
 	// =====================================================================================================================
 
 	/**
@@ -57,8 +72,7 @@ public interface ChronoDBCache {
 	 * Writes the given key-value pair through the cache.
 	 *
 	 * <p>
-	 * This is similar to {@link #cache(String, GetResult)}, except that this method works directly on the
-	 * <code>value</code> object instead of a {@link GetResult}.
+	 * This is similar to {@link #cache(String, GetResult)}, except that this method works directly on the <code>value</code> object instead of a {@link GetResult}.
 	 *
 	 * <p>
 	 * This method assumes that the validity period of the given key-value pair is open-ended at the righthand side.
@@ -85,8 +99,7 @@ public interface ChronoDBCache {
 	 * Returns the statistics of this cache.
 	 *
 	 * <p>
-	 * This method will return a <b>copy</b> of the statistics. Any modifications on the cache (including
-	 * {@link #resetStatistics()}) will have <b>no influence</b> on the returned statistics object.
+	 * This method will return a <b>copy</b> of the statistics. Any modifications on the cache (including {@link #resetStatistics()}) will have <b>no influence</b> on the returned statistics object.
 	 *
 	 * @return A copy of the statistics. Never <code>null</code>.
 	 */
@@ -103,17 +116,12 @@ public interface ChronoDBCache {
 	public void clear();
 
 	/**
-	 * Rolls the cache back to the specified timestamp, i.e. removes all entries that are newer than the specified
-	 * timestamp.
+	 * Rolls the cache back to the specified timestamp, i.e. removes all entries that are newer than the specified timestamp.
 	 *
 	 * @param timestamp
 	 *            The timestamp to roll back to. Must not be negative.
 	 */
 	public void rollbackToTimestamp(long timestamp);
-
-	// =====================================================================================================================
-	// EXTENSION METHODS
-	// =====================================================================================================================
 
 	/**
 	 * Writes the given map of key-value pairs through this cache i.e. adds all entries to the cache.
@@ -156,8 +164,7 @@ public interface ChronoDBCache {
 		 * Returns the number of cache hits recorded in this cache.
 		 *
 		 * <p>
-		 * A cache hit is a request to {@link ChronoDBCache#get(String, long, QualifiedKey)} that returns a
-		 * {@linkplain CacheGetResult result} that represents a {@linkplain CacheGetResult#isHit() hit}.
+		 * A cache hit is a request to {@link ChronoDBCache#get(String, long, QualifiedKey)} that returns a {@linkplain CacheGetResult result} that represents a {@linkplain CacheGetResult#isHit() hit}.
 		 *
 		 * @return The number of cache hits. Never negative, may be zero.
 		 */
@@ -167,16 +174,14 @@ public interface ChronoDBCache {
 		 * Returns the number of cache misses recorded in this cache.
 		 *
 		 * <p>
-		 * A cache miss is a request to {@link ChronoDBCache#get(String, long, QualifiedKey)} that returns a
-		 * {@linkplain CacheGetResult result} that represents a {@linkplain CacheGetResult#isMiss() miss}.
+		 * A cache miss is a request to {@link ChronoDBCache#get(String, long, QualifiedKey)} that returns a {@linkplain CacheGetResult result} that represents a {@linkplain CacheGetResult#isMiss() miss}.
 		 *
 		 * @return The number of cache misses. Never negative, may be zero.
 		 */
 		public long getCacheMissCount();
 
 		/**
-		 * Returns the request count, i.e. the number of {@link ChronoDBCache#get(String, long, QualifiedKey)} calls
-		 * received by this cache.
+		 * Returns the request count, i.e. the number of {@link ChronoDBCache#get(String, long, QualifiedKey)} calls received by this cache.
 		 *
 		 * @return The request count. May be zero, but never negative.
 		 */
@@ -191,12 +196,9 @@ public interface ChronoDBCache {
 		 * The cache hit ratio is the {@link #getCacheHitCount()} divided by the {@link #getRequestCount()}.
 		 *
 		 * <p>
-		 * The sum of the {@linkplain #getCacheHitRatio() hit ratio} and the {@linkplain #getCacheMissRatio() miss
-		 * ratio} is always equal to 1 (modulo precision errors), except when the {@linkplain #getRequestCount() request
-		 * count} is zero.
+		 * The sum of the {@linkplain #getCacheHitRatio() hit ratio} and the {@linkplain #getCacheMissRatio() miss ratio} is always equal to 1 (modulo precision errors), except when the {@linkplain #getRequestCount() request count} is zero.
 		 *
-		 * @return The cache hit count. Will be {@link Double#NaN NaN} if the {@linkplain #getRequestCount() request
-		 *         count} is zero.
+		 * @return The cache hit count. Will be {@link Double#NaN NaN} if the {@linkplain #getRequestCount() request count} is zero.
 		 */
 		public default double getCacheHitRatio() {
 			double requestCount = this.getRequestCount();
@@ -214,12 +216,9 @@ public interface ChronoDBCache {
 		 * The cache miss ratio is the {@link #getCacheMissCount()} divided by the {@link #getRequestCount()}.
 		 *
 		 * <p>
-		 * The sum of the {@linkplain #getCacheHitRatio() hit ratio} and the {@linkplain #getCacheMissRatio() miss
-		 * ratio} is always equal to 1 (modulo precision errors), except when the {@linkplain #getRequestCount() request
-		 * count} is zero.
+		 * The sum of the {@linkplain #getCacheHitRatio() hit ratio} and the {@linkplain #getCacheMissRatio() miss ratio} is always equal to 1 (modulo precision errors), except when the {@linkplain #getRequestCount() request count} is zero.
 		 *
-		 * @return The cache miss count. Will be {@link Double#NaN NaN} if the {@linkplain #getRequestCount() request
-		 *         count} is zero.
+		 * @return The cache miss count. Will be {@link Double#NaN NaN} if the {@linkplain #getRequestCount() request count} is zero.
 		 */
 		public default double getCacheMissRatio() {
 			double requestCount = this.getRequestCount();
@@ -231,7 +230,5 @@ public interface ChronoDBCache {
 		}
 
 	}
-
-	public void limitAllOpenEndedPeriodsInBranchTo(final String branchName, final long timestamp);
 
 }

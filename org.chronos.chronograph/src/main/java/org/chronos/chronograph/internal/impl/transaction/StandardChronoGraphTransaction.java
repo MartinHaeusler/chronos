@@ -2,6 +2,7 @@ package org.chronos.chronograph.internal.impl.transaction;
 
 import static com.google.common.base.Preconditions.*;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -19,11 +20,13 @@ import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.api.PutOption;
 import org.chronos.chronodb.api.key.TemporalKey;
 import org.chronos.chronodb.internal.api.query.ChronoDBQuery;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
 import org.chronos.chronograph.api.structure.ChronoEdge;
 import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.api.structure.ChronoVertex;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransaction;
 import org.chronos.chronograph.internal.ChronoGraphConstants;
+import org.chronos.chronograph.internal.api.transaction.ChronoGraphTransactionInternal;
 import org.chronos.chronograph.internal.impl.structure.graph.ChronoEdgeImpl;
 import org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexImpl;
 import org.chronos.chronograph.internal.impl.structure.graph.ElementLifecycleStatus;
@@ -38,8 +41,9 @@ import org.chronos.common.logging.LogLevel;
 
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
-public class StandardChronoGraphTransaction implements ChronoGraphTransaction {
+public class StandardChronoGraphTransaction implements ChronoGraphTransaction, ChronoGraphTransactionInternal {
 
 	private final String transactionId;
 	private final ChronoGraph graph;
@@ -191,10 +195,16 @@ public class StandardChronoGraphTransaction implements ChronoGraphTransaction {
 	}
 
 	@Override
-	public Iterator<Vertex> getVerticesByProperties(final Map<String, String> propertyKeyToPropertyValue) {
+	public Iterator<Vertex> getVerticesByProperties(final Map<String, Object> propertyKeyToPropertyValue) {
 		checkNotNull(propertyKeyToPropertyValue,
 				"Precondition violation - argument 'propertyKeyToPropertyValue' must not be NULL!");
 		return this.queryProcessor.getVerticesByProperties(propertyKeyToPropertyValue);
+	}
+
+	@Override
+	public Iterator<Vertex> getVerticesBySearchSpecifications(final Collection<SearchSpecification<?>> searchSpecifications) {
+		checkNotNull(searchSpecifications, "Precondition violation - argument 'searchSpecifications' must not be NULL!");
+		return this.queryProcessor.getVerticesBySearchSpecifications(Sets.newLinkedHashSet(searchSpecifications));
 	}
 
 	@Override
@@ -239,10 +249,16 @@ public class StandardChronoGraphTransaction implements ChronoGraphTransaction {
 	}
 
 	@Override
-	public Iterator<Edge> getEdgesByProperties(final Map<String, String> propertyKeyToPropertyValue) {
+	public Iterator<Edge> getEdgesByProperties(final Map<String, Object> propertyKeyToPropertyValue) {
 		checkNotNull(propertyKeyToPropertyValue,
 				"Precondition violation - argument 'propertyKeyToPropertyValue' must not be NULL!");
 		return this.queryProcessor.getEdgesByProperties(propertyKeyToPropertyValue);
+	}
+
+	@Override
+	public Iterator<Edge> getEdgesBySearchSpecifications(final Collection<SearchSpecification<?>> searchSpecifications) {
+		checkNotNull(searchSpecifications, "Precondition violation - argument 'searchSpecifications' must not be NULL!");
+		return this.queryProcessor.getEdgesBySearchSpecifications(Sets.newLinkedHashSet(searchSpecifications));
 	}
 
 	@Override

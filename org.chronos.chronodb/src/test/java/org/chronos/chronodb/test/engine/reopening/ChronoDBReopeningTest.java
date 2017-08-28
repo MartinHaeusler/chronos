@@ -99,9 +99,9 @@ public class ChronoDBReopeningTest extends AllChronoDBBackendsTest {
 		assertNotNull(db);
 		// add some indexers
 		db.getIndexManager().addIndexer("name", new NamedPayloadNameIndexer());
+		db.getIndexManager().reindexAll();
 		db.getIndexManager().addIndexer("test", new NamedPayloadNameIndexer());
-		// make sure that 'name' isn't dirty anymore
-		db.getIndexManager().reindex("name");
+		// make sure that 'name' isn't dirty
 		assertFalse(db.getIndexManager().getDirtyIndices().contains("name"));
 		// ... but the 'test' index should still be dirty
 		assertTrue(db.getIndexManager().getDirtyIndices().contains("test"));
@@ -112,5 +112,41 @@ public class ChronoDBReopeningTest extends AllChronoDBBackendsTest {
 		// assert that the 'name' index is not dirty, but the 'test' index is
 		assertFalse(db2.getIndexManager().getDirtyIndices().contains("name"));
 		assertTrue(db2.getIndexManager().getDirtyIndices().contains("test"));
+	}
+
+	@Test
+	public void reopeningChronoDbPreservesBranches() {
+		ChronoDB db = this.getChronoDB();
+		assertNotNull(db);
+		{ // insert data into "master"
+			ChronoDBTransaction tx = db.tx();
+			tx.put("Hello", "World");
+			tx.commit();
+		}
+		db.getBranchManager().createBranch("Test");
+		{ // insert data into "Test"
+			ChronoDBTransaction tx = db.tx("Test");
+			tx.put("Foo", "Bar");
+			tx.commit();
+		}
+		db.getBranchManager().createBranch("Test", "TestSub");
+		{ // insert data into "TestSub"
+			ChronoDBTransaction tx = db.tx("TestSub");
+			tx.put("Foo", "Baz");
+			tx.commit();
+		}
+		// assert that the data is present
+		assertEquals("World", db.tx().get("Hello"));
+		assertEquals("Bar", db.tx("Test").get("Foo"));
+		assertEquals("Baz", db.tx("TestSub").get("Foo"));
+
+		// close and reopen the db
+		ChronoDB db2 = this.closeAndReopenDB();
+
+		// assert that the data is still present
+		assertEquals("World", db2.tx().get("Hello"));
+		assertEquals("Bar", db2.tx("Test").get("Foo"));
+		assertEquals("Baz", db2.tx("TestSub").get("Foo"));
+
 	}
 }

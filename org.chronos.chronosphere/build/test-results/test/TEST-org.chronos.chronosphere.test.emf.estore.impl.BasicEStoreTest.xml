@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" tests="36" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:59:18" hostname="Aurora" time="0.379">
+  <properties/>
+  <testcase name="multiplicityManyCrossRefWithMultiplicityOneOppositeRefWorks[Using EMF Reference]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.015"/>
+  <testcase name="grabatsFragmantModelWorks[Using EMF Reference]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityOneContainmentWithOppositeRefWorks[Using EMF Reference]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityOneCrossRefWithMultiplicityManyOppositeRefWorks[Using EMF Reference]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityOneContainmentWithoutOppositeRefWorks[Using EMF Reference]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityManyCrossRefWithoutOppositeRefWorks[Using EMF Reference]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityOneCrossRefWithMultiplicityOneOppositeRefWorks[Using EMF Reference]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="symmetricMultiplicityManyCrossRefWorks[Using EMF Reference]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="inheritedMultiplicityManyContainmentWithNonInheritedMultiplicityOneOppositeWorks[Using EMF Reference]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityOneCrossRefWithoutOppositeRefWorks[Using EMF Reference]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityManyContainmentWithoutOppositeRefWorks[Using EMF Reference]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityManyContainmentWithMultiplicityOneOppositeRefWorks[Using EMF Reference]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityManyCrossRefWithMultiplicityOneOppositeRefWorks[Using Chronos-Transient]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.016"/>
+  <testcase name="grabatsFragmantModelWorks[Using Chronos-Transient]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityOneContainmentWithOppositeRefWorks[Using Chronos-Transient]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityOneCrossRefWithMultiplicityManyOppositeRefWorks[Using Chronos-Transient]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityOneContainmentWithoutOppositeRefWorks[Using Chronos-Transient]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityManyCrossRefWithoutOppositeRefWorks[Using Chronos-Transient]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityOneCrossRefWithMultiplicityOneOppositeRefWorks[Using Chronos-Transient]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="symmetricMultiplicityManyCrossRefWorks[Using Chronos-Transient]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="inheritedMultiplicityManyContainmentWithNonInheritedMultiplicityOneOppositeWorks[Using Chronos-Transient]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityOneCrossRefWithoutOppositeRefWorks[Using Chronos-Transient]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityManyContainmentWithoutOppositeRefWorks[Using Chronos-Transient]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityManyContainmentWithMultiplicityOneOppositeRefWorks[Using Chronos-Transient]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.0"/>
+  <testcase name="multiplicityManyCrossRefWithMultiplicityOneOppositeRefWorks[Using Chronos-Graph]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.169"/>
+  <testcase name="grabatsFragmantModelWorks[Using Chronos-Graph]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.031"/>
+  <testcase name="multiplicityOneContainmentWithOppositeRefWorks[Using Chronos-Graph]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.012"/>
+  <testcase name="multiplicityOneCrossRefWithMultiplicityManyOppositeRefWorks[Using Chronos-Graph]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.026"/>
+  <testcase name="multiplicityOneContainmentWithoutOppositeRefWorks[Using Chronos-Graph]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.008"/>
+  <testcase name="multiplicityManyCrossRefWithoutOppositeRefWorks[Using Chronos-Graph]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.016"/>
+  <testcase name="multiplicityOneCrossRefWithMultiplicityOneOppositeRefWorks[Using Chronos-Graph]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.015"/>
+  <testcase name="symmetricMultiplicityManyCrossRefWorks[Using Chronos-Graph]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.016"/>
+  <testcase name="inheritedMultiplicityManyContainmentWithNonInheritedMultiplicityOneOppositeWorks[Using Chronos-Graph]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.015"/>
+  <testcase name="multiplicityOneCrossRefWithoutOppositeRefWorks[Using Chronos-Graph]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.022"/>
+  <testcase name="multiplicityManyContainmentWithoutOppositeRefWorks[Using Chronos-Graph]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.008"/>
+  <testcase name="multiplicityManyContainmentWithMultiplicityOneOppositeRefWorks[Using Chronos-Graph]" classname="org.chronos.chronosphere.test.emf.estore.impl.BasicEStoreTest" time="0.01"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

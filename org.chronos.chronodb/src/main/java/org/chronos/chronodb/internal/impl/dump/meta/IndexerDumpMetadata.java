@@ -2,7 +2,7 @@ package org.chronos.chronodb.internal.impl.dump.meta;
 
 import java.util.Base64;
 
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.indexing.Indexer;
 import org.chronos.common.serialization.KryoManager;
 
 public class IndexerDumpMetadata {
@@ -14,7 +14,7 @@ public class IndexerDumpMetadata {
 		// serialization constructor
 	}
 
-	public IndexerDumpMetadata(final String indexName, final ChronoIndexer indexer) {
+	public IndexerDumpMetadata(final String indexName, final Indexer<?> indexer) {
 		this.setIndexName(indexName);
 		this.setIndexer(indexer);
 	}
@@ -31,7 +31,7 @@ public class IndexerDumpMetadata {
 		return this.indexName;
 	}
 
-	public void setIndexer(final ChronoIndexer indexer) {
+	public void setIndexer(final Indexer<?> indexer) {
 		if (indexer == null) {
 			this.indexerData = null;
 		} else {
@@ -40,7 +40,7 @@ public class IndexerDumpMetadata {
 		}
 	}
 
-	public ChronoIndexer getIndexer() {
+	public Indexer<?> getIndexer() {
 		if (this.indexerData == null) {
 			return null;
 		} else {

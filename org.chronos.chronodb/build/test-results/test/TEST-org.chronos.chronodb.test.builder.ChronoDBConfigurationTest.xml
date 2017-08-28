@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.builder.ChronoDBConfigurationTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:50:26" hostname="Aurora" time="0.293">
+  <properties/>
+  <testcase name="canCreateChronoDbWithBuilder" classname="org.chronos.chronodb.test.builder.ChronoDBConfigurationTest" time="0.003"/>
+  <testcase name="canEnableCachingWithMapDbBuilder" classname="org.chronos.chronodb.test.builder.ChronoDBConfigurationTest" time="0.234"/>
+  <testcase name="canEnableCachingViaPropertiesFile" classname="org.chronos.chronodb.test.builder.ChronoDBConfigurationTest" time="0.003"/>
+  <testcase name="canEnableCachingWithJdbcBuilder" classname="org.chronos.chronodb.test.builder.ChronoDBConfigurationTest" time="0.048"/>
+  <testcase name="canEnableCachingWithInMemoryBuilder" classname="org.chronos.chronodb.test.builder.ChronoDBConfigurationTest" time="0.003"/>
+  <testcase name="cacheMaxSizeSettingIsRequiredIfCachingIsEnabled" classname="org.chronos.chronodb.test.builder.ChronoDBConfigurationTest" time="0.002"/>
+  <system-out><![CDATA[19:50:26.789 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBConfigurationTest
+    Test method: canCreateChronoDbWithBuilder
+    Start time:  2017/08/28 19:50:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBConfigurationTest
+    Test method: canCreateChronoDbWithBuilder
+    End time:    2017/08/28 19:50:26 (Duration: 2ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBConfigurationTest
+    Test method: canEnableCachingWithMapDbBuilder
+    Start time:  2017/08/28 19:50:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBConfigurationTest
+    Test method: canEnableCachingWithMapDbBuilder
+    End time:    2017/08/28 19:50:27 (Duration: 233ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBConfigurationTest
+    Test method: canEnableCachingViaPropertiesFile
+    Start time:  2017/08/28 19:50:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBConfigurationTest
+    Test method: canEnableCachingViaPropertiesFile
+    End time:    2017/08/28 19:50:27 (Duration: 2ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBConfigurationTest
+    Test method: canEnableCachingWithJdbcBuilder
+    Start time:  2017/08/28 19:50:27
+================================================================================
+
+
+
+19:50:27.035 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|3b0b0047,name=1hgeqrl9qbn6pz6yfah30|3b0b0047 registered.
+19:50:27.045 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|3b0b0047,name=1hgeqrl9qbn6pz6yfah30|3b0b0047 unregistered, in order to be reregistered after update.
+19:50:27.046 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|3b0b0047,name=1hgeqrl9qbn6pz6yfah30|3b0b0047 registered.
+19:50:27.047 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@65e82ca0 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@484d583e [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|74192dc2, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@d2d7258a [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|57141f, jdbcUrl -> jdbc:h2:mem:3130ec65931a4738b88d13032853d597, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|3b0b0047, numHelperThreads -> 3 ]
+19:50:27.047 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@2068d13c config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:27.047 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:27.047 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:27.047 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:27.076 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|3b0b0047,name=1hgeqrl9qbn6pz6yfah30|3b0b0047 unregistered.
+19:50:27.076 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@ad8f6f8
+19:50:27.076 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:27.076 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@ad8f6f8
+19:50:27.076 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@ad8f6f8
+19:50:27.076 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@ad8f6f8
+19:50:27.076 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3b13085f
+19:50:27.076 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3b13085f
+19:50:27.076 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3b13085f
+19:50:27.076 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3b13085f
+19:50:27.077 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@34e9e397
+19:50:27.077 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@34e9e397
+19:50:27.077 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@34e9e397
+
+
+19:50:27.077 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@34e9e397
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBConfigurationTest
+    Test method: canEnableCachingWithJdbcBuilder
+    End time:    2017/08/28 19:50:27 (Duration: 48ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBConfigurationTest
+    Test method: canEnableCachingWithInMemoryBuilder
+    Start time:  2017/08/28 19:50:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBConfigurationTest
+    Test method: canEnableCachingWithInMemoryBuilder
+    End time:    2017/08/28 19:50:27 (Duration: 3ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBConfigurationTest
+    Test method: cacheMaxSizeSettingIsRequiredIfCachingIsEnabled
+    Start time:  2017/08/28 19:50:27
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoDBConfigurationTest
+    Test method: cacheMaxSizeSettingIsRequiredIfCachingIsEnabled
+    End time:    2017/08/28 19:50:27 (Duration: 2ms)
+================================================================================
+
+
+
+19:50:27.082 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:50:27.083 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

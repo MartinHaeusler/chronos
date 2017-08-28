@@ -25,6 +25,7 @@ public class ChronoChunkMetaData {
 
 	private static final String KEY__VALID_FROM = "org.chronos.chonodb.chunk.validFrom";
 	private static final String KEY__VALID_TO = "org.chronos.chonodb.chunk.validTo";
+	private static final String KEY__BRANCH_NAME = "org.chronos.chronodb.chunk.branchName";
 
 	private final File metaFile;
 	private final Map<String, String> metaProperties;
@@ -115,6 +116,15 @@ public class ChronoChunkMetaData {
 		} else {
 			return Period.createOpenEndedRange(this.getValidFrom());
 		}
+	}
+
+	public String getBranchName() {
+		return this.metaProperties.get(KEY__BRANCH_NAME);
+	}
+
+	public void setBranchName(final String branchName) {
+		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
+		this.metaProperties.put(KEY__BRANCH_NAME, branchName);
 	}
 
 	public File getMetaFile() {

@@ -10,7 +10,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.chronos.chronodb.internal.api.index.ChronoIndexDocument;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
 import org.chronos.chronodb.internal.impl.engines.chunkdb.ChunkedChronoDB;
 import org.chronos.chronodb.internal.impl.engines.inmemory.InMemoryIndexManagerBackend;
 import org.chronos.chronodb.internal.impl.index.ChronoIndexDocumentImpl;
@@ -44,11 +44,9 @@ public class DocumentBasedChunkIndex extends InMemoryIndexManagerBackend {
 	 * Converts this instance into the persistable {@link DocumentChunkIndexData} format.
 	 *
 	 * <p>
-	 * The returned object will contain a copy of the data stored in this index. This object can be used as usual after
-	 * invoking this method, it will have no effect on the returned object.
+	 * The returned object will contain a copy of the data stored in this index. This object can be used as usual after invoking this method, it will have no effect on the returned object.
 	 *
-	 * @return The persistable version of this index. The contained data is a copy, sharing no mutable references with
-	 *         the "live" system. Never <code>null</code>.
+	 * @return The persistable version of this index. The contained data is a copy, sharing no mutable references with the "live" system. Never <code>null</code>.
 	 */
 	public DocumentChunkIndexData toChunkIndexData() {
 		// create the container object
@@ -82,17 +80,17 @@ public class DocumentBasedChunkIndex extends InMemoryIndexManagerBackend {
 	}
 
 	@Override
-	public Set<ChronoIndexDocument> getTerminatedBranchLocalDocuments(final long timestamp, final String branchName,
-			final SearchSpecification searchSpec) {
+	public Set<ChronoIndexDocument> getTerminatedBranchLocalDocuments(final long timestamp, final String branchName, final String keyspace,
+			final SearchSpecification<?> searchSpec) {
 		// this method is repeated here because the visibility is increased to 'public'.
-		return super.getTerminatedBranchLocalDocuments(timestamp, branchName, searchSpec);
+		return super.getTerminatedBranchLocalDocuments(timestamp, branchName, keyspace, searchSpec);
 	}
 
 	@Override
-	public Set<ChronoIndexDocument> getMatchingBranchLocalDocuments(final long timestamp, final String branchName,
-			final SearchSpecification searchSpec) {
+	public Set<ChronoIndexDocument> getMatchingBranchLocalDocuments(final long timestamp, final String branchName, final String keyspace,
+			final SearchSpecification<?> searchSpec) {
 		// this method is repeated here because the visibility is increased to 'public'.
-		return super.getMatchingBranchLocalDocuments(timestamp, branchName, searchSpec);
+		return super.getMatchingBranchLocalDocuments(timestamp, branchName, keyspace, searchSpec);
 	}
 
 	// =====================================================================================================================
@@ -126,9 +124,7 @@ public class DocumentBasedChunkIndex extends InMemoryIndexManagerBackend {
 	 * Transforms the given {@link ChunkDbIndexDocumentData} into a {@link ChronoIndexDocument}.
 	 *
 	 * <p>
-	 * Note: the resulting {@link ChronoIndexDocument} will have assigned a new random {@link UUID} as identifier. In
-	 * particular, this means that invoking this method twice with the same parameters will yield two documents that are
-	 * not {@link Object#equals(Object) equal} to each other.
+	 * Note: the resulting {@link ChronoIndexDocument} will have assigned a new random {@link UUID} as identifier. In particular, this means that invoking this method twice with the same parameters will yield two documents that are not {@link Object#equals(Object) equal} to each other.
 	 *
 	 * @param data
 	 *            The data to be contained in the index document. Must not be <code>null</code>.
@@ -149,12 +145,11 @@ public class DocumentBasedChunkIndex extends InMemoryIndexManagerBackend {
 		String indexName = data.getIndexName();
 		String keyspace = data.getKeyspace();
 		String key = data.getKey();
-		String indexedValue = data.getIndexedValue();
-		String indexedValueCaseInsensitive = data.getIndexedValue().toLowerCase();
+		Object indexedValue = data.getIndexedValue();
 		long validFrom = data.getValidFromTimestamp();
 		long validTo = data.getValidToTimestamp();
 		return new ChronoIndexDocumentImpl(id, indexName, branchName, keyspace, key, indexedValue,
-				indexedValueCaseInsensitive, validFrom, validTo);
+				validFrom, validTo);
 	}
 
 	/**
@@ -172,7 +167,7 @@ public class DocumentBasedChunkIndex extends InMemoryIndexManagerBackend {
 		String indexName = document.getIndexName();
 		String keyspace = document.getKeyspace();
 		String key = document.getKey();
-		String value = document.getIndexedValue();
+		Object value = document.getIndexedValue();
 		long validFrom = document.getValidFromTimestamp();
 		long validTo = document.getValidToTimestamp();
 		return new ChunkDbIndexDocumentData(indexName, keyspace, key, value, validFrom, validTo);
@@ -202,16 +197,6 @@ public class DocumentBasedChunkIndex extends InMemoryIndexManagerBackend {
 			keyToDocuments = HashMultimap.create();
 			keyspaceToDocuments.put(keyspace, keyToDocuments);
 		}
-		// PERFORMANCE CHUNKDB: This REALLY kills performance; we need to find a way around it!
-		// Note: this was fixed by ensuring that no duplicate documents are created to begin with. This check should
-		// now no longer be necessary; we leave it here for documentation purposes.
-		// boolean isPresent = keyToDocuments.values().stream().filter(doc -> doc.contentEquals(document)).findAny()
-		// .isPresent();
-		// if (isPresent) {
-		// // equivalent document is already present
-		// return;
-		// } else {
 		keyToDocuments.put(key, document);
-		// }
 	}
 }

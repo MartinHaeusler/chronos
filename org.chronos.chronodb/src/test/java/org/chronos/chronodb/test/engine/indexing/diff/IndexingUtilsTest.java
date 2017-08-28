@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.Collections;
 import java.util.Set;
 
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.indexing.Indexer;
 import org.chronos.chronodb.internal.impl.index.diff.IndexValueDiff;
 import org.chronos.chronodb.internal.impl.index.diff.IndexingUtils;
 import org.chronos.chronodb.test.base.ChronoDBUnitTest;
@@ -29,10 +29,10 @@ public class IndexingUtilsTest extends ChronoDBUnitTest {
 	@Test
 	public void canGetIndexValuesForObject() {
 		Person johnDoe = createJohnDoe();
-		Set<String> firstNameValues = IndexingUtils
+		Set<Object> firstNameValues = IndexingUtils
 				.getIndexedValuesForObject(Collections.singleton(PersonIndexer.firstName()), johnDoe);
 		assertEquals(Sets.newHashSet("John"), firstNameValues);
-		Set<String> lastNameValues = IndexingUtils
+		Set<Object> lastNameValues = IndexingUtils
 				.getIndexedValuesForObject(Collections.singleton(PersonIndexer.lastName()), johnDoe);
 		assertEquals(Sets.newHashSet("Doe"), lastNameValues);
 	}
@@ -40,7 +40,7 @@ public class IndexingUtilsTest extends ChronoDBUnitTest {
 	@Test
 	public void canGetIndexValuesForNullValuedFields() {
 		Person johnDoe = createJohnDoe();
-		Set<String> favoriteColorValues = IndexingUtils
+		Set<Object> favoriteColorValues = IndexingUtils
 				.getIndexedValuesForObject(Collections.singleton(PersonIndexer.favoriteColor()), johnDoe);
 		assertEquals(Collections.emptySet(), favoriteColorValues);
 	}
@@ -48,7 +48,7 @@ public class IndexingUtilsTest extends ChronoDBUnitTest {
 	@Test
 	public void canGetIndexValuesForEmptyCollectionFields() {
 		Person johnDoe = createJohnDoe();
-		Set<String> petsValues = IndexingUtils.getIndexedValuesForObject(Collections.singleton(PersonIndexer.pets()),
+		Set<Object> petsValues = IndexingUtils.getIndexedValuesForObject(Collections.singleton(PersonIndexer.pets()),
 				johnDoe);
 		assertEquals(Collections.emptySet(), petsValues);
 	}
@@ -56,7 +56,7 @@ public class IndexingUtilsTest extends ChronoDBUnitTest {
 	@Test
 	public void indexedValuesDoNotContainNullOrEmptyString() {
 		Person johnDoe = createJohnDoe();
-		Set<String> hobbiesValues = IndexingUtils
+		Set<Object> hobbiesValues = IndexingUtils
 				.getIndexedValuesForObject(Collections.singleton(PersonIndexer.hobbies()), johnDoe);
 		assertEquals(Sets.newHashSet("Swimming", "Skiing"), hobbiesValues);
 	}
@@ -64,7 +64,7 @@ public class IndexingUtilsTest extends ChronoDBUnitTest {
 	@Test
 	public void attemptingToGetIndexValuesWithoutIndexerProducesEmptySet() {
 		Person johnDoe = createJohnDoe();
-		Set<String> hobbiesValues2 = IndexingUtils.getIndexedValuesForObject(Collections.emptySet(), johnDoe);
+		Set<Object> hobbiesValues2 = IndexingUtils.getIndexedValuesForObject(Collections.emptySet(), johnDoe);
 		assertEquals(Collections.emptySet(), hobbiesValues2);
 	}
 
@@ -83,7 +83,7 @@ public class IndexingUtilsTest extends ChronoDBUnitTest {
 		p2.setLastName("Doe");
 		p2.setHobbies("Swimming", "Skiing", "Cinema", "Reading");
 		p2.setPets("Cat", "Dog", "Fish");
-		SetMultimap<String, ChronoIndexer> indexers = HashMultimap.create();
+		SetMultimap<String, Indexer<?>> indexers = HashMultimap.create();
 		indexers.put("firstName", PersonIndexer.firstName());
 		indexers.put("lastName", PersonIndexer.lastName());
 		indexers.put("hobbies", PersonIndexer.hobbies());
@@ -113,7 +113,7 @@ public class IndexingUtilsTest extends ChronoDBUnitTest {
 		p2.setFirstName("John");
 		p2.setLastName("Doe");
 		p2.setHobbies("Swimming", "Skiing");
-		SetMultimap<String, ChronoIndexer> indexers = HashMultimap.create();
+		SetMultimap<String, Indexer<?>> indexers = HashMultimap.create();
 		indexers.put("firstName", PersonIndexer.firstName());
 		indexers.put("lastName", PersonIndexer.lastName());
 		indexers.put("hobbies", PersonIndexer.hobbies());
@@ -135,7 +135,7 @@ public class IndexingUtilsTest extends ChronoDBUnitTest {
 	@Test
 	public void canCalculateEntryAdditionDiff() {
 		Person johnDoe = createJohnDoe();
-		SetMultimap<String, ChronoIndexer> indexers = HashMultimap.create();
+		SetMultimap<String, Indexer<?>> indexers = HashMultimap.create();
 		indexers.put("firstName", PersonIndexer.firstName());
 		indexers.put("lastName", PersonIndexer.lastName());
 		indexers.put("favoriteColor", PersonIndexer.favoriteColor());
@@ -166,7 +166,7 @@ public class IndexingUtilsTest extends ChronoDBUnitTest {
 	@Test
 	public void canCalculateEntryRemovalDiff() {
 		Person johnDoe = createJohnDoe();
-		SetMultimap<String, ChronoIndexer> indexers = HashMultimap.create();
+		SetMultimap<String, Indexer<?>> indexers = HashMultimap.create();
 		indexers.put("firstName", PersonIndexer.firstName());
 		indexers.put("lastName", PersonIndexer.lastName());
 		indexers.put("favoriteColor", PersonIndexer.favoriteColor());
@@ -204,7 +204,7 @@ public class IndexingUtilsTest extends ChronoDBUnitTest {
 		p2.setFirstName("John");
 		p2.setLastName("Smith");
 		p2.setHobbies("Skiing", "Cinema");
-		SetMultimap<String, ChronoIndexer> indexers = HashMultimap.create();
+		SetMultimap<String, Indexer<?>> indexers = HashMultimap.create();
 		indexers.put("firstName", PersonIndexer.firstName());
 		indexers.put("lastName", PersonIndexer.lastName());
 		indexers.put("hobbies", PersonIndexer.hobbies());

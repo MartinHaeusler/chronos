@@ -3,9 +3,9 @@ package org.chronos.chronodb.test.util.model.payload;
 import java.util.Collections;
 import java.util.Set;
 
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.indexing.StringIndexer;
 
-public class NamedPayloadNameIndexer implements ChronoIndexer {
+public class NamedPayloadNameIndexer implements StringIndexer {
 
 	private final boolean toLowerCase;
 

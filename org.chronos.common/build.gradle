@@ -7,7 +7,6 @@ jar {
 }
 
 dependencies {
-	testCompile project (":org.chronos.common.testing")
 	// Utilities
     compile("com.esotericsoftware:kryo:${project.kryoVersion}");
 }
@@ -27,13 +26,11 @@ publishing {
 			//the maven descriptor info
 			groupId project.group
 			artifactId jar.baseName
-			version project.version
+			version project.mavenVersion
 		}
 	}
+
 }
-
-
-
 
 task generateBuildInfoFile << {
 	File configFile = file('src/main/resources/buildInfo.properties')

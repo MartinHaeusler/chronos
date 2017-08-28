@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.base.TestMethodExtraPropertiesTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:50:24" hostname="Aurora" time="1.823">
+  <properties/>
+  <testcase name="addingExtraPropertiesWorks[Using inmemory]" classname="org.chronos.chronodb.test.base.TestMethodExtraPropertiesTest" time="0.163"/>
+  <testcase name="addingExtraPropertiesWorks[Using mapdb]" classname="org.chronos.chronodb.test.base.TestMethodExtraPropertiesTest" time="0.61"/>
+  <testcase name="addingExtraPropertiesWorks[Using chunked]" classname="org.chronos.chronodb.test.base.TestMethodExtraPropertiesTest" time="0.524"/>
+  <testcase name="addingExtraPropertiesWorks[Using jdbc]" classname="org.chronos.chronodb.test.base.TestMethodExtraPropertiesTest" time="0.442"/>
+  <testcase name="addingExtraPropertiesWorks[Using tupl]" classname="org.chronos.chronodb.test.base.TestMethodExtraPropertiesTest" time="0.084"/>
+  <system-out><![CDATA[19:50:24.962 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TestMethodExtraPropertiesTest
+    Test method: addingExtraPropertiesWorks[Using inmemory]
+    Start time:  2017/08/28 19:50:24
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TestMethodExtraPropertiesTest
+    Test method: addingExtraPropertiesWorks[Using inmemory]
+    End time:    2017/08/28 19:50:25 (Duration: 163ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TestMethodExtraPropertiesTest
+    Test method: addingExtraPropertiesWorks[Using mapdb]
+    Start time:  2017/08/28 19:50:25
+================================================================================
+
+
+
+19:50:25.676 [Test worker] DEBUG o.a.c.c.PropertiesConfiguration - FileName set to tmp8127744487093947439.properties
+19:50:25.676 [Test worker] DEBUG o.a.c.c.PropertiesConfiguration - Base path set to C:\Users\Martin\AppData\Local\Temp
+19:50:25.682 [Test worker] DEBUG o.a.c.c.ConfigurationUtils - ConfigurationUtils.locate(): base is C:\Users\Martin\AppData\Local\Temp, name is tmp8127744487093947439.properties
+19:50:25.682 [Test worker] DEBUG o.a.c.c.DefaultFileSystem - Could not locate file tmp8127744487093947439.properties at C:\Users\Martin\AppData\Local\Temp: unknown protocol: c
+19:50:25.683 [Test worker] DEBUG o.a.c.c.ConfigurationUtils - Loading configuration from the path C:\Users\Martin\AppData\Local\Temp\tmp8127744487093947439.properties
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TestMethodExtraPropertiesTest
+    Test method: addingExtraPropertiesWorks[Using mapdb]
+    End time:    2017/08/28 19:50:25 (Duration: 609ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TestMethodExtraPropertiesTest
+    Test method: addingExtraPropertiesWorks[Using chunked]
+    Start time:  2017/08/28 19:50:25
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TestMethodExtraPropertiesTest
+    Test method: addingExtraPropertiesWorks[Using chunked]
+    End time:    2017/08/28 19:50:26 (Duration: 524ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TestMethodExtraPropertiesTest
+    Test method: addingExtraPropertiesWorks[Using jdbc]
+    Start time:  2017/08/28 19:50:26
+================================================================================
+
+
+
+19:50:26.279 [MLog-Init-Reporter] INFO  com.mchange.v2.log.MLog - MLog clients using slf4j logging.
+19:50:26.283 [MLog-Init-Reporter] DEBUG com.mchange.v2.log.MLog - Reading VM config for path list /com/mchange/v2/log/default-mchange-log.properties, /mchange-commons.properties, /c3p0.properties, hocon:/reference,/application,/c3p0,/, /mchange-log.properties, /
+19:50:26.284 [MLog-Init-Reporter] DEBUG com.mchange.v2.log.MLog - The configuration file for resource identifier '/mchange-commons.properties' could not be found. Skipping.
+19:50:26.284 [MLog-Init-Reporter] DEBUG com.mchange.v2.log.MLog - The configuration file for resource identifier '/c3p0.properties' could not be found. Skipping.
+19:50:26.284 [MLog-Init-Reporter] DEBUG com.mchange.v2.log.MLog - The configuration file for resource identifier 'hocon:/reference,/application,/c3p0,/' could not be found. Skipping.
+19:50:26.284 [MLog-Init-Reporter] DEBUG com.mchange.v2.log.MLog - The configuration file for resource identifier '/mchange-log.properties' could not be found. Skipping.
+19:50:26.292 [Test worker] DEBUG com.mchange.v2.cfg.MConfig - The configuration file for resource identifier '/mchange-commons.properties' could not be found. Skipping.
+19:50:26.292 [Test worker] DEBUG com.mchange.v2.cfg.MConfig - The configuration file for resource identifier '/mchange-log.properties' could not be found. Skipping.
+19:50:26.292 [Test worker] DEBUG com.mchange.v2.cfg.MConfig - The configuration file for resource identifier 'hocon:/reference,/application,/c3p0,/' could not be found. Skipping.
+19:50:26.292 [Test worker] DEBUG com.mchange.v2.cfg.MConfig - The configuration file for resource identifier '/c3p0.properties' could not be found. Skipping.
+19:50:26.344 [Test worker] INFO  com.mchange.v2.c3p0.C3P0Registry - Initializing c3p0-0.9.5.1 [built 16-June-2015 00:06:36 -0700; debug? true; trace: 10]
+19:50:26.360 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|123985a9,name=1hgeqrl9qbn6pz6yfah30|123985a9 registered.
+19:50:26.369 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|123985a9,name=1hgeqrl9qbn6pz6yfah30|123985a9 unregistered, in order to be reregistered after update.
+19:50:26.369 [Test worker] DEBUG c.m.v.c.m.DynamicPooledDataSourceManagerMBean - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|123985a9,name=1hgeqrl9qbn6pz6yfah30|123985a9 registered.
+19:50:26.385 [Test worker] INFO  c.m.v.c.i.AbstractPoolBackedDataSource - Initializing c3p0 pool... com.mchange.v2.c3p0.PoolBackedDataSource@1df52128 [ connectionPoolDataSource -> com.mchange.v2.c3p0.WrapperConnectionPoolDataSource@a17679fd [ acquireIncrement -> 3, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, contextClassLoaderSource -> caller, debugUnreturnedConnectionStackTraces -> false, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, forceSynchronousCheckins -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|567fc428, idleConnectionTestPeriod -> 0, initialPoolSize -> 3, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 15, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, nestedDataSource -> com.mchange.v2.c3p0.DriverManagerDataSource@1de9347a [ description -> null, driverClass -> null, factoryClassLocation -> null, forceUseNamedDriverClass -> false, identityToken -> 1hgeqrl9qbn6pz6yfah30|49deab47, jdbcUrl -> jdbc:h2:mem:fcb0840169614fedaf964e1aefa66a65, properties -> {} ], preferredTestQuery -> null, privilegeSpawnedThreads -> false, propertyCycle -> 0, statementCacheNumDeferredCloseThreads -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false; userOverrides: {} ], dataSourceName -> null, extensions -> {}, factoryClassLocation -> null, identityToken -> 1hgeqrl9qbn6pz6yfah30|123985a9, numHelperThreads -> 3 ]
+19:50:26.400 [Test worker] DEBUG com.mchange.v2.cfg.MConfig - The configuration file for resource identifier '/mchange-commons.properties' could not be found. Skipping.
+19:50:26.400 [Test worker] DEBUG com.mchange.v2.cfg.MConfig - The configuration file for resource identifier '/mchange-log.properties' could not be found. Skipping.
+19:50:26.400 [Test worker] DEBUG com.mchange.v2.cfg.MConfig - The configuration file for resource identifier '/c3p0.properties' could not be found. Skipping.
+19:50:26.400 [Test worker] DEBUG com.mchange.v2.cfg.MConfig - The configuration file for resource identifier 'hocon:/reference,/application,/c3p0,/' could not be found. Skipping.
+19:50:26.400 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - com.mchange.v2.resourcepool.BasicResourcePool@5e046932 config: [start -> 3; min -> 3; max -> 15; inc -> 3; num_acq_attempts -> 30; acq_attempt_delay -> 1000; check_idle_resources_delay -> 0; max_resource_age -> 0; max_idle_time -> 0; excess_max_idle_time -> 0; destroy_unreturned_resc_time -> 0; expiration_enforcement_delay -> 0; break_on_acquisition_failure -> false; debug_store_checkout_exceptions -> false; force_synchronous_checkins -> false]
+19:50:26.400 [Test worker] DEBUG c.m.v.c.i.C3P0PooledConnectionPoolManager - Created new pool for auth, username (masked): 'null'.
+19:50:26.400 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - acquire test -- pool size: 0; target_pool_size: 3; desired target? 1
+19:50:26.400 [Test worker] DEBUG c.m.v.resourcepool.BasicResourcePool - awaitAvailable(): [unknown]
+19:50:26.701 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - MBean: com.mchange.v2.c3p0:type=PooledDataSource,identityToken=1hgeqrl9qbn6pz6yfah30|123985a9,name=1hgeqrl9qbn6pz6yfah30|123985a9 unregistered.
+19:50:26.701 [Test worker] DEBUG c.m.v.c.m.ActiveManagementCoordinator - C3P0Registry mbean unregistered.
+19:50:26.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@46b58164
+19:50:26.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@46b58164
+19:50:26.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@46b58164
+19:50:26.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@46b58164
+19:50:26.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3a2dce9
+19:50:26.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3a2dce9
+19:50:26.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@3a2dce9
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+19:50:26.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@3a2dce9
+--------------------------------------------------------------------------------
+    Test class:  TestMethodExtraPropertiesTest
+    Test method: addingExtraPropertiesWorks[Using jdbc]
+    End time:    2017/08/28 19:50:26 (Duration: 442ms)
+================================================================================
+19:50:26.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Preparing to destroy resource: com.mchange.v2.c3p0.impl.NewPooledConnection@49207d4b
+
+
+
+19:50:26.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Preparing to destroy PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@49207d4b
+
+19:50:26.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.c.i.C3P0PooledConnectionPool - Successfully destroyed PooledConnection: com.mchange.v2.c3p0.impl.NewPooledConnection@49207d4b
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TestMethodExtraPropertiesTest
+19:50:26.701 [Resource Destroyer in BasicResourcePool.close()] DEBUG c.m.v.resourcepool.BasicResourcePool - Successfully destroyed resource: com.mchange.v2.c3p0.impl.NewPooledConnection@49207d4b
+    Test method: addingExtraPropertiesWorks[Using tupl]
+    Start time:  2017/08/28 19:50:26
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TestMethodExtraPropertiesTest
+    Test method: addingExtraPropertiesWorks[Using tupl]
+    End time:    2017/08/28 19:50:26 (Duration: 84ms)
+================================================================================
+
+
+
+19:50:26.785 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:50:26.786 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

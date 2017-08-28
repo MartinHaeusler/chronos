@@ -12,9 +12,9 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 import org.chronos.chronodb.api.ChronoDB;
-import org.chronos.chronodb.api.ChronoIndexer;
 import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
 import org.chronos.chronodb.api.exceptions.JdbcTableException;
+import org.chronos.chronodb.api.indexing.Indexer;
 import org.chronos.chronodb.internal.impl.jdbc.table.DefaultJdbcTable;
 import org.chronos.chronodb.internal.impl.jdbc.table.IndexDeclaration;
 import org.chronos.chronodb.internal.impl.jdbc.table.TableColumn;
@@ -41,12 +41,10 @@ import com.google.common.collect.SetMultimap;
  * +-------------+--------------+--------------+----------------+
  * </pre>
  *
- * There is exactly one instance of this table per {@link ChronoDB}. The name of this table is stored in the constant
- * {@link JdbcIndexerTable#NAME}.
+ * There is exactly one instance of this table per {@link ChronoDB}. The name of this table is stored in the constant {@link JdbcIndexerTable#NAME}.
  *
  * <p>
- * This class has <tt>default</tt> visibility (<tt>friendly</tt> visibility) on purpose. It is not intended to be used
- * outside of the package it resides in.
+ * This class has <tt>default</tt> visibility (<tt>friendly</tt> visibility) on purpose. It is not intended to be used outside of the package it resides in.
  *
  * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
  *
@@ -157,7 +155,7 @@ class JdbcIndexerTable extends DefaultJdbcTable {
 	 * @throws ChronoDBStorageBackendException
 	 *             Thrown if a backend error occurs during the operation.
 	 */
-	public void insert(final String indexName, final ChronoIndexer indexer) throws ChronoDBStorageBackendException {
+	public void insert(final String indexName, final Indexer<?> indexer) throws ChronoDBStorageBackendException {
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		checkNotNull(indexer, "Precondition violation - argument 'indexer' must not be NULL!");
 		byte[] serializedIndexer = serializeIndexer(indexer);
@@ -221,13 +219,13 @@ class JdbcIndexerTable extends DefaultJdbcTable {
 	 *
 	 * @return An immutable one-to-many mapping from index name to indexers associated with this index.
 	 */
-	public SetMultimap<String, ChronoIndexer> getIndexers() {
-		SetMultimap<String, ChronoIndexer> resultMap = HashMultimap.create();
+	public SetMultimap<String, Indexer<?>> getIndexers() {
+		SetMultimap<String, Indexer<?>> resultMap = HashMultimap.create();
 		try (PreparedStatement pstmt = this.connection.prepareStatement(SQL_GET_INDEXERS)) {
 			try (ResultSet resultSet = pstmt.executeQuery()) {
 				while (resultSet.next()) {
 					String indexName = resultSet.getString(PROPERTY_INDEX_NAME);
-					ChronoIndexer indexer = null;
+					Indexer<?> indexer = null;
 					Blob blob = resultSet.getBlob(PROPERTY_INDEXER_BLOB);
 					byte[] bytes = null;
 					try {
@@ -253,7 +251,7 @@ class JdbcIndexerTable extends DefaultJdbcTable {
 	// INTERNAL UTILITY METHODS
 	// =================================================================================================================
 
-	private static byte[] serializeIndexer(final ChronoIndexer indexer) {
+	private static byte[] serializeIndexer(final Indexer<?> indexer) {
 		checkNotNull(indexer, "Precondition violation - argument 'indexer' must not be NULL!");
 		Kryo kryo = new Kryo();
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -263,12 +261,12 @@ class JdbcIndexerTable extends DefaultJdbcTable {
 		return baos.toByteArray();
 	}
 
-	private static ChronoIndexer deserializeIndexer(final byte[] serialForm) {
+	private static Indexer<?> deserializeIndexer(final byte[] serialForm) {
 		checkNotNull(serialForm, "Precondition violation - argument 'serialForm' must not be NULL!");
 		Kryo kryo = new Kryo();
 		ByteArrayInputStream bais = new ByteArrayInputStream(serialForm);
 		Input input = new Input(bais);
-		ChronoIndexer indexer = (ChronoIndexer) kryo.readClassAndObject(input);
+		Indexer<?> indexer = (Indexer<?>) kryo.readClassAndObject(input);
 		input.close();
 		return indexer;
 	}

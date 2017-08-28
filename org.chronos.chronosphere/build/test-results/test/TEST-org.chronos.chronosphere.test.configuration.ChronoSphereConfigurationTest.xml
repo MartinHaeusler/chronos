@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronosphere.test.configuration.ChronoSphereConfigurationTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:59:14" hostname="Aurora" time="3.258">
+  <properties/>
+  <testcase name="configurationIsPresent[Using inmemory]" classname="org.chronos.chronosphere.test.configuration.ChronoSphereConfigurationTest" time="0.006"/>
+  <testcase name="canOpenAndCloseRepository[Using inmemory]" classname="org.chronos.chronosphere.test.configuration.ChronoSphereConfigurationTest" time="0.003"/>
+  <testcase name="configurationIsPresent[Using jdbc]" classname="org.chronos.chronosphere.test.configuration.ChronoSphereConfigurationTest" time="0.562"/>
+  <testcase name="canOpenAndCloseRepository[Using jdbc]" classname="org.chronos.chronosphere.test.configuration.ChronoSphereConfigurationTest" time="0.046"/>
+  <testcase name="configurationIsPresent[Using chunked]" classname="org.chronos.chronosphere.test.configuration.ChronoSphereConfigurationTest" time="0.716"/>
+  <testcase name="canOpenAndCloseRepository[Using chunked]" classname="org.chronos.chronosphere.test.configuration.ChronoSphereConfigurationTest" time="0.354"/>
+  <testcase name="configurationIsPresent[Using mapdb]" classname="org.chronos.chronosphere.test.configuration.ChronoSphereConfigurationTest" time="0.787"/>
+  <testcase name="canOpenAndCloseRepository[Using mapdb]" classname="org.chronos.chronosphere.test.configuration.ChronoSphereConfigurationTest" time="0.431"/>
+  <testcase name="configurationIsPresent[Using tupl]" classname="org.chronos.chronosphere.test.configuration.ChronoSphereConfigurationTest" time="0.184"/>
+  <testcase name="canOpenAndCloseRepository[Using tupl]" classname="org.chronos.chronosphere.test.configuration.ChronoSphereConfigurationTest" time="0.169"/>
+  <system-out><![CDATA[[INFO ] 2017-08-28 19:59:14 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5875214794569470503
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: configurationIsPresent[Using inmemory]
+    Start time:  2017/08/28 19:59:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: configurationIsPresent[Using inmemory]
+    End time:    2017/08/28 19:59:14 (Duration: 5ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: canOpenAndCloseRepository[Using inmemory]
+    Start time:  2017/08/28 19:59:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: canOpenAndCloseRepository[Using inmemory]
+    End time:    2017/08/28 19:59:14 (Duration: 3ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: configurationIsPresent[Using jdbc]
+    Start time:  2017/08/28 19:59:14
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: configurationIsPresent[Using jdbc]
+    End time:    2017/08/28 19:59:15 (Duration: 561ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: canOpenAndCloseRepository[Using jdbc]
+    Start time:  2017/08/28 19:59:15
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: canOpenAndCloseRepository[Using jdbc]
+    End time:    2017/08/28 19:59:15 (Duration: 46ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: configurationIsPresent[Using chunked]
+    Start time:  2017/08/28 19:59:15
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: configurationIsPresent[Using chunked]
+    End time:    2017/08/28 19:59:15 (Duration: 700ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: canOpenAndCloseRepository[Using chunked]
+    Start time:  2017/08/28 19:59:15
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: canOpenAndCloseRepository[Using chunked]
+    End time:    2017/08/28 19:59:16 (Duration: 354ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: configurationIsPresent[Using mapdb]
+    Start time:  2017/08/28 19:59:16
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: configurationIsPresent[Using mapdb]
+    End time:    2017/08/28 19:59:17 (Duration: 787ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: canOpenAndCloseRepository[Using mapdb]
+    Start time:  2017/08/28 19:59:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: canOpenAndCloseRepository[Using mapdb]
+    End time:    2017/08/28 19:59:17 (Duration: 431ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: configurationIsPresent[Using tupl]
+    Start time:  2017/08/28 19:59:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: configurationIsPresent[Using tupl]
+    End time:    2017/08/28 19:59:17 (Duration: 184ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: canOpenAndCloseRepository[Using tupl]
+    Start time:  2017/08/28 19:59:17
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ChronoSphereConfigurationTest
+    Test method: canOpenAndCloseRepository[Using tupl]
+    End time:    2017/08/28 19:59:17 (Duration: 169ms)
+================================================================================
+
+
+
+[INFO ] 2017-08-28 19:59:17 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5875214794569470503
+[INFO ] 2017-08-28 19:59:17 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -21,8 +21,7 @@ public interface ChronoSphereIndexManager {
 	 * @param eAttribute
 	 *            The attribute to index. Must not be <code>null</code>. Must be part of a registered {@link EPackage}.
 	 *
-	 * @return <code>true</code> if a new index for the given EAttribute was created, or <code>false</code> if the index
-	 *         already existed.
+	 * @return <code>true</code> if a new index for the given EAttribute was created, or <code>false</code> if the index already existed.
 	 *
 	 * @throws IllegalArgumentException
 	 *             Thrown if the given EAttribute is not part of any registered EPackage.
@@ -56,11 +55,9 @@ public interface ChronoSphereIndexManager {
 	 * Drops an existing index on the given {@link EAttribute} (if such an index exists).
 	 *
 	 * @param eAttribute
-	 *            The EAttribute to drop the index for. Must not be <code>null</code>. Must be part of a registered
-	 *            {@link EPackage}.
+	 *            The EAttribute to drop the index for. Must not be <code>null</code>. Must be part of a registered {@link EPackage}.
 	 *
-	 * @return <code>true</code> if an index on the given EAttribute existed and was dropped successfully, or
-	 *         <code>false</code> if there was no such index.
+	 * @return <code>true</code> if an index on the given EAttribute existed and was dropped successfully, or <code>false</code> if there was no such index.
 	 *
 	 * @throws IllegalArgumentException
 	 *             Thrown if the given EAttribute is not part of any registered EPackage.
@@ -76,8 +73,7 @@ public interface ChronoSphereIndexManager {
 	 * Re-indexes all dirty indices.
 	 *
 	 * <p>
-	 * This is a potentially expensive operation that can take a long time, depending on the size of the model stored in
-	 * the repository. Use it with care.
+	 * This is a potentially expensive operation that can take a long time, depending on the size of the model stored in the repository. Use it with care.
 	 */
 	public void reindexAll();
 
@@ -85,13 +81,10 @@ public interface ChronoSphereIndexManager {
 	 * Rebuilds the index on the given {@link EAttribute} from scratch.
 	 *
 	 * <p>
-	 * This is a potentially expensive operation that can take a long time, depending on the size of the model stored in
-	 * the repository. Use it with care.
+	 * This is a potentially expensive operation that can take a long time, depending on the size of the model stored in the repository. Use it with care.
 	 *
 	 * @param eAttribute
-	 *            The EAttribute to rebuild the index for. Must not be <code>null</code>. Must be part of a registered
-	 *            {@link EPackage}. If there is no index on the given EAttribute, this method is a no-op and returns
-	 *            immediately.
+	 *            The EAttribute to rebuild the index for. Must not be <code>null</code>. Must be part of a registered {@link EPackage}. If there is no index on the given EAttribute, this method is a no-op and returns immediately.
 	 *
 	 * @throws IllegalArgumentException
 	 *             Thrown if the given EAttribute is not part of any registered EPackage.
@@ -101,24 +94,23 @@ public interface ChronoSphereIndexManager {
 	 * @see #isIndexDirty(EAttribute)
 	 * @see ChronoSphere#getEPackageManager()
 	 * @see ChronoSphereEPackageManager#registerOrUpdateEPackage(EPackage)
+	 *
+	 * @deprecated As of Chronos 0.6.8 or later, please use {@link #reindexAll()} instead.
+	 *
 	 */
+	@Deprecated
 	public void reindex(EAttribute eAttribute);
 
 	/**
 	 * Checks if the index on the given {@link EAttribute} is dirty.
 	 *
 	 * <p>
-	 * An index can become dirty e.g. when a new index is created on an already existing model, or when the
-	 * {@link EPackage} contents change. A dirty index is an index that is out-of-synch with the model data and needs to
-	 * be re-synchronized. This method checks if such re-synchronization is required.
+	 * An index can become dirty e.g. when a new index is created on an already existing model, or when the {@link EPackage} contents change. A dirty index is an index that is out-of-synch with the model data and needs to be re-synchronized. This method checks if such re-synchronization is required.
 	 *
 	 * @param eAttribute
-	 *            The EAttribute to check the dirty state of its index for. Must not be <code>null</code>. Must be part
-	 *            of a registered {@link EPackage}. If there is no index on the given EAttribute, this method returns
-	 *            <code>false</code>.
+	 *            The EAttribute to check the dirty state of its index for. Must not be <code>null</code>. Must be part of a registered {@link EPackage}. If there is no index on the given EAttribute, this method returns <code>false</code>.
 	 *
-	 * @return <code>true</code> if there is an index on the given EAttribute AND that index is dirty,
-	 *         <code>false</code> either if there is no index on the given EAttribute or that index is not dirty.
+	 * @return <code>true</code> if there is an index on the given EAttribute AND that index is dirty, <code>false</code> either if there is no index on the given EAttribute or that index is not dirty.
 	 *
 	 * @throws IllegalArgumentException
 	 *             Thrown if the given EAttribute is not part of any registered EPackage.

@@ -16,7 +16,7 @@ import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
 import org.chronos.chronodb.api.exceptions.JdbcTableException;
 import org.chronos.chronodb.internal.api.BranchInternal;
 import org.chronos.chronodb.internal.impl.BranchImpl;
-import org.chronos.chronodb.internal.impl.BranchMetadata;
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractBranchManager;
 import org.chronos.common.logging.ChronoLogger;
 
@@ -30,7 +30,7 @@ public class JdbcBranchManager extends AbstractBranchManager implements BranchMa
 	// =================================================================================================================
 
 	private final Map<String, BranchInternal> loadedBranches = Maps.newConcurrentMap();
-	private final Map<String, BranchMetadata> branchMetadata = Maps.newConcurrentMap();
+	private final Map<String, IBranchMetadata> branchMetadata = Maps.newConcurrentMap();
 
 	// =====================================================================================================================
 	// CONSTRUCTOR
@@ -57,7 +57,7 @@ public class JdbcBranchManager extends AbstractBranchManager implements BranchMa
 	// =====================================================================================================================
 
 	@Override
-	protected BranchInternal createBranch(final BranchMetadata metadata) {
+	protected BranchInternal createBranch(final IBranchMetadata metadata) {
 		BranchInternal parentBranch = null;
 		BranchImpl branch = null;
 		if (metadata.getParentName() != null) {
@@ -97,7 +97,7 @@ public class JdbcBranchManager extends AbstractBranchManager implements BranchMa
 			return branch;
 		}
 		// not loaded yet; load it
-		BranchMetadata metadata = this.branchMetadata.get(name);
+		IBranchMetadata metadata = this.branchMetadata.get(name);
 		if (metadata == null) {
 			return null;
 		}
@@ -140,7 +140,7 @@ public class JdbcBranchManager extends AbstractBranchManager implements BranchMa
 	}
 
 	private void ensureMasterBranchExists() {
-		BranchMetadata masterBranchMetadata = BranchMetadata.createMasterBranchMetadata();
+		IBranchMetadata masterBranchMetadata = IBranchMetadata.createMasterBranchMetadata();
 		if (this.existsBranch(ChronoDBConstants.MASTER_BRANCH_IDENTIFIER)) {
 			// we know that the master branch exists in our navigation map.
 			// ensure that it also exists in the branch metadata map
@@ -156,8 +156,8 @@ public class JdbcBranchManager extends AbstractBranchManager implements BranchMa
 
 	private void loadBranchMetadata() {
 		try (Connection connection = this.openConnection()) {
-			Set<BranchMetadata> allMetadata = JdbcBranchMetadataTable.get(connection).getAll();
-			for (BranchMetadata metadata : allMetadata) {
+			Set<IBranchMetadata> allMetadata = JdbcBranchMetadataTable.get(connection).getAll();
+			for (IBranchMetadata metadata : allMetadata) {
 				this.branchMetadata.put(metadata.getName(), metadata);
 			}
 		} catch (SQLException e) {

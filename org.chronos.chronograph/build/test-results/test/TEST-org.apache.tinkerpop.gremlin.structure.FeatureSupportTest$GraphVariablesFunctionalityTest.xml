@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" tests="35" skipped="35" failures="0" errors="0" timestamp="2017-08-28T17:58:58" hostname="Aurora" time="0.015">
+  <properties/>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsBooleanValues(true)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsBooleanValues(false)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsDoubleValues(179.769.313.486.231.570.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsDoubleValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsDoubleValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsFloatValues(340.282.346.638.528.860.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsFloatValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsFloatValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsIntegerValues(-2.147.483.648)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsIntegerValues(2.147.483.647)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsIntegerValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsIntegerValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsIntegerValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsLongValues(-9.223.372.036.854.775.808)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsLongValues(9.223.372.036.854.775.807)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsLongValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsLongValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsLongValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsMapValues({testInteger=123, testString=try})]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsMixedListValues([try1, 2])]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsBooleanArrayValues([Z@5ac7a47f)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsDoubleArrayValues([D@534402c5)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsFloatArrayValues([F@4923ce68)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsIntegerArrayValues([I@180a531e)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsLongArrayValues([J@7f09f83c)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsStringArrayValues([Ljava.lang.String;@ca88f32)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsIntegerArrayValues([I@5baf4041)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsSerializableValues(org.apache.tinkerpop.gremlin.structure.MockSerializable@11f76a89)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsStringValues(short string)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsUniformListValues([100, 200, 300])]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.015">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnGraphIfNotEnabled[supportsUniformListValues([try1, try2])]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphVariablesFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

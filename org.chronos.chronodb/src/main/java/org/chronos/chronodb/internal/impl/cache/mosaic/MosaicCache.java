@@ -146,23 +146,6 @@ public class MosaicCache implements ChronoDBCache {
 	}
 
 	@Override
-	public void limitAllOpenEndedPeriodsInBranchTo(final String branchName, final long timestamp) {
-		checkNotNull(branchName, "Precondition violation - argument 'branchName' must not be NULL!");
-		this.lock.writeLock().lock();
-		try {
-			Map<QualifiedKey, MosaicRow> qKeyToRow = this.contents.get(branchName);
-			if (qKeyToRow != null) {
-				for (Entry<QualifiedKey, MosaicRow> entry : qKeyToRow.entrySet()) {
-					MosaicRow row = entry.getValue();
-					row.limitOpenEndedPeriodEntryToUpperBound(timestamp);
-				}
-			}
-		} finally {
-			this.lock.writeLock().unlock();
-		}
-	}
-
-	@Override
 	public void clear() {
 		this.lock.writeLock().lock();
 		try {

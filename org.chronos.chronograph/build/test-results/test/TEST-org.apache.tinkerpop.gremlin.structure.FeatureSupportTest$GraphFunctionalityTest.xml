@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphFunctionalityTest" tests="5" skipped="4" failures="0" errors="0" timestamp="2017-08-28T17:58:58" hostname="Aurora" time="0.0">
+  <properties/>
+  <testcase name="shouldSupportComputerIfAGraphCanCompute" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportMemoryIfAGraphAcceptsMemory" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldPrintTheFeatureList" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphFunctionalityTest" time="0.0"/>
+  <testcase name="shouldThrowOnThreadedTransactionNotSupported" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldSupportTransactionsIfAGraphConstructsATx" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$GraphFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[Printing Features of GraphTraversalSource for reference: 
+FEATURES
+> GraphFeatures
+>-- ConcurrentAccess: false
+>-- Transactions: true
+>-- ThreadedTransactions: true
+>-- Persistence: false
+>-- Computer: true
+> VariableFeatures
+>-- Variables: true
+>-- StringArrayValues: true
+>-- BooleanValues: true
+>-- IntegerValues: true
+>-- MapValues: true
+>-- ByteArrayValues: true
+>-- ByteValues: true
+>-- LongValues: true
+>-- DoubleValues: true
+>-- FloatValues: true
+>-- MixedListValues: true
+>-- StringValues: true
+>-- UniformListValues: true
+>-- BooleanArrayValues: true
+>-- DoubleArrayValues: true
+>-- FloatArrayValues: true
+>-- IntegerArrayValues: true
+>-- LongArrayValues: true
+>-- SerializableValues: true
+> VertexFeatures
+>-- RemoveVertices: true
+>-- AddVertices: true
+>-- MetaProperties: true
+>-- MultiProperties: false
+>-- UserSuppliedIds: true
+>-- CustomIds: false
+>-- RemoveProperty: true
+>-- NumericIds: false
+>-- AddProperty: true
+>-- StringIds: true
+>-- AnyIds: false
+>-- UuidIds: false
+> VertexPropertyFeatures
+>-- UserSuppliedIds: true
+>-- CustomIds: false
+>-- RemoveProperty: true
+>-- NumericIds: false
+>-- AddProperty: true
+>-- StringIds: true
+>-- AnyIds: false
+>-- UuidIds: false
+>-- Properties: true
+>-- StringArrayValues: true
+>-- BooleanValues: true
+>-- IntegerValues: true
+>-- MapValues: true
+>-- ByteArrayValues: true
+>-- ByteValues: true
+>-- LongValues: true
+>-- DoubleValues: true
+>-- FloatValues: true
+>-- MixedListValues: true
+>-- StringValues: true
+>-- UniformListValues: true
+>-- BooleanArrayValues: true
+>-- DoubleArrayValues: true
+>-- FloatArrayValues: true
+>-- IntegerArrayValues: true
+>-- LongArrayValues: true
+>-- SerializableValues: true
+> EdgeFeatures
+>-- RemoveEdges: true
+>-- AddEdges: true
+>-- UserSuppliedIds: true
+>-- CustomIds: false
+>-- RemoveProperty: true
+>-- NumericIds: false
+>-- AddProperty: true
+>-- StringIds: true
+>-- AnyIds: false
+>-- UuidIds: false
+> EdgePropertyFeatures
+>-- Properties: true
+>-- StringArrayValues: true
+>-- BooleanValues: true
+>-- IntegerValues: true
+>-- MapValues: true
+>-- ByteArrayValues: true
+>-- ByteValues: true
+>-- LongValues: true
+>-- DoubleValues: true
+>-- FloatValues: true
+>-- MixedListValues: true
+>-- StringValues: true
+>-- UniformListValues: true
+>-- BooleanArrayValues: true
+>-- DoubleArrayValues: true
+>-- FloatArrayValues: true
+>-- IntegerArrayValues: true
+>-- LongArrayValues: true
+>-- SerializableValues: true
+
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

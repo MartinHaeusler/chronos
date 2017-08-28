@@ -37,11 +37,11 @@ afterEvaluate { project ->
 				//the maven descriptor info
 				groupId project.group
 				artifactId jar.baseName
-				version project.version
+				version project.mavenVersion
 			}
 		}
-	}
 
+	}
 }
 
 test {

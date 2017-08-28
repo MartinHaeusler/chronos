@@ -11,6 +11,8 @@ import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
 import org.chronos.chronodb.test.base.InstantiateChronosWith;
 import org.chronos.chronodb.test.util.model.payload.NamedPayload;
+import org.chronos.chronodb.test.util.model.person.Person;
+import org.chronos.chronodb.test.util.model.person.PersonIndexer;
 import org.chronos.common.test.junit.categories.IntegrationTest;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -370,5 +372,31 @@ public class BranchCreationTest extends AllChronoDBBackendsTest {
 		assertNull(db.tx("SubSub").get("np3"));
 		assertNotNull(db.tx("SubSub").get("np4"));
 		assertEquals(Sets.newHashSet("np1", "np4"), db.tx("SubSub").keySet());
+	}
+
+	@Test
+	public void canUseBranchNamesWithNonAlphanumericCharacters() {
+		ChronoDB db = this.getChronoDB();
+		String testBranchName = "#!?$§&:;- `\"";
+		String subBranchName = "*+~.,<>|";
+		Person john = new Person("John", "Doe");
+		Person jane = new Person("Jane", "Doe");
+		db.getIndexManager().addIndexer("firstName", PersonIndexer.firstName());
+		db.getBranchManager().createBranch(testBranchName);
+		{
+			ChronoDBTransaction tx = db.tx(testBranchName);
+			tx.put("john", john);
+			tx.commit();
+		}
+		db.getBranchManager().createBranch(testBranchName, subBranchName);
+		{
+			ChronoDBTransaction tx = db.tx(subBranchName);
+			tx.put("jane", jane);
+			tx.commit();
+		}
+		assertEquals(john, db.tx(testBranchName).get("john"));
+		assertEquals(jane, db.tx(subBranchName).get("jane"));
+		assertEquals(john, db.tx(testBranchName).get("john"));
+		assertNull(db.tx(testBranchName).get("jane"));
 	}
 }

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
-import org.chronos.chronodb.api.ChronoIndexer;
+import org.chronos.chronodb.api.indexing.StringIndexer;
 import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.internal.api.query.ChronoDBQuery;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
@@ -25,7 +25,7 @@ public class QueryReuseTest extends AllChronoDBBackendsTest {
 	@Test
 	public void queryReuseWorks() {
 		ChronoDB db = this.getChronoDB();
-		ChronoIndexer integerIndexer = new ChronoIndexer() {
+		StringIndexer integerIndexer = new StringIndexer() {
 
 			@Override
 			public boolean canIndex(final Object object) {

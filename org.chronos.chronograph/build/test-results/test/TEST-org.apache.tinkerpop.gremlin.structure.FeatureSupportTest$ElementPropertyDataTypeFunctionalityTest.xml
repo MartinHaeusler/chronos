@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" tests="70" skipped="70" failures="0" errors="0" timestamp="2017-08-28T17:58:58" hostname="Aurora" time="0.016">
+  <properties/>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsBooleanValues(true)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsBooleanValues(true)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsBooleanValues(false)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsBooleanValues(false)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsDoubleValues(179.769.313.486.231.570.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsDoubleValues(179.769.313.486.231.570.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsDoubleValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsDoubleValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsDoubleValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsDoubleValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsDoubleValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsFloatValues(340.282.346.638.528.860.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsFloatValues(340.282.346.638.528.860.000.000.000.000.000.000.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsFloatValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsFloatValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsFloatValues(0,5)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsFloatValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsFloatValues(-0,5)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsIntegerValues(-2.147.483.648)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsIntegerValues(-2.147.483.648)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsIntegerValues(2.147.483.647)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsIntegerValues(2.147.483.647)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsIntegerValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsIntegerValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsIntegerValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsIntegerValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsIntegerValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsIntegerValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsLongValues(-9.223.372.036.854.775.808)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsLongValues(-9.223.372.036.854.775.808)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsLongValues(9.223.372.036.854.775.807)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsLongValues(9.223.372.036.854.775.807)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsLongValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsLongValues(0)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsLongValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsLongValues(10.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsLongValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsLongValues(-10.000)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsMapValues({testInteger=123, testString=try})]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsMapValues({testInteger=123, testString=try})]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsMixedListValues([try1, 2])]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsMixedListValues([try1, 2])]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsStringArrayValues([Z@6451ca2e)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsStringArrayValues([Z@6451ca2e)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsDoubleArrayValues([D@18ad601d)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsDoubleArrayValues([D@18ad601d)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsFloatArrayValues([F@4d9b22ac)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsFloatArrayValues([F@4d9b22ac)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsIntegerArrayValues([I@5911df8a)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsIntegerArrayValues([I@5911df8a)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsLongArrayValues([J@337b6e3c)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsLongArrayValues([J@337b6e3c)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsStringArrayValues([Ljava.lang.String;@40a54dc6)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsStringArrayValues([Ljava.lang.String;@40a54dc6)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsIntegerArrayValues([I@543f893c)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsIntegerArrayValues([I@543f893c)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsSerializableValues(org.apache.tinkerpop.gremlin.structure.MockSerializable@305e1be)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.016">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsSerializableValues(org.apache.tinkerpop.gremlin.structure.MockSerializable@305e1be)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsStringValues(short string)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsStringValues(short string)]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsUniformListValues([100, 200, 300])]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsUniformListValues([100, 200, 300])]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnEdgeIfNotEnabled[supportsUniformListValues([try1, try2])]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldEnableFeatureOnVertexIfNotEnabled[supportsUniformListValues([try1, try2])]" classname="org.apache.tinkerpop.gremlin.structure.FeatureSupportTest$ElementPropertyDataTypeFunctionalityTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

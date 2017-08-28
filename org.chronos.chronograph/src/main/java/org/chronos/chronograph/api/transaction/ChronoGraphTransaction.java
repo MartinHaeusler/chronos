@@ -70,7 +70,7 @@ public interface ChronoGraphTransaction {
 
 	public Iterator<Vertex> getVerticesIterator(Iterable<String> chronoVertexIds, ElementLoadMode loadMode);
 
-	public Iterator<Vertex> getVerticesByProperties(Map<String, String> propertyKeyToPropertyValue);
+	public Iterator<Vertex> getVerticesByProperties(Map<String, Object> propertyKeyToPropertyValue);
 
 	public Set<Vertex> evaluateVertexQuery(final ChronoDBQuery query);
 
@@ -80,7 +80,7 @@ public interface ChronoGraphTransaction {
 
 	public Iterator<Edge> getEdgesIterator(Iterable<String> chronoEdgeIds);
 
-	public Iterator<Edge> getEdgesByProperties(Map<String, String> propertyKeyToPropertyValue);
+	public Iterator<Edge> getEdgesByProperties(Map<String, Object> propertyKeyToPropertyValue);
 
 	public Set<Edge> evaluateEdgeQuery(final ChronoDBQuery query);
 

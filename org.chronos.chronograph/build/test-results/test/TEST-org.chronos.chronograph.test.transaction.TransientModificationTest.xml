@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronograph.test.transaction.TransientModificationTest" tests="25" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:58:51" hostname="Aurora" time="4.278">
+  <properties/>
+  <testcase name="transientAddedVerticesAreReflectedInGremlinQueries[Using tupl]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.1"/>
+  <testcase name="transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using tupl]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.184"/>
+  <testcase name="transientVertexDeletionsAreReflectedInGremlinQueries[Using tupl]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.159"/>
+  <testcase name="transientGetVertexByIdWorks[Using tupl]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.204"/>
+  <testcase name="transientEdgeDeletionsAreReflectedInGremlinQueries[Using tupl]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.184"/>
+  <testcase name="transientAddedVerticesAreReflectedInGremlinQueries[Using mapdb]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.254"/>
+  <testcase name="transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using mapdb]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.466"/>
+  <testcase name="transientVertexDeletionsAreReflectedInGremlinQueries[Using mapdb]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.435"/>
+  <testcase name="transientGetVertexByIdWorks[Using mapdb]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.347"/>
+  <testcase name="transientEdgeDeletionsAreReflectedInGremlinQueries[Using mapdb]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.284"/>
+  <testcase name="transientAddedVerticesAreReflectedInGremlinQueries[Using chunked]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.137"/>
+  <testcase name="transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using chunked]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.278"/>
+  <testcase name="transientVertexDeletionsAreReflectedInGremlinQueries[Using chunked]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.338"/>
+  <testcase name="transientGetVertexByIdWorks[Using chunked]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.4"/>
+  <testcase name="transientEdgeDeletionsAreReflectedInGremlinQueries[Using chunked]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.364"/>
+  <testcase name="transientAddedVerticesAreReflectedInGremlinQueries[Using inmemory]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.016"/>
+  <testcase name="transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using inmemory]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.002"/>
+  <testcase name="transientVertexDeletionsAreReflectedInGremlinQueries[Using inmemory]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.002"/>
+  <testcase name="transientGetVertexByIdWorks[Using inmemory]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.001"/>
+  <testcase name="transientEdgeDeletionsAreReflectedInGremlinQueries[Using inmemory]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.0"/>
+  <testcase name="transientAddedVerticesAreReflectedInGremlinQueries[Using jdbc]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.016"/>
+  <testcase name="transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using jdbc]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.04"/>
+  <testcase name="transientVertexDeletionsAreReflectedInGremlinQueries[Using jdbc]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.015"/>
+  <testcase name="transientGetVertexByIdWorks[Using jdbc]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.037"/>
+  <testcase name="transientEdgeDeletionsAreReflectedInGremlinQueries[Using jdbc]" classname="org.chronos.chronograph.test.transaction.TransientModificationTest" time="0.015"/>
+  <system-out><![CDATA[[INFO ] 2017-08-28 19:58:51 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientAddedVerticesAreReflectedInGremlinQueries[Using tupl]
+    Start time:  2017/08/28 19:58:51
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:51 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientAddedVerticesAreReflectedInGremlinQueries[Using tupl]
+    End time:    2017/08/28 19:58:51 (Duration: 100ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using tupl]
+    Start time:  2017/08/28 19:58:51
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:51 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:51 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:51 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:51 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using tupl]
+    End time:    2017/08/28 19:58:51 (Duration: 184ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientVertexDeletionsAreReflectedInGremlinQueries[Using tupl]
+    Start time:  2017/08/28 19:58:51
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:51 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:51 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientVertexDeletionsAreReflectedInGremlinQueries[Using tupl]
+    End time:    2017/08/28 19:58:51 (Duration: 159ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientGetVertexByIdWorks[Using tupl]
+    Start time:  2017/08/28 19:58:51
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientGetVertexByIdWorks[Using tupl]
+    End time:    2017/08/28 19:58:52 (Duration: 204ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientEdgeDeletionsAreReflectedInGremlinQueries[Using tupl]
+    Start time:  2017/08/28 19:58:52
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:52 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all edges, because none of the given properties is indexed! For better performance use indices. Requested properties: [since]
+[WARN ] 2017-08-28 19:58:52 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all edges, because none of the given properties is indexed! For better performance use indices. Requested properties: [since]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientEdgeDeletionsAreReflectedInGremlinQueries[Using tupl]
+    End time:    2017/08/28 19:58:52 (Duration: 184ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientAddedVerticesAreReflectedInGremlinQueries[Using mapdb]
+    Start time:  2017/08/28 19:58:52
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:52 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientAddedVerticesAreReflectedInGremlinQueries[Using mapdb]
+    End time:    2017/08/28 19:58:52 (Duration: 254ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using mapdb]
+    Start time:  2017/08/28 19:58:52
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:52 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:52 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:52 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:53 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using mapdb]
+    End time:    2017/08/28 19:58:53 (Duration: 466ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientVertexDeletionsAreReflectedInGremlinQueries[Using mapdb]
+    Start time:  2017/08/28 19:58:53
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:53 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:53 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientVertexDeletionsAreReflectedInGremlinQueries[Using mapdb]
+    End time:    2017/08/28 19:58:53 (Duration: 435ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientGetVertexByIdWorks[Using mapdb]
+    Start time:  2017/08/28 19:58:53
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientGetVertexByIdWorks[Using mapdb]
+    End time:    2017/08/28 19:58:53 (Duration: 347ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientEdgeDeletionsAreReflectedInGremlinQueries[Using mapdb]
+    Start time:  2017/08/28 19:58:53
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:54 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all edges, because none of the given properties is indexed! For better performance use indices. Requested properties: [since]
+[WARN ] 2017-08-28 19:58:54 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all edges, because none of the given properties is indexed! For better performance use indices. Requested properties: [since]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientEdgeDeletionsAreReflectedInGremlinQueries[Using mapdb]
+    End time:    2017/08/28 19:58:54 (Duration: 284ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientAddedVerticesAreReflectedInGremlinQueries[Using chunked]
+    Start time:  2017/08/28 19:58:54
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:54 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientAddedVerticesAreReflectedInGremlinQueries[Using chunked]
+    End time:    2017/08/28 19:58:54 (Duration: 137ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using chunked]
+    Start time:  2017/08/28 19:58:54
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:54 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:54 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:54 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:54 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using chunked]
+    End time:    2017/08/28 19:58:54 (Duration: 278ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientVertexDeletionsAreReflectedInGremlinQueries[Using chunked]
+    Start time:  2017/08/28 19:58:54
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:54 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:54 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientVertexDeletionsAreReflectedInGremlinQueries[Using chunked]
+    End time:    2017/08/28 19:58:54 (Duration: 338ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientGetVertexByIdWorks[Using chunked]
+    Start time:  2017/08/28 19:58:54
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientGetVertexByIdWorks[Using chunked]
+    End time:    2017/08/28 19:58:55 (Duration: 400ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientEdgeDeletionsAreReflectedInGremlinQueries[Using chunked]
+    Start time:  2017/08/28 19:58:55
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all edges, because none of the given properties is indexed! For better performance use indices. Requested properties: [since]
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all edges, because none of the given properties is indexed! For better performance use indices. Requested properties: [since]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientEdgeDeletionsAreReflectedInGremlinQueries[Using chunked]
+    End time:    2017/08/28 19:58:55 (Duration: 364ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientAddedVerticesAreReflectedInGremlinQueries[Using inmemory]
+    Start time:  2017/08/28 19:58:55
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientAddedVerticesAreReflectedInGremlinQueries[Using inmemory]
+    End time:    2017/08/28 19:58:55 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using inmemory]
+    Start time:  2017/08/28 19:58:55
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using inmemory]
+    End time:    2017/08/28 19:58:55 (Duration: 2ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientVertexDeletionsAreReflectedInGremlinQueries[Using inmemory]
+    Start time:  2017/08/28 19:58:55
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientVertexDeletionsAreReflectedInGremlinQueries[Using inmemory]
+    End time:    2017/08/28 19:58:55 (Duration: 2ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientGetVertexByIdWorks[Using inmemory]
+    Start time:  2017/08/28 19:58:55
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientGetVertexByIdWorks[Using inmemory]
+    End time:    2017/08/28 19:58:55 (Duration: 1ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientEdgeDeletionsAreReflectedInGremlinQueries[Using inmemory]
+    Start time:  2017/08/28 19:58:55
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all edges, because none of the given properties is indexed! For better performance use indices. Requested properties: [since]
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all edges, because none of the given properties is indexed! For better performance use indices. Requested properties: [since]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientEdgeDeletionsAreReflectedInGremlinQueries[Using inmemory]
+    End time:    2017/08/28 19:58:55 (Duration: 0ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientAddedVerticesAreReflectedInGremlinQueries[Using jdbc]
+    Start time:  2017/08/28 19:58:55
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [StandardChronoGraphTransaction]:  Query requires iterating over all vertices. For better performance, use 'has(...)' clauses in your gremlin.
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientAddedVerticesAreReflectedInGremlinQueries[Using jdbc]
+    End time:    2017/08/28 19:58:55 (Duration: 16ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using jdbc]
+    Start time:  2017/08/28 19:58:55
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientPropertiesOnVerticesAreReflectedInGremlinQueries[Using jdbc]
+    End time:    2017/08/28 19:58:55 (Duration: 40ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientVertexDeletionsAreReflectedInGremlinQueries[Using jdbc]
+    Start time:  2017/08/28 19:58:55
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all vertices, because none of the given properties is indexed! For better performance use indices. Requested properties: [name]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientVertexDeletionsAreReflectedInGremlinQueries[Using jdbc]
+    End time:    2017/08/28 19:58:55 (Duration: 15ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientGetVertexByIdWorks[Using jdbc]
+    Start time:  2017/08/28 19:58:55
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientGetVertexByIdWorks[Using jdbc]
+    End time:    2017/08/28 19:58:55 (Duration: 37ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientEdgeDeletionsAreReflectedInGremlinQueries[Using jdbc]
+    Start time:  2017/08/28 19:58:55
+================================================================================
+
+
+
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all edges, because none of the given properties is indexed! For better performance use indices. Requested properties: [since]
+[WARN ] 2017-08-28 19:58:55 [    Test worker] [.i.t.ChronoGraphQueryProcessor]:  Query requires iteration over all edges, because none of the given properties is indexed! For better performance use indices. Requested properties: [since]
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  TransientModificationTest
+    Test method: transientEdgeDeletionsAreReflectedInGremlinQueries[Using jdbc]
+    End time:    2017/08/28 19:58:55 (Duration: 15ms)
+================================================================================
+
+
+
+[INFO ] 2017-08-28 19:58:55 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest318862688473434810
+[INFO ] 2017-08-28 19:58:55 [    Test worker] [    o.c.c.test.ChronosUnitTest]:  Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

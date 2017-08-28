@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
-import org.chronos.chronodb.api.ChronoIndexer;
 import org.chronos.chronodb.api.IndexManager;
+import org.chronos.chronodb.api.indexing.StringIndexer;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
 import org.chronos.common.test.junit.categories.IntegrationTest;
 import org.junit.Test;
@@ -132,7 +132,7 @@ public class MultiValueIndexingTest extends AllChronoDBBackendsTest {
 
 	}
 
-	private static class TestBeanIndexer implements ChronoIndexer {
+	private static class TestBeanIndexer implements StringIndexer {
 
 		@Override
 		public boolean canIndex(final Object object) {

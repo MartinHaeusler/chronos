@@ -9,8 +9,8 @@ import java.util.Set;
 
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
-import org.chronos.chronodb.api.ChronoIndexer;
 import org.chronos.chronodb.api.exceptions.ChronoDBCommitException;
+import org.chronos.chronodb.api.indexing.StringIndexer;
 import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
@@ -477,7 +477,7 @@ public class IncrementalCommitTest extends AllChronoDBBackendsTest {
 	public void renamingElementsInSecondaryIndexDuringIncrementalCommitWorks() {
 		ChronoDB db = this.getChronoDB();
 		// set up the "name" index
-		ChronoIndexer nameIndexer = new NamedPayloadNameIndexer();
+		StringIndexer nameIndexer = new NamedPayloadNameIndexer();
 		db.getIndexManager().addIndexer("name", nameIndexer);
 		db.getIndexManager().reindexAll();
 		// generate and insert test data
@@ -681,7 +681,7 @@ public class IncrementalCommitTest extends AllChronoDBBackendsTest {
 		}
 	}
 
-	private static class FirstNameIndexer implements ChronoIndexer {
+	private static class FirstNameIndexer implements StringIndexer {
 
 		@Override
 		public boolean canIndex(final Object object) {
@@ -696,7 +696,7 @@ public class IncrementalCommitTest extends AllChronoDBBackendsTest {
 
 	}
 
-	private static class LastNameIndexer implements ChronoIndexer {
+	private static class LastNameIndexer implements StringIndexer {
 
 		@Override
 		public boolean canIndex(final Object object) {

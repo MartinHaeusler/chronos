@@ -32,15 +32,12 @@ import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.api.key.TemporalKey;
 import org.chronos.chronodb.internal.api.BranchInternal;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
-import org.chronos.chronodb.internal.api.CommitMetadataStore;
 import org.chronos.chronodb.internal.api.GetResult;
 import org.chronos.chronodb.internal.api.Period;
 import org.chronos.chronodb.internal.api.TemporalDataMatrix;
 import org.chronos.chronodb.internal.api.TemporalKeyValueStore;
 import org.chronos.chronodb.internal.api.cache.CacheGetResult;
 import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
-import org.chronos.chronodb.internal.api.index.AppendingIndexManager;
-import org.chronos.chronodb.internal.api.index.ReplacingIndexManager;
 import org.chronos.chronodb.internal.api.stream.ChronoDBEntry;
 import org.chronos.chronodb.internal.api.stream.CloseableIterator;
 import org.chronos.chronodb.internal.impl.stream.AbstractCloseableIterator;
@@ -68,15 +65,13 @@ public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStor
 	 * The commit lock is a plain reentrant lock that protects a single branch from concurrent commits.
 	 *
 	 * <p>
-	 * Please note that this lock may be acquired if and only if the current thread is holding all of the following
-	 * locks:
+	 * Please note that this lock may be acquired if and only if the current thread is holding all of the following locks:
 	 * <ul>
 	 * <li>Database lock (read or write)
 	 * <li>Branch lock (read or write)
 	 * </ul>
 	 *
-	 * Also note that (as the name implies) this lock is for commit operations only. Read operations do not need to
-	 * acquire this lock at all.
+	 * Also note that (as the name implies) this lock is for commit operations only. Read operations do not need to acquire this lock at all.
 	 */
 	private final Lock commitLock = new ReentrantLock(true);
 
@@ -284,7 +279,7 @@ public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStor
 							// the new value is identical to the old one -> ignore it
 							continue;
 						}
-					} else if (this.getOwningDB().getIndexManager() instanceof ReplacingIndexManager) {
+					} else {
 						oldValue = tx.get(keyspace, key);
 					}
 					Set<PutOption> options = entry.getOptions();
@@ -349,17 +344,7 @@ public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStor
 							indexManager.rollback(this.getOwningBranch(), this.getNow(), modifiedKeys);
 						}
 						// re-index the modified keys
-						if (indexManager instanceof AppendingIndexManager) {
-							AppendingIndexManager appendingIndexManager = (AppendingIndexManager) indexManager;
-							// transforms the pair of old value and new value to just the new value
-							Map<ChronoIdentifier, Object> transformedEntriesToIndex = entriesToIndex.entrySet().stream()
-									.map(entry -> Pair.of(entry.getKey(), entry.getValue().getRight()))
-									.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue()));
-							appendingIndexManager.index(transformedEntriesToIndex);
-						} else if (indexManager instanceof ReplacingIndexManager) {
-							ReplacingIndexManager replacingIndexManager = (ReplacingIndexManager) indexManager;
-							replacingIndexManager.index(entriesToIndex);
-						}
+						indexManager.index(entriesToIndex);
 					}
 					this.debugCallbackBeforeMetadataUpdate(tx);
 					// write the commit metadata object (this will also register the commit, even if no metadata is
@@ -449,9 +434,7 @@ public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStor
 					String key = entry.getKey();
 					Object oldValue = null;
 					Object newValue = entry.getValue();
-					if (this.getOwningDB().getIndexManager() instanceof ReplacingIndexManager) {
-						oldValue = oldValueTx.get(keyspace, key);
-					}
+					oldValue = oldValueTx.get(keyspace, key);
 					Set<PutOption> options = entry.getOptions();
 					Map<String, byte[]> keyspaceMap = keyspaceToKeyToValue.get(keyspace);
 					if (keyspaceMap == null) {
@@ -493,17 +476,7 @@ public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStor
 								.collect(Collectors.toSet());
 						indexManager.rollback(this.getOwningBranch(), this.getNow(), modifiedKeys);
 						// re-index the modified keys
-						if (indexManager instanceof AppendingIndexManager) {
-							AppendingIndexManager appendingIndexManager = (AppendingIndexManager) indexManager;
-							// transforms the pair of old value and new value to just the new value
-							Map<ChronoIdentifier, Object> transformedEntriesToIndex = entriesToIndex.entrySet().stream()
-									.map(entry -> Pair.of(entry.getKey(), entry.getValue().getRight()))
-									.collect(Collectors.toMap(entry -> entry.getKey(), entry -> entry.getValue()));
-							appendingIndexManager.index(transformedEntriesToIndex);
-						} else if (indexManager instanceof ReplacingIndexManager) {
-							ReplacingIndexManager replacingIndexManager = (ReplacingIndexManager) indexManager;
-							replacingIndexManager.index(entriesToIndex);
-						}
+						indexManager.index(entriesToIndex);
 					}
 					this.debugCallbackBeforeCacheUpdate(tx);
 					// update the cache (if any)
@@ -1026,8 +999,7 @@ public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStor
 	 * @param keyspace
 	 *            The name of the keyspace to get the matrix for. Must not be <code>null</code>.
 	 *
-	 * @return The temporal data matrix that stores the keyspace data, or <code>null</code> if there is no keyspace for
-	 *         the given name.
+	 * @return The temporal data matrix that stores the keyspace data, or <code>null</code> if there is no keyspace for the given name.
 	 */
 	protected TemporalDataMatrix getMatrix(final String keyspace) {
 		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
@@ -1040,8 +1012,7 @@ public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStor
 	 * @param keyspace
 	 *            The name of the keyspace to get the matrix for. Must not be <code>null</code>.
 	 * @param timestamp
-	 *            In case of a "create", this timestamp specifies the creation timestamp of the matrix. Must not be
-	 *            negative.
+	 *            In case of a "create", this timestamp specifies the creation timestamp of the matrix. Must not be negative.
 	 *
 	 * @return The temporal data matrix that stores the keyspace data. Never <code>null</code>.
 	 */
@@ -1331,13 +1302,6 @@ public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStor
 	 * @return The newly created matrix instance for the given keyspace name. Never <code>null</code>.
 	 */
 	protected abstract TemporalDataMatrix createMatrix(String keyspace, long timestamp);
-
-	/**
-	 * Returns the {@link CommitMetadataStore} to work with in this store.
-	 *
-	 * @return The commit metadata store associated with this store. Never <code>null</code>.
-	 */
-	protected abstract CommitMetadataStore getCommitMetadataStore();
 
 	/**
 	 * Stores the given {@link WriteAheadLogToken} in the persistent store.

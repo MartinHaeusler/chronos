@@ -7,15 +7,15 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.BranchManager;
 import org.chronos.chronodb.api.ChronoDBTransaction;
-import org.chronos.chronodb.api.ChronoIndexer;
 import org.chronos.chronodb.api.SerializationManager;
+import org.chronos.chronodb.api.indexing.Indexer;
 import org.chronos.chronodb.api.key.ChronoIdentifier;
 import org.chronos.chronodb.internal.api.BranchInternal;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
@@ -24,8 +24,7 @@ import org.chronos.chronodb.internal.api.TemporalKeyValueStore;
 import org.chronos.chronodb.internal.api.index.ChronoIndexDocument;
 import org.chronos.chronodb.internal.api.index.ChronoIndexModifications;
 import org.chronos.chronodb.internal.api.index.DocumentBasedIndexManagerBackend;
-import org.chronos.chronodb.internal.api.index.ReplacingIndexManager;
-import org.chronos.chronodb.internal.api.query.SearchSpecification;
+import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
 import org.chronos.chronodb.internal.api.stream.ChronoDBEntry;
 import org.chronos.chronodb.internal.api.stream.CloseableIterator;
 import org.chronos.chronodb.internal.impl.index.diff.IndexValueDiff;
@@ -33,11 +32,9 @@ import org.chronos.chronodb.internal.impl.index.diff.IndexingUtils;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.SetMultimap;
-import com.google.common.collect.Sets;
 
 public class DocumentBasedIndexManager
-		extends AbstractBackendDelegatingIndexManager<ChronoDBInternal, DocumentBasedIndexManagerBackend>
-		implements ReplacingIndexManager {
+		extends AbstractBackendDelegatingIndexManager<ChronoDBInternal, DocumentBasedIndexManagerBackend> {
 
 	// =====================================================================================================================
 	// CONSTRUCTOR
@@ -56,9 +53,18 @@ public class DocumentBasedIndexManager
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		checkArgument(this.getIndexNames().contains(indexName),
 				"Precondition violation - argument 'indexName' does not refer to a known index!");
+		this.reindexAll();
+	}
+
+	@Override
+	public void reindexAll() {
 		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
-			// first, delete whatever is in that index
-			this.getIndexManagerBackend().deleteIndexContents(indexName);
+			if (this.getDirtyIndices().isEmpty()) {
+				// no indices are dirty -> no need to re-index
+				return;
+			}
+			// first, delete whatever is in the index
+			this.getIndexManagerBackend().deleteAllIndexContents();
 			// then, iterate over the contents of the database
 			BranchManager branchManager = this.getOwningDB().getBranchManager();
 			Set<Branch> branches = branchManager.getBranches();
@@ -85,26 +91,12 @@ public class DocumentBasedIndexManager
 				}
 			}
 			this.index(identifierToValue);
-			// the index has been cleared. Remove the dirty flag
-			this.setIndexClean(indexName);
 			// clear the query cache
 			this.clearQueryCache();
-		}
-	}
-
-	@Override
-	public void reindexAll() {
-		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
-			Map<String, Boolean> copyMap = Maps.newHashMap(this.indexNameToDirtyFlag);
-			for (Entry<String, Boolean> entry : copyMap.entrySet()) {
-				String indexName = entry.getKey();
-				Boolean dirtyFlag = entry.getValue();
-				if (dirtyFlag) {
-					this.reindex(indexName);
-				}
+			for (String indexName : this.getIndexNames()) {
+				this.setIndexClean(indexName);
 			}
 			this.getIndexManagerBackend().persistIndexDirtyStates(this.indexNameToDirtyFlag);
-			this.clearQueryCache();
 		}
 	}
 
@@ -130,28 +122,31 @@ public class DocumentBasedIndexManager
 	// =====================================================================================================================
 
 	@Override
-	protected Set<ChronoIdentifier> performIndexQuery(final long timestamp, final Branch branch,
-			final SearchSpecification searchSpec) {
+	protected Set<String> performIndexQuery(final long timestamp, final Branch branch, final String keyspace,
+			final SearchSpecification<?> searchSpec) {
 		try (LockHolder lock = this.getOwningDB().lockNonExclusive()) {
-			Collection<ChronoIndexDocument> documents = this.getIndexManagerBackend().getMatchingDocuments(timestamp,
-					branch, searchSpec);
-			Set<ChronoIdentifier> resultSet = Sets.newHashSet();
-			for (ChronoIndexDocument document : documents) {
-				String keyspace = document.getKeyspace();
-				String key = document.getKey();
-				long docTimestamp = document.getValidFromTimestamp();
-				// note: we explicitly use the branch passed as an argument to this method for the ChronoIdentifier
-				// instead of the branch specified in the document. The reason is related to usabiltiy: the user
-				// would likely expect to get back identifiers on the requested branch only. Behind the scenes,
-				// the ACTUAL branch that really holds the value for the identifier may be any of the (direct
-				// or transitive) origins of the given branch. It makes no difference for any get(...) operations,
-				// because they traverse the branch origin hierarchy anyways, and it is nicer for the user if
-				// the results match the requested branch, even when in truth the key-value pairs are stored in
-				// one of the origin branches.
-				ChronoIdentifier identifier = ChronoIdentifier.create(branch, docTimestamp, keyspace, key);
-				resultSet.add(identifier);
+			// check if we are dealing with a negated search specification that accepts empty values.
+			if (searchSpec.getCondition().isNegated() && searchSpec.getCondition().acceptsEmptyValue()) {
+				// the search spec is a negated condition that accepts the empty value.
+				// To resolve this condition:
+				// - Call keySet() on the target keyspace
+				// - query the index with the non-negated condition
+				// - subtract the matches from the keyset
+				Set<String> keySet = this.getOwningDB().tx(branch.getName(), timestamp).keySet(keyspace);
+				SearchSpecification<?> nonNegatedSearch = searchSpec.negate();
+				Collection<ChronoIndexDocument> documents = this.getIndexManagerBackend().getMatchingDocuments(timestamp,
+						branch, keyspace, nonNegatedSearch);
+				// subtract the matches from the keyset
+				for (ChronoIndexDocument document : documents) {
+					String key = document.getKey();
+					keySet.remove(key);
+				}
+				return Collections.unmodifiableSet(keySet);
+			} else {
+				Collection<ChronoIndexDocument> documents = this.getIndexManagerBackend().getMatchingDocuments(timestamp,
+						branch, keyspace, searchSpec);
+				return Collections.unmodifiableSet(documents.stream().map(doc -> doc.getKey()).collect(Collectors.toSet()));
 			}
-			return Collections.unmodifiableSet(resultSet);
 		}
 	}
 
@@ -217,43 +212,50 @@ public class DocumentBasedIndexManager
 			// in order to correctly treat the deletions, we need to query the index backend for
 			// the currently active documents. We load these on-demand, because we don't need them in
 			// the common case of indexing previously unseen (new) elements.
-			Map<String, Map<String, ChronoIndexDocument>> oldDocuments = null;
-			SetMultimap<String, ChronoIndexer> indexNameToIndexers = DocumentBasedIndexManager.this.indexNameToIndexers;
+			Map<String, SetMultimap<Object, ChronoIndexDocument>> oldDocuments = null;
+			SetMultimap<String, Indexer<?>> indexNameToIndexers = DocumentBasedIndexManager.this.indexNameToIndexers;
 			// calculate the diff
 			IndexValueDiff diff = IndexingUtils.calculateDiff(indexNameToIndexers, oldValue, newValue);
 			for (String indexName : diff.getChangedIndices()) {
-				Set<String> addedValues = diff.getAdditions(indexName);
-				Set<String> removedValues = diff.getRemovals(indexName);
+				Set<Object> addedValues = diff.getAdditions(indexName);
+				Set<Object> removedValues = diff.getRemovals(indexName);
 				// for each value we need to add, we create an index document based on the ChronoIdentifier.
-				for (String addedValue : addedValues) {
+				for (Object addedValue : addedValues) {
 					this.indexModifications.addDocumentAddition(chronoIdentifier, indexName, addedValue);
 				}
 				// iterate over the removed values and terminate the document validities
-				for (String removedValue : removedValues) {
+				for (Object removedValue : removedValues) {
 					if (oldDocuments == null) {
 						// make sure that the current index documents are available
 						oldDocuments = DocumentBasedIndexManager.this.getIndexManagerBackend()
 								.getMatchingBranchLocalDocuments(chronoIdentifier);
 					}
-					Map<String, ChronoIndexDocument> indexedValueToOldDoc = oldDocuments.get(indexName);
-					ChronoIndexDocument oldDocument = null;
-					if (indexedValueToOldDoc != null) {
-						oldDocument = indexedValueToOldDoc.get(removedValue);
-					}
-					if (oldDocument == null) {
+					SetMultimap<Object, ChronoIndexDocument> indexedValueToOldDoc = oldDocuments.get(indexName);
+					if (indexedValueToOldDoc == null) {
 						// There is no document for the old index value in our branch. This means that this indexed
 						// value was never touched in our branch. To "simulate" a valdity termination, we
 						// insert a new index document which is valid from the creation of our branch until
 						// our current timestamp.
 						ChronoIndexDocument document = new ChronoIndexDocumentImpl(indexName, this.branch.getName(),
 								chronoIdentifier.getKeyspace(), chronoIdentifier.getKey(), removedValue,
-								removedValue.toLowerCase(), this.branch.getBranchingTimestamp());
+								this.branch.getBranchingTimestamp());
 						document.setValidToTimestamp(this.currentTimestamp);
 						this.indexModifications.addDocumentAddition(document);
 					} else {
-						// the document belongs to our branch; terminate its validity
-						this.terminateDocumentValidityOrDeleteDocument(oldDocument, this.currentTimestamp);
+						Set<ChronoIndexDocument> oldDocs = indexedValueToOldDoc.get(removedValue);
+						for (ChronoIndexDocument oldDocument : oldDocs) {
+							if (oldDocument.getValidToTimestamp() < Long.MAX_VALUE) {
+								// the document has already been closed. This can happen if a key-value pair has
+								// been inserted into the store, later deleted, and later re-inserted.
+								continue;
+							} else {
+								// the document belongs to our branch; terminate its validity
+								this.terminateDocumentValidityOrDeleteDocument(oldDocument, this.currentTimestamp);
+							}
+
+						}
 					}
+
 				}
 			}
 		}

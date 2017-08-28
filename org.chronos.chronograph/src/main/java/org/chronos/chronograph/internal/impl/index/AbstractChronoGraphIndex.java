@@ -2,9 +2,19 @@ package org.chronos.chronograph.internal.impl.index;
 
 import static com.google.common.base.Preconditions.*;
 
-import org.chronos.chronograph.api.index.ChronoGraphIndex;
+import org.chronos.chronograph.internal.api.index.ChronoGraphIndexInternal;
+import org.chronos.common.annotation.PersistentClass;
 
-public abstract class AbstractChronoGraphIndex implements ChronoGraphIndex {
+/**
+ * This class represents the definition of a graph index (index metadata) on disk.
+ *
+ * @deprecated Superseded by {@link AbstractChronoGraphIndex2}.
+ *
+ * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
+ */
+@Deprecated
+@PersistentClass("kryo")
+public abstract class AbstractChronoGraphIndex implements ChronoGraphIndexInternal {
 
 	// =====================================================================================================================
 	// FIELDS
@@ -28,6 +38,12 @@ public abstract class AbstractChronoGraphIndex implements ChronoGraphIndex {
 	@Override
 	public String getIndexedProperty() {
 		return this.indexedProperty;
+	}
+
+	@Override
+	public IndexType getIndexType() {
+		// the old version represented by this class only supported strings
+		return IndexType.STRING;
 	}
 
 	@Override

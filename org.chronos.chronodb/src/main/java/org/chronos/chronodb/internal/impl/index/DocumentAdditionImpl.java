@@ -11,8 +11,8 @@ public class DocumentAdditionImpl implements DocumentAddition {
 
 	private final ChronoIndexDocument document;
 
-	public DocumentAdditionImpl(final ChronoIdentifier identifier, final String indexName, final String indexValue) {
-		this(new ChronoIndexDocumentImpl(identifier, indexName, indexValue, indexValue.toLowerCase()));
+	public DocumentAdditionImpl(final ChronoIdentifier identifier, final String indexName, final Object indexValue) {
+		this(new ChronoIndexDocumentImpl(identifier, indexName, indexValue));
 	}
 
 	public DocumentAdditionImpl(final ChronoIndexDocument document) {
@@ -38,9 +38,9 @@ public class DocumentAdditionImpl implements DocumentAddition {
 		builder.append(this.document.getKey());
 		builder.append(", value='");
 		builder.append(this.document.getIndexedValue());
-		builder.append("', valueCI='");
-		builder.append(this.document.getIndexedValueCaseInsensitive());
-		builder.append("', ");
+		builder.append("' (");
+		builder.append(this.document.getIndexedValue().getClass().getName());
+		builder.append("), ");
 		builder.append(Period.createRange(this.document.getValidFromTimestamp(), this.document.getValidToTimestamp()));
 		builder.append(")");
 		return builder.toString();

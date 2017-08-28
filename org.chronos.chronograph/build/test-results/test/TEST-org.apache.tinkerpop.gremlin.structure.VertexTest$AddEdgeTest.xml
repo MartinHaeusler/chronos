@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.tinkerpop.gremlin.structure.VertexTest$AddEdgeTest" tests="6" skipped="5" failures="0" errors="0" timestamp="2017-08-28T17:59:11" hostname="Aurora" time="0.0">
+  <properties/>
+  <testcase name="shouldAddEdgeWithUserSuppliedAnyIdUsingAnyObject" classname="org.apache.tinkerpop.gremlin.structure.VertexTest$AddEdgeTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldAddEdgeWithUserSuppliedNumericId" classname="org.apache.tinkerpop.gremlin.structure.VertexTest$AddEdgeTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldAddEdgeWithUserSuppliedAnyIdUsingString" classname="org.apache.tinkerpop.gremlin.structure.VertexTest$AddEdgeTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldAddEdgeWithUserSuppliedStringId" classname="org.apache.tinkerpop.gremlin.structure.VertexTest$AddEdgeTest" time="0.0"/>
+  <testcase name="shouldAddEdgeWithUserSuppliedAnyIdUsingUuid" classname="org.apache.tinkerpop.gremlin.structure.VertexTest$AddEdgeTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="shouldAddEdgeWithUserSuppliedUuidId" classname="org.apache.tinkerpop.gremlin.structure.VertexTest$AddEdgeTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,8 +1,7 @@
 package org.chronos.chronodb.internal.impl.engines.tupl;
 
-import static org.chronos.common.logging.ChronoLogger.*;
-
 import static com.google.common.base.Preconditions.*;
+import static org.chronos.common.logging.ChronoLogger.*;
 
 import java.util.Collections;
 import java.util.Map;
@@ -12,7 +11,7 @@ import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.internal.api.BranchInternal;
 import org.chronos.chronodb.internal.impl.BranchImpl;
-import org.chronos.chronodb.internal.impl.BranchMetadata;
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
 import org.chronos.chronodb.internal.impl.MatrixUtils;
 import org.chronos.chronodb.internal.impl.engines.base.AbstractBranchManager;
 
@@ -33,7 +32,7 @@ public class TuplBranchManager extends AbstractBranchManager {
 	// =================================================================================================================
 
 	private final Map<String, BranchInternal> loadedBranches = Maps.newConcurrentMap();
-	private final Map<String, BranchMetadata> branchMetadata = Maps.newConcurrentMap();
+	private final Map<String, IBranchMetadata> branchMetadata = Maps.newConcurrentMap();
 
 	// =====================================================================================================================
 	// CONSTRUCTOR
@@ -55,7 +54,7 @@ public class TuplBranchManager extends AbstractBranchManager {
 	}
 
 	@Override
-	protected BranchInternal createBranch(final BranchMetadata metadata) {
+	protected BranchInternal createBranch(final IBranchMetadata metadata) {
 		BranchInternal parentBranch = null;
 		BranchImpl branch = null;
 		if (metadata.getParentName() != null) {
@@ -90,7 +89,7 @@ public class TuplBranchManager extends AbstractBranchManager {
 			return branch;
 		}
 		// not loaded yet; load it
-		BranchMetadata metadata = this.branchMetadata.get(name);
+		IBranchMetadata metadata = this.branchMetadata.get(name);
 		if (metadata == null) {
 			return null;
 		}
@@ -116,13 +115,16 @@ public class TuplBranchManager extends AbstractBranchManager {
 	}
 
 	private void ensureMasterBranchExists() {
-		BranchMetadata masterBranchMetadata = BranchMetadata.createMasterBranchMetadata();
+		IBranchMetadata masterBranchMetadata = IBranchMetadata.createMasterBranchMetadata();
 		if (this.existsBranch(ChronoDBConstants.MASTER_BRANCH_IDENTIFIER)) {
 			// we know that the master branch exists in our navigation map.
 			// ensure that it also exists in the branch metadata map
 			try (DefaultTuplTransaction tx = this.getOwningDB().openTransaction()) {
-				BranchMetadataIndex.insertOrUpdate(tx, masterBranchMetadata);
-				tx.commit();
+				if (BranchMetadataIndex.getMetadata(tx, masterBranchMetadata.getName()) == null) {
+					// master branch metadata does not exist yet; insert it
+					BranchMetadataIndex.insertOrUpdate(tx, masterBranchMetadata);
+					tx.commit();
+				}
 			}
 			return;
 		}
@@ -131,8 +133,8 @@ public class TuplBranchManager extends AbstractBranchManager {
 
 	private void loadBranchMetadata() {
 		try (DefaultTuplTransaction tx = this.getOwningDB().openTransaction()) {
-			Set<BranchMetadata> allMetadata = BranchMetadataIndex.values(tx);
-			for (BranchMetadata metadata : allMetadata) {
+			Set<IBranchMetadata> allMetadata = BranchMetadataIndex.values(tx);
+			for (IBranchMetadata metadata : allMetadata) {
 				this.branchMetadata.put(metadata.getName(), metadata);
 			}
 		}

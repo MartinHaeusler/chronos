@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.query.optimizer.ConditionNegationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:54:29" hostname="Aurora" time="0.0">
+  <properties/>
+  <testcase name="conditionNegationWorks" classname="org.chronos.chronodb.test.query.optimizer.ConditionNegationTest" time="0.0"/>
+  <system-out><![CDATA[19:54:29.948 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  ConditionNegationTest
+    Test method: conditionNegationWorks
+    Start time:  2017/08/28 19:54:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  ConditionNegationTest
+    Test method: conditionNegationWorks
+    End time:    2017/08/28 19:54:29 (Duration: 0ms)
+================================================================================
+
+
+
+19:54:29.948 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:54:29.948 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

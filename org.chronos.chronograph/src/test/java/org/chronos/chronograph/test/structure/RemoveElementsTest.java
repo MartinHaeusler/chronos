@@ -443,7 +443,7 @@ public class RemoveElementsTest extends AllChronoGraphBackendsTest {
 	@Test
 	public void removedVerticesDoNotShowUpInIndexQueryResults() {
 		ChronoGraph g = this.getGraph();
-		g.getIndexManager().createIndex().onVertexProperty("name").build();
+		g.getIndexManager().create().stringIndex().onVertexProperty("name").build();
 		g.getIndexManager().reindexAll();
 		g.tx().commit();
 		Vertex vMartin = g.addVertex("name", "Martin");

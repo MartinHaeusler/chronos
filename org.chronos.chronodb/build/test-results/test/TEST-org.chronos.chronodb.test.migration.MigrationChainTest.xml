@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.chronos.chronodb.test.migration.MigrationChainTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2017-08-28T17:54:29" hostname="Aurora" time="0.211">
+  <properties/>
+  <testcase name="canScanForMigrationChain" classname="org.chronos.chronodb.test.migration.MigrationChainTest" time="0.049"/>
+  <testcase name="canLimitMigrationChainArbitrarilyBetweenVersions" classname="org.chronos.chronodb.test.migration.MigrationChainTest" time="0.062"/>
+  <testcase name="canDetectOverlappingMigrationChains" classname="org.chronos.chronodb.test.migration.MigrationChainTest" time="0.054"/>
+  <testcase name="canLimitMigrationChainPreciselyAtVersion" classname="org.chronos.chronodb.test.migration.MigrationChainTest" time="0.046"/>
+  <system-out><![CDATA[19:54:29.652 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Temp directory is provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MigrationChainTest
+    Test method: canScanForMigrationChain
+    Start time:  2017/08/28 19:54:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MigrationChainTest
+    Test method: canScanForMigrationChain
+    End time:    2017/08/28 19:54:29 (Duration: 49ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MigrationChainTest
+    Test method: canLimitMigrationChainArbitrarilyBetweenVersions
+    Start time:  2017/08/28 19:54:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MigrationChainTest
+    Test method: canLimitMigrationChainArbitrarilyBetweenVersions
+    End time:    2017/08/28 19:54:29 (Duration: 62ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MigrationChainTest
+    Test method: canDetectOverlappingMigrationChains
+    Start time:  2017/08/28 19:54:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MigrationChainTest
+    Test method: canDetectOverlappingMigrationChains
+    End time:    2017/08/28 19:54:29 (Duration: 54ms)
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST START                                                                     
+--------------------------------------------------------------------------------
+    Test class:  MigrationChainTest
+    Test method: canLimitMigrationChainPreciselyAtVersion
+    Start time:  2017/08/28 19:54:29
+================================================================================
+
+
+
+
+
+================================================================================
+ TEST SUCCEEDED                                                                 
+--------------------------------------------------------------------------------
+    Test class:  MigrationChainTest
+    Test method: canLimitMigrationChainPreciselyAtVersion
+    End time:    2017/08/28 19:54:29 (Duration: 46ms)
+================================================================================
+
+
+
+19:54:29.863 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Attempting to delete temp directory provided at: C:\Users\Martin\AppData\Local\Temp\ChronoDBTest5529815287975316420
+19:54:29.863 [Test worker] INFO  o.c.common.test.ChronosUnitTest - Successfully deleted temp directory
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

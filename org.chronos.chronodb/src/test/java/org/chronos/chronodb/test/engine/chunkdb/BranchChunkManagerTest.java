@@ -8,8 +8,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.chronos.chronodb.internal.api.Period;
+import org.chronos.chronodb.internal.impl.IBranchMetadata;
 import org.chronos.chronodb.internal.impl.engines.chunkdb.BranchChunkManager;
+import org.chronos.chronodb.internal.impl.engines.chunkdb.BranchMetadataFile;
 import org.chronos.chronodb.internal.impl.engines.chunkdb.ChronoChunk;
+import org.chronos.chronodb.internal.impl.engines.chunkdb.ChunkedChronoDB;
 import org.chronos.chronodb.internal.util.ChronosFileUtils;
 import org.chronos.chronodb.test.base.ChronoDBUnitTest;
 import org.chronos.common.exceptions.ChronosIOException;
@@ -22,16 +25,18 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 
 	@Test
 	public void canCreateChunkManager() {
+		this.createBranchMetadataFile(this.getTestDirectory());
 		BranchChunkManager cm = new BranchChunkManager(this.getTestDirectory());
 		assertNotNull(cm);
 	}
 
 	@Test
 	public void defaultChunkFileIsCreatedAutomatically() {
+		this.createBranchMetadataFile(this.getTestDirectory());
 		BranchChunkManager cm = new BranchChunkManager(this.getTestDirectory());
 		assertNotNull(cm);
 		File[] files = this.getTestDirectory().listFiles();
-		assertEquals(3, files.length);
+		assertEquals(4, files.length);
 		File dataFile = new File(this.getTestDirectory(), "0." + ChronoChunk.CHUNK_FILE_EXTENSION);
 		assertTrue(dataFile.exists());
 		assertTrue(dataFile.isFile());
@@ -42,6 +47,7 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 
 	@Test
 	public void canGetCorrectChunkForTimestampWhenOnlyOneChunkExists() {
+		this.createBranchMetadataFile(this.getTestDirectory());
 		BranchChunkManager cm = new BranchChunkManager(this.getTestDirectory());
 		ChronoChunk chunk = cm.getChunkForTimestamp(System.currentTimeMillis());
 		assertNotNull(chunk);
@@ -53,6 +59,7 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 
 	@Test
 	public void canGetIndexFileForTimestamp() {
+		this.createBranchMetadataFile(this.getTestDirectory());
 		BranchChunkManager cm = new BranchChunkManager(this.getTestDirectory());
 		long timestamp = System.currentTimeMillis();
 		ChronoChunk chunk = cm.getChunkForTimestamp(timestamp);
@@ -69,14 +76,16 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 
 	@Test
 	public void canDoDataChunkRollover() {
+		this.createBranchMetadataFile(this.getTestDirectory());
 		BranchChunkManager cm = new BranchChunkManager(this.getTestDirectory());
 		long timestamp = 5000;
 		// do the rollover
 		cm.terminateChunkAndCreateNewHeadRevision(timestamp,
 				this.createFile("temp." + ChronoChunk.CHUNK_FILE_EXTENSION));
 		File[] dataDirFiles = this.getTestDirectory().listFiles();
-		// there should be 7 files in the directory now:
+		// there should be 8 files in the directory now:
 		//
+		// - branchMetadata.properties
 		// - 0.cchunk ("0.cchunk.db" does not exist yet because the chunk was never touched)
 		// - 0.cmeta
 		// - 0.cmeta.db
@@ -85,7 +94,7 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 		// - 1.cmeta
 		// - 1.cmeta.db
 		//
-		assertEquals(7, dataDirFiles.length);
+		assertEquals(8, dataDirFiles.length);
 		File chunk0meta = new File(this.getTestDirectory(), "0." + ChronoChunk.META_FILE_EXTENSION);
 		File chunk0data = new File(this.getTestDirectory(), "0." + ChronoChunk.CHUNK_FILE_EXTENSION);
 		File chunk1meta = new File(this.getTestDirectory(), "1." + ChronoChunk.META_FILE_EXTENSION);
@@ -109,6 +118,7 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 
 	@Test
 	public void canDoMultipleRollovers() {
+		this.createBranchMetadataFile(this.getTestDirectory());
 		BranchChunkManager cm = new BranchChunkManager(this.getTestDirectory());
 		ChronoChunk chunk0 = cm.getChunkForHeadRevision();
 		long timestamp1 = 5000;
@@ -140,6 +150,7 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 
 	@Test
 	public void canTolerateLossOfSingleIntermediateChunkMetaFile() {
+		this.createBranchMetadataFile(this.getTestDirectory());
 		BranchChunkManager cm = new BranchChunkManager(this.getTestDirectory());
 		long timestamp1 = 5000;
 		long timestamp2 = 10000;
@@ -151,8 +162,9 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 				this.createFile("temp." + ChronoChunk.CHUNK_FILE_EXTENSION));
 		cm.terminateChunkAndCreateNewHeadRevision(timestamp3,
 				this.createFile("temp." + ChronoChunk.CHUNK_FILE_EXTENSION));
-		// we should have a total of 15 chunk files now:
+		// we should have a total of 16 chunk files now:
 		//
+		// - branchMetadata.properties
 		// - 0.cchunk ("0.cchunk.db" does not exist because the chunk was never touched)
 		// - 0.cmeta
 		// - 0.cmeta.db
@@ -169,7 +181,7 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 		// - 3.cmeta
 		// - 3.cmeta.db
 		//
-		assertEquals(15, this.getTestDirectory().list().length);
+		assertEquals(16, this.getTestDirectory().list().length);
 		// get chunk #2
 		File chunk2MetaFile = new File(this.getTestDirectory(), "1." + ChronoChunk.META_FILE_EXTENSION);
 		assertTrue(chunk2MetaFile.exists());
@@ -186,6 +198,7 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 
 	@Test
 	public void canTolerateLossOfSingleIntermediateChunkDataFile() {
+		this.createBranchMetadataFile(this.getTestDirectory());
 		BranchChunkManager cm = new BranchChunkManager(this.getTestDirectory());
 		long timestamp1 = 5000;
 		long timestamp2 = 10000;
@@ -197,8 +210,9 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 				this.createFile("temp." + ChronoChunk.CHUNK_FILE_EXTENSION));
 		cm.terminateChunkAndCreateNewHeadRevision(timestamp3,
 				this.createFile("temp." + ChronoChunk.CHUNK_FILE_EXTENSION));
-		// we should have a total of 15 chunk files now:
+		// we should have a total of 16 chunk files now:
 		//
+		// - branchMetadata.properties
 		// - 0.cchunk ("0.cchunk.db" does not exist because the chunk was never touched)
 		// - 0.cmeta
 		// - 0.cmeta.db
@@ -215,7 +229,7 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 		// - 3.cmeta
 		// - 3.cmeta.db
 		//
-		assertEquals(15, this.getTestDirectory().list().length);
+		assertEquals(16, this.getTestDirectory().list().length);
 		// get chunk #2
 		File chunk2DataFile = new File(this.getTestDirectory(), "1." + ChronoChunk.CHUNK_FILE_EXTENSION);
 		assertTrue(chunk2DataFile.exists());
@@ -277,6 +291,7 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 
 	@Test
 	public void canTolerateLossOfHeadRevisionChunk() {
+		this.createBranchMetadataFile(this.getTestDirectory());
 		BranchChunkManager cm = new BranchChunkManager(this.getTestDirectory());
 		long timestamp1 = 5000;
 		long timestamp2 = 10000;
@@ -288,8 +303,9 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 				this.createFile("temp." + ChronoChunk.CHUNK_FILE_EXTENSION));
 		cm.terminateChunkAndCreateNewHeadRevision(timestamp3,
 				this.createFile("temp." + ChronoChunk.CHUNK_FILE_EXTENSION));
-		// we should have a total of 15 chunk files now:
+		// we should have a total of 16 chunk files now:
 		//
+		// - branchMetadata.properties
 		// - 0.cchunk ("0.cchunk.db" does not exist because the chunk was never touched)
 		// - 0.cmeta
 		// - 0.cmeta.db
@@ -306,7 +322,7 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 		// - 3.cmeta
 		// - 3.cmeta.db
 		//
-		assertEquals(15, this.getTestDirectory().list().length);
+		assertEquals(16, this.getTestDirectory().list().length);
 		// get the last chunk
 		File dataChunk4 = new File(this.getTestDirectory(), "3." + ChronoChunk.META_FILE_EXTENSION);
 		assertTrue(dataChunk4.exists());
@@ -325,6 +341,7 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 
 	@Test
 	public void canTolerateLossOfInitialChunkDataFile() {
+		this.createBranchMetadataFile(this.getTestDirectory());
 		BranchChunkManager cm = new BranchChunkManager(this.getTestDirectory());
 		long timestamp1 = 5000;
 		long timestamp2 = 10000;
@@ -336,8 +353,9 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 				this.createFile("temp." + ChronoChunk.CHUNK_FILE_EXTENSION));
 		cm.terminateChunkAndCreateNewHeadRevision(timestamp3,
 				this.createFile("temp." + ChronoChunk.CHUNK_FILE_EXTENSION));
-		// we should have a total of 15 chunk files now:
+		// we should have a total of 16 chunk files now:
 		//
+		// - branchMetadata.properties
 		// - 0.cchunk ("0.cchunk.db" does not exist because the chunk was never touched)
 		// - 0.cmeta
 		// - 0.cmeta.db
@@ -354,7 +372,7 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 		// - 3.cmeta
 		// - 3.cmeta.db
 		//
-		assertEquals(15, this.getTestDirectory().list().length);
+		assertEquals(16, this.getTestDirectory().list().length);
 		// get the first chunk
 		File dataChunk1 = new File(this.getTestDirectory(), "0." + ChronoChunk.CHUNK_FILE_EXTENSION);
 		assertTrue(dataChunk1.exists());
@@ -370,7 +388,8 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 	}
 
 	@Test
-	public void canTolerateLossOfInitialChunkMetaFile() {
+	public void canTolerateLossOfInitialChunkMetaFile() throws Exception {
+		this.createBranchMetadataFile(this.getTestDirectory());
 		BranchChunkManager cm = new BranchChunkManager(this.getTestDirectory());
 		long timestamp1 = 5000;
 		long timestamp2 = 10000;
@@ -383,8 +402,9 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 		cm.terminateChunkAndCreateNewHeadRevision(timestamp3,
 				this.createFile("temp." + ChronoChunk.CHUNK_FILE_EXTENSION));
 		System.out.println(Arrays.toString(this.getTestDirectory().list()));
-		// we should have a total of 15 chunk files now:
+		// we should have a total of 16 chunk files now:
 		//
+		// - branchMetadata.properties
 		// - 0.cchunk ("0.cchunk.db" does not exist because the chunk was never touched)
 		// - 0.cmeta
 		// - 0.cmeta.db
@@ -401,7 +421,7 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 		// - 3.cmeta
 		// - 3.cmeta.db
 		//
-		assertEquals(15, this.getTestDirectory().list().length);
+		assertEquals(16, this.getTestDirectory().list().length);
 		// get the first chunk
 		File dataChunk1 = new File(this.getTestDirectory(), "0." + ChronoChunk.META_FILE_EXTENSION);
 		assertTrue(dataChunk1.exists());
@@ -428,6 +448,16 @@ public class BranchChunkManagerTest extends ChronoDBUnitTest {
 			return file;
 		} catch (IOException ioe) {
 			throw new ChronosIOException("Failed to create file", ioe);
+		}
+	}
+
+	private void createBranchMetadataFile(final File directory) {
+		try {
+			File branchMetadataFile = new File(directory, ChunkedChronoDB.FILENAME__BRANCH_METADATA_FILE);
+			branchMetadataFile.createNewFile();
+			BranchMetadataFile.write(IBranchMetadata.createMasterBranchMetadata(), branchMetadataFile);
+		} catch (IOException e) {
+			throw new ChronosIOException("Failed to create branch metadata file", e);
 		}
 	}
 }
