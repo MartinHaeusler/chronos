@@ -22,6 +22,8 @@ Version History
  - Many bugfixes to secondary indexing across all layers
  - Stability improvements
  - JavaDoc expanded
+ - Public API of ChronoDB had an overhaul; might be breaking if your code uses it directly.
+ - ChronoGraph Public API was extended (non-breaking), ChronoSphere Public API remained the same.
 
 ### 0.5.x Early Release
  - First release with ChronoDB, ChronoGraph and ChronoSphere
