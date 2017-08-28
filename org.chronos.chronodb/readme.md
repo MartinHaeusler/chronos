@@ -156,4 +156,4 @@ ChronoDB is based on a dual-license. For academic and open-source projects, the 
 Version History
 ===============
 
-For the version history, please check the [Main Page](https://github.com/MartinHaeusler/chronos)
+For the version history, please check the [Main Page Readme](https://github.com/MartinHaeusler/chronos).
