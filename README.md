@@ -17,6 +17,8 @@ Currently, the following Chronos Components are available in the public reposito
 Version History
 ---------------
 
+If somebody is wondering why the version numbers are "jumping" upwards: intermediate releases have been used for internal testing. Only releases that we consider fully stable will be released and published on this repository. This GitHub repository is **not** our development repository, so changes here will be infrequent.
+
 ### 0.7.3
  - Added capabilities to index floating point numbers as well as integers (in addition to strings)
  - Many bugfixes to secondary indexing across all layers
