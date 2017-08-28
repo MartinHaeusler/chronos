@@ -30,7 +30,7 @@ Add the following to the `<dependencies>` section in your `pom.xml`:
 <dependency>
   	<groupId>com.github.martinhaeusler</groupId>
   	<artifactId>org.chronos.chronosphere</artifactId>
-  	<version>0.5.7</version>
+  	<version>0.7.3</version>
  </dependency>
 ```
 
@@ -38,7 +38,7 @@ Add the following to the `<dependencies>` section in your `pom.xml`:
 Add the following line to the `dependencies` section in your `build.gradle` file:
 
 ```groovy
-compile group: 'com.github.martinhaeusler', name: 'org.chronos.chronosphere', version: '0.5.7'
+compile group: 'com.github.martinhaeusler', name: 'org.chronos.chronosphere', version: '0.7.3'
 ```
 
 In case your `build.gradle` file does not already reference the Maven Central Repository, you also have to add the following to your `build.gradle`:
