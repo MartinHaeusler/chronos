@@ -28,6 +28,7 @@ If somebody is wondering why the version numbers are "jumping" upwards: intermed
  - Several performance enhancements to ChronoSphere
  - ChronoSphere now *requires* a terminating operation (e.g. `toSet()`, `toList()`, `iterator()`...) at the end of an EQuery chain. The implicit iterator has been removed.
  - ChronoSphere: several API extensions to the EQuery framework
+ - Nummerous smaller improvements to stability and performance in all components
 
 ### 0.7.3
  - Added capabilities to index floating point numbers as well as integers (in addition to strings)
