@@ -134,7 +134,7 @@ public class QueryStepBuilderStarterImpl implements QueryStepBuilderStarter {
         } else {
             // start from the given IDs
             source = new TraversalBaseSource<>(this.owningTransaction, g ->
-                g.traversal().V(idsArray)
+                g.traversal().V((Object[]) idsArray)
             );
         }
         return this.createEQueryStepBuilderFromTraversalSource(source);

@@ -83,7 +83,7 @@ allprojects {
 		logbackVersion = '1.1.3'
 		
 		// Apache Tinkerpop
-		tinkerpopVersion = '3.1.0-incubating' // was 3.1.1-SNAPSHOT, was 3.0.2-incubating
+	  tinkerpopVersion = '3.3.0'
 		tinkergraphVersion = '3.0.0.M7'
 		
 		// Storage Backends
@@ -101,6 +101,7 @@ allprojects {
 		
 		// Testing
 		jUnitVersion = '4.12'
+		hamcrestVersion = '1.3'
 		
 		// code coverage & quality assurance tools
 		jacocoVersion = '0.7.6.201602180812' // was '0.7.1.201405082137'
@@ -132,6 +133,7 @@ allprojects {
 
         // Testing Dependencies
 		testCompile("junit:junit:${project.jUnitVersion}")
+		testCompile("org.hamcrest:hamcrest-all:${project.hamcrestVersion}")
 	}
 	
 	jacoco {
@@ -185,11 +187,11 @@ allprojects {
     	archives javadocJar, sourcesJar
 	}
 	
-	signing {
+	/* signing {
    		sign configurations.archives
 	}
 	
-	/* uploadArchives {
+	 uploadArchives {
 	  repositories {
 	    mavenDeployer {
 	      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
