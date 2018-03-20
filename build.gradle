@@ -34,7 +34,7 @@ allprojects {
 	
 	// configure the group and version for this project
 	group = 'com.github.martinhaeusler'
-	version = '0.7.3'
+	version = '0.9.1'
 
 	// java version
 	sourceCompatibility = JavaVersion.VERSION_1_8
