@@ -29,7 +29,8 @@ public class MosaicRow implements UsageRegistry.RemoveListener<GetResult<?>> {
 
 	private final RowSizeChangeCallback sizeChangeCallback;
 
-	public MosaicRow(final QualifiedKey rowKey, final UsageRegistry<GetResult<?>> lruRegistry, final CacheStatisticsImpl statistics, final RowSizeChangeCallback callback) {
+	public MosaicRow(final QualifiedKey rowKey, final UsageRegistry<GetResult<?>> lruRegistry,
+			final CacheStatisticsImpl statistics, final RowSizeChangeCallback callback) {
 		checkNotNull(rowKey, "Precondition violation - argument 'rowKey' must not be NULL!");
 		checkNotNull(lruRegistry, "Precondition violation - argument 'lruRegistry' must not be NULL!");
 		this.rowKey = rowKey;
@@ -54,7 +55,7 @@ public class MosaicRow implements UsageRegistry.RemoveListener<GetResult<?>> {
 					// convert into a cache-get-result
 					T value = (T) result.getValue();
 					this.statistics.registerHit();
-					return CacheGetResult.hit(value);
+					return CacheGetResult.hit(value, result.getPeriod().getLowerBound());
 				}
 			}
 			// cache miss
@@ -74,15 +75,18 @@ public class MosaicRow implements UsageRegistry.RemoveListener<GetResult<?>> {
 	public void put(final GetResult<?> queryResult) {
 		// note: we really do need only the read lock here. The contents map can handle
 		// this kind of concurrency easily without locking.
+		boolean changed = false;
 		this.lock.readLock().lock();
 		try {
-			this.contents.add(queryResult);
+			changed = this.contents.add(queryResult);
 		} finally {
 			this.lock.readLock().unlock();
 		}
 		// remember in the LRU registry that this element was just added
 		this.lruRegistry.registerUsage(queryResult);
-		this.sizeChangeCallback.onRowSizeChanged(this, 1);
+		if (changed) {
+			this.sizeChangeCallback.onRowSizeChanged(this, 1);
+		}
 	}
 
 	/**
@@ -102,14 +106,17 @@ public class MosaicRow implements UsageRegistry.RemoveListener<GetResult<?>> {
 		// create the new entry
 		Period newPeriod = Period.createOpenEndedRange(timestamp);
 		GetResult<?> newEntry = GetResult.create(this.rowKey, value, newPeriod);
+		boolean changed = false;
 		this.lock.readLock().lock();
 		try {
-			this.contents.add(newEntry);
+			changed = this.contents.add(newEntry);
 		} finally {
 			this.lock.readLock().unlock();
 		}
 		this.lruRegistry.registerUsage(newEntry);
-		this.sizeChangeCallback.onRowSizeChanged(this, 1);
+		if (changed) {
+			this.sizeChangeCallback.onRowSizeChanged(this, 1);
+		}
 	}
 
 	/**

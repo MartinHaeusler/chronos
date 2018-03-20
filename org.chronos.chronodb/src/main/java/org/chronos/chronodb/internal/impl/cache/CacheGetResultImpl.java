@@ -24,7 +24,7 @@ public class CacheGetResultImpl<T> implements CacheGetResult<T> {
 	private static final CacheGetResultImpl<?> MISS;
 
 	static {
-		MISS = new CacheGetResultImpl<>(false, null);
+		MISS = new CacheGetResultImpl<>(false, null, -1L);
 	}
 
 	// =====================================================================================================================
@@ -36,11 +36,17 @@ public class CacheGetResultImpl<T> implements CacheGetResult<T> {
 	 *
 	 * @param value
 	 *            The value to use as the result of {@link #getValue()} in the new instance.
+	 * @param validFrom
+	 *            The insertion timestamp of the given value into the store, i.e. the greatest change timestamp of the
+	 *            request key that is less than or equal to the transaction timestamp. Must not be negative.
 	 *
 	 * @return The new instance. Never <code>null</code>.
 	 */
-	public static <T> CacheGetResultImpl<T> getHit(final T value) {
-		return new CacheGetResultImpl<T>(true, value);
+	public static <T> CacheGetResultImpl<T> getHit(final T value, final long validFrom) {
+		if (validFrom < 0) {
+			throw new IllegalArgumentException("Precondition violation - argument 'validFrom' must not be negative!");
+		}
+		return new CacheGetResultImpl<T>(true, value, validFrom);
 	}
 
 	/**
@@ -61,6 +67,11 @@ public class CacheGetResultImpl<T> implements CacheGetResult<T> {
 	private final T value;
 	/** Determines if this instance is a cache hit (<code>true</code>) or a miss (<code>false</code>). */
 	private final boolean isHit;
+	/**
+	 * The insertion timestamp of the given value into the store, i.e. the greatest change timestamp of the request key
+	 * that is less than or equal to the transaction timestamp.
+	 */
+	private final long validFrom;
 
 	// =====================================================================================================================
 	// CONSTRUCTOR
@@ -81,10 +92,15 @@ public class CacheGetResultImpl<T> implements CacheGetResult<T> {
 	 *            The actual value to be contained in the result. Will be used as the result for {@link #getValue()} in
 	 *            the new instance.
 	 *
+	 * @param validFrom
+	 *            The insertion timestamp of the given value into the store, i.e. the greatest change timestamp of the
+	 *            request key that is less than or equal to the transaction timestamp. Should be greater than or equal
+	 *            to zero for cache hits, and -1 for cache misses.
 	 */
-	private CacheGetResultImpl(final boolean isHit, final T value) {
+	private CacheGetResultImpl(final boolean isHit, final T value, final long validFrom) {
 		this.isHit = isHit;
 		this.value = value;
+		this.validFrom = validFrom;
 	}
 
 	// =====================================================================================================================
@@ -102,6 +118,15 @@ public class CacheGetResultImpl<T> implements CacheGetResult<T> {
 			return this.value;
 		} else {
 			throw new CacheGetResultNotPresentException("Do not call #getValue() when #isHit() is FALSE!");
+		}
+	}
+
+	@Override
+	public long getValidFrom() throws CacheGetResultNotPresentException {
+		if (this.isHit) {
+			return this.validFrom;
+		} else {
+			throw new CacheGetResultNotPresentException("Do not call #getValidFrom() when #isHit() is FALSE!");
 		}
 	}
 

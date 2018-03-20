@@ -23,6 +23,7 @@ import org.chronos.benchmarks.util.BenchmarkUtils;
 import org.chronos.benchmarks.util.statistics.ProbabilityDistribution;
 import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
 import org.chronos.chronograph.api.structure.ChronoGraph;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 import org.chronos.common.test.utils.TimeStatistics;
 import org.junit.Test;
@@ -86,7 +87,7 @@ public class IncreasingVersionCountReadWrite {
 		System.out.println("Running Test. Timestamp selection mode is: " + READ_TIMESTAMP_SELECTION);
 
 		// instantiate the graph
-		ChronoGraph graph = instantiateChronoGraph();
+		ChronoGraphInternal graph = instantiateChronoGraph();
 
 		// load the base graph
 		GraphMetadata metadata = loadBaseGraphElementsFromFile(graph);
@@ -100,13 +101,15 @@ public class IncreasingVersionCountReadWrite {
 		// perform the individual iterations
 		for (int iteration = 0; iteration < ITERATIONS; iteration++) {
 			System.out.println("Iteration #" + (iteration + 1) + " of " + ITERATIONS);
-			System.out.print("\tModification Phase. Performing " + COMMITS_PER_ITERATION + " commits (commit size: " + MODIFICATIONS_PER_COMMIT + "changes)   ");
+			System.out.print("\tModification Phase. Performing " + COMMITS_PER_ITERATION + " commits (commit size: "
+					+ MODIFICATIONS_PER_COMMIT + "changes)   ");
 			for (int commit = 0; commit < COMMITS_PER_ITERATION; commit++) {
 				System.out.print(".");
 				performRandomGraphMutations(graph, metadata);
 			}
 			System.out.println();
-			System.out.println("\tGraph after modifications: V: " + metadata.getVertexCount() + ", E: " + metadata.getEdgeCount());
+			System.out.println(
+					"\tGraph after modifications: V: " + metadata.getVertexCount() + ", E: " + metadata.getEdgeCount());
 			// advance the upper bound of the time range
 			timestampUpperBound = graph.getNow();
 			// initialize a time statistics object
@@ -116,7 +119,8 @@ public class IncreasingVersionCountReadWrite {
 			double sum = 0;
 			for (int read = 0; read < READS_PER_ITERATION; read++) {
 				long timestamp = selectTransactionTimestamp(timestampLowerBound, timestampUpperBound);
-				System.out.println("\t\tRead #" + (read + 1) + " of " + READS_PER_ITERATION + " at timestamp [begin]+" + (timestamp - timestampLowerBound));
+				System.out.println("\t\tRead #" + (read + 1) + " of " + READS_PER_ITERATION + " at timestamp [begin]+"
+						+ (timestamp - timestampLowerBound));
 				List<String> vertexIdsAtTimestamp = Lists.newArrayList();
 				graph.tx().open(timestamp);
 				try {
@@ -125,9 +129,13 @@ public class IncreasingVersionCountReadWrite {
 					graph.tx().rollback();
 				}
 				Collections.shuffle(vertexIdsAtTimestamp);
-				List<String> chosenVertexIds = vertexIdsAtTimestamp.subList(0, VERTEX_IDS_TO_CALCULATE_CLUSTER_COEFFICIENT_FOR);
+				List<String> chosenVertexIds = vertexIdsAtTimestamp.subList(0,
+						VERTEX_IDS_TO_CALCULATE_CLUSTER_COEFFICIENT_FOR);
 				if (chosenVertexIds.size() < VERTEX_IDS_TO_CALCULATE_CLUSTER_COEFFICIENT_FOR) {
-					throw new IllegalStateException("Could not select " + VERTEX_IDS_TO_CALCULATE_CLUSTER_COEFFICIENT_FOR + " random vertex IDs to calculate the local cluster coefficient for; " + "please reduce the weight on vertex deletions or increase the weight on vertex additions.");
+					throw new IllegalStateException("Could not select "
+							+ VERTEX_IDS_TO_CALCULATE_CLUSTER_COEFFICIENT_FOR
+							+ " random vertex IDs to calculate the local cluster coefficient for; "
+							+ "please reduce the weight on vertex deletions or increase the weight on vertex additions.");
 				}
 				statistics.beginRun();
 				sum += performReads(graph, chosenVertexIds, timestamp);
@@ -140,7 +148,8 @@ public class IncreasingVersionCountReadWrite {
 			for (int i = 0; i < overallStatistics.size(); i++) {
 				System.out.println("Run #" + (i + 1) + ": " + overallStatistics.get(i).toCSV());
 			}
-			System.out.println("Current Change Event Distribution: " + calculateModificationDistribution(metadata).toString());
+			System.out.println(
+					"Current Change Event Distribution: " + calculateModificationDistribution(metadata).toString());
 			ChronoDBCache cache = graph.getBackingDB().getCache();
 			System.out.println("Cache Statistics: " + cache.getStatistics().toString());
 			System.out.println("Cache Size (Element Count):  " + cache.size());
@@ -161,7 +170,7 @@ public class IncreasingVersionCountReadWrite {
 	// INTERNAL HELPER METHODS
 	// =====================================================================================================================
 
-	private static ChronoGraph instantiateChronoGraph() {
+	private static ChronoGraphInternal instantiateChronoGraph() {
 		File tempDir = Files.createTempDir();
 		tempDir.deleteOnExit();
 		File dbRoot = new File(tempDir, "test.chronos");
@@ -180,13 +189,14 @@ public class IncreasingVersionCountReadWrite {
 		config.setProperty("org.chronos.chronodb.cache.maxSize", "1073741824"); // 1GB
 		config.setProperty("org.chronos.chronograph.transaction.checkIdExistenceOnAdd", "false");
 		config.setProperty("org.chronos.chronograph.transaction.autoOpen", "true");
-		return ChronoGraph.FACTORY.create().fromConfiguration(config).build();
+		return (ChronoGraphInternal) ChronoGraph.FACTORY.create().fromConfiguration(config).build();
 	}
 
 	private static GraphMetadata loadBaseGraphElementsFromFile(final Graph g) {
 		try {
 			Set<String> vertexIds = Sets.newHashSet();
-			List<String> lines = FileUtils.readLines(new File(IncreasingVersionCountReadWrite.class.getResource("/100kVertices300kEdgesGraphUniformlyRandomNoSelfEdges.txt").getFile()));
+			List<String> lines = FileUtils.readLines(new File(IncreasingVersionCountReadWrite.class
+					.getResource("/100kVertices300kEdgesGraphUniformlyRandomNoSelfEdges.txt").getFile()));
 			int edgeCount = 0;
 			for (String line : lines) {
 				String[] split = line.split(";");
@@ -266,7 +276,8 @@ public class IncreasingVersionCountReadWrite {
 		}
 	}
 
-	private static ProbabilityDistribution<Modification> calculateModificationDistribution(final GraphMetadata metadata) {
+	private static ProbabilityDistribution<Modification> calculateModificationDistribution(
+			final GraphMetadata metadata) {
 		int vertexCount = metadata.getVertexCount();
 		int edgeCount = metadata.getEdgeCount();
 		int weightOfAddVertex = GRAPH__MAX_VERTEX_COUNT - vertexCount;
@@ -277,7 +288,7 @@ public class IncreasingVersionCountReadWrite {
 		// by the distribution builder.
 		ProbabilityDistribution<Modification> distribution = ProbabilityDistribution
 				// create a discrete distribution
-				.<Modification> discrete()
+				.<Modification>discrete()
 				//
 				.event(Modification.ADD_VERTEX, weightOfAddVertex)
 				//
@@ -400,12 +411,15 @@ public class IncreasingVersionCountReadWrite {
 		int neighborhoodSize = neighborhood.size();
 		Set<Edge> interNeighborhoodEdges = Sets.newHashSet();
 		for (Vertex v : neighborhood) {
-			Iterator<Edge> outEdgesWithinNeighborhood = Iterators.filter(v.edges(Direction.OUT), edge -> neighborhood.contains(edge.inVertex()));
-			Iterator<Edge> inEdgesWithinNeighborhood = Iterators.filter(v.edges(Direction.IN), edge -> neighborhood.contains(edge.outVertex()));
+			Iterator<Edge> outEdgesWithinNeighborhood = Iterators.filter(v.edges(Direction.OUT),
+					edge -> neighborhood.contains(edge.inVertex()));
+			Iterator<Edge> inEdgesWithinNeighborhood = Iterators.filter(v.edges(Direction.IN),
+					edge -> neighborhood.contains(edge.outVertex()));
 			outEdgesWithinNeighborhood.forEachRemaining(e -> interNeighborhoodEdges.add(e));
 			inEdgesWithinNeighborhood.forEachRemaining(e -> interNeighborhoodEdges.add(e));
 		}
-		double clusterCoefficient = (double) 2 * interNeighborhoodEdges.size() / (neighborhoodSize * (neighborhoodSize - 1));
+		double clusterCoefficient = (double) 2 * interNeighborhoodEdges.size()
+				/ (neighborhoodSize * (neighborhoodSize - 1));
 		return clusterCoefficient;
 	}
 

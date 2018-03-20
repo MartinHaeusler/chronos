@@ -1,12 +1,13 @@
 package org.chronos.chronograph.internal.impl.transaction.threaded;
 
 import org.chronos.chronodb.api.ChronoDBTransaction;
-import org.chronos.chronograph.api.structure.ChronoGraph;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
 import org.chronos.chronograph.internal.impl.transaction.StandardChronoGraphTransaction;
 
 public class ThreadedChronoGraphTransaction extends StandardChronoGraphTransaction {
 
-	public ThreadedChronoGraphTransaction(final ChronoGraph graph, final ChronoDBTransaction backendTransaction) {
+	public ThreadedChronoGraphTransaction(final ChronoGraphInternal graph,
+			final ChronoDBTransaction backendTransaction) {
 		super(graph, backendTransaction);
 	}
 

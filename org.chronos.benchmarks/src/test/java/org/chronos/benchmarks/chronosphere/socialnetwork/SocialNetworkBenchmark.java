@@ -40,7 +40,7 @@ public class SocialNetworkBenchmark extends AllChronoSphereBackendsTest {
 	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHE_MAX_SIZE, value = "100000")
 	@InstantiateChronosWith(property = ChronoDBConfiguration.QUERY_CACHE_ENABLED, value = "true")
 	@InstantiateChronosWith(property = ChronoDBConfiguration.QUERY_CACHE_MAX_SIZE, value = "100")
-	@InstantiateChronosWith(property = ChronoDBConfiguration.ENABLE_BLIND_OVERWRITE_PROTECTION, value = "false")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.COMMIT_CONFLICT_RESOLUTION_STRATEGY, value = "OVERWRITE_WITH_SOURCE")
 	@InstantiateChronosWith(property = ChronoDBConfiguration.DUPLICATE_VERSION_ELIMINATION_MODE, value = "off")
 	@InstantiateChronosWith(property = ChronoGraphConfiguration.TRANSACTION_CHECK_ID_EXISTENCE_ON_ADD, value = "false")
 	public void socialNetworkBenchmark() throws Exception {

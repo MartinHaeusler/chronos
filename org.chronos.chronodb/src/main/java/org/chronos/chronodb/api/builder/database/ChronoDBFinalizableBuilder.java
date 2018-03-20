@@ -2,6 +2,7 @@ package org.chronos.chronodb.api.builder.database;
 
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
+import org.chronos.chronodb.api.conflict.ConflictResolutionStrategy;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.common.builder.ChronoBuilder;
 
@@ -10,7 +11,7 @@ import org.chronos.common.builder.ChronoBuilder;
  *
  * <p>
  * When an instance of this interface is returned by the fluent builder API, then all information required for building
- * the database is complete, and {@link #build()} can be called to finalize the build process.
+ * the database is complete, and {@link #build()} can be called to finalize the buildLRU process.
  *
  * <p>
  * Even though the {@link #build()} method becomes available at this stage, it is still possible to set properties
@@ -89,32 +90,23 @@ public interface ChronoDBFinalizableBuilder<SELF extends ChronoDBFinalizableBuil
 	public SELF withDuplicateVersionElimination(final boolean useDuplicateVersionElimination);
 
 	/**
-	 * Enables or disables blind overwrite protection.
+	 * Specifies the {@link ConflictResolutionStrategy} to use for this database by default.
 	 *
 	 * <p>
-	 * If enabled, any commit that would overwrite a key-value pair written by a transaction with a higher timestamp
-	 * will be rejected. In other words, if a commit has occurred on an entry, and this entry has never been visible to
-	 * the current transaction, then this transaction is not allowed to "blindly overwrite" that entry.
+	 * This setting can be overruled on a per-transaction basis.
 	 *
-	 * <p>
-	 * This setting is enabled by default and it is recommended to keep it enabled. In general, this feature will cause
-	 * some overhead on the {@linkplain ChronoDBTransaction#commit() commit} operation.
-	 *
-	 * <p>
-	 * Corresponds to {@link ChronoDBConfiguration#ENABLE_BLIND_OVERWRITE_PROTECTION}.
-	 *
-	 * @param enableBlindOverwriteProtection
-	 *            <code>true</code> to enable this feature, or <code>false</code> to disable it. Default is
-	 *            <code>true</code>.
+	 * @param strategy
+	 *            The strategy to apply, unless specified otherwise explicitly in a transaction. Must not be
+	 *            <code>null</code>.
 	 * @return <code>this</code>, for method chaining.
 	 */
-	public SELF withBlindOverwriteProtection(final boolean enableBlindOverwriteProtection);
+	public SELF withConflictResolutionStrategy(final ConflictResolutionStrategy strategy);
 
 	/**
 	 * Builds the {@link ChronoDB} instance, using the properties specified by the fluent API.
 	 *
 	 * <p>
-	 * This method finalizes the build process. Afterwards, the builder should be discarded.
+	 * This method finalizes the buildLRU process. Afterwards, the builder should be discarded.
 	 *
 	 * @return The new {@link ChronoDB} instance. Never <code>null</code>.
 	 */

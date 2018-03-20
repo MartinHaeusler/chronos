@@ -17,6 +17,7 @@ import org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat;
 import org.chronos.chronosphere.internal.ogm.api.EObjectToGraphMapper;
 import org.chronos.chronosphere.internal.ogm.api.VertexKind;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 
 import com.google.common.collect.Iterators;
@@ -169,17 +170,16 @@ public class EObjectToGraphMapperImpl implements EObjectToGraphMapper {
 	public void mapEClassReferenceToGraph(final SphereTransactionContext ctx, final ChronoEObject eObject) {
 		checkNotNull(ctx, "Precondition violation - argument 'ctx' must not be NULL!");
 		checkNotNull(eObject, "Precondition violation - argument 'eObject' must not be NULL!");
-		ChronoGraph graph = ctx.getGraph();
 		// make sure that we actually HAVE a vertex for the EObject
 		Vertex vertex = this.getOrCreatePlainVertexForEObject(ctx, eObject);
 		// get the ChronoEPackage that contains the EClass-to-ID mapping
 		ChronoEPackageRegistry cep = ctx.getChronoEPackage();
-		// get the EClass vertex
-		Vertex eClassVertex = ChronoSphereGraphFormat.getVertexForEClass(cep, graph, eObject.eClass());
-		// create the edge label
-		String label = ChronoSphereGraphFormat.createEClassReferenceEdgeLabel();
-		// make sure that the edge exists, and there is only one such edge
-		GremlinUtils.setEdgeTarget(vertex, label, eClassVertex);
+		// get the EClass from the EObject
+		EClass eClass = eObject.eClass();
+		// fetch the ID
+		String eClassId = cep.getEClassID(eClass);
+		// set the property value
+		vertex.property(ChronoSphereGraphFormat.V_PROP__ECLASS_ID, eClassId);
 	}
 
 }

@@ -2,7 +2,7 @@ package org.chronos.chronograph.internal.impl.structure.graph.features;
 
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.util.StringFactory;
-import org.chronos.chronograph.api.structure.ChronoGraph;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
 
 public class ChronoGraphFeatures extends AbstractChronoGraphFeature implements Graph.Features {
 
@@ -10,7 +10,7 @@ public class ChronoGraphFeatures extends AbstractChronoGraphFeature implements G
 	private final ChronoVertexFeatures vertexFeatures;
 	private final ChronoEdgeFeatures edgeFeatures;
 
-	public ChronoGraphFeatures(final ChronoGraph graph) {
+	public ChronoGraphFeatures(final ChronoGraphInternal graph) {
 		super(graph);
 		this.graphFeatures = new ChronoGraphGraphFeatures(graph);
 		this.vertexFeatures = new ChronoVertexFeatures(graph);

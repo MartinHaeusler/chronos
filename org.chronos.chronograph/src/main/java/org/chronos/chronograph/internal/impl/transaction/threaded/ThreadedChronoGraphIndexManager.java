@@ -11,8 +11,8 @@ import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
 import org.chronos.chronograph.api.builder.index.IndexBuilderStarter;
 import org.chronos.chronograph.api.index.ChronoGraphIndex;
 import org.chronos.chronograph.api.index.ChronoGraphIndexManager;
-import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.internal.api.index.ChronoGraphIndexManagerInternal;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
 
 public class ThreadedChronoGraphIndexManager implements ChronoGraphIndexManager, ChronoGraphIndexManagerInternal {
 
@@ -105,13 +105,13 @@ public class ThreadedChronoGraphIndexManager implements ChronoGraphIndexManager,
 	}
 
 	@Override
-	public <T> T executeOnGraph(final ChronoGraph graph, final Callable<T> job) {
+	public <T> T executeOnGraph(final ChronoGraphInternal graph, final Callable<T> job) {
 		throw new UnsupportedOperationException(
 				"executeOnGraph(...) is not supported in a threaded transaction graph!");
 	}
 
 	@Override
-	public void executeOnGraph(final ChronoGraph graph, final Runnable job) {
+	public void executeOnGraph(final ChronoGraphInternal graph, final Runnable job) {
 		throw new UnsupportedOperationException(
 				"executeOnGraph(...) is not supported in a threaded transaction graph!");
 	}

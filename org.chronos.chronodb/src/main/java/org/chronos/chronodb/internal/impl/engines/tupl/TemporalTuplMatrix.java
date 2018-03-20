@@ -1,8 +1,7 @@
 package org.chronos.chronodb.internal.impl.engines.tupl;
 
-import static org.chronos.common.logging.ChronoLogger.*;
-
 import static com.google.common.base.Preconditions.*;
+import static org.chronos.common.logging.ChronoLogger.*;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -45,7 +44,7 @@ public class TemporalTuplMatrix extends AbstractTemporalDataMatrix {
 	public GetResult<byte[]> get(final long timestamp, final String key) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(key, "Precondition violation - argument 'key' must not be NULL!");
-		try (DefaultTuplTransaction tx = this.db.openTransaction()) {
+		try (DefaultTuplTransaction tx = this.db.openBogusTransaction()) {
 			return TuplDataMatrixUtil.get(tx, this.indexName, this.getKeyspace(), timestamp, key);
 		}
 	}
@@ -69,14 +68,14 @@ public class TemporalTuplMatrix extends AbstractTemporalDataMatrix {
 
 	@Override
 	public KeySetModifications keySetModifications(final long timestamp) {
-		try (DefaultTuplTransaction tx = this.db.openTransaction()) {
+		try (DefaultTuplTransaction tx = this.db.openBogusTransaction()) {
 			return TuplDataMatrixUtil.keySetModifications(tx, this.indexName, this.getKeyspace(), timestamp);
 		}
 	}
 
 	@Override
 	public Iterator<Long> history(final long maxTime, final String key) {
-		try (DefaultTuplTransaction tx = this.db.openTransaction()) {
+		try (DefaultTuplTransaction tx = this.db.openBogusTransaction()) {
 			return TuplDataMatrixUtil.history(tx, this.indexName, this.getKeyspace(), maxTime, key);
 		}
 	}
@@ -109,14 +108,14 @@ public class TemporalTuplMatrix extends AbstractTemporalDataMatrix {
 
 	@Override
 	public long lastCommitTimestamp(final String key) {
-		try (DefaultTuplTransaction tx = this.db.openTransaction()) {
+		try (DefaultTuplTransaction tx = this.db.openBogusTransaction()) {
 			return TuplDataMatrixUtil.lastCommitTimestamp(tx, this.indexName, this.getKeyspace(), key);
 		}
 	}
 
 	@Override
 	public void rollback(final long timestamp) {
-		try (DefaultTuplTransaction tx = this.db.openTransaction()) {
+		try (DefaultTuplTransaction tx = this.db.openBogusTransaction()) {
 			TuplDataMatrixUtil.rollback(tx, this.indexName, timestamp);
 			tx.commit();
 		}
@@ -125,7 +124,7 @@ public class TemporalTuplMatrix extends AbstractTemporalDataMatrix {
 	@Override
 	public Iterator<TemporalKey> getModificationsBetween(final long timestampLowerBound,
 			final long timestampUpperBound) {
-		try (DefaultTuplTransaction tx = this.db.openTransaction()) {
+		try (DefaultTuplTransaction tx = this.db.openBogusTransaction()) {
 			return TuplDataMatrixUtil.getModificationsBetween(tx, this.indexName, this.getKeyspace(),
 					timestampLowerBound, timestampUpperBound);
 		}

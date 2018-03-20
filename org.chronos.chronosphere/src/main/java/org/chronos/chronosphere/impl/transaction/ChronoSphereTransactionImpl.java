@@ -7,10 +7,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
+import com.google.common.cache.LoadingCache;
 import org.apache.commons.lang3.tuple.Pair;
-import org.apache.tinkerpop.gremlin.structure.Direction;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.chronos.chronodb.internal.util.IteratorUtils;
 import org.chronos.chronograph.api.structure.ChronoGraph;
@@ -29,6 +30,7 @@ import org.chronos.chronosphere.internal.api.ChronoSphereTransactionInternal;
 import org.chronos.chronosphere.internal.ogm.api.ChronoEPackageRegistry;
 import org.chronos.chronosphere.internal.ogm.api.ChronoSphereGraphFormat;
 import org.chronos.chronosphere.internal.ogm.api.VertexKind;
+import org.chronos.common.util.CacheUtils;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -55,6 +57,7 @@ public class ChronoSphereTransactionImpl implements ChronoSphereTransactionInter
 	private final ChronoGraphTransaction tx;
 	private final ChronoGraphEStore graphEStore;
 	private boolean closed;
+	private final LoadingCache<String, ChronoEObject> eObjectCache;
 
 	// =================================================================================================================
 	// CONSTRUCTORS
@@ -66,6 +69,7 @@ public class ChronoSphereTransactionImpl implements ChronoSphereTransactionInter
 		this.owningSphere = owningSphere;
 		this.txGraph = txGraph;
 		this.tx = txGraph.tx().getCurrentTransaction();
+		this.eObjectCache = CacheUtils.buildWeak(this::loadEObjectById);
 		this.ePackageRegistry = this.owningSphere.getEPackageToGraphMapper()
 				.readChronoEPackageRegistryFromGraph(txGraph);
 		this.graphEStore = new ChronoGraphEStore(this);
@@ -159,7 +163,9 @@ public class ChronoSphereTransactionImpl implements ChronoSphereTransactionInter
 			// there's nothing to delete
 			return;
 		}
-		this.getGraphEStore().deepDelete(eObjectsToDelete, cascadeDeletionToEContents);
+        Set<String> idsToInvalidate = eObjectsToDelete.stream().map(ChronoEObject::getId).collect(Collectors.toSet());
+        this.getGraphEStore().deepDelete(eObjectsToDelete, cascadeDeletionToEContents);
+        this.eObjectCache.invalidateAll(idsToInvalidate);
 	}
 
 	// =================================================================================================================
@@ -240,15 +246,14 @@ public class ChronoSphereTransactionImpl implements ChronoSphereTransactionInter
 	@Override
 	public ChronoEObject getEObjectById(final String eObjectID) {
 		checkNotNull(eObjectID, "Precondition violation - argument 'eObjectID' must not be NULL!");
-		Map<String, ChronoEObject> map = this.getEObjectById(Iterators.singletonIterator(eObjectID));
-		if (map == null || map.isEmpty()) {
-			return null;
-		}
-		ChronoEObject eObject = map.get(eObjectID);
-		return eObject;
-	}
+        try {
+            return this.eObjectCache.get(eObjectID);
+        } catch (ExecutionException e) {
+            throw new RuntimeException("Failed to load EObject with ID '" + eObjectID + "'!", e);
+        }
+    }
 
-	@Override
+    @Override
 	public Map<String, ChronoEObject> getEObjectById(final Iterable<String> eObjectIDs) {
 		checkNotNull(eObjectIDs, "Precondition violation - argument 'eObjectIDs' must not be NULL!");
 		return this.getEObjectById(eObjectIDs.iterator());
@@ -259,13 +264,8 @@ public class ChronoSphereTransactionImpl implements ChronoSphereTransactionInter
 		checkNotNull(eObjectIDs, "Precondition violation - argument 'eObjectIDs' must not be NULL!");
 		Map<String, ChronoEObject> resultMap = Maps.newHashMap();
 		eObjectIDs.forEachRemaining(id -> {
-			Vertex vertex = ChronoSphereGraphFormat.getVertexForEObject(this.getGraph(), id);
-			if (vertex == null) {
-				resultMap.put(id, null);
-			} else {
-				ChronoEObject eObject = this.createEObjectFromVertex(vertex);
-				resultMap.put(id, eObject);
-			}
+			ChronoEObject eObject = this.getEObjectById(id);
+			resultMap.put(id, eObject);
 		});
 		return resultMap;
 	}
@@ -310,6 +310,7 @@ public class ChronoSphereTransactionImpl implements ChronoSphereTransactionInter
 	public void commit() {
 		this.assertNotClosed();
 		this.tx.commit();
+		this.eObjectCache.invalidateAll();
 		this.closed = true;
 	}
 
@@ -317,12 +318,14 @@ public class ChronoSphereTransactionImpl implements ChronoSphereTransactionInter
 	public void commit(final Object commitMetadata) {
 		this.assertNotClosed();
 		this.tx.commit(commitMetadata);
+		this.eObjectCache.invalidateAll();
 		this.closed = true;
 	}
 
 	@Override
 	public void commitIncremental() {
 		this.assertNotClosed();
+		this.eObjectCache.invalidateAll();
 		this.tx.commitIncremental();
 	}
 
@@ -330,6 +333,7 @@ public class ChronoSphereTransactionImpl implements ChronoSphereTransactionInter
 	public void rollback() {
 		this.assertNotClosed();
 		this.tx.rollback();
+		this.eObjectCache.invalidateAll();
 		this.closed = true;
 	}
 
@@ -410,9 +414,7 @@ public class ChronoSphereTransactionImpl implements ChronoSphereTransactionInter
 		checkNotNull(vertex, "Precondition violation - argument 'vertex' must not be NULL!");
 		checkArgument(VertexKind.EOBJECT.equals(ChronoSphereGraphFormat.getVertexKind(vertex)),
 				"Precondition violation - the given vertex does not represent an EObject!");
-		Vertex eClassVertex = Iterators.getOnlyElement(
-				vertex.vertices(Direction.OUT, ChronoSphereGraphFormat.createEClassReferenceEdgeLabel()));
-		EClass eClass = this.getEPackageRegistry().getEClassByID((String) eClassVertex.id());
+		EClass eClass = ChronoSphereGraphFormat.getEClassForEObjectVertex(this.getEPackageRegistry(), vertex);
 		return new ChronoEObjectImpl((String) vertex.id(), eClass, this.getGraphEStore());
 	}
 
@@ -434,5 +436,13 @@ public class ChronoSphereTransactionImpl implements ChronoSphereTransactionInter
 			this.getGraphEStore().deepMerge(mergeObjects);
 		}
 	}
+
+    private ChronoEObject loadEObjectById(final String eObjectID) {
+        Vertex vertex = ChronoSphereGraphFormat.getVertexForEObject(this.getGraph(), eObjectID);
+        if(vertex == null){
+            return null;
+        }
+        return this.createEObjectFromVertex(vertex);
+    }
 
 }

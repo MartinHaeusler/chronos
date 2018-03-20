@@ -2,6 +2,7 @@ package org.chronos.chronograph.internal.impl.structure.graph;
 
 import static com.google.common.base.Preconditions.*;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -16,10 +17,11 @@ import org.apache.tinkerpop.gremlin.structure.VertexProperty.Cardinality;
 import org.apache.tinkerpop.gremlin.structure.util.ElementHelper;
 import org.apache.tinkerpop.gremlin.structure.util.StringFactory;
 import org.chronos.chronograph.api.structure.ChronoEdge;
-import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.api.structure.ChronoVertex;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransaction;
 import org.chronos.chronograph.internal.ChronoGraphConstants;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
+import org.chronos.chronograph.internal.api.transaction.ChronoGraphTransactionInternal;
 import org.chronos.chronograph.internal.impl.structure.record.EdgeTargetRecord;
 import org.chronos.chronograph.internal.impl.structure.record.PropertyRecord;
 import org.chronos.chronograph.internal.impl.structure.record.VertexPropertyRecord;
@@ -34,6 +36,7 @@ import org.chronos.common.logging.ChronoLogger;
 import org.chronos.common.logging.LogLevel;
 
 import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Iterators;
 import com.google.common.collect.Maps;
 import com.google.common.collect.SetMultimap;
 import com.google.common.collect.Sets;
@@ -52,17 +55,19 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 	// CONSTRUCTOR
 	// =================================================================================================================
 
-	public ChronoVertexImpl(final String id, final ChronoGraph g, final ChronoGraphTransaction tx, final String label) {
+	public ChronoVertexImpl(final String id, final ChronoGraphInternal g, final ChronoGraphTransactionInternal tx,
+			final String label) {
 		this(g, tx, id, label, false);
 	}
 
-	public ChronoVertexImpl(final ChronoGraph g, final ChronoGraphTransaction tx, final VertexRecord record) {
+	public ChronoVertexImpl(final ChronoGraphInternal g, final ChronoGraphTransactionInternal tx,
+			final VertexRecord record) {
 		this(g, tx, record.getId(), record.getLabel(), false);
 		this.loadRecordContents(record);
 	}
 
-	public ChronoVertexImpl(final ChronoGraph g, final ChronoGraphTransaction tx, final String id, final String label,
-			final boolean lazy) {
+	public ChronoVertexImpl(final ChronoGraphInternal g, final ChronoGraphTransactionInternal tx, final String id,
+			final String label, final boolean lazy) {
 		super(g, tx, id, label, lazy);
 	}
 
@@ -85,9 +90,11 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 		ChronoVertexProperty<V> property = (ChronoVertexProperty<V>) this.properties.get(key);
 		if (property == null) {
 			property = new ChronoVertexProperty<>(this, ChronoId.random(), key, value);
+			this.changePropertyStatus(key, PropertyStatus.NEW);
 			this.properties.put(key, property);
 		} else {
 			property.set(value);
+			this.changePropertyStatus(key, PropertyStatus.MODIFIED);
 		}
 		this.updateLifecycleStatus(ElementLifecycleStatus.PROPERTY_CHANGED);
 		return property;
@@ -168,6 +175,11 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 		this.logPropertyChange(key, value);
 		ChronoVertexProperty<V> property = new ChronoVertexProperty<>(this, propertyId, key, value);
 		ElementHelper.attachProperties(property, keyValues);
+		if (this.property(key).isPresent()) {
+			this.changePropertyStatus(key, PropertyStatus.MODIFIED);
+		} else {
+			this.changePropertyStatus(key, PropertyStatus.NEW);
+		}
 		this.properties.put(key, property);
 		this.updateLifecycleStatus(ElementLifecycleStatus.PROPERTY_CHANGED);
 		return property;
@@ -246,20 +258,40 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 	}
 
 	@Override
+	public <V> VertexProperty<V> property(final String key) {
+		this.checkAccess();
+		// note: this code is more efficient than the standard implementation in TinkerPop
+		// because it avoids the creation of an iterator via #properties(key).
+		VertexProperty<V> property = this.getSingleProperty(key);
+		if (property == null) {
+			return VertexProperty.<V>empty();
+		}
+		return property;
+	}
+
+	@Override
 	@SuppressWarnings("unchecked")
 	public <V> Iterator<VertexProperty<V>> properties(final String... propertyKeys) {
 		this.checkAccess();
 		if (propertyKeys == null || propertyKeys.length <= 0) {
+			// if no property keys are given, we have to return ALL properties
 			return new PropertiesIterator<>(Sets.newHashSet(this.properties.values()).iterator());
 		}
+		if (propertyKeys.length == 1) {
+			// special common case: only one key is given. This is an optimization that
+			// avoids creating a new collection and adding elements to it.
+			String propertyKey = propertyKeys[0];
+			VertexProperty<V> property = this.getSingleProperty(propertyKey);
+			if (property == null) {
+				return Collections.emptyIterator();
+			} else {
+				return Iterators.singletonIterator(property);
+			}
+		}
+		// general case: more than one key is requested
 		Set<VertexProperty<V>> matchingProperties = Sets.newHashSet();
 		for (String propertyKey : propertyKeys) {
-			PredefinedVertexProperty<V> predefinedProperty = ChronoGraphElementUtil.asPredefinedVertexProperty(this,
-					propertyKey);
-			if (predefinedProperty != null) {
-				matchingProperties.add(predefinedProperty);
-			}
-			VertexProperty<?> property = this.properties.get(propertyKey);
+			VertexProperty<?> property = this.getSingleProperty(propertyKey);
 			if (property != null) {
 				matchingProperties.add((VertexProperty<V>) property);
 			}
@@ -300,6 +332,7 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 		} else {
 			this.updateLifecycleStatus(ElementLifecycleStatus.PERSISTED);
 		}
+		this.clearPropertyStatusCache();
 		this.label = record.getLabel();
 		for (VertexPropertyRecord pRecord : record.getProperties()) {
 			String pKey = pRecord.getKey();
@@ -316,13 +349,13 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 		for (Entry<String, EdgeTargetRecord> entry : record.getIncomingEdgesByLabel().entries()) {
 			String label = entry.getKey();
 			EdgeTargetRecord eRecord = entry.getValue();
-			ChronoEdgeImpl edge = ChronoEdgeImpl.incomingEdgeFromRecord(this, label, eRecord);
+			ChronoEdge edge = this.owningTransaction.loadIncomingEdgeFromEdgeTargetRecord(this, label, eRecord);
 			this.labelToIncomingEdges.put(edge.label(), edge);
 		}
 		for (Entry<String, EdgeTargetRecord> entry : record.getOutgoingEdgesByLabel().entries()) {
 			String label = entry.getKey();
 			EdgeTargetRecord eRecord = entry.getValue();
-			ChronoEdgeImpl edge = ChronoEdgeImpl.outgoingEdgeFromRecord(this, label, eRecord);
+			ChronoEdge edge = this.owningTransaction.loadOutgoingEdgeFromEdgeTargetRecord(this, label, eRecord);
 			this.labelToOutgoingEdges.put(edge.label(), edge);
 		}
 	}
@@ -332,6 +365,7 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 		this.checkAccess();
 		this.logPropertyRemove(key);
 		this.properties.remove(key);
+		this.changePropertyStatus(key, PropertyStatus.REMOVED);
 		this.updateLifecycleStatus(ElementLifecycleStatus.PROPERTY_CHANGED);
 	}
 
@@ -339,7 +373,10 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 		this.checkAccess();
 		String id = this.id();
 		String label = this.label();
-		return new VertexRecord(id, label, this.labelToIncomingEdges, this.labelToOutgoingEdges, this.properties);
+		return new VertexRecord(
+				id, label,
+				this.labelToIncomingEdges, this.labelToOutgoingEdges,
+				this.properties);
 	}
 
 	@Override
@@ -349,35 +386,6 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 			if (status.isDirty()) {
 				this.getTransactionContext().markVertexAsModified(this);
 			}
-		}
-	}
-
-	/**
-	 * Applies the information stored in the given edge to the edge representation in this vertex.
-	 *
-	 * <p>
-	 * This is an internal method that must not be called by clients.
-	 *
-	 * @param chronoEdge
-	 *            The edge information to apply. This vertex is either the in-vertex or the out-vertex of the given edge. Must not be <code>null</code>.
-	 */
-	public void applyEdge(final ChronoEdgeImpl chronoEdge) {
-		checkNotNull(chronoEdge, "Precondition violation - argument 'chronoEdge' must not be NULL!");
-		this.checkAccess();
-		if (chronoEdge.inVertex().equals(this)) {
-			// incoming edge.
-			// remove whatever edge representation has been there with this edge-id
-			this.labelToIncomingEdges.remove(chronoEdge.label(), chronoEdge);
-			// add the given edge as edge representation
-			this.labelToIncomingEdges.put(chronoEdge.label(), chronoEdge);
-		} else if (chronoEdge.outVertex().equals(this)) {
-			// outgoing edge.
-			// remove whatever edge representation has been there with this edge-id
-			this.labelToOutgoingEdges.remove(chronoEdge.label(), chronoEdge);
-			// add the given edge as edge representation
-			this.labelToOutgoingEdges.put(chronoEdge.label(), chronoEdge);
-		} else {
-			throw new IllegalArgumentException("Cannot apply edge - it is not connected to this vertex!");
 		}
 	}
 
@@ -417,7 +425,18 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
 		this.withoutModificationCheck(() -> {
 			this.loadRecordContents(vRecord);
 		});
+		this.updateLifecycleStatus(ElementLifecycleStatus.PERSISTED);
 		this.getTransactionContext().registerLoadedVertex(this);
+	}
+
+	@SuppressWarnings({ "unchecked" })
+	private <V> VertexProperty<V> getSingleProperty(final String propertyKey) {
+		PredefinedVertexProperty<V> predefinedProperty = ChronoGraphElementUtil.asPredefinedVertexProperty(this,
+				propertyKey);
+		if (predefinedProperty != null) {
+			return predefinedProperty;
+		}
+		return (VertexProperty<V>) this.properties.get(propertyKey);
 	}
 
 	// =====================================================================================================================

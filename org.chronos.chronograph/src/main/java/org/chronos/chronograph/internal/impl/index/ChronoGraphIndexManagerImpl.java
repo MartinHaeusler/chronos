@@ -34,14 +34,13 @@ import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.chronograph.api.builder.index.IndexBuilderStarter;
 import org.chronos.chronograph.api.index.ChronoGraphIndex;
 import org.chronos.chronograph.api.index.ChronoGraphIndexManager;
-import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.internal.ChronoGraphConstants;
 import org.chronos.chronograph.internal.api.index.ChronoGraphIndexInternal;
 import org.chronos.chronograph.internal.api.index.ChronoGraphIndexManagerInternal;
 import org.chronos.chronograph.internal.api.index.IChronoGraphEdgeIndex;
 import org.chronos.chronograph.internal.api.index.IChronoGraphVertexIndex;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
 import org.chronos.chronograph.internal.impl.builder.index.ChronoGraphIndexBuilder;
-import org.chronos.chronograph.internal.impl.structure.graph.StandardChronoGraph;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 
 import com.google.common.collect.HashMultimap;
@@ -57,7 +56,7 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 	// FIELDS
 	// =====================================================================================================================
 
-	private ChronoGraph graph;
+	private ChronoGraphInternal graph;
 	private final String branchName;
 
 	private final Map<String, IChronoGraphVertexIndex> vertexIndices;
@@ -65,7 +64,7 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 
 	private final ReadWriteLock lock;
 
-	public ChronoGraphIndexManagerImpl(final StandardChronoGraph graph, final String branchName) {
+	public ChronoGraphIndexManagerImpl(final ChronoGraphInternal graph, final String branchName) {
 		checkNotNull(graph, "Precondition violation - argument 'graph' must not be NULL!");
 		this.graph = graph;
 		this.branchName = branchName;
@@ -203,7 +202,8 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 			} else if (indexInternal instanceof IChronoGraphEdgeIndex) {
 				this.edgeIndices.put(indexInternal.getBackendIndexKey(), (IChronoGraphEdgeIndex) indexInternal);
 			} else {
-				throw new IllegalArgumentException("Unknown index class: '" + indexInternal.getClass().getName() + "'!");
+				throw new IllegalArgumentException(
+						"Unknown index class: '" + indexInternal.getClass().getName() + "'!");
 			}
 		});
 	}
@@ -294,10 +294,10 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 	// =====================================================================================================================
 
 	@Override
-	public void executeOnGraph(final ChronoGraph graph, final Runnable job) {
+	public void executeOnGraph(final ChronoGraphInternal graph, final Runnable job) {
 		checkNotNull(graph, "Precondition violation - argument 'graph' must not be NULL!");
 		checkNotNull(job, "Precondition violation - argument 'job' must not be NULL!");
-		ChronoGraph previousGraph = this.graph;
+		ChronoGraphInternal previousGraph = this.graph;
 		try {
 			this.graph = graph;
 			// execute the task
@@ -310,10 +310,10 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 	}
 
 	@Override
-	public <T> T executeOnGraph(final ChronoGraph graph, final Callable<T> job) {
+	public <T> T executeOnGraph(final ChronoGraphInternal graph, final Callable<T> job) {
 		checkNotNull(graph, "Precondition violation - argument 'graph' must not be NULL!");
 		checkNotNull(job, "Precondition violation - argument 'job' must not be NULL!");
-		ChronoGraph previousGraph = this.graph;
+		ChronoGraphInternal previousGraph = this.graph;
 		try {
 			this.graph = graph;
 			// execute the task
@@ -456,7 +456,8 @@ public class ChronoGraphIndexManagerImpl implements ChronoGraphIndexManager, Chr
 		} else if (searchSpec instanceof DoubleSearchSpecification) {
 			return this.applyCondition(whereBuilder, (DoubleSearchSpecification) searchSpec);
 		} else {
-			throw new IllegalStateException("Unknown SearchSpecification class: '" + searchSpec.getClass().getName() + "'!");
+			throw new IllegalStateException(
+					"Unknown SearchSpecification class: '" + searchSpec.getClass().getName() + "'!");
 		}
 	}
 

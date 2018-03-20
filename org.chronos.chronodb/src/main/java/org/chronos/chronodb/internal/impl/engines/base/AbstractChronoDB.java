@@ -38,6 +38,7 @@ import org.chronos.chronodb.internal.impl.dump.ChronoDBDumpUtil;
 import org.chronos.chronodb.internal.impl.dump.CommitMetadataMap;
 import org.chronos.chronodb.internal.impl.dump.DumpOptions;
 import org.chronos.chronodb.internal.util.ThreadBound;
+import org.chronos.common.autolock.AutoLock;
 import org.chronos.common.logging.ChronoLogger;
 import org.chronos.common.version.ChronosVersion;
 
@@ -53,8 +54,8 @@ public abstract class AbstractChronoDB implements ChronoDB, ChronoDBInternal {
 	private final ChronoDBConfiguration configuration;
 	private final Set<ChronoDBShutdownHook> shutdownHooks;
 
-	private final ThreadBound<LockHolder> exclusiveLockHolder;
-	private final ThreadBound<LockHolder> nonExclusiveLockHolder;
+	private final ThreadBound<AutoLock> exclusiveLockHolder;
+	private final ThreadBound<AutoLock> nonExclusiveLockHolder;
 
 	private boolean closed = false;
 
@@ -88,14 +89,14 @@ public abstract class AbstractChronoDB implements ChronoDB, ChronoDBInternal {
 
 	public void addShutdownHook(final ChronoDBShutdownHook hook) {
 		checkNotNull(hook, "Precondition violation - argument 'hook' must not be NULL!");
-		try (LockHolder lock = this.lockNonExclusive()) {
+		try (AutoLock lock = this.lockNonExclusive()) {
 			this.shutdownHooks.add(hook);
 		}
 	}
 
 	public void removeShutdownHook(final ChronoDBShutdownHook hook) {
 		checkNotNull(hook, "Precondition violation - argument 'hook' must not be NULL!");
-		try (LockHolder lock = this.lockNonExclusive()) {
+		try (AutoLock lock = this.lockNonExclusive()) {
 			this.shutdownHooks.remove(hook);
 		}
 	}
@@ -105,7 +106,7 @@ public abstract class AbstractChronoDB implements ChronoDB, ChronoDBInternal {
 		if (this.isClosed()) {
 			return;
 		}
-		try (LockHolder lock = this.lockExclusive()) {
+		try (AutoLock lock = this.lockExclusive()) {
 			for (ChronoDBShutdownHook hook : this.shutdownHooks) {
 				hook.onShutdown();
 			}
@@ -130,7 +131,7 @@ public abstract class AbstractChronoDB implements ChronoDB, ChronoDBInternal {
 	@Override
 	public ChronoDBTransaction tx(final TransactionConfigurationInternal configuration) {
 		checkNotNull(configuration, "Precondition violation - argument 'configuration' must not be NULL!");
-		try (LockHolder lock = this.lockNonExclusive()) {
+		try (AutoLock lock = this.lockNonExclusive()) {
 			String branchName = configuration.getBranch();
 			if (this.getBranchManager().existsBranch(branchName) == false) {
 				throw new InvalidTransactionBranchException(
@@ -211,7 +212,7 @@ public abstract class AbstractChronoDB implements ChronoDB, ChronoDBInternal {
 			}
 		}
 		DumpOptions options = new DumpOptions(dumpOptions);
-		try (LockHolder lock = this.lockNonExclusive()) {
+		try (AutoLock lock = this.lockNonExclusive()) {
 			try (ObjectOutput output = ChronoDBDumpFormat.createOutput(dumpFile, options)) {
 				ChronoDBDumpUtil.dumpDBContentsToOutput(this, output, options);
 			}
@@ -226,7 +227,7 @@ public abstract class AbstractChronoDB implements ChronoDB, ChronoDBInternal {
 		checkArgument(dumpFile.isFile(),
 				"Precondition violation - argument 'dumpFile' must be a File (is a Directory)!");
 		DumpOptions options = new DumpOptions(dumpOptions);
-		try (LockHolder lock = this.lockExclusive()) {
+		try (AutoLock lock = this.lockExclusive()) {
 			try (ObjectInput input = ChronoDBDumpFormat.createInput(dumpFile, options)) {
 				ChronoDBDumpUtil.readDumpContentsFromInput(this, input, options);
 			}
@@ -238,10 +239,10 @@ public abstract class AbstractChronoDB implements ChronoDB, ChronoDBInternal {
 	// =================================================================================================================
 
 	@Override
-	public LockHolder lockExclusive() {
-		LockHolder lockHolder = this.exclusiveLockHolder.get();
+	public AutoLock lockExclusive() {
+		AutoLock lockHolder = this.exclusiveLockHolder.get();
 		if (lockHolder == null) {
-			lockHolder = LockHolder.createBasicLockHolderFor(this.dbLock.writeLock());
+			lockHolder = AutoLock.createBasicLockHolderFor(this.dbLock.writeLock());
 			this.exclusiveLockHolder.set(lockHolder);
 		}
 		// lockHolder.releaseLock() is called on lockHolder.close()
@@ -250,10 +251,10 @@ public abstract class AbstractChronoDB implements ChronoDB, ChronoDBInternal {
 	}
 
 	@Override
-	public LockHolder lockNonExclusive() {
-		LockHolder lockHolder = this.nonExclusiveLockHolder.get();
+	public AutoLock lockNonExclusive() {
+		AutoLock lockHolder = this.nonExclusiveLockHolder.get();
 		if (lockHolder == null) {
-			lockHolder = LockHolder.createBasicLockHolderFor(this.dbLock.readLock());
+			lockHolder = AutoLock.createBasicLockHolderFor(this.dbLock.readLock());
 			this.nonExclusiveLockHolder.set(lockHolder);
 		}
 		// lockHolder.releaseLock() is called on lockHolder.close()

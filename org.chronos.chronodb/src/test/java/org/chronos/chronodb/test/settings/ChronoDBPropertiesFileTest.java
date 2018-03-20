@@ -1,5 +1,6 @@
 package org.chronos.chronodb.test.settings;
 
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 import org.chronos.chronodb.api.ChronoDB;
+import org.chronos.chronodb.api.conflict.ConflictResolutionStrategy;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
 import org.chronos.chronodb.internal.impl.engines.inmemory.InMemoryChronoDB;
 import org.chronos.chronodb.test.base.ChronoDBUnitTest;
@@ -32,7 +34,8 @@ public class ChronoDBPropertiesFileTest extends ChronoDBUnitTest {
 		try {
 			// assert that the property in the file was applied
 			ChronoDBInternal chronoDBinternal = (ChronoDBInternal) chronoDB;
-			assertFalse(chronoDBinternal.getConfiguration().isBlindOverwriteProtectionEnabled());
+			assertThat(chronoDBinternal.getConfiguration().getConflictResolutionStrategy(),
+					is(ConflictResolutionStrategy.OVERWRITE_WITH_SOURCE));
 		} finally {
 			chronoDB.close();
 		}
@@ -55,7 +58,8 @@ public class ChronoDBPropertiesFileTest extends ChronoDBUnitTest {
 			assertTrue(chronoDB instanceof InMemoryChronoDB);
 			// assert that the property in the file was applied
 			ChronoDBInternal chronoDBinternal = (ChronoDBInternal) chronoDB;
-			assertFalse(chronoDBinternal.getConfiguration().isBlindOverwriteProtectionEnabled());
+			assertThat(chronoDBinternal.getConfiguration().getConflictResolutionStrategy(),
+					is(ConflictResolutionStrategy.OVERWRITE_WITH_SOURCE));
 		} finally {
 			chronoDB.close();
 		}

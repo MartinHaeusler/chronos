@@ -66,8 +66,10 @@ public class MosaicCache implements ChronoDBCache {
 		try {
 			Map<QualifiedKey, MosaicRow> qKeyToRow = this.contents.get(branch);
 			if (qKeyToRow == null) {
-				qKeyToRow = Maps.newConcurrentMap();
-				this.contents.put(branch, qKeyToRow);
+				this.statistics.registerMiss();
+				return CacheGetResult.miss();
+				// qKeyToRow = Maps.newConcurrentMap();
+				// this.contents.put(branch, qKeyToRow);
 			}
 			MosaicRow row = qKeyToRow.get(qualifiedKey);
 			if (row == null) {
@@ -222,7 +224,8 @@ public class MosaicCache implements ChronoDBCache {
 		MosaicRow row = qKeyToRow.get(key);
 		if (row == null) {
 			// create a new row to hold the data
-			row = new MosaicRow(key, this.lruRegistry, this.statistics, (r, delta) -> this.onRowSizeChanged(branch, key, r, delta));
+			row = new MosaicRow(key, this.lruRegistry, this.statistics,
+					(r, delta) -> this.onRowSizeChanged(branch, key, r, delta));
 			qKeyToRow.put(key, row);
 		}
 		return row;
@@ -242,11 +245,12 @@ public class MosaicCache implements ChronoDBCache {
 			return;
 		}
 		// note: removing the least recently used entry will trigger the callback chain, reducing
-		// 'this.currentSizeBytes'.
+		// 'this.currentSize'.
 		this.lruRegistry.removeLeastRecentlyUsedUntil(() -> this.lruRegistry.sizeInElements() <= this.maxSize);
 	}
 
-	protected void onRowSizeChanged(final String branch, final QualifiedKey key, final MosaicRow row, final long sizeDelta) {
+	protected void onRowSizeChanged(final String branch, final QualifiedKey key, final MosaicRow row,
+			final long sizeDelta) {
 		this.currentSize += sizeDelta;
 		if (row.isEmpty()) {
 			row.detach();

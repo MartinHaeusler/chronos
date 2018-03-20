@@ -42,7 +42,7 @@ public class TemporalChunkDbDataMatrix extends AbstractTemporalDataMatrix {
 
 	@Override
 	public GetResult<byte[]> get(final long timestamp, final String key) {
-		try (ChunkTuplTransaction tx = this.chunkManager.openTransactionOn(this.branchName, timestamp)) {
+		try (ChunkTuplTransaction tx = this.chunkManager.openBogusTransactionOn(this.branchName, timestamp)) {
 			GetResult<byte[]> getResult = TuplDataMatrixUtil.get(tx, this.mapName, this.getKeyspace(), timestamp, key);
 			Period chunkPeriod = tx.getChunkPeriod();
 			if (getResult.getPeriod().getUpperBound() > chunkPeriod.getUpperBound()) {
@@ -58,7 +58,7 @@ public class TemporalChunkDbDataMatrix extends AbstractTemporalDataMatrix {
 
 	@Override
 	public KeySetModifications keySetModifications(final long timestamp) {
-		try (TuplTransaction tx = this.chunkManager.openTransactionOn(this.branchName, timestamp)) {
+		try (TuplTransaction tx = this.chunkManager.openBogusTransactionOn(this.branchName, timestamp)) {
 			return TuplDataMatrixUtil.keySetModifications(tx, this.mapName, this.getKeyspace(), timestamp);
 		}
 	}
@@ -172,7 +172,7 @@ public class TemporalChunkDbDataMatrix extends AbstractTemporalDataMatrix {
 		if (chunkFilePeriod.contains(timestamp) == false || chunkFilePeriod.getLowerBound() > timestamp) {
 			throw new IllegalStateException("Timestamp '" + timestamp + "' not within chunk!");
 		}
-		try (TuplTransaction tx = this.chunkManager.openTransactionOn(this.branchName, timestamp)) {
+		try (TuplTransaction tx = this.chunkManager.openBogusTransactionOn(this.branchName, timestamp)) {
 			TuplDataMatrixUtil.rollback(tx, this.mapName, timestamp);
 			tx.commit();
 		}

@@ -38,7 +38,7 @@ public interface ChronoGraphIndexManager {
 	 * Use method chaining on the returned object, and call {@link GraphElementIndexBuilder#build()} on the last builder to create the new index.
 	 *
 	 * <p>
-	 * Adding a new graph index marks that particular index as {@linkplain #getDirtyIndices() dirty}. When you are done adding all your secondary indices to the graph, call {@link #reindexAll()} in order to build them.
+	 * Adding a new graph index marks that particular index as {@linkplain #getDirtyIndices() dirty}. When you are done adding all your secondary indices to the graph, call {@link #reindexAll()} in order to buildLRU them.
 	 *
 	 * @return The next builder in the fluent API, for method chaining. Never <code>null</code>.
 	 */

@@ -19,7 +19,6 @@ import org.chronos.chronodb.api.indexing.Indexer;
 import org.chronos.chronodb.api.key.ChronoIdentifier;
 import org.chronos.chronodb.internal.api.BranchInternal;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
-import org.chronos.chronodb.internal.api.Lockable.LockHolder;
 import org.chronos.chronodb.internal.api.TemporalKeyValueStore;
 import org.chronos.chronodb.internal.api.index.ChronoIndexDocument;
 import org.chronos.chronodb.internal.api.index.ChronoIndexModifications;
@@ -29,6 +28,7 @@ import org.chronos.chronodb.internal.api.stream.ChronoDBEntry;
 import org.chronos.chronodb.internal.api.stream.CloseableIterator;
 import org.chronos.chronodb.internal.impl.index.diff.IndexValueDiff;
 import org.chronos.chronodb.internal.impl.index.diff.IndexingUtils;
+import org.chronos.common.autolock.AutoLock;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.SetMultimap;
@@ -58,7 +58,7 @@ public class DocumentBasedIndexManager
 
 	@Override
 	public void reindexAll() {
-		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockExclusive()) {
 			if (this.getDirtyIndices().isEmpty()) {
 				// no indices are dirty -> no need to re-index
 				return;
@@ -112,7 +112,7 @@ public class DocumentBasedIndexManager
 			// no indices registered
 			return;
 		}
-		try (LockHolder lock = this.getOwningDB().lockNonExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockNonExclusive()) {
 			new IndexingProcess().index(identifierToOldAndNewValue);
 		}
 	}
@@ -124,7 +124,7 @@ public class DocumentBasedIndexManager
 	@Override
 	protected Set<String> performIndexQuery(final long timestamp, final Branch branch, final String keyspace,
 			final SearchSpecification<?> searchSpec) {
-		try (LockHolder lock = this.getOwningDB().lockNonExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockNonExclusive()) {
 			// check if we are dealing with a negated search specification that accepts empty values.
 			if (searchSpec.getCondition().isNegated() && searchSpec.getCondition().acceptsEmptyValue()) {
 				// the search spec is a negated condition that accepts the empty value.

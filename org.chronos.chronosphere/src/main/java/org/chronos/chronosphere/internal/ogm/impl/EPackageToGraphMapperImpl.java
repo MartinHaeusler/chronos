@@ -299,7 +299,13 @@ public class EPackageToGraphMapperImpl implements EPackageToGraphMapper {
 				ChronoSphereGraphFormat.E_LABEL__ECLASS_OWNED_EREFERENCE);
 		eReferenceVertices.forEachRemaining(v -> verticesToRemove.add(v));
 		// instance EObjects
-		Iterator<Vertex> eObjectVertices = eClassVertex.vertices(Direction.IN, ChronoSphereGraphFormat.E_LABEL__ECLASS);
+		Iterator<Vertex> eObjectVertices = eClassVertex.graph().traversal()
+				// start from all vertices
+				.V()
+				// restrict to EObjects only
+				.has(ChronoSphereGraphFormat.V_PROP__KIND, VertexKind.EOBJECT.toString())
+				// restrict to EObjects which have the EClass which we want to delete
+				.has(ChronoSphereGraphFormat.V_PROP__ECLASS_ID, eClassVertex.id());
 		eObjectVertices.forEachRemaining(v -> verticesToRemove.add(v));
 		return verticesToRemove;
 	}

@@ -17,8 +17,6 @@ import org.apache.tinkerpop.gremlin.process.traversal.TraversalStrategies;
 import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
-import org.apache.tinkerpop.gremlin.structure.io.Io;
-import org.apache.tinkerpop.gremlin.structure.io.Io.Builder;
 import org.apache.tinkerpop.gremlin.structure.util.StringFactory;
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBConstants;
@@ -28,9 +26,10 @@ import org.chronos.chronodb.internal.impl.dump.DumpOptions;
 import org.chronos.chronograph.api.branch.ChronoGraphBranchManager;
 import org.chronos.chronograph.api.builder.query.GraphQueryBuilderStarter;
 import org.chronos.chronograph.api.index.ChronoGraphIndexManager;
-import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransactionManager;
+import org.chronos.chronograph.internal.ChronoGraphConstants;
 import org.chronos.chronograph.internal.api.configuration.ChronoGraphConfiguration;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
 import org.chronos.chronograph.internal.impl.branch.ChronoGraphBranchManagerImpl;
 import org.chronos.chronograph.internal.impl.builder.query.GraphQueryBuilderStarterImpl;
 import org.chronos.chronograph.internal.impl.configuration.ChronoGraphConfigurationImpl;
@@ -40,11 +39,12 @@ import org.chronos.chronograph.internal.impl.optimizer.strategy.ChronoGraphStepS
 import org.chronos.chronograph.internal.impl.structure.graph.features.ChronoGraphFeatures;
 import org.chronos.chronograph.internal.impl.transaction.ChronoGraphTransactionManagerImpl;
 import org.chronos.chronograph.internal.impl.transaction.threaded.ChronoThreadedTransactionGraph;
+import org.chronos.common.autolock.AutoLock;
 import org.chronos.common.configuration.ChronosConfigurationUtil;
 
 import com.google.common.collect.Maps;
 
-public class StandardChronoGraph implements ChronoGraph {
+public class StandardChronoGraph implements ChronoGraphInternal {
 
 	static {
 		TraversalStrategies graphStrategies = TraversalStrategies.GlobalCache.getStrategies(Graph.class).clone();
@@ -73,6 +73,9 @@ public class StandardChronoGraph implements ChronoGraph {
 
 	private final ChronoGraphFeatures features;
 	private final ChronoGraphVariables variables;
+
+	private final Lock commitLock = new ReentrantLock(true);
+	private final ThreadLocal<AutoLock> commitLockHolder = new ThreadLocal<>();
 
 	public StandardChronoGraph(final ChronoDB database, final Configuration configuration) {
 		checkNotNull(database, "Precondition violation - argument 'database' must not be NULL!");
@@ -184,7 +187,7 @@ public class StandardChronoGraph implements ChronoGraph {
 			// try to retrieve a cached copy of the manager
 			ChronoGraphIndexManager indexManager = this.branchNameToIndexManager.get(branchName);
 			if (indexManager == null) {
-				// manager not present in our cache; build it and add it to the cache
+				// manager not present in our cache; buildLRU it and add it to the cache
 				indexManager = new ChronoGraphIndexManagerImpl(this, branchName);
 				this.branchNameToIndexManager.put(branchName, indexManager);
 			}
@@ -354,7 +357,8 @@ public class StandardChronoGraph implements ChronoGraph {
 	}
 
 	@Override
-	public List<Entry<Long, Object>> getCommitMetadataAround(final String branch, final long timestamp, final int count) {
+	public List<Entry<Long, Object>> getCommitMetadataAround(final String branch, final long timestamp,
+			final int count) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
@@ -362,7 +366,8 @@ public class StandardChronoGraph implements ChronoGraph {
 	}
 
 	@Override
-	public List<Entry<Long, Object>> getCommitMetadataBefore(final String branch, final long timestamp, final int count) {
+	public List<Entry<Long, Object>> getCommitMetadataBefore(final String branch, final long timestamp,
+			final int count) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
@@ -370,7 +375,8 @@ public class StandardChronoGraph implements ChronoGraph {
 	}
 
 	@Override
-	public List<Entry<Long, Object>> getCommitMetadataAfter(final String branch, final long timestamp, final int count) {
+	public List<Entry<Long, Object>> getCommitMetadataAfter(final String branch, final long timestamp,
+			final int count) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkArgument(count >= 0, "Precondition violation - argument 'count' must not be negative!");
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
@@ -415,15 +421,29 @@ public class StandardChronoGraph implements ChronoGraph {
 		return this.getBackingDB().tx(branch).countCommitTimestamps();
 	}
 
+	@Override
+	public Iterator<String> getChangedVerticesAtCommit(final String branch, final long commitTimestamp) {
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		checkArgument(commitTimestamp >= 0,
+				"Precondition violation - argument 'commitTimestamp' must not be negative!");
+		return this.getBackingDB().tx(branch).getChangedKeysAtCommit(commitTimestamp,
+				ChronoGraphConstants.KEYSPACE_VERTEX);
+	}
+
+	@Override
+	public Iterator<String> getChangedEdgesAtCommit(final String branch, final long commitTimestamp) {
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		checkArgument(commitTimestamp >= 0,
+				"Precondition violation - argument 'commitTimestamp' must not be negative!");
+		return this.getBackingDB().tx(branch).getChangedKeysAtCommit(commitTimestamp,
+				ChronoGraphConstants.KEYSPACE_EDGE);
+	}
+
 	// =====================================================================================================================
 	// SERIALIZATION & DESERIALIZATION (GraphSon, Gyro, ...)
 	// =====================================================================================================================
 
-	@Override
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public <I extends Io> I io(final Builder<I> builder) {
-		return (I) builder.graph(this).registry(ChronoGraphIoRegistry.INSTANCE).create();
-	}
+	// not implemented yet
 
 	// =====================================================================================================================
 	// DUMP OPERATIONS
@@ -462,6 +482,17 @@ public class StandardChronoGraph implements ChronoGraph {
 	@Override
 	public ChronoDB getBackingDB() {
 		return this.database;
+	}
+
+	public AutoLock commitLock() {
+		AutoLock autoLock = this.commitLockHolder.get();
+		if (autoLock == null) {
+			autoLock = AutoLock.createBasicLockHolderFor(this.commitLock);
+			this.commitLockHolder.set(autoLock);
+		}
+		// autoLock.releaseLock() is called on lockHolder.close()
+		autoLock.acquireLock();
+		return autoLock;
 	}
 
 	// =====================================================================================================================

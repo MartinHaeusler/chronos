@@ -49,6 +49,20 @@ public interface ChronoElement extends Element {
 	public boolean isRemoved();
 
 	/**
+	 * Returns the {@link ChronoGraphTransaction} to which this element belongs.
+	 *
+	 * @return The owning transaction. Never <code>null</code>.
+	 */
+	public ChronoGraphTransaction getOwningTransaction();
+
+	/**
+	 * Returns the state of the transaction rollback counter that was valid at the time when this element was loaded.
+	 *
+	 * @return The number of rollbacks done on the graph transaction before loading this element. Always greater than or equal to zero.
+	 */
+	public long getLoadedAtRollbackCount();
+
+	/**
 	 * Sets the lifecycle status on this element.
 	 *
 	 * <i>For internal use only</i>.
@@ -65,17 +79,4 @@ public interface ChronoElement extends Element {
 	 */
 	public ElementLifecycleStatus getStatus();
 
-	/**
-	 * Returns the {@link ChronoGraphTransaction} to which this element belongs.
-	 *
-	 * @return The owning transaction. Never <code>null</code>.
-	 */
-	public ChronoGraphTransaction getOwningTransaction();
-
-	/**
-	 * Returns the state of the transaction rollback counter that was valid at the time when this element was loaded.
-	 *
-	 * @return The number of rollbacks done on the graph transaction before loading this element. Always greater than or equal to zero.
-	 */
-	public long getLoadedAtRollbackCount();
 }

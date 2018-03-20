@@ -6,6 +6,7 @@ import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
+import org.chronos.chronodb.internal.impl.cache.mosaic.MosaicCache;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
 import org.chronos.chronodb.test.base.InstantiateChronosWith;
 import org.chronos.common.test.junit.categories.IntegrationTest;
@@ -74,6 +75,7 @@ public class MutableValuesCacheTest extends AllChronoDBBackendsTest {
 
 			// assert that a write-through has indeed occurred (i.e. our cache is filled)
 			// 2 entries from our commit + 2 entries with NULL value from the indexing
+			assertEquals(4, ((MosaicCache) cache).computedSize());
 			assertEquals(4, cache.size());
 			// now we change the values (which should NOT alter our cache state)
 			obj1.setNumber(42);

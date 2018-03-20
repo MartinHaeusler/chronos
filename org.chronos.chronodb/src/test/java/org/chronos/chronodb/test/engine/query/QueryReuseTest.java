@@ -51,7 +51,7 @@ public class QueryReuseTest extends AllChronoDBBackendsTest {
 		tx.put("First", 789);
 		tx.commit();
 
-		// build the query
+		// buildLRU the query
 		ChronoDBQuery query = tx.find().inDefaultKeyspace().where("integer").isEqualTo("123").toQuery();
 
 		// check that before the second commit, we get 2 results by running the query

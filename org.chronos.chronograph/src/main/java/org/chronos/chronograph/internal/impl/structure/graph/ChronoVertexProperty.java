@@ -6,8 +6,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.tinkerpop.gremlin.structure.Element;
 import org.apache.tinkerpop.gremlin.structure.Property;
 import org.apache.tinkerpop.gremlin.structure.VertexProperty;
+import org.apache.tinkerpop.gremlin.structure.util.ElementHelper;
 import org.chronos.chronograph.api.structure.ChronoElement;
 import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransaction;
@@ -35,7 +37,8 @@ public class ChronoVertexProperty<V> extends ChronoProperty<V> implements Vertex
 		this(owner, id, key, value, false);
 	}
 
-	public ChronoVertexProperty(final ChronoVertexImpl owner, final String id, final String key, final V value, final boolean silent) {
+	public ChronoVertexProperty(final ChronoVertexImpl owner, final String id, final String key, final V value,
+			final boolean silent) {
 		super(owner, key, value, silent);
 		checkNotNull(id, "Precondition violation - argument 'id' must not be NULL!");
 		this.id = id;
@@ -136,6 +139,16 @@ public class ChronoVertexProperty<V> extends ChronoProperty<V> implements Vertex
 			// TODO properties do not separately track their status, using the element status is not entirely correct.
 			return this.element().getStatus();
 		}
+	}
+
+	@Override
+	public int hashCode() {
+		return ElementHelper.hashCode((Element) this);
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		return ElementHelper.areEqual(this, obj);
 	}
 
 	// =================================================================================================================

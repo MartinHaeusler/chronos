@@ -187,7 +187,7 @@ public class LuceneWrapper implements AutoCloseable {
 			searchSpec2 = searchSpec.negate();
 		}
 		Query searchSpecQuery = this.createSearchSpecQuery(searchSpec2);
-		// build the composite query
+		// buildLRU the composite query
 		Builder queryBuilder = new Builder();
 		queryBuilder.add(indexNameQuery, Occur.FILTER);
 		queryBuilder.add(branchQuery, Occur.FILTER);
@@ -213,7 +213,7 @@ public class LuceneWrapper implements AutoCloseable {
 		// timestamp < validTo < Long.MAX_VALUE
 		Query validToQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_TO,
 				chronoIdentifier.getTimestamp(), Long.MAX_VALUE, false, true);
-		// build the composite query
+		// buildLRU the composite query
 		Builder queryBuilder = new Builder();
 		queryBuilder.add(branchQuery, Occur.FILTER);
 		queryBuilder.add(keyspaceQuery, Occur.FILTER);
@@ -233,7 +233,7 @@ public class LuceneWrapper implements AutoCloseable {
 		Query validToQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_TO, 0L, timestamp,
 				true, true);
 		Query searchSpecQuery = this.createSearchSpecQuery(searchSpec);
-		// build the composite query
+		// buildLRU the composite query
 		Builder queryBuilder = new Builder();
 		queryBuilder.add(indexNameQuery, Occur.FILTER);
 		queryBuilder.add(branchQuery, Occur.FILTER);
@@ -298,7 +298,7 @@ public class LuceneWrapper implements AutoCloseable {
 		// validTo >= timestamp <= Long.MAX_VALUE (infinity)
 		Query validToQuery = NumericRangeQuery.newLongRange(ChronoDBLuceneUtil.DOCUMENT_FIELD_VALID_TO, timestamp,
 				Long.MAX_VALUE, true, true);
-		// build the composite query
+		// buildLRU the composite query
 		Builder queryBuilder = new Builder();
 		queryBuilder.add(validFromQuery, Occur.SHOULD);
 		queryBuilder.add(validToQuery, Occur.SHOULD);

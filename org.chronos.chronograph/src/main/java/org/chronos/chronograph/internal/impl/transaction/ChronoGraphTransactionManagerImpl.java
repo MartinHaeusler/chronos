@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.tinkerpop.gremlin.structure.Transaction;
 import org.apache.tinkerpop.gremlin.structure.util.AbstractThreadLocalTransaction;
+import org.apache.tinkerpop.gremlin.structure.util.TransactionException;
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.api.ChronoDBTransaction;
@@ -15,6 +16,7 @@ import org.chronos.chronodb.api.exceptions.ChronoDBTransactionException;
 import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransaction;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransactionManager;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
 import org.chronos.chronograph.internal.impl.transaction.threaded.ChronoThreadedTransactionGraph;
 
 import com.google.common.collect.Maps;
@@ -22,7 +24,7 @@ import com.google.common.collect.Maps;
 public class ChronoGraphTransactionManagerImpl extends AbstractThreadLocalTransaction
 		implements ChronoGraphTransactionManager {
 
-	private final ChronoGraph chronoGraph;
+	private final ChronoGraphInternal chronoGraph;
 
 	private final Map<Thread, ChronoGraphTransaction> threadToTx = Maps.newConcurrentMap();
 
@@ -32,7 +34,7 @@ public class ChronoGraphTransactionManagerImpl extends AbstractThreadLocalTransa
 	// CONSTRUCTOR
 	// =====================================================================================================================
 
-	public ChronoGraphTransactionManagerImpl(final ChronoGraph graph) {
+	public ChronoGraphTransactionManagerImpl(final ChronoGraphInternal graph) {
 		super(graph);
 		checkNotNull(graph, "Precondition violation - argument 'graph' must not be NULL!");
 		this.chronoGraph = graph;

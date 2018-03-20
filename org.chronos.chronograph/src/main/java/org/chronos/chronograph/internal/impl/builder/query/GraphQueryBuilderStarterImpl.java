@@ -5,7 +5,7 @@ import static com.google.common.base.Preconditions.*;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.EmptyGraphTraversal;
+import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.DefaultGraphTraversal;
 import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Element;
@@ -513,7 +513,7 @@ public class GraphQueryBuilderStarterImpl implements GraphQueryBuilderStarter {
 			GraphQueryBuilderStarterImpl self = GraphQueryBuilderStarterImpl.this;
 			Set<E> elements = this.toSet();
 			if (elements.isEmpty()) {
-				return EmptyGraphTraversal.instance();
+				return new DefaultGraphTraversal<>(self.graph);
 			}
 			Object[] elementArray = elements.toArray();
 			if (Vertex.class.isAssignableFrom(this.clazz)) {

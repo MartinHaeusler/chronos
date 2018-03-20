@@ -2,9 +2,9 @@ package org.chronos.chronodb.internal.impl.engines.chunkdb.index;
 
 import static com.google.common.base.Preconditions.*;
 
-import org.chronos.chronodb.internal.api.Lockable.LockHolder;
 import org.chronos.chronodb.internal.impl.engines.chunkdb.ChunkedChronoDB;
 import org.chronos.chronodb.internal.impl.index.DocumentBasedIndexManager;
+import org.chronos.common.autolock.AutoLock;
 
 public class ChunkDbIndexManager extends DocumentBasedIndexManager {
 
@@ -18,7 +18,7 @@ public class ChunkDbIndexManager extends DocumentBasedIndexManager {
 		// can offer. This is due to the fact that when re-indexing a chunk, ALL indices are
 		// rebuilt for better performance. It therefore makes no sense to iterate over the
 		// individual indices and attempt to rebuild them one by one (as the superclass does).
-		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockExclusive()) {
 			if (this.getDirtyIndices().isEmpty()) {
 				// no indices are dirty -> no need to re-index
 				return;

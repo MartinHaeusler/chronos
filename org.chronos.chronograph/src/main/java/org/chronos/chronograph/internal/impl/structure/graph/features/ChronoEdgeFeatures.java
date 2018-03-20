@@ -4,13 +4,13 @@ import static com.google.common.base.Preconditions.*;
 
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Graph.Features.EdgePropertyFeatures;
-import org.chronos.chronograph.api.structure.ChronoGraph;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
 
 class ChronoEdgeFeatures implements Graph.Features.EdgeFeatures {
 
 	private final ChronoGraphEdgePropertyFeatures propertyFeatures;
 
-	public ChronoEdgeFeatures(final ChronoGraph graph) {
+	public ChronoEdgeFeatures(final ChronoGraphInternal graph) {
 		checkNotNull(graph, "Precondition violation - argument 'graph' must not be NULL!");
 		this.propertyFeatures = new ChronoGraphEdgePropertyFeatures(graph);
 	}

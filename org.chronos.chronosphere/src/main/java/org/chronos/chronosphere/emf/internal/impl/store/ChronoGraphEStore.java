@@ -650,12 +650,13 @@ public class ChronoGraphEStore extends AbstractChronoEStore {
 	}
 
 	private ChronoEObjectInternal createEObjectForVertex(final ChronoEPackageRegistry cep, final Vertex vertex) {
-		checkNotNull(cep, "Precondition violation - argument 'cep' must not be NULL!");
-		checkNotNull(vertex, "Precondition violation - argument 'vertex' must not be NULL!");
-		String id = (String) vertex.id();
-		EClass eClass = ChronoSphereGraphFormat.getEClassForEObjectVertex(cep, vertex);
-		ChronoEObjectInternal eObject = new ChronoEObjectImpl(id, eClass, this);
-		return eObject;
+//		checkNotNull(cep, "Precondition violation - argument 'cep' must not be NULL!");
+//		checkNotNull(vertex, "Precondition violation - argument 'vertex' must not be NULL!");
+//		String id = (String) vertex.id();
+//		EClass eClass = ChronoSphereGraphFormat.getEClassForEObjectVertex(cep, vertex);
+//		ChronoEObjectInternal eObject = new ChronoEObjectImpl(id, eClass, this);
+//		return eObject;
+		return (ChronoEObjectInternal)this.owningTransaction.getEObjectById((String)vertex.id());
 	}
 
 	private EList<Object> getListOfValuesFor(final ChronoEPackageRegistry cep, final Vertex vertex,

@@ -118,7 +118,6 @@ public final class VertexRecord implements ElementRecord {
 				edgeRecordsByLabel.add(edgeTargetRecord);
 			}
 		}
-
 		// create an immutable copy of the vertex properties
 		Collection<ChronoVertexProperty<?>> props = properties.values();
 		if (props.isEmpty() == false) {

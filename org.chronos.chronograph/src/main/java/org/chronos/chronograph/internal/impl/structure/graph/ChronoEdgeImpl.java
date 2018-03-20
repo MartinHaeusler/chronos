@@ -15,10 +15,11 @@ import org.apache.tinkerpop.gremlin.structure.util.ElementHelper;
 import org.apache.tinkerpop.gremlin.structure.util.StringFactory;
 import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronograph.api.structure.ChronoEdge;
-import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.api.structure.ChronoVertex;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransaction;
 import org.chronos.chronograph.internal.ChronoGraphConstants;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
+import org.chronos.chronograph.internal.api.transaction.ChronoGraphTransactionInternal;
 import org.chronos.chronograph.internal.impl.structure.record.EdgeRecord;
 import org.chronos.chronograph.internal.impl.structure.record.EdgeTargetRecord;
 import org.chronos.chronograph.internal.impl.structure.record.PropertyRecord;
@@ -35,7 +36,8 @@ import com.google.common.collect.Sets;
 
 public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, ChronoEdge {
 
-	public static ChronoEdgeImpl create(final ChronoGraph graph, final ChronoGraphTransaction tx, final EdgeRecord record) {
+	public static ChronoEdgeImpl create(final ChronoGraphInternal graph, final ChronoGraphTransactionInternal tx,
+			final EdgeRecord record) {
 		checkNotNull(graph, "Precondition violation - argument 'graph' must not be NULL!");
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		checkNotNull(record, "Precondition violation - argument 'record' must not be NULL!");
@@ -49,7 +51,8 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		return edge;
 	}
 
-	public static ChronoEdgeImpl create(final String id, final ChronoVertexImpl outV, final String label, final ChronoVertexImpl inV) {
+	public static ChronoEdgeImpl create(final String id, final ChronoVertexImpl outV, final String label,
+			final ChronoVertexImpl inV) {
 		checkNotNull(outV, "Precondition violation - argument 'outV' must not be NULL!");
 		ElementHelper.validateLabel(label);
 		checkNotNull(inV, "Precondition violation - argument 'inV' must not be NULL!");
@@ -58,25 +61,29 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		return edge;
 	}
 
-	public static ChronoEdgeImpl incomingEdgeFromRecord(final ChronoVertexImpl owner, final String label, final EdgeTargetRecord record) {
+	public static ChronoEdgeImpl incomingEdgeFromRecord(final ChronoVertexImpl owner, final String label,
+			final EdgeTargetRecord record) {
 		checkNotNull(owner, "Precondition violation - argument 'owner' must not be NULL!");
 		checkNotNull(record, "Precondition violation - argument 'record' must not be NULL!");
 		checkNotNull(label, "Precondition violation - argument 'label' must not be NULL!");
 		String id = record.getEdgeId();
 		String otherEndVertexId = record.getOtherEndVertexId();
-		ChronoEdgeImpl edge = new ChronoEdgeImpl(id, label, owner, otherEndVertexId, owner.id(), ElementLifecycleStatus.PERSISTED);
+		ChronoEdgeImpl edge = new ChronoEdgeImpl(id, label, owner, otherEndVertexId, owner.id(),
+				ElementLifecycleStatus.PERSISTED);
 		// tell the edge that it's properties must be loaded from the backing data store on first access
 		edge.lazyLoadProperties = true;
 		return edge;
 	}
 
-	public static ChronoEdgeImpl outgoingEdgeFromRecord(final ChronoVertexImpl owner, final String label, final EdgeTargetRecord record) {
+	public static ChronoEdgeImpl outgoingEdgeFromRecord(final ChronoVertexImpl owner, final String label,
+			final EdgeTargetRecord record) {
 		checkNotNull(owner, "Precondition violation - argument 'owner' must not be NULL!");
 		checkNotNull(record, "Precondition violation - argument 'record' must not be NULL!");
 		checkNotNull(label, "Precondition violation - argument 'label' must not be NULL!");
 		String id = record.getEdgeId();
 		String otherEndVertexId = record.getOtherEndVertexId();
-		ChronoEdgeImpl edge = new ChronoEdgeImpl(id, label, owner, owner.id(), otherEndVertexId, ElementLifecycleStatus.PERSISTED);
+		ChronoEdgeImpl edge = new ChronoEdgeImpl(id, label, owner, owner.id(), otherEndVertexId,
+				ElementLifecycleStatus.PERSISTED);
 		// tell the edge that it's properties must be loaded from the backing data store on first access
 		edge.lazyLoadProperties = true;
 		return edge;
@@ -99,7 +106,8 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 	// =================================================================================================================
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	protected ChronoEdgeImpl(final ChronoGraph graph, final ChronoGraphTransaction tx, final String id, final String outVid, final String label, final String inVid, final Set<PropertyRecord> properties) {
+	protected ChronoEdgeImpl(final ChronoGraphInternal graph, final ChronoGraphTransactionInternal tx, final String id,
+			final String outVid, final String label, final String inVid, final Set<PropertyRecord> properties) {
 		super(graph, tx, id, label, false);
 		checkNotNull(outVid, "Precondition violation - argument 'outVid' must not be NULL!");
 		checkNotNull(inVid, "Precondition violation - argument 'inVid' must not be NULL!");
@@ -113,7 +121,8 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		}
 	}
 
-	protected ChronoEdgeImpl(final String id, final String label, final ChronoVertexImpl owner, final String outVid, final String inVid, final ElementLifecycleStatus status) {
+	protected ChronoEdgeImpl(final String id, final String label, final ChronoVertexImpl owner, final String outVid,
+			final String inVid, final ElementLifecycleStatus status) {
 		super(owner.graph(), owner.getOwningTransaction(), id, label, false);
 		checkNotNull(outVid, "Precondition violation - argument 'outVid' must not be NULL!");
 		checkNotNull(inVid, "Precondition violation - argument 'inVid' must not be NULL!");
@@ -122,15 +131,17 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		this.inVid = inVid;
 		this.properties = Maps.newHashMap();
 		if (owner.id().equals(outVid)) {
-			this.outVcache = new WeakReference<ChronoVertex>(owner);
+			this.outVcache = new WeakReference<>(owner);
 		} else if (owner.id().equals(inVid)) {
-			this.inVcache = new WeakReference<ChronoVertex>(owner);
+			this.inVcache = new WeakReference<>(owner);
 		} else {
 			throw new IllegalArgumentException("The given owner is neither the in-vertex nor the out-vertex!");
 		}
+		this.updateLifecycleStatus(status);
 	}
 
-	protected ChronoEdgeImpl(final String id, final ChronoVertexImpl outV, final String label, final ChronoVertexImpl inV) {
+	protected ChronoEdgeImpl(final String id, final ChronoVertexImpl outV, final String label,
+			final ChronoVertexImpl inV) {
 		super(inV.graph(), inV.getGraphTransaction(), id, label, false);
 		checkNotNull(outV, "Precondition violation - argument 'outV' must not be NULL!");
 		checkNotNull(inV, "Precondition violation - argument 'inV' must not be NULL!");
@@ -140,14 +151,15 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		if (outV.getOwningTransaction().equals(inV.getOwningTransaction()) == false) {
 			throw new IllegalArgumentException("The given vertices are bound to different transactions!");
 		}
-		if (outV.getOwningThread().equals(Thread.currentThread()) == false || inV.getOwningThread().equals(Thread.currentThread()) == false) {
+		if (outV.getOwningThread().equals(Thread.currentThread()) == false
+				|| inV.getOwningThread().equals(Thread.currentThread()) == false) {
 			throw new IllegalStateException("Cannot create edge - neighboring vertices belong to different threads!");
 		}
 		this.outVid = outV.id();
 		this.inVid = inV.id();
 		this.properties = Maps.newHashMap();
-		this.inVcache = new WeakReference<ChronoVertex>(inV);
-		this.outVcache = new WeakReference<ChronoVertex>(outV);
+		this.inVcache = new WeakReference<>(inV);
+		this.outVcache = new WeakReference<>(outV);
 	}
 
 	// =================================================================================================================
@@ -177,7 +189,13 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		this.checkAccess();
 		this.loadLazyPropertiesIfRequired();
 		this.logPropertyChange(key, value);
+		boolean exists = this.property(key).isPresent();
 		ChronoProperty<V> newProperty = new ChronoProperty<>(this, key, value);
+		if (exists) {
+			this.changePropertyStatus(key, PropertyStatus.MODIFIED);
+		} else {
+			this.changePropertyStatus(key, PropertyStatus.NEW);
+		}
 		this.properties.put(key, newProperty);
 		this.updateLifecycleStatus(ElementLifecycleStatus.PROPERTY_CHANGED);
 		return newProperty;
@@ -205,7 +223,7 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 				}
 			}
 		}
-		return new PropertiesIterator<V>(matchingProperties.iterator());
+		return new PropertiesIterator<>(matchingProperties.iterator());
 	}
 
 	@Override
@@ -221,7 +239,7 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 			// decided to remove our cached instance. In this case, we need to reload it.
 			inVertex = this.resolveVertex(this.inVid);
 			// remember it in the cache
-			this.inVcache = new WeakReference<ChronoVertex>(inVertex);
+			this.inVcache = new WeakReference<>(inVertex);
 		}
 		return inVertex;
 	}
@@ -239,7 +257,7 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 			// decided to remove our cached instance. In this case, we need to reload it.
 			outVertex = this.resolveVertex(this.outVid);
 			// remember it in the cache
-			this.outVcache = new WeakReference<ChronoVertex>(outVertex);
+			this.outVcache = new WeakReference<>(outVertex);
 		}
 		return outVertex;
 	}
@@ -269,6 +287,7 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 	@Override
 	protected void reloadFromDatabase() {
 		// clear the inV and outV caches (but keep the ids, as the vertices connected to an edge can never change)
+		ElementLifecycleStatus[] nextStatus = new ElementLifecycleStatus[1];
 		this.withoutRemovedCheck(() -> {
 			this.withoutModificationCheck(() -> {
 				this.inVcache = null;
@@ -278,8 +297,9 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 				EdgeRecord eRecord = backendTx.get(ChronoGraphConstants.KEYSPACE_EDGE, this.id().toString());
 				if (eRecord == null) {
 					// edge was removed
-					this.updateLifecycleStatus(ElementLifecycleStatus.REMOVED);
+					nextStatus[0] = ElementLifecycleStatus.REMOVED;
 				} else {
+					nextStatus[0] = ElementLifecycleStatus.PERSISTED;
 					// load the properties
 					this.lazyLoadProperties = false;
 					for (PropertyRecord propertyRecord : eRecord.getProperties()) {
@@ -291,7 +311,7 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 				this.getTransactionContext().registerLoadedEdge(this);
 			});
 		});
-
+		this.updateLifecycleStatus(nextStatus[0]);
 	}
 
 	// =================================================================================================================
@@ -304,6 +324,7 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		this.loadLazyPropertiesIfRequired();
 		this.logPropertyRemove(key);
 		this.properties.remove(key);
+		this.changePropertyStatus(key, PropertyStatus.REMOVED);
 		this.updateLifecycleStatus(ElementLifecycleStatus.PROPERTY_CHANGED);
 	}
 
@@ -318,15 +339,8 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 	public void updateLifecycleStatus(final ElementLifecycleStatus status) {
 		super.updateLifecycleStatus(status);
 		if (this.isModificationCheckActive()) {
-			// FIXME: "modified" for an edge is not so simple. See comment below.
-			// There are several cases:
-			// 1) Creation of a new edge
-			// 2) Deletion of a newly created edge that was not yet persisted
-			// 3) Deletion of a persisted edge
-			// 4) Changes of properties on an edge
-			ChronoProxyUtil.resolveVertexProxy(this.inVertex()).applyEdge(this);
-			ChronoProxyUtil.resolveVertexProxy(this.outVertex()).applyEdge(this);
-			if (status == ElementLifecycleStatus.NEW || status == ElementLifecycleStatus.REMOVED) {
+			if (status == ElementLifecycleStatus.NEW || status == ElementLifecycleStatus.REMOVED
+					|| status == ElementLifecycleStatus.OBSOLETE) {
 				// need to update adjacency lists of in and out vertex
 				this.inVertex().updateLifecycleStatus(ElementLifecycleStatus.EDGE_CHANGED);
 				this.outVertex().updateLifecycleStatus(ElementLifecycleStatus.EDGE_CHANGED);
@@ -350,7 +364,9 @@ public class ChronoEdgeImpl extends AbstractChronoElement implements Edge, Chron
 		ChronoGraphTransaction graphTx = this.getGraphTransaction();
 		EdgeRecord edgeRecord = graphTx.getBackingDBTransaction().get(ChronoGraphConstants.KEYSPACE_EDGE, this.id());
 		if (edgeRecord == null) {
-			throw new IllegalStateException("Failed to load edge properties - there is no backing Edge Record in the database for ID: '" + this.id().toString() + "'!");
+			throw new IllegalStateException(
+					"Failed to load edge properties - there is no backing Edge Record in the database for ID: '"
+							+ this.id().toString() + "'!");
 		}
 		// load the properties from the edge record
 		for (PropertyRecord propertyRecord : edgeRecord.getProperties()) {

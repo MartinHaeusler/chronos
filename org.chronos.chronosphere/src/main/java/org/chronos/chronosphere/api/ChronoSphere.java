@@ -32,7 +32,7 @@ import com.google.common.collect.Iterators;
  * To get an instance of this class, please use the fluent builder API:
  *
  * <pre>
- * ChronoSphere repository = ChronoSphere.FACTORY.create() /{@literal*}... settings ... {@literal*}/ .build();
+ * ChronoSphere repository = ChronoSphere.FACTORY.create() /{@literal*}... settings ... {@literal*}/ .buildLRU();
  * </pre>
  *
  * After creating this class, you should set up your {@link EPackage}s through the methods provided by

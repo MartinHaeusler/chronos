@@ -52,7 +52,7 @@ public class ConcurrentChronoDBAccessTest extends AllChronoDBBackendsTest {
 	private List<String> allKeys = this.generateKeys(KEY_SET_SIZE);
 
 	@Test
-	@InstantiateChronosWith(property = ChronoDBConfiguration.ENABLE_BLIND_OVERWRITE_PROTECTION, value = "false")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.COMMIT_CONFLICT_RESOLUTION_STRATEGY, value = "OVERWRITE_WITH_SOURCE")
 	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHING_ENABLED, value = "true")
 	@InstantiateChronosWith(property = ChronoDBConfiguration.CACHE_MAX_SIZE, value = "1000")
 	@InstantiateChronosWith(property = ChronoDBConfiguration.ASSUME_CACHE_VALUES_ARE_IMMUTABLE, value = "true")

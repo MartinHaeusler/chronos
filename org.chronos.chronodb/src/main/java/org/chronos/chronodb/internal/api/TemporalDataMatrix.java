@@ -80,9 +80,9 @@ public interface TemporalDataMatrix {
 	 *            The key to get the value for. Must not be <code>null</code>.
 	 * @return A ranged result. The result object itself is guaranteed to be non-<code>null</code>. Contains the
 	 *         {@linkplain GetResult#getValue() value} for the given key at the given timestamp, or contains a
-	 *         <code>null</code>-{@linkplain GetResult#getValue() value} if the key does not exist in this matrix
-	 *         at the given timestamp. The {@linkplain GetResult#getPeriod() range} of the returned object
-	 *         represents the period in which the given key is bound to the returned value.
+	 *         <code>null</code>-{@linkplain GetResult#getValue() value} if the key does not exist in this matrix at the
+	 *         given timestamp. The {@linkplain GetResult#getPeriod() range} of the returned object represents the
+	 *         period in which the given key is bound to the returned value.
 	 */
 	public GetResult<byte[]> get(final long timestamp, final String key);
 
@@ -151,6 +151,20 @@ public interface TemporalDataMatrix {
 	 * @see #getModificationsBetween(long, long)
 	 */
 	public Iterator<Long> getCommitTimestampsBetween(long timestampLowerBound, long timestampUpperBound);
+
+	/**
+	 * Returns an iterator over the keys which changed their value at the given commit timestamp.
+	 *
+	 * @param commitTimestamp
+	 *            The commit timestamp to analyze. Must exactly match a commit timestamp in the history, otherwise the
+	 *            resulting iterator will be empty. Must not be negative.
+	 *
+	 * @return An iterator over the keys which changed in this matrix at the commit with the given timestamp. Never
+	 *         <code>null</code>. Will be empty if there have been no changes in the given keyspace at the given commit,
+	 *         if no commit has taken place at the specified timestamp, or a keyspace with the given name did not exist
+	 *         at that timestamp.
+	 */
+	public Iterator<String> getChangedKeysAtCommit(long commitTimestamp);
 
 	// =================================================================================================================
 	// CONTENT MODIFICATION

@@ -2,13 +2,13 @@ package org.chronos.chronograph.internal.impl.structure.graph.features;
 
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.Graph.Features.VertexPropertyFeatures;
-import org.chronos.chronograph.api.structure.ChronoGraph;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
 
 class ChronoVertexFeatures extends AbstractChronoGraphFeature implements Graph.Features.VertexFeatures {
 
 	private final ChronoVertexPropertyFeatures propertyFeatures;
 
-	public ChronoVertexFeatures(final ChronoGraph graph) {
+	public ChronoVertexFeatures(final ChronoGraphInternal graph) {
 		super(graph);
 		this.propertyFeatures = new ChronoVertexPropertyFeatures(graph);
 	}

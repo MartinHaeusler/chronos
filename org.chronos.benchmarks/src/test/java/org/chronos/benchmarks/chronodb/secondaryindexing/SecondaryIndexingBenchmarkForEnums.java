@@ -34,7 +34,7 @@ public class SecondaryIndexingBenchmarkForEnums extends AllChronoDBBackendsTest 
 	@Test
 	@InstantiateChronosWith(property = ChronoDBConfiguration.ASSUME_CACHE_VALUES_ARE_IMMUTABLE, value = "true")
 	@InstantiateChronosWith(property = ChronoDBConfiguration.DUPLICATE_VERSION_ELIMINATION_MODE, value = "off")
-	@InstantiateChronosWith(property = ChronoDBConfiguration.ENABLE_BLIND_OVERWRITE_PROTECTION, value = "false")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.COMMIT_CONFLICT_RESOLUTION_STRATEGY, value = "OVERWRITE_WITH_SOURCE")
 	public void benchmarkEnumIndexingReadHead() {
 		ChronoDB db = this.getChronoDB();
 		IndexManager indexManager = db.getIndexManager();
@@ -95,7 +95,7 @@ public class SecondaryIndexingBenchmarkForEnums extends AllChronoDBBackendsTest 
 	@Test
 	@InstantiateChronosWith(property = ChronoDBConfiguration.ASSUME_CACHE_VALUES_ARE_IMMUTABLE, value = "true")
 	@InstantiateChronosWith(property = ChronoDBConfiguration.DUPLICATE_VERSION_ELIMINATION_MODE, value = "off")
-	@InstantiateChronosWith(property = ChronoDBConfiguration.ENABLE_BLIND_OVERWRITE_PROTECTION, value = "false")
+	@InstantiateChronosWith(property = ChronoDBConfiguration.COMMIT_CONFLICT_RESOLUTION_STRATEGY, value = "OVERWRITE_WITH_SOURCE")
 	@InstantiateChronosWith(property = ChronoDBConfiguration.JDBC_CONNECTION_URL, value = "jdbc:h2:file:${testdir}/h2")
 	public void benchmarkEnumIndexingReadRandom() {
 		ChronoDB db = this.getChronoDB();

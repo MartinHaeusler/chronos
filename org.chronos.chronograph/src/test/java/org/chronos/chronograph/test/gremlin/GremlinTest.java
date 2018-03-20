@@ -55,7 +55,8 @@ public class GremlinTest extends AllChronoGraphBackendsTest {
 		me.addEdge("worksOn", chronos);
 		me.addEdge("worksOn", otherProject);
 		graph.tx().commit();
-		Set<Vertex> vertices = graph.traversal().V().has("kind", "person").has("name", "Martin").out("worksOn").has("name", "Chronos").toSet();
+		Set<Vertex> vertices = graph.traversal().V().has("kind", "person").has("name", "Martin").out("worksOn")
+				.has("name", "Chronos").toSet();
 		assertEquals(1, vertices.size());
 		Vertex vertex = Iterables.getOnlyElement(vertices);
 		assertEquals("Chronos", vertex.value("name"));
@@ -242,4 +243,5 @@ public class GremlinTest extends AllChronoGraphBackendsTest {
 		assertEquals(1, Iterators.size(graph.traversal().V().hasLabel("Location")));
 
 	}
+
 }

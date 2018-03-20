@@ -17,7 +17,7 @@
   
   <!-- Logger: org.chronos.* -->
   <!-- Reason: We ALWAYS want to see the log that we produce ourselves, regardless of root log level. -->
-  <logger name="org.chronos" level="DEBUG" />
+  <logger name="org.chronos" level="ALL" />
  
   <!-- ========================================================================================= -->
   <!--                                 Root Logger Definition                                    -->

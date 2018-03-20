@@ -3,31 +3,36 @@ package org.chronos.chronograph.internal.impl.structure.graph;
 import static com.google.common.base.Preconditions.*;
 
 import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Element;
+import org.apache.tinkerpop.gremlin.structure.Property;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.apache.tinkerpop.gremlin.structure.util.ElementHelper;
 import org.chronos.chronograph.api.structure.ChronoEdge;
 import org.chronos.chronograph.api.structure.ChronoElement;
-import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.api.structure.ChronoVertex;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransaction;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
+import org.chronos.chronograph.internal.api.transaction.ChronoGraphTransactionInternal;
 import org.chronos.chronograph.internal.impl.transaction.ElementLoadMode;
 import org.chronos.chronograph.internal.impl.transaction.GraphTransactionContext;
+import org.chronos.common.exceptions.UnknownEnumLiteralException;
 
 import com.google.common.collect.Iterators;
+import com.google.common.collect.Maps;
 
 public abstract class AbstractChronoElement implements ChronoElement {
 
 	protected final String id;
 	protected String label;
-	protected final ChronoGraph graph;
+	protected final ChronoGraphInternal graph;
 
 	protected final Thread owningThread;
 	protected long loadedAtRollbackCount;
-	protected ChronoGraphTransaction owningTransaction;
+	protected ChronoGraphTransactionInternal owningTransaction;
 
 	protected boolean fullyLoaded;
 
@@ -36,8 +41,10 @@ public abstract class AbstractChronoElement implements ChronoElement {
 
 	private ElementLifecycleStatus status;
 
-	protected AbstractChronoElement(final ChronoGraph g, final ChronoGraphTransaction tx, final String id,
-			final String label, final boolean lazy) {
+	private Map<String, PropertyStatus> propertyStatusMap;
+
+	protected AbstractChronoElement(final ChronoGraphInternal g, final ChronoGraphTransactionInternal tx,
+			final String id, final String label, final boolean lazy) {
 		checkNotNull(g, "Precondition violation - argument 'g' must not be NULL!");
 		checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
 		checkNotNull(id, "Precondition violation - argument 'id' must not be NULL!");
@@ -67,7 +74,7 @@ public abstract class AbstractChronoElement implements ChronoElement {
 	}
 
 	@Override
-	public ChronoGraph graph() {
+	public ChronoGraphInternal graph() {
 		return this.graph;
 	}
 
@@ -81,22 +88,130 @@ public abstract class AbstractChronoElement implements ChronoElement {
 
 	@Override
 	public boolean isRemoved() {
-		return this.status.equals(ElementLifecycleStatus.REMOVED);
+		return this.status.equals(ElementLifecycleStatus.REMOVED)
+				|| this.status.equals(ElementLifecycleStatus.OBSOLETE);
 	}
 
 	@Override
 	public void updateLifecycleStatus(final ElementLifecycleStatus status) {
 		if (this.isModificationCheckActive()) {
-			if (ElementLifecycleStatus.REMOVED.equals(this.status) &&
-					(status.equals(ElementLifecycleStatus.PROPERTY_CHANGED) || status.equals(ElementLifecycleStatus.EDGE_CHANGED))) {
-				throw new IllegalStateException("Cannot switch '" + this.getClass().getSimpleName() + "' with id '" + this.id() + "' from REMOVED to " + status + " element lifecycle status!");
+			switch (this.getStatus()) {
+			case NEW:
+				switch (status) {
+				case NEW:
+					// no-op
+					break;
+				case EDGE_CHANGED:
+					// ignore; NEW already includes EDGE_CHANGED
+					break;
+				case OBSOLETE:
+					// accept change
+					this.status = status;
+					break;
+				case PERSISTED:
+					// accept change
+					this.status = status;
+					break;
+				case PROPERTY_CHANGED:
+					// ignore; NEW already includes PROPERTY_CHANGED
+					break;
+				case REMOVED:
+					// redirect removal to obsolete
+					this.status = ElementLifecycleStatus.OBSOLETE;
+					break;
+				default:
+					throw new UnknownEnumLiteralException(status);
+				}
+				break;
+			case OBSOLETE:
+				// ingore; obsolete can never be exited
+				break;
+			case PERSISTED:
+				switch (status) {
+				case NEW:
+					this.throwIllegalStateSwitchException(status);
+					break;
+				case EDGE_CHANGED:
+					// accept
+					this.status = status;
+					break;
+				case OBSOLETE:
+					this.throwIllegalStateSwitchException(status);
+					break;
+				case PERSISTED:
+					// no-op
+					break;
+				case PROPERTY_CHANGED:
+					// accept
+					this.status = status;
+					break;
+				case REMOVED:
+					// accept
+					this.status = status;
+					break;
+				default:
+					throw new UnknownEnumLiteralException(status);
+				}
+				break;
+			case EDGE_CHANGED:
+				switch (status) {
+				case NEW:
+					this.throwIllegalStateSwitchException(status);
+					break;
+				case EDGE_CHANGED:
+					// no-op
+					break;
+				case OBSOLETE:
+					this.throwIllegalStateSwitchException(status);
+					break;
+				case PERSISTED:
+					// accept
+					this.status = status;
+					break;
+				case PROPERTY_CHANGED:
+					// accept
+					this.status = status;
+					break;
+				case REMOVED:
+					// accept
+					this.status = status;
+					break;
+				default:
+					throw new UnknownEnumLiteralException(status);
+				}
+				break;
+			case PROPERTY_CHANGED:
+				switch (status) {
+				case NEW:
+					this.throwIllegalStateSwitchException(status);
+					break;
+				case EDGE_CHANGED:
+					// cannot go back from PROP_CHANGE to EDGE_CHANGE, ignore
+					break;
+				case OBSOLETE:
+					this.throwIllegalStateSwitchException(status);
+					break;
+				case PERSISTED:
+					// accept
+					this.status = status;
+					break;
+				case PROPERTY_CHANGED:
+					// no-op
+					break;
+				case REMOVED:
+					// accept
+					this.status = status;
+					break;
+				default:
+					throw new UnknownEnumLiteralException(status);
+				}
+				break;
+			case REMOVED:
+				break;
+			default:
+				break;
+
 			}
-			if (ElementLifecycleStatus.PROPERTY_CHANGED.equals(this.status) &&
-					status.equals(ElementLifecycleStatus.EDGE_CHANGED)) {
-				// property changes include edge changes
-				return;
-			}
-			this.status = status;
 		}
 	}
 
@@ -126,13 +241,8 @@ public abstract class AbstractChronoElement implements ChronoElement {
 	// =================================================================================================================
 
 	@Override
-	public ChronoGraphTransaction getOwningTransaction() {
+	public ChronoGraphTransactionInternal getOwningTransaction() {
 		return this.owningTransaction;
-	}
-
-	public void setOwningTransaction(final ChronoGraphTransaction transaction) {
-		checkNotNull(transaction, "Precondition violation - argument 'transaction' must not be NULL!");
-		this.owningTransaction = transaction;
 	}
 
 	public Thread getOwningThread() {
@@ -148,8 +258,8 @@ public abstract class AbstractChronoElement implements ChronoElement {
 		return (ChronoEdge) Iterators.getOnlyElement(iterator);
 	}
 
-	protected ChronoGraphTransaction getGraphTransaction() {
-		return this.graph().tx().getCurrentTransaction();
+	protected ChronoGraphTransactionInternal getGraphTransaction() {
+		return (ChronoGraphTransactionInternal) this.graph().tx().getCurrentTransaction();
 	}
 
 	protected GraphTransactionContext getTransactionContext() {
@@ -255,7 +365,8 @@ public abstract class AbstractChronoElement implements ChronoElement {
 		} else {
 			// thread-local tx
 			this.graph.tx().readWrite();
-			ChronoGraphTransaction currentTx = this.graph.tx().getCurrentTransaction();
+			ChronoGraphTransactionInternal currentTx = (ChronoGraphTransactionInternal) this.graph.tx()
+					.getCurrentTransaction();
 			if (currentTx.equals(this.getOwningTransaction())) {
 				// we are still on the same transaction that created this element
 				// Check if a rollback has occurred
@@ -283,14 +394,204 @@ public abstract class AbstractChronoElement implements ChronoElement {
 
 	}
 
+	/**
+	 * Clears the entire property status cache for all properties of this element.
+	 */
+	protected void clearPropertyStatusCache() {
+		this.propertyStatusMap = null;
+	}
+
+	/**
+	 * Changes the status of the {@link Property} with the given key to the given status.
+	 *
+	 * @param propertyKey
+	 *            The key of the property to change the status for. Must not be <code>null</code>.
+	 * @param status
+	 *            The new status of the property. Must not be <code>null</code>.
+	 */
+	protected void changePropertyStatus(final String propertyKey, final PropertyStatus status) {
+		checkNotNull(propertyKey, "Precondition violation - argument 'propertyKey' must not be NULL!");
+		checkNotNull(status, "Precondition violation - argument 'status' must not be NULL!");
+		PropertyStatus currentStatus = this.getPropertyStatus(propertyKey);
+		switch (currentStatus) {
+		case PERSISTED:
+			switch (status) {
+			case MODIFIED:
+				this.assignPropertyStatus(propertyKey, status);
+				break;
+			case NEW:
+				throw new IllegalArgumentException("Cannot switch property state from PERSISTED to NEW!");
+			case PERSISTED:
+				// no-op
+				break;
+			case REMOVED:
+				this.assignPropertyStatus(propertyKey, status);
+				break;
+			case UNKNOWN:
+				throw new IllegalArgumentException("Cannot switch property state from PERSISTED to UNKNOWN!");
+			default:
+				throw new UnknownEnumLiteralException(status);
+			}
+			break;
+		case UNKNOWN:
+			switch (status) {
+			case MODIFIED:
+				this.assignPropertyStatus(propertyKey, status);
+				break;
+			case NEW:
+				this.assignPropertyStatus(propertyKey, status);
+				break;
+			case PERSISTED:
+				throw new IllegalArgumentException("Cannot switch property state from UNKNOWN to PERSISTED!");
+			case REMOVED:
+				this.assignPropertyStatus(propertyKey, status);
+				break;
+			case UNKNOWN:
+				// no-op
+				break;
+			default:
+				throw new UnknownEnumLiteralException(status);
+			}
+			break;
+		case NEW:
+			switch (status) {
+			case MODIFIED:
+				// new remains in new, even when modified again -> no-op
+				break;
+			case NEW:
+				// no-op
+				break;
+			case PERSISTED:
+				if (this.propertyStatusMap != null) {
+					// we mark it as persisted by simply dropping the metadata, the getter will
+					// recreate it on-demand and we save the map entry
+					this.propertyStatusMap.remove(propertyKey);
+				}
+				break;
+			case REMOVED:
+				if (this.propertyStatusMap != null) {
+					// switching from NEW to REMOVED makes the property obsolete, the getter
+					// will recreate it on-demand and we save the map entry
+					this.propertyStatusMap.remove(propertyKey);
+				}
+				break;
+			case UNKNOWN:
+				throw new IllegalArgumentException("Cannot switch property state from NEW to UNKNOWN!");
+			default:
+				throw new UnknownEnumLiteralException(status);
+			}
+			break;
+		case MODIFIED:
+			switch (status) {
+			case MODIFIED:
+				// no-op
+				break;
+			case NEW:
+				throw new IllegalArgumentException("Cannot switch property state from MODIFIED to NEW!");
+			case PERSISTED:
+				if (this.propertyStatusMap != null) {
+					// we mark it as persisted by simply dropping the metadata, the getter will
+					// recreate it on-demand and we save the map entry
+					this.propertyStatusMap.remove(propertyKey);
+				}
+				break;
+			case REMOVED:
+				this.assignPropertyStatus(propertyKey, status);
+				break;
+			case UNKNOWN:
+				throw new IllegalArgumentException("Cannot switch property state from MODIFIED to UNKNOWN!");
+			default:
+				throw new UnknownEnumLiteralException(status);
+			}
+			break;
+		case REMOVED:
+			switch (status) {
+			case MODIFIED:
+				this.assignPropertyStatus(propertyKey, status);
+				break;
+			case NEW:
+				// removal and re-addition = modification
+				this.assignPropertyStatus(propertyKey, PropertyStatus.MODIFIED);
+				break;
+			case PERSISTED:
+				throw new IllegalArgumentException("Cannot switch property state from REMOVED to PERSISTED!");
+			case REMOVED:
+				// no-op
+				break;
+			case UNKNOWN:
+				if (this.propertyStatusMap != null) {
+					// the property was removed, the vertex was saved and the property is now unknown.
+					this.propertyStatusMap.remove(propertyKey);
+				}
+				break;
+			default:
+				throw new UnknownEnumLiteralException(status);
+			}
+			break;
+		default:
+			throw new UnknownEnumLiteralException(currentStatus);
+		}
+	}
+
+	private void assignPropertyStatus(final String propertyKey, final PropertyStatus status) {
+		checkNotNull(propertyKey, "Precondition violation - argument 'propertyKey' must not be NULL!");
+		checkNotNull(status, "Precondition violation - argument 'status' must not be NULL!");
+		if (this.propertyStatusMap == null) {
+			this.propertyStatusMap = Maps.newHashMap();
+		}
+		this.propertyStatusMap.put(propertyKey, status);
+	}
+
+	/**
+	 * Returns the current status of the {@link Property} with the given key.
+	 *
+	 * <p>
+	 * The result may be one of the following:
+	 * <ul>
+	 * <li>{@link PropertyStatus#UNKNOWN}: indicates that a property with the given key has never existed on this vertex.
+	 * <li>{@link PropertyStatus#NEW}: the property has been newly added in this transaction.
+	 * <li>{@link PropertyStatus#MODIFIED}: the property has existed before, but was modified in this transaction.
+	 * <li>{@link PropertyStatus#REMOVED}: the property has existed before, but was removed in this transaction.
+	 * <li>{@link PropertyStatus#PERSISTED}: the property exists and is unchanged.
+	 * </ul>
+	 *
+	 * @param propertyKey
+	 *            The property key to search for. Must not be <code>null</code>.
+	 * @return The status of the property with the given key, as outlined above. Never <code>null</code>.
+	 */
+	public PropertyStatus getPropertyStatus(final String propertyKey) {
+		checkNotNull(propertyKey, "Precondition violation - argument 'propertyKey' must not be NULL!");
+		PropertyStatus status = null;
+		if (this.propertyStatusMap != null) {
+			status = this.propertyStatusMap.get(propertyKey);
+		}
+		if (this.propertyStatusMap == null || status == null) {
+			if (this.property(propertyKey).isPresent()) {
+				// the property with the given key exists, but we have no metadata about it -> it's clean
+				return PropertyStatus.PERSISTED;
+			} else {
+				// the property with the given key doesn't exist -> we've never seen this property before
+				return PropertyStatus.UNKNOWN;
+			}
+		} else {
+			return status;
+		}
+	}
+
 	protected void assertFullyLoaded() {
 		if (this.isFullyLoaded()) {
 			return;
 		}
 		ChronoGraphTransaction currentTx = this.graph.tx().getCurrentTransaction();
+		this.clearPropertyStatusCache();
 		this.reloadFromDatabase();
 		this.loadedAtRollbackCount = currentTx.getRollbackCount();
 		this.fullyLoaded = true;
+	}
+
+	private void throwIllegalStateSwitchException(final ElementLifecycleStatus newStatus) {
+		throw new IllegalStateException("Cannot switch '" + this.getClass().getSimpleName() + "' with id '" + this.id()
+				+ "' from status " + this.getStatus() + " to status " + newStatus + "!");
 	}
 
 	protected abstract void reloadFromDatabase();

@@ -3,6 +3,7 @@ package org.chronos.chronodb.internal.impl;
 import java.io.File;
 
 import org.chronos.chronodb.api.DuplicateVersionEliminationMode;
+import org.chronos.chronodb.api.conflict.ConflictResolutionStrategy;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.internal.util.ChronosBackend;
 import org.chronos.common.configuration.AbstractConfiguration;
@@ -61,8 +62,8 @@ public class ChronoDBConfigurationImpl extends AbstractConfiguration implements 
 	@RequiredIf(field = "cachingEnabled", comparison = Comparison.IS_SET_TO, compareValue = "true")
 	private boolean assumeCachedValuesAreImmutable = false;
 
-	@Parameter(key = ENABLE_BLIND_OVERWRITE_PROTECTION)
-	private boolean blindOverwriteProtectionEnabled = true;
+	@Parameter(key = COMMIT_CONFLICT_RESOLUTION_STRATEGY, optional = true)
+	private String conflictResolutionStrategyName;
 
 	@EnumFactoryMethod("fromString")
 	@Parameter(key = DUPLICATE_VERSION_ELIMINATION_MODE, optional = true)
@@ -94,6 +95,12 @@ public class ChronoDBConfigurationImpl extends AbstractConfiguration implements 
 	@Parameter(key = JDBC_CREDENTIALS_PASSWORD, optional = true)
 	@IgnoredIf(field = "backendType", comparison = Comparison.IS_NOT_SET_TO, compareValue = "jdbc")
 	private String jdbcCredentialsPassword;
+
+	// =================================================================================================================
+	// CACHES
+	// =================================================================================================================
+
+	private transient ConflictResolutionStrategy conflictResolutionStrategy;
 
 	// =================================================================================================================
 	// GENERAL SETTINGS
@@ -140,8 +147,14 @@ public class ChronoDBConfigurationImpl extends AbstractConfiguration implements 
 	}
 
 	@Override
-	public boolean isBlindOverwriteProtectionEnabled() {
-		return this.blindOverwriteProtectionEnabled;
+	public ConflictResolutionStrategy getConflictResolutionStrategy() {
+		if (this.conflictResolutionStrategy == null) {
+			// setting was not yet resolved, do it now
+			this.conflictResolutionStrategy = ConflictResolutionStrategyLoader
+					.load(this.conflictResolutionStrategyName);
+			// we already resolved this setting, use the cached instance
+		}
+		return this.conflictResolutionStrategy;
 	}
 
 	@Override

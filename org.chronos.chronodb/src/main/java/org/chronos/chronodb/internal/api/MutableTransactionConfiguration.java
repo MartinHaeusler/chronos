@@ -4,6 +4,7 @@ import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.api.DuplicateVersionEliminationMode;
+import org.chronos.chronodb.api.conflict.ConflictResolutionStrategy;
 
 /**
  * The mutable portion of a {@link org.chronos.chronodb.api.ChronoDBTransaction.Configuration}.
@@ -62,13 +63,12 @@ public interface MutableTransactionConfiguration extends TransactionConfiguratio
 	public void setThreadSafe(boolean threadSafe);
 
 	/**
-	 * Enables or disables blind overwrite protection on this transaction.
+	 * Sets the conflict resolution strategy to apply in case of commit conflicts.
 	 *
-	 * @param enabled
-	 *            Set this to <code>true</code> to enable blind overwrite protection, or to <code>false</code> in order
-	 *            to disable it.
+	 * @param strategy
+	 *            The strategy to use. Must not be <code>null</code>.
 	 */
-	public void setBlindOverwriteProtectionEnabled(boolean enabled);
+	public void setConflictResolutionStrategy(ConflictResolutionStrategy strategy);
 
 	/**
 	 * Sets the {@link DuplicateVersionEliminationMode} on this transaction.

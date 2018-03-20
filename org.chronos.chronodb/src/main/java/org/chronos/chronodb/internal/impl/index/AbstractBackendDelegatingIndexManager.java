@@ -17,8 +17,8 @@ import org.chronos.chronodb.api.indexing.LongIndexer;
 import org.chronos.chronodb.api.indexing.StringIndexer;
 import org.chronos.chronodb.api.key.QualifiedKey;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
-import org.chronos.chronodb.internal.api.Lockable.LockHolder;
 import org.chronos.chronodb.internal.api.index.IndexManagerBackend;
+import org.chronos.common.autolock.AutoLock;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 
 import com.google.common.collect.HashMultimap;
@@ -59,21 +59,21 @@ public abstract class AbstractBackendDelegatingIndexManager<C extends ChronoDBIn
 
 	@Override
 	public Set<String> getIndexNames() {
-		try (LockHolder lock = this.getOwningDB().lockNonExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockNonExclusive()) {
 			return Collections.unmodifiableSet(Sets.newHashSet(this.indexNameToIndexers.keySet()));
 		}
 	}
 
 	@Override
 	public Set<Indexer<?>> getIndexers() {
-		try (LockHolder lock = this.getOwningDB().lockNonExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockNonExclusive()) {
 			return Collections.unmodifiableSet(Sets.newHashSet(this.indexNameToIndexers.values()));
 		}
 	}
 
 	@Override
 	public Map<String, Set<Indexer<?>>> getIndexersByIndexName() {
-		try (LockHolder lock = this.getOwningDB().lockNonExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockNonExclusive()) {
 			Map<String, Collection<Indexer<?>>> map = this.indexNameToIndexers.asMap();
 			Map<String, Set<Indexer<?>>> resultMap = Maps.newHashMap();
 			for (Entry<String, Collection<Indexer<?>>> entry : map.entrySet()) {
@@ -88,14 +88,14 @@ public abstract class AbstractBackendDelegatingIndexManager<C extends ChronoDBIn
 
 	@Override
 	public boolean isReindexingRequired() {
-		try (LockHolder lock = this.getOwningDB().lockNonExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockNonExclusive()) {
 			return this.indexNameToDirtyFlag.values().contains(true);
 		}
 	}
 
 	@Override
 	public Set<String> getDirtyIndices() {
-		try (LockHolder lock = this.getOwningDB().lockNonExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockNonExclusive()) {
 			// create a stream on the entry set of the map
 			Set<String> dirtyIndices = this.indexNameToDirtyFlag.entrySet().stream()
 					// keep only the entries where the dirty flag is true
@@ -111,7 +111,7 @@ public abstract class AbstractBackendDelegatingIndexManager<C extends ChronoDBIn
 	@Override
 	public void removeIndex(final String indexName) {
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
-		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockExclusive()) {
 			this.backend.deleteIndexAndIndexers(indexName);
 			this.indexNameToIndexers.removeAll(indexName);
 			this.clearQueryCache();
@@ -120,7 +120,7 @@ public abstract class AbstractBackendDelegatingIndexManager<C extends ChronoDBIn
 
 	@Override
 	public void clearAllIndices() {
-		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockExclusive()) {
 			this.backend.deleteAllIndicesAndIndexers();
 			this.indexNameToIndexers.clear();
 			this.clearQueryCache();
@@ -150,7 +150,7 @@ public abstract class AbstractBackendDelegatingIndexManager<C extends ChronoDBIn
 
 	@Override
 	public void removeIndexer(final Indexer<?> indexer) {
-		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockExclusive()) {
 			Set<String> indexNamesContainingTheIndexer = Sets.newHashSet();
 			for (String indexName : this.getIndexNames()) {
 				if (this.indexNameToIndexers.get(indexName).contains(indexer)) {
@@ -176,7 +176,7 @@ public abstract class AbstractBackendDelegatingIndexManager<C extends ChronoDBIn
 	@Override
 	public void rollback(final long timestamp) {
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
-		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockExclusive()) {
 			Set<String> branchNames = this.getOwningDB().getBranchManager().getBranchNames();
 			this.backend.rollback(branchNames, timestamp);
 			this.clearQueryCache();
@@ -187,7 +187,7 @@ public abstract class AbstractBackendDelegatingIndexManager<C extends ChronoDBIn
 	public void rollback(final Branch branch, final long timestamp) {
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
-		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockExclusive()) {
 			this.backend.rollback(Collections.singleton(branch.getName()), timestamp);
 			this.clearQueryCache();
 		}
@@ -198,7 +198,7 @@ public abstract class AbstractBackendDelegatingIndexManager<C extends ChronoDBIn
 		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
 		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
 		checkNotNull(keys, "Precondition violation - argument 'keys' must not be NULL!");
-		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockExclusive()) {
 			this.backend.rollback(Collections.singleton(branch.getName()), timestamp, keys);
 		}
 	}
@@ -230,7 +230,7 @@ public abstract class AbstractBackendDelegatingIndexManager<C extends ChronoDBIn
 	protected void addIndexerInternal(final String indexName, final Indexer<?> indexer) {
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
 		checkNotNull(indexer, "Precondition violation - argument 'indexer' must not be NULL!");
-		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockExclusive()) {
 			// check the other indexers on this index and make sure that indexer types cannot be mixed
 			// on the same index name.
 			this.assertAddingIndexersDoesNotProduceMixedIndex(indexName, indexer);
@@ -276,7 +276,7 @@ public abstract class AbstractBackendDelegatingIndexManager<C extends ChronoDBIn
 
 	private IndexType getIndexType(final String indexName) {
 		checkNotNull(indexName, "Precondition violation - argument 'indexName' must not be NULL!");
-		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockExclusive()) {
 			Set<Indexer<?>> existingIndexers = this.getIndexersByIndexName().get(indexName);
 			if (existingIndexers != null) {
 				boolean hasStringIndexer = false;

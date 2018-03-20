@@ -71,7 +71,7 @@ public class ClasspathUtils {
 		} catch (URISyntaxException e) {
 			throw new IOException("Unable to read file resource '" + resourceName + "'! See root cause for details.", e);
 		} catch (IllegalArgumentException e) {
-			// most like the file is zipped/war'ed/jar'ed, build temporary file from stream
+			// most like the file is zipped/war'ed/jar'ed, buildLRU temporary file from stream
 			int extensionIndex = resourceName.lastIndexOf(".");
 			String tmpExtension = resourceName.substring(extensionIndex);
 			File tmpResource = null;

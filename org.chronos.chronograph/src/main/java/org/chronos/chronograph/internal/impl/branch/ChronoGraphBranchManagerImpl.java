@@ -10,7 +10,7 @@ import org.chronos.chronodb.api.Branch;
 import org.chronos.chronodb.api.BranchManager;
 import org.chronos.chronograph.api.branch.ChronoGraphBranchManager;
 import org.chronos.chronograph.api.branch.GraphBranch;
-import org.chronos.chronograph.api.structure.ChronoGraph;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
 
 import com.google.common.collect.Maps;
 
@@ -20,14 +20,14 @@ public class ChronoGraphBranchManagerImpl implements ChronoGraphBranchManager {
 	// FIELDS
 	// =====================================================================================================================
 
-	private final ChronoGraph graph;
+	private final ChronoGraphInternal graph;
 	private final Map<Branch, GraphBranch> backingBranchToGraphBranch;
 
 	// =====================================================================================================================
 	// CONSTRUCTOR
 	// =====================================================================================================================
 
-	public ChronoGraphBranchManagerImpl(final ChronoGraph graph) {
+	public ChronoGraphBranchManagerImpl(final ChronoGraphInternal graph) {
 		checkNotNull(graph, "Precondition violation - argument 'graph' must not be NULL!");
 		this.graph = graph;
 		this.backingBranchToGraphBranch = Maps.newHashMap();

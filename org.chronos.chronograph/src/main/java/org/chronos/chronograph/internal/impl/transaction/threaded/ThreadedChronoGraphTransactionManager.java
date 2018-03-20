@@ -3,6 +3,7 @@ package org.chronos.chronograph.internal.impl.transaction.threaded;
 import java.util.Date;
 
 import org.apache.tinkerpop.gremlin.structure.util.AbstractThreadedTransaction;
+import org.apache.tinkerpop.gremlin.structure.util.TransactionException;
 import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransaction;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransactionManager;
@@ -159,6 +160,7 @@ public class ThreadedChronoGraphTransactionManager extends AbstractThreadedTrans
 	@Override
 	protected void doRollback() throws TransactionException {
 		this.tx.rollback();
+		this.owningGraph.close();
 	}
 
 }

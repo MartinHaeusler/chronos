@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 
 import org.chronos.chronodb.api.MaintenanceManager;
 import org.chronos.chronodb.internal.api.BranchInternal;
-import org.chronos.chronodb.internal.api.Lockable.LockHolder;
+import org.chronos.common.autolock.AutoLock;
 
 public class ChunkDbMaintenanceManager implements MaintenanceManager {
 
@@ -59,7 +59,7 @@ public class ChunkDbMaintenanceManager implements MaintenanceManager {
 	public void performRolloverOnAllBranches() {
 		this.rolloverLock.lock();
 		try {
-			try (LockHolder lock = this.owningDB.lockExclusive()) {
+			try (AutoLock lock = this.owningDB.lockExclusive()) {
 				// note: JavaDoc states explicitly that this method does not require ACID safety,
 				// so it's ok to roll over the branches one by one.
 				for (String branchName : this.owningDB.getBranchManager().getBranchNames()) {
@@ -76,7 +76,7 @@ public class ChunkDbMaintenanceManager implements MaintenanceManager {
 		checkNotNull(branchPredicate, "Precondition violation - argument 'branchPredicate' must not be NULL!");
 		this.rolloverLock.lock();
 		try {
-			try (LockHolder lock = this.owningDB.lockExclusive()) {
+			try (AutoLock lock = this.owningDB.lockExclusive()) {
 				// note: JavaDoc states explicitly that this method does not require ACID safety,
 				// so it's ok to roll over the branches one by one.
 				for (String branchName : this.owningDB.getBranchManager().getBranchNames()) {

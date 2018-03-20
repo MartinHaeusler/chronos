@@ -10,7 +10,8 @@ import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.internal.api.configuration.ChronoGraphConfiguration;
 import org.chronos.chronograph.internal.impl.structure.graph.StandardChronoGraph;
 
-public abstract class AbstractChronoGraphFinalizableBuilder<SELF extends ChronoGraphFinalizableBuilder<?>> extends AbstractChronoGraphBuilder<SELF> implements ChronoGraphFinalizableBuilder<SELF> {
+public abstract class AbstractChronoGraphFinalizableBuilder<SELF extends ChronoGraphFinalizableBuilder<?>>
+		extends AbstractChronoGraphBuilder<SELF> implements ChronoGraphFinalizableBuilder<SELF> {
 
 	protected AbstractChronoGraphFinalizableBuilder() {
 		// default properties for the graph
@@ -20,17 +21,24 @@ public abstract class AbstractChronoGraphFinalizableBuilder<SELF extends ChronoG
 
 	@Override
 	public SELF withIdExistenceCheckOnAdd(final boolean enableIdExistenceCheckOnAdd) {
-		return this.withProperty(ChronoGraphConfiguration.TRANSACTION_CHECK_ID_EXISTENCE_ON_ADD, String.valueOf(enableIdExistenceCheckOnAdd));
+		return this.withProperty(ChronoGraphConfiguration.TRANSACTION_CHECK_ID_EXISTENCE_ON_ADD,
+				String.valueOf(enableIdExistenceCheckOnAdd));
 	}
 
 	@Override
 	public SELF withTransactionAutoStart(final boolean enableAutoStartTransactions) {
-		return this.withProperty(ChronoGraphConfiguration.TRANSACTION_AUTO_OPEN, String.valueOf(enableAutoStartTransactions));
+		return this.withProperty(ChronoGraphConfiguration.TRANSACTION_AUTO_OPEN,
+				String.valueOf(enableAutoStartTransactions));
 	}
 
 	@Override
 	public SELF withBlindOverwriteProtection(final boolean enableBlindOverwriteProtection) {
-		return this.withProperty(ChronoDBConfiguration.ENABLE_BLIND_OVERWRITE_PROTECTION, String.valueOf(enableBlindOverwriteProtection));
+		if (enableBlindOverwriteProtection) {
+			return this.withProperty(ChronoDBConfiguration.COMMIT_CONFLICT_RESOLUTION_STRATEGY, "DO_NOT_MERGE");
+		} else {
+			return this.withProperty(ChronoDBConfiguration.COMMIT_CONFLICT_RESOLUTION_STRATEGY,
+					"OVERWRITE_WITH_SOURCE");
+		}
 	}
 
 	@Override

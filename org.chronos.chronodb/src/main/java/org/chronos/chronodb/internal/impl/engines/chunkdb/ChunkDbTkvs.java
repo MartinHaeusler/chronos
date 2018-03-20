@@ -24,6 +24,7 @@ import org.chronos.chronodb.internal.impl.mapdb.MapDBTransaction;
 import org.chronos.chronodb.internal.impl.temporal.UnqualifiedTemporalEntry;
 import org.chronos.chronodb.internal.impl.temporal.UnqualifiedTemporalKey;
 import org.chronos.chronodb.internal.impl.tupl.TuplTransaction;
+import org.chronos.common.autolock.AutoLock;
 import org.chronos.common.exceptions.ChronosIOException;
 import org.mapdb.Serializer;
 
@@ -52,7 +53,7 @@ public class ChunkDbTkvs extends AbstractTemporalKeyValueStore {
 
 	@Override
 	protected long getNowInternal() {
-		try (LockHolder lock = this.lockNonExclusive()) {
+		try (AutoLock lock = this.lockNonExclusive()) {
 			if (this.cachedNowTimestamp == null) {
 				Long storedNowTimestamp = null;
 				try (TuplTransaction tx = this.getOwningDB().openTx()) {
@@ -79,7 +80,7 @@ public class ChunkDbTkvs extends AbstractTemporalKeyValueStore {
 
 	@Override
 	protected void setNow(final long timestamp) {
-		try (LockHolder lock = this.lockBranchExclusive()) {
+		try (AutoLock lock = this.lockBranchExclusive()) {
 			// invalidate cache
 			this.cachedNowTimestamp = null;
 			try (TuplTransaction tx = this.getOwningDB().openTx()) {
@@ -141,7 +142,7 @@ public class ChunkDbTkvs extends AbstractTemporalKeyValueStore {
 
 	public void performRollover() {
 		long now = this.getNow();
-		try (LockHolder lock = this.getOwningDB().lockExclusive()) {
+		try (AutoLock lock = this.getOwningDB().lockExclusive()) {
 			// record the rollover timestamp
 			long timestamp = System.currentTimeMillis();
 			if (now == timestamp) {

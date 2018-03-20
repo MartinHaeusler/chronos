@@ -1,7 +1,7 @@
 package org.chronos.chronograph.internal.impl.structure.graph.features;
 
 import org.apache.tinkerpop.gremlin.structure.Graph;
-import org.chronos.chronograph.api.structure.ChronoGraph;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
 
 class ChronoGraphEdgePropertyFeatures extends AbstractChronoGraphFeature
 		implements Graph.Features.EdgePropertyFeatures {
@@ -10,7 +10,7 @@ class ChronoGraphEdgePropertyFeatures extends AbstractChronoGraphFeature
 	// GENERAL
 	// =====================================================================================
 
-	protected ChronoGraphEdgePropertyFeatures(final ChronoGraph graph) {
+	protected ChronoGraphEdgePropertyFeatures(final ChronoGraphInternal graph) {
 		super(graph);
 	}
 

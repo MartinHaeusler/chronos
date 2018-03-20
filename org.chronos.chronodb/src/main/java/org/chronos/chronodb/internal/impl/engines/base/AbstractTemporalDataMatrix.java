@@ -17,7 +17,8 @@ public abstract class AbstractTemporalDataMatrix implements TemporalDataMatrix {
 
 	protected AbstractTemporalDataMatrix(final String keyspace, final long creationTimestamp) {
 		checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
-		checkArgument(creationTimestamp >= 0, "Precondition violation - argument 'creationTimestamp' must not be negative!");
+		checkArgument(creationTimestamp >= 0,
+				"Precondition violation - argument 'creationTimestamp' must not be negative!");
 		this.keyspace = keyspace;
 		this.creationTimestamp = creationTimestamp;
 	}
@@ -34,12 +35,23 @@ public abstract class AbstractTemporalDataMatrix implements TemporalDataMatrix {
 
 	@Override
 	public Iterator<Long> getCommitTimestampsBetween(final long timestampLowerBound, final long timestampUpperBound) {
-		checkArgument(timestampLowerBound >= 0, "Precondition violation - argument 'timestampLowerBound' must not be negative!");
-		checkArgument(timestampUpperBound >= 0, "Precondition violation - argument 'timestampUpperBound' must not be negative!");
-		checkArgument(timestampLowerBound <= timestampUpperBound, "Precondition violation - argument 'timestampLowerBound' must be less than or equal to 'timestampUpperBound'!");
+		checkArgument(timestampLowerBound >= 0,
+				"Precondition violation - argument 'timestampLowerBound' must not be negative!");
+		checkArgument(timestampUpperBound >= 0,
+				"Precondition violation - argument 'timestampUpperBound' must not be negative!");
+		checkArgument(timestampLowerBound <= timestampUpperBound,
+				"Precondition violation - argument 'timestampLowerBound' must be less than or equal to 'timestampUpperBound'!");
 		Iterator<TemporalKey> iterator = this.getModificationsBetween(timestampLowerBound, timestampUpperBound);
 		Iterator<Long> timestamps = Iterators.transform(iterator, tk -> tk.getTimestamp());
 		return IteratorUtils.unique(timestamps);
+	}
+
+	@Override
+	public Iterator<String> getChangedKeysAtCommit(final long commitTimestamp) {
+		checkArgument(commitTimestamp >= 0,
+				"Precondition violation - argument 'commitTimestamp' must not be negative!");
+		Iterator<TemporalKey> iterator = this.getModificationsBetween(commitTimestamp, commitTimestamp);
+		return Iterators.transform(iterator, tk -> tk.getKey());
 	}
 
 }

@@ -5,7 +5,8 @@ import java.io.File;
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.api.DuplicateVersionEliminationMode;
-import org.chronos.chronodb.api.exceptions.ChronoDBCommitException;
+import org.chronos.chronodb.api.conflict.ConflictResolutionStrategy;
+import org.chronos.chronodb.api.exceptions.ChronoDBCommitConflictException;
 import org.chronos.chronodb.internal.util.ChronosBackend;
 import org.chronos.common.configuration.ChronosConfiguration;
 
@@ -131,31 +132,35 @@ public interface ChronoDBConfiguration extends ChronosConfiguration {
 	public static final String ASSUME_CACHE_VALUES_ARE_IMMUTABLE = NS_DOT + "cache.assumeValuesAreImmutable";
 
 	/**
-	 * Enables or disables the protection from "blind overwrites".
+	 * Sets the {@link ConflictResolutionStrategy} to use in this database instance.
 	 *
 	 * <p>
-	 * Blind overwrites are the temporal "siblings" of the "lost update" anomaly in regular ACID databases. A blind
-	 * overwrite occurs when there are two transactions, T1 and T2, which modify the same key-value pair P. Let's assume
-	 * that T1 has committed first, and T2 wants to commit. T2 never had the chance to read the value of P that T1 has
-	 * just written. If we would allow T2 to commit, the value written by T1 would simply go unnoticed and be ignored.
-	 * This does not mean that the value written to P by T1 will be "lost", as it is still present in the versioning
-	 * system, but usually T2 calculates the new value of P based on the previous value, which would lead to wrong
-	 * results. This setting is a protection mechanism against such anomalies. Whenever there are concurrent
-	 * transactions that attempt to manipulate the value for the same key, only the first of these transactions will
-	 * succeed in its commit, all other transactions will be rejected and their callers will receive a
-	 * {@link ChronoDBCommitException}.
+	 * This setting can be overruled on a by-transaction-basis.
 	 *
 	 * <p>
-	 * Blind overwrite protection doesn't come for free and does have a performance impact for commits (not for reads).
-	 * Only disable this protection if you are absolutely sure that the aforementioned scenario either can not happen in
-	 * your use case, or is allowed to happen.
+	 * <b><u>/!\ WARNING /!\</u></b><br>
+	 * The values of this setting are <b>case sensitive</b>!
 	 *
 	 * <p>
-	 * Type: boolean<br>
-	 * Default value: true<br>
-	 * Maps to: {@link #isBlindOverwriteProtectionEnabled()}
+	 * Valid values for this setting are:
+	 * <ul>
+	 * <li><b>DO_NOT_RESOLVE</b>: Conflicts will not be resolved. Instead, a {@link ChronoDBCommitConflictException}
+	 * will be thrown in case of conflicts.
+	 * <li><b>OVERWRITE_WITH_SOURCE</b>: Conflicts are resolved by using the values provided by the transaction change
+	 * set. Existing conflicting values in the target branch will be overwritten. This is similar to a "force push".
+	 * <li><b>OVERWRITE_WITH_TARGET</b>: Conflicts are resolved by using the pre-existing values of conflicting keys
+	 * provided by the target branch.
+	 * <li><b>Custom Class Name</b>: Clients can provide their own implementation of the
+	 * {@link ConflictResolutionStrategy} class and specify the fully qualified class name here. ChronoDB will
+	 * instantiate this class (so it needs a visible default constructor) and use it for conflict resolution.
+	 * </ul>
+	 *
+	 * <p>
+	 * Type: String (fully qualified class name <i>or</i> one of the literals listed above)<br>
+	 * Default value: DO_NOT_RESOLVE<br>
+	 * Maps to: {@link #getConflictResolutionStrategy()}
 	 */
-	public static final String ENABLE_BLIND_OVERWRITE_PROTECTION = NS_DOT + "temporal.enableBlindOverwriteProtection";
+	public static final String COMMIT_CONFLICT_RESOLUTION_STRATEGY = NS_DOT + "conflictresolver";
 
 	/**
 	 * Compaction mechanism that discards a version of a key-value pair on commit if the value is identical to the
@@ -336,14 +341,15 @@ public interface ChronoDBConfiguration extends ChronosConfiguration {
 	public Integer getIndexQueryCacheMaxSize();
 
 	/**
-	 * Checks if blind overwrite protection is enabled on this {@link ChronoDB} instance or not.
+	 * Returns the conflict resolution strategy that will be applied in case of commit conflicts.
 	 *
 	 * <p>
-	 * Mapped by setting: {@value #ENABLE_BLIND_OVERWRITE_PROTECTION}
+	 * Please note that this is the <i>default</i> configuration for all transactions. This setting can be overwritten
+	 * by each individual transaction.
 	 *
-	 * @return <code>true</code> if blind overwrite protection is enabled, otherwise <code>false</code>.
+	 * @return The conflict resolution strategy. Never <code>null</code>.
 	 */
-	public boolean isBlindOverwriteProtectionEnabled();
+	public ConflictResolutionStrategy getConflictResolutionStrategy();
 
 	/**
 	 * Returns the {@link DuplicateVersionEliminationMode} used by this {@link ChronoDB} instance.

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="itlandscape" nsURI="http://www.example.org/itlandscape" nsPrefix="itlandscape">
+  <eClassifiers xsi:type="ecore:EClass" name="Storage" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PhysicalMachine" eSuperTypes="#//Host">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="uses" ordered="false" upperBound="-1"
+        eType="#//Storage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuCores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="1"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clockRateGhz" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ramGB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Cluster" eSuperTypes="#//VirtualHost">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="highAvailability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="loadBalancing" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VirtualMachine" eSuperTypes="#//VirtualHost">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuCores" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="4"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ramGB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clockRateGhz" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"
+        defaultValueLiteral="0.0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Application" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runsOn" ordered="false"
+        upperBound="-1" eType="#//Host"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="accesses" ordered="false"
+        upperBound="-1" eType="#//Database"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependsOn" ordered="false"
+        upperBound="-1" eType="#//Application"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Service" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dependsOn" ordered="false"
+        upperBound="-1" eType="#//Application"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Database" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runsOn" ordered="false"
+        upperBound="-1" eType="#//Host"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Host" abstract="true" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ip" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operatingSystem" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VirtualHost" abstract="true" eSuperTypes="#//Host">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runsOn" ordered="false"
+        upperBound="-1" eType="#//Host"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sla" eType="#//ServiceLevelAgreement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ServiceLevelAgreement">
+    <eLiterals name="BEST_EFFORT"/>
+    <eLiterals name="BRONZE" value="1" literal="BRONZE"/>
+    <eLiterals name="SILVER" value="2"/>
+    <eLiterals name="GOLD" value="3"/>
+  </eClassifiers>
+</ecore:EPackage>

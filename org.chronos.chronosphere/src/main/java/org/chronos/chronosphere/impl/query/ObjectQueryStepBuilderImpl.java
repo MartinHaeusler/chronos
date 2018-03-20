@@ -1,87 +1,74 @@
 package org.chronos.chronosphere.impl.query;
 
-import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
 import org.chronos.chronosphere.api.query.EObjectQueryStepBuilder;
 import org.chronos.chronosphere.api.query.NumericQueryStepBuilder;
 import org.chronos.chronosphere.api.query.QueryStepBuilder;
-import org.chronos.chronosphere.api.query.QueryStepBuilderInternal;
 import org.chronos.chronosphere.api.query.UntypedQueryStepBuilder;
-import org.eclipse.emf.ecore.EObject;
+import org.chronos.chronosphere.impl.query.steps.eobject.EObjectQueryAsEObjectStepBuilder;
+import org.chronos.chronosphere.impl.query.steps.numeric.*;
+import org.chronos.chronosphere.impl.query.steps.object.ObjectQueryAsBooleanStepBuilder;
+import org.chronos.chronosphere.impl.query.steps.object.ObjectQueryAsCharacterStepBuilder;
+import org.chronos.chronosphere.impl.query.traversal.TraversalChainElement;
 
-public class ObjectQueryStepBuilderImpl<S, E> extends AbstractQueryStepBuilder<S, E>
-		implements UntypedQueryStepBuilder<S, E> {
+import java.util.function.Predicate;
 
-	public ObjectQueryStepBuilderImpl(final QueryStepBuilderInternal<S, ?> previous,
-			final GraphTraversal<?, E> traversal) {
-		super(previous, traversal);
-	}
+public abstract class ObjectQueryStepBuilderImpl<S, I, E> extends AbstractQueryStepBuilder<S, I, E> implements UntypedQueryStepBuilder<S, E> {
 
-	// =====================================================================================================================
-	// PUBLIC API
-	// =====================================================================================================================
+    public ObjectQueryStepBuilderImpl(final TraversalChainElement previous) {
+        super(previous);
+    }
 
-	@Override
-	public EObjectQueryStepBuilder<S> asEObject() {
-		this.assertModificationsAllowed();
-		GraphTraversal<?, EObject> traversal = this.getTraversal().filter(traverser -> {
-			Object value = traverser.get();
-			if (value == null) {
-				return false;
-			}
-			if (value instanceof EObject == false) {
-				return false;
-			}
-			return true;
-		}).map(traverser -> (EObject) traverser.get());
-		return new EObjectQueryStepBuilderImpl<S>(this, traversal);
-	}
+    // =====================================================================================================================
+    // PUBLIC API
+    // =====================================================================================================================
 
-	@Override
-	public QueryStepBuilder<S, Boolean> asBoolean() {
-		this.assertModificationsAllowed();
-		return new ObjectQueryStepBuilderImpl<S, Boolean>(this, this.castTraversalTo(Boolean.class));
-	}
+    @Override
+    public EObjectQueryStepBuilder<S> asEObject() {
+        return new EObjectQueryAsEObjectStepBuilder<>(this);
+    }
 
-	@Override
-	public NumericQueryStepBuilder<S, Byte> asByte() {
-		this.assertModificationsAllowed();
-		return new NumericQueryStepBuilderImpl<S, Byte>(this, this.castTraversalToNumeric(Number::byteValue));
-	}
+    @Override
+    public QueryStepBuilder<S, Boolean> asBoolean() {
+        return new ObjectQueryAsBooleanStepBuilder<>(this);
+    }
 
-	@Override
-	public NumericQueryStepBuilder<S, Short> asShort() {
-		this.assertModificationsAllowed();
-		return new NumericQueryStepBuilderImpl<S, Short>(this, this.castTraversalToNumeric(Number::shortValue));
-	}
+    @Override
+    public NumericQueryStepBuilder<S, Byte> asByte() {
+        return new NumericQueryAsByteStepBuilder<>(this);
+    }
 
-	@Override
-	public QueryStepBuilder<S, Character> asCharacter() {
-		this.assertModificationsAllowed();
-		return new ObjectQueryStepBuilderImpl<S, Character>(this, this.castTraversalTo(Character.class));
-	}
+    @Override
+    public NumericQueryStepBuilder<S, Short> asShort() {
+        return new NumericQueryAsShortStepBuilder<>(this);
+    }
 
-	@Override
-	public NumericQueryStepBuilder<S, Integer> asInteger() {
-		this.assertModificationsAllowed();
-		return new NumericQueryStepBuilderImpl<S, Integer>(this, this.castTraversalToNumeric(Number::intValue));
-	}
+    @Override
+    public QueryStepBuilder<S, Character> asCharacter() {
+        return new ObjectQueryAsCharacterStepBuilder<>(this);
+    }
 
-	@Override
-	public NumericQueryStepBuilder<S, Long> asLong() {
-		this.assertModificationsAllowed();
-		return new NumericQueryStepBuilderImpl<S, Long>(this, this.castTraversalToNumeric(Number::longValue));
-	}
+    @Override
+    public NumericQueryStepBuilder<S, Integer> asInteger() {
+        return new NumericQueryAsIntegerStepBuilder<>(this);
+    }
 
-	@Override
-	public NumericQueryStepBuilder<S, Float> asFloat() {
-		this.assertModificationsAllowed();
-		return new NumericQueryStepBuilderImpl<S, Float>(this, this.castTraversalToNumeric(Number::floatValue));
-	}
+    @Override
+    public NumericQueryStepBuilder<S, Long> asLong() {
+        return new NumericQueryAsLongStepBuilder<>(this);
+    }
 
-	@Override
-	public NumericQueryStepBuilder<S, Double> asDouble() {
-		this.assertModificationsAllowed();
-		return new NumericQueryStepBuilderImpl<S, Double>(this, this.castTraversalToNumeric(Number::doubleValue));
-	}
+    @Override
+    public NumericQueryStepBuilder<S, Float> asFloat() {
+        return new NumericQueryAsFloatStepBuilder<>(this);
+    }
 
+    @Override
+    public NumericQueryStepBuilder<S, Double> asDouble() {
+        return new NumericQueryAsDoubleStepBuilder<>(this);
+    }
+
+    @Override
+    public UntypedQueryStepBuilder<S, E> filter(final Predicate<E> predicate) {
+        return (UntypedQueryStepBuilder<S, E>) super.filter(predicate);
+    }
 }

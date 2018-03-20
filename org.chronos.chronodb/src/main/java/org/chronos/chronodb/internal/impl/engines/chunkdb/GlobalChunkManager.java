@@ -118,7 +118,8 @@ public class GlobalChunkManager {
 				branchMetadataFile.createNewFile();
 				BranchMetadataFile.write(branchMetadata, branchMetadataFile);
 			} catch (ChronosIOException | IOException e) {
-				throw new ChronosIOException("Failed to create branch metadata file for branch '" + branchMetadata.getName() + "' (directory: " + branchMetadata.getDirectoryName() + ")!", e);
+				throw new ChronosIOException("Failed to create branch metadata file for branch '"
+						+ branchMetadata.getName() + "' (directory: " + branchMetadata.getDirectoryName() + ")!", e);
 			}
 			BranchChunkManager newBranchManager = new BranchChunkManager(masterBranchDir);
 			this.getBranchNameToChunkManager().put(branchMetadata.getName(), newBranchManager);
@@ -137,6 +138,21 @@ public class GlobalChunkManager {
 			// get the correct chunk
 			ChronoChunk chunk = this.getChunkManagerForBranch(branch).getChunkForTimestamp(timestamp);
 			TuplTransaction innerTransaction = this.openTransactionOn(chunk.getDataFile());
+			return new ChunkTuplTransaction(innerTransaction, chunk.getMetaData().getValidPeriod());
+		} finally {
+			this.dbLock.unlock();
+		}
+	}
+
+	public ChunkTuplTransaction openBogusTransactionOn(final String branch, final long timestamp) {
+		checkNotNull(branch, "Precondition violation - argument 'branch' must not be NULL!");
+		checkArgument(timestamp >= 0, "Precondition violation - argument 'timestamp' must not be negative!");
+		this.ensureInitialized();
+		this.dbLock.lock();
+		try {
+			// get the correct chunk
+			ChronoChunk chunk = this.getChunkManagerForBranch(branch).getChunkForTimestamp(timestamp);
+			TuplTransaction innerTransaction = this.openBogusTransactionOn(chunk.getDataFile());
 			return new ChunkTuplTransaction(innerTransaction, chunk.getMetaData().getValidPeriod());
 		} finally {
 			this.dbLock.unlock();
@@ -164,7 +180,8 @@ public class GlobalChunkManager {
 	 * Ensures that there is no open {@link DB MapDB} instance on the given file.
 	 *
 	 * <p>
-	 * This method assumes that the caller has asserted that there are no open transactions left on the MapDB instance. If there still are open transactions, an {@link IllegalStateException} will be thrown.
+	 * This method assumes that the caller has asserted that there are no open transactions left on the MapDB instance.
+	 * If there still are open transactions, an {@link IllegalStateException} will be thrown.
 	 *
 	 * @param dbFile
 	 *            The file to assert for that the corresponding MapDB instance is closed.
@@ -200,7 +217,8 @@ public class GlobalChunkManager {
 	 *
 	 * <p>
 	 * <b><u>/!\ WARNING /!\</u></b><br>
-	 * This is a <u>potentially dangerous</u> operation that can threaten the ACID safety of operations. It should only be used during DB migrations or explicit maintenance periods! Use at your own risk!
+	 * This is a <u>potentially dangerous</u> operation that can threaten the ACID safety of operations. It should only
+	 * be used during DB migrations or explicit maintenance periods! Use at your own risk!
 	 */
 	public void reloadChunksFromDisk() {
 		this.getBranchNameToChunkManager().clear();

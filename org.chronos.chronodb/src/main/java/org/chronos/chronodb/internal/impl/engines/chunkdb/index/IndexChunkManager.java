@@ -36,7 +36,7 @@ import org.chronos.chronodb.internal.impl.tupl.TuplTransaction;
 import org.chronos.chronodb.internal.util.MultiMapUtil;
 import org.chronos.chronodb.internal.util.concurrent.ResolvedFuture;
 import org.chronos.common.logging.ChronoLogger;
-import org.chronos.common.util.LRUCacheUtil;
+import org.chronos.common.util.CacheUtils;
 
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Maps;
@@ -64,7 +64,7 @@ public class IndexChunkManager {
 		checkNotNull(owningDB, "Precondition violation - argument 'owningDB' must not be NULL!");
 		this.owningDB = owningDB;
 		int indexLruCacheSize = 20; // TODO make configurable
-		this.chunkToIndex = LRUCacheUtil.build(indexLruCacheSize, this::loadChunkIndex);
+		this.chunkToIndex = CacheUtils.buildLRU(indexLruCacheSize, this::loadChunkIndex);
 	}
 
 	// =====================================================================================================================
@@ -489,7 +489,7 @@ public class IndexChunkManager {
 			for (String key : keySet) {
 				Object object = tx.get(keyspace, key);
 				if (object == null) {
-					// as we build a new index for this chunk, we are not interested in elements that were deleted
+					// as we buildLRU a new index for this chunk, we are not interested in elements that were deleted
 					// before this chunk even started to exist.
 					continue;
 				}

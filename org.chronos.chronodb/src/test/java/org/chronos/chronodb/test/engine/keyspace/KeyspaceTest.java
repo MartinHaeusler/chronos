@@ -2,6 +2,10 @@ package org.chronos.chronodb.test.engine.keyspace;
 
 import static org.junit.Assert.*;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.api.ChronoDBTransaction;
@@ -11,6 +15,8 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 
 @Category(IntegrationTest.class)
 public class KeyspaceTest extends AllChronoDBBackendsTest {
@@ -83,4 +89,46 @@ public class KeyspaceTest extends AllChronoDBBackendsTest {
 		assertEquals(true, tx.exists("OperatingSystems", "OSX"));
 	}
 
+	@Test
+	public void parallelRequestsToKeysetWork() {
+		ChronoDB db = this.getChronoDB();
+		String keyspace = "myKeyspace";
+		int datasetSize = 10_000;
+		{ // insert test data
+			ChronoDBTransaction tx = db.tx();
+			for (int i = 0; i < datasetSize; i++) {
+				tx.put(keyspace, "" + i, i);
+			}
+			tx.commit();
+		}
+		int threadCount = 15;
+		Set<Thread> threads = Sets.newHashSet();
+		List<Throwable> exceptions = Collections.synchronizedList(Lists.newArrayList());
+		List<Thread> successfullyTerminatedThreads = Collections.synchronizedList(Lists.newArrayList());
+		for (int i = 0; i < threadCount; i++) {
+			Thread thread = new Thread(() -> {
+				try {
+					Set<String> keySet = db.tx().keySet(keyspace);
+					assertEquals(datasetSize, keySet.size());
+					successfullyTerminatedThreads.add(Thread.currentThread());
+				} catch (Throwable t) {
+					System.err.println("Error in Thread [" + Thread.currentThread().getName() + "]");
+					t.printStackTrace();
+					exceptions.add(t);
+				}
+			});
+			thread.setName("ReadWorker" + i);
+			threads.add(thread);
+			thread.start();
+		}
+		for (Thread thread : threads) {
+			try {
+				thread.join();
+			} catch (InterruptedException e) {
+				throw new RuntimeException("Waiting for thread was interrupted.", e);
+			}
+		}
+		assertTrue(exceptions.isEmpty());
+		assertEquals(threadCount, successfullyTerminatedThreads.size());
+	}
 }

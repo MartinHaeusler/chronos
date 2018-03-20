@@ -28,6 +28,7 @@ import org.chronos.benchmarks.util.statistics.ProbabilityDistribution;
 import org.chronos.chronodb.internal.api.cache.ChronoDBCache;
 import org.chronos.chronodb.internal.util.ChronosBackend;
 import org.chronos.chronograph.api.structure.ChronoGraph;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 import org.chronos.common.test.utils.TimeStatistics;
 import org.chronos.common.util.ObjectSizeCalculator;
@@ -105,10 +106,11 @@ public class ChronoGraphLongTermRolloverTest {
 	@Test
 	public void runBenchmark() {
 		// create the random distribution from test settings
-		System.out.println("Running Benchmark on backend [" + BACKEND + "]. Timestamp selection mode is: " + READ_TIMESTAMP_SELECTION);
+		System.out.println("Running Benchmark on backend [" + BACKEND + "]. Timestamp selection mode is: "
+				+ READ_TIMESTAMP_SELECTION);
 
 		// instantiate the graph
-		ChronoGraph graph = instantiateChronoGraph();
+		ChronoGraphInternal graph = instantiateChronoGraph();
 
 		// load the base graph
 		GraphMetadata metadata = loadBaseGraphElementsFromFile(graph);
@@ -130,13 +132,15 @@ public class ChronoGraphLongTermRolloverTest {
 		// perform the individual iterations
 		for (int iteration = 0; iteration < ITERATIONS; iteration++) {
 			System.out.println("Iteration #" + (iteration + 1) + " of " + ITERATIONS);
-			System.out.print("\tModification Phase. Performing " + COMMITS_PER_ITERATION + " commits (commit size: " + MODIFICATIONS_PER_COMMIT + " changes)   ");
+			System.out.print("\tModification Phase. Performing " + COMMITS_PER_ITERATION + " commits (commit size: "
+					+ MODIFICATIONS_PER_COMMIT + " changes)   ");
 			for (int commit = 0; commit < COMMITS_PER_ITERATION; commit++) {
 				System.out.print(".");
 				performRandomGraphMutations(graph, metadata);
 			}
 			System.out.println();
-			System.out.println("\tGraph after modifications: V: " + metadata.getVertexCount() + ", E: " + metadata.getEdgeCount());
+			System.out.println(
+					"\tGraph after modifications: V: " + metadata.getVertexCount() + ", E: " + metadata.getEdgeCount());
 			// advance the upper bound of the time range
 			timestampUpperBound = graph.getNow();
 			headChunkUpperBound = timestampUpperBound;
@@ -149,8 +153,10 @@ public class ChronoGraphLongTermRolloverTest {
 			System.gc();
 			System.gc();
 			for (int read = 0; read < READS_PER_ITERATION; read++) {
-				long timestamp = selectTransactionTimestamp(timestampLowerBound, timestampUpperBound, headChunkLowerBound, headChunkUpperBound);
-				System.out.println("\t\tRead #" + (read + 1) + " of " + READS_PER_ITERATION + " at timestamp [begin]+" + (timestamp - timestampLowerBound));
+				long timestamp = selectTransactionTimestamp(timestampLowerBound, timestampUpperBound,
+						headChunkLowerBound, headChunkUpperBound);
+				System.out.println("\t\tRead #" + (read + 1) + " of " + READS_PER_ITERATION + " at timestamp [begin]+"
+						+ (timestamp - timestampLowerBound));
 				List<String> vertexIdsAtTimestamp = Lists.newArrayList();
 				graph.tx().open(timestamp);
 				try {
@@ -159,9 +165,13 @@ public class ChronoGraphLongTermRolloverTest {
 					graph.tx().rollback();
 				}
 				Collections.shuffle(vertexIdsAtTimestamp);
-				List<String> chosenVertexIds = vertexIdsAtTimestamp.subList(0, VERTEX_IDS_TO_CALCULATE_CLUSTER_COEFFICIENT_FOR);
+				List<String> chosenVertexIds = vertexIdsAtTimestamp.subList(0,
+						VERTEX_IDS_TO_CALCULATE_CLUSTER_COEFFICIENT_FOR);
 				if (chosenVertexIds.size() < VERTEX_IDS_TO_CALCULATE_CLUSTER_COEFFICIENT_FOR) {
-					throw new IllegalStateException("Could not select " + VERTEX_IDS_TO_CALCULATE_CLUSTER_COEFFICIENT_FOR + " random vertex IDs to calculate the local cluster coefficient for; " + "please reduce the weight on vertex deletions or increase the weight on vertex additions.");
+					throw new IllegalStateException("Could not select "
+							+ VERTEX_IDS_TO_CALCULATE_CLUSTER_COEFFICIENT_FOR
+							+ " random vertex IDs to calculate the local cluster coefficient for; "
+							+ "please reduce the weight on vertex deletions or increase the weight on vertex additions.");
 				}
 				statistics.beginRun();
 				sum += performReads(graph, chosenVertexIds, timestamp);
@@ -171,12 +181,14 @@ public class ChronoGraphLongTermRolloverTest {
 			System.out.println("\tRead Statistics: " + statistics.toCSV());
 			currentQueryTimeStatistics.add(statistics);
 			printStatistics(rolloverCountToQueryStatistics, rolloverStatistics);
-			System.out.println("Current Change Event Distribution: " + calculateModificationDistribution(metadata).toString());
+			System.out.println(
+					"Current Change Event Distribution: " + calculateModificationDistribution(metadata).toString());
 			ChronoDBCache cache = graph.getBackingDB().getCache();
 			System.out.println("Cache Statistics: " + cache.getStatistics().toString());
 			System.out.println("Cache Size (Element Count):  " + cache.size());
 			if (CALCULATE_CACHE_SIZE) {
-				System.out.println("Cache Size (Calculated): " + FileUtils.byteCountToDisplaySize(ObjectSizeCalculator.getObjectSize(cache)));
+				System.out.println("Cache Size (Calculated): "
+						+ FileUtils.byteCountToDisplaySize(ObjectSizeCalculator.getObjectSize(cache)));
 			} else {
 				System.out.println("Cache Size (Calculated): <CALCULATION DISABLED>");
 			}
@@ -204,7 +216,7 @@ public class ChronoGraphLongTermRolloverTest {
 	// INTERNAL HELPER METHODS
 	// =====================================================================================================================
 
-	private static ChronoGraph instantiateChronoGraph() {
+	private static ChronoGraphInternal instantiateChronoGraph() {
 		try {
 			File tempDir = java.nio.file.Files.createTempDirectory("ChronoGraphTest").toFile();
 			tempDir.deleteOnExit();
@@ -221,7 +233,7 @@ public class ChronoGraphLongTermRolloverTest {
 			config.setProperty("org.chronos.chronodb.cache.maxSize", String.valueOf(CACHE_SIZE_BYTES));
 			config.setProperty("org.chronos.chronograph.transaction.checkIdExistenceOnAdd", "false");
 			config.setProperty("org.chronos.chronograph.transaction.autoOpen", "true");
-			return ChronoGraph.FACTORY.create().fromConfiguration(config).build();
+			return (ChronoGraphInternal) ChronoGraph.FACTORY.create().fromConfiguration(config).build();
 		} catch (IOException e) {
 			throw new RuntimeException("Failed to create temp directory!", e);
 		}
@@ -230,7 +242,8 @@ public class ChronoGraphLongTermRolloverTest {
 	private static GraphMetadata loadBaseGraphElementsFromFile(final Graph g) {
 		try {
 			Set<String> vertexIds = Sets.newHashSet();
-			List<String> lines = FileUtils.readLines(new File(IncreasingVersionCountReadWrite.class.getResource("/100kVertices300kEdgesGraphUniformlyRandomNoSelfEdges.txt").getFile()));
+			List<String> lines = FileUtils.readLines(new File(IncreasingVersionCountReadWrite.class
+					.getResource("/100kVertices300kEdgesGraphUniformlyRandomNoSelfEdges.txt").getFile()));
 			int edgeCount = 0;
 			for (String line : lines) {
 				String[] split = line.split(";");
@@ -295,7 +308,8 @@ public class ChronoGraphLongTermRolloverTest {
 		}
 	}
 
-	private static long selectTransactionTimestamp(final long min, final long max, final long headChunkMin, final long headChunkMax) {
+	private static long selectTransactionTimestamp(final long min, final long max, final long headChunkMin,
+			final long headChunkMax) {
 		switch (READ_TIMESTAMP_SELECTION) {
 		case ALWAYS_HALFWAY:
 			return min + (max - min) / 2;
@@ -312,7 +326,8 @@ public class ChronoGraphLongTermRolloverTest {
 		}
 	}
 
-	private static ProbabilityDistribution<Modification> calculateModificationDistribution(final GraphMetadata metadata) {
+	private static ProbabilityDistribution<Modification> calculateModificationDistribution(
+			final GraphMetadata metadata) {
 		int vertexCount = metadata.getVertexCount();
 		int edgeCount = metadata.getEdgeCount();
 		int weightOfAddVertex = GRAPH__MAX_VERTEX_COUNT - vertexCount;
@@ -323,7 +338,7 @@ public class ChronoGraphLongTermRolloverTest {
 		// by the distribution builder.
 		ProbabilityDistribution<Modification> distribution = ProbabilityDistribution
 				// create a discrete distribution
-				.<Modification> discrete()
+				.<Modification>discrete()
 				//
 				.event(Modification.ADD_VERTEX, weightOfAddVertex)
 				//
@@ -446,16 +461,20 @@ public class ChronoGraphLongTermRolloverTest {
 		int neighborhoodSize = neighborhood.size();
 		Set<Edge> interNeighborhoodEdges = Sets.newHashSet();
 		for (Vertex v : neighborhood) {
-			Iterator<Edge> outEdgesWithinNeighborhood = Iterators.filter(v.edges(Direction.OUT), edge -> neighborhood.contains(edge.inVertex()));
-			Iterator<Edge> inEdgesWithinNeighborhood = Iterators.filter(v.edges(Direction.IN), edge -> neighborhood.contains(edge.outVertex()));
+			Iterator<Edge> outEdgesWithinNeighborhood = Iterators.filter(v.edges(Direction.OUT),
+					edge -> neighborhood.contains(edge.inVertex()));
+			Iterator<Edge> inEdgesWithinNeighborhood = Iterators.filter(v.edges(Direction.IN),
+					edge -> neighborhood.contains(edge.outVertex()));
 			outEdgesWithinNeighborhood.forEachRemaining(e -> interNeighborhoodEdges.add(e));
 			inEdgesWithinNeighborhood.forEachRemaining(e -> interNeighborhoodEdges.add(e));
 		}
-		double clusterCoefficient = (double) 2 * interNeighborhoodEdges.size() / (neighborhoodSize * (neighborhoodSize - 1));
+		double clusterCoefficient = (double) 2 * interNeighborhoodEdges.size()
+				/ (neighborhoodSize * (neighborhoodSize - 1));
 		return clusterCoefficient;
 	}
 
-	private static void printStatistics(final Map<Integer, List<TimeStatistics>> rolloverCountToQueryStats, final TimeStatistics rolloverStats) {
+	private static void printStatistics(final Map<Integer, List<TimeStatistics>> rolloverCountToQueryStats,
+			final TimeStatistics rolloverStats) {
 		System.out.println();
 		System.out.println();
 		System.out.println("=============================================================");
@@ -471,7 +490,8 @@ public class ChronoGraphLongTermRolloverTest {
 			{
 				int rolloverIndex = 1;
 				for (Double rollovertime : rolloverStats.getRuntimes()) {
-					System.out.println("Rollover #" + rolloverIndex + ": " + String.format("%3.2f", rollovertime) + "ms");
+					System.out
+							.println("Rollover #" + rolloverIndex + ": " + String.format("%3.2f", rollovertime) + "ms");
 					rolloverIndex++;
 				}
 			}
@@ -485,7 +505,8 @@ public class ChronoGraphLongTermRolloverTest {
 					System.out.println("Rollover #" + i + ": <NO DATA>");
 				} else {
 					for (int j = 0; j < timeStatistics.size(); j++) {
-						System.out.println("Rollover #" + i + ", Run #" + (j + 1) + ": " + timeStatistics.get(j).toCSV());
+						System.out
+								.println("Rollover #" + i + ", Run #" + (j + 1) + ": " + timeStatistics.get(j).toCSV());
 					}
 				}
 			}
@@ -496,7 +517,11 @@ public class ChronoGraphLongTermRolloverTest {
 		System.out.println("Total Memory: " + FileUtils.byteCountToDisplaySize(Runtime.getRuntime().totalMemory()));
 		System.out.println("Free Memory: " + FileUtils.byteCountToDisplaySize(Runtime.getRuntime().freeMemory()));
 		long uptime = ManagementFactory.getRuntimeMXBean().getUptime();
-		String uptimeHHMMSS = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(uptime), TimeUnit.MILLISECONDS.toMinutes(uptime) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(uptime)), TimeUnit.MILLISECONDS.toSeconds(uptime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(uptime)));
+		String uptimeHHMMSS = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(uptime),
+				TimeUnit.MILLISECONDS.toMinutes(uptime)
+						- TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(uptime)),
+				TimeUnit.MILLISECONDS.toSeconds(uptime)
+						- TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(uptime)));
 		System.out.println("Uptime: " + uptimeHHMMSS);
 		System.out.println();
 		System.out.println("=============================================================");

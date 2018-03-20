@@ -3,11 +3,11 @@ package org.chronos.chronograph.internal.impl.structure.graph.features;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.internal.impl.engines.inmemory.InMemoryChronoDB;
-import org.chronos.chronograph.api.structure.ChronoGraph;
+import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
 
 class ChronoGraphGraphFeatures extends AbstractChronoGraphFeature implements Graph.Features.GraphFeatures {
 
-	protected ChronoGraphGraphFeatures(final ChronoGraph graph) {
+	protected ChronoGraphGraphFeatures(final ChronoGraphInternal graph) {
 		super(graph);
 	}
 
@@ -26,7 +26,7 @@ class ChronoGraphGraphFeatures extends AbstractChronoGraphFeature implements Gra
 	@Override
 	public boolean supportsPersistence() {
 		// persistence support depends on the backend.
-		ChronoGraph graph = this.getGraph();
+		ChronoGraphInternal graph = this.getGraph();
 		ChronoDB db = graph.getBackingDB();
 		if (db instanceof InMemoryChronoDB) {
 			return false;

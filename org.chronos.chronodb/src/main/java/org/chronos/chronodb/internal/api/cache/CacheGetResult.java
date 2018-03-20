@@ -47,14 +47,17 @@ public interface CacheGetResult<T> {
 	 *
 	 * @param value
 	 *            The result value to return in {@link #getValue()} in the new instance.
+	 * @param validFrom
+	 *            The insertion timestamp of the given value into the store, i.e. the greatest change timestamp of the
+	 *            request key that is less than or equal to the transaction timestamp. Must not be negative.
 	 *
 	 * @return The newly created cache get result instance. Never <code>null</code>.
 	 *
 	 * @param <T>
 	 *            The data type of the value returned by {@link #getValue()}.
 	 */
-	public static <T> CacheGetResult<T> hit(final T value) {
-		return CacheGetResultImpl.getHit(value);
+	public static <T> CacheGetResult<T> hit(final T value, final long validFrom) {
+		return CacheGetResultImpl.getHit(value, validFrom);
 	}
 
 	/**
@@ -87,6 +90,22 @@ public interface CacheGetResult<T> {
 	 *             <code>false</code>) and <code>this.</code>{@link #getValue()} is called.
 	 */
 	public T getValue() throws CacheGetResultNotPresentException;
+
+	/**
+	 * Returns the timestamp from which onward the {@link #getValue() value} was valid in the store.
+	 *
+	 * <p>
+	 * Please note that the returned value will always be less than or equal to the timestamp of your current
+	 * transaction; newer values may have been set on this key after the transaction timestamp. Those newer timestamps
+	 * will not be reflected here. In other words, this method returns the greatest change timestamp of the request key
+	 * which is less than or equal to the transaction timestamp.
+	 *
+	 * @return The "valid from" timestamp of the key-value pair.
+	 * @throws CacheGetResultNotPresentException
+	 *             Thrown if this instance represents a cache miss (<code>this.</code>{@link #isHit()} returns
+	 *             <code>false</code>) and <code>this.</code>{@link #getValidFrom()} is called.
+	 */
+	public long getValidFrom() throws CacheGetResultNotPresentException;
 
 	/**
 	 * Checks if this cache result represents a "cache miss".

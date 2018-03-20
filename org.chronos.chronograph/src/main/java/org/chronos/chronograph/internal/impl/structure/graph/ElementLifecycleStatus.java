@@ -11,7 +11,9 @@ public enum ElementLifecycleStatus {
 	/** Properties of the element have changed. This includes also edge changes. */
 	PROPERTY_CHANGED,
 	/** Edges of the vertex have changed. Properties are unchanged so far. */
-	EDGE_CHANGED;
+	EDGE_CHANGED,
+	/** The element has been in state {@link #NEW}, but has been removed before ever being persisted. */
+	OBSOLETE;
 
 	public boolean isDirty() {
 		return this.equals(PERSISTED) == false;

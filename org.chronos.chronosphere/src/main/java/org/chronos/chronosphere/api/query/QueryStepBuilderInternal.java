@@ -1,16 +1,10 @@
 package org.chronos.chronosphere.api.query;
 
-import org.apache.tinkerpop.gremlin.process.traversal.dsl.graph.GraphTraversal;
-import org.chronos.chronosphere.internal.api.ChronoSphereTransactionInternal;
+import org.chronos.chronosphere.impl.query.traversal.TraversalChainElement;
 
 public interface QueryStepBuilderInternal<S, E> extends QueryStepBuilder<S, E> {
 
-	public void setTransaction(ChronoSphereTransactionInternal transaction);
+    public TraversalChainElement getPrevious();
 
-	public ChronoSphereTransactionInternal getTransaction();
-
-	public QueryStepBuilderInternal<S, ?> getPrevious();
-
-	public GraphTraversal<?, E> getTraversal();
-
+    void setPrevious(TraversalChainElement previous);
 }

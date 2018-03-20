@@ -1,8 +1,11 @@
 package org.chronos.chronodb.internal.impl.builder.database;
 
+import static com.google.common.base.Preconditions.*;
+
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.DuplicateVersionEliminationMode;
 import org.chronos.chronodb.api.builder.database.ChronoDBFinalizableBuilder;
+import org.chronos.chronodb.api.conflict.ConflictResolutionStrategy;
 import org.chronos.chronodb.internal.api.ChronoDBConfiguration;
 import org.chronos.chronodb.internal.api.ChronoDBFactoryInternal;
 
@@ -51,9 +54,9 @@ public abstract class AbstractChronoDBFinalizableBuilder<SELF extends ChronoDBFi
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public SELF withBlindOverwriteProtection(final boolean enableBlindOverwriteProtection) {
-		this.withProperty(ChronoDBConfiguration.ENABLE_BLIND_OVERWRITE_PROTECTION,
-				String.valueOf(enableBlindOverwriteProtection));
+	public SELF withConflictResolutionStrategy(final ConflictResolutionStrategy strategy) {
+		checkNotNull(strategy, "Precondition violation - argument 'strategy' must not be NULL!");
+		this.withProperty(ChronoDBConfiguration.COMMIT_CONFLICT_RESOLUTION_STRATEGY, strategy.getClass().getName());
 		return (SELF) this;
 	}
 

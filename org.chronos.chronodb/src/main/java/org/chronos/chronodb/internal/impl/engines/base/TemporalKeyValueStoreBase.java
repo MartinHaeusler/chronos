@@ -14,8 +14,9 @@ import org.chronos.chronodb.internal.api.MutableTransactionConfiguration;
 import org.chronos.chronodb.internal.api.TemporalKeyValueStore;
 import org.chronos.chronodb.internal.api.TransactionConfigurationInternal;
 import org.chronos.chronodb.internal.impl.DefaultTransactionConfiguration;
-import org.chronos.chronodb.internal.impl.lock.AbstractLockHolder;
 import org.chronos.chronodb.internal.util.ThreadBound;
+import org.chronos.common.autolock.AbstractAutoLock;
+import org.chronos.common.autolock.AutoLock;
 
 public abstract class TemporalKeyValueStoreBase implements TemporalKeyValueStore {
 
@@ -41,19 +42,19 @@ public abstract class TemporalKeyValueStoreBase implements TemporalKeyValueStore
 	 */
 	private final ReadWriteLock branchLock = new ReentrantReadWriteLock(true);
 
-	private final ThreadBound<LockHolder> nonExclusiveLockHolder = ThreadBound.createWeakReference();
-	private final ThreadBound<LockHolder> exclusiveLockHolder = ThreadBound.createWeakReference();
-	private final ThreadBound<LockHolder> branchExclusiveLockHolder = ThreadBound.createWeakReference();
+	private final ThreadBound<AutoLock> nonExclusiveLockHolder = ThreadBound.createWeakReference();
+	private final ThreadBound<AutoLock> exclusiveLockHolder = ThreadBound.createWeakReference();
+	private final ThreadBound<AutoLock> branchExclusiveLockHolder = ThreadBound.createWeakReference();
 
 	// =================================================================================================================
 	// BRANCH LOCKING
 	// =================================================================================================================
 
 	@Override
-	public LockHolder lockNonExclusive() {
-		LockHolder lockHolder = this.nonExclusiveLockHolder.get();
+	public AutoLock lockNonExclusive() {
+		AutoLock lockHolder = this.nonExclusiveLockHolder.get();
 		if (lockHolder == null) {
-			lockHolder = new NonExclusiveLockHolder();
+			lockHolder = new NonExclusiveAutoLock();
 			this.nonExclusiveLockHolder.set(lockHolder);
 		}
 		lockHolder.acquireLock();
@@ -61,10 +62,10 @@ public abstract class TemporalKeyValueStoreBase implements TemporalKeyValueStore
 	}
 
 	@Override
-	public LockHolder lockBranchExclusive() {
-		LockHolder lockHolder = this.branchExclusiveLockHolder.get();
+	public AutoLock lockBranchExclusive() {
+		AutoLock lockHolder = this.branchExclusiveLockHolder.get();
 		if (lockHolder == null) {
-			lockHolder = new BranchExclusiveLockHolder();
+			lockHolder = new BranchExclusiveAutoLock();
 			this.branchExclusiveLockHolder.set(lockHolder);
 		}
 		lockHolder.acquireLock();
@@ -72,10 +73,10 @@ public abstract class TemporalKeyValueStoreBase implements TemporalKeyValueStore
 	}
 
 	@Override
-	public LockHolder lockExclusive() {
-		LockHolder lockHolder = this.exclusiveLockHolder.get();
+	public AutoLock lockExclusive() {
+		AutoLock lockHolder = this.exclusiveLockHolder.get();
 		if (lockHolder == null) {
-			lockHolder = new ExclusiveLockHolder();
+			lockHolder = new ExclusiveAutoLock();
 			this.exclusiveLockHolder.set(lockHolder);
 		}
 		lockHolder.acquireLock();
@@ -94,7 +95,7 @@ public abstract class TemporalKeyValueStoreBase implements TemporalKeyValueStore
 	@Override
 	public ChronoDBTransaction tx(final TransactionConfigurationInternal configuration) {
 		checkNotNull(configuration, "Precondition violation - argument 'configuration' must not be NULL!");
-		try (LockHolder lock = this.lockNonExclusive()) {
+		try (AutoLock lock = this.lockNonExclusive()) {
 			String branchName = configuration.getBranch();
 			long timestamp;
 			if (configuration.isTimestampNow()) {
@@ -153,11 +154,11 @@ public abstract class TemporalKeyValueStoreBase implements TemporalKeyValueStore
 	// INNER CLASSES
 	// =====================================================================================================================
 
-	private class ExclusiveLockHolder extends AbstractLockHolder {
+	private class ExclusiveAutoLock extends AbstractAutoLock {
 
-		private final LockHolder dbLockHolder;
+		private final AutoLock dbLockHolder;
 
-		private ExclusiveLockHolder() {
+		private ExclusiveAutoLock() {
 			super();
 			// acquire the db lock holder...
 			this.dbLockHolder = TemporalKeyValueStoreBase.this.getOwningDB().lockExclusive();
@@ -179,11 +180,11 @@ public abstract class TemporalKeyValueStoreBase implements TemporalKeyValueStore
 
 	}
 
-	private class BranchExclusiveLockHolder extends AbstractLockHolder {
+	private class BranchExclusiveAutoLock extends AbstractAutoLock {
 
-		private final LockHolder dbLockHolder;
+		private final AutoLock dbLockHolder;
 
-		private BranchExclusiveLockHolder() {
+		private BranchExclusiveAutoLock() {
 			super();
 			// TODO c-39: We need to acquire the exclusive DB lock here to avoid deadlocks...
 			// acquire the db lock holder...
@@ -206,11 +207,11 @@ public abstract class TemporalKeyValueStoreBase implements TemporalKeyValueStore
 
 	}
 
-	private class NonExclusiveLockHolder extends AbstractLockHolder {
+	private class NonExclusiveAutoLock extends AbstractAutoLock {
 
-		private final LockHolder dbLockHolder;
+		private final AutoLock dbLockHolder;
 
-		private NonExclusiveLockHolder() {
+		private NonExclusiveAutoLock() {
 			super();
 			// acquire the db lock holder...
 			this.dbLockHolder = TemporalKeyValueStoreBase.this.getOwningDB().lockNonExclusive();

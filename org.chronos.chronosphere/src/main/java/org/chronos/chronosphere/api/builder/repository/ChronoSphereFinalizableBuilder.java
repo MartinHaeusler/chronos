@@ -10,7 +10,7 @@ public interface ChronoSphereFinalizableBuilder<SELF extends ChronoSphereFinaliz
 	 * Builds the {@link ChronoSphere} instance, using the properties specified by the fluent API.
 	 *
 	 * <p>
-	 * This method finalizes the build process. Afterwards, the builder should be discarded.
+	 * This method finalizes the buildLRU process. Afterwards, the builder should be discarded.
 	 *
 	 * @return The new {@link ChronoSphere} instance. Never <code>null</code>.
 	 */

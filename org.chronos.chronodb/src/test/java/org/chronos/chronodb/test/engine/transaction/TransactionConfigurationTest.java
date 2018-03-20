@@ -1,10 +1,12 @@
 package org.chronos.chronodb.test.engine.transaction;
 
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
 import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.api.ChronoDBTransaction;
+import org.chronos.chronodb.api.conflict.ConflictResolutionStrategy;
 import org.chronos.chronodb.api.exceptions.TransactionIsReadOnlyException;
 import org.chronos.chronodb.internal.impl.engines.base.ThreadSafeChronoDBTransaction;
 import org.chronos.chronodb.test.base.AllChronoDBBackendsTest;
@@ -23,12 +25,15 @@ public class TransactionConfigurationTest extends AllChronoDBBackendsTest {
 	}
 
 	@Test
-	public void configuringBlindOverwriteWorks() {
+	public void configuringConflictResolutionWorks() {
 		ChronoDB db = this.getChronoDB();
-		ChronoDBTransaction tx = db.txBuilder().withBlindOverwriteProtection(true).build();
-		assertTrue(tx.getConfiguration().isBlindOverwriteProtectionEnabled());
-		ChronoDBTransaction tx2 = db.txBuilder().withBlindOverwriteProtection(false).build();
-		assertFalse(tx2.getConfiguration().isBlindOverwriteProtectionEnabled());
+		ChronoDBTransaction tx = db.txBuilder().withConflictResolutionStrategy(ConflictResolutionStrategy.DO_NOT_MERGE)
+				.build();
+		assertThat(tx.getConfiguration().getConflictResolutionStrategy(), is(ConflictResolutionStrategy.DO_NOT_MERGE));
+		ChronoDBTransaction tx2 = db.txBuilder()
+				.withConflictResolutionStrategy(ConflictResolutionStrategy.OVERWRITE_WITH_SOURCE).build();
+		assertThat(tx2.getConfiguration().getConflictResolutionStrategy(),
+				is(ConflictResolutionStrategy.OVERWRITE_WITH_SOURCE));
 	}
 
 	@Test

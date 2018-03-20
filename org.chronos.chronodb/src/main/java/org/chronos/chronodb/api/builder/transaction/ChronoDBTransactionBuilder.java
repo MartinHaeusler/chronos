@@ -9,6 +9,7 @@ import org.chronos.chronodb.api.ChronoDB;
 import org.chronos.chronodb.api.ChronoDBConstants;
 import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.api.DuplicateVersionEliminationMode;
+import org.chronos.chronodb.api.conflict.ConflictResolutionStrategy;
 
 /**
  * This class represents a fluid builder API for the configuration and creation of {@link ChronoDBTransaction}
@@ -19,7 +20,7 @@ import org.chronos.chronodb.api.DuplicateVersionEliminationMode;
  *
  * <pre>
  * ChronoDB chronoDB = ...; // get some ChronoDB instance
- * ChronoDBTransaction transaction = chronoDB.txBuilder().onBranch("MyBranch").readOnly().build();
+ * ChronoDBTransaction transaction = chronoDB.txBuilder().onBranch("MyBranch").readOnly().buildLRU();
  * // ... now do something with the transaction
  * </pre>
  *
@@ -120,20 +121,14 @@ public interface ChronoDBTransactionBuilder {
 	}
 
 	/**
-	 * Enables or disables blind overwrite protection on the constructed transaction.
+	 * Sets the given {@link ConflictResolutionStrategy} for this transaction (overriding the database default).
 	 *
-	 * <p>
-	 * By default, this value is set to the blind overwrite setting of the {@link ChronoDB} instance to which the
-	 * transaction connects. This method allows to override the database instance defaults for a single transaction.
 	 *
-	 * @param enableBlindOverwriteProtection
-	 *            Set this to <code>true</code> to enable blind overwrite protection (generally recommended; increased
-	 *            protection against data corruption) or to <code>false</code> in order to disable it (faster;
-	 *            recommended for batch jobs).
-	 *
+	 * @param strategy
+	 *            The strategy to use for this transaction. Must not be <code>null</code>.
 	 * @return The builder (<code>this</code>) for method chaining. Never <code>null</code>.
 	 */
-	public ChronoDBTransactionBuilder withBlindOverwriteProtection(boolean enableBlindOverwriteProtection);
+	public ChronoDBTransactionBuilder withConflictResolutionStrategy(ConflictResolutionStrategy strategy);
 
 	/**
 	 * Enables or disables duplicate version elimination on the constructed transaction.

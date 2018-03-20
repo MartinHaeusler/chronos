@@ -7,6 +7,7 @@ import java.util.Date;
 import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.api.DuplicateVersionEliminationMode;
 import org.chronos.chronodb.api.builder.transaction.ChronoDBTransactionBuilder;
+import org.chronos.chronodb.api.conflict.ConflictResolutionStrategy;
 import org.chronos.chronodb.internal.api.ChronoDBInternal;
 import org.chronos.chronodb.internal.api.MutableTransactionConfiguration;
 import org.chronos.chronodb.internal.impl.DefaultTransactionConfiguration;
@@ -21,8 +22,8 @@ public class DefaultTransactionBuilder implements ChronoDBTransactionBuilder {
 		this.owningDB = owningDB;
 		this.configuration = new DefaultTransactionConfiguration();
 		// by default, we inherit some settings from the owning database
-		this.configuration.setBlindOverwriteProtectionEnabled(
-				this.owningDB.getConfiguration().isBlindOverwriteProtectionEnabled());
+		this.configuration
+				.setConflictResolutionStrategy(this.owningDB.getConfiguration().getConflictResolutionStrategy());
 		this.configuration.setDuplicateVersionEliminationMode(
 				this.owningDB.getConfiguration().getDuplicateVersionEliminationMode());
 	}
@@ -67,8 +68,9 @@ public class DefaultTransactionBuilder implements ChronoDBTransactionBuilder {
 	}
 
 	@Override
-	public ChronoDBTransactionBuilder withBlindOverwriteProtection(final boolean enableBlindOverwriteProtection) {
-		this.configuration.setBlindOverwriteProtectionEnabled(enableBlindOverwriteProtection);
+	public ChronoDBTransactionBuilder withConflictResolutionStrategy(final ConflictResolutionStrategy strategy) {
+		checkNotNull(strategy, "Precondition violation - argument 'strategy' must not be NULL!");
+		this.configuration.setConflictResolutionStrategy(strategy);
 		return this;
 	}
 

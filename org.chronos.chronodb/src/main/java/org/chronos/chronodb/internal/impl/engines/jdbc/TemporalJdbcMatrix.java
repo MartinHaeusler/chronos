@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import javax.sql.DataSource;
+
 import org.apache.commons.lang3.tuple.Pair;
 import org.chronos.chronodb.api.exceptions.ChronoDBStorageBackendException;
 import org.chronos.chronodb.api.key.QualifiedKey;
@@ -23,8 +25,6 @@ import org.chronos.chronodb.internal.impl.temporal.UnqualifiedTemporalKey;
 import org.chronos.chronodb.internal.util.KeySetModifications;
 
 import com.google.common.collect.Iterators;
-
-import javax.sql.DataSource;
 
 public class TemporalJdbcMatrix extends AbstractTemporalDataMatrix {
 

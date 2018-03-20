@@ -9,6 +9,7 @@ import org.chronos.chronodb.internal.api.query.QueryManager;
 import org.chronos.chronodb.internal.api.stream.ChronoDBEntry;
 import org.chronos.chronodb.internal.api.stream.CloseableIterator;
 import org.chronos.chronodb.internal.impl.dump.CommitMetadataMap;
+import org.chronos.common.autolock.ReadWriteAutoLockable;
 import org.chronos.common.version.ChronosVersion;
 
 /**
@@ -20,7 +21,7 @@ import org.chronos.common.version.ChronosVersion;
  * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
  *
  */
-public interface ChronoDBInternal extends ChronoDB, Lockable {
+public interface ChronoDBInternal extends ChronoDB, ReadWriteAutoLockable {
 
 	/**
 	 * Returns the internal representation of the branch manager associated with this database instance.
@@ -97,69 +98,6 @@ public interface ChronoDBInternal extends ChronoDB, Lockable {
 	 *            The commit metadata to read. Must not be <code>null</code>.
 	 */
 	public void loadCommitTimestamps(CommitMetadataMap commitMetadata);
-
-	// =================================================================================================================
-	// INNER CLASSES
-	// =================================================================================================================
-
-	/**
-	 * A functional interface that represents a job to be executed on a {@link ChronoDB} or one of its components.
-	 *
-	 * <p>
-	 * This variant of the interface specifies the {@link #execute()} method without return type. There is also {@link ChronoReturningJob} which features a return type on the {@link #execute()} method.
-	 *
-	 * <p>
-	 * It is recommended to implement this interface using Java Lambda Expressions.
-	 *
-	 * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
-	 */
-	@FunctionalInterface
-	public static interface ChronoNonReturningJob {
-
-		/**
-		 * Executes the job.
-		 *
-		 * <p>
-		 * It is recommended to implement this method with Java Lambda Expressions.
-		 *
-		 * <p>
-		 * Any exceptions thrown by this method are forwarded to the caller.
-		 */
-		public void execute();
-
-	}
-
-	/**
-	 * A functional interface that represents a job to be executed on a {@link ChronoDB} or one of its components.
-	 *
-	 * <p>
-	 * This variant of the interface specifies the {@link #execute()} method including a return type. There is also {@link ChronoNonReturningJob} which features an {@link #execute()} method that returns <code>void</code>.
-	 *
-	 * <p>
-	 * It is recommended to implement this interface using Java Lambda Expressions.
-	 *
-	 * @param <T>
-	 *            The return type of this job.
-	 *
-	 * @author martin.haeusler@uibk.ac.at -- Initial Contribution and API
-	 */
-	@FunctionalInterface
-	public static interface ChronoReturningJob<T> {
-
-		/**
-		 * Executes the job.
-		 *
-		 * <p>
-		 * It is recommended to implement this method with Java Lambda Expressions.
-		 *
-		 * <p>
-		 * Any exceptions thrown by this method are forwarded to the caller.
-		 *
-		 * @return The result of the task. May be <code>null</code>.
-		 */
-		public T execute();
-
-	}
 
 	/**
 	 * Updates the internally stored chronos version to the given version.
