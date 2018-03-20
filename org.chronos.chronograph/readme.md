@@ -38,7 +38,7 @@ Add the following to the `<dependencies>` section in your `pom.xml`:
 <dependency>
   	<groupId>com.github.martinhaeusler</groupId>
   	<artifactId>org.chronos.chronograph</artifactId>
-  	<version>0.5.7</version>
+  	<version>0.7.3</version>
  </dependency>
 ```
 
@@ -46,7 +46,7 @@ Add the following to the `<dependencies>` section in your `pom.xml`:
 Add the following line to the `dependencies` section in your `build.gradle` file:
 
 ```groovy
-compile group: 'com.github.martinhaeusler', name: 'org.chronos.chronograph', version: '0.5.7'
+compile group: 'com.github.martinhaeusler', name: 'org.chronos.chronograph', version: '0.7.3'
 ```
 
 In case your `build.gradle` file does not already reference the Maven Central Repository, you also have to add the following to your `build.gradle`:
@@ -134,3 +134,8 @@ In general, `null` is **never a valid value**. Delete the property instead.
 ChronoGraph is based on a dual-license. For academic and open-source projects, the general license is the aGPLv3 license, unless noted otherwise. Commercial licenses are also available on demand.
 
 **BY CONTRIBUTING TO CHRONOGRAPH, YOU AGREE THAT YOUR CONTRIBUTIONS WILL BE LICENSED UNDER THE aGPL v3 LICENSE**. Furthermore, by contributing to ChronoGraph, you hereby grant to Martin Häusler and any recipients of your contributions, including but not limited to users of this site, a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable license to reproduce, prepare derivative works of, publicly display, publicly perform, sublicense, use, make and distribute your contributions and any derivative works under all intellectual property rights including but not limited to copyright and patent. BY CONTRIBUTING TO CHRONOGRAPH, YOU REPRESENT AND WARRANT THAT YOU ARE LEGALLY ENTITLED TO GRANT THE FOREGOING LICENSE.
+
+Version History
+===============
+
+For the version history, please check the [Main Page Readme](https://github.com/MartinHaeusler/chronos).
