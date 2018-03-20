@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: ChronoGraph
-Implementation-Version: 0.7.3
-provider: chronos.org
-
