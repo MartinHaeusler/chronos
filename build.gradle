@@ -61,7 +61,6 @@ allprojects {
 	ext {
 		// build specific attributes
 		isJenkins = System.getenv('JENKINS_URL') != null
-		buildAgent = project.isJenkins ? 'TXTURE-CI' : "LOCAL"
 		buildNumber = System.getenv("BUILD_NUMBER") ?: "LOCAL_BUILD"
 		buildTimestamp = new Date().format('yyyy-MM-dd HH:mm:ss')
 		buildVersion = project.version 
