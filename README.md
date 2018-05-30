@@ -45,9 +45,6 @@ If somebody is wondering why the version numbers are "jumping" upwards: intermed
 Frequently Asked Questions
 --------------------------
 
-### Who is working on it?
-The project is currently a one-man show, as it is a major part of my on-going PhD thesis.
-
 ### What about licencing?
 The Chronos Project is based on a dual-license. For academic and open-source projects, the general license is the aGPLv3 license, unless noted otherwise. Commercial licenses are also available on demand.
 
