@@ -79,11 +79,18 @@ public class OwnedTransientEStore extends AbstractChronoEStore {
 	public boolean isSet(final InternalEObject object, final EStructuralFeature feature) {
 		this.assertIsOwner(object);
 		checkNotNull(feature, "Precondition violation - argument 'feature' must not be NULL!");
-		// special case: a feature is always "set" if it is the container feature and eContainer != null
-		if (feature instanceof EReference) {
-			EReference eReference = (EReference) feature;
-			if (eReference.isContainer()) {
-				return this.getContainer(object) != null;
+		// special case for container features
+		if (feature instanceof EReference && ((EReference)feature).isContainer()) {
+			if (this.getContainer(object) == null) {
+				return false;
+			}
+			final EStructuralFeature containingFeature = this.getContainingFeature(object);
+			if (containingFeature == null) {
+				return false;
+			}
+			if (containingFeature instanceof EReference) {
+				final EReference containerReference = ((EReference) containingFeature).getEOpposite();
+				return feature.equals(containerReference);
 			}
 		}
 		if (feature.isMany()) {
