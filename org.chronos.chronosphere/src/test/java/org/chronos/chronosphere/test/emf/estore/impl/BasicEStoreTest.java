@@ -663,6 +663,47 @@ public class BasicEStoreTest extends EStoreTest {
 	}
 
 	@Test
+	@SuppressWarnings("unchecked")
+	public void multipleMultiplicityManyContainmentsWithMultiplicityOneOppositeRefWorks() {
+		this.createEPackageMultipleMultiplicityManyContainmentsWithMultiplicityOneOpposite();
+		EPackage ePackage = this.getEPackageByNsURI("http://www.example.com/model");
+		EClass myClass = (EClass) ePackage.getEClassifier("MyEClass");
+		EClass yourClass = (EClass) ePackage.getEClassifier("YourEClass");
+		assertNotNull(myClass);
+		assertNotNull(yourClass);
+
+		EReference eRefChildren = (EReference) myClass.getEStructuralFeature("children");
+		EReference eRefOtherChildren = (EReference) myClass.getEStructuralFeature("otherChildren");
+		EReference eRefParent = (EReference) yourClass.getEStructuralFeature("parent");
+		EReference eRefOtherParent = (EReference) yourClass.getEStructuralFeature("otherParent");
+		assertNotNull(eRefChildren);
+		assertNotNull(eRefOtherChildren);
+		assertNotNull(eRefParent);
+		assertNotNull(eRefOtherParent);
+
+		assertEquals(eRefParent, eRefChildren.getEOpposite());
+		assertEquals(eRefChildren, eRefParent.getEOpposite());
+		assertEquals(eRefOtherChildren, eRefOtherParent.getEOpposite());
+		assertTrue(eRefChildren.isContainment());
+		assertTrue(eRefOtherChildren.isContainment());
+		assertTrue(eRefParent.isContainer());
+		assertTrue(eRefOtherParent.isContainer());
+
+		EObject container = this.createEObject(myClass);
+		EObject child = this.createEObject(yourClass);
+
+		// add a child to the container by adding it to the children reference
+		((List<EObject>) container.eGet(eRefChildren)).add(child);
+
+		// add a child to the container by setting the container as parent in the child
+		child.eSet(eRefParent, container);
+
+		// make sure that the child is referencing the container as parent via the correct reference only
+		assertTrue(child.eIsSet(eRefParent));
+		assertFalse(child.eIsSet(eRefOtherParent));
+	}
+
+	@Test
 	public void inheritedMultiplicityManyContainmentWithNonInheritedMultiplicityOneOppositeWorks() {
 		this.createEPackageInheritedMultiplicityManyContainmentWithNonInheritedMultiplicityOneOpposite();
 		EPackage ePackage = this.getEPackageByNsURI("http://www.example.com/model");
@@ -994,6 +1035,56 @@ public class BasicEStoreTest extends EStoreTest {
 		eOtherClass.getEStructuralFeatures().add(eRefParent);
 		ePackage.getEClassifiers().add(eClass);
 		ePackage.getEClassifiers().add(eOtherClass);
+		this.registerEPackages(ePackage);
+	}
+
+	private void createEPackageMultipleMultiplicityManyContainmentsWithMultiplicityOneOpposite() {
+		EPackage ePackage = this.createNewEPackage("MyEPackage", "http://www.example.com/model", "model");
+		ePackage.setName("MyPackage");
+
+		EClass eClass = EcoreFactory.eINSTANCE.createEClass();
+		eClass.setName("MyEClass");
+
+		EClass eOtherClass = EcoreFactory.eINSTANCE.createEClass();
+		eOtherClass.setName("YourEClass");
+
+		EReference eRefChildren = EcoreFactory.eINSTANCE.createEReference();
+		eRefChildren.setName("children");
+		eRefChildren.setEType(eOtherClass);
+		eRefChildren.setLowerBound(0);
+		eRefChildren.setUpperBound(-1);
+		eRefChildren.setContainment(true);
+		eClass.getEStructuralFeatures().add(eRefChildren);
+
+		EReference eRefOtherChildren = EcoreFactory.eINSTANCE.createEReference();
+		eRefOtherChildren.setName("otherChildren");
+		eRefOtherChildren.setEType(eOtherClass);
+		eRefOtherChildren.setLowerBound(0);
+		eRefOtherChildren.setUpperBound(-1);
+		eRefOtherChildren.setContainment(true);
+		eClass.getEStructuralFeatures().add(eRefOtherChildren);
+
+		EReference eRefParent = EcoreFactory.eINSTANCE.createEReference();
+		eRefParent.setName("parent");
+		eRefParent.setLowerBound(0);
+		eRefParent.setUpperBound(1);
+		eRefParent.setEType(eClass);
+		eRefParent.setEOpposite(eRefChildren);
+		eRefChildren.setEOpposite(eRefParent);
+		eOtherClass.getEStructuralFeatures().add(eRefParent);
+
+		EReference eRefOtherParent = EcoreFactory.eINSTANCE.createEReference();
+		eRefOtherParent.setName("otherParent");
+		eRefOtherParent.setLowerBound(0);
+		eRefOtherParent.setUpperBound(1);
+		eRefOtherParent.setEType(eClass);
+		eRefOtherParent.setEOpposite(eRefOtherChildren);
+		eRefOtherChildren.setEOpposite(eRefOtherParent);
+		eOtherClass.getEStructuralFeatures().add(eRefOtherParent);
+
+		ePackage.getEClassifiers().add(eClass);
+		ePackage.getEClassifiers().add(eOtherClass);
+
 		this.registerEPackages(ePackage);
 	}
 
