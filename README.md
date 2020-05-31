@@ -1,3 +1,8 @@
+# Attention: You are looking at the OLD version of Chronos.
+
+The new repository can be found here: https://github.com/Txture/chronos
+
+
 The Chronos Project
 ===================
 
