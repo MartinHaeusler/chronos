@@ -1,5 +1,10 @@
 <img src="https://github.com/MartinHaeusler/chronos/blob/master/readmeResources/chronoDBLogo.png" width="400">
 
+# Attention: you are looking at the OLD version of ChronoDB.
+
+The new repository can be found here: https://github.com/Txture/chronos
+
+
 About ChronoDB
 ==============
 
