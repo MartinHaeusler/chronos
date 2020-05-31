@@ -1,3 +1,7 @@
+# Attention: you are looking at the OLD version of ChronoGraph.
+
+The new repository can be found here: https://github.com/Txture/chronos
+
 <img src="https://github.com/MartinHaeusler/chronos/blob/master/readmeResources/logo_chronograph.png" width="400">
 
 About ChronoGraph
