@@ -1,8 +1,8 @@
 [versions]
-kotlin = "2.1.20"
+kotlin = "2.2.0"
 
-jUnit5 = "5.11.4"
-jUnit5Platform = "1.11.4"
+jUnit5 = "5.13.3"
+jUnit5Platform = "1.13.3"
 
 logback = "1.5.18"
 
@@ -13,13 +13,13 @@ gremlin = "3.6.4"
 [libraries]
 
 # utilities
-apache-commons-io = { group = "commons-io", name = "commons-io", version = "2.19.0" }
-apache-commons-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.17.0" }
+apache-commons-io = { group = "commons-io", name = "commons-io", version = "2.20.0" }
+apache-commons-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.18.0" }
 apache-commons-collections4 = { group = "org.apache.commons", name = "commons-collections4", version = "4.5.0" }
 apache-commons-configuration2 = { group = "org.apache.commons", name = "commons-configuration2", version = "2.12.0" }
 guava = { group = "com.google.guava", name = "guava", version = "33.4.8-jre" }
-groovy = { group = "org.apache.groovy", name = "groovy", version = "4.0.26" }
-jakarta-annotations = { group = "jakarta.annotation", name = "jakarta.annotation-api", version = "2.1.1" }
+groovy = { group = "org.apache.groovy", name = "groovy", version = "4.0.27" }
+jakarta-annotations = { group = "jakarta.annotation", name = "jakarta.annotation-api", version = "3.0.0" }
 
 # serialization
 kryo = { group = "com.esotericsoftware", name = "kryo", version = "3.0.3" }
