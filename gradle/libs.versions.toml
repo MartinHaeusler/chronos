@@ -2,7 +2,7 @@
 kotlin = "2.2.0"
 
 jUnit5 = "5.13.3"
-jUnit5Platform = "1.13.3"
+jUnit5Platform = "1.13.4"
 
 logback = "1.5.18"
 
