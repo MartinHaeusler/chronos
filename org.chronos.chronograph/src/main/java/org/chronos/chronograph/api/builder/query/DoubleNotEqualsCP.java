@@ -1,10 +1,11 @@
 package org.chronos.chronograph.api.builder.query;
 
+import org.apache.tinkerpop.gremlin.process.traversal.PBiPredicate;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.BiPredicate;
 
-public class DoubleNotEqualsCP implements BiPredicate<Object, Object> {
+public class DoubleNotEqualsCP implements PBiPredicate<Object, Object> {
 
     private final double tolerance;
 
@@ -25,7 +26,7 @@ public class DoubleNotEqualsCP implements BiPredicate<Object, Object> {
 
     @NotNull
     @Override
-    public BiPredicate<Object, Object> negate() {
+    public PBiPredicate<Object, Object> negate() {
         return new DoubleEqualsCP(this.tolerance);
     }
 
@@ -45,8 +46,7 @@ public class DoubleNotEqualsCP implements BiPredicate<Object, Object> {
 
     @Override
     public int hashCode() {
-        long temp = Double.doubleToLongBits(tolerance);
-        return (int) (temp ^ (temp >>> 32));
+        return Double.hashCode(tolerance);
     }
 
     @Override

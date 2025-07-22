@@ -1,9 +1,11 @@
 package org.chronos.chronograph.internal.impl.query;
 
+import org.apache.tinkerpop.gremlin.process.traversal.PBiPredicate;
+
 import java.util.function.BiPredicate;
 import java.util.regex.Pattern;
 
-public enum ChronoStringCompare implements BiPredicate<Object, Object> {
+public enum ChronoStringCompare implements PBiPredicate<Object, Object> {
 
     STRING_EQUALS_IGNORE_CASE {
         @Override

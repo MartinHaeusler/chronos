@@ -97,6 +97,7 @@ dependencies {
     testImplementation(project(":org.chronos.chronodb.exodus"))
 
     api(libs.gremlin.core) {
+        // exclude transitive apache-commons libraries, we include them ourselves.
         exclude(group = "commons-io")
         exclude(group = "org.apache.commons", module = "commons-text")
         exclude(group = "org.apache.commons", module = "commons-lang3")
@@ -109,10 +110,10 @@ dependencies {
     implementation(libs.guava)
     implementation(libs.apache.commons.io)
     implementation(libs.apache.commons.lang3)
-    implementation(libs.apache.commons.configuration2)
-
+    api(libs.apache.commons.configuration2)
 
     testImplementation(libs.gremlin.test) {
+        // exclude transitive apache-commons libraries, we include them ourselves.
         exclude(group = "commons-io")
         exclude(group = "org.apache.commons", module = "commons-text")
         exclude(group = "org.apache.commons", module = "commons-lang3")

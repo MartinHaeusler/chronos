@@ -1,5 +1,6 @@
 package org.chronos.chronograph.api.builder.query;
 
+import org.apache.tinkerpop.gremlin.process.traversal.PBiPredicate;
 import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.common.exceptions.UnknownEnumLiteralException;
 import org.jetbrains.annotations.NotNull;
@@ -9,7 +10,7 @@ import java.util.function.BiPredicate;
 
 import static com.google.common.base.Preconditions.*;
 
-public class StringWithinCP implements BiPredicate<Object, Collection> {
+public class StringWithinCP implements PBiPredicate<Object, Collection> {
 
     private final TextMatchMode matchMode;
 
@@ -75,7 +76,7 @@ public class StringWithinCP implements BiPredicate<Object, Collection> {
 
     @NotNull
     @Override
-    public BiPredicate<Object, Collection> negate() {
+    public PBiPredicate<Object, Collection> negate() {
         return new StringWithoutCP(this.matchMode);
     }
 

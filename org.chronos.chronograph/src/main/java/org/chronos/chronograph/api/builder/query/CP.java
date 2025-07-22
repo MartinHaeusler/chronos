@@ -3,6 +3,7 @@ package org.chronos.chronograph.api.builder.query;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import org.apache.tinkerpop.gremlin.process.traversal.P;
+import org.apache.tinkerpop.gremlin.process.traversal.PBiPredicate;
 import org.chronos.chronodb.internal.impl.query.TextMatchMode;
 import org.chronos.chronograph.internal.impl.query.ChronoCompare;
 import org.chronos.chronograph.internal.impl.query.ChronoStringCompare;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class CP<V> extends P<V> {
 
-    protected CP(final BiPredicate<V, V> biPredicate, final V value) {
+    protected CP(final PBiPredicate<V, V> biPredicate, final V value) {
         super(biPredicate, value);
     }
 

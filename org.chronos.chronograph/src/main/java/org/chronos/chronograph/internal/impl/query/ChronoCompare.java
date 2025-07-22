@@ -1,12 +1,13 @@
 package org.chronos.chronograph.internal.impl.query;
 
+import org.apache.tinkerpop.gremlin.process.traversal.PBiPredicate;
 import org.apache.tinkerpop.gremlin.util.NumberHelper;
 
 import java.util.Collection;
 import java.util.Objects;
 import java.util.function.BiPredicate;
 
-public enum ChronoCompare implements BiPredicate<Object, Object> {
+public enum ChronoCompare implements PBiPredicate<Object, Object> {
 
     EQ {
         @Override

@@ -1,11 +1,12 @@
 package org.chronos.chronograph.api.builder.query;
 
+import org.apache.tinkerpop.gremlin.process.traversal.PBiPredicate;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.function.BiPredicate;
 
-public class LongWithoutCP implements BiPredicate<Object, Collection> {
+public class LongWithoutCP implements PBiPredicate<Object, Collection> {
 
     public LongWithoutCP() {
     }
@@ -17,7 +18,7 @@ public class LongWithoutCP implements BiPredicate<Object, Collection> {
 
     @NotNull
     @Override
-    public BiPredicate<Object, Collection> negate() {
+    public PBiPredicate<Object, Collection> negate() {
         return new LongWithinCP();
     }
 

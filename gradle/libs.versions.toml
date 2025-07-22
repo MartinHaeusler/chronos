@@ -8,7 +8,7 @@ logback = "1.5.18"
 
 xodus = "2.0.1"
 
-gremlin = "3.6.4"
+gremlin = "3.7.3"
 
 [libraries]
 
