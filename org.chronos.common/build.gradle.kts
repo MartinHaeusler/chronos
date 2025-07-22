@@ -28,11 +28,6 @@ tasks.jar {
     }
 }
 
-val sourceJar by tasks.registering(Jar::class) {
-    from(sourceSets.main.get().allSource)
-    archiveClassifier.set("sources")
-}
-
 dependencies {
     testImplementation(project(":org.chronos.common.testing"))
 
@@ -54,37 +49,6 @@ tasks.test {
     filter {
         includeTestsMatching("org.chronos.common.test.cases.*")
     }
-}
-
-afterEvaluate {
-
-    if(project.hasProperty("s3Url")){
-        publishing {
-
-            publications {
-                create<MavenPublication>("mavenJava") {
-                    from(components["java"])
-                    artifact(sourceJar.get())
-
-                    groupId = project.group.toString()
-                    artifactId = project.name
-                    version = project.property("mavenVersion") as String
-                }
-            }
-
-            repositories {
-                maven {
-                    setUrl(project.property("s3Url") as String)
-                    credentials(AwsCredentials::class) {
-                        accessKey = project.property("s3AccessKey") as? String
-                        secretKey = project.property("s3SecretKey") as? String
-                    }
-                }
-            }
-
-        }
-    }
-
 }
 
 // Task to generate buildInfo.properties
@@ -119,7 +83,7 @@ val generateBuildInfoFile by tasks.registering {
 }
 
 // Ensure build info file is generated before compiling
-tasks.named("processResources"){
+tasks.named("processResources") {
     dependsOn(generateBuildInfoFile)
 }
 
@@ -129,4 +93,41 @@ tasks.named("compileJava") {
 
 tasks.named("compileTestJava") {
     dependsOn(generateBuildInfoFile)
+}
+
+val sourceJar by tasks.registering(Jar::class) {
+    dependsOn(generateBuildInfoFile)
+    from(sourceSets.main.get().allSource)
+    archiveClassifier.set("sources")
+}
+
+afterEvaluate {
+
+    if (project.hasProperty("s3Url")) {
+        publishing {
+
+            publications {
+                create<MavenPublication>("mavenJava") {
+                    from(components["java"])
+                    artifact(sourceJar.get())
+
+                    groupId = project.group.toString()
+                    artifactId = project.name
+                    version = project.property("mavenVersion") as String
+                }
+            }
+
+            repositories {
+                maven {
+                    setUrl(project.property("s3Url") as String)
+                    credentials(AwsCredentials::class) {
+                        accessKey = project.property("s3AccessKey") as? String
+                        secretKey = project.property("s3SecretKey") as? String
+                    }
+                }
+            }
+
+        }
+    }
+
 }
