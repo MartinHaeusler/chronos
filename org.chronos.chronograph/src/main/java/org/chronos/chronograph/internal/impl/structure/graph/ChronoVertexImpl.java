@@ -111,7 +111,7 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
         checkNotNull(key, "Precondition violation - argument 'key' must not be NULL!");
         this.checkAccess();
         this.ensureVertexRecordIsLoaded();
-        if(value == null){
+        if (value == null) {
             // Since Gremlin 3.5.2: setting a property to value NULL removes it.
             this.removeProperty(key);
             return VertexProperty.empty();
@@ -244,9 +244,9 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
                 List<EdgeTargetRecordWithLabel> outgoingEdges = vertexRecord.getOutgoingEdges(edgeLabels);
                 List<EdgeTargetRecordWithLabel> incomingEdges = vertexRecord.getIncomingEdges(edgeLabels);
                 return Stream.concat(
-                        outgoingEdges.stream().map(this::loadOutgoingEdgeTargetRecord),
-                        incomingEdges.stream().map(this::loadIncomingEdgeTargetRecord)
-                    ).iterator();
+                    outgoingEdges.stream().map(this::loadOutgoingEdgeTargetRecord),
+                    incomingEdges.stream().map(this::loadIncomingEdgeTargetRecord)
+                ).iterator();
             case IN:
                 return Iterators.transform(vertexRecord.getIncomingEdges(edgeLabels).iterator(), this::loadIncomingEdgeTargetRecord);
             case OUT:
@@ -347,7 +347,7 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
     public <V> Iterator<VertexProperty<V>> properties(final String... propertyKeys) {
         this.checkAccess();
         // Since Gremlin 3.5.2: querying properties(null) is now allowed and returns the empty iterator.
-        if(propertyKeys != null && propertyKeys.length > 0 && Arrays.stream(propertyKeys).allMatch(java.util.Objects::isNull)){
+        if (propertyKeys != null && propertyKeys.length > 0 && Arrays.stream(propertyKeys).allMatch(java.util.Objects::isNull)) {
             return Collections.emptyIterator();
         }
         if (propertyKeys == null || propertyKeys.length <= 0) {
@@ -600,7 +600,17 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
             // remove whatever edge representation has been there with this edge-id
             boolean removed = this.labelToIncomingEdges.remove(chronoEdge.label(), chronoEdge);
             if (removed == false) {
-                throw new IllegalStateException("Graph is inconsistent - failed to remove edge from adjacent vertex!");
+                var message = new StringBuilder();
+                message.append("Graph is inconsistent: failed to remove edge '");
+                message.append(chronoEdge.id);
+                message.append("' (Label: '");
+                message.append(chronoEdge.label);
+                message.append("') from its in-vertex '");
+                message.append(this.id);
+                message.append("' (Label: '");
+                message.append(this.label);
+                message.append("')!");
+                throw new IllegalStateException(message.toString());
             }
             changed = true;
         }
@@ -610,9 +620,19 @@ public class ChronoVertexImpl extends AbstractChronoElement implements Vertex, C
             // remove whatever edge representation has been there with this edge-id
             boolean removed = this.labelToOutgoingEdges.remove(chronoEdge.label(), chronoEdge);
             if (removed == false) {
-                throw new IllegalStateException("Graph is inconsistent - failed to remove edge from adjacent vertex!");
+                var message = new StringBuilder();
+                message.append("Graph is inconsistent: failed to remove edge '");
+                message.append(chronoEdge.id);
+                message.append("' (Label: '");
+                message.append(chronoEdge.label);
+                message.append("') from its out-vertex '");
+                message.append(this.id);
+                message.append("' (Label: '");
+                message.append(this.label);
+                message.append("')!");
+                throw new IllegalStateException(message.toString());
             }
-            changed = removed || changed;
+            changed = true;
         }
         if (changed) {
             this.updateLifecycleStatus(ElementLifecycleEvent.ADJACENT_EDGE_ADDED_OR_REMOVED);
