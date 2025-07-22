@@ -22,7 +22,7 @@ extra["mavenVersion"] = project.version
 
 allprojects {
     group = "org.chronos"
-    version = "1.3.29-SNAPSHOT"
+    version = "1.3.29"
 
     tasks.withType<KotlinCompile>().configureEach {
         compilerOptions {
