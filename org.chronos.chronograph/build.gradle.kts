@@ -97,11 +97,13 @@ dependencies {
     testImplementation(project(":org.chronos.chronodb.exodus"))
 
     api(libs.gremlin.core) {
-        // exclude transitive apache-commons libraries, we include them ourselves.
+        // exclude transitive apache-commons libraries, we include them ourselves to have control over the versions.
         exclude(group = "commons-io")
         exclude(group = "org.apache.commons", module = "commons-text")
         exclude(group = "org.apache.commons", module = "commons-lang3")
         exclude(group = "org.apache.commons", module = "commons-configuration2")
+        exclude(group = "commons-beanutils", module = "commons-beanutils")
+
     }
     api(libs.jakarta.annotations)
 
@@ -110,14 +112,16 @@ dependencies {
     implementation(libs.guava)
     implementation(libs.apache.commons.io)
     implementation(libs.apache.commons.lang3)
+    implementation(libs.apache.commons.beanutils)
     api(libs.apache.commons.configuration2)
 
     testImplementation(libs.gremlin.test) {
-        // exclude transitive apache-commons libraries, we include them ourselves.
+        // exclude transitive apache-commons libraries, we include them ourselves to have control over the versions.
         exclude(group = "commons-io")
         exclude(group = "org.apache.commons", module = "commons-text")
         exclude(group = "org.apache.commons", module = "commons-lang3")
         exclude(group = "org.apache.commons", module = "commons-configuration2")
+        exclude(group = "commons-beanutils", module = "commons-beanutils")
     }
     testImplementation(libs.bundles.testing)
 }
