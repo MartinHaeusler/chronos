@@ -14,6 +14,9 @@ import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.apache.tinkerpop.gremlin.structure.VertexProperty;
 import org.apache.tinkerpop.gremlin.structure.util.ElementHelper;
 import org.chronos.chronodb.api.ChronoDBTransaction;
+import org.chronos.chronodb.api.EntryStatus.Deleted;
+import org.chronos.chronodb.api.EntryStatus.Exists;
+import org.chronos.chronodb.api.EntryStatus.NotFound;
 import org.chronos.chronodb.api.Order;
 import org.chronos.chronodb.api.PutOption;
 import org.chronos.chronodb.api.exceptions.ChronoDBCommitException;
@@ -38,7 +41,9 @@ import org.chronos.chronograph.api.structure.record.IVertexRecord;
 import org.chronos.chronograph.api.transaction.AllEdgesIterationHandler;
 import org.chronos.chronograph.api.transaction.AllVerticesIterationHandler;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransaction;
+import org.chronos.chronograph.api.transaction.EdgeStatus;
 import org.chronos.chronograph.api.transaction.GraphTransactionContext;
+import org.chronos.chronograph.api.transaction.VertexStatus;
 import org.chronos.chronograph.api.transaction.trigger.CancelCommitException;
 import org.chronos.chronograph.api.transaction.trigger.ChronoGraphPostCommitTrigger;
 import org.chronos.chronograph.api.transaction.trigger.ChronoGraphPostPersistTrigger;
@@ -428,6 +433,34 @@ public class StandardChronoGraphTransaction implements ChronoGraphTransaction, C
     public Iterator<Edge> getEdgesIterator(final Iterable<String> edgeIds, final ElementLoadMode loadMode) {
         checkNotNull(edgeIds, "Precondition violation - argument 'edgeIds' must not be NULL!");
         return this.queryProcessor.getEdgesIterator(edgeIds, loadMode);
+    }
+
+    @Override
+    public VertexStatus vertexStatus(final String vertexId) {
+        checkNotNull(vertexId, "Precondition violation - argument 'vertexId' must not be NULL!");
+        var entryStatus = this.backendTransaction.getStatus(ChronoGraphConstants.KEYSPACE_VERTEX, vertexId);
+        return switch (entryStatus) {
+            case Deleted deleted -> new VertexStatus.Deleted(deleted.lastModificationTimestamp());
+            case Exists exists -> new VertexStatus.Exists(
+                exists.lastModificationTimestamp(),
+                this.loadVertex(vertexId, ElementLoadMode.LAZY)
+            );
+            case NotFound ignored -> VertexStatus.NotFound.INSTANCE;
+        };
+    }
+
+    @Override
+    public EdgeStatus edgeStatus(final String edgeId) {
+        checkNotNull(edgeId, "Precondition violation - argument 'vertexId' must not be NULL!");
+        var entryStatus = this.backendTransaction.getStatus(ChronoGraphConstants.KEYSPACE_EDGE, edgeId);
+        return switch (entryStatus) {
+            case Deleted deleted -> new EdgeStatus.Deleted(deleted.lastModificationTimestamp());
+            case Exists exists -> new EdgeStatus.Exists(
+                exists.lastModificationTimestamp(),
+                this.loadEdge(edgeId, ElementLoadMode.LAZY)
+            );
+            case NotFound ignored -> EdgeStatus.NotFound.INSTANCE;
+        };
     }
 
     // =====================================================================================================================

@@ -4,7 +4,6 @@ import com.google.common.collect.Iterators;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Graph;
-import org.apache.tinkerpop.gremlin.structure.Graph.*;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.apache.tinkerpop.gremlin.structure.util.GraphFactoryClass;
 import org.chronos.chronodb.api.ChronoDBConstants;
@@ -21,6 +20,8 @@ import org.chronos.chronograph.api.maintenance.ChronoGraphMaintenanceManager;
 import org.chronos.chronograph.api.schema.ChronoGraphSchemaManager;
 import org.chronos.chronograph.api.statistics.ChronoGraphStatisticsManager;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransactionManager;
+import org.chronos.chronograph.api.transaction.EdgeStatus;
+import org.chronos.chronograph.api.transaction.VertexStatus;
 import org.chronos.chronograph.api.transaction.trigger.ChronoGraphTriggerManager;
 import org.chronos.chronograph.internal.api.configuration.ChronoGraphConfiguration;
 import org.chronos.chronograph.internal.impl.factory.ChronoGraphFactoryImpl;
@@ -299,6 +300,10 @@ public interface ChronoGraph extends Graph {
         checkNotNull(id, "Precondition violation - argument 'id' must not be NULL!");
         return Iterators.getOnlyElement(this.edges(id), null);
     }
+
+    public VertexStatus vertexStatus(String id);
+
+    public EdgeStatus edgeStatus(String id);
 
     // =====================================================================================================================
     // TEMPORAL ACTIONS

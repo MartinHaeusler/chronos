@@ -6,7 +6,6 @@ import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.api.Order;
-import org.chronos.chronodb.internal.api.query.ChronoDBQuery;
 import org.chronos.chronograph.api.structure.ChronoEdge;
 import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.api.structure.ChronoVertex;
@@ -135,6 +134,10 @@ public interface ChronoGraphTransaction {
         }
         return Iterators.getOnlyElement(edges);
     }
+
+    public VertexStatus vertexStatus(final String vertexId);
+
+    public EdgeStatus edgeStatus(final String edgeId);
 
     // =====================================================================================================================
     // TEMPORAL QUERY METHODS

@@ -6,19 +6,16 @@ import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.api.Order;
-import org.chronos.chronodb.internal.api.query.ChronoDBQuery;
 import org.chronos.chronograph.api.structure.ChronoEdge;
 import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.api.structure.ChronoVertex;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransaction;
+import org.chronos.chronograph.api.transaction.EdgeStatus;
 import org.chronos.chronograph.api.transaction.GraphTransactionContext;
+import org.chronos.chronograph.api.transaction.VertexStatus;
 import org.chronos.chronograph.internal.impl.transaction.ElementLoadMode;
 
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import static com.google.common.base.Preconditions.*;
 
@@ -116,6 +113,44 @@ public class ReadOnlyChronoGraphTransaction implements ChronoGraphTransaction {
     @Override
     public Iterator<Edge> getEdgesIterator(final Iterable<String> chronoEdgeIds, ElementLoadMode loadMode) {
         return this.unmodifiableEdges(this.currentTransaction.getEdgesIterator(chronoEdgeIds, loadMode));
+    }
+
+    @Override
+    public VertexStatus vertexStatus(final String vertexId) {
+        var status = this.currentTransaction.vertexStatus(vertexId);
+        switch (status) {
+            case VertexStatus.Exists exists -> {
+                return new VertexStatus.Exists(
+                    exists.lastModificationTimestamp(),
+                    new ReadOnlyChronoVertex(exists.vertex())
+                );
+            }
+            case VertexStatus.Deleted deleted -> {
+                return deleted;
+            }
+            case VertexStatus.NotFound notFound -> {
+                return notFound;
+            }
+        }
+    }
+
+    @Override
+    public EdgeStatus edgeStatus(final String edgeId) {
+        var status = this.currentTransaction.edgeStatus(edgeId);
+        switch (status) {
+            case EdgeStatus.Exists exists -> {
+                return new EdgeStatus.Exists(
+                    exists.lastModificationTimestamp(),
+                    new ReadOnlyChronoEdge(exists.edge())
+                );
+            }
+            case EdgeStatus.Deleted deleted -> {
+                return deleted;
+            }
+            case EdgeStatus.NotFound notFound -> {
+                return notFound;
+            }
+        }
     }
 
     @Override

@@ -16,6 +16,8 @@ import org.chronos.chronograph.api.statistics.ChronoGraphStatisticsManager;
 import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.api.structure.ChronoGraphVariables;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransactionManager;
+import org.chronos.chronograph.api.transaction.EdgeStatus;
+import org.chronos.chronograph.api.transaction.VertexStatus;
 import org.chronos.chronograph.api.transaction.trigger.ChronoGraphTriggerManager;
 import org.chronos.chronograph.internal.api.configuration.ChronoGraphConfiguration;
 
@@ -98,6 +100,16 @@ public class NoTransactionControlChronoGraph implements ChronoGraph {
     @Override
     public Iterator<Edge> edges(final Object... edgeIds) {
         return this.graph.edges(edgeIds);
+    }
+
+    @Override
+    public VertexStatus vertexStatus(final String id) {
+        return this.graph.vertexStatus(id);
+    }
+
+    @Override
+    public EdgeStatus edgeStatus(final String id) {
+        return this.graph.edgeStatus(id);
     }
 
     @Override
@@ -280,12 +292,12 @@ public class NoTransactionControlChronoGraph implements ChronoGraph {
     }
 
     @Override
-    public ChronoGraphStatisticsManager getStatisticsManager(){
+    public ChronoGraphStatisticsManager getStatisticsManager() {
         return this.graph.getStatisticsManager();
     }
 
     @Override
-    public ChronoGraphMaintenanceManager getMaintenanceManager(){
+    public ChronoGraphMaintenanceManager getMaintenanceManager() {
         return this.graph.getMaintenanceManager();
     }
 

@@ -576,11 +576,13 @@ public abstract class AbstractTemporalKeyValueStore extends TemporalKeyValueStor
             } else {
                 deserializedValue = this.getOwningDB().getSerializationManager().deserialize(serialForm);
             }
-            GetResult<Object> result = GetResult.create(qKey, deserializedValue, range);
+            GetResult<Object> result = rangedResult.isHit()
+                ? GetResult.create(qKey, deserializedValue, range)
+                : GetResult.createNoValueResult(qKey, range);
             // cache the result
             this.getCache().cache(branchName, result);
             // depending on the configuration, we may need to duplicate the result before returning it
-            if (this.getOwningDB().getConfiguration().isAssumeCachedValuesAreImmutable()) {
+            if (this.getOwningDB().getConfiguration().isAssumeCachedValuesAreImmutable() || !result.isHit()) {
                 // we may directly return the cached instance, as we can assume it to be immutable
                 return result;
             } else {

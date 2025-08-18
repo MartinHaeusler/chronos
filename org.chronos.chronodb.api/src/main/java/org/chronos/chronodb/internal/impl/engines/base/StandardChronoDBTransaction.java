@@ -1,7 +1,13 @@
 package org.chronos.chronodb.internal.impl.engines.base;
 
 import com.google.common.collect.Maps;
-import org.chronos.chronodb.api.*;
+import org.chronos.chronodb.api.ChangeSetEntry;
+import org.chronos.chronodb.api.ChronoDBConstants;
+import org.chronos.chronodb.api.ChronoDBTransaction;
+import org.chronos.chronodb.api.EntryStatus;
+import org.chronos.chronodb.api.EntryStatus.NotFound;
+import org.chronos.chronodb.api.Order;
+import org.chronos.chronodb.api.PutOption;
 import org.chronos.chronodb.api.builder.query.QueryBuilderFinalizer;
 import org.chronos.chronodb.api.builder.query.QueryBuilderStarter;
 import org.chronos.chronodb.api.exceptions.ChronoDBCommitException;
@@ -13,8 +19,13 @@ import org.chronos.chronodb.api.key.TemporalKey;
 import org.chronos.chronodb.internal.api.TemporalKeyValueStore;
 import org.chronos.chronodb.internal.api.query.ChronoDBQuery;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import static com.google.common.base.Preconditions.*;
 
@@ -114,6 +125,38 @@ public class StandardChronoDBTransaction implements ChronoDBTransaction {
         return this.getTKVS().performGetBinary(this, key);
     }
 
+    @Override
+    public EntryStatus getStatus(final String key) {
+        checkNotNull(key, "Precondition violation - argument 'key' must not be NULL!");
+        return this.getStatusInternal(QualifiedKey.createInDefaultKeyspace(key));
+    }
+
+    @Override
+    public EntryStatus getStatus(final String keyspace, final String key) {
+        checkNotNull(keyspace, "Precondition violation - argument 'keyspace' must not be NULL!");
+        checkNotNull(key, "Precondition violation - argument 'key' must not be NULL!");
+        return this.getStatusInternal(QualifiedKey.create(keyspace, key));
+    }
+
+    private EntryStatus getStatusInternal(final QualifiedKey qualifiedKey) {
+        var history = this.history(qualifiedKey.getKeyspace(), qualifiedKey.getKey(), 0, this.timestamp, Order.DESCENDING);
+        if(!history.hasNext()){
+            // history of key is empty -> it's not in the store.
+            return NotFound.INSTANCE;
+        }
+
+        // history has at least one entry -> it was in the store at some point, and may still be!
+        var changeTimestamp = history.next();
+
+        var value = this.getTKVS().performGet(this, qualifiedKey);
+        if(value == null){
+            // the last operation was a deletion
+            return new EntryStatus.Deleted(changeTimestamp);
+        }else {
+            return new EntryStatus.Exists(changeTimestamp, value);
+        }
+    }
+
     // =================================================================================================================
     // OPERATION [ EXISTS ]
     // =================================================================================================================
@@ -133,7 +176,6 @@ public class StandardChronoDBTransaction implements ChronoDBTransaction {
     }
 
     protected boolean existsInternal(final QualifiedKey key) {
-        // TODO PERFORMANCE JDBC: implement 'exists' natively instead of 'get' (network overhead due to blob transfer)
         Object value = this.getTKVS().performGet(this, key);
         return value != null;
     }

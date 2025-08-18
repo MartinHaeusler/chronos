@@ -19,6 +19,8 @@ import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.api.structure.ChronoGraphVariables;
 import org.chronos.chronograph.api.structure.ChronoVertex;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransactionManager;
+import org.chronos.chronograph.api.transaction.EdgeStatus;
+import org.chronos.chronograph.api.transaction.VertexStatus;
 import org.chronos.chronograph.api.transaction.trigger.ChronoGraphTriggerManager;
 import org.chronos.chronograph.internal.api.configuration.ChronoGraphConfiguration;
 
@@ -105,6 +107,44 @@ public class ReadOnlyChronoGraph implements ChronoGraph {
     }
 
     @Override
+    public VertexStatus vertexStatus(final String id) {
+        var status = this.graph.vertexStatus(id);
+        switch (status) {
+            case VertexStatus.Exists exists -> {
+                return new VertexStatus.Exists(
+                    exists.lastModificationTimestamp(),
+                    new ReadOnlyChronoVertex(exists.vertex())
+                );
+            }
+            case VertexStatus.Deleted deleted -> {
+                return deleted;
+            }
+            case VertexStatus.NotFound notFound -> {
+                return notFound;
+            }
+        }
+    }
+
+    @Override
+    public EdgeStatus edgeStatus(final String id) {
+        var status = this.graph.edgeStatus(id);
+        switch (status) {
+            case EdgeStatus.Exists exists -> {
+                return new EdgeStatus.Exists(
+                    exists.lastModificationTimestamp(),
+                    new ReadOnlyChronoEdge(exists.edge())
+                );
+            }
+            case EdgeStatus.Deleted deleted -> {
+                return deleted;
+            }
+            case EdgeStatus.NotFound notFound -> {
+                return notFound;
+            }
+        }
+    }
+
+    @Override
     public ChronoGraphTransactionManager tx() {
         return new ReadOnlyChronoGraphTransactionManager(this.graph.tx());
     }
@@ -123,7 +163,7 @@ public class ReadOnlyChronoGraph implements ChronoGraph {
 
     @Override
     public Iterator<Long> getEdgeHistory(final Object edgeId, final long lowerBound, final long upperBound, final Order order) {
-        Iterator<Long> history = this.graph.getEdgeHistory(edgeId, lowerBound, upperBound,order);
+        Iterator<Long> history = this.graph.getEdgeHistory(edgeId, lowerBound, upperBound, order);
         return Iterators.unmodifiableIterator(history);
     }
 

@@ -5,23 +5,20 @@ import org.apache.tinkerpop.gremlin.structure.Edge;
 import org.apache.tinkerpop.gremlin.structure.Vertex;
 import org.chronos.chronodb.api.ChronoDBTransaction;
 import org.chronos.chronodb.api.Order;
-import org.chronos.chronodb.internal.api.query.ChronoDBQuery;
-import org.chronos.chronodb.internal.api.query.searchspec.SearchSpecification;
 import org.chronos.chronograph.api.structure.ChronoEdge;
 import org.chronos.chronograph.api.structure.ChronoGraph;
 import org.chronos.chronograph.api.structure.ChronoVertex;
 import org.chronos.chronograph.api.structure.record.IEdgeRecord;
+import org.chronos.chronograph.api.structure.record.IEdgeTargetRecord;
 import org.chronos.chronograph.api.structure.record.IVertexRecord;
+import org.chronos.chronograph.api.transaction.EdgeStatus;
 import org.chronos.chronograph.api.transaction.GraphTransactionContext;
+import org.chronos.chronograph.api.transaction.VertexStatus;
 import org.chronos.chronograph.internal.api.transaction.ChronoGraphTransactionInternal;
 import org.chronos.chronograph.internal.impl.structure.graph.ChronoVertexImpl;
-import org.chronos.chronograph.api.structure.record.IEdgeTargetRecord;
 import org.chronos.chronograph.internal.impl.transaction.ElementLoadMode;
 
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 import static com.google.common.base.Preconditions.*;
 
@@ -29,7 +26,7 @@ public class NoTransactionControlChronoGraphTransaction implements ChronoGraphTr
 
     private final ChronoGraphTransactionInternal tx;
 
-    public NoTransactionControlChronoGraphTransaction(ChronoGraphTransactionInternal tx){
+    public NoTransactionControlChronoGraphTransaction(ChronoGraphTransactionInternal tx) {
         checkNotNull(tx, "Precondition violation - argument 'tx' must not be NULL!");
         this.tx = tx;
     }
@@ -147,6 +144,16 @@ public class NoTransactionControlChronoGraphTransaction implements ChronoGraphTr
     @Override
     public Iterator<Long> getEdgeHistory(final Object vertexId, final long lowerBound, final long upperBound, final Order order) {
         return this.tx.getEdgeHistory(vertexId, lowerBound, upperBound, order);
+    }
+
+    @Override
+    public VertexStatus vertexStatus(final String vertexId) {
+        return this.tx.vertexStatus(vertexId);
+    }
+
+    @Override
+    public EdgeStatus edgeStatus(final String edgeId) {
+        return this.tx.edgeStatus(edgeId);
     }
 
     @Override

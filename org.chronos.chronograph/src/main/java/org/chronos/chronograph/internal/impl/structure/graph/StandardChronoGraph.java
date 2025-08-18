@@ -28,6 +28,8 @@ import org.chronos.chronograph.api.schema.ChronoGraphSchemaManager;
 import org.chronos.chronograph.api.statistics.ChronoGraphStatisticsManager;
 import org.chronos.chronograph.api.structure.ChronoGraphVariables;
 import org.chronos.chronograph.api.transaction.ChronoGraphTransactionManager;
+import org.chronos.chronograph.api.transaction.EdgeStatus;
+import org.chronos.chronograph.api.transaction.VertexStatus;
 import org.chronos.chronograph.internal.ChronoGraphConstants;
 import org.chronos.chronograph.internal.api.configuration.ChronoGraphConfiguration;
 import org.chronos.chronograph.internal.api.structure.ChronoGraphInternal;
@@ -183,6 +185,18 @@ public class StandardChronoGraph implements ChronoGraphInternal {
     public Iterator<Edge> edges(final Object... edgeIds) {
         this.tx().readWrite();
         return this.tx().getCurrentTransaction().edges(edgeIds);
+    }
+
+    @Override
+    public VertexStatus vertexStatus(final String id) {
+        this.tx().readWrite();
+        return this.tx().getCurrentTransaction().vertexStatus(id);
+    }
+
+    @Override
+    public EdgeStatus edgeStatus(final String id) {
+        this.tx().readWrite();
+        return this.tx().getCurrentTransaction().edgeStatus(id);
     }
 
     // =====================================================================================================================

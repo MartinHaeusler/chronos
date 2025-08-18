@@ -413,6 +413,10 @@ public interface ChronoDBTransaction {
      */
     public long getLastModificationTimestamp(String keyspace, String key);
 
+    public EntryStatus getStatus(String key);
+
+    public EntryStatus getStatus(String keyspace, String key);
+
     /**
      * Returns an iterator over the modified keys in the given timestamp range.
      * <p>
