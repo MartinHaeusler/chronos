@@ -20,7 +20,7 @@ allprojects {
 
 allprojects {
     group = "org.chronos"
-    version = "1.3.35-SNAPSHOT"
+    version = "1.3.34"
 
     extra["mavenVersion"] = project.version
 
