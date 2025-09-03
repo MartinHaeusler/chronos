@@ -55,8 +55,7 @@ tasks.test {
 val generateBuildInfoFile by tasks.registering {
     val configFile = file("src/main/resources/buildInfo.properties")
     outputs.file(configFile)
-
-    outputs.cacheIf { false }
+    inputs.property("version", project.version.toString())
 
     doLast {
         println("Creating build info file (${project.version}) in: ${configFile.absolutePath}")
