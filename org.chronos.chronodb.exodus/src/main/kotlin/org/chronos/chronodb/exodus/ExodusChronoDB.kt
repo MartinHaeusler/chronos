@@ -175,7 +175,7 @@ class ExodusChronoDB : AbstractChronoDB {
             return false
         }
 
-        if(this.getMigrationChain(storedVersion).isEmpty()){
+        if(this.getMigrationChain(storedVersion).isNotEmpty()){
             // there is a required migration -> can't open
             return false
         }
