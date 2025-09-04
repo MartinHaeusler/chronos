@@ -1,8 +1,8 @@
 package org.chronos.chronodb.exodus
 
+import io.github.oshai.kotlinlogging.KotlinLogging
 import jetbrains.exodus.env.Environment
 import jetbrains.exodus.env.StoreConfig
-import io.github.oshai.kotlinlogging.KotlinLogging
 import org.apache.commons.io.FileUtils
 import org.chronos.chronodb.api.*
 import org.chronos.chronodb.api.exceptions.ChronosBuildVersionConflictException
@@ -96,56 +96,106 @@ class ExodusChronoDB : AbstractChronoDB {
     override fun updateBuildVersionInDatabase(readOnly: Boolean): ChronosVersion {
         // note: since after 0.1.0, we store the chronos version in the database. If there
         // is no stored version, we have to assume it is from that version.
-        val storedVersion = this.storedChronosVersion.orIfNull(ChronosVersion.parse("0.1.0"))
+        val initialVersion = ChronosVersion.parse("0.1.0")
+        val storedVersion = this.storedChronosVersion.orIfNull(initialVersion)
         val currentVersion = ChronosVersion.getCurrentVersion()
-        if (storedVersion.isGreaterThan(currentVersion)) {
-            // the database has been written by a NEWER version of chronos; we might be incompatible
-            if (currentVersion.isReadCompatibleWith(storedVersion)) {
-                log.warn {
-                    "The database was written by Chronos '$storedVersion', but this is the older version '$currentVersion'! " +
-                        "Some features may be unsupported by this older version. " +
-                        "We strongly recommend updating Chronos to version '$storedVersion' or higher for working with this database!"
-                }
+        when {
+            storedVersion == currentVersion -> {
+                // precise version match; no migration necessary
                 return storedVersion
-            } else {
-                // the current chronos version is not read-compatible with the (newer) version that created this
-                // database; we must not touch it
-                throw ChronosBuildVersionConflictException(
-                    "The database was written by Chronos '$storedVersion', but this is the older version '${ChronosVersion.getCurrentVersion()}'! " +
-                        "Older versions of Chronos cannot open databases created by newer versions!"
-                )
             }
-        } else if (storedVersion == currentVersion) {
-            // precise version match; no migration necessary
-            return storedVersion
-        } else {
-            if (readOnly) {
-                val msg = if (storedVersion == ChronosVersion.parse("0.1.0")) {
-                    "Cannot create a new database in read-only mode."
+
+            storedVersion.isGreaterThan(currentVersion) -> {
+                // the database has been written by a NEWER version of chronos; we might be incompatible
+                if (currentVersion.isReadCompatibleWith(storedVersion)) {
+                    log.warn {
+                        "The database was written by Chronos '$storedVersion', but this is the older version '$currentVersion'! " +
+                            "Some features may be unsupported by this older version. " +
+                            "We strongly recommend updating Chronos to version '$storedVersion' or higher for working with this database!"
+                    }
+                    return storedVersion
                 } else {
-                    "The database was written by Chronos '$storedVersion', " +
-                        "but this is the newer version '${ChronosVersion.getCurrentVersion()}'. " +
-                        "This newer version requires a migration of persistent data, but the " +
-                        "database has been started in read-only mode, which prevents the execution of this migration. " +
-                        "Please either start the database in read-write mode, or use Chronos version $storedVersion to open it."
+                    // the current chronos version is not read-compatible with the (newer) version that created this
+                    // database; we must not touch it
+                    throw ChronosBuildVersionConflictException(
+                        "The database was written by Chronos '$storedVersion', but this is the older version '${ChronosVersion.getCurrentVersion()}'! " +
+                            "Older versions of Chronos cannot open databases created by newer versions!"
+                    )
                 }
-                throw ChronosBuildVersionConflictException(msg)
             }
-            val workDir = this.configuration.workDirectory
-            val branchesDir = File(workDir, ChronoDBDirectoryLayout.BRANCHES_DIRECTORY)
-            val masterDir = File(branchesDir, ChronoDBDirectoryLayout.MASTER_BRANCH_DIRECTORY)
-            // do we have a master branch? If we don't, this is a new (empty) database instance that doesn't require migrations.
-            if (masterDir.exists() && !FileUtils.isEmptyDirectory(masterDir)) {
-                // database was created by an older version of chronos; update it
-                this.executeMigrationChainStartingFrom(storedVersion)
-            } else {
-                log.debug { "Creating a new empty instance of ChronoDB at '${workDir}'." }
+
+            else -> {
+                // stored version is LESS than the current version
+                if (readOnly) {
+                    if (storedVersion == initialVersion) {
+                        throw ChronosBuildVersionConflictException("Cannot create a new database in read-only mode.")
+                    }
+
+                    // check if we can still open the database (only difference in the patch level)
+                    if (canOpenDatabaseReadOnlyWithoutUpdatingVersions(storedVersion, currentVersion)) {
+                        log.warn {
+                            "Patch Version in database (${storedVersion}) is different from runtime (${currentVersion})!" +
+                                " Cannot update the database because it is in read-only mode."
+                        }
+                        return storedVersion
+                    }
+
+                    throw ChronosBuildVersionConflictException(
+                        "The database was written by Chronos '$storedVersion', " +
+                            "but this is the newer version '${ChronosVersion.getCurrentVersion()}'. " +
+                            "This newer version requires a migration of persistent data, but the " +
+                            "database has been started in read-only mode, which prevents the execution of this migration. " +
+                            "Please either start the database in read-write mode, or use Chronos version $storedVersion to open it."
+                    )
+                }
+                val workDir = this.configuration.workDirectory
+                val branchesDir = File(workDir, ChronoDBDirectoryLayout.BRANCHES_DIRECTORY)
+                val masterDir = File(branchesDir, ChronoDBDirectoryLayout.MASTER_BRANCH_DIRECTORY)
+                // do we have a master branch? If we don't, this is a new (empty) database instance that doesn't require migrations.
+                if (masterDir.exists() && !FileUtils.isEmptyDirectory(masterDir)) {
+                    // database was created by an older version of chronos; update it
+                    this.executeMigrationChainStartingFrom(storedVersion)
+                } else {
+                    log.debug { "Creating a new empty instance of ChronoDB at '${workDir}'." }
+                }
+                // if the migration chain has been executed successfully, we can safely update our chronos version
+                // to the current one (we might override the field with the same value, but that doesn't do any damage)
+                this.updateChronosVersionTo(currentVersion)
+                return storedVersion
             }
-            // if the migration chain has been executed successfully, we can safely update our chronos version
-            // to the current one (we might override the field with the same value, but that doesn't do any damage)
-            this.updateChronosVersionTo(currentVersion)
-            return storedVersion
         }
+    }
+
+    private fun canOpenDatabaseReadOnlyWithoutUpdatingVersions(
+        storedVersion: ChronosVersion,
+        currentVersion: ChronosVersion,
+    ): Boolean {
+        if(!differenceAtMostOnPatchLevel(storedVersion, currentVersion)){
+            // major or minor version difference -> can't open.
+            return false
+        }
+
+        if(this.getMigrationChain(storedVersion).isEmpty()){
+            // there is a required migration -> can't open
+            return false
+        }
+
+        // should be fine
+        return true
+    }
+
+    private fun differenceAtMostOnPatchLevel(versionA: ChronosVersion, versionB: ChronosVersion): Boolean {
+        if (versionA.majorVersion != versionB.majorVersion) {
+            // major version difference
+            return false
+        }
+        if (versionA.minorVersion != versionB.minorVersion) {
+            // minor version difference
+            return false
+        }
+
+        // at most patch-level difference
+        return true
     }
 
     override fun getQueryManager(): QueryManager {
@@ -222,15 +272,22 @@ class ExodusChronoDB : AbstractChronoDB {
     // =================================================================================================================
 
     private fun executeMigrationChainStartingFrom(from: ChronosVersion) {
-        var migrationChain = MigrationChain.fromPackage<ExodusChronoDB>("org.chronos.chronodb.exodus.migration")
-        migrationChain = migrationChain.startingAt(from)
-        if (migrationChain.isNotEmpty()) {
-            log.warn { "Executing Chronos migration chain. DO NOT TERMINATE THE PROCESS until this operation is complete." }
+        val migrationChain = this.getMigrationChain(from)
+
+        if (migrationChain.isEmpty()) {
+            // nothing to do
+            return
         }
+
+        log.warn { "Executing Chronos migration chain. DO NOT TERMINATE THE PROCESS until this operation is complete." }
         migrationChain.execute(this)
-        if (migrationChain.isNotEmpty()) {
-            log.info { "Chronos migration chain executed successfully." }
-        }
+        log.info { "Chronos migration chain executed successfully." }
+    }
+
+    private fun getMigrationChain(from: ChronosVersion): MigrationChain<ExodusChronoDB> {
+        return MigrationChain
+            .fromPackage<ExodusChronoDB>("org.chronos.chronodb.exodus.migration")
+            .startingAt(from)
     }
 
     // =================================================================================================================
