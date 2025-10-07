@@ -1,0 +1,26 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "prConcurrentLimit": 5,
+  "enabledManagers": ["npm", "gradle"],
+  "dependencyDashboard": true,
+  "postUpdateOptions": [],
+  "labels": ["dependency-update"],
+  "packageRules": [
+    {
+      "matchManagers": ["gradle"],
+      "reviewers": ["MartinHaeusler"]
+    },
+    {
+      "groupName": "All Minor Updates",
+      "updatePinnedDependencies": false,
+      "matchUpdateTypes": ["minor"],
+      "matchManagers": ["gradle"]
+    },
+    {
+      "groupName": "All Patch Updates",
+      "updatePinnedDependencies": false,
+      "matchUpdateTypes": ["patch"],
+      "matchManagers": ["gradle"]
+    }
+  ]
+}
