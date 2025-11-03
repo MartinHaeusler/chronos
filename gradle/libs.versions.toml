@@ -1,8 +1,8 @@
 [versions]
 kotlin = "2.2.0"
 
-jUnit5 = "5.13.3"
-jUnit5Platform = "1.13.4"
+jUnit5 = "5.14.1"
+jUnit5Platform = "1.14.1"
 
 logback = "1.5.18"
 
@@ -14,11 +14,11 @@ gremlin = "3.7.3"
 
 # utilities
 apache-commons-io = { group = "commons-io", name = "commons-io", version = "2.20.0" }
-apache-commons-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.18.0" }
+apache-commons-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.19.0" }
 apache-commons-collections4 = { group = "org.apache.commons", name = "commons-collections4", version = "4.5.0" }
 apache-commons-configuration2 = { group = "org.apache.commons", name = "commons-configuration2", version = "2.12.0" }
 apache-commons-beanutils = { group = "commons-beanutils", name = "commons-beanutils", version = "1.11.0" }
-guava = { group = "com.google.guava", name = "guava", version = "33.4.8-jre" }
+guava = { group = "com.google.guava", name = "guava", version = "33.5.0-jre" }
 groovy = { group = "org.apache.groovy", name = "groovy", version = "4.0.27" }
 jakarta-annotations = { group = "jakarta.annotation", name = "jakarta.annotation-api", version = "3.0.0" }
 
@@ -45,9 +45,9 @@ junit-platform-suite-engine = { group = "org.junit.platform", name = "junit-plat
 hamcrest = { group = "org.hamcrest", name = "hamcrest", version = "3.0" }
 
 # eclipse modeling framework
-emf-ecore = { group = "org.eclipse.emf", name = "org.eclipse.emf.ecore", version = "2.11.1-v20150805-0538" }
-emf-common = { group = "org.eclipse.emf", name = "org.eclipse.emf.common", version = "2.11.0-v20150805-0538" }
-emf-xmi = { group = "org.eclipse.emf", name = "org.eclipse.emf.ecore.xmi", version = "2.11.1-v20150805-0538" }
+emf-ecore = { group = "org.eclipse.emf", name = "org.eclipse.emf.ecore", version = "2.40.0" }
+emf-common = { group = "org.eclipse.emf", name = "org.eclipse.emf.common", version = "2.43.0" }
+emf-xmi = { group = "org.eclipse.emf", name = "org.eclipse.emf.ecore.xmi", version = "2.39.0" }
 
 # logging
 kotlin-logging-jvm = { group = "io.github.oshai", name = "kotlin-logging-jvm", version = "7.0.7" }
@@ -81,4 +81,4 @@ testing = [
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-versions = { id = "com.github.ben-manes.versions", version = "0.52.0" }
+versions = { id = "com.github.ben-manes.versions", version = "0.53.0" }
