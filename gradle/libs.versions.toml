@@ -1,10 +1,10 @@
 [versions]
 kotlin = "2.2.0"
 
-jUnit5 = "5.14.1"
-jUnit5Platform = "1.14.1"
+jUnit5 = "5.14.2"
+jUnit5Platform = "1.14.2"
 
-logback = "1.5.18"
+logback = "1.5.24"
 
 xodus = "2.0.1"
 
@@ -19,7 +19,7 @@ apache-commons-collections4 = { group = "org.apache.commons", name = "commons-co
 apache-commons-configuration2 = { group = "org.apache.commons", name = "commons-configuration2", version = "2.12.0" }
 apache-commons-beanutils = { group = "commons-beanutils", name = "commons-beanutils", version = "1.11.0" }
 guava = { group = "com.google.guava", name = "guava", version = "33.5.0-jre" }
-groovy = { group = "org.apache.groovy", name = "groovy", version = "4.0.27" }
+groovy = { group = "org.apache.groovy", name = "groovy", version = "4.0.29" }
 jakarta-annotations = { group = "jakarta.annotation", name = "jakarta.annotation-api", version = "3.0.0" }
 
 # serialization
@@ -50,7 +50,7 @@ emf-common = { group = "org.eclipse.emf", name = "org.eclipse.emf.common", versi
 emf-xmi = { group = "org.eclipse.emf", name = "org.eclipse.emf.ecore.xmi", version = "2.39.0" }
 
 # logging
-kotlin-logging-jvm = { group = "io.github.oshai", name = "kotlin-logging-jvm", version = "7.0.7" }
+kotlin-logging-jvm = { group = "io.github.oshai", name = "kotlin-logging-jvm", version = "7.0.14" }
 logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
 logback-core = { group = "ch.qos.logback", name = "logback-core", version.ref = "logback" }
 slf4j-api = { group = "org.slf4j", name = "slf4j-api", version = "2.0.17" }
