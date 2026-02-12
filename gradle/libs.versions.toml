@@ -19,7 +19,7 @@ apache-commons-collections4 = { group = "org.apache.commons", name = "commons-co
 apache-commons-configuration2 = { group = "org.apache.commons", name = "commons-configuration2", version = "2.12.0" }
 apache-commons-beanutils = { group = "commons-beanutils", name = "commons-beanutils", version = "1.11.0" }
 guava = { group = "com.google.guava", name = "guava", version = "33.5.0-jre" }
-groovy = { group = "org.apache.groovy", name = "groovy", version = "4.0.30" }
+groovy = { group = "org.apache.groovy", name = "groovy", version = "5.0.4" }
 jakarta-annotations = { group = "jakarta.annotation", name = "jakarta.annotation-api", version = "3.0.0" }
 
 # serialization
