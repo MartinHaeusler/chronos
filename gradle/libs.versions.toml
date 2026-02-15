@@ -1,7 +1,7 @@
 [versions]
 kotlin = "2.2.0"
 
-jUnit5 = "5.14.2"
+jUnit5 = "6.0.3"
 jUnit5Platform = "1.14.2"
 
 logback = "1.5.29"
