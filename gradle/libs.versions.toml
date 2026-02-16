@@ -1,10 +1,10 @@
 [versions]
 kotlin = "2.2.0"
 
-jUnit5 = "5.14.2"
-jUnit5Platform = "1.14.2"
+jUnit5 = "5.14.3"
+jUnit5Platform = "1.14.3"
 
-logback = "1.5.29"
+logback = "1.5.32"
 
 xodus = "2.0.1"
 
