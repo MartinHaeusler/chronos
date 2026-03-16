@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.2.0"
+kotlin = "2.3.20"
 
 jUnit5 = "5.14.2"
 jUnit5Platform = "1.14.2"
@@ -8,15 +8,15 @@ logback = "1.5.29"
 
 xodus = "2.0.1"
 
-gremlin = "3.7.3"
+gremlin = "3.8.0"
 
 [libraries]
 
 # utilities
-apache-commons-io = { group = "commons-io", name = "commons-io", version = "2.20.0" }
-apache-commons-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.19.0" }
+apache-commons-io = { group = "commons-io", name = "commons-io", version = "2.21.0" }
+apache-commons-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = "3.20.0" }
 apache-commons-collections4 = { group = "org.apache.commons", name = "commons-collections4", version = "4.5.0" }
-apache-commons-configuration2 = { group = "org.apache.commons", name = "commons-configuration2", version = "2.12.0" }
+apache-commons-configuration2 = { group = "org.apache.commons", name = "commons-configuration2", version = "2.13.0" }
 apache-commons-beanutils = { group = "commons-beanutils", name = "commons-beanutils", version = "1.11.0" }
 guava = { group = "com.google.guava", name = "guava", version = "33.5.0-jre" }
 groovy = { group = "org.apache.groovy", name = "groovy", version = "4.0.30" }
@@ -45,9 +45,9 @@ junit-platform-suite-engine = { group = "org.junit.platform", name = "junit-plat
 hamcrest = { group = "org.hamcrest", name = "hamcrest", version = "3.0" }
 
 # eclipse modeling framework
-emf-ecore = { group = "org.eclipse.emf", name = "org.eclipse.emf.ecore", version = "2.40.0" }
-emf-common = { group = "org.eclipse.emf", name = "org.eclipse.emf.common", version = "2.43.0" }
-emf-xmi = { group = "org.eclipse.emf", name = "org.eclipse.emf.ecore.xmi", version = "2.39.0" }
+emf-ecore = { group = "org.eclipse.emf", name = "org.eclipse.emf.ecore", version = "2.42.0" }
+emf-common = { group = "org.eclipse.emf", name = "org.eclipse.emf.common", version = "2.45.0" }
+emf-xmi = { group = "org.eclipse.emf", name = "org.eclipse.emf.ecore.xmi", version = "2.40.0" }
 
 # logging
 kotlin-logging-jvm = { group = "io.github.oshai", name = "kotlin-logging-jvm", version = "7.0.14" }
